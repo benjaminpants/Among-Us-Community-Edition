@@ -17,7 +17,7 @@ public class AmongUsClient : InnerNetClient
 		{
 			if (AmongUsClient.Instance != this)
 			{
-				UnityEngine.Object.Destroy(base.gameObject);
+				UnityEngine.Object.Destroy(base.gameObject); //Test
 			}
 			return;
 		}
