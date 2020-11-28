@@ -8,7 +8,7 @@ public class CreateOptionsPicker : MonoBehaviour
 	// Token: 0x0600098C RID: 2444 RVA: 0x00031C14 File Offset: 0x0002FE14
 	public void Start()
 	{
-		this.MapButtons[1].gameObject.SetActive(TempData.IsDo2Enabled);
+		//this.MapButtons[1].gameObject.SetActive(TempData.IsDo2Enabled);
 		GameOptionsData targetOptions = this.GetTargetOptions();
 		this.UpdateImpostorsButtons(targetOptions.NumImpostors);
 		this.UpdateMaxPlayersButtons(targetOptions);
@@ -47,11 +47,18 @@ public class CreateOptionsPicker : MonoBehaviour
 	public void SetMaxPlayersButtons(int maxPlayers)
 	{
 		GameOptionsData targetOptions = this.GetTargetOptions();
-		if (maxPlayers < GameOptionsData.MinPlayers[targetOptions.NumImpostors])
-		{
-			return;
-		}
-		targetOptions.MaxPlayers = maxPlayers;
+		bool addCount = false;
+
+
+		if (maxPlayers == 5) addCount = true;
+		else if (maxPlayers == 4) addCount = false;
+		else return;
+
+		if (maxPlayers < targetOptions.NumImpostors) return;
+		if (addCount && targetOptions.MaxPlayers + 1 > 20) return;
+		if (!addCount && targetOptions.MaxPlayers - 1 < 4) return;
+
+		targetOptions.MaxPlayers = (addCount ? targetOptions.MaxPlayers + 1 : targetOptions.MaxPlayers - 1);
 		this.SetTargetOptions(targetOptions);
 		if (DestroyableSingleton<FindAGameManager>.InstanceExists)
 		{
@@ -67,6 +74,7 @@ public class CreateOptionsPicker : MonoBehaviour
 		targetOptions.NumImpostors = numImpostors;
 		this.SetTargetOptions(targetOptions);
 		this.UpdateImpostorsButtons(numImpostors);
+		this.UpdateMaxPlayersButtons(targetOptions);
 	}
 
 	// Token: 0x06000991 RID: 2449 RVA: 0x00031D20 File Offset: 0x0002FF20
@@ -150,10 +158,22 @@ public class CreateOptionsPicker : MonoBehaviour
 	// Token: 0x06000997 RID: 2455 RVA: 0x00031F00 File Offset: 0x00030100
 	private void UpdateMaxPlayersButtons(GameOptionsData opts)
 	{
-		opts.MaxPlayers *= 2;
 		if (this.CrewArea)
 		{
 			this.CrewArea.SetCrewSize(opts.MaxPlayers, opts.NumImpostors);
+		}
+		for (int i = 0; i < this.MaxPlayerButtons.Length; i++)
+		{
+			SpriteRenderer spriteRenderer = this.MaxPlayerButtons[i];
+			if (spriteRenderer.name == "5") spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "+";
+			else if (spriteRenderer.name == "4") spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "-";
+			else
+            {
+				spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "";
+				spriteRenderer.enabled = false;
+				spriteRenderer.GetComponentInChildren<TextRenderer>().Color = Palette.DisabledGrey;
+			}
+
 		}
 	}
 

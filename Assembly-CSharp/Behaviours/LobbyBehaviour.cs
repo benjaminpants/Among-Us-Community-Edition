@@ -35,7 +35,7 @@ public class LobbyBehaviour : InnerNetObject
 		this.timer = 0f;
 		if (PlayerControl.GameOptions != null)
 		{
-			int numPlayers = GameData.Instance ? GameData.Instance.PlayerCount : 20;
+			int numPlayers = GameData.Instance != null ? GameData.Instance.PlayerCount : 20;
 			DestroyableSingleton<HudManager>.Instance.GameSettings.Text = PlayerControl.GameOptions.ToHudString(numPlayers);
 			DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(true);
 		}
