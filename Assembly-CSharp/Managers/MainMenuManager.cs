@@ -35,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
 	private IEnumerator RunStartUp()
 	{
 		yield return this.DataPolicy.Show();
+		yield return this.AdsPolicy.Show();
 		yield return this.Announcement.Show();
 		yield return this.UnlockPop.Show();
 		DateTime utcNow = DateTime.UtcNow;

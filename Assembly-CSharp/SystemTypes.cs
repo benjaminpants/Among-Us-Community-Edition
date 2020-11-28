@@ -52,5 +52,9 @@ public enum SystemTypes : byte
 	// Token: 0x04000A7A RID: 2682
 	Office,
 	// Token: 0x04000A7B RID: 2683
-	Greenhouse
+	Greenhouse,
+	Customizer,
+	Customizer_Color,
+	Customizer_Hat,
+	Customizer_Skin
 }

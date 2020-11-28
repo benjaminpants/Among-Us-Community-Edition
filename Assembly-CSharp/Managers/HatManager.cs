@@ -70,6 +70,7 @@ public class HatManager : DestroyableSingleton<HatManager>
 	public void Start()
 	{
 		this.AllHats.AddRange(HatLoader.LoadHats());
+		this.AllSkins.AddRange(HatLoader.LoadSkins());
 	}
 
 	// Token: 0x0400033C RID: 828

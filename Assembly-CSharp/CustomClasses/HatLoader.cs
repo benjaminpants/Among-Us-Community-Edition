@@ -20,7 +20,17 @@ public class HatLoader
 		return texture2D;
 	}
 
-	// Token: 0x06000EF9 RID: 3833 RVA: 0x0004124C File Offset: 0x0003F44C
+	public static List<SkinData> LoadSkins()
+	{
+
+		List<SkinData> list = new List<SkinData>();
+		/*SkinData skin = new SkinData();
+		skin.StoreName = "Test Object";
+		skin.name = "TestSkin";
+		skin.Free = true;
+		list.Add(skin);*/
+		return list;
+	}
 	public static List<HatBehaviour> LoadHats()
 	{
 		List<HatBehaviour> list = new List<HatBehaviour>();

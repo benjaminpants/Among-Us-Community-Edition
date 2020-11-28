@@ -20,10 +20,63 @@ public class TaskAdderGame : Minigame
 		this.Root.SubFolders = (from f in this.Root.SubFolders
 		orderby f.FolderName
 		select f).ToList<TaskFolder>();
+		this.PopulateRootCustom(this.Root, folders, new NormalPlayerTask[] { }, "Settings");
 		this.ShowFolder(this.Root);
 	}
 
-	// Token: 0x06000BE0 RID: 3040 RVA: 0x0003A7EC File Offset: 0x000389EC
+	private string[] GetHatTaskList()
+	{
+		List<string> TaskList = new List<string>();
+		for (int i = 0; i < 20; i++)
+		{
+			TaskList.Add(i.ToString());
+		}
+		return TaskList.ToArray();
+	}
+
+	private string[] GetSkinTaskList()
+	{
+		List<string> TaskList = new List<string>();
+		for (int i = 0; i < 20; i++)
+        {
+			TaskList.Add(i.ToString());
+		}
+		return TaskList.ToArray();
+	}
+
+	private string[] GetColorTaskList()
+    {
+		List<string> TaskList = new List<string>();
+		for (int i = 0; i < 20; i++)
+		{
+			TaskList.Add(i.ToString());
+		}
+		return TaskList.ToArray();
+	}
+
+
+	private void PopulateRootCustom2(TaskFolder rootFolder, Dictionary<SystemTypes, TaskFolder> folders, string[] taskList, string name, SystemTypes type)
+	{
+		TaskFolder taskFolder;
+		taskFolder = (folders[type] = UnityEngine.Object.Instantiate<TaskFolder>(this.RootFolderPrefab, base.transform));
+		taskFolder.FolderName = name;
+		taskFolder.gameObject.SetActive(false);
+		rootFolder.SubFolders.Add(taskFolder);
+		taskFolder.UseAltChildren = true;
+		taskFolder.StringChildren.AddRange(taskList);
+	}
+
+	private void PopulateRootCustom(TaskFolder rootFolder, Dictionary<SystemTypes, TaskFolder> folders, NormalPlayerTask[] taskList, string name)
+    {
+		TaskFolder taskFolder;
+		taskFolder = (folders[SystemTypes.Customizer] = UnityEngine.Object.Instantiate<TaskFolder>(this.RootFolderPrefab, base.transform));
+		PopulateRootCustom2(taskFolder, folders, GetColorTaskList(), "Color", SystemTypes.Customizer_Color);
+		PopulateRootCustom2(taskFolder, folders, GetHatTaskList(), "Hat", SystemTypes.Customizer_Hat);
+		PopulateRootCustom2(taskFolder, folders, GetSkinTaskList(), "Skin", SystemTypes.Customizer_Skin);
+		taskFolder.FolderName = name;
+		taskFolder.gameObject.SetActive(false);
+		rootFolder.SubFolders.Add(taskFolder);
+	}
 	private void PopulateRoot(TaskFolder rootFolder, Dictionary<SystemTypes, TaskFolder> folders, NormalPlayerTask[] taskList)
 	{
 		foreach (NormalPlayerTask normalPlayerTask in taskList)
@@ -108,9 +161,19 @@ public class TaskAdderGame : Minigame
 			}
 			this.ActiveItems.Add(taskFolder2.transform);
 		}
+
+		if (taskFolder.UseAltChildren == true)
+        {
+			for (int l = 0; l < taskFolder.StringChildren.Count; l++)
+			{
+				TaskAddButton taskAddButton = UnityEngine.Object.Instantiate<TaskAddButton>(this.TaskPrefab);
+				taskAddButton.Text.Text = taskFolder.StringChildren[l];
+				this.AddFileAsChild(taskAddButton, ref num, ref num2);
+			}
+        }
 		List<PlayerTask> list = (from t in taskFolder.Children
-		orderby t.TaskType.ToString()
-		select t).ToList<PlayerTask>();
+								 orderby t.TaskType.ToString()
+								 select t).ToList<PlayerTask>();
 		for (int l = 0; l < list.Count; l++)
 		{
 			TaskAddButton taskAddButton = UnityEngine.Object.Instantiate<TaskAddButton>(this.TaskPrefab);
@@ -125,6 +188,8 @@ public class TaskAdderGame : Minigame
 			}
 			this.AddFileAsChild(taskAddButton, ref num, ref num2);
 		}
+
+
 		if (this.Heirarchy.Count == 1)
 		{
 			TaskAddButton taskAddButton2 = UnityEngine.Object.Instantiate<TaskAddButton>(this.InfectedButton);
@@ -143,7 +208,7 @@ public class TaskAdderGame : Minigame
 		if (xCursor > this.lineWidth)
 		{
 			xCursor = 0f;
-			yCursor -= this.lineHeight;
+			yCursor += this.lineHeight;
 		}
 		this.ActiveItems.Add(item.transform);
 	}

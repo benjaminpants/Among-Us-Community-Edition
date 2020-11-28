@@ -23,6 +23,9 @@ public class TaskFolder : MonoBehaviour
 		throw new NotImplementedException();
 	}
 
+
+	public bool UseAltChildren = false;
+
 	// Token: 0x04000B86 RID: 2950
 	public string FolderName;
 
@@ -34,6 +37,9 @@ public class TaskFolder : MonoBehaviour
 
 	// Token: 0x04000B89 RID: 2953
 	public List<TaskFolder> SubFolders = new List<TaskFolder>();
+
+	// Token: 0x04000B8A RID: 2954
+	public List<string> StringChildren = new List<string>();
 
 	// Token: 0x04000B8A RID: 2954
 	public List<PlayerTask> Children = new List<PlayerTask>();

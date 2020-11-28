@@ -59,7 +59,6 @@ public class SystemConsole : MonoBehaviour, IUsable
 		return num;
 	}
 
-	// Token: 0x06000AC5 RID: 2757 RVA: 0x000369EC File Offset: 0x00034BEC
 	public void Use()
 	{
 		bool flag;
