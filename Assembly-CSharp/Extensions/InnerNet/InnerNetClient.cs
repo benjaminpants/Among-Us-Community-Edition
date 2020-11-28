@@ -13,18 +13,18 @@ using UnityEngine.SceneManagement;
 
 namespace InnerNet
 {
-	// Token: 0x02000246 RID: 582
+	// Token: 0x02000144 RID: 324
 	public abstract class InnerNetClient : MonoBehaviour
 	{
-		// Token: 0x06000C73 RID: 3187 RVA: 0x000097BC File Offset: 0x000079BC
+		// Token: 0x060007AE RID: 1966 RVA: 0x0002E381 File Offset: 0x0002C581
 		public void SetEndpoint(string addr, ushort port)
 		{
 			this.networkAddress = addr;
 			this.networkPort = (int)port;
 		}
 
-		// Token: 0x170001E2 RID: 482
-		// (get) Token: 0x06000C74 RID: 3188 RVA: 0x000097CC File Offset: 0x000079CC
+		// Token: 0x170000BE RID: 190
+		// (get) Token: 0x060007AF RID: 1967 RVA: 0x0002E391 File Offset: 0x0002C591
 		private bool AmConnected
 		{
 			get
@@ -33,8 +33,8 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x170001E3 RID: 483
-		// (get) Token: 0x06000C75 RID: 3189 RVA: 0x000097D7 File Offset: 0x000079D7
+		// Token: 0x170000BF RID: 191
+		// (get) Token: 0x060007B0 RID: 1968 RVA: 0x0002E39C File Offset: 0x0002C59C
 		public int Ping
 		{
 			get
@@ -47,8 +47,8 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x170001E4 RID: 484
-		// (get) Token: 0x06000C76 RID: 3190 RVA: 0x000097EF File Offset: 0x000079EF
+		// Token: 0x170000C0 RID: 192
+		// (get) Token: 0x060007B1 RID: 1969 RVA: 0x0002E3B4 File Offset: 0x0002C5B4
 		public bool AmHost
 		{
 			get
@@ -57,8 +57,8 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x170001E5 RID: 485
-		// (get) Token: 0x06000C77 RID: 3191 RVA: 0x000097FF File Offset: 0x000079FF
+		// Token: 0x170000C1 RID: 193
+		// (get) Token: 0x060007B2 RID: 1970 RVA: 0x0002E3C4 File Offset: 0x0002C5C4
 		public bool AmClient
 		{
 			get
@@ -67,13 +67,13 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x170001E6 RID: 486
-		// (get) Token: 0x06000C78 RID: 3192 RVA: 0x0000980A File Offset: 0x00007A0A
-		// (set) Token: 0x06000C79 RID: 3193 RVA: 0x00009812 File Offset: 0x00007A12
+		// Token: 0x170000C2 RID: 194
+		// (get) Token: 0x060007B3 RID: 1971 RVA: 0x0002E3CF File Offset: 0x0002C5CF
+		// (set) Token: 0x060007B4 RID: 1972 RVA: 0x0002E3D7 File Offset: 0x0002C5D7
 		public bool IsGamePublic { get; private set; }
 
-		// Token: 0x170001E7 RID: 487
-		// (get) Token: 0x06000C7A RID: 3194 RVA: 0x0000981B File Offset: 0x00007A1B
+		// Token: 0x170000C3 RID: 195
+		// (get) Token: 0x060007B5 RID: 1973 RVA: 0x0002E3E0 File Offset: 0x0002C5E0
 		public bool IsGameStarted
 		{
 			get
@@ -82,8 +82,8 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x170001E8 RID: 488
-		// (get) Token: 0x06000C7B RID: 3195 RVA: 0x00009826 File Offset: 0x00007A26
+		// Token: 0x170000C4 RID: 196
+		// (get) Token: 0x060007B6 RID: 1974 RVA: 0x0002E3EB File Offset: 0x0002C5EB
 		public bool IsGameOver
 		{
 			get
@@ -92,10 +92,10 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C7C RID: 3196 RVA: 0x00009831 File Offset: 0x00007A31
+		// Token: 0x060007B7 RID: 1975 RVA: 0x0002E3F6 File Offset: 0x0002C5F6
 		public virtual void Start()
 		{
-			SceneManager.activeSceneChanged += delegate(Scene oldScene, Scene scene)
+			SceneManager.activeSceneChanged += delegate (Scene oldScene, Scene scene)
 			{
 				this.SendSceneChange(scene.name);
 			};
@@ -104,7 +104,7 @@ namespace InnerNet
 			this.GameId = 32;
 		}
 
-		// Token: 0x06000C7D RID: 3197 RVA: 0x0003C3A4 File Offset: 0x0003A5A4
+		// Token: 0x060007B8 RID: 1976 RVA: 0x0002E428 File Offset: 0x0002C628
 		private void SendOrDisconnect(MessageWriter msg)
 		{
 			try
@@ -117,7 +117,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C7E RID: 3198 RVA: 0x0003C3E0 File Offset: 0x0003A5E0
+		// Token: 0x060007B9 RID: 1977 RVA: 0x0002E464 File Offset: 0x0002C664
 		public ClientData GetHost()
 		{
 			for (int i = 0; i < this.allClients.Count; i++)
@@ -130,7 +130,7 @@ namespace InnerNet
 			return null;
 		}
 
-		// Token: 0x06000C7F RID: 3199 RVA: 0x0003C42C File Offset: 0x0003A62C
+		// Token: 0x060007BA RID: 1978 RVA: 0x0002E4B0 File Offset: 0x0002C6B0
 		public int GetClientIdFromCharacter(InnerNetObject character)
 		{
 			for (int i = 0; i < this.allClients.Count; i++)
@@ -143,7 +143,7 @@ namespace InnerNet
 			return -1;
 		}
 
-		// Token: 0x06000C80 RID: 3200 RVA: 0x00009863 File Offset: 0x00007A63
+		// Token: 0x060007BB RID: 1979 RVA: 0x0002E4FF File Offset: 0x0002C6FF
 		public virtual void OnDestroy()
 		{
 			if (this.AmConnected)
@@ -152,7 +152,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C81 RID: 3201 RVA: 0x00009876 File Offset: 0x00007A76
+		// Token: 0x060007BC RID: 1980 RVA: 0x0002E512 File Offset: 0x0002C712
 		public IEnumerator CoConnect()
 		{
 			if (this.AmConnected)
@@ -187,27 +187,33 @@ namespace InnerNet
 			yield break;
 		}
 
-		// Token: 0x06000C82 RID: 3202 RVA: 0x00009885 File Offset: 0x00007A85
+		// Token: 0x060007BD RID: 1981 RVA: 0x0002E521 File Offset: 0x0002C721
 		private void Connection_DataReceivedRaw(byte[] data)
 		{
-			Debug.Log("Client Got: " + string.Join(" ", from b in data
-			select b.ToString()));
+			Debug.Log("Client Got: " + string.Join(" ", data.Select(delegate (byte b)
+			{
+				byte b2 = b;
+				return b2.ToString();
+			})));
 		}
 
-		// Token: 0x06000C83 RID: 3203 RVA: 0x0003C47C File Offset: 0x0003A67C
+		// Token: 0x060007BE RID: 1982 RVA: 0x0002E564 File Offset: 0x0002C764
 		private void Connection_DataSentRaw(byte[] data, int length)
 		{
-			Debug.Log("Client Sent: " + string.Join(" ", (from b in data
-			select b.ToString()).ToArray<string>(), 0, length));
+			Debug.Log("Client Sent: " + string.Join(" ", data.Select(delegate (byte b)
+			{
+				byte b2 = b;
+				return b2.ToString();
+			}).ToArray<string>(), 0, length));
 		}
 
-		// Token: 0x06000C84 RID: 3204 RVA: 0x000098C5 File Offset: 0x00007AC5
+		// Token: 0x060007BF RID: 1983 RVA: 0x0002E5B6 File Offset: 0x0002C7B6
 		public void Connect(MatchMakerModes mode)
 		{
 			base.StartCoroutine(this.CoConnect(mode));
 		}
 
-		// Token: 0x06000C85 RID: 3205 RVA: 0x000098D5 File Offset: 0x00007AD5
+		// Token: 0x060007C0 RID: 1984 RVA: 0x0002E5C6 File Offset: 0x0002C7C6
 		private IEnumerator CoConnect(MatchMakerModes mode)
 		{
 			if (this.mode != MatchMakerModes.None)
@@ -246,39 +252,39 @@ namespace InnerNet
 			yield break;
 		}
 
-		// Token: 0x06000C86 RID: 3206 RVA: 0x000098EB File Offset: 0x00007AEB
+		// Token: 0x060007C1 RID: 1985 RVA: 0x0002E5DC File Offset: 0x0002C7DC
 		public IEnumerator WaitForConnectionOrFail()
 		{
 			while (this.AmConnected)
 			{
 				switch (this.mode)
 				{
-				case MatchMakerModes.None:
-					goto IL_5F;
-				case MatchMakerModes.Client:
-					if (this.ClientId >= 0)
-					{
-						yield break;
-					}
-					break;
-				case MatchMakerModes.HostAndClient:
-					if (this.GameId != 0 && this.ClientId >= 0)
-					{
-						yield break;
-					}
-					break;
-				default:
-					goto IL_5F;
+					case MatchMakerModes.None:
+						goto IL_72;
+					case MatchMakerModes.Client:
+						if (this.ClientId >= 0)
+						{
+							yield break;
+						}
+						break;
+					case MatchMakerModes.HostAndClient:
+						if (this.GameId != 0 && this.ClientId >= 0)
+						{
+							yield break;
+						}
+						break;
+					default:
+						goto IL_72;
 				}
 				yield return null;
 				continue;
-				IL_5F:
+				IL_72:
 				yield break;
 			}
 			yield break;
 		}
 
-		// Token: 0x06000C87 RID: 3207 RVA: 0x000098FA File Offset: 0x00007AFA
+		// Token: 0x060007C2 RID: 1986 RVA: 0x0002E5EB File Offset: 0x0002C7EB
 		private IEnumerator WaitWithTimeout(Func<bool> success)
 		{
 			bool failed = true;
@@ -302,7 +308,7 @@ namespace InnerNet
 			yield break;
 		}
 
-		// Token: 0x06000C88 RID: 3208 RVA: 0x0003C4D0 File Offset: 0x0003A6D0
+		// Token: 0x060007C3 RID: 1987 RVA: 0x0002E604 File Offset: 0x0002C804
 		public void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
@@ -332,13 +338,13 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C89 RID: 3209 RVA: 0x00009910 File Offset: 0x00007B10
+		// Token: 0x060007C4 RID: 1988 RVA: 0x0002E6CC File Offset: 0x0002C8CC
 		private void OnDisconnect(object sender, DisconnectedEventArgs e)
 		{
 			this.EnqueueDisconnect(DisconnectReasons.Error, e.Reason);
 		}
 
-		// Token: 0x06000C8A RID: 3210 RVA: 0x00009920 File Offset: 0x00007B20
+		// Token: 0x060007C5 RID: 1989 RVA: 0x0002E6DC File Offset: 0x0002C8DC
 		public void HandleDisconnect(DisconnectReasons reason, string stringReason = null)
 		{
 			if (reason != DisconnectReasons.ExitGame && reason != DisconnectReasons.GameNotFound && reason != DisconnectReasons.GameFull && reason != DisconnectReasons.GameStarted)
@@ -351,7 +357,7 @@ namespace InnerNet
 			this.OnDisconnected();
 		}
 
-		// Token: 0x06000C8B RID: 3211 RVA: 0x0003C598 File Offset: 0x0003A798
+		// Token: 0x060007C6 RID: 1990 RVA: 0x0002E71C File Offset: 0x0002C91C
 		protected void EnqueueDisconnect(DisconnectReasons reason, string stringReason = null)
 		{
 			List<Action> dispatchQueue = this.DispatchQueue;
@@ -366,7 +372,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C8C RID: 3212 RVA: 0x0003C618 File Offset: 0x0003A818
+		// Token: 0x060007C7 RID: 1991 RVA: 0x0002E79C File Offset: 0x0002C99C
 		protected void DisconnectInternal(DisconnectReasons reason, string stringReason = null)
 		{
 			List<Action> dispatchQueue = this.DispatchQueue;
@@ -415,7 +421,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C8D RID: 3213 RVA: 0x0003C724 File Offset: 0x0003A924
+		// Token: 0x060007C8 RID: 1992 RVA: 0x0002E8A8 File Offset: 0x0002CAA8
 		public void HostGame(IBytesSerializable settings)
 		{
 			this.IsGamePublic = false;
@@ -428,7 +434,7 @@ namespace InnerNet
 			Debug.Log("Client requesting new game.");
 		}
 
-		// Token: 0x06000C8E RID: 3214 RVA: 0x0003C770 File Offset: 0x0003A970
+		// Token: 0x060007C9 RID: 1993 RVA: 0x0002E8F4 File Offset: 0x0002CAF4
 		public void JoinGame()
 		{
 			this.ClientId = -1;
@@ -446,18 +452,18 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x170001E9 RID: 489
-		// (get) Token: 0x06000C8F RID: 3215 RVA: 0x0000995F File Offset: 0x00007B5F
-		// (set) Token: 0x06000C90 RID: 3216 RVA: 0x00009967 File Offset: 0x00007B67
+		// Token: 0x170000C5 RID: 197
+		// (get) Token: 0x060007CA RID: 1994 RVA: 0x0002E961 File Offset: 0x0002CB61
+		// (set) Token: 0x060007CB RID: 1995 RVA: 0x0002E969 File Offset: 0x0002CB69
 		public int KicksLeft { get; private set; } = 1;
 
-		// Token: 0x06000C91 RID: 3217 RVA: 0x00009970 File Offset: 0x00007B70
+		// Token: 0x060007CC RID: 1996 RVA: 0x0002E972 File Offset: 0x0002CB72
 		public bool CanKick()
 		{
 			return this.AmHost && this.KicksLeft != 0;
 		}
 
-		// Token: 0x06000C92 RID: 3218 RVA: 0x0003C7E0 File Offset: 0x0003A9E0
+		// Token: 0x060007CD RID: 1997 RVA: 0x0002E988 File Offset: 0x0002CB88
 		public void KickPlayer(int clientId, bool ban)
 		{
 			if (!this.CanKick())
@@ -479,7 +485,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000C93 RID: 3219 RVA: 0x00009985 File Offset: 0x00007B85
+		// Token: 0x060007CE RID: 1998 RVA: 0x0002E9F3 File Offset: 0x0002CBF3
 		public MessageWriter StartEndGame()
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
@@ -488,7 +494,7 @@ namespace InnerNet
 			return messageWriter;
 		}
 
-		// Token: 0x06000C94 RID: 3220 RVA: 0x000099A0 File Offset: 0x00007BA0
+		// Token: 0x060007CF RID: 1999 RVA: 0x0002EA0E File Offset: 0x0002CC0E
 		public void FinishEndGame(MessageWriter msg)
 		{
 			msg.EndMessage();
@@ -496,7 +502,7 @@ namespace InnerNet
 			msg.Recycle();
 		}
 
-		// Token: 0x06000C95 RID: 3221 RVA: 0x0003C84C File Offset: 0x0003AA4C
+		// Token: 0x060007D0 RID: 2000 RVA: 0x0002EA24 File Offset: 0x0002CC24
 		protected void SendLateRejection(int targetId, DisconnectReasons reason)
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
@@ -509,7 +515,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000C96 RID: 3222 RVA: 0x0003C898 File Offset: 0x0003AA98
+		// Token: 0x060007D1 RID: 2001 RVA: 0x0002EA70 File Offset: 0x0002CC70
 		protected void SendClientReady()
 		{
 			if (this.AmHost)
@@ -528,7 +534,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000C97 RID: 3223 RVA: 0x0003C908 File Offset: 0x0003AB08
+		// Token: 0x060007D2 RID: 2002 RVA: 0x0002EAE0 File Offset: 0x0002CCE0
 		protected void SendStartGame()
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
@@ -539,7 +545,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000C98 RID: 3224 RVA: 0x0003C944 File Offset: 0x0003AB44
+		// Token: 0x060007D3 RID: 2003 RVA: 0x0002EB1C File Offset: 0x0002CD1C
 		public void RequestGameList(bool includePrivate, IBytesSerializable settings)
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
@@ -551,7 +557,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000C99 RID: 3225 RVA: 0x0003C988 File Offset: 0x0003AB88
+		// Token: 0x060007D4 RID: 2004 RVA: 0x0002EB60 File Offset: 0x0002CD60
 		public void ChangeGamePublic(bool isPublic)
 		{
 			if (this.AmHost)
@@ -568,7 +574,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C9A RID: 3226 RVA: 0x0003C9E0 File Offset: 0x0003ABE0
+		// Token: 0x060007D5 RID: 2005 RVA: 0x0002EBB8 File Offset: 0x0002CDB8
 		private void OnMessageReceived(DataReceivedEventArgs e)
 		{
 			MessageReader message = e.Message;
@@ -585,128 +591,160 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C9B RID: 3227 RVA: 0x0003CA2C File Offset: 0x0003AC2C
+		// Token: 0x060007D6 RID: 2006 RVA: 0x0002EC04 File Offset: 0x0002CE04
 		private void HandleMessage(MessageReader reader)
 		{
 			List<Action> dispatchQueue;
 			switch (reader.Tag)
 			{
-			case 0:
-				this.GameId = reader.ReadInt32();
-				Debug.Log("Client hosting game: " + InnerNetClient.IntToGameName(this.GameId));
-				dispatchQueue = this.DispatchQueue;
-				lock (dispatchQueue)
-				{
-					this.DispatchQueue.Add(delegate
-					{
-						this.OnGameCreated(InnerNetClient.IntToGameName(this.GameId));
-					});
-					return;
-				}
-				break;
-			case 1:
-				goto IL_310;
-			case 2:
-				this.GameState = InnerNetClient.GameStates.Started;
-				this.KicksLeft = 0;
-				dispatchQueue = this.DispatchQueue;
-				lock (dispatchQueue)
-				{
-					this.DispatchQueue.Add(delegate
-					{
-						this.OnStartGame();
-					});
-					return;
-				}
-				goto IL_60E;
-			case 3:
-			{
-				DisconnectReasons reason3 = DisconnectReasons.ServerRequest;
-				if (reader.Position < reader.Length)
-				{
-					reason3 = (DisconnectReasons)reader.ReadByte();
-				}
-				this.EnqueueDisconnect(reason3, null);
-				return;
-			}
-			case 4:
-				break;
-			case 5:
-			case 6:
-			{
-				int num = reader.ReadInt32();
-				if (this.GameId == num)
-				{
-					if (reader.Tag == 6)
-					{
-						int num2 = reader.ReadPackedInt32();
-						if (this.ClientId != num2)
-						{
-							Debug.LogWarning(string.Format("Got data meant for {0}", num2));
-							return;
-						}
-					}
-					MessageReader subReader = MessageReader.Get(reader);
+				case 0:
+					this.GameId = reader.ReadInt32();
+					Debug.Log("Client hosting game: " + InnerNetClient.IntToGameName(this.GameId));
 					dispatchQueue = this.DispatchQueue;
 					lock (dispatchQueue)
 					{
 						this.DispatchQueue.Add(delegate
 						{
-							this.HandleGameData(subReader);
+							this.OnGameCreated(InnerNetClient.IntToGameName(this.GameId));
 						});
 						return;
 					}
-					goto IL_4A9;
-				}
+					break;
+				case 1:
+					goto IL_473;
+				case 2:
+					break;
+				case 3:
+					goto IL_105;
+				case 4:
+					goto IL_229;
+				case 5:
+				case 6:
+					{
+						int num = reader.ReadInt32();
+						if (this.GameId == num)
+						{
+							if (reader.Tag == 6)
+							{
+								int num2 = reader.ReadPackedInt32();
+								if (this.ClientId != num2)
+								{
+									Debug.LogWarning(string.Format("Got data meant for {0}", num2));
+									return;
+								}
+							}
+							MessageReader subReader = MessageReader.Get(reader);
+							dispatchQueue = this.DispatchQueue;
+							lock (dispatchQueue)
+							{
+								this.DispatchQueue.Add(delegate
+								{
+									this.HandleGameData(subReader);
+								});
+								return;
+							}
+						}
+						return;
+					}
+				case 7:
+					goto IL_3BF;
+				case 8:
+					goto IL_2C0;
+				case 9:
+					{
+						int totalGames = reader.ReadPackedInt32();
+						List<GameListing> output = new List<GameListing>();
+						while (reader.Position < reader.Length)
+						{
+							output.Add(new GameListing(reader.ReadInt32(), reader.ReadByte(), reader.ReadByte(), reader.ReadByte(), reader.ReadPackedInt32(), reader.ReadString()));
+						}
+						dispatchQueue = this.DispatchQueue;
+						lock (dispatchQueue)
+						{
+							this.DispatchQueue.Add(delegate
+							{
+								this.OnGetGameList(totalGames, output);
+							});
+							return;
+						}
+						goto IL_613;
+					}
+				case 10:
+					goto IL_613;
+				case 11:
+					{
+						int num3 = reader.ReadInt32();
+						if (this.GameId == num3 && reader.ReadPackedInt32() == this.ClientId)
+						{
+							this.EnqueueDisconnect(reader.ReadBoolean() ? DisconnectReasons.Banned : DisconnectReasons.Kicked, null);
+							return;
+						}
+						return;
+					}
+				case 12:
+					goto IL_364;
+				case 13:
+					{
+						uint address = reader.ReadUInt32();
+						ushort port = reader.ReadUInt16();
+						AmongUsClient.Instance.SetEndpoint(InnerNetClient.AddressToString(address), port);
+						dispatchQueue = this.DispatchQueue;
+						lock (dispatchQueue)
+						{
+							this.DispatchQueue.Add(delegate
+							{
+								Debug.Log(string.Format("Redirected to: {0}:{1}", this.networkAddress, this.networkPort));
+								this.StopAllCoroutines();
+								this.Connect(this.mode);
+							});
+							return;
+						}
+						goto IL_229;
+					}
+				default:
+					Debug.Log(string.Format("Bad tag {0} at {1}+{2}={3}:  ", new object[]
+					{
+					reader.Tag,
+					reader.Offset,
+					reader.Position,
+					reader.Length
+					}) + string.Join<byte>(" ", reader.Buffer));
+					return;
+			}
+			this.GameState = InnerNetClient.GameStates.Started;
+			this.KicksLeft = 0;
+			dispatchQueue = this.DispatchQueue;
+			lock (dispatchQueue)
+			{
+				this.DispatchQueue.Add(delegate
+				{
+					this.OnStartGame();
+				});
 				return;
 			}
-			case 7:
-				goto IL_24E;
-			case 8:
-				goto IL_142;
-			case 9:
-				goto IL_4A9;
-			case 10:
-				goto IL_54E;
-			case 11:
-				goto IL_60E;
-			case 12:
-				goto IL_1F6;
-			case 13:
+			IL_105:
+			DisconnectReasons reason3 = DisconnectReasons.ServerRequest;
+			if (reader.Position < reader.Length)
 			{
-				uint address = reader.ReadUInt32();
-				ushort port = reader.ReadUInt16();
-				AmongUsClient.Instance.SetEndpoint(InnerNetClient.AddressToString(address), port);
-				dispatchQueue = this.DispatchQueue;
-				lock (dispatchQueue)
-				{
-					this.DispatchQueue.Add(delegate
-					{
-						Debug.Log(string.Format("Redirected to: {0}:{1}", this.networkAddress, this.networkPort));
-						base.StopAllCoroutines();
-						this.Connect(this.mode);
-					});
-					return;
-				}
-				goto IL_6A3;
+				reason3 = (DisconnectReasons)reader.ReadByte();
 			}
-			default:
-				goto IL_6A3;
-			}
-			int num3 = reader.ReadInt32();
-			if (this.GameId != num3)
+			this.EnqueueDisconnect(reason3, null);
+			return;
+			IL_229:
+			int num4 = reader.ReadInt32();
+			if (this.GameId != num4)
 			{
 				return;
 			}
 			int playerIdThatLeft = reader.ReadInt32();
 			bool amHost = this.AmHost;
 			this.HostId = reader.ReadInt32();
-			DisconnectReasons reason2 = DisconnectReasons.ExitGame;
+			DisconnectReasons reason4 = DisconnectReasons.ExitGame;
 			if (reader.Position < reader.Length)
 			{
-				reason2 = (DisconnectReasons)reader.ReadByte();
+				reason4 = (DisconnectReasons)reader.ReadByte();
 			}
-			this.RemovePlayer(playerIdThatLeft, reason2);
+			this.RemovePlayer(playerIdThatLeft, reason4);
 			if (!this.AmHost || amHost)
 			{
 				return;
@@ -720,9 +758,9 @@ namespace InnerNet
 				});
 				return;
 			}
-			IL_142:
-			int num4 = reader.ReadInt32();
-			if (this.GameId != num4 || this.GameState == InnerNetClient.GameStates.Ended)
+			IL_2C0:
+			int num5 = reader.ReadInt32();
+			if (this.GameId != num5 || this.GameState == InnerNetClient.GameStates.Ended)
 			{
 				return;
 			}
@@ -743,9 +781,9 @@ namespace InnerNet
 				});
 				return;
 			}
-			IL_1F6:
-			int num5 = reader.ReadInt32();
-			if (this.GameId != num5)
+			IL_364:
+			int num6 = reader.ReadInt32();
+			if (this.GameId != num6)
 			{
 				return;
 			}
@@ -759,9 +797,9 @@ namespace InnerNet
 				});
 				return;
 			}
-			IL_24E:
-			int num6 = reader.ReadInt32();
-			if (this.GameId != num6)
+			IL_3BF:
+			int num7 = reader.ReadInt32();
+			if (this.GameId != num7)
 			{
 				return;
 			}
@@ -769,10 +807,10 @@ namespace InnerNet
 			this.GameState = InnerNetClient.GameStates.Joined;
 			this.KicksLeft = -1;
 			ClientData myClient = this.GetOrCreateClient(this.ClientId);
-			bool amHost2 = this.AmHost;
+			bool amHost3 = this.AmHost;
 			this.HostId = reader.ReadInt32();
-			int num7 = reader.ReadPackedInt32();
-			for (int i = 0; i < num7; i++)
+			int num8 = reader.ReadPackedInt32();
+			for (int i = 0; i < num8; i++)
 			{
 				this.GetOrCreateClient(reader.ReadPackedInt32());
 			}
@@ -785,9 +823,9 @@ namespace InnerNet
 				});
 				return;
 			}
-			IL_310:
-			int num8 = reader.ReadInt32();
-			DisconnectReasons disconnectReasons = (DisconnectReasons)num8;
+			IL_473:
+			int num9 = reader.ReadInt32();
+			DisconnectReasons disconnectReasons = (DisconnectReasons)num9;
 			if (InnerNetClient.disconnectReasons.Contains(disconnectReasons))
 			{
 				if (disconnectReasons == DisconnectReasons.Custom)
@@ -798,13 +836,13 @@ namespace InnerNet
 				this.EnqueueDisconnect(disconnectReasons, null);
 				return;
 			}
-			if (this.GameId == num8)
+			if (this.GameId == num9)
 			{
-				int num9 = reader.ReadInt32();
-				bool amHost3 = this.AmHost;
+				int num10 = reader.ReadInt32();
+				bool amHost2 = this.AmHost;
 				this.HostId = reader.ReadInt32();
-				ClientData client = this.GetOrCreateClient(num9);
-				Debug.Log(string.Format("Player {0} joined", num9));
+				ClientData client = this.GetOrCreateClient(num10);
+				Debug.Log(string.Format("Player {0} joined", num10));
 				dispatchQueue = this.DispatchQueue;
 				lock (dispatchQueue)
 				{
@@ -812,7 +850,7 @@ namespace InnerNet
 					{
 						this.OnPlayerJoined(client);
 					});
-					if (this.AmHost && !amHost3)
+					if (this.AmHost && !amHost2)
 					{
 						this.DispatchQueue.Add(delegate
 						{
@@ -824,58 +862,22 @@ namespace InnerNet
 			}
 			this.EnqueueDisconnect(DisconnectReasons.IncorrectGame, null);
 			return;
-			IL_4A9:
-			int totalGames = reader.ReadPackedInt32();
-			List<GameListing> output = new List<GameListing>();
-			while (reader.Position < reader.Length)
-			{
-				output.Add(new GameListing(reader.ReadInt32(), reader.ReadByte(), reader.ReadByte(), reader.ReadByte(), reader.ReadPackedInt32(), reader.ReadString()));
-			}
-			dispatchQueue = this.DispatchQueue;
-			lock (dispatchQueue)
-			{
-				this.DispatchQueue.Add(delegate
-				{
-					this.OnGetGameList(totalGames, output);
-				});
-				return;
-			}
-			IL_54E:
-			int num10 = reader.ReadInt32();
-			if (this.GameId != num10)
+			IL_613:
+			int num11 = reader.ReadInt32();
+			if (this.GameId != num11)
 			{
 				return;
 			}
-			byte b = reader.ReadByte();
-			if (b == 1)
+			if (reader.ReadByte() == 1)
 			{
 				this.IsGamePublic = reader.ReadBoolean();
-				string str = "Alter Public = ";
-				bool flag = this.IsGamePublic;
-				Debug.Log(str + flag.ToString());
+				Debug.Log("Alter Public = " + this.IsGamePublic.ToString());
 				return;
 			}
 			Debug.Log("Alter unknown");
-			return;
-			IL_60E:
-			int num11 = reader.ReadInt32();
-			if (this.GameId == num11 && reader.ReadPackedInt32() == this.ClientId)
-			{
-				this.EnqueueDisconnect(reader.ReadBoolean() ? DisconnectReasons.Banned : DisconnectReasons.Kicked, null);
-				return;
-			}
-			return;
-			IL_6A3:
-			Debug.Log(string.Format("Bad tag {0} at {1}+{2}={3}:  ", new object[]
-			{
-				reader.Tag,
-				reader.Offset,
-				reader.Position,
-				reader.Length
-			}) + string.Join<byte>(" ", reader.Buffer));
 		}
 
-		// Token: 0x06000C9C RID: 3228 RVA: 0x0003D1C8 File Offset: 0x0003B3C8
+		// Token: 0x060007D7 RID: 2007 RVA: 0x0002F398 File Offset: 0x0002D598
 		private static string AddressToString(uint address)
 		{
 			return string.Format("{0}.{1}.{2}.{3}", new object[]
@@ -887,7 +889,7 @@ namespace InnerNet
 			});
 		}
 
-		// Token: 0x06000C9D RID: 3229 RVA: 0x0003D218 File Offset: 0x0003B418
+		// Token: 0x060007D8 RID: 2008 RVA: 0x0002F3E8 File Offset: 0x0002D5E8
 		private ClientData GetOrCreateClient(int clientId)
 		{
 			List<ClientData> obj = this.allClients;
@@ -904,7 +906,7 @@ namespace InnerNet
 			return clientData;
 		}
 
-		// Token: 0x06000C9E RID: 3230 RVA: 0x0003D294 File Offset: 0x0003B494
+		// Token: 0x060007D9 RID: 2009 RVA: 0x0002F464 File Offset: 0x0002D664
 		private void RemovePlayer(int playerIdThatLeft, DisconnectReasons reason)
 		{
 			ClientData client = null;
@@ -931,7 +933,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C9F RID: 3231 RVA: 0x0003D378 File Offset: 0x0003B578
+		// Token: 0x060007DA RID: 2010 RVA: 0x0002F548 File Offset: 0x0002D748
 		protected virtual void OnApplicationPause(bool pause)
 		{
 			this.appPaused = pause;
@@ -951,7 +953,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000CA0 RID: 3232 RVA: 0x0003D3D8 File Offset: 0x0003B5D8
+		// Token: 0x060007DB RID: 2011 RVA: 0x0002F5A8 File Offset: 0x0002D7A8
 		private void WaitToDisconnect(object state)
 		{
 			int num = 0;
@@ -967,7 +969,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000CA1 RID: 3233 RVA: 0x0003D43C File Offset: 0x0003B63C
+		// Token: 0x060007DC RID: 2012 RVA: 0x0002F60C File Offset: 0x0002D80C
 		protected void SendInitialData(int clientId)
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
@@ -992,43 +994,43 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000CA2 RID: 3234
+		// Token: 0x060007DD RID: 2013
 		protected abstract void OnGameCreated(string gameIdString);
 
-		// Token: 0x06000CA3 RID: 3235
+		// Token: 0x060007DE RID: 2014
 		protected abstract void OnGameJoined(string gameIdString, ClientData client);
 
-		// Token: 0x06000CA4 RID: 3236
+		// Token: 0x060007DF RID: 2015
 		protected abstract void OnWaitForHost(string gameIdString);
 
-		// Token: 0x06000CA5 RID: 3237
+		// Token: 0x060007E0 RID: 2016
 		protected abstract void OnStartGame();
 
-		// Token: 0x06000CA6 RID: 3238
+		// Token: 0x060007E1 RID: 2017
 		protected abstract void OnGameEnd(GameOverReason reason, bool showAd);
 
-		// Token: 0x06000CA7 RID: 3239
+		// Token: 0x060007E2 RID: 2018
 		protected abstract void OnBecomeHost();
 
-		// Token: 0x06000CA8 RID: 3240
+		// Token: 0x060007E3 RID: 2019
 		protected abstract void OnPlayerJoined(ClientData client);
 
-		// Token: 0x06000CA9 RID: 3241
+		// Token: 0x060007E4 RID: 2020
 		protected abstract void OnPlayerChangedScene(ClientData client, string targetScene);
 
-		// Token: 0x06000CAA RID: 3242
+		// Token: 0x060007E5 RID: 2021
 		protected abstract void OnPlayerLeft(ClientData client, DisconnectReasons reason);
 
-		// Token: 0x06000CAB RID: 3243
+		// Token: 0x060007E6 RID: 2022
 		protected abstract void OnDisconnected();
 
-		// Token: 0x06000CAC RID: 3244
+		// Token: 0x060007E7 RID: 2023
 		protected abstract void OnGetGameList(int totalGames, List<GameListing> availableGames);
 
-		// Token: 0x06000CAD RID: 3245
+		// Token: 0x060007E8 RID: 2024
 		protected abstract byte[] GetConnectionData();
 
-		// Token: 0x06000CAE RID: 3246 RVA: 0x0003D508 File Offset: 0x0003B708
+		// Token: 0x060007E9 RID: 2025 RVA: 0x0002F6D8 File Offset: 0x0002D8D8
 		protected ClientData FindClientById(int id)
 		{
 			List<ClientData> obj = this.allClients;
@@ -1047,7 +1049,7 @@ namespace InnerNet
 			return result;
 		}
 
-		// Token: 0x06000CAF RID: 3247 RVA: 0x0003D580 File Offset: 0x0003B780
+		// Token: 0x060007EA RID: 2026 RVA: 0x0002F754 File Offset: 0x0002D954
 		public static string IntToGameName(int gameId)
 		{
 			char[] array = new char[]
@@ -1064,7 +1066,7 @@ namespace InnerNet
 			return new string(array);
 		}
 
-		// Token: 0x06000CB0 RID: 3248 RVA: 0x000099B5 File Offset: 0x00007BB5
+		// Token: 0x060007EB RID: 2027 RVA: 0x0002F7CB File Offset: 0x0002D9CB
 		public static int GameNameToInt(string gameId)
 		{
 			if (gameId.Length != 4)
@@ -1075,7 +1077,7 @@ namespace InnerNet
 			return (int)(gameId[0] | (int)gameId[1] << 8 | (int)gameId[2] << 16 | (int)gameId[3] << 24);
 		}
 
-		// Token: 0x06000CB1 RID: 3249 RVA: 0x0003D5F8 File Offset: 0x0003B7F8
+		// Token: 0x060007EC RID: 2028 RVA: 0x0002F808 File Offset: 0x0002DA08
 		private void FixedUpdate()
 		{
 			if (this.mode == MatchMakerModes.None || this.Streams == null)
@@ -1125,7 +1127,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000CB2 RID: 3250 RVA: 0x0003D764 File Offset: 0x0003B964
+		// Token: 0x060007ED RID: 2029 RVA: 0x0002F974 File Offset: 0x0002DB74
 		public T FindObjectByNetId<T>(uint netId) where T : InnerNetObject
 		{
 			InnerNetObject innerNetObject;
@@ -1133,11 +1135,11 @@ namespace InnerNet
 			{
 				return (T)((object)innerNetObject);
 			}
-			Debug.LogWarning("Couldn't find target object: " + netId);
+			Debug.LogWarning("Couldn't find target object: " + netId.ToString());
 			return default(T);
 		}
 
-		// Token: 0x06000CB3 RID: 3251 RVA: 0x0003D7A8 File Offset: 0x0003B9A8
+		// Token: 0x060007EE RID: 2030 RVA: 0x0002F9B8 File Offset: 0x0002DBB8
 		public void SendRpcImmediately(uint targetNetId, byte callId, SendOption option)
 		{
 			MessageWriter messageWriter = MessageWriter.Get(option);
@@ -1152,7 +1154,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000CB4 RID: 3252 RVA: 0x0003D804 File Offset: 0x0003BA04
+		// Token: 0x060007EF RID: 2031 RVA: 0x0002FA14 File Offset: 0x0002DC14
 		public MessageWriter StartRpcImmediately(uint targetNetId, byte callId, SendOption option, int targetClientId = -1)
 		{
 			MessageWriter messageWriter = MessageWriter.Get(option);
@@ -1173,7 +1175,7 @@ namespace InnerNet
 			return messageWriter;
 		}
 
-		// Token: 0x06000CB5 RID: 3253 RVA: 0x000099F1 File Offset: 0x00007BF1
+		// Token: 0x060007F0 RID: 2032 RVA: 0x0002FA73 File Offset: 0x0002DC73
 		public void FinishRpcImmediately(MessageWriter msg)
 		{
 			msg.EndMessage();
@@ -1182,13 +1184,13 @@ namespace InnerNet
 			msg.Recycle();
 		}
 
-		// Token: 0x06000CB6 RID: 3254 RVA: 0x00009A0C File Offset: 0x00007C0C
+		// Token: 0x060007F1 RID: 2033 RVA: 0x0002FA8E File Offset: 0x0002DC8E
 		public void SendRpc(uint targetNetId, byte callId, SendOption option = SendOption.Reliable)
 		{
 			this.StartRpc(targetNetId, callId, option).EndMessage();
 		}
 
-		// Token: 0x06000CB7 RID: 3255 RVA: 0x00009A1C File Offset: 0x00007C1C
+		// Token: 0x060007F2 RID: 2034 RVA: 0x0002FA9E File Offset: 0x0002DC9E
 		public MessageWriter StartRpc(uint targetNetId, byte callId, SendOption option = SendOption.Reliable)
 		{
 			MessageWriter messageWriter = this.Streams[(int)option];
@@ -1198,7 +1200,7 @@ namespace InnerNet
 			return messageWriter;
 		}
 
-		// Token: 0x06000CB8 RID: 3256 RVA: 0x00009A3B File Offset: 0x00007C3B
+		// Token: 0x060007F3 RID: 2035 RVA: 0x0002FABD File Offset: 0x0002DCBD
 		private void SendSceneChange(string sceneName)
 		{
 			if (!this.AmConnected)
@@ -1209,7 +1211,7 @@ namespace InnerNet
 			base.StartCoroutine(this.CoSendSceneChange(sceneName));
 		}
 
-		// Token: 0x06000CB9 RID: 3257 RVA: 0x00009A64 File Offset: 0x00007C64
+		// Token: 0x060007F4 RID: 2036 RVA: 0x0002FAE6 File Offset: 0x0002DCE6
 		private IEnumerator CoSendSceneChange(string sceneName)
 		{
 			List<InnerNetObject> obj = this.allObjects;
@@ -1222,14 +1224,14 @@ namespace InnerNet
 						this.allObjects.RemoveAt(i);
 					}
 				}
-				goto IL_BF;
+				goto IL_C1;
 			}
-			IL_A8:
+			IL_AA:
 			yield return null;
-			IL_BF:
+			IL_C1:
 			if (this.AmConnected && this.ClientId < 0)
 			{
-				goto IL_A8;
+				goto IL_AA;
 			}
 			if (!this.AmConnected)
 			{
@@ -1266,7 +1268,7 @@ namespace InnerNet
 			yield break;
 		}
 
-		// Token: 0x06000CBA RID: 3258 RVA: 0x0003D864 File Offset: 0x0003BA64
+		// Token: 0x060007F5 RID: 2037 RVA: 0x0002FAFC File Offset: 0x0002DCFC
 		public void Spawn(InnerNetObject netObjParent, int ownerId = -2, SpawnFlags flags = SpawnFlags.None)
 		{
 			if (this.AmHost)
@@ -1280,10 +1282,10 @@ namespace InnerNet
 			{
 				return;
 			}
-			Debug.LogError("Tried to spawn while not host:" + netObjParent);
+			Debug.LogError("Tried to spawn while not host:" + ((netObjParent != null) ? netObjParent.ToString() : null));
 		}
 
-		// Token: 0x06000CBB RID: 3259 RVA: 0x0003D8B8 File Offset: 0x0003BAB8
+		// Token: 0x060007F6 RID: 2038 RVA: 0x0002FB5C File Offset: 0x0002DD5C
 		private void WriteSpawnMessage(InnerNetObject netObjParent, int ownerId, SpawnFlags flags, MessageWriter msg)
 		{
 			msg.StartMessage(4);
@@ -1308,12 +1310,12 @@ namespace InnerNet
 			msg.EndMessage();
 		}
 
-		// Token: 0x06000CBC RID: 3260 RVA: 0x0003D958 File Offset: 0x0003BB58
+		// Token: 0x060007F7 RID: 2039 RVA: 0x0002FC00 File Offset: 0x0002DE00
 		public void Despawn(InnerNetObject objToDespawn)
 		{
 			if (objToDespawn.NetId < 1U)
 			{
-				Debug.Log("Tried to net destroy: " + objToDespawn);
+				Debug.Log("Tried to net destroy: " + ((objToDespawn != null) ? objToDespawn.ToString() : null));
 				return;
 			}
 			MessageWriter messageWriter = this.Streams[1];
@@ -1323,7 +1325,7 @@ namespace InnerNet
 			this.RemoveNetObject(objToDespawn);
 		}
 
-		// Token: 0x06000CBD RID: 3261 RVA: 0x0003D9A8 File Offset: 0x0003BBA8
+		// Token: 0x060007F8 RID: 2040 RVA: 0x0002FC5C File Offset: 0x0002DE5C
 		private void RegisterNetObject(InnerNetObject obj)
 		{
 			if (obj.NetId == 0U)
@@ -1338,7 +1340,7 @@ namespace InnerNet
 			Debug.LogError("Attempted to double register: " + obj.name);
 		}
 
-		// Token: 0x06000CBE RID: 3262 RVA: 0x0003DA08 File Offset: 0x0003BC08
+		// Token: 0x060007F9 RID: 2041 RVA: 0x0002FCBC File Offset: 0x0002DEBC
 		private bool AddNetObject(InnerNetObject obj)
 		{
 			uint num = obj.NetId + 1U;
@@ -1352,7 +1354,7 @@ namespace InnerNet
 			return false;
 		}
 
-		// Token: 0x06000CBF RID: 3263 RVA: 0x0003DA6C File Offset: 0x0003BC6C
+		// Token: 0x060007FA RID: 2042 RVA: 0x0002FD20 File Offset: 0x0002DF20
 		public void RemoveNetObject(InnerNetObject obj)
 		{
 			int num = this.allObjects.IndexOf(obj);
@@ -1364,7 +1366,7 @@ namespace InnerNet
 			obj.NetId = uint.MaxValue;
 		}
 
-		// Token: 0x06000CC0 RID: 3264 RVA: 0x0003DAB0 File Offset: 0x0003BCB0
+		// Token: 0x060007FB RID: 2043 RVA: 0x0002FD64 File Offset: 0x0002DF64
 		public void RemoveUnownedObjects()
 		{
 			HashSet<int> hashSet = new HashSet<int>();
@@ -1400,7 +1402,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000CC1 RID: 3265 RVA: 0x0003DBD4 File Offset: 0x0003BDD4
+		// Token: 0x060007FC RID: 2044 RVA: 0x0002FE88 File Offset: 0x0002E088
 		private void HandleGameData(MessageReader parentReader)
 		{
 			try
@@ -1410,125 +1412,125 @@ namespace InnerNet
 					MessageReader messageReader = parentReader.ReadMessage();
 					switch (messageReader.Tag)
 					{
-					case 1:
-					{
-						uint key = messageReader.ReadPackedUInt32();
-						InnerNetObject innerNetObject;
-						if (this.allObjectsFast.TryGetValue(key, out innerNetObject))
-						{
-							innerNetObject.Deserialize(messageReader, false);
-							continue;
-						}
-						continue;
-					}
-					case 2:
-					{
-						uint key2 = messageReader.ReadPackedUInt32();
-						InnerNetObject innerNetObject2;
-						if (this.allObjectsFast.TryGetValue(key2, out innerNetObject2))
-						{
-							innerNetObject2.HandleRpc(messageReader.ReadByte(), messageReader);
-							continue;
-						}
-						continue;
-					}
-					case 3:
-						goto IL_338;
-					case 4:
-					{
-						uint num = messageReader.ReadPackedUInt32();
-						if ((ulong)num >= (ulong)((long)this.SpawnableObjects.Length))
-						{
-							Debug.LogError("Couldn't find spawnable prefab: " + num);
-							continue;
-						}
-						InnerNetObject innerNetObject3 = UnityEngine.Object.Instantiate<InnerNetObject>(this.SpawnableObjects[(int)num]);
-						int num2 = messageReader.ReadPackedInt32();
-						innerNetObject3.SpawnFlags = (SpawnFlags)messageReader.ReadByte();
-						int num3 = messageReader.ReadPackedInt32();
-						InnerNetObject[] componentsInChildren = innerNetObject3.GetComponentsInChildren<InnerNetObject>();
-						if (num3 != componentsInChildren.Length)
-						{
-							Debug.LogError("Children didn't match for spawnable " + num);
-							UnityEngine.Object.Destroy(innerNetObject3.gameObject);
-							continue;
-						}
-						for (int i = 0; i < num3; i++)
-						{
-							InnerNetObject innerNetObject4 = componentsInChildren[i];
-							innerNetObject4.NetId = messageReader.ReadPackedUInt32();
-							innerNetObject4.OwnerId = num2;
-							if (!this.AddNetObject(innerNetObject4))
+						case 1:
 							{
-								innerNetObject3.NetId = uint.MaxValue;
+								uint key = messageReader.ReadPackedUInt32();
+								InnerNetObject innerNetObject;
+								if (this.allObjectsFast.TryGetValue(key, out innerNetObject))
+								{
+									innerNetObject.Deserialize(messageReader, false);
+									continue;
+								}
+								continue;
+							}
+						case 2:
+							{
+								uint key2 = messageReader.ReadPackedUInt32();
+								InnerNetObject innerNetObject2;
+								if (this.allObjectsFast.TryGetValue(key2, out innerNetObject2))
+								{
+									innerNetObject2.HandleRpc(messageReader.ReadByte(), messageReader);
+									continue;
+								}
+								continue;
+							}
+						case 3:
+							goto IL_336;
+						case 4:
+							{
+								uint num = messageReader.ReadPackedUInt32();
+								if ((ulong)num >= (ulong)((long)this.SpawnableObjects.Length))
+								{
+									Debug.LogError("Couldn't find spawnable prefab: " + num.ToString());
+									continue;
+								}
+								InnerNetObject innerNetObject3 = UnityEngine.Object.Instantiate<InnerNetObject>(this.SpawnableObjects[(int)num]);
+								int num2 = messageReader.ReadPackedInt32();
+								innerNetObject3.SpawnFlags = (SpawnFlags)messageReader.ReadByte();
+								int num3 = messageReader.ReadPackedInt32();
+								InnerNetObject[] componentsInChildren = innerNetObject3.GetComponentsInChildren<InnerNetObject>();
+								if (num3 != componentsInChildren.Length)
+								{
+									Debug.LogError("Children didn't match for spawnable " + num.ToString());
+									UnityEngine.Object.Destroy(innerNetObject3.gameObject);
+									continue;
+								}
+								for (int i = 0; i < num3; i++)
+								{
+									InnerNetObject innerNetObject4 = componentsInChildren[i];
+									innerNetObject4.NetId = messageReader.ReadPackedUInt32();
+									innerNetObject4.OwnerId = num2;
+									if (!this.AddNetObject(innerNetObject4))
+									{
+										innerNetObject3.NetId = uint.MaxValue;
+										UnityEngine.Object.Destroy(innerNetObject3.gameObject);
+										break;
+									}
+									MessageReader messageReader2 = messageReader.ReadMessage();
+									if (messageReader2.Length > 0)
+									{
+										innerNetObject4.Deserialize(messageReader2, true);
+									}
+								}
+								if ((innerNetObject3.SpawnFlags & SpawnFlags.IsClientCharacter) == SpawnFlags.None)
+								{
+									continue;
+								}
+								ClientData clientData = this.FindClientById(num2);
+								if (clientData == null)
+								{
+									Debug.LogWarning("Spawn unowned character");
+									UnityEngine.Object.Destroy(innerNetObject3.gameObject);
+									continue;
+								}
+								if (!clientData.Character)
+								{
+									clientData.InScene = true;
+									clientData.Character = (innerNetObject3 as PlayerControl);
+									continue;
+								}
+								Debug.LogWarning("Double spawn character");
 								UnityEngine.Object.Destroy(innerNetObject3.gameObject);
+								continue;
+							}
+						case 5:
+							{
+								uint netId = messageReader.ReadPackedUInt32();
+								InnerNetObject innerNetObject5 = this.FindObjectByNetId<InnerNetObject>(netId);
+								if (innerNetObject5)
+								{
+									this.RemoveNetObject(innerNetObject5);
+									UnityEngine.Object.Destroy(innerNetObject5.gameObject);
+									continue;
+								}
+								continue;
+							}
+						case 6:
+							{
+								ClientData client = this.FindClientById(messageReader.ReadPackedInt32());
+								string targetScene = messageReader.ReadString();
+								string format = "Client {0} changed scene to {1}";
+								ClientData client2 = client;
+								Debug.Log(string.Format(format, (client2 != null) ? client2.Id : -1, targetScene));
+								if (client == null || string.IsNullOrWhiteSpace(targetScene))
+								{
+									continue;
+								}
+								List<Action> dispatchQueue = this.DispatchQueue;
+								lock (dispatchQueue)
+								{
+									this.DispatchQueue.Add(delegate
+									{
+										this.OnPlayerChangedScene(client, targetScene);
+									});
+									continue;
+								}
 								break;
 							}
-							MessageReader messageReader2 = messageReader.ReadMessage();
-							if (messageReader2.Length > 0)
-							{
-								innerNetObject4.Deserialize(messageReader2, true);
-							}
-						}
-						if ((innerNetObject3.SpawnFlags & SpawnFlags.IsClientCharacter) == SpawnFlags.None)
-						{
-							continue;
-						}
-						ClientData clientData = this.FindClientById(num2);
-						if (clientData == null)
-						{
-							Debug.LogWarning("Spawn unowned character");
-							UnityEngine.Object.Destroy(innerNetObject3.gameObject);
-							continue;
-						}
-						if (!clientData.Character)
-						{
-							clientData.InScene = true;
-							clientData.Character = (innerNetObject3 as PlayerControl);
-							continue;
-						}
-						Debug.LogWarning("Double spawn character");
-						UnityEngine.Object.Destroy(innerNetObject3.gameObject);
-						continue;
-					}
-					case 5:
-					{
-						uint netId = messageReader.ReadPackedUInt32();
-						InnerNetObject innerNetObject5 = this.FindObjectByNetId<InnerNetObject>(netId);
-						if (innerNetObject5)
-						{
-							this.RemoveNetObject(innerNetObject5);
-							UnityEngine.Object.Destroy(innerNetObject5.gameObject);
-							continue;
-						}
-						continue;
-					}
-					case 6:
-					{
-						ClientData client = this.FindClientById(messageReader.ReadPackedInt32());
-						string targetScene = messageReader.ReadString();
-						string format = "Client {0} changed scene to {1}";
-						ClientData client2 = client;
-						Debug.Log(string.Format(format, (client2 != null) ? client2.Id : -1, targetScene));
-						if (client == null || string.IsNullOrWhiteSpace(targetScene))
-						{
-							continue;
-						}
-						List<Action> dispatchQueue = this.DispatchQueue;
-						lock (dispatchQueue)
-						{
-							this.DispatchQueue.Add(delegate
-							{
-								this.OnPlayerChangedScene(client, targetScene);
-							});
-							continue;
-						}
-						break;
-					}
-					case 7:
-						break;
-					default:
-						goto IL_338;
+						case 7:
+							break;
+						default:
+							goto IL_336;
 					}
 					ClientData clientData2 = this.FindClientById(messageReader.ReadPackedInt32());
 					if (clientData2 != null)
@@ -1538,7 +1540,7 @@ namespace InnerNet
 						continue;
 					}
 					continue;
-					IL_338:
+					IL_336:
 					Debug.Log(string.Format("Bad tag {0} at {1}+{2}={3}:  ", new object[]
 					{
 						messageReader.Tag,
@@ -1554,7 +1556,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x04000C15 RID: 3093
+		// Token: 0x040007E2 RID: 2018
 		private static readonly DisconnectReasons[] disconnectReasons = new DisconnectReasons[]
 		{
 			DisconnectReasons.Error,
@@ -1568,109 +1570,109 @@ namespace InnerNet
 			DisconnectReasons.Custom
 		};
 
-		// Token: 0x04000C16 RID: 3094
+		// Token: 0x040007E3 RID: 2019
 		public const int NoClientId = -1;
 
-		// Token: 0x04000C17 RID: 3095
+		// Token: 0x040007E4 RID: 2020
 		private string networkAddress = "127.0.0.1";
 
-		// Token: 0x04000C18 RID: 3096
+		// Token: 0x040007E5 RID: 2021
 		private int networkPort;
 
-		// Token: 0x04000C19 RID: 3097
+		// Token: 0x040007E6 RID: 2022
 		private UdpClientConnection connection;
 
-		// Token: 0x04000C1A RID: 3098
+		// Token: 0x040007E7 RID: 2023
 		public MatchMakerModes mode;
 
-		// Token: 0x04000C1B RID: 3099
+		// Token: 0x040007E8 RID: 2024
 		public int GameId = 32;
 
-		// Token: 0x04000C1C RID: 3100
+		// Token: 0x040007E9 RID: 2025
 		public int HostId;
 
-		// Token: 0x04000C1D RID: 3101
+		// Token: 0x040007EA RID: 2026
 		public int ClientId = -1;
 
-		// Token: 0x04000C1E RID: 3102
+		// Token: 0x040007EB RID: 2027
 		public List<ClientData> allClients = new List<ClientData>();
 
-		// Token: 0x04000C1F RID: 3103
+		// Token: 0x040007EC RID: 2028
 		public DisconnectReasons LastDisconnectReason;
 
-		// Token: 0x04000C20 RID: 3104
+		// Token: 0x040007ED RID: 2029
 		public string LastCustomDisconnect;
 
-		// Token: 0x04000C21 RID: 3105
+		// Token: 0x040007EE RID: 2030
 		private readonly List<Action> DispatchQueue = new List<Action>();
 
-		// Token: 0x04000C23 RID: 3107
+		// Token: 0x040007EF RID: 2031
 		public InnerNetClient.GameStates GameState;
 
-		// Token: 0x04000C24 RID: 3108
+		// Token: 0x040007F0 RID: 2032
 		private const int KicksPerGame = 0;
 
-		// Token: 0x04000C26 RID: 3110
+		// Token: 0x040007F1 RID: 2033
 		private volatile bool appPaused;
 
-		// Token: 0x04000C27 RID: 3111
+		// Token: 0x040007F2 RID: 2034
 		public const int CurrentClient = -3;
 
-		// Token: 0x04000C28 RID: 3112
+		// Token: 0x040007F3 RID: 2035
 		public const int InvalidClient = -2;
 
-		// Token: 0x04000C29 RID: 3113
+		// Token: 0x040007F4 RID: 2036
 		internal const byte DataFlag = 1;
 
-		// Token: 0x04000C2A RID: 3114
+		// Token: 0x040007F5 RID: 2037
 		internal const byte RpcFlag = 2;
 
-		// Token: 0x04000C2B RID: 3115
+		// Token: 0x040007F6 RID: 2038
 		internal const byte SpawnFlag = 4;
 
-		// Token: 0x04000C2C RID: 3116
+		// Token: 0x040007F7 RID: 2039
 		internal const byte DespawnFlag = 5;
 
-		// Token: 0x04000C2D RID: 3117
+		// Token: 0x040007F8 RID: 2040
 		internal const byte SceneChangeFlag = 6;
 
-		// Token: 0x04000C2E RID: 3118
+		// Token: 0x040007F9 RID: 2041
 		internal const byte ReadyFlag = 7;
 
-		// Token: 0x04000C2F RID: 3119
+		// Token: 0x040007FA RID: 2042
 		internal const byte ChangeSettingsFlag = 8;
 
-		// Token: 0x04000C30 RID: 3120
+		// Token: 0x040007FB RID: 2043
 		public float MinSendInterval = 0.1f;
 
-		// Token: 0x04000C31 RID: 3121
+		// Token: 0x040007FC RID: 2044
 		private uint NetIdCnt = 1U;
 
-		// Token: 0x04000C32 RID: 3122
+		// Token: 0x040007FD RID: 2045
 		private float timer;
 
-		// Token: 0x04000C33 RID: 3123
+		// Token: 0x040007FE RID: 2046
 		public InnerNetObject[] SpawnableObjects;
 
-		// Token: 0x04000C34 RID: 3124
+		// Token: 0x040007FF RID: 2047
 		public List<InnerNetObject> allObjects = new List<InnerNetObject>();
 
-		// Token: 0x04000C35 RID: 3125
+		// Token: 0x04000800 RID: 2048
 		private Dictionary<uint, InnerNetObject> allObjectsFast = new Dictionary<uint, InnerNetObject>();
 
-		// Token: 0x04000C36 RID: 3126
+		// Token: 0x04000801 RID: 2049
 		private MessageWriter[] Streams;
 
-		// Token: 0x02000247 RID: 583
+		// Token: 0x02000258 RID: 600
 		public enum GameStates
 		{
-			// Token: 0x04000C38 RID: 3128
+			// Token: 0x04000C67 RID: 3175
 			NotJoined,
-			// Token: 0x04000C39 RID: 3129
+			// Token: 0x04000C68 RID: 3176
 			Joined,
-			// Token: 0x04000C3A RID: 3130
+			// Token: 0x04000C69 RID: 3177
 			Started,
-			// Token: 0x04000C3B RID: 3131
+			// Token: 0x04000C6A RID: 3178
 			Ended
 		}
 	}

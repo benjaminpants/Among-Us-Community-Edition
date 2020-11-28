@@ -9,17 +9,17 @@ using UnityEngine;
 
 namespace InnerNet
 {
-	// Token: 0x0200025E RID: 606
+	// Token: 0x02000141 RID: 321
 	public class InnerNetServer : DestroyableSingleton<InnerNetServer>
 	{
-		// Token: 0x06000D12 RID: 3346 RVA: 0x00009DB6 File Offset: 0x00007FB6
+		// Token: 0x060007D1 RID: 2001 RVA: 0x0002E1F9 File Offset: 0x0002C3F9
 		public override void OnDestroy()
 		{
 			this.StopServer();
 			base.OnDestroy();
 		}
 
-		// Token: 0x06000D13 RID: 3347 RVA: 0x0003E65C File Offset: 0x0003C85C
+		// Token: 0x060007D2 RID: 2002 RVA: 0x0002E208 File Offset: 0x0002C408
 		public void StartAsServer()
 		{
 			if (this.listener != null)
@@ -33,7 +33,7 @@ namespace InnerNet
 			this.Running = true;
 		}
 
-		// Token: 0x06000D14 RID: 3348 RVA: 0x0003E6C4 File Offset: 0x0003C8C4
+		// Token: 0x060007D3 RID: 2003 RVA: 0x0002E270 File Offset: 0x0002C470
 		public void StopServer()
 		{
 			this.HostId = -1;
@@ -52,13 +52,13 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D15 RID: 3349 RVA: 0x00009DC4 File Offset: 0x00007FC4
+		// Token: 0x060007D4 RID: 2004 RVA: 0x0002E2F0 File Offset: 0x0002C4F0
 		public static bool IsCompatibleVersion(int version)
 		{
 			return Constants.CompatVersions.Contains(version);
 		}
 
-		// Token: 0x06000D16 RID: 3350 RVA: 0x0003E744 File Offset: 0x0003C944
+		// Token: 0x060007D5 RID: 2005 RVA: 0x0002E300 File Offset: 0x0002C500
 		private void OnServerConnect(NewConnectionEventArgs evt)
 		{
 			MessageReader handshakeData = evt.HandshakeData;
@@ -85,17 +85,17 @@ namespace InnerNet
 			udpConnection.KeepAliveInterval = 1500;
 			udpConnection.DisconnectTimeout = 6000;
 			udpConnection.ResendPingMultiplier = 1.5f;
-			udpConnection.DataReceived += delegate(DataReceivedEventArgs e)
+			udpConnection.DataReceived += delegate (DataReceivedEventArgs e)
 			{
 				this.OnDataReceived(client, e);
 			};
-			udpConnection.Disconnected += delegate(object o, DisconnectedEventArgs e)
+			udpConnection.Disconnected += delegate (object o, DisconnectedEventArgs e)
 			{
 				this.ClientDisconnect(client);
 			};
 		}
 
-		// Token: 0x06000D17 RID: 3351 RVA: 0x0003E848 File Offset: 0x0003CA48
+		// Token: 0x060007D6 RID: 2006 RVA: 0x0002E404 File Offset: 0x0002C604
 		private static void SendIncorrectVersion(Connection connection)
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
@@ -106,17 +106,14 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000D18 RID: 3352 RVA: 0x0003E880 File Offset: 0x0003CA80
+		// Token: 0x060007D7 RID: 2007 RVA: 0x0002E43C File Offset: 0x0002C63C
 		private void Connection_DataSentRaw(byte[] data, int length)
 		{
-			Debug.Log("Server Sent: " + string.Join(" ", data.Select(delegate(byte b)
-			{
-				byte b2 = b;
-				return b2.ToString();
-			}).ToArray<string>(), 0, length));
+			Debug.Log("Server Sent: " + string.Join(" ", (from b in data
+														  select b.ToString()).ToArray<string>(), 0, length));
 		}
 
-		// Token: 0x06000D19 RID: 3353 RVA: 0x0003E8D4 File Offset: 0x0003CAD4
+		// Token: 0x060007D8 RID: 2008 RVA: 0x0002E490 File Offset: 0x0002C690
 		private void OnDataReceived(InnerNetServer.Player client, DataReceivedEventArgs evt)
 		{
 			MessageReader message = evt.Message;
@@ -143,115 +140,114 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D1A RID: 3354 RVA: 0x0003E970 File Offset: 0x0003CB70
+		// Token: 0x060007D9 RID: 2009 RVA: 0x0002E52C File Offset: 0x0002C72C
 		private void HandleMessage(InnerNetServer.Player client, MessageReader reader, SendOption sendOption)
 		{
 			switch (reader.Tag)
 			{
-			case 0:
-			{
-				Debug.Log("Server got host game");
-				MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
-				messageWriter.StartMessage(0);
-				messageWriter.Write(32);
-				messageWriter.EndMessage();
-				client.Connection.Send(messageWriter);
-				messageWriter.Recycle();
-				return;
-			}
-			case 1:
-			{
-				Debug.Log("Server got join game");
-				if (reader.ReadInt32() == 32)
-				{
-					this.JoinGame(client);
-					return;
-				}
-				MessageWriter messageWriter2 = MessageWriter.Get(SendOption.Reliable);
-				messageWriter2.StartMessage(1);
-				messageWriter2.Write(3);
-				messageWriter2.EndMessage();
-				client.Connection.Send(messageWriter2);
-				messageWriter2.Recycle();
-				return;
-			}
-			case 2:
-				if (reader.ReadInt32() == 32)
-				{
-					this.StartGame(reader, client);
-					return;
-				}
-				break;
-			case 3:
-				if (reader.ReadInt32() == 32)
-				{
-					this.ClientDisconnect(client);
-					return;
-				}
-				break;
-			case 4:
-			case 7:
-			case 9:
-			case 10:
-				break;
-			case 5:
-				if (this.Clients.Contains(client))
-				{
-					if (reader.ReadInt32() == 32)
+				case 0:
 					{
-						MessageWriter messageWriter3 = MessageWriter.Get(sendOption);
-						messageWriter3.CopyFrom(reader);
-						this.Broadcast(messageWriter3, client);
-						messageWriter3.Recycle();
+						Debug.Log("Server got host game");
+						MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
+						messageWriter.StartMessage(0);
+						messageWriter.Write(32);
+						messageWriter.EndMessage();
+						client.Connection.Send(messageWriter);
+						messageWriter.Recycle();
 						return;
 					}
-				}
-				else if (this.GameState == GameStates.Started)
-				{
-					client.Connection.Dispose();
-					return;
-				}
-				break;
-			case 6:
-				if (this.Clients.Contains(client))
-				{
-					if (reader.ReadInt32() == 32)
+				case 1:
 					{
-						int targetId = reader.ReadPackedInt32();
-						MessageWriter messageWriter4 = MessageWriter.Get(sendOption);
-						messageWriter4.CopyFrom(reader);
-						this.SendTo(messageWriter4, targetId);
-						messageWriter4.Recycle();
+						Debug.Log("Server got join game");
+						if (reader.ReadInt32() == 32)
+						{
+							this.JoinGame(client);
+							return;
+						}
+						MessageWriter messageWriter2 = MessageWriter.Get(SendOption.Reliable);
+						messageWriter2.StartMessage(1);
+						messageWriter2.Write(3);
+						messageWriter2.EndMessage();
+						client.Connection.Send(messageWriter2);
+						messageWriter2.Recycle();
 						return;
 					}
-				}
-				else if (this.GameState == GameStates.Started)
-				{
-					Debug.Log("GameDataTo: Server didn't have client");
-					client.Connection.Dispose();
+				case 2:
+					if (reader.ReadInt32() == 32)
+					{
+						this.StartGame(reader, client);
+						return;
+					}
+					break;
+				case 3:
+					if (reader.ReadInt32() == 32)
+					{
+						this.ClientDisconnect(client);
+						return;
+					}
+					break;
+				case 4:
+				case 7:
+				case 9:
+				case 10:
+					break;
+				case 5:
+					if (this.Clients.Contains(client))
+					{
+						if (reader.ReadInt32() == 32)
+						{
+							MessageWriter messageWriter3 = MessageWriter.Get(sendOption);
+							messageWriter3.CopyFrom(reader);
+							this.Broadcast(messageWriter3, client);
+							messageWriter3.Recycle();
+							return;
+						}
+					}
+					else if (this.GameState == GameStates.Started)
+					{
+						client.Connection.Dispose();
+						return;
+					}
+					break;
+				case 6:
+					if (this.Clients.Contains(client))
+					{
+						if (reader.ReadInt32() == 32)
+						{
+							int targetId = reader.ReadPackedInt32();
+							MessageWriter messageWriter4 = MessageWriter.Get(sendOption);
+							messageWriter4.CopyFrom(reader);
+							this.SendTo(messageWriter4, targetId);
+							messageWriter4.Recycle();
+							return;
+						}
+					}
+					else if (this.GameState == GameStates.Started)
+					{
+						Debug.Log("GameDataTo: Server didn't have client");
+						client.Connection.Dispose();
+						return;
+					}
+					break;
+				case 8:
+					if (reader.ReadInt32() == 32)
+					{
+						this.EndGame(reader, client);
+						return;
+					}
+					break;
+				case 11:
+					if (reader.ReadInt32() == 32)
+					{
+						this.KickPlayer(reader.ReadPackedInt32(), reader.ReadBoolean());
+					}
+					break;
+				default:
 					return;
-				}
-				break;
-			case 8:
-				if (reader.ReadInt32() == 32)
-				{
-					this.EndGame(reader, client);
-					return;
-				}
-				break;
-			case 11:
-				if (reader.ReadInt32() == 32)
-				{
-					this.KickPlayer(reader.ReadPackedInt32(), reader.ReadBoolean());
-					return;
-				}
-				break;
-			default:
-				return;
 			}
 		}
 
-		// Token: 0x06000D1B RID: 3355 RVA: 0x0003EB4C File Offset: 0x0003CD4C
+		// Token: 0x060007DA RID: 2010 RVA: 0x0002E70C File Offset: 0x0002C90C
 		private void KickPlayer(int targetId, bool ban)
 		{
 			List<InnerNetServer.Player> clients = this.Clients;
@@ -289,7 +285,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D1C RID: 3356 RVA: 0x0003EC60 File Offset: 0x0003CE60
+		// Token: 0x060007DB RID: 2011 RVA: 0x0002E820 File Offset: 0x0002CA20
 		protected void JoinGame(InnerNetServer.Player client)
 		{
 			HashSet<string> obj = this.ipBans;
@@ -310,31 +306,29 @@ namespace InnerNet
 			List<InnerNetServer.Player> clients = this.Clients;
 			lock (clients)
 			{
-				GameStates gameState = this.GameState;
-				if (gameState != GameStates.NotStarted)
+				switch (this.GameState)
 				{
-					if (gameState != GameStates.Ended)
-					{
-						MessageWriter messageWriter2 = MessageWriter.Get(SendOption.Reliable);
-						messageWriter2.StartMessage(1);
-						messageWriter2.Write(2);
-						messageWriter2.EndMessage();
-						client.Connection.Send(messageWriter2);
-						messageWriter2.Recycle();
-					}
-					else
-					{
+					case GameStates.NotStarted:
+						this.HandleNewGameJoin(client);
+						break;
+					default:
+						{
+							MessageWriter messageWriter2 = MessageWriter.Get(SendOption.Reliable);
+							messageWriter2.StartMessage(1);
+							messageWriter2.Write(2);
+							messageWriter2.EndMessage();
+							client.Connection.Send(messageWriter2);
+							messageWriter2.Recycle();
+							break;
+						}
+					case GameStates.Ended:
 						this.HandleRejoin(client);
-					}
-				}
-				else
-				{
-					this.HandleNewGameJoin(client);
+						break;
 				}
 			}
 		}
 
-		// Token: 0x06000D1D RID: 3357 RVA: 0x0003ED74 File Offset: 0x0003CF74
+		// Token: 0x060007DC RID: 2012 RVA: 0x0002E93C File Offset: 0x0002CB3C
 		private void HandleRejoin(InnerNetServer.Player client)
 		{
 			if (client.Id == this.HostId)
@@ -391,7 +385,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D1E RID: 3358 RVA: 0x0003EEB4 File Offset: 0x0003D0B4
+		// Token: 0x060007DD RID: 2013 RVA: 0x0002EA7C File Offset: 0x0002CC7C
 		private void HandleNewGameJoin(InnerNetServer.Player client)
 		{
 			if (this.Clients.Count >= 10)
@@ -439,7 +433,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D1F RID: 3359 RVA: 0x0003EFB0 File Offset: 0x0003D1B0
+		// Token: 0x060007DE RID: 2014 RVA: 0x0002EB78 File Offset: 0x0002CD78
 		private void EndGame(MessageReader message, InnerNetServer.Player source)
 		{
 			if (source.Id == this.HostId)
@@ -459,7 +453,7 @@ namespace InnerNet
 			Debug.LogWarning("Reset request rejected from: " + source.Id);
 		}
 
-		// Token: 0x06000D20 RID: 3360 RVA: 0x0003F040 File Offset: 0x0003D240
+		// Token: 0x060007DF RID: 2015 RVA: 0x0002EC08 File Offset: 0x0002CE08
 		private void StartGame(MessageReader message, InnerNetServer.Player source)
 		{
 			this.GameState = GameStates.Started;
@@ -469,7 +463,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000D21 RID: 3361 RVA: 0x0003F070 File Offset: 0x0003D270
+		// Token: 0x060007E0 RID: 2016 RVA: 0x0002EC38 File Offset: 0x0002CE38
 		private void ClientDisconnect(InnerNetServer.Player client)
 		{
 			Debug.Log("Server DC client " + client.Id);
@@ -494,7 +488,7 @@ namespace InnerNet
 			messageWriter.Recycle();
 		}
 
-		// Token: 0x06000D22 RID: 3362 RVA: 0x0003F14C File Offset: 0x0003D34C
+		// Token: 0x060007E1 RID: 2017 RVA: 0x0002ED14 File Offset: 0x0002CF14
 		protected void SendTo(MessageWriter msg, int targetId)
 		{
 			List<InnerNetServer.Player> clients = this.Clients;
@@ -520,7 +514,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D23 RID: 3363 RVA: 0x0003F1D4 File Offset: 0x0003D3D4
+		// Token: 0x060007E2 RID: 2018 RVA: 0x0002ED9C File Offset: 0x0002CF9C
 		protected void Broadcast(MessageWriter msg, InnerNetServer.Player source)
 		{
 			List<InnerNetServer.Player> clients = this.Clients;
@@ -543,7 +537,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000D24 RID: 3364 RVA: 0x00009DD1 File Offset: 0x00007FD1
+		// Token: 0x060007E3 RID: 2019 RVA: 0x0002EE1C File Offset: 0x0002D01C
 		private void BroadcastJoinMessage(InnerNetServer.Player client, MessageWriter msg)
 		{
 			msg.Clear(SendOption.Reliable);
@@ -555,7 +549,7 @@ namespace InnerNet
 			this.Broadcast(msg, client);
 		}
 
-		// Token: 0x06000D25 RID: 3365 RVA: 0x0003F254 File Offset: 0x0003D454
+		// Token: 0x060007E4 RID: 2020 RVA: 0x0002EE5C File Offset: 0x0002D05C
 		private void WriteJoinedMessage(InnerNetServer.Player client, MessageWriter msg, bool clear)
 		{
 			if (clear)
@@ -578,57 +572,57 @@ namespace InnerNet
 			msg.EndMessage();
 		}
 
-		// Token: 0x04000C90 RID: 3216
-		public const int MaxPlayers = 20;
+		// Token: 0x040007DC RID: 2012
+		public const int MaxPlayers = 10;
 
-		// Token: 0x04000C91 RID: 3217
+		// Token: 0x040007DD RID: 2013
 		public bool Running;
 
-		// Token: 0x04000C92 RID: 3218
+		// Token: 0x040007DE RID: 2014
 		public const int LocalGameId = 32;
 
-		// Token: 0x04000C93 RID: 3219
+		// Token: 0x040007DF RID: 2015
 		private const int InvalidHost = -1;
 
-		// Token: 0x04000C94 RID: 3220
+		// Token: 0x040007E0 RID: 2016
 		private int HostId = -1;
 
-		// Token: 0x04000C95 RID: 3221
+		// Token: 0x040007E1 RID: 2017
 		public HashSet<string> ipBans = new HashSet<string>();
 
-		// Token: 0x04000C96 RID: 3222
+		// Token: 0x040007E2 RID: 2018
 		public int Port = 22023;
 
-		// Token: 0x04000C97 RID: 3223
+		// Token: 0x040007E3 RID: 2019
 		[SerializeField]
 		private GameStates GameState;
 
-		// Token: 0x04000C98 RID: 3224
+		// Token: 0x040007E4 RID: 2020
 		private NetworkConnectionListener listener;
 
-		// Token: 0x04000C99 RID: 3225
+		// Token: 0x040007E5 RID: 2021
 		private List<InnerNetServer.Player> Clients = new List<InnerNetServer.Player>();
 
-		// Token: 0x0200025F RID: 607
+		// Token: 0x0200025A RID: 602
 		protected class Player
 		{
-			// Token: 0x06000D27 RID: 3367 RVA: 0x00009E3F File Offset: 0x0000803F
+			// Token: 0x06000DAC RID: 3500 RVA: 0x0003D545 File Offset: 0x0003B745
 			public Player(Connection connection)
 			{
 				this.Id = Interlocked.Increment(ref InnerNetServer.Player.IdCount);
 				this.Connection = connection;
 			}
 
-			// Token: 0x04000C9A RID: 3226
+			// Token: 0x04000C30 RID: 3120
 			private static int IdCount = 1;
 
-			// Token: 0x04000C9B RID: 3227
+			// Token: 0x04000C31 RID: 3121
 			public int Id;
 
-			// Token: 0x04000C9C RID: 3228
+			// Token: 0x04000C32 RID: 3122
 			public Connection Connection;
 
-			// Token: 0x04000C9D RID: 3229
+			// Token: 0x04000C33 RID: 3123
 			public LimboStates LimboState;
 		}
 	}

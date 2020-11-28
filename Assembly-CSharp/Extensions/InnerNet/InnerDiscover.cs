@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace InnerNet
 {
-	// Token: 0x02000241 RID: 577
+	// Token: 0x02000137 RID: 311
 	public class InnerDiscover : DestroyableSingleton<InnerDiscover>
 	{
 		// Token: 0x14000002 RID: 2
-		// (add) Token: 0x06000C5D RID: 3165 RVA: 0x0003C1A0 File Offset: 0x0003A3A0
-		// (remove) Token: 0x06000C5E RID: 3166 RVA: 0x0003C1D8 File Offset: 0x0003A3D8
+		// (add) Token: 0x06000761 RID: 1889 RVA: 0x0002BF70 File Offset: 0x0002A170
+		// (remove) Token: 0x06000762 RID: 1890 RVA: 0x0002BFA8 File Offset: 0x0002A1A8
 		public event Action<BroadcastPacket> OnPacketGet;
 
-		// Token: 0x06000C5F RID: 3167 RVA: 0x000096CC File Offset: 0x000078CC
+		// Token: 0x06000763 RID: 1891 RVA: 0x0002BFDD File Offset: 0x0002A1DD
 		public void StartAsServer(string data)
 		{
 			bool flag = this.sender == null;
@@ -29,7 +29,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C60 RID: 3168 RVA: 0x00009706 File Offset: 0x00007906
+		// Token: 0x06000764 RID: 1892 RVA: 0x0002C017 File Offset: 0x0002A217
 		private IEnumerator RunServer()
 		{
 			while (this.sender != null)
@@ -43,7 +43,7 @@ namespace InnerNet
 			yield break;
 		}
 
-		// Token: 0x06000C61 RID: 3169 RVA: 0x00009715 File Offset: 0x00007915
+		// Token: 0x06000765 RID: 1893 RVA: 0x0002C026 File Offset: 0x0002A226
 		public void StopServer()
 		{
 			if (this.sender != null)
@@ -53,7 +53,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C62 RID: 3170 RVA: 0x0003C210 File Offset: 0x0003A410
+		// Token: 0x06000766 RID: 1894 RVA: 0x0002C044 File Offset: 0x0002A244
 		public void StartAsClient()
 		{
 			if (this.listener == null)
@@ -73,7 +73,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C63 RID: 3171 RVA: 0x00009731 File Offset: 0x00007931
+		// Token: 0x06000767 RID: 1895 RVA: 0x0002C0BC File Offset: 0x0002A2BC
 		private IEnumerator RunClient()
 		{
 			while (this.listener != null)
@@ -96,7 +96,7 @@ namespace InnerNet
 			yield break;
 		}
 
-		// Token: 0x06000C64 RID: 3172 RVA: 0x00009740 File Offset: 0x00007940
+		// Token: 0x06000768 RID: 1896 RVA: 0x0002C0CB File Offset: 0x0002A2CB
 		public void StopClient()
 		{
 			if (this.listener != null)
@@ -106,7 +106,7 @@ namespace InnerNet
 			}
 		}
 
-		// Token: 0x06000C65 RID: 3173 RVA: 0x0000975C File Offset: 0x0000795C
+		// Token: 0x06000769 RID: 1897 RVA: 0x0002C0E7 File Offset: 0x0002A2E7
 		public override void OnDestroy()
 		{
 			this.StopServer();
@@ -114,16 +114,16 @@ namespace InnerNet
 			base.OnDestroy();
 		}
 
-		// Token: 0x04000BF3 RID: 3059
+		// Token: 0x0400077E RID: 1918
 		private UdpBroadcastListener listener;
 
-		// Token: 0x04000BF4 RID: 3060
+		// Token: 0x0400077F RID: 1919
 		private UdpBroadcaster sender;
 
-		// Token: 0x04000BF5 RID: 3061
+		// Token: 0x04000780 RID: 1920
 		public int Port = 47777;
 
-		// Token: 0x04000BF6 RID: 3062
+		// Token: 0x04000781 RID: 1921
 		public float Interval = 1f;
 	}
 }

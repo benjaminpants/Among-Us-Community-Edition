@@ -17,11 +17,12 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 	// Token: 0x06000452 RID: 1106 RVA: 0x0001A6EC File Offset: 0x000188EC
 	private void FixedUpdate()
 	{
-		if (!PlayerControl.LocalPlayer)
+		if (PlayerControl.LocalPlayer == null)
 		{
 			return;
 		}
-		this.del.x = (this.del.y = 0f);
+		this.del.x = 0f;
+		this.del.y = 0f;
 		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 		{
 			this.del.x = this.del.x + 1f;
@@ -50,10 +51,12 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		{
 			DestroyableSingleton<HudManager>.Instance.OpenMap();
 		}
+		/* TODO: This Causes the Error
 		if ((PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff) && Input.GetKeyDown(KeyCode.Q))
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKill();
 		}
+		*/
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if (Minigame.Instance)

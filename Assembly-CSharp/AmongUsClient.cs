@@ -141,7 +141,8 @@ public class AmongUsClient : InnerNetClient
 				}
 				if (!base.AmHost)
 				{
-					yield return IL_2D5();
+					IL_2D5();
+					yield break;
 				}
 			}
 		}
@@ -198,9 +199,10 @@ public class AmongUsClient : InnerNetClient
 		base.Spawn(ShipStatus.Instance, -2, SpawnFlags.None);
 		ShipStatus.Instance.SelectInfected();
 		ShipStatus.Instance.Begin();
-		yield return IL_2D5();
+		IL_2D5();
+		yield break;
 
-		IEnumerable IL_2D5()
+		void IL_2D5()
         {
 			for (int i = 0; i < GameData.Instance.PlayerCount; i++)
 			{
@@ -218,7 +220,6 @@ public class AmongUsClient : InnerNetClient
 				}
 			}
 			SaveManager.LastGameStart = DateTime.UtcNow;
-			return null;
 		}
 	}
 

@@ -69,8 +69,8 @@ public class HatManager : DestroyableSingleton<HatManager>
 	// Token: 0x06000342 RID: 834 RVA: 0x0000426E File Offset: 0x0000246E
 	public void Start()
 	{
-		this.AllHats.AddRange(HatLoader.LoadHats());
 		this.AllSkins.AddRange(HatLoader.LoadSkins());
+		this.AllHats.AddRange(HatLoader.LoadHats());
 	}
 
 	// Token: 0x0400033C RID: 828

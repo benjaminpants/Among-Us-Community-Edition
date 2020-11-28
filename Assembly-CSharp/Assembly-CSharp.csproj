@@ -34,49 +34,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Apple, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\Apple.dll</HintPath>
-    </Reference>
-    <Reference Include="AppStoreSettings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\AppStoreSettings.dll</HintPath>
-    </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Refrences\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="ChannelPurchase, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\ChannelPurchase.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\FacebookStore.dll</HintPath>
     </Reference>
     <Reference Include="Hazel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Refrences\Hazel.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Posix, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\Mono.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Refrences\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Purchasing.Common, Version=1.0.7016.24185, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Security, Version=1.0.7016.24189, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Refrences\Security.dll</HintPath>
     </Reference>
     <Reference Include="Stores, Version=1.0.7016.24194, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,6 +82,9 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\Refrences\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\Refrences\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -372,6 +343,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomClasses\AnimationCurveManager.cs" />
     <Compile Include="Minigames\AcceptDivertPowerGame.cs" />
     <Compile Include="AdDataCollectScreen.cs" />
     <Compile Include="AdPlayer.cs" />
