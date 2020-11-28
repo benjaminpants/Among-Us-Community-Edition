@@ -7,13 +7,7 @@ public class VersionShower : MonoBehaviour
 	// Token: 0x06000208 RID: 520 RVA: 0x0000348A File Offset: 0x0000168A
 	public void Start()
 	{
-		this.text.Text = string.Concat(new object[]
-		{
-			"v",
-			Application.version,
-			".",
-			0
-		});
+		this.text.Text = "Among Us Community Edition - MissingTextureMan101 + Carjem Generations";
 		Screen.sleepTimeout = -1;
 	}
 

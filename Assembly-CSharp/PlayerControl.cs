@@ -555,7 +555,7 @@ public class PlayerControl : InnerNetObject
 		this.nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 4);
 		if (base.AmOwner)
 		{
-			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(this.Data.IsImpostor);
+			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(this.Data.IsImpostor || this.Data.role == GameData.PlayerInfo.Role.Sheriff);
 			DestroyableSingleton<HudManager>.Instance.Chat.ForceClosed();
 			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(false);
 		}

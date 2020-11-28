@@ -19,10 +19,9 @@ public class KillButtonManager : MonoBehaviour
 		if (base.isActiveAndEnabled && this.CurrentTarget && !this.isCoolingDown && !PlayerControl.LocalPlayer.Data.IsDead)
 		{
 			PlayerControl.LocalPlayer.RpcMurderPlayer(this.CurrentTarget);
-			PlayerControl.LocalPlayer.nameText.Color = Palette.White;
 			if (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff)
 			{
-				base.gameObject.SetActive(false);
+				PlayerControl.LocalPlayer.nameText.Color = Palette.White;
 				List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
 				where !pcd.Disconnected
 				select pcd into pc
@@ -43,6 +42,7 @@ public class KillButtonManager : MonoBehaviour
 					PlayerControl.LocalPlayer.Data,
 					list.Take(1).ToArray<GameData.PlayerInfo>()[0]
 				}, roles);
+				base.gameObject.SetActive(false);
 			}
 			this.SetTarget(null);
 		}

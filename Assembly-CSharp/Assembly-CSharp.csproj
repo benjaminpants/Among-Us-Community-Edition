@@ -384,6 +384,8 @@
     <Compile Include="ArrowBehaviour.cs" />
     <Compile Include="AspectPosition.cs" />
     <Compile Include="AspectSize.cs" />
+    <Compile Include="CustomClasses\RoleInfo.cs" />
+    <Compile Include="CustomClasses\RoleManager.cs" />
     <Compile Include="Extensions\Assets\CoreScripts\Telemetry.cs" />
     <Compile Include="Asteroid.cs" />
     <Compile Include="AutoOpenDoor.cs" />

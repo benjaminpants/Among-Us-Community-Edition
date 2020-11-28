@@ -98,9 +98,7 @@ public static class Constants
 	// Token: 0x040000AC RID: 172
 	public static readonly int[] CompatVersions = new int[]
 	{
-		Constants.GetBroadcastVersion(),
-		Constants.GetVersion(2019, 4, 15, 0),
-		Constants.GetVersion(2019, 4, 24, 1)
+		Constants.GetBroadcastVersion()
 	};
 
 	// Token: 0x040000AD RID: 173

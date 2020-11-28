@@ -52,6 +52,10 @@ public class HatLoader
 				hatBehaviour.ProductId = customHatDefinition.ID;
 				Texture2D texture = HatLoader.LoadPNG(Path.Combine(text, customHatDefinition.NormalImg));
 				Texture2D texture2 = HatLoader.LoadPNG(Path.Combine(text, customHatDefinition.FloorImg));
+				if (customHatDefinition.UsePointFiltering)
+				{
+					texture.filterMode = FilterMode.Point;
+				}
 				hatBehaviour.MainImage = Sprite.Create(texture, new Rect(new Vector2(customHatDefinition.NormalPosX, customHatDefinition.NormalPosY), new Vector2(customHatDefinition.NormalWidth, customHatDefinition.NormalHeight)), new Vector2(customHatDefinition.NormalPivotX, customHatDefinition.NormalPivotY));
 				hatBehaviour.FloorImage = Sprite.Create(texture2, new Rect(new Vector2(customHatDefinition.FloorPosX, customHatDefinition.FloorPosY), new Vector2(customHatDefinition.FloorWidth, customHatDefinition.FloorHeight)), new Vector2(customHatDefinition.FloorPivotX, customHatDefinition.FloorPivotY));
 				list.Add(hatBehaviour);

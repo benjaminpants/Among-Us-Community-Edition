@@ -126,9 +126,7 @@ public class SkinLayer : MonoBehaviour
 	// Token: 0x060008D0 RID: 2256 RVA: 0x0002F948 File Offset: 0x0002DB48
 	internal void SetSkin(uint skinId)
 	{
-		SkinData skinData = this.skin;
 		this.skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId);
-		this.skin.IdleAnim = skinData.IdleAnim;
 		this.SetIdle();
 	}
 

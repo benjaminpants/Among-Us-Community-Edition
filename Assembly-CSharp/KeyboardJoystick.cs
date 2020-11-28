@@ -42,9 +42,13 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		{
 			DestroyableSingleton<HudManager>.Instance.ReportButton.DoClick();
 		}
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+        {
+            DestroyableSingleton<HudManager>.Instance.UseButton.DoClick();
+        }
+		if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			DestroyableSingleton<HudManager>.Instance.UseButton.DoClick();
+			DestroyableSingleton<HudManager>.Instance.OpenMap();
 		}
 		if ((PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff) && Input.GetKeyDown(KeyCode.Q))
 		{

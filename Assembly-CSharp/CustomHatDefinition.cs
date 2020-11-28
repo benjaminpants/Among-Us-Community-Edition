@@ -82,4 +82,6 @@ public class CustomHatDefinition
 	// (get) Token: 0x06000EF5 RID: 3829 RVA: 0x0000AB3A File Offset: 0x00008D3A
 	// (set) Token: 0x06000EF6 RID: 3830 RVA: 0x0000AB42 File Offset: 0x00008D42
 	public float FloorPivotY { get; set; }
+
+	public bool UsePointFiltering { get; set; } = false;
 }
