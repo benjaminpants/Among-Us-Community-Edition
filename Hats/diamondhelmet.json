@@ -2,6 +2,7 @@
 	"ID": "helmethat",
 	"NormalImg": "diamondhelmet.png",
 	"FloorImg": "diamondhelmet_floor.png",
+	"PreviewImg": "diamondhelmet.png",
 	"NormalPosX": 0,
 	"NormalPosY": 0,
 	"NormalWidth": 56,
@@ -14,6 +15,12 @@
 	"FloorHeight": 45,
 	"FloorPivotX": 0.33,
 	"FloorPivotY": 1.15,
+	"PreviewPosX": 0,
+	"PreviewPosY": 0,
+	"PreviewWidth": 56,
+	"PreviewHeight": 45,
+	"PreviewPivotX": 0.5,
+	"PreviewPivotY": 0.5,
 	"inFront": "true",
 	"UsePointFiltering": true
 }
