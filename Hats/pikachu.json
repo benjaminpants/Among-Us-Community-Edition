@@ -1,0 +1,19 @@
+{
+	"ID": "pikachu",
+	"NormalImg": "pikachu_hat.png",
+	"FloorImg": "pokeball.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 60,
+	"NormalHeight": 60,
+	"NormalPivotX": 0.4,
+	"NormalPivotY": 0.5,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 60,
+	"FloorHeight": 60,
+	"FloorPivotX": 0.4,
+	"FloorPivotY": 0.5,
+	"inFront": "true",
+	"UsePointFiltering": true
+}

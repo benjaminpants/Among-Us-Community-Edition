@@ -1,0 +1,18 @@
+{
+	"ID": "AUPORT_crown",
+	"NormalImg": "crown.png",
+	"FloorImg": "crown.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 46,
+	"NormalHeight": 44,
+	"NormalPivotX": 0.35,
+	"NormalPivotY": 0.6,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 46,
+	"FloorHeight": 44,
+	"FloorPivotX": 0.35,
+	"FloorPivotY": 0.6,
+	"inFront": "true"
+}

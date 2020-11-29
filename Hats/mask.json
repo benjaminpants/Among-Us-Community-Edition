@@ -1,0 +1,18 @@
+{
+	"ID": "AUPORT_mask",
+	"NormalImg": "mask.png",
+	"FloorImg": "mask_fall.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 65,
+	"NormalHeight": 40,
+	"NormalPivotX": 0.35,
+	"NormalPivotY": 1.6,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 62,
+	"FloorHeight": 28,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true"
+}

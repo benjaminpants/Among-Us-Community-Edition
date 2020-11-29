@@ -1,0 +1,18 @@
+{
+	"ID": "Astrohat",
+	"NormalImg": "astrohat.png",
+	"FloorImg": "astrohat_cry.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 75,
+	"NormalHeight": 49,
+	"NormalPivotX": 0.4,
+	"NormalPivotY": 0.5,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 75,
+	"FloorHeight": 49,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true"
+}

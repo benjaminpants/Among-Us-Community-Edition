@@ -1,0 +1,18 @@
+{
+	"ID": "AUPORT_wig",
+	"NormalImg": "dora.png",
+	"FloorImg": "dora_crump.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 66,
+	"NormalHeight": 54,
+	"NormalPivotX": 0.33,
+	"NormalPivotY": 0.85,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 72,
+	"FloorHeight": 54,
+	"FloorPivotX": 0.33,
+	"FloorPivotY": 0.85,
+	"inFront": "true"
+}

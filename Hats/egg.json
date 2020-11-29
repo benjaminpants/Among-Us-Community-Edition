@@ -1,0 +1,18 @@
+{
+	"ID": "AUPORT_Egg",
+	"NormalImg": "egg.png",
+	"FloorImg": "egg_fall.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 50,
+	"NormalHeight": 39,
+	"NormalPivotX": 0.39,
+	"NormalPivotY": 1,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 80,
+	"FloorHeight": 27,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true"
+}

@@ -1,0 +1,18 @@
+{
+	"ID": "wario_hat",
+	"NormalImg": "wariohat.png",
+	"FloorImg": "wariohat_crumple.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 72,
+	"NormalHeight": 54,
+	"NormalPivotX": 0.37,
+	"NormalPivotY": 0.69,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 72,
+	"FloorHeight": 54,
+	"FloorPivotX": 0.33,
+	"FloorPivotY": 0.85,
+	"inFront": "true"
+}

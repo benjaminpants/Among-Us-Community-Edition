@@ -1,0 +1,18 @@
+{
+	"ID": "helmethat",
+	"NormalImg": "helmethat.png",
+	"FloorImg": "helmethat.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 58,
+	"NormalHeight": 68,
+	"NormalPivotX": 0.33,
+	"NormalPivotY": 1.1,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 58,
+	"FloorHeight": 68,
+	"FloorPivotX": 0.35,
+	"FloorPivotY": 1.1,
+	"inFront": "true"
+}

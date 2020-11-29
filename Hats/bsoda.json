@@ -1,0 +1,19 @@
+{
+	"ID": "baldibsoda",
+	"NormalImg": "BSODA.png",
+	"FloorImg": "BSODA_floor.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 64,
+	"NormalHeight": 64,
+	"NormalPivotX": 0.36,
+	"NormalPivotY": 0.31,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 64,
+	"FloorHeight": 64,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true",
+	"UsePointFiltering": true
+}
