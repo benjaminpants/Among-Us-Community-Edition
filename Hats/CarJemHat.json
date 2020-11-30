@@ -8,7 +8,7 @@
 	"NormalWidth": 84,
 	"NormalHeight": 86,
 	"NormalPivotX": 0.43,
-	"NormalPivotY": 0.90,
+	"NormalPivotY": 0.85,
 	"FloorPosX": 0,
 	"FloorPosY": 0,
 	"FloorWidth": 84,
@@ -21,5 +21,6 @@
 	"PreviewHeight": 86,
 	"PreviewPivotX": 0.5,
 	"PreviewPivotY": 0.5,
-	"inFront": "true"
+	"inFront": "true",
+	"UsePointFiltering": false
 }
