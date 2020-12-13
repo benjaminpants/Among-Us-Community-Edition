@@ -1,0 +1,715 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Assets.CoreScripts;
+using Hazel;
+using InnerNet;
+using PowerTools;
+using UnityEngine;
+
+public class ShipStatus : InnerNetObject
+{
+	public class SystemTypeComparer : IEqualityComparer<SystemTypes>
+	{
+		public static readonly SystemTypeComparer Instance = new SystemTypeComparer();
+
+		public bool Equals(SystemTypes x, SystemTypes y)
+		{
+			return x == y;
+		}
+
+		public int GetHashCode(SystemTypes obj)
+		{
+			return (int)obj;
+		}
+	}
+
+	private enum RpcCalls
+	{
+		CloseDoorsOfType,
+		RepairSystem
+	}
+
+	public static ShipStatus Instance;
+
+	public Color CameraColor = Color.black;
+
+	public float MaxLightRadius = 100f;
+
+	public float MinLightRadius;
+
+	public float MapScale = 4.4f;
+
+	public Vector2 MapOffset = new Vector2(0.54f, 1.25f);
+
+	public MapBehaviour MapPrefab;
+
+	public Transform SpawnCenter;
+
+	public float SpawnRadius = 1.55f;
+
+	public AudioClip shipHum;
+
+	public NormalPlayerTask[] CommonTasks;
+
+	public NormalPlayerTask[] LongTasks;
+
+	public NormalPlayerTask[] NormalTasks;
+
+	public PlayerTask[] SpecialTasks;
+
+	public AutoOpenDoor[] AllDoors;
+
+	public Console[] AllConsoles;
+
+	public Dictionary<SystemTypes, ISystemType> Systems;
+
+	public AnimationClip[] WeaponFires;
+
+	public SpriteAnim WeaponsImage;
+
+	public AnimationClip HatchActive;
+
+	public SpriteAnim Hatch;
+
+	public ParticleSystem HatchParticles;
+
+	public AnimationClip ShieldsActive;
+
+	public SpriteAnim[] ShieldsImages;
+
+	public SpriteRenderer ShieldBorder;
+
+	public Sprite ShieldBorderOn;
+
+	public SpriteRenderer MedScanner;
+
+	private int WeaponFireIdx;
+
+	public float Timer;
+
+	private RaycastHit2D[] volumeBuffer = new RaycastHit2D[5];
+
+	public ShipRoom[] AllRooms
+	{
+		get;
+		private set;
+	}
+
+	public Vent[] AllVents
+	{
+		get;
+		private set;
+	}
+
+	public ShipStatus()
+	{
+		Systems = new Dictionary<SystemTypes, ISystemType>(SystemTypeComparer.Instance)
+		{
+			{
+				SystemTypes.Electrical,
+				new SwitchSystem()
+			},
+			{
+				SystemTypes.MedBay,
+				new MedScanSystem()
+			},
+			{
+				SystemTypes.Reactor,
+				new ReactorSystemType()
+			},
+			{
+				SystemTypes.LifeSupp,
+				new LifeSuppSystemType()
+			},
+			{
+				SystemTypes.Security,
+				new SecurityCameraSystemType()
+			},
+			{
+				SystemTypes.Comms,
+				new HudOverrideSystemType()
+			},
+			{
+				SystemTypes.Doors,
+				new DoorsSystemType()
+			}
+		};
+		Systems.Add(SystemTypes.Sabotage, new SabotageSystemType(new IActivatable[4]
+		{
+			(IActivatable)Systems[SystemTypes.Comms],
+			(IActivatable)Systems[SystemTypes.Reactor],
+			(IActivatable)Systems[SystemTypes.LifeSupp],
+			(IActivatable)Systems[SystemTypes.Electrical]
+		}));
+	}
+
+	private void Awake()
+	{
+		AllRooms = GetComponentsInChildren<ShipRoom>();
+		AllConsoles = GetComponentsInChildren<Console>();
+		AllVents = GetComponentsInChildren<Vent>();
+		AssignTaskIndexes();
+		Instance = this;
+	}
+
+	public void Start()
+	{
+		Camera.main.backgroundColor = CameraColor;
+		if (DestroyableSingleton<HudManager>.InstanceExists)
+		{
+			DestroyableSingleton<HudManager>.Instance.Chat.ForceClosed();
+			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: false);
+			DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(value: false);
+		}
+		DeconSystem componentInChildren = GetComponentInChildren<DeconSystem>();
+		if ((bool)componentInChildren)
+		{
+			Systems.Add(SystemTypes.Decontamination, componentInChildren);
+		}
+		LobbyBehaviour instance = LobbyBehaviour.Instance;
+		if ((bool)instance)
+		{
+			UnityEngine.Object.Destroy(instance.gameObject);
+		}
+		SoundManager.Instance.StopAllSound();
+		AudioSource audioSource = SoundManager.Instance.PlaySound(shipHum, loop: true);
+		if ((bool)audioSource)
+		{
+			audioSource.pitch = 0.8f;
+		}
+		if (!Constants.ShouldPlaySfx())
+		{
+			return;
+		}
+		for (int i = 0; i < AllRooms.Length; i++)
+		{
+			ShipRoom room = AllRooms[i];
+			if ((bool)room.AmbientSound)
+			{
+				SoundManager.Instance.PlayDynamicSound("Amb " + room.RoomId, room.AmbientSound, loop: true, delegate(AudioSource player, float dt)
+				{
+					GetAmbientSoundVolume(room, player, dt);
+				});
+			}
+		}
+	}
+
+	public override void OnDestroy()
+	{
+		SoundManager.Instance.StopAllSound();
+		base.OnDestroy();
+	}
+
+	public Vector2 GetSpawnLocation(int playerId, int numPlayer)
+	{
+		Vector2 up = Vector2.up;
+		up = up.Rotate((float)(playerId - 1) * (360f / (float)numPlayer));
+		up *= SpawnRadius;
+		return (Vector2)SpawnCenter.position + up + new Vector2(0f, 0.3636f);
+	}
+
+	public void StartShields()
+	{
+		for (int i = 0; i < ShieldsImages.Length; i++)
+		{
+			ShieldsImages[i].Play(ShieldsActive);
+		}
+		ShieldBorder.sprite = ShieldBorderOn;
+	}
+
+	public void FireWeapon()
+	{
+		if (!WeaponsImage.IsPlaying())
+		{
+			WeaponsImage.Play(WeaponFires[WeaponFireIdx]);
+			WeaponFireIdx = (WeaponFireIdx + 1) % 2;
+		}
+	}
+
+	public NormalPlayerTask GetTaskById(byte idx)
+	{
+		return CommonTasks.FirstOrDefault((NormalPlayerTask t) => t.Index == idx) ?? LongTasks.FirstOrDefault((NormalPlayerTask t) => t.Index == idx) ?? NormalTasks.FirstOrDefault((NormalPlayerTask t) => t.Index == idx);
+	}
+
+	public void OpenHatch()
+	{
+		if (!Hatch.IsPlaying())
+		{
+			Hatch.Play(HatchActive);
+			HatchParticles.Play();
+		}
+	}
+
+	public void CloseDoorsOfType(SystemTypes room)
+	{
+		(Systems[SystemTypes.Doors] as DoorsSystemType).CloseDoorsOfType(room);
+		SetDirtyBit(65536u);
+	}
+
+	public void RepairSystem(SystemTypes systemType, PlayerControl player, byte amount)
+	{
+		Systems[systemType].RepairDamage(player, amount);
+		SetDirtyBit((uint)(1 << (int)systemType));
+	}
+
+	internal void SelectInfected()
+	{
+		List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
+			where !pcd.Disconnected
+			select pcd into pc
+			where !pc.IsDead
+			select pc).ToList();
+		list.Shuffle();
+		GameData.PlayerInfo[] array = list.Take(PlayerControl.GameOptions.NumImpostors).ToArray();
+		foreach (GameData.PlayerInfo playerInfo in array)
+		{
+			if (playerInfo != null)
+			{
+				DestroyableSingleton<Telemetry>.Instance.SelectInfected(playerInfo.ColorId, playerInfo.HatId);
+			}
+		}
+		PlayerControl.LocalPlayer.RpcSetInfected(array);
+	}
+
+	private void AssignTaskIndexes()
+	{
+		int num = 0;
+		for (int i = 0; i < CommonTasks.Length; i++)
+		{
+			CommonTasks[i].Index = num++;
+		}
+		for (int j = 0; j < LongTasks.Length; j++)
+		{
+			LongTasks[j].Index = num++;
+		}
+		for (int k = 0; k < NormalTasks.Length; k++)
+		{
+			NormalTasks[k].Index = num++;
+		}
+	}
+
+	public void Begin()
+	{
+		AssignTaskIndexes();
+		GameOptionsData gameOptions = PlayerControl.GameOptions;
+		List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
+		HashSet<TaskTypes> hashSet = new HashSet<TaskTypes>();
+		List<byte> list = new List<byte>(10);
+		List<NormalPlayerTask> list2 = CommonTasks.ToList();
+		list2.Shuffle();
+		int start = 0;
+		AddTasksFromList(ref start, gameOptions.NumCommonTasks, list, hashSet, list2);
+		for (int i = 0; i < gameOptions.NumCommonTasks; i++)
+		{
+			if (list2.Count == 0)
+			{
+				Debug.LogWarning("Not enough common tasks");
+				break;
+			}
+			int index = list2.RandomIdx();
+			list.Add((byte)list2[index].Index);
+			list2.RemoveAt(index);
+		}
+		List<NormalPlayerTask> list3 = LongTasks.ToList();
+		list3.Shuffle();
+		List<NormalPlayerTask> list4 = NormalTasks.ToList();
+		list4.Shuffle();
+		int start2 = 0;
+		int start3 = 0;
+		for (byte b = 0; b < allPlayers.Count; b = (byte)(b + 1))
+		{
+			hashSet.Clear();
+			list.RemoveRange(gameOptions.NumCommonTasks, list.Count - gameOptions.NumCommonTasks);
+			AddTasksFromList(ref start2, gameOptions.NumLongTasks, list, hashSet, list3);
+			AddTasksFromList(ref start3, gameOptions.NumShortTasks, list, hashSet, list4);
+			GameData.PlayerInfo playerInfo = allPlayers[b];
+			if ((bool)playerInfo.Object && !playerInfo.Object.GetComponent<DummyBehaviour>().enabled)
+			{
+				byte[] taskTypeIds = list.ToArray();
+				GameData.Instance.RpcSetTasks(playerInfo.PlayerId, taskTypeIds);
+			}
+		}
+		base.enabled = true;
+	}
+
+	private void AddTasksFromList(ref int start, int count, List<byte> tasks, HashSet<TaskTypes> usedTaskTypes, List<NormalPlayerTask> unusedTasks)
+	{
+		int num = 0;
+		for (int i = 0; i < count; i++)
+		{
+			if (num++ == 1000)
+			{
+				break;
+			}
+			if (start >= unusedTasks.Count)
+			{
+				start = 0;
+				unusedTasks.Shuffle();
+				if (unusedTasks.All((NormalPlayerTask t) => usedTaskTypes.Contains(t.TaskType)))
+				{
+					Debug.Log("Not enough task types");
+					usedTaskTypes.Clear();
+				}
+			}
+			NormalPlayerTask normalPlayerTask = unusedTasks[start++];
+			if (!usedTaskTypes.Add(normalPlayerTask.TaskType))
+			{
+				i--;
+			}
+			else
+			{
+				tasks.Add((byte)normalPlayerTask.Index);
+			}
+		}
+	}
+
+	public void FixedUpdate()
+	{
+		if (!AmongUsClient.Instance)
+		{
+			return;
+		}
+		Timer += Time.fixedDeltaTime;
+		if (Timer > 75f && SaveManager.LastGameStart != DateTime.MinValue)
+		{
+			SaveManager.LastGameStart = DateTime.MinValue;
+		}
+		if ((bool)GameData.Instance)
+		{
+			GameData.Instance.RecomputeTaskCounts();
+		}
+		if (AmongUsClient.Instance.AmHost)
+		{
+			CheckEndCriteria();
+		}
+		if (!AmongUsClient.Instance.AmClient)
+		{
+			return;
+		}
+		for (int i = 0; i < SystemTypeHelpers.AllTypes.Length; i++)
+		{
+			SystemTypes systemTypes = SystemTypeHelpers.AllTypes[i];
+			if (Systems.TryGetValue(systemTypes, out var value) && value.Detoriorate(Time.fixedDeltaTime))
+			{
+				SetDirtyBit((uint)(1 << (int)systemTypes));
+			}
+		}
+	}
+
+	private void GetAmbientSoundVolume(ShipRoom room, AudioSource player, float dt)
+	{
+		if (!PlayerControl.LocalPlayer)
+		{
+			player.volume = 0f;
+			return;
+		}
+		Vector2 vector = room.transform.position;
+		Vector2 truePosition = PlayerControl.LocalPlayer.GetTruePosition();
+		float num = Vector2.Distance(vector, truePosition);
+		if (num > 8f)
+		{
+			player.volume = 0f;
+			return;
+		}
+		Vector2 direction = truePosition - vector;
+		int num2 = Physics2D.RaycastNonAlloc(vector, direction, volumeBuffer, num, Constants.ShipOnlyMask);
+		float num3 = 1f - num / 8f - (float)num2 * 0.25f;
+		player.volume = Mathf.Lerp(player.volume, num3 * 0.7f, dt);
+	}
+
+	public float CalculateLightRadius(GameData.PlayerInfo player)
+	{
+		if (player.IsDead)
+		{
+			return MaxLightRadius;
+		}
+		SwitchSystem switchSystem = (SwitchSystem)Systems[SystemTypes.Electrical];
+		if (player.IsImpostor)
+		{
+			return MaxLightRadius * PlayerControl.GameOptions.ImpostorLightMod;
+		}
+		float t = (float)(int)switchSystem.Value / 255f;
+		return Mathf.Lerp(MinLightRadius, MaxLightRadius, t) * PlayerControl.GameOptions.CrewLightMod;
+	}
+
+	public override bool Serialize(MessageWriter writer, bool initialState)
+	{
+		if (initialState)
+		{
+			(Systems[SystemTypes.Doors] as DoorsSystemType).SetDoors(AllDoors);
+			for (short num = 0; num < SystemTypeHelpers.AllTypes.Length; num = (short)(num + 1))
+			{
+				SystemTypes key = SystemTypeHelpers.AllTypes[num];
+				if (Systems.TryGetValue(key, out var value))
+				{
+					value.Serialize(writer, initialState: true);
+				}
+			}
+			return true;
+		}
+		if (DirtyBits != 0)
+		{
+			writer.WritePacked(DirtyBits);
+			for (short num2 = 0; num2 < SystemTypeHelpers.AllTypes.Length; num2 = (short)(num2 + 1))
+			{
+				SystemTypes systemTypes = SystemTypeHelpers.AllTypes[num2];
+				if ((DirtyBits & (1 << (int)systemTypes)) != 0L && Systems.TryGetValue(systemTypes, out var value2))
+				{
+					value2.Serialize(writer, initialState: false);
+				}
+			}
+			DirtyBits = 0u;
+			return true;
+		}
+		return false;
+	}
+
+	public override void Deserialize(MessageReader reader, bool initialState)
+	{
+		if (initialState)
+		{
+			(Systems[SystemTypes.Doors] as DoorsSystemType).SetDoors(AllDoors);
+			for (short num = 0; num < SystemTypeHelpers.AllTypes.Length; num = (short)(num + 1))
+			{
+				SystemTypes key = (SystemTypes)num;
+				if (Systems.TryGetValue(key, out var value))
+				{
+					value.Deserialize(reader, initialState: true);
+				}
+			}
+			return;
+		}
+		uint num2 = reader.ReadPackedUInt32();
+		for (short num3 = 0; num3 < SystemTypeHelpers.AllTypes.Length; num3 = (short)(num3 + 1))
+		{
+			SystemTypes systemTypes = SystemTypeHelpers.AllTypes[num3];
+			if ((num2 & (1 << (int)systemTypes)) != 0L && Systems.TryGetValue(systemTypes, out var value2))
+			{
+				value2.Deserialize(reader, initialState: false);
+			}
+		}
+	}
+
+	private void CheckEndCriteria()
+	{
+		if (!GameData.Instance)
+		{
+			return;
+		}
+		LifeSuppSystemType lifeSuppSystemType = (LifeSuppSystemType)Systems[SystemTypes.LifeSupp];
+		if (lifeSuppSystemType.Countdown < 0f)
+		{
+			EndGameForSabotage();
+			lifeSuppSystemType.Countdown = 10000f;
+		}
+		ReactorSystemType reactorSystemType = (ReactorSystemType)Systems[SystemTypes.Reactor];
+		if (reactorSystemType.Countdown < 0f)
+		{
+			EndGameForSabotage();
+			reactorSystemType.Countdown = 10000f;
+		}
+		int num = 0;
+		int num2 = 0;
+		int num3 = 0;
+		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
+		{
+			GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
+			if (playerInfo.Disconnected)
+			{
+				continue;
+			}
+			if (playerInfo.IsImpostor)
+			{
+				num3++;
+			}
+			if (!playerInfo.IsDead)
+			{
+				if (playerInfo.IsImpostor)
+				{
+					num2++;
+				}
+				else
+				{
+					num++;
+				}
+			}
+		}
+		if (num2 <= 0 && (!DestroyableSingleton<TutorialManager>.InstanceExists || num3 > 0))
+		{
+			if (!DestroyableSingleton<TutorialManager>.InstanceExists)
+			{
+				base.enabled = false;
+				RpcEndGame((GameData.Instance.LastDeathReason == DeathReason.Disconnect) ? GameOverReason.ImpostorDisconnect : GameOverReason.HumansByVote, !SaveManager.BoughtNoAds);
+			}
+			else
+			{
+				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because The Impostor is dead. For free play, we revive everyone instead.");
+				ReviveEveryone();
+			}
+		}
+		else if (num <= num2)
+		{
+			if (!DestroyableSingleton<TutorialManager>.InstanceExists)
+			{
+				base.enabled = false;
+				RpcEndGame(GameData.Instance.LastDeathReason switch
+				{
+					DeathReason.Kill => GameOverReason.ImpostorByKill, 
+					DeathReason.Exile => GameOverReason.ImpostorByVote, 
+					_ => GameOverReason.HumansDisconnect, 
+				}, !SaveManager.BoughtNoAds);
+			}
+			else
+			{
+				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Impostor would have just won because The Crew can no longer win. For free play, we revive everyone instead.");
+				ReviveEveryone();
+			}
+		}
+		else if (!DestroyableSingleton<TutorialManager>.InstanceExists)
+		{
+			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
+			{
+				base.enabled = false;
+				RpcEndGame(GameOverReason.HumansByTask, !SaveManager.BoughtNoAds);
+			}
+		}
+		else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete))
+		{
+			DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because the task bar is full. For free play, we issue new tasks instead.");
+			Begin();
+		}
+	}
+
+	private void EndGameForSabotage()
+	{
+		if (!DestroyableSingleton<TutorialManager>.InstanceExists)
+		{
+			base.enabled = false;
+			RpcEndGame(GameOverReason.ImpostorBySabotage, !SaveManager.BoughtNoAds);
+		}
+		else
+		{
+			DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Impostor would have just won because of the critical sabotage. Instead we just shut it off.");
+		}
+	}
+
+	public bool IsGameOverDueToDeath()
+	{
+		int num = 0;
+		int num2 = 0;
+		int num3 = 0;
+		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
+		{
+			GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
+			if (playerInfo.Disconnected)
+			{
+				continue;
+			}
+			if (playerInfo.IsImpostor)
+			{
+				num3++;
+			}
+			if (!playerInfo.IsDead)
+			{
+				if (playerInfo.IsImpostor)
+				{
+					num2++;
+				}
+				else
+				{
+					num++;
+				}
+			}
+		}
+		if (num2 <= 0 && (!DestroyableSingleton<TutorialManager>.InstanceExists || num3 > 0))
+		{
+			return true;
+		}
+		if (num <= num2)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private static void RpcEndGame(GameOverReason endReason, bool showAd)
+	{
+		MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
+		messageWriter.Write((byte)endReason);
+		messageWriter.Write(showAd);
+		AmongUsClient.Instance.FinishEndGame(messageWriter);
+	}
+
+	private static void ReviveEveryone()
+	{
+		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
+		{
+			GameData.Instance.AllPlayers[i].Object.Revive();
+		}
+		UnityEngine.Object.FindObjectsOfType<DeadBody>().ForEach(delegate(DeadBody b)
+		{
+			UnityEngine.Object.Destroy(b.gameObject);
+		});
+	}
+
+	public bool CheckTaskCompletion()
+	{
+		if (DestroyableSingleton<TutorialManager>.InstanceExists)
+		{
+			if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete))
+			{
+				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because the task bar is full. For free play, we issue new tasks instead.");
+				Begin();
+			}
+			return false;
+		}
+		GameData.Instance.RecomputeTaskCounts();
+		if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
+		{
+			base.enabled = false;
+			RpcEndGame(GameOverReason.HumansByTask, !SaveManager.BoughtNoAds);
+			return true;
+		}
+		return false;
+	}
+
+	public void RpcCloseDoorsOfType(SystemTypes type)
+	{
+		if (AmongUsClient.Instance.AmHost)
+		{
+			CloseDoorsOfType(type);
+			return;
+		}
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 0, SendOption.Reliable, AmongUsClient.Instance.HostId);
+		messageWriter.Write((byte)type);
+		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
+	}
+
+	public void RpcRepairSystem(SystemTypes systemType, int amount)
+	{
+		if (AmongUsClient.Instance.AmHost)
+		{
+			RepairSystem(systemType, PlayerControl.LocalPlayer, (byte)amount);
+			return;
+		}
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 1, SendOption.Reliable, AmongUsClient.Instance.HostId);
+		messageWriter.Write((byte)systemType);
+		messageWriter.WriteNetObject(PlayerControl.LocalPlayer);
+		messageWriter.Write((byte)amount);
+		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
+	}
+
+	public override void HandleRpc(byte callId, MessageReader reader)
+	{
+		switch (callId)
+		{
+		case 0:
+			CloseDoorsOfType((SystemTypes)reader.ReadByte());
+			break;
+		case 1:
+			RepairSystem((SystemTypes)reader.ReadByte(), reader.ReadNetObject<PlayerControl>(), reader.ReadByte());
+			break;
+		}
+	}
+}
