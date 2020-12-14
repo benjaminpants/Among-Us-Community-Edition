@@ -119,25 +119,55 @@ public class PlayerPhysics : InnerNetObject
 
 	private void HandleAnimation()
 	{
-		if (Animator.IsPlaying(SpawnAnim) || !GameData.Instance)
+		if (CE_WardrobeLoader.AnimationDebugMode)
 		{
-			return;
+			HandleAnimationTesting();
 		}
-		Vector2 velocity = body.velocity;
-		AnimationClip currentAnimation = Animator.GetCurrentAnimation();
-		GameData.PlayerInfo data = myPlayer.Data;
-		if (data == null)
+		else
 		{
-			return;
-		}
-		if (!data.IsDead)
-		{
-			if (velocity.sqrMagnitude >= 0.05f)
+			if (Animator.IsPlaying(SpawnAnim) || !GameData.Instance)
 			{
-				if (currentAnimation != RunAnim)
+				return;
+			}
+			Vector2 velocity = body.velocity;
+			AnimationClip currentAnimation = Animator.GetCurrentAnimation();
+			GameData.PlayerInfo data = myPlayer.Data;
+			if (data == null)
+			{
+				return;
+			}
+			if (!data.IsDead)
+			{
+				if (velocity.sqrMagnitude >= 0.05f)
 				{
-					Animator.Play(RunAnim);
-					Skin.SetRun();
+					if (currentAnimation != RunAnim)
+					{
+						Animator.Play(RunAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+						Skin.SetRun();
+					}
+					if (velocity.x < -0.01f)
+					{
+						rend.flipX = true;
+					}
+					else if (velocity.x > 0.01f)
+					{
+						rend.flipX = false;
+					}
+				}
+				else if (currentAnimation == RunAnim || currentAnimation == SpawnAnim || !currentAnimation)
+				{
+					Skin.SetIdle();
+					Animator.Play(IdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+					myPlayer.SetHatAlpha(1f);
+				}
+			}
+			else
+			{
+				Skin.SetGhost();
+				if (currentAnimation != GhostIdleAnim)
+				{
+					Animator.Play(GhostIdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+					myPlayer.SetHatAlpha(0.5f);
 				}
 				if (velocity.x < -0.01f)
 				{
@@ -148,31 +178,8 @@ public class PlayerPhysics : InnerNetObject
 					rend.flipX = false;
 				}
 			}
-			else if (currentAnimation == RunAnim || currentAnimation == SpawnAnim || !currentAnimation)
-			{
-				Skin.SetIdle();
-				Animator.Play(IdleAnim);
-				myPlayer.SetHatAlpha(1f);
-			}
+			Skin.Flipped = rend.flipX;
 		}
-		else
-		{
-			Skin.SetGhost();
-			if (currentAnimation != GhostIdleAnim)
-			{
-				Animator.Play(GhostIdleAnim);
-				myPlayer.SetHatAlpha(0.5f);
-			}
-			if (velocity.x < -0.01f)
-			{
-				rend.flipX = true;
-			}
-			else if (velocity.x > 0.01f)
-			{
-				rend.flipX = false;
-			}
-		}
-		Skin.Flipped = rend.flipX;
 	}
 
 	public IEnumerator CoSpawnPlayer(LobbyBehaviour lobby)
@@ -194,7 +201,8 @@ public class PlayerPhysics : InnerNetObject
 			base.transform.position = spawnPos + new Vector3(amFlipped ? (-0.3f) : 0.3f, -0.24f);
 			ResetAnim(stopCoroutines: false);
 			Vector2 b = (-spawnPos).normalized;
-			yield return WalkPlayerTo((Vector2)spawnPos + b);
+			Vector2 a = spawnPos;
+			yield return WalkPlayerTo(a + b);
 			myPlayer.Collider.enabled = true;
 			KillAnimation.SetMovement(myPlayer, canMove: true);
 			myPlayer.nameText.gameObject.SetActive(value: true);
@@ -245,9 +253,9 @@ public class PlayerPhysics : InnerNetObject
 		Rigidbody2D body = this.body;
 		do
 		{
-			Vector2 vector;
-			Vector2 vector2 = (vector = worldPos - (Vector2)base.transform.position);
-			if (!(vector2.sqrMagnitude > tolerance))
+			Vector2 b = base.transform.position;
+			Vector2 vector = worldPos - b;
+			if (vector.sqrMagnitude <= tolerance)
 			{
 				break;
 			}
@@ -255,7 +263,7 @@ public class PlayerPhysics : InnerNetObject
 			body.velocity = vector.normalized * Speed * d;
 			yield return null;
 		}
-		while (!(body.velocity.magnitude < 0.0001f));
+		while (body.velocity.magnitude >= 0.0001f);
 		body.velocity = Vector2.zero;
 	}
 
@@ -307,5 +315,72 @@ public class PlayerPhysics : InnerNetObject
 			break;
 		}
 		}
+	}
+
+	private void HandleAnimationTesting()
+	{
+		if ((Animator.GetCurrentAnimation() != RunAnim || CE_WardrobeLoader.TestPlaybackResetAnimations) && CE_WardrobeLoader.TestPlaybackMode == 0)
+		{
+			Animator.Play(RunAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Skin.SetRun();
+		}
+		if ((Animator.GetCurrentAnimation() != SpawnAnim || CE_WardrobeLoader.TestPlaybackResetAnimations) && CE_WardrobeLoader.TestPlaybackMode == 1)
+		{
+			Animator.Play(SpawnAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Skin.SetSpawn();
+		}
+		if ((Animator.GetCurrentAnimation() != IdleAnim || CE_WardrobeLoader.TestPlaybackResetAnimations) && CE_WardrobeLoader.TestPlaybackMode == 2)
+		{
+			Animator.Play(IdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Skin.SetIdle();
+		}
+		if ((Animator.GetCurrentAnimation() != EnterVentAnim || CE_WardrobeLoader.TestPlaybackResetAnimations) && CE_WardrobeLoader.TestPlaybackMode == 3)
+		{
+			Animator.Play(EnterVentAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Skin.SetEnterVent();
+		}
+		if ((Animator.GetCurrentAnimation() != ExitVentAnim || CE_WardrobeLoader.TestPlaybackResetAnimations) && CE_WardrobeLoader.TestPlaybackMode == 4)
+		{
+			Animator.Play(ExitVentAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Skin.SetExitVent();
+		}
+		if ((Animator.GetCurrentAnimation() != GhostIdleAnim || CE_WardrobeLoader.TestPlaybackResetAnimations) && CE_WardrobeLoader.TestPlaybackMode == 5)
+		{
+			Animator.Play(GhostIdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Skin.SetGhost();
+		}
+		if (CE_WardrobeLoader.TestPlaybackPause)
+		{
+			if (CE_WardrobeLoader.TestPlaybackResetAnimations)
+			{
+				Animator.Time = CE_WardrobeLoader.TestPlaybackPausePosition;
+				Skin.animator.Time = CE_WardrobeLoader.TestPlaybackPausePositionSkin;
+			}
+			else
+			{
+				CE_WardrobeLoader.TestPlaybackPausePosition = Animator.Time;
+				CE_WardrobeLoader.TestPlaybackPausePositionSkin = Skin.animator.Time;
+			}
+			Skin.animator.Pause();
+			Animator.Pause();
+		}
+		else if (Animator.IsPaused())
+		{
+			Animator.Resume();
+			Skin.animator.Resume();
+			CE_WardrobeLoader.TestPlaybackPausePosition = -1f;
+			CE_WardrobeLoader.TestPlaybackPausePositionSkin = -1f;
+		}
+		if (CE_WardrobeLoader.TestPlaybackResetAnimations)
+		{
+			CE_WardrobeLoader.TestPlaybackResetAnimations = false;
+		}
+		CE_WardrobeLoader.TestPlaybackCurrentPosition = Animator.Time;
+		CE_WardrobeLoader.TestPlaybackCurrentPositionSkin = Skin.animator.Time;
+	}
+
+	public SpriteRenderer GetHatRender()
+	{
+		return rend;
 	}
 }

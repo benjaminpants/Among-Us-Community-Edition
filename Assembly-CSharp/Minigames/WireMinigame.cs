@@ -2,13 +2,7 @@ using UnityEngine;
 
 public class WireMinigame : Minigame
 {
-	private static readonly Color[] colors = new Color[4]
-	{
-		Color.red,
-		Color.blue,
-		Color.yellow,
-		Color.magenta
-	};
+	private static readonly Color[] colors;
 
 	public Wire[] LeftNodes;
 
@@ -155,5 +149,16 @@ public class WireMinigame : Minigame
 			MyNormTask.NextStep();
 			Close();
 		}
+	}
+
+	static WireMinigame()
+	{
+		colors = new Color[4]
+		{
+			Color.red,
+			Color.blue,
+			Color.yellow,
+			Color.magenta
+		};
 	}
 }

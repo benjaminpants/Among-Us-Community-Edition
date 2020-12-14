@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Analytics;
 
@@ -16,8 +17,12 @@ public class MainMenuManager : MonoBehaviour
 
 	private static bool SentTelemetry;
 
+	public Sprite CustomLogo;
+
 	public void Start()
 	{
+		SaveManager.SendTelemetry = false;
+		SaveManager.SendName = false;
 		if (!SentTelemetry && SaveManager.SendTelemetry)
 		{
 			SentTelemetry = true;
@@ -61,5 +66,38 @@ public class MainMenuManager : MonoBehaviour
 		{
 			Application.Quit();
 		}
+	}
+
+	static MainMenuManager()
+	{
+	}
+
+	private void LoadLogo()
+	{
+		Texture2D texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "logo.png"));
+		CustomLogo = CE_TextureNSpriteExtensions.ConvertToSprite(texture, new Vector2(0.5f, 0.65f));
+	}
+
+	private void ModifyLogo()
+	{
+		GameObject[] array = UnityEngine.Object.FindObjectsOfType<GameObject>();
+		for (int i = 0; i < array.Length; i++)
+		{
+			SpriteRenderer component = array[i].GetComponent<SpriteRenderer>();
+			if ((bool)component && component.name == "bannerLogo_AmongUs")
+			{
+				if (!CustomLogo)
+				{
+					LoadLogo();
+					break;
+				}
+				component.sprite = CustomLogo;
+			}
+		}
+	}
+
+	private void LateUpdate()
+	{
+		ModifyLogo();
 	}
 }

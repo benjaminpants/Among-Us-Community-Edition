@@ -13,7 +13,7 @@ namespace InnerNet
 	{
 		protected class Player
 		{
-			private static int IdCount = 1;
+			private static int IdCount;
 
 			public int Id;
 
@@ -26,9 +26,14 @@ namespace InnerNet
 				Id = Interlocked.Increment(ref IdCount);
 				Connection = connection;
 			}
+
+			static Player()
+			{
+				IdCount = 1;
+			}
 		}
 
-		public const int MaxPlayers = 10;
+		public const int MaxPlayers = 20;
 
 		public bool Running;
 
@@ -138,7 +143,11 @@ namespace InnerNet
 
 		private void Connection_DataSentRaw(byte[] data, int length)
 		{
-			Debug.Log("Server Sent: " + string.Join(" ", data.Select((byte b) => b.ToString()).ToArray(), 0, length));
+			Debug.Log("Server Sent: " + string.Join(" ", data.Select(delegate(byte b)
+			{
+				byte b2 = b;
+				return b2.ToString();
+			}).ToArray(), 0, length));
 		}
 
 		private void OnDataReceived(Player client, DataReceivedEventArgs evt)
@@ -171,6 +180,17 @@ namespace InnerNet
 		{
 			switch (reader.Tag)
 			{
+			case 0:
+			{
+				Debug.Log("Server got host game");
+				MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
+				messageWriter.StartMessage(0);
+				messageWriter.Write(32);
+				messageWriter.EndMessage();
+				client.Connection.Send(messageWriter);
+				messageWriter.Recycle();
+				break;
+			}
 			case 1:
 			{
 				Debug.Log("Server got join game");
@@ -179,59 +199,24 @@ namespace InnerNet
 					JoinGame(client);
 					break;
 				}
-				MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
-				messageWriter.StartMessage(1);
-				messageWriter.Write((byte)3);
-				messageWriter.EndMessage();
-				client.Connection.Send(messageWriter);
-				messageWriter.Recycle();
+				MessageWriter messageWriter4 = MessageWriter.Get(SendOption.Reliable);
+				messageWriter4.StartMessage(1);
+				messageWriter4.Write(3);
+				messageWriter4.EndMessage();
+				client.Connection.Send(messageWriter4);
+				messageWriter4.Recycle();
 				break;
 			}
-			case 0:
-			{
-				Debug.Log("Server got host game");
-				MessageWriter messageWriter3 = MessageWriter.Get(SendOption.Reliable);
-				messageWriter3.StartMessage(0);
-				messageWriter3.Write(32);
-				messageWriter3.EndMessage();
-				client.Connection.Send(messageWriter3);
-				messageWriter3.Recycle();
-				break;
-			}
-			case 3:
-				if (reader.ReadInt32() == 32)
-				{
-					ClientDisconnect(client);
-				}
-				break;
 			case 2:
 				if (reader.ReadInt32() == 32)
 				{
 					StartGame(reader, client);
 				}
 				break;
-			case 8:
+			case 3:
 				if (reader.ReadInt32() == 32)
 				{
-					EndGame(reader, client);
-				}
-				break;
-			case 6:
-				if (Clients.Contains(client))
-				{
-					if (reader.ReadInt32() == 32)
-					{
-						int targetId = reader.ReadPackedInt32();
-						MessageWriter messageWriter4 = MessageWriter.Get(sendOption);
-						messageWriter4.CopyFrom(reader);
-						SendTo(messageWriter4, targetId);
-						messageWriter4.Recycle();
-					}
-				}
-				else if (GameState == GameStates.Started)
-				{
-					Debug.Log("GameDataTo: Server didn't have client");
-					client.Connection.Dispose();
+					ClientDisconnect(client);
 				}
 				break;
 			case 5:
@@ -250,7 +235,37 @@ namespace InnerNet
 					client.Connection.Dispose();
 				}
 				break;
-			case 11:
+			case 6:
+				if (Clients.Contains(client))
+				{
+					if (reader.ReadInt32() == 32)
+					{
+						int targetId = reader.ReadPackedInt32();
+						MessageWriter messageWriter3 = MessageWriter.Get(sendOption);
+						messageWriter3.CopyFrom(reader);
+						SendTo(messageWriter3, targetId);
+						messageWriter3.Recycle();
+					}
+				}
+				else if (GameState == GameStates.Started)
+				{
+					Debug.Log("GameDataTo: Server didn't have client");
+					client.Connection.Dispose();
+				}
+				break;
+			case 8:
+				if (reader.ReadInt32() == 32)
+				{
+					EndGame(reader, client);
+				}
+                    break;
+			case 14: //duplicate of 8, no need for change as the server just relays the message.
+				if (reader.ReadInt32() == 32)
+				{
+					EndGame(reader, client);
+				}
+				break;
+				case 11:
 				if (reader.ReadInt32() == 32)
 				{
 					KickPlayer(reader.ReadPackedInt32(), reader.ReadBoolean());
@@ -485,7 +500,7 @@ namespace InnerNet
 			messageWriter.Write(32);
 			messageWriter.Write(client.Id);
 			messageWriter.Write(HostId);
-			messageWriter.Write((byte)0);
+			messageWriter.Write(0);
 			messageWriter.EndMessage();
 			Broadcast(messageWriter, null);
 			messageWriter.Recycle();

@@ -8,7 +8,7 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 
 	private void FixedUpdate()
 	{
-		if (!PlayerControl.LocalPlayer)
+		if (CE_UIHelpers.IsActive() || !PlayerControl.LocalPlayer)
 		{
 			return;
 		}
@@ -31,15 +31,23 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		}
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			DestroyableSingleton<HudManager>.Instance.ReportButton.DoClick();
+			DestroyableSingleton<HudManager>.Instance.ReportButton.DoKeyClick();
 		}
 		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
 		{
-			DestroyableSingleton<HudManager>.Instance.UseButton.DoClick();
+			DestroyableSingleton<HudManager>.Instance.UseButton.DoKeyClick();
 		}
-		if (PlayerControl.LocalPlayer.Data.IsImpostor && Input.GetKeyDown(KeyCode.Q))
+		if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKill();
+			DestroyableSingleton<HudManager>.Instance.OpenMap();
+		}
+		if (Input.GetKeyDown(KeyCode.F) && PlayerControl.LocalPlayer.Data.IsImpostor)
+		{
+			DestroyableSingleton<HudManager>.Instance.OpenInfectedMap();
+		}
+		if ((PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff) && Input.GetKeyDown(KeyCode.Q))
+		{
+			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKeybindKill();
 		}
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{

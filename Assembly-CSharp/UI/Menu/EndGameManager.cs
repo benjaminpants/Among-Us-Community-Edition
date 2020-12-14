@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.CoreScripts;
 using UnityEngine;
+using System.IO;
 
 public class EndGameManager : DestroyableSingleton<EndGameManager>
 {
@@ -56,6 +57,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 
 	private void SetEverythingUp()
 	{
+		Debug.Log(TempData.EndReason);
 		if (TempData.EndReason == GameOverReason.ImpostorDisconnect)
 		{
 			WinText.Text = "Impostor\r\nDisconnected";
@@ -71,7 +73,8 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 		StatsManager.Instance.GamesFinished++;
 		if (TempData.winners.Any((WinningPlayerData h) => h.IsYou))
 		{
-			StatsManager.Instance.AddWinReason(TempData.EndReason);
+			//StatsManager.Instance.AddWinReason(TempData.EndReason);
+			//stats manager temporarily disabled, planning to rework it entirely to support custom gamemodes
 			WinText.Text = "Victory";
 			BackgroundBar.material.SetColor("_Color", Palette.CrewmateBlue);
 			WinningPlayerData winningPlayerData = TempData.winners.FirstOrDefault((WinningPlayerData h) => h.IsYou);
@@ -82,17 +85,40 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 		}
 		else
 		{
-			StatsManager.Instance.AddLoseReason(TempData.EndReason);
+			//StatsManager.Instance.AddLoseReason(TempData.EndReason);
+			//no
 			WinText.Text = "Defeat";
 			WinText.Color = Color.red;
 		}
-		bool flag = TempData.DidHumansWin(TempData.EndReason);
-		if (flag)
+		if (TempData.DidHumansWin(TempData.EndReason))
 		{
 			SoundManager.Instance.PlayDynamicSound("Stinger", CrewStinger, loop: false, GetStingerVol);
 		}
-		else
+		else if (TempData.DidJokerWin(TempData.EndReason))
 		{
+			SoundManager.Instance.PlayDynamicSound("Stinger", DisconnectStinger, loop: false, GetStingerVol);
+		}
+		else if (TempData.EndReason == GameOverReason.Custom)
+		{
+			if (TempData.CustomStinger == "default_impostor")
+            {
+				SoundManager.Instance.PlayDynamicSound("Stinger", ImpostorStinger, loop: false, GetStingerVol);
+			}
+			else if (TempData.CustomStinger == "default_crewmate")
+            {
+				SoundManager.Instance.PlayDynamicSound("Stinger", CrewStinger, loop: false, GetStingerVol);
+			}
+			else if (TempData.CustomStinger == "default_disconnect")
+            {
+				SoundManager.Instance.PlayDynamicSound("Stinger", DisconnectStinger, loop: false, GetStingerVol);
+			}
+			else
+            {
+				SoundManager.Instance.PlayDynamicSound("Stinger", WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Victories", TempData.CustomStinger + ".wav")), loop: false, GetStingerVol);
+			}
+		}
+		else
+        {
 			SoundManager.Instance.PlayDynamicSound("Stinger", ImpostorStinger, loop: false, GetStingerVol);
 		}
 		List<WinningPlayerData> list = TempData.winners.OrderBy((WinningPlayerData b) => b.IsYou ? (-1) : 0).ToList();
@@ -117,7 +143,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			Vector3 vector = new Vector3(num3, num3, num3) * d;
 			spriteRenderer.transform.localScale = vector;
 			TextRenderer componentInChildren = spriteRenderer.GetComponentInChildren<TextRenderer>();
-			if (flag)
+			if (TempData.DidHumansWin(TempData.EndReason))
 			{
 				componentInChildren.gameObject.SetActive(value: false);
 			}

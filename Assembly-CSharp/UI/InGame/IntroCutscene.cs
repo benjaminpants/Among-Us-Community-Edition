@@ -82,15 +82,42 @@ public class IntroCutscene : MonoBehaviour
 		BackgroundBar.transform.position = position;
 		if (PlayerControl.GameOptions.NumImpostors == 1)
 		{
-			ImpostorText.Text = $"There is [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostor[] among us";
+			if (PlayerControl.GameOptions.Gamemode == 1)
+			{
+				ImpostorText.Text = $"There is [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
+			}
+			else
+			{
+				ImpostorText.Text = $"There is [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostor[] among us";
+			}
+		}
+		else if (PlayerControl.GameOptions.Gamemode == 1)
+		{
+			ImpostorText.Text = $"There are [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
 		}
 		else
 		{
 			ImpostorText.Text = $"There are [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostors[] among us";
 		}
 		BackgroundBar.material.SetColor("_Color", Palette.CrewmateBlue);
-		Title.Text = "Crewmate";
-		Title.Color = Palette.CrewmateBlue;
+		if (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff)
+		{
+			Title.Text = "Sheriff";
+			Title.Color = Palette.SheriffYellow;
+			BackgroundBar.material.SetColor("_Color", Palette.SheriffYellow);
+		}
+		else if (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Joker)
+		{
+			Title.Text = "Joker";
+			Title.Color = Palette.Purple;
+			BackgroundBar.material.SetColor("_Color", Palette.Purple);
+		}
+		else
+		{
+			Title.Text = "Crewmate";
+			Title.Color = Palette.CrewmateBlue;
+			BackgroundBar.material.SetColor("_Color", Palette.CrewmateBlue);
+		}
 		for (int i = 0; i < yourTeam.Count; i++)
 		{
 			PlayerControl playerControl = yourTeam[i];
@@ -134,8 +161,17 @@ public class IntroCutscene : MonoBehaviour
 	private void BeginImpostor(List<PlayerControl> yourTeam)
 	{
 		ImpostorText.gameObject.SetActive(value: false);
-		Title.Text = "Impostor";
-		Title.Color = Palette.ImpostorRed;
+		if (PlayerControl.GameOptions.Gamemode == 1)
+		{
+			Title.Text = "Infected";
+			BackgroundBar.material.SetColor("_Color", Palette.InfectedGreen);
+			Title.Color = Palette.InfectedGreen;
+		}
+		else
+		{
+			Title.Text = "Impostor";
+			Title.Color = Palette.ImpostorRed;
+		}
 		for (int i = 0; i < yourTeam.Count; i++)
 		{
 			PlayerControl playerControl = yourTeam[i];

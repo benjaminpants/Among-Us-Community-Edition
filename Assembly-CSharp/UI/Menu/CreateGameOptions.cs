@@ -83,7 +83,7 @@ public class CreateGameOptions : MonoBehaviour, IConnectButton
 		SoundManager.Instance.CrossFadeSound("MainBG", null, 0.5f);
 		yield return Effects.ColorFade(Foreground, Color.clear, Color.black, 0.2f);
 		AmongUsClient.Instance.GameMode = GameModes.OnlineGame;
-		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 22023);
+		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 25565);
 		AmongUsClient.Instance.MainMenuScene = "MMOnline";
 		AmongUsClient.Instance.OnlineScene = "OnlineGame";
 		AmongUsClient.Instance.Connect(MatchMakerModes.HostAndClient);

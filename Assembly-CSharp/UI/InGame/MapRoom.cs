@@ -18,10 +18,18 @@ public class MapRoom : MonoBehaviour
 	{
 		if ((bool)door)
 		{
+			if (PlayerControl.GameOptions.SabControl == 3 || PlayerControl.GameOptions.SabControl == 4)
+			{
+				Object.Destroy(base.transform.gameObject);
+			}
 			door.SetCooldownNormalizedUvs();
 		}
 		if ((bool)special)
 		{
+			if (PlayerControl.GameOptions.SabControl == 3 || PlayerControl.GameOptions.SabControl == 4)
+			{
+				Object.Destroy(base.transform.gameObject);
+			}
 			special.SetCooldownNormalizedUvs();
 		}
 	}
@@ -46,7 +54,7 @@ public class MapRoom : MonoBehaviour
 
 	public void SabotageReactor()
 	{
-		if (Parent.CanUseSpecial)
+		if (PlayerControl.GameOptions.SabControl != 2 && PlayerControl.GameOptions.SabControl != 3 && PlayerControl.GameOptions.SabControl != 4 && Parent.CanUseSpecial)
 		{
 			ShipStatus.Instance.RpcRepairSystem(SystemTypes.Sabotage, 3);
 		}
@@ -54,7 +62,7 @@ public class MapRoom : MonoBehaviour
 
 	public void SabotageComms()
 	{
-		if (Parent.CanUseSpecial)
+		if (PlayerControl.GameOptions.SabControl != 2 && PlayerControl.GameOptions.SabControl != 3 && PlayerControl.GameOptions.SabControl != 4 && Parent.CanUseSpecial)
 		{
 			ShipStatus.Instance.RpcRepairSystem(SystemTypes.Sabotage, 14);
 		}
@@ -62,7 +70,7 @@ public class MapRoom : MonoBehaviour
 
 	public void SabotageOxygen()
 	{
-		if (Parent.CanUseSpecial)
+		if (PlayerControl.GameOptions.SabControl != 2 && PlayerControl.GameOptions.SabControl != 3 && PlayerControl.GameOptions.SabControl != 4 && Parent.CanUseSpecial)
 		{
 			ShipStatus.Instance.RpcRepairSystem(SystemTypes.Sabotage, 8);
 		}
@@ -70,7 +78,7 @@ public class MapRoom : MonoBehaviour
 
 	public void SabotageLights()
 	{
-		if (Parent.CanUseSpecial)
+		if (PlayerControl.GameOptions.SabControl != 2 && PlayerControl.GameOptions.SabControl != 3 && PlayerControl.GameOptions.SabControl != 4 && Parent.CanUseSpecial)
 		{
 			ShipStatus.Instance.RpcRepairSystem(SystemTypes.Sabotage, 7);
 		}
@@ -78,7 +86,7 @@ public class MapRoom : MonoBehaviour
 
 	public void SabotageDoors()
 	{
-		if (Parent.CanUseDoors && !(((DoorsSystemType)ShipStatus.Instance.Systems[SystemTypes.Doors]).GetTimer(room) > 0f))
+		if (PlayerControl.GameOptions.SabControl != 1 && PlayerControl.GameOptions.SabControl != 3 && PlayerControl.GameOptions.SabControl != 4 && Parent.CanUseDoors && !(((DoorsSystemType)ShipStatus.Instance.Systems[SystemTypes.Doors]).GetTimer(room) > 0f))
 		{
 			ShipStatus.Instance.RpcCloseDoorsOfType(room);
 		}

@@ -4,6 +4,8 @@ public class ReportButtonManager : MonoBehaviour
 {
 	public SpriteRenderer renderer;
 
+	private bool KeybindClick;
+
 	public void SetActive(bool isActive)
 	{
 		if (isActive)
@@ -20,9 +22,28 @@ public class ReportButtonManager : MonoBehaviour
 
 	public void DoClick()
 	{
-		if (base.isActiveAndEnabled)
+		if ((KeybindClick || !SaveManager.EnableProHUDMode) && base.isActiveAndEnabled)
 		{
 			PlayerControl.LocalPlayer.ReportClosest();
 		}
+	}
+
+	public void LateUpdate()
+	{
+		if (SaveManager.EnableProHUDMode && renderer.color == Palette.DisabledColor)
+		{
+			renderer.enabled = false;
+		}
+		else
+		{
+			renderer.enabled = true;
+		}
+	}
+
+	public void DoKeyClick()
+	{
+		KeybindClick = true;
+		DoClick();
+		KeybindClick = false;
 	}
 }

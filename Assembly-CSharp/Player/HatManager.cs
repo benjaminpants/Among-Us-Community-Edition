@@ -12,7 +12,7 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public HatBehaviour GetHatById(uint hatId)
 	{
-		if (hatId >= AllHats.Count)
+		if ((ulong)hatId >= (ulong)AllHats.Count)
 		{
 			return NoneHat;
 		}
@@ -47,7 +47,7 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	internal SkinData GetSkinById(uint skinId)
 	{
-		if (skinId >= AllSkins.Count)
+		if ((ulong)skinId >= (ulong)AllSkins.Count)
 		{
 			return AllSkins[0];
 		}
@@ -61,5 +61,30 @@ public class HatManager : DestroyableSingleton<HatManager>
 		{
 			skinRend.sprite = skinById.IdleFrame;
 		}
+	}
+
+	public void Start()
+	{
+		AllHats.AddRange(CE_WardrobeLoader.LoadHats());
+		AllSkins.AddRange(CE_WardrobeLoader.LoadSkins(GetCustomRefrence()));
+	}
+
+	public void ReloadCustomHatsAndSkins()
+	{
+		uint hatId = PlayerControl.LocalPlayer.Data.HatId;
+		uint skinId = PlayerControl.LocalPlayer.Data.SkinId;
+		AllHats.RemoveAll((HatBehaviour x) => x.IsCustom);
+		AllSkins.RemoveAll((SkinData x) => x.isCustom);
+		AllHats.AddRange(CE_WardrobeLoader.LoadHats());
+		AllSkins.AddRange(CE_WardrobeLoader.LoadSkins(GetCustomRefrence()));
+		PlayerControl.LocalPlayer.SetSkin(skinId);
+		PlayerControl.LocalPlayer.SetHat(hatId);
+		_ = CE_WardrobeLoader.TestPlaybackMode;
+		CE_WardrobeLoader.TestPlaybackResetAnimations = true;
+	}
+
+	private SkinData GetCustomRefrence()
+	{
+		return AllSkins.Where((SkinData x) => x.name == "Police").FirstOrDefault();
 	}
 }

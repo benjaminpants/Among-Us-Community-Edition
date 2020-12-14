@@ -27,11 +27,15 @@ public class Controller
 	{
 		get
 		{
-			if (!Touches[0].IsDown)
+			if (!CE_UIHelpers.IsActive())
 			{
-				return Touches[1].IsDown;
+				if (!Touches[0].IsDown)
+				{
+					return Touches[1].IsDown;
+				}
+				return true;
 			}
-			return true;
+			return false;
 		}
 	}
 
@@ -39,11 +43,15 @@ public class Controller
 	{
 		get
 		{
-			if (!Touches[0].TouchStart)
+			if (!CE_UIHelpers.IsActive())
 			{
-				return Touches[1].TouchStart;
+				if (!Touches[0].TouchStart)
+				{
+					return Touches[1].TouchStart;
+				}
+				return true;
 			}
-			return true;
+			return false;
 		}
 	}
 
@@ -51,15 +59,29 @@ public class Controller
 	{
 		get
 		{
-			if (!Touches[0].TouchEnd)
+			if (!CE_UIHelpers.IsActive())
 			{
-				return Touches[1].TouchEnd;
+				if (!Touches[0].TouchEnd)
+				{
+					return Touches[1].TouchEnd;
+				}
+				return true;
 			}
-			return true;
+			return false;
 		}
 	}
 
-	public bool FirstDown => Touches[0].TouchStart;
+	public bool FirstDown
+	{
+		get
+		{
+			if (!CE_UIHelpers.IsActive())
+			{
+				return Touches[0].TouchStart;
+			}
+			return false;
+		}
+	}
 
 	public Vector2 DragPosition => Touches[touchId].Position;
 
@@ -79,58 +101,65 @@ public class Controller
 		{
 			return DragState.NoTouch;
 		}
-		if (touchId > -1)
+		if (CE_UIHelpers.IsActive())
 		{
-			if (coll != amTouching)
-			{
-				return DragState.NoTouch;
-			}
-			if (Touches[touchId].IsDown)
-			{
-				return DragState.Dragging;
-			}
-			amTouching = null;
-			touchId = -1;
-			return DragState.Released;
+			return DragState.NoTouch;
 		}
-		if (firstOnly)
+		if (touchId <= -1)
 		{
-			TouchState touchState = Touches[0];
-			if (touchState.TouchStart && coll.OverlapPoint(touchState.Position))
+			if (firstOnly)
 			{
-				amTouching = coll;
-				touchId = 0;
-				return DragState.TouchStart;
-			}
-		}
-		else
-		{
-			for (int i = 0; i < Touches.Length; i++)
-			{
-				TouchState touchState2 = Touches[i];
-				if (touchState2.TouchStart && coll.OverlapPoint(touchState2.Position))
+				TouchState touchState = Touches[0];
+				if (touchState.TouchStart && coll.OverlapPoint(touchState.Position))
 				{
 					amTouching = coll;
-					touchId = i;
+					touchId = 0;
 					return DragState.TouchStart;
 				}
 			}
+			else
+			{
+				for (int i = 0; i < Touches.Length; i++)
+				{
+					TouchState touchState2 = Touches[i];
+					if (touchState2.TouchStart && coll.OverlapPoint(touchState2.Position))
+					{
+						amTouching = coll;
+						touchId = i;
+						return DragState.TouchStart;
+					}
+				}
+			}
+			return DragState.NoTouch;
 		}
-		return DragState.NoTouch;
+		if (coll != amTouching)
+		{
+			return DragState.NoTouch;
+		}
+		if (Touches[touchId].IsDown)
+		{
+			return DragState.Dragging;
+		}
+		amTouching = null;
+		touchId = -1;
+		return DragState.Released;
 	}
 
 	public void Update()
 	{
-		TouchState touchState = Touches[0];
-		bool mouseButton = Input.GetMouseButton(0);
-		touchState.Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		touchState.TouchStart = !touchState.IsDown && mouseButton;
-		if (touchState.TouchStart)
+		if (!CE_UIHelpers.IsActive())
 		{
-			touchState.DownAt = touchState.Position;
+			TouchState touchState = Touches[0];
+			bool mouseButton = Input.GetMouseButton(0);
+			touchState.Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			touchState.TouchStart = !touchState.IsDown && mouseButton;
+			if (touchState.TouchStart)
+			{
+				touchState.DownAt = touchState.Position;
+			}
+			touchState.TouchEnd = touchState.IsDown && !mouseButton;
+			touchState.IsDown = mouseButton;
 		}
-		touchState.TouchEnd = touchState.IsDown && !mouseButton;
-		touchState.IsDown = mouseButton;
 	}
 
 	public void Reset()

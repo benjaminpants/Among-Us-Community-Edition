@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Effects
 {
-	private static HashSet<Transform> activeShakes = new HashSet<Transform>();
+	private static HashSet<Transform> activeShakes;
 
 	public static IEnumerator Wait(float duration)
 	{
@@ -69,7 +69,9 @@ public static class Effects
 				self.localScale = localScale;
 				yield return null;
 			}
-			localScale.x = (localScale.y = (localScale.z = target));
+			localScale.z = target;
+			localScale.y = target;
+			localScale.x = target;
 			self.localScale = localScale;
 		}
 	}
@@ -214,5 +216,29 @@ public static class Effects
 		float num = time * time;
 		float num2 = num * time;
 		return 33f * num2 * num + -106f * num * num + 126f * num2 + -67f * num + 15f * time;
+	}
+
+	static Effects()
+	{
+		activeShakes = new HashSet<Transform>();
+	}
+
+	public static IEnumerator BloopHalf(float delay, Transform target, float duration = 0.5f)
+	{
+		for (float t = 0f; t < delay; t += Time.deltaTime)
+		{
+			yield return null;
+		}
+		Vector3 a = default(Vector3);
+		Vector3 mult = new Vector3(0.5f, 1f, 1f);
+		for (float t = 0f; t < duration; t += Time.deltaTime)
+		{
+			float z = ElasticOut(t, duration);
+			a.x = (a.y = (a.z = z));
+			target.localScale = Vector3.Scale(a, mult);
+			yield return null;
+		}
+		a.x = (a.y = (a.z = 1f));
+		target.localScale = Vector3.Scale(a, mult);
 	}
 }

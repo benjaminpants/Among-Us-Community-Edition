@@ -28,6 +28,10 @@ public class OptionsMenuBehaviour : MonoBehaviour
 
 	public TabGroup[] Tabs;
 
+	private CE_GlobalSettingsUI CustomMenu;
+
+	private CE_ControlsUI ControlsMenu;
+
 	public bool IsOpen => base.isActiveAndEnabled;
 
 	public void OpenTabGroup(TabGroup selected)
@@ -45,6 +49,7 @@ public class OptionsMenuBehaviour : MonoBehaviour
 
 	private void Update()
 	{
+		CE_ModifyMenu();
 		if (Input.GetKeyUp(KeyCode.Escape))
 		{
 			Close();
@@ -53,6 +58,8 @@ public class OptionsMenuBehaviour : MonoBehaviour
 
 	public void Open()
 	{
+		CustomMenu = Object.Instantiate(new GameObject()).AddComponent<CE_GlobalSettingsUI>();
+		ControlsMenu = Object.Instantiate(new GameObject()).AddComponent<CE_ControlsUI>();
 		JoystickButton.transform.parent.GetComponentInChildren<TextRenderer>().Text = "Mouse";
 		TouchButton.transform.parent.GetComponentInChildren<TextRenderer>().Text = "Keyboard+Mouse";
 		JoystickSizeSlider.gameObject.SetActive(value: false);
@@ -92,14 +99,12 @@ public class OptionsMenuBehaviour : MonoBehaviour
 
 	public void ToggleSendTelemetry()
 	{
-		SaveManager.SendTelemetry = !SaveManager.SendTelemetry;
-		UpdateButtons();
+		CE_OpenControlsUI();
 	}
 
 	public void ToggleSendName()
 	{
-		SaveManager.SendName = !SaveManager.SendName;
-		UpdateButtons();
+		CE_OpenGlobalSettings();
 	}
 
 	public void UpdateSfxVolume(SlideBar button)
@@ -149,8 +154,7 @@ public class OptionsMenuBehaviour : MonoBehaviour
 		JoystickSizeSlider.Value = JoystickSizes.ReverseLerp(SaveManager.JoystickSize);
 		SoundSlider.Value = SaveManager.SfxVolume;
 		MusicSlider.Value = SaveManager.MusicVolume;
-		SendNameButton.UpdateText(SaveManager.SendName);
-		SendTelemButton.UpdateText(SaveManager.SendTelemetry);
+		CE_CustomButtonSettings();
 		if ((bool)PersonalizedAdsButton)
 		{
 			if (SaveManager.ShowAdsScreen.HasFlag(ShowAdsState.Purchased) || SaveManager.BoughtNoAds)
@@ -167,5 +171,54 @@ public class OptionsMenuBehaviour : MonoBehaviour
 	public void Close()
 	{
 		base.gameObject.SetActive(value: false);
+		CE_UIHelpers.CollapseAll();
+		CustomMenu.gameObject.SetActive(value: false);
+	}
+
+	private void CE_Original_ToggleSendName()
+	{
+		SaveManager.SendName = !SaveManager.SendName;
+		UpdateButtons();
+	}
+
+	private void CE_OpenGlobalSettings()
+	{
+		CE_GlobalSettingsUI.IsShown = true;
+	}
+
+	private void CE_CustomButtonSettings()
+	{
+		SendTelemButton.Text.Text = "Controls...";
+		SendNameButton.Text.Text = "More Options...";
+	}
+
+	private void OriginalButtonSettings()
+	{
+		SendNameButton.UpdateText(SaveManager.SendName);
+		SendTelemButton.UpdateText(SaveManager.SendTelemetry);
+	}
+
+	public void CE_Original_ToggleSendTelemetry()
+	{
+		SaveManager.SendTelemetry = !SaveManager.SendTelemetry;
+		UpdateButtons();
+	}
+
+	private void CE_OpenControlsUI()
+	{
+		CE_ControlsUI.IsShown = true;
+	}
+
+	private void CE_ModifyMenu()
+	{
+		GameObject[] array = Object.FindObjectsOfType<GameObject>();
+		for (int i = 0; i < array.Length; i++)
+		{
+			TextRenderer component = array[i].GetComponent<TextRenderer>();
+			if ((bool)component && component.name == "TelemText")
+			{
+				component.Text = "";
+			}
+		}
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using Assets.CoreScripts;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ public class Console : MonoBehaviour, IUsable
 	{
 		float num = float.MaxValue;
 		PlayerControl @object = pc.Object;
-		couldUse = (!pc.IsDead || (PlayerControl.GameOptions.GhostsDoTasks && !GhostsIgnored)) && @object.CanMove && !pc.IsImpostor && (!onlyFromBelow || @object.transform.position.y < base.transform.position.y) && (bool)FindTask(@object);
+		couldUse = (!pc.IsDead || (PlayerControl.GameOptions.GhostsDoTasks && !GhostsIgnored)) && @object.CanMove && !RestrictedByBeingImposter(pc, @object) && (!onlyFromBelow || @object.transform.position.y < base.transform.position.y) && (bool)FindTask(@object);
 		canUse = couldUse;
 		if (canUse)
 		{
@@ -69,7 +70,7 @@ public class Console : MonoBehaviour, IUsable
 			PlayerTask playerTask = FindTask(localPlayer);
 			if ((bool)playerTask.MinigamePrefab)
 			{
-				Minigame minigame = Object.Instantiate(playerTask.MinigamePrefab);
+				Minigame minigame = UnityEngine.Object.Instantiate(playerTask.MinigamePrefab);
 				minigame.transform.SetParent(Camera.main.transform, worldPositionStays: false);
 				minigame.transform.localPosition = new Vector3(0f, 0f, -50f);
 				minigame.Console = this;
@@ -77,5 +78,29 @@ public class Console : MonoBehaviour, IUsable
 				DestroyableSingleton<Telemetry>.Instance.WriteUse(localPlayer.PlayerId, playerTask.TaskType, base.transform.position);
 			}
 		}
+	}
+
+	public bool RestrictedByBeingImposter(GameData.PlayerInfo pc, PlayerControl @object)
+	{
+		try
+		{
+			switch (FindTask(@object).TaskType)
+			{
+			case global::TaskTypes.ResetReactor:
+				return false;
+			case global::TaskTypes.FixLights:
+				return false;
+			case global::TaskTypes.FixComms:
+				return false;
+			case global::TaskTypes.RestoreOxy:
+				return false;
+			case global::TaskTypes.CleanO2Filter:
+				break;
+			}
+		}
+		catch (Exception)
+		{
+		}
+		return pc.IsImpostor;
 	}
 }

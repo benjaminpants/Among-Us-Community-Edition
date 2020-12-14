@@ -33,7 +33,9 @@ public class CustomPlayerMenu : MonoBehaviour
 
 	public void Close(bool canMove)
 	{
+		CE_UIHelpers.CollapseAll();
 		PlayerControl.LocalPlayer.moveable = canMove;
 		Object.Destroy(base.gameObject);
+		Object.Destroy(DestroyableSingleton<CE_GameSettingsUI>.Instance.gameObject);
 	}
 }

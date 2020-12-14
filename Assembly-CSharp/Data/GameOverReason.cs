@@ -6,5 +6,7 @@ public enum GameOverReason
 	ImpostorByKill,
 	ImpostorBySabotage,
 	ImpostorDisconnect,
-	HumansDisconnect
+	HumansDisconnect,
+	JokerEjected,
+	Custom
 }

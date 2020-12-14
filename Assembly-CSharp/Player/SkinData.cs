@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -36,6 +37,12 @@ public class SkinData : ScriptableObject, IBuyable
 	public string StoreName;
 
 	public int Order;
+
+	public bool isCustom;
+
+	public Dictionary<string, CE_CustomSkinDefinition.CustomSkinFrame> FrameList = new Dictionary<string, CE_CustomSkinDefinition.CustomSkinFrame>();
+
+	public Texture2D CustomSource;
 
 	public string ProdId => RelatedHat.ProductId;
 }

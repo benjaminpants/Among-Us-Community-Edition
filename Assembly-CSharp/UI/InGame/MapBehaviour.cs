@@ -51,7 +51,14 @@ public class MapBehaviour : MonoBehaviour
 			PlayerControl.LocalPlayer.SetPlayerMaterialColors(HerePoint);
 			GenericShow();
 			infectedOverlay.gameObject.SetActive(value: true);
-			ColorControl.SetColor(Palette.ImpostorRed);
+			if (PlayerControl.GameOptions.Gamemode == 1)
+			{
+				ColorControl.SetColor(Palette.InfectedGreen);
+			}
+			else
+			{
+				ColorControl.SetColor(Palette.ImpostorRed);
+			}
 			taskOverlay.Hide();
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: false);
 		}

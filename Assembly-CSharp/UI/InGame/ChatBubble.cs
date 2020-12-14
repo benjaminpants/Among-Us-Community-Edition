@@ -39,7 +39,14 @@ internal class ChatBubble : PoolableBehavior
 	public void SetName(string playerName, bool isDead, bool isImpostor)
 	{
 		NameText.Text = playerName ?? "...";
-		NameText.Color = (isImpostor ? Palette.ImpostorRed : Color.white);
+		if (PlayerControl.GameOptions.Gamemode == 1)
+		{
+			NameText.Color = (isImpostor ? Palette.InfectedGreen : Color.white);
+		}
+		else
+		{
+			NameText.Color = (isImpostor ? Palette.ImpostorRed : Color.white);
+		}
 		NameText.RefreshMesh();
 		if (isDead)
 		{

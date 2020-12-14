@@ -17,8 +17,12 @@ public class DeadBody : MonoBehaviour
 		if (!Reported && !PhysicsHelpers.AnythingBetween(PlayerControl.LocalPlayer.GetTruePosition(), TruePosition, Constants.ShipAndObjectsMask, useTriggers: false))
 		{
 			Reported = true;
-			GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById(ParentId);
-			PlayerControl.LocalPlayer.CmdReportDeadBody(playerById);
+			GameData.PlayerInfo target = PlayerControl.LocalPlayer.Data;
+			if (PlayerControl.GameOptions.Gamemode != 1)
+			{
+				target = GameData.Instance.GetPlayerById(ParentId);
+			}
+			PlayerControl.LocalPlayer.CmdReportDeadBody(target);
 		}
 	}
 }

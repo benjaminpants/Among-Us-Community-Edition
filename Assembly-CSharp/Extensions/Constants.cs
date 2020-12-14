@@ -15,26 +15,21 @@ public static class Constants
 
 	public const int GhostLayer = 12;
 
-	public static readonly int ShipOnlyMask = LayerMask.GetMask("Ship");
+	public static readonly int ShipOnlyMask;
 
-	public static readonly int ShipAndObjectsMask = LayerMask.GetMask("Ship", "Objects");
+	public static readonly int ShipAndObjectsMask;
 
-	public static readonly int ShipAndAllObjectsMask = LayerMask.GetMask("Ship", "Objects", "ShortObjects");
+	public static readonly int ShipAndAllObjectsMask;
 
-	public static readonly int NotShipMask = ~LayerMask.GetMask("Ship");
+	public static readonly int NotShipMask;
 
-	public static readonly int Usables = ~LayerMask.GetMask("Ship", "UI");
+	public static readonly int Usables;
 
-	public static readonly int PlayersOnlyMask = LayerMask.GetMask("Players", "Ghost");
+	public static readonly int PlayersOnlyMask;
 
-	public static readonly int ShadowMask = LayerMask.GetMask("Shadow", "Objects", "IlluminatedBlocking");
+	public static readonly int ShadowMask;
 
-	public static readonly int[] CompatVersions = new int[3]
-	{
-		GetBroadcastVersion(),
-		GetVersion(2019, 4, 15, 0),
-		GetVersion(2019, 4, 24, 1)
-	};
+	public static readonly int[] CompatVersions;
 
 	public const int Year = 2019;
 
@@ -66,5 +61,22 @@ public static class Constants
 			return DetectHeadset.Detect();
 		}
 		return true;
+	}
+
+	static Constants()
+	{
+		ShipOnlyMask = LayerMask.GetMask("Ship");
+		ShipAndObjectsMask = LayerMask.GetMask("Ship", "Objects");
+		ShipAndAllObjectsMask = LayerMask.GetMask("Ship", "Objects", "ShortObjects");
+		NotShipMask = ~LayerMask.GetMask("Ship");
+		Usables = ~LayerMask.GetMask("Ship", "UI");
+		PlayersOnlyMask = LayerMask.GetMask("Players", "Ghost");
+		ShadowMask = LayerMask.GetMask("Shadow", "Objects", "IlluminatedBlocking");
+		CompatVersions = new int[3]
+		{
+			GetBroadcastVersion(),
+			GetVersion(2019, 4, 15, 0),
+			GetVersion(2019, 4, 24, 1)
+		};
 	}
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using InnerNet;
@@ -7,112 +8,77 @@ public class GameOptionsData : IBytesSerializable
 {
 	private const byte GameDataVersion = 1;
 
-	public static readonly string[] MapNames = new string[2]
-	{
-		"The Skeld",
-		"???"
-	};
+	public static readonly string[] MapNames;
 
-	public static readonly float[] KillDistances = new float[3]
-	{
-		1f,
-		1.8f,
-		2.5f
-	};
+	public static readonly float[] KillDistances;
 
-	public static readonly string[] KillDistanceStrings = new string[3]
-	{
-		"Short",
-		"Normal",
-		"Long"
-	};
+	public static readonly string[] KillDistanceStrings;
 
-	public int MaxPlayers = 10;
+	public int MaxPlayers;
 
-	public GameKeywords Keywords = GameKeywords.English;
+	public GameKeywords Keywords;
 
 	public byte MapId;
 
-	public float PlayerSpeedMod = 1f;
+	public float PlayerSpeedMod;
 
-	public float CrewLightMod = 1f;
+	public float CrewLightMod;
 
-	public float ImpostorLightMod = 1.5f;
+	public float ImpostorLightMod;
 
-	public float KillCooldown = 15f;
+	public float KillCooldown;
 
-	public int NumCommonTasks = 1;
+	public int NumCommonTasks;
 
-	public int NumLongTasks = 1;
+	public int NumLongTasks;
 
-	public int NumShortTasks = 2;
+	public int NumShortTasks;
 
-	public int NumEmergencyMeetings = 1;
+	public int NumEmergencyMeetings;
 
-	public int NumImpostors = 1;
+	public int NumImpostors;
 
-	public bool GhostsDoTasks = true;
+	public bool GhostsDoTasks;
 
-	public int KillDistance = 1;
+	public int KillDistance;
 
-	public int DiscussionTime = 15;
+	public int DiscussionTime;
 
-	public int VotingTime = 120;
+	public int VotingTime;
 
-	public bool isDefaults = true;
+	public bool isDefaults;
 
-	private static readonly int[] RecommendedKillCooldown = new int[11]
-	{
-		0,
-		0,
-		0,
-		0,
-		45,
-		30,
-		15,
-		35,
-		30,
-		25,
-		20
-	};
+	private static readonly int[] RecommendedKillCooldown;
 
-	private static readonly int[] RecommendedImpostors = new int[11]
-	{
-		0,
-		0,
-		0,
-		0,
-		1,
-		1,
-		1,
-		2,
-		2,
-		2,
-		2
-	};
+	private static readonly int[] RecommendedImpostors;
 
-	private static readonly int[] MaxImpostors = new int[11]
-	{
-		0,
-		0,
-		0,
-		0,
-		1,
-		1,
-		1,
-		2,
-		2,
-		3,
-		3
-	};
+	private static readonly int[] MaxImpostors;
 
-	public static readonly int[] MinPlayers = new int[4]
-	{
-		4,
-		4,
-		7,
-		9
-	};
+	public static readonly int[] MinPlayers;
+
+	public byte Venting;
+
+	public static readonly string[] VentModeStrings;
+
+	public byte VentMode;
+
+	public static readonly string[] VentMode2Strings;
+
+	public bool AnonVotes;
+
+	public bool ConfirmEject;
+
+	public bool Visuals;
+
+	public byte Gamemode;
+
+	public static string[] Gamemodes;
+
+	public byte SabControl;
+
+	public static readonly string[] SabControlStrings;
+
+	public static bool[] GamemodesAreLua;
 
 	public void ToggleMapFilter(byte newId)
 	{
@@ -148,11 +114,19 @@ public class GameOptionsData : IBytesSerializable
 		DiscussionTime = 15;
 		VotingTime = 120;
 		isDefaults = true;
+		Venting = 0;
+		VentMode = 0;
+		AnonVotes = false;
+		ConfirmEject = true;
+		Visuals = true;
+		Gamemode = 0;
+		SabControl = 0;
 	}
 
 	public void Serialize(BinaryWriter writer)
 	{
-		writer.Write((byte)1);
+		byte value = 1;
+		writer.Write(value);
 		writer.Write((byte)MaxPlayers);
 		writer.Write((uint)Keywords);
 		writer.Write(MapId);
@@ -169,16 +143,20 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(DiscussionTime);
 		writer.Write(VotingTime);
 		writer.Write(isDefaults);
+		writer.Write(Venting);
+		writer.Write(VentMode);
+		writer.Write(AnonVotes);
+		writer.Write(ConfirmEject);
+		writer.Write(Visuals);
+		writer.Write(Gamemode);
+		writer.Write(SabControl);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
 	{
 		try
 		{
-			if (reader.ReadByte() != 1)
-			{
-				return null;
-			}
+			reader.ReadByte();
 			return new GameOptionsData
 			{
 				MaxPlayers = reader.ReadByte(),
@@ -196,7 +174,14 @@ public class GameOptionsData : IBytesSerializable
 				KillDistance = reader.ReadByte(),
 				DiscussionTime = reader.ReadInt32(),
 				VotingTime = reader.ReadInt32(),
-				isDefaults = reader.ReadBoolean()
+				isDefaults = reader.ReadBoolean(),
+				Venting = reader.ReadByte(),
+				VentMode = reader.ReadByte(),
+				AnonVotes = reader.ReadBoolean(),
+				ConfirmEject = reader.ReadBoolean(),
+				Visuals = reader.ReadBoolean(),
+				Gamemode = reader.ReadByte(),
+				SabControl = reader.ReadByte()
 			};
 		}
 		catch
@@ -224,7 +209,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public override string ToString()
 	{
-		return ToHudString(10);
+		return ToHudString(20);
 	}
 
 	public string ToHudString(int numPlayers)
@@ -256,7 +241,14 @@ public class GameOptionsData : IBytesSerializable
 		stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
 		stringBuilder.AppendLine("Common Tasks: " + NumCommonTasks);
 		stringBuilder.AppendLine("Long Tasks: " + NumLongTasks);
-		stringBuilder.Append("Short Tasks: " + NumShortTasks);
+		stringBuilder.AppendLine("Short Tasks: " + NumShortTasks);
+		stringBuilder.AppendLine("Vents: " + VentModeStrings[Venting]);
+		stringBuilder.AppendLine("Vent Movement: " + VentMode2Strings[VentMode]);
+		stringBuilder.AppendLine("Anonymous Votes: " + AnonVotes);
+		stringBuilder.AppendLine("Confirm Ejects: " + ConfirmEject);
+		stringBuilder.AppendLine("Visual Tasks: " + Visuals);
+		stringBuilder.AppendLine("Gamemode: " + Gamemodes[Gamemode]);
+		stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
 		return stringBuilder.ToString();
 	}
 
@@ -275,5 +267,197 @@ public class GameOptionsData : IBytesSerializable
 			result = true;
 		}
 		return result;
+	}
+
+	public GameOptionsData()
+	{
+		ConfirmEject = true;
+		Visuals = true;
+		MaxPlayers = 20;
+		Keywords = GameKeywords.English;
+		PlayerSpeedMod = 1f;
+		CrewLightMod = 1f;
+		ImpostorLightMod = 1.5f;
+		KillCooldown = 15f;
+		NumCommonTasks = 1;
+		NumLongTasks = 1;
+		NumShortTasks = 2;
+		NumEmergencyMeetings = 1;
+		NumImpostors = 1;
+		GhostsDoTasks = true;
+		KillDistance = 2;
+		DiscussionTime = 15;
+		VotingTime = 120;
+		isDefaults = true;
+		Venting = 0;
+		VentMode = 0;
+		AnonVotes = false;
+		ConfirmEject = true;
+		Visuals = true;
+		Gamemode = 0;
+		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
+		{
+			CE_GamemodeInfo value = gamemodeInfo.Value;
+			Gamemodes.SetValue(value.name, value.id - 1);
+			GamemodesAreLua.SetValue(true, value.id - 1);
+		}
+	}
+
+	static GameOptionsData()
+	{
+		MapNames = new string[2]
+		{
+			"The Skeld",
+			"Mira HQ(Alpha)"
+		};
+		KillDistances = new float[6]
+		{
+			0.5f,
+			1f,
+			1.8f,
+			2.5f,
+			4f,
+			200f
+		};
+		KillDistanceStrings = new string[6]
+		{
+			"Tiny",
+			"Short",
+			"Normal",
+			"Long",
+			"XL",
+			"∞"
+		};
+		Gamemodes = new string[25]
+		{
+			"Classic",
+			"Zombies",
+			"Murder",
+			"Hot Potato",
+			"Classic+Joker",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
+			""
+		};
+		GamemodesAreLua = new bool[25];
+		VentModeStrings = new string[4]
+		{
+			"Impostors Only",
+			"Everyone",
+			"Crewmates Hide Only",
+			"Nobody"
+		};
+		VentMode2Strings = new string[4]
+		{
+			"Default",
+			"Linked",
+			"Pairs",
+			"Locked"
+		};
+		SabControlStrings = new string[5]
+		{
+			"Normal",
+			"Systems Only",
+			"Doors Only",
+			"Random",
+			"None"
+		};
+		RecommendedKillCooldown = new int[22]
+		{
+			0,
+			0,
+			0,
+			0,
+			45,
+			30,
+			15,
+			35,
+			30,
+			25,
+			20,
+			20,
+			20,
+			20,
+			20,
+			10,
+			10,
+			10,
+			10,
+			10,
+			10,
+			10
+		};
+		RecommendedImpostors = new int[21]
+		{
+			0,
+			0,
+			0,
+			0,
+			1,
+			1,
+			1,
+			2,
+			2,
+			2,
+			2,
+			2,
+			2,
+			3,
+			3,
+			3,
+			4,
+			4,
+			4,
+			4,
+			4
+		};
+		MaxImpostors = new int[21]
+		{
+			0,
+			0,
+			0,
+			0,
+			1,
+			1,
+			1,
+			2,
+			2,
+			3,
+			3,
+			3,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4,
+			4
+		};
+		MinPlayers = new int[4]
+		{
+			4,
+			4,
+			7,
+			9
+		};
 	}
 }

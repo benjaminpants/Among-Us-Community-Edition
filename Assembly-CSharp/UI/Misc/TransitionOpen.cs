@@ -15,7 +15,10 @@ public class TransitionOpen : MonoBehaviour
 
 	public void Close()
 	{
-		StartCoroutine(AnimateClose());
+		if (!CE_UIHelpers.IsActive())
+		{
+			StartCoroutine(AnimateClose());
+		}
 	}
 
 	private IEnumerator AnimateClose()

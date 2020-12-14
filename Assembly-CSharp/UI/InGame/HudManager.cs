@@ -146,7 +146,7 @@ public class HudManager : DestroyableSingleton<HudManager>
 		DestroyableSingleton<HudManager>.Instance.UseButton.Refresh();
 		DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.SetActive(isActive);
 		GameData.PlayerInfo data = PlayerControl.LocalPlayer.Data;
-		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(isActive && data.IsImpostor && !data.IsDead);
+		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(isActive && (data.IsImpostor || data.role == GameData.PlayerInfo.Role.Sheriff) && !data.IsDead);
 		DestroyableSingleton<HudManager>.Instance.TaskText.transform.parent.gameObject.SetActive(isActive);
 	}
 
@@ -299,6 +299,37 @@ public class HudManager : DestroyableSingleton<HudManager>
 			MeetingHud.Instance = UnityEngine.Object.Instantiate(MeetingPrefab);
 			MeetingHud.Instance.ServerStart(reporter.PlayerId);
 			AmongUsClient.Instance.Spawn(MeetingHud.Instance);
+		}
+	}
+
+	public void OpenInfectedMap()
+	{
+		DestroyableSingleton<HudManager>.Instance.ShowMap(delegate(MapBehaviour m)
+		{
+			m.ShowInfectedMap();
+		});
+	}
+
+	public void Update()
+	{
+		try
+		{
+			if (SaveManager.EnableProHUDMode)
+			{
+				float num = 30f;
+				Vector3 position = Camera.current.ScreenToWorldPoint(new Vector3((float)Camera.current.pixelWidth - 40f, 40f, 0f));
+				DestroyableSingleton<HudManager>.Instance.UseButton.gameObject.transform.position = position;
+				DestroyableSingleton<HudManager>.Instance.UseButton.gameObject.transform.localScale = new Vector3(0.45f, 0.45f, 0f);
+				Vector3 position2 = Camera.current.ScreenToWorldPoint(new Vector3((float)Camera.current.pixelWidth - 40f, 80f + num, 0f));
+				DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.transform.position = position2;
+				DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.transform.localScale = new Vector3(0.45f, 0.45f, 0f);
+				Vector3 position3 = Camera.current.ScreenToWorldPoint(new Vector3((float)Camera.current.pixelWidth - 40f, 120f + num * 2f, 0f));
+				DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.transform.position = position3;
+				DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.transform.localScale = new Vector3(0.45f, 0.45f, 0f);
+			}
+		}
+		catch (Exception)
+		{
 		}
 	}
 }

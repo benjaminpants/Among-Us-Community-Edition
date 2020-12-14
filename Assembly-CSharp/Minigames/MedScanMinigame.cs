@@ -11,33 +11,9 @@ public class MedScanMinigame : Minigame
 		WalkingToOffset
 	}
 
-	private static readonly string[] ColorNames = new string[12]
-	{
-		"Red",
-		"Blue",
-		"Green",
-		"Pink",
-		"Orange",
-		"Yellow",
-		"Black",
-		"White",
-		"Purple",
-		"Brown",
-		"Cyan",
-		"Lime"
-	};
+	private static readonly string[] ColorNames;
 
-	private static readonly string[] BloodTypes = new string[8]
-	{
-		"O-",
-		"A-",
-		"B-",
-		"AB-",
-		"O+",
-		"A+",
-		"B+",
-		"AB+"
-	};
+	private static readonly string[] BloodTypes;
 
 	public TextRenderer text;
 
@@ -189,5 +165,46 @@ public class MedScanMinigame : Minigame
 		ShipStatus.Instance.RpcRepairSystem(SystemTypes.MedBay, playerId | 0x40);
 		Camera.main.GetComponent<FollowerCamera>().Locked = false;
 		base.Close();
+	}
+
+	static MedScanMinigame()
+	{
+		ColorNames = new string[23]
+		{
+			"Red",
+			"Blue",
+			"Green",
+			"Pink",
+			"Orange",
+			"Yellow",
+			"Black",
+			"White",
+			"Purple",
+			"Brown",
+			"Cyan",
+			"Lime",
+			"Tan",
+			"Baby Red",
+			"Blurple",
+			"Kiwi",
+			"Bronze",
+			"Maroon",
+			"Navy",
+			"Light Purple",
+			"Gold",
+			"Impostor",
+			"Shaderless"
+		};
+		BloodTypes = new string[8]
+		{
+			"O-",
+			"A-",
+			"B-",
+			"AB-",
+			"O+",
+			"A+",
+			"B+",
+			"AB+"
+		};
 	}
 }

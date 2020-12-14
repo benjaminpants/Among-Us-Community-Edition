@@ -30,7 +30,8 @@ public static class SaveManager
 				byte[] array = File.ReadAllBytes(filePath);
 				for (int i = 0; i < array.Length; i++)
 				{
-					array[i] ^= (byte)(i % 212);
+					int num = i;
+					array[num] ^= (byte)(i % 212);
 				}
 				try
 				{
@@ -82,7 +83,8 @@ public static class SaveManager
 			}
 			for (int j = 0; j < array.Length; j++)
 			{
-				array[j] ^= (byte)(j % 212);
+				int num = j;
+				array[num] ^= (byte)(j % 212);
 			}
 			File.WriteAllBytes(filePath, array);
 		}
@@ -107,25 +109,25 @@ public static class SaveManager
 
 	private static string lastPlayerName;
 
-	private static byte sfxVolume = byte.MaxValue;
+	private static byte sfxVolume;
 
-	private static byte musicVolume = byte.MaxValue;
+	private static byte musicVolume;
 
-	private static bool showMinPlayerWarning = true;
+	private static bool showMinPlayerWarning;
 
-	private static bool showOnlineHelp = true;
+	private static bool showOnlineHelp;
 
-	private static bool sendDataScreen = false;
+	private static bool sendDataScreen;
 
-	private static byte showAdsScreen = 0;
+	private static byte showAdsScreen;
 
-	private static bool sendName = true;
+	private static bool sendName;
 
-	private static bool sendTelemetry = true;
+	private static bool sendTelemetry;
 
 	private static int touchConfig;
 
-	private static float joyStickSize = 1f;
+	private static float joyStickSize;
 
 	private static uint colorConfig;
 
@@ -141,13 +143,21 @@ public static class SaveManager
 
 	private static Announcement lastAnnounce;
 
-	private static SecureDataFile secure2 = new SecureDataFile(Path.Combine(Application.persistentDataPath, "secure2"));
+	private static SecureDataFile secure2;
 
-	private static DateTime lastStartDate = DateTime.MinValue;
+	private static DateTime lastStartDate;
 
-	private static SecureDataFile purchaseFile = new SecureDataFile(Path.Combine(Application.persistentDataPath, "secureNew"));
+	private static SecureDataFile purchaseFile;
 
-	private static HashSet<string> purchases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+	private static HashSet<string> purchases;
+
+	private static bool colorBlindMode;
+
+	private static bool lobbyShake;
+
+	private static bool enableProHUDMode;
+
+	private static bool animationTestingMode;
 
 	public static bool AmBanned => (DateTime.UtcNow - LastGameStart).TotalMinutes < 5.0;
 
@@ -425,12 +435,17 @@ public static class SaveManager
 	{
 		get
 		{
-			return hostOptionsData ?? (hostOptionsData = LoadGameOptions("gameHostOptions"));
+			GameOptionsData result;
+			if ((result = hostOptionsData) == null)
+			{
+				result = (hostOptionsData = LoadGameOptions("gameHostOptions_ce"));
+			}
+			return result;
 		}
 		set
 		{
 			hostOptionsData = value;
-			SaveGameOptions(hostOptionsData, "gameHostOptions");
+			SaveGameOptions(hostOptionsData, "gameHostOptions_ce");
 		}
 	}
 
@@ -438,12 +453,85 @@ public static class SaveManager
 	{
 		get
 		{
-			return searchOptionsData ?? (searchOptionsData = LoadGameOptions("gameSearchOptions"));
+			GameOptionsData result;
+			if ((result = searchOptionsData) == null)
+			{
+				result = (searchOptionsData = LoadGameOptions("gameSearchOptions_ce"));
+			}
+			return result;
 		}
 		set
 		{
 			searchOptionsData = value;
-			SaveGameOptions(searchOptionsData, "gameSearchOptions");
+			SaveGameOptions(searchOptionsData, "gameSearchOptions_ce");
+		}
+	}
+
+	public static bool ColorBlindMode
+	{
+		get
+		{
+			LoadPlayerPrefs();
+			return colorBlindMode;
+		}
+		set
+		{
+			if (colorBlindMode != value)
+			{
+				colorBlindMode = value;
+				SavePlayerPrefs();
+			}
+		}
+	}
+
+	public static bool LobbyShake
+	{
+		get
+		{
+			LoadPlayerPrefs();
+			return lobbyShake;
+		}
+		set
+		{
+			if (lobbyShake != value)
+			{
+				lobbyShake = value;
+				SavePlayerPrefs();
+			}
+		}
+	}
+
+	public static bool EnableProHUDMode
+	{
+		get
+		{
+			LoadPlayerPrefs();
+			return enableProHUDMode;
+		}
+		set
+		{
+			if (enableProHUDMode != value)
+			{
+				enableProHUDMode = value;
+				SavePlayerPrefs();
+			}
+		}
+	}
+
+	public static bool EnableAnimationTestingMode
+	{
+		get
+		{
+			LoadPlayerPrefs();
+			return animationTestingMode;
+		}
+		set
+		{
+			if (animationTestingMode != value)
+			{
+				animationTestingMode = value;
+				SavePlayerPrefs();
+			}
 		}
 	}
 
@@ -539,7 +627,7 @@ public static class SaveManager
 			return;
 		}
 		loadedAnnounce = true;
-		string path = Path.Combine(Application.persistentDataPath, "announcement");
+		string path = Path.Combine(Application.persistentDataPath, "announcement_ce");
 		if (File.Exists(path))
 		{
 			string[] array = File.ReadAllText(path).Split(default(char));
@@ -560,7 +648,7 @@ public static class SaveManager
 
 	public static void SaveAnnouncement()
 	{
-		File.WriteAllText(Path.Combine(Application.persistentDataPath, "announcement"), string.Join("\0", lastAnnounce.Id, lastAnnounce.AnnounceText, lastAnnounce.DateFetched));
+		File.WriteAllText(Path.Combine(Application.persistentDataPath, "announcement_ce"), string.Join("\0", lastAnnounce.Id, lastAnnounce.AnnounceText, lastAnnounce.DateFetched));
 	}
 
 	private static void LoadPlayerPrefs()
@@ -570,7 +658,7 @@ public static class SaveManager
 			return;
 		}
 		loaded = true;
-		string path = Path.Combine(Application.persistentDataPath, "playerPrefs");
+		string path = Path.Combine(Application.persistentDataPath, "playerPrefs_ce");
 		if (File.Exists(path))
 		{
 			string[] array = File.ReadAllText(path).Split(',');
@@ -595,13 +683,17 @@ public static class SaveManager
 			TryGetFloat(array, 13, out joyStickSize, 1f);
 			TryGetDateTicks(array, 14, out lastGameStart);
 			TryGetUint(array, 15, out lastSkin);
+			TryGetBool(array, 16, out colorBlindMode);
+			TryGetBool(array, 17, out animationTestingMode);
+			TryGetBool(array, 18, out lobbyShake);
+			TryGetBool(array, 19, out enableProHUDMode);
 		}
 	}
 
 	private static void SavePlayerPrefs()
 	{
 		LoadPlayerPrefs();
-		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs"), string.Join(",", lastPlayerName, touchConfig, colorConfig, (byte)1, sendName, sendTelemetry, sendDataScreen, showAdsScreen, showMinPlayerWarning, showOnlineHelp, lastHat, sfxVolume, musicVolume, joyStickSize.ToString(CultureInfo.InvariantCulture), lastGameStart.Ticks, lastSkin));
+		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", lastPlayerName, touchConfig, colorConfig, 1, sendName, sendTelemetry, sendDataScreen, showAdsScreen, showMinPlayerWarning, showOnlineHelp, lastHat, sfxVolume, musicVolume, joyStickSize.ToString(CultureInfo.InvariantCulture), lastGameStart.Ticks, lastSkin, colorBlindMode, animationTestingMode, lobbyShake, enableProHUDMode));
 	}
 
 	private static void TryGetBool(string[] parts, int index, out bool value)
@@ -656,5 +748,24 @@ public static class SaveManager
 		{
 			value = new DateTime(result, DateTimeKind.Utc);
 		}
+	}
+
+	static SaveManager()
+	{
+		lobbyShake = true;
+		enableProHUDMode = true;
+		sfxVolume = byte.MaxValue;
+		musicVolume = byte.MaxValue;
+		showMinPlayerWarning = true;
+		showOnlineHelp = true;
+		sendDataScreen = false;
+		showAdsScreen = 0;
+		sendName = true;
+		sendTelemetry = true;
+		joyStickSize = 1f;
+		secure2 = new SecureDataFile(Path.Combine(Application.persistentDataPath, "secure2_ce"));
+		lastStartDate = DateTime.MinValue;
+		purchaseFile = new SecureDataFile(Path.Combine(Application.persistentDataPath, "secureNew_ce"));
+		purchases = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 	}
 }

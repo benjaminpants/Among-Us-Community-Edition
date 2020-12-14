@@ -7,11 +7,16 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 {
 	private class GameSorter : IComparer<GameListing>
 	{
-		public static readonly GameSorter Instance = new GameSorter();
+		public static readonly GameSorter Instance;
 
 		public int Compare(GameListing x, GameListing y)
 		{
 			return -x.PlayerCount.CompareTo(y.PlayerCount);
+		}
+
+		static GameSorter()
+		{
+			Instance = new GameSorter();
 		}
 	}
 
@@ -50,7 +55,18 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 			}
 		}
 		AmongUsClient.Instance.GameListHandlers.Add(this);
-		AmongUsClient.Instance.RequestGameList(includePrivate: false, SaveManager.GameSearchOptions);
+		HandleList(1, new List<GameListing>
+		{
+			new GameListing
+			{
+				GameId = 0,
+				HostName = "\n\nPublic Lobbies are not supported.\n[FFFF00FF]The game is funner with friends anyway![]",
+				ImpostorCount = 0,
+				MaxPlayers = 10,
+				PlayerCount = 0,
+				Age = 69
+			}
+		});
 	}
 
 	public void Update()
@@ -73,12 +89,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 
 	public void RefreshList()
 	{
-		if (timer > 5f)
-		{
-			timer = -5f;
-			RefreshSpinner.Play();
-			AmongUsClient.Instance.RequestGameList(includePrivate: false, SaveManager.GameSearchOptions);
-		}
+		RefreshSpinner.Disappear();
 	}
 
 	public override void OnDestroy()
@@ -94,7 +105,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 	{
 		Debug.Log($"TotalGames: {totalGames}\tAvailable: {availableGames.Count}");
 		RefreshSpinner.Disappear();
-		timer = 0f;
+		timer = float.MinValue;
 		availableGames.Sort(GameSorter.Instance);
 		while (buttonPool.activeChildren.Count > availableGames.Count)
 		{
@@ -119,5 +130,17 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 	public void ExitGame()
 	{
 		AmongUsClient.Instance.ExitGame();
+	}
+
+	public void NoPublicGames()
+	{
+		RefreshSpinner.Disappear();
+		timer = float.MinValue;
+		Vector3 localPosition = new Vector3(0f, ButtonStart, -1f);
+		MatchMakerGameButton obj = (MatchMakerGameButton)buttonPool.activeChildren[0];
+		obj.SetNoGame();
+		obj.transform.localPosition = localPosition;
+		localPosition.y -= ButtonHeight;
+		TargetArea.YBounds.max = Mathf.Max(0f, 0f - localPosition.y - ButtonStart);
 	}
 }

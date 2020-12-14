@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StatsManager
 {
-	public static StatsManager Instance = new StatsManager();
+	public static StatsManager Instance;
 
 	private const byte StatsVersion = 1;
 
@@ -35,9 +35,9 @@ public class StatsManager
 
 	private uint gamesFinished;
 
-	private uint[] WinReasons = new uint[7];
+	private uint[] WinReasons;
 
-	private uint[] LoseReasons = new uint[7];
+	private uint[] LoseReasons;
 
 	public uint BodiesReported
 	{
@@ -267,7 +267,7 @@ public class StatsManager
 			return;
 		}
 		loadedStats = true;
-		string path = Path.Combine(Application.persistentDataPath, "playerStats2");
+		string path = Path.Combine(Application.persistentDataPath, "playerStats2_ce");
 		if (!File.Exists(path))
 		{
 			return;
@@ -309,8 +309,8 @@ public class StatsManager
 	{
 		try
 		{
-			using BinaryWriter binaryWriter = new BinaryWriter(File.OpenWrite(Path.Combine(Application.persistentDataPath, "playerStats2")));
-			binaryWriter.Write((byte)1);
+			using BinaryWriter binaryWriter = new BinaryWriter(File.OpenWrite(Path.Combine(Application.persistentDataPath, "playerStats2_ce")));
+			binaryWriter.Write(1);
 			binaryWriter.Write(bodiesReported);
 			binaryWriter.Write(emergenciesCalls);
 			binaryWriter.Write(tasksCompleted);
@@ -337,5 +337,16 @@ public class StatsManager
 		{
 			Debug.Log("Failed to write out stats");
 		}
+	}
+
+	public StatsManager()
+	{
+		WinReasons = new uint[8];
+		LoseReasons = new uint[8];
+	}
+
+	static StatsManager()
+	{
+		Instance = new StatsManager();
 	}
 }

@@ -43,6 +43,7 @@ public class AmongUsClient : InnerNetClient
 		else
 		{
 			Instance = this;
+			CE_UIHelpers.ForceLoadDebugUIs();
 			UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 			QualitySettings.vSyncCount = 0;
 			Application.targetFrameRate = 30;
@@ -115,6 +116,7 @@ public class AmongUsClient : InnerNetClient
 	{
 		PlayerControl.LocalPlayer.moveable = false;
 		yield return null;
+		CE_UIHelpers.CollapseAll();
 		CustomPlayerMenu customPlayerMenu = UnityEngine.Object.FindObjectOfType<CustomPlayerMenu>();
 		if ((bool)customPlayerMenu)
 		{
@@ -134,88 +136,106 @@ public class AmongUsClient : InnerNetClient
 		{
 			yield return null;
 		}
-		while (true)
+		while (!base.AmHost)
 		{
-			if (base.AmHost)
-			{
-				SendClientReady();
-				float timer = 0f;
-				while (true)
-				{
-					bool flag = false;
-					lock (allClients)
-					{
-						for (int i = 0; i < allClients.Count; i++)
-						{
-							ClientData clientData = allClients[i];
-							if (!clientData.IsReady)
-							{
-								if (timer < 5f)
-								{
-									flag = true;
-									continue;
-								}
-								SendLateRejection(clientData.Id, DisconnectReasons.Error);
-								clientData.IsReady = true;
-								OnPlayerLeft(clientData, DisconnectReasons.ExitGame);
-							}
-						}
-					}
-					if (!flag)
-					{
-						break;
-					}
-					yield return null;
-					timer += Time.deltaTime;
-				}
-				GameOptionsData gameOptions = PlayerControl.GameOptions;
-				if (gameOptions.Validate(GameData.Instance.PlayerCount))
-				{
-					PlayerControl.LocalPlayer?.RpcSyncSettings(PlayerControl.GameOptions);
-				}
-				if ((bool)LobbyBehaviour.Instance)
-				{
-					LobbyBehaviour.Instance.Despawn();
-				}
-				if (!ShipStatus.Instance)
-				{
-					ShipStatus.Instance = UnityEngine.Object.Instantiate(ShipPrefabs[gameOptions.MapId]);
-				}
-				Spawn(ShipStatus.Instance);
-				ShipStatus.Instance.SelectInfected();
-				ShipStatus.Instance.Begin();
-				break;
-			}
 			while (PlayerControl.LocalPlayer.Data == null && !base.AmHost)
 			{
 				yield return null;
 			}
-			if (!base.AmHost)
+			if (base.AmHost)
 			{
-				SendClientReady();
-				while (!ShipStatus.Instance && !base.AmHost)
+				continue;
+			}
+			SendClientReady();
+			while (!ShipStatus.Instance && !base.AmHost)
+			{
+				yield return null;
+			}
+			if (base.AmHost)
+			{
+				continue;
+			}
+			for (int i = 0; i < GameData.Instance.PlayerCount; i++)
+			{
+				PlayerControl @object = GameData.Instance.AllPlayers[i].Object;
+				if ((bool)@object)
 				{
-					yield return null;
-				}
-				if (!base.AmHost)
-				{
-					break;
+					@object.moveable = true;
+					@object.NetTransform.enabled = true;
+					@object.MyPhysics.enabled = true;
+					@object.MyPhysics.Awake();
+					@object.MyPhysics.ResetAnim();
+					@object.Collider.enabled = true;
+					Vector2 spawnLocation = ShipStatus.Instance.GetSpawnLocation(i, GameData.Instance.PlayerCount);
+					@object.NetTransform.SnapTo(spawnLocation);
 				}
 			}
+			SaveManager.LastGameStart = DateTime.UtcNow;
+			yield break;
 		}
-		for (int j = 0; j < GameData.Instance.PlayerCount; j++)
+		SendClientReady();
+		float timer = 0f;
+		while (true)
 		{
-			PlayerControl @object = GameData.Instance.AllPlayers[j].Object;
-			if ((bool)@object)
+			bool flag = false;
+			lock (allClients)
 			{
-				@object.moveable = true;
-				@object.NetTransform.enabled = true;
-				@object.MyPhysics.enabled = true;
-				@object.MyPhysics.Awake();
-				@object.MyPhysics.ResetAnim();
-				@object.Collider.enabled = true;
-				Vector2 spawnLocation = ShipStatus.Instance.GetSpawnLocation(j, GameData.Instance.PlayerCount);
-				@object.NetTransform.SnapTo(spawnLocation);
+				for (int j = 0; j < allClients.Count; j++)
+				{
+					ClientData clientData = allClients[j];
+					if (!clientData.IsReady)
+					{
+						if (timer < 5f)
+						{
+							flag = true;
+							continue;
+						}
+						SendLateRejection(clientData.Id, DisconnectReasons.Error);
+						clientData.IsReady = true;
+						OnPlayerLeft(clientData, DisconnectReasons.ExitGame);
+					}
+				}
+			}
+			if (!flag)
+			{
+				break;
+			}
+			yield return null;
+			timer += Time.deltaTime;
+		}
+		GameOptionsData gameOptions = PlayerControl.GameOptions;
+		if (gameOptions.Validate(GameData.Instance.PlayerCount))
+		{
+			PlayerControl localPlayer = PlayerControl.LocalPlayer;
+			if (localPlayer != null)
+			{
+				localPlayer.RpcSyncSettings(PlayerControl.GameOptions);
+			}
+		}
+		if ((bool)LobbyBehaviour.Instance)
+		{
+			LobbyBehaviour.Instance.Despawn();
+		}
+		if (!ShipStatus.Instance)
+		{
+			ShipStatus.Instance = UnityEngine.Object.Instantiate(ShipPrefabs[gameOptions.MapId]);
+		}
+		Spawn(ShipStatus.Instance);
+		ShipStatus.Instance.SelectInfected();
+		ShipStatus.Instance.Begin();
+		for (int k = 0; k < GameData.Instance.PlayerCount; k++)
+		{
+			PlayerControl object2 = GameData.Instance.AllPlayers[k].Object;
+			if ((bool)object2)
+			{
+				object2.moveable = true;
+				object2.NetTransform.enabled = true;
+				object2.MyPhysics.enabled = true;
+				object2.MyPhysics.Awake();
+				object2.MyPhysics.ResetAnim();
+				object2.Collider.enabled = true;
+				Vector2 spawnLocation2 = ShipStatus.Instance.GetSpawnLocation(k, GameData.Instance.PlayerCount);
+				object2.NetTransform.SnapTo(spawnLocation2);
 			}
 		}
 		SaveManager.LastGameStart = DateTime.UtcNow;
@@ -232,7 +252,54 @@ public class AmongUsClient : InnerNetClient
 		RemoveUnownedObjects();
 	}
 
-	protected override void OnGameEnd(GameOverReason gameOverReason, bool showAd)
+    protected override void OnGameEnd(GameOverReason gameOverReason, bool showAd)
+    {
+        DisconnectHandlers.Clear();
+        if ((bool)Minigame.Instance)
+        {
+            Minigame.Instance.Close();
+            Minigame.Instance.Close();
+        }
+        try
+        {
+            if (SaveManager.SendTelemetry)
+            {
+                DestroyableSingleton<Telemetry>.Instance.EndGame(gameOverReason);
+            }
+        }
+        catch
+        {
+        }
+        TempData.EndReason = gameOverReason;
+        TempData.showAd = showAd;
+        bool flag = TempData.DidHumansWin(gameOverReason);
+        TempData.winners = new List<WinningPlayerData>();
+        if (TempData.DidJokerWin(gameOverReason))
+        {
+            for (int i = 0; i < GameData.Instance.PlayerCount; i++)
+            {
+                GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
+                if (playerInfo.role == GameData.PlayerInfo.Role.Joker)
+                {
+                    TempData.winners.Add(new WinningPlayerData(playerInfo));
+                }
+            }
+        }
+        else
+        {
+            for (int j = 0; j < GameData.Instance.PlayerCount; j++)
+            {
+                GameData.PlayerInfo playerInfo2 = GameData.Instance.AllPlayers[j];
+                if (flag != playerInfo2.IsImpostor)
+                {
+                    TempData.winners.Add(new WinningPlayerData(playerInfo2));
+                }
+            }
+        }
+        StartCoroutine(CoEndGame());
+    }
+
+	protected override void OnGameEndCustom(GameData.PlayerInfo[] plyrs, string victorysong)
 	{
 		DisconnectHandlers.Clear();
 		if ((bool)Minigame.Instance)
@@ -240,28 +307,14 @@ public class AmongUsClient : InnerNetClient
 			Minigame.Instance.Close();
 			Minigame.Instance.Close();
 		}
-		try
-		{
-			if (SaveManager.SendTelemetry)
-			{
-				DestroyableSingleton<Telemetry>.Instance.EndGame(gameOverReason);
-			}
-		}
-		catch
-		{
-		}
-		TempData.EndReason = gameOverReason;
-		TempData.showAd = showAd;
-		bool flag = TempData.DidHumansWin(gameOverReason);
+        TempData.EndReason = GameOverReason.Custom;
+		TempData.CustomStinger = victorysong;
+		TempData.showAd = false;
 		TempData.winners = new List<WinningPlayerData>();
-		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
-		{
-			GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
-			if (flag != playerInfo.IsImpostor)
-			{
-				TempData.winners.Add(new WinningPlayerData(playerInfo));
-			}
-		}
+        foreach (GameData.PlayerInfo plf in plyrs)
+        {
+            TempData.winners.Add(new WinningPlayerData(plf));
+        }
 		StartCoroutine(CoEndGame());
 	}
 
@@ -327,10 +380,19 @@ public class AmongUsClient : InnerNetClient
 				}
 			}
 		}
-		if (base.AmHost && (PlayerControl.GameOptions?.isDefaults ?? false))
+		if (!base.AmHost)
+		{
+			return;
+		}
+		GameOptionsData gameOptions = PlayerControl.GameOptions;
+		if (gameOptions != null && gameOptions.isDefaults)
 		{
 			PlayerControl.GameOptions.SetRecommendations(GameData.Instance.PlayerCount, Instance.GameMode);
-			PlayerControl.LocalPlayer?.RpcSyncSettings(PlayerControl.GameOptions);
+			PlayerControl localPlayer = PlayerControl.LocalPlayer;
+			if (!(localPlayer == null))
+			{
+				localPlayer.RpcSyncSettings(PlayerControl.GameOptions);
+			}
 		}
 	}
 
@@ -411,7 +473,7 @@ public class AmongUsClient : InnerNetClient
 		sbyte availableId = GameData.Instance.GetAvailableId();
 		if (availableId == -1)
 		{
-			SendLateRejection(clientData.Id, DisconnectReasons.GameFull);
+			SendLateRejection(clientData.Id, DisconnectReasons.GameNotFound);
 			Debug.Log("Overfilled room.");
 			return;
 		}

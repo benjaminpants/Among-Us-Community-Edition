@@ -411,7 +411,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 
 	private byte[] CalculateVotes()
 	{
-		byte[] array = new byte[11];
+		byte[] array = new byte[21];
 		for (int i = 0; i < playerStates.Length; i++)
 		{
 			PlayerVoteArea playerVoteArea = playerStates[i];
@@ -420,7 +420,8 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 				int num = playerVoteArea.votedFor + 1;
 				if (num >= 0 && num < array.Length)
 				{
-					array[num]++;
+					int num2 = num;
+					array[num2]++;
 				}
 			}
 		}
@@ -529,30 +530,45 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 			int num2 = 0;
 			for (int j = 0; j < playerStates.Length; j++)
 			{
-				if (!states[j].HasAnyBit((byte)128))
+				if (states[j].HasAnyBit((byte)128))
 				{
-					GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById((byte)playerStates[j].TargetPlayerId);
-					int num3 = (states[j] & 0xF) - 1;
-					if (num3 == playerVoteArea.TargetPlayerId)
+					continue;
+				}
+				GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById((byte)playerStates[j].TargetPlayerId);
+				int num3 = (states[j] & 0x1F) - 1;
+				if (num3 == playerVoteArea.TargetPlayerId)
+				{
+					SpriteRenderer spriteRenderer = Object.Instantiate(PlayerVotePrefab);
+					if (PlayerControl.GameOptions.AnonVotes)
 					{
-						SpriteRenderer spriteRenderer = Object.Instantiate(PlayerVotePrefab);
+						PlayerControl.SetPlayerMaterialColors(6, spriteRenderer);
+					}
+					else
+					{
 						PlayerControl.SetPlayerMaterialColors(playerById.ColorId, spriteRenderer);
-						spriteRenderer.transform.SetParent(playerVoteArea.transform);
-						spriteRenderer.transform.localPosition = CounterOrigin + new Vector3(CounterOffsets.x * (float)num2, 0f, 0f);
-						spriteRenderer.transform.localScale = Vector3.zero;
-						StartCoroutine(Effects.Bloop((float)num2 * 0.5f, spriteRenderer.transform));
-						num2++;
 					}
-					else if (i == 0 && num3 == -1)
+					spriteRenderer.transform.SetParent(playerVoteArea.transform);
+					spriteRenderer.transform.localPosition = CounterOrigin + new Vector3(CounterOffsets.x / 2f * (float)num2, 0f, 0f);
+					spriteRenderer.transform.localScale = Vector3.zero;
+					StartCoroutine(Effects.BloopHalf((float)num2 * 0.5f, spriteRenderer.transform));
+					num2++;
+				}
+				else if (i == 0 && num3 == -1)
+				{
+					SpriteRenderer spriteRenderer2 = Object.Instantiate(PlayerVotePrefab);
+					if (PlayerControl.GameOptions.AnonVotes)
 					{
-						SpriteRenderer spriteRenderer2 = Object.Instantiate(PlayerVotePrefab);
-						PlayerControl.SetPlayerMaterialColors(playerById.ColorId, spriteRenderer2);
-						spriteRenderer2.transform.SetParent(SkippedVoting.transform);
-						spriteRenderer2.transform.localPosition = CounterOrigin + new Vector3(CounterOffsets.x * (float)num, 0f, 0f);
-						spriteRenderer2.transform.localScale = Vector3.zero;
-						StartCoroutine(Effects.Bloop((float)num * 0.5f, spriteRenderer2.transform));
-						num++;
+						PlayerControl.SetPlayerMaterialColors(6, spriteRenderer2);
 					}
+					else
+					{
+						PlayerControl.SetPlayerMaterialColors(playerById.ColorId, spriteRenderer2);
+					}
+					spriteRenderer2.transform.SetParent(SkippedVoting.transform);
+					spriteRenderer2.transform.localPosition = CounterOrigin + new Vector3(CounterOffsets.x / 2f * (float)num, 0f, 0f);
+					spriteRenderer2.transform.localScale = Vector3.zero;
+					StartCoroutine(Effects.BloopHalf((float)num * 0.5f, spriteRenderer2.transform));
+					num++;
 				}
 			}
 		}
@@ -604,7 +620,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		{
 			int num = i % 2;
 			int num2 = i / 2;
-			array[i].transform.localPosition = VoteOrigin + new Vector3(VoteButtonOffsets.x * (float)num, VoteButtonOffsets.y * (float)num2, -1f);
+			array[i].transform.localPosition = VoteOrigin + new Vector3(VoteButtonOffsets.x * (float)num, VoteButtonOffsets.y / 2f * (float)num2, -1f);
 		}
 	}
 
@@ -612,10 +628,19 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 	{
 		PlayerVoteArea playerVoteArea = Object.Instantiate(PlayerButtonPrefab, ButtonParent.transform);
 		PlayerControl.SetPlayerMaterialColors(playerInfo.ColorId, playerVoteArea.PlayerIcon);
+		playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
 		playerVoteArea.NameText.Text = playerInfo.PlayerName;
+		playerVoteArea.NameText.transform.localScale = new Vector3(0.6f, 1.1f, 1.1f);
 		bool flag = PlayerControl.LocalPlayer.Data.IsImpostor && playerInfo.IsImpostor;
-		playerVoteArea.NameText.Color = (flag ? Palette.ImpostorRed : Color.white);
-		playerVoteArea.transform.localScale = Vector3.one;
+		if (PlayerControl.GameOptions.Gamemode == 1)
+		{
+			playerVoteArea.NameText.Color = (flag ? Palette.InfectedGreen : Color.white);
+		}
+		else
+		{
+			playerVoteArea.NameText.Color = (flag ? Palette.ImpostorRed : Color.white);
+		}
+		playerVoteArea.transform.localScale = new Vector3(1f, 0.5f, 1f);
 		return playerVoteArea;
 	}
 

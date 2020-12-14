@@ -143,19 +143,8 @@ public class ChatController : MonoBehaviour
 		localPosition2.y = -2.08f - localPosition.y * 2f;
 		TypingArea.localPosition = localPosition2;
 		int length = TextArea.text.Length;
-		CharCount.Text = length + "/100";
-		if (length < 75)
-		{
-			CharCount.Color = Color.black;
-		}
-		else if (length < 100)
-		{
-			CharCount.Color = new Color(1f, 1f, 0f, 1f);
-		}
-		else
-		{
-			CharCount.Color = Color.red;
-		}
+		CharCount.Text = "Chars: " + length;
+		CharCount.Color = Color.black;
 	}
 
 	private void Update()
@@ -167,12 +156,11 @@ public class ChatController : MonoBehaviour
 			if (num < 0f)
 			{
 				SendRateMessage.gameObject.SetActive(value: false);
+				return;
 			}
-			else
-			{
-				SendRateMessage.Text = $"Too fast. Wait {Mathf.CeilToInt(num)} seconds";
-			}
+			SendRateMessage.Text = $"Too fast. Wait {Mathf.CeilToInt(num)} seconds";
 		}
+		UpdateCharCount();
 	}
 
 	public void SendChat()

@@ -23,21 +23,31 @@ public class PlayerTab : MonoBehaviour
 
 	public void Start()
 	{
-		float num = (float)Palette.PlayerColors.Length / 3f;
-		for (int j = 0; j < Palette.PlayerColors.Length; j++)
+		float num = 1.6f;
+		float num2 = -0.52f;
+		_ = (float)Palette.PlayerColors.Length / 3f;
+		float num3 = 0f;
+		int num4 = 0;
+		while (num4 < Palette.PlayerColors.Length)
 		{
-			float x = XRange.Lerp((float)(j % 3) / 2f);
-			float y = YRange.Lerp(1f - (float)(j / 3) / num);
-			ColorChip colorChip = Object.Instantiate(ColorTabPrefab);
-			colorChip.transform.SetParent(base.transform);
-			colorChip.transform.localPosition = new Vector3(x, y, -1f);
-			int i = j;
-			colorChip.Button.OnClick.AddListener(delegate
+			for (float num5 = 0f; num5 < 2f; num5 += 0.5f)
 			{
-				SelectColor(i);
-			});
-			colorChip.Inner.color = Palette.PlayerColors[j];
-			ColorChips.Add(colorChip);
+				if (num4 < Palette.PlayerColors.Length)
+				{
+					ColorChip colorChip = Object.Instantiate(ColorTabPrefab);
+					colorChip.transform.SetParent(base.transform);
+					colorChip.transform.localPosition = new Vector3(num + num5, num2 + num3, -1f);
+					int i = num4;
+					colorChip.Button.OnClick.AddListener(delegate
+					{
+						SelectColor(i);
+					});
+					colorChip.Inner.color = Palette.PlayerColors[num4];
+					ColorChips.Add(colorChip);
+					num4++;
+				}
+			}
+			num3 -= 0.5f;
 		}
 	}
 

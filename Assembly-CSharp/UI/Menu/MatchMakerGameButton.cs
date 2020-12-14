@@ -53,4 +53,11 @@ public class MatchMakerGameButton : PoolableBehavior, IConnectButton
 		ImpostorCountText.Text = myListing.ImpostorCount.ToString();
 		PlayerCountText.Text = $"{myListing.PlayerCount}/{myListing.MaxPlayers}";
 	}
+
+	public void SetNoGame()
+	{
+		NameText.Text = "Public Lobbies are not supported!";
+		ImpostorCountText.Text = "Please create a private game instead!";
+		PlayerCountText.Text = "(The game is better with friends anyway)";
+	}
 }

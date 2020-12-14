@@ -20,7 +20,11 @@ public class KillAnimation : MonoBehaviour
 		{
 			Camera.main.GetComponent<FollowerCamera>().Locked = true;
 		}
-		target.Die(DeathReason.Kill);
+		bool iszomb = PlayerControl.GameOptions.Gamemode == 1;
+		if (!iszomb)
+		{
+			target.Die(DeathReason.Kill);
+		}
 		SpriteAnim sourceAnim = source.GetComponent<SpriteAnim>();
 		yield return new WaitForAnimationFinish(sourceAnim, BlurAnim);
 		source.NetTransform.SnapTo(target.transform.position);
@@ -31,7 +35,10 @@ public class KillAnimation : MonoBehaviour
 		position.z = position.y / 1000f;
 		deadBody.transform.position = position;
 		deadBody.ParentId = target.PlayerId;
-		target.SetPlayerMaterialColors(deadBody.GetComponent<Renderer>());
+		if (!iszomb)
+		{
+			target.SetPlayerMaterialColors(deadBody.GetComponent<Renderer>());
+		}
 		SetMovement(target, canMove: true);
 		if (isParticipant)
 		{

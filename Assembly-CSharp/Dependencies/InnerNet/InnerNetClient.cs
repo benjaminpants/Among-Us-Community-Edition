@@ -22,18 +22,7 @@ namespace InnerNet
 			Ended
 		}
 
-		private static readonly DisconnectReasons[] disconnectReasons = new DisconnectReasons[9]
-		{
-			DisconnectReasons.Error,
-			DisconnectReasons.GameFull,
-			DisconnectReasons.GameStarted,
-			DisconnectReasons.GameNotFound,
-			DisconnectReasons.IncorrectVersion,
-			DisconnectReasons.Banned,
-			DisconnectReasons.Kicked,
-			DisconnectReasons.ServerFull,
-			DisconnectReasons.Custom
-		};
+		private static readonly DisconnectReasons[] disconnectReasons;
 
 		public const int NoClientId = -1;
 
@@ -227,12 +216,20 @@ namespace InnerNet
 
 		private void Connection_DataReceivedRaw(byte[] data)
 		{
-			Debug.Log("Client Got: " + string.Join(" ", data.Select((byte b) => b.ToString())));
+			Debug.Log("Client Got: " + string.Join(" ", data.Select(delegate(byte b)
+			{
+				byte b2 = b;
+				return b2.ToString();
+			})));
 		}
 
 		private void Connection_DataSentRaw(byte[] data, int length)
 		{
-			Debug.Log("Client Sent: " + string.Join(" ", data.Select((byte b) => b.ToString()).ToArray(), 0, length));
+			Debug.Log("Client Sent: " + string.Join(" ", data.Select(delegate(byte b)
+			{
+				byte b2 = b;
+				return b2.ToString();
+			}).ToArray(), 0, length));
 		}
 
 		public void Connect(MatchMakerModes mode)
@@ -484,10 +481,18 @@ namespace InnerNet
 			}
 		}
 
-		public MessageWriter StartEndGame()
+        public MessageWriter StartEndGame()
+        {
+            MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
+            messageWriter.StartMessage(8);
+            messageWriter.Write(GameId);
+            return messageWriter;
+        }
+
+		public MessageWriter StartCustomEndGame()
 		{
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
-			messageWriter.StartMessage(8);
+			messageWriter.StartMessage(14);
 			messageWriter.Write(GameId);
 			return messageWriter;
 		}
@@ -557,7 +562,7 @@ namespace InnerNet
 				MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
 				messageWriter.StartMessage(10);
 				messageWriter.Write(GameId);
-				messageWriter.Write((byte)1);
+				messageWriter.Write(1);
 				messageWriter.Write(isPublic);
 				messageWriter.EndMessage();
 				SendOrDisconnect(messageWriter);
@@ -597,23 +602,34 @@ namespace InnerNet
 					});
 				}
 				break;
+			case 2:
+				GameState = GameStates.Started;
+				KicksLeft = 0;
+				lock (DispatchQueue)
+				{
+					DispatchQueue.Add(delegate
+					{
+						OnStartGame();
+					});
+				}
+				break;
 			case 4:
 			{
-				int num2 = reader.ReadInt32();
-				if (GameId != num2)
+				int num9 = reader.ReadInt32();
+				if (GameId != num9)
 				{
 					break;
 				}
 				int playerIdThatLeft = reader.ReadInt32();
-				bool amHost = AmHost;
+				bool amHost2 = AmHost;
 				HostId = reader.ReadInt32();
-				DisconnectReasons reason2 = DisconnectReasons.ExitGame;
+				DisconnectReasons reason3 = DisconnectReasons.ExitGame;
 				if (reader.Position < reader.Length)
 				{
-					reason2 = (DisconnectReasons)reader.ReadByte();
+					reason3 = (DisconnectReasons)reader.ReadByte();
 				}
-				RemovePlayer(playerIdThatLeft, reason2);
-				if (!AmHost || amHost)
+				RemovePlayer(playerIdThatLeft, reason3);
+				if (!AmHost || amHost2)
 				{
 					break;
 				}
@@ -622,141 +638,6 @@ namespace InnerNet
 					DispatchQueue.Add(delegate
 					{
 						OnBecomeHost();
-					});
-				}
-				break;
-			}
-			case 8:
-			{
-				int num6 = reader.ReadInt32();
-				if (GameId != num6 || GameState == GameStates.Ended)
-				{
-					break;
-				}
-				GameState = GameStates.Ended;
-				lock (allClients)
-				{
-					allClients.Clear();
-				}
-				GameOverReason reason = (GameOverReason)reader.ReadByte();
-				bool showAd = reader.ReadBoolean();
-				lock (DispatchQueue)
-				{
-					DispatchQueue.Add(delegate
-					{
-						OnGameEnd(reason, showAd);
-					});
-				}
-				break;
-			}
-			case 12:
-			{
-				int num5 = reader.ReadInt32();
-				if (GameId != num5)
-				{
-					break;
-				}
-				ClientId = reader.ReadInt32();
-				lock (DispatchQueue)
-				{
-					DispatchQueue.Add(delegate
-					{
-						OnWaitForHost(IntToGameName(GameId));
-					});
-				}
-				break;
-			}
-			case 7:
-			{
-				int num10 = reader.ReadInt32();
-				if (GameId != num10)
-				{
-					break;
-				}
-				ClientId = reader.ReadInt32();
-				GameState = GameStates.Joined;
-				KicksLeft = -1;
-				ClientData myClient = GetOrCreateClient(ClientId);
-				_ = AmHost;
-				HostId = reader.ReadInt32();
-				int num11 = reader.ReadPackedInt32();
-				for (int i = 0; i < num11; i++)
-				{
-					GetOrCreateClient(reader.ReadPackedInt32());
-				}
-				lock (DispatchQueue)
-				{
-					DispatchQueue.Add(delegate
-					{
-						OnGameJoined(IntToGameName(GameId), myClient);
-					});
-				}
-				break;
-			}
-			case 1:
-			{
-				int num3 = reader.ReadInt32();
-				DisconnectReasons disconnectReasons = (DisconnectReasons)num3;
-				if (InnerNetClient.disconnectReasons.Contains(disconnectReasons))
-				{
-					if (disconnectReasons == DisconnectReasons.Custom)
-					{
-						LastCustomDisconnect = reader.ReadString();
-					}
-					GameId = -1;
-					EnqueueDisconnect(disconnectReasons);
-				}
-				else if (GameId == num3)
-				{
-					int num4 = reader.ReadInt32();
-					bool amHost2 = AmHost;
-					HostId = reader.ReadInt32();
-					ClientData client = GetOrCreateClient(num4);
-					Debug.Log($"Player {num4} joined");
-					lock (DispatchQueue)
-					{
-						DispatchQueue.Add(delegate
-						{
-							OnPlayerJoined(client);
-						});
-						if (AmHost && !amHost2)
-						{
-							DispatchQueue.Add(delegate
-							{
-								OnBecomeHost();
-							});
-						}
-					}
-				}
-				else
-				{
-					EnqueueDisconnect(DisconnectReasons.IncorrectGame);
-				}
-				break;
-			}
-			case 5:
-			case 6:
-			{
-				int num7 = reader.ReadInt32();
-				if (GameId != num7)
-				{
-					break;
-				}
-				if (reader.Tag == 6)
-				{
-					int num8 = reader.ReadPackedInt32();
-					if (ClientId != num8)
-					{
-						Debug.LogWarning($"Got data meant for {num8}");
-						break;
-					}
-				}
-				MessageReader subReader = MessageReader.Get(reader);
-				lock (DispatchQueue)
-				{
-					DispatchQueue.Add(delegate
-					{
-						HandleGameData(subReader);
 					});
 				}
 				break;
@@ -780,11 +661,10 @@ namespace InnerNet
 			}
 			case 10:
 			{
-				int num9 = reader.ReadInt32();
-				if (GameId == num9)
+				int num3 = reader.ReadInt32();
+				if (GameId == num3)
 				{
-					byte b = reader.ReadByte();
-					if (b == 1)
+					if (reader.ReadByte() == 1)
 					{
 						IsGamePublic = reader.ReadBoolean();
 						Debug.Log("Alter Public = " + IsGamePublic);
@@ -793,37 +673,6 @@ namespace InnerNet
 					{
 						Debug.Log("Alter unknown");
 					}
-				}
-				break;
-			}
-			case 3:
-			{
-				DisconnectReasons reason3 = DisconnectReasons.ServerRequest;
-				if (reader.Position < reader.Length)
-				{
-					reason3 = (DisconnectReasons)reader.ReadByte();
-				}
-				EnqueueDisconnect(reason3);
-				break;
-			}
-			case 2:
-				GameState = GameStates.Started;
-				KicksLeft = 0;
-				lock (DispatchQueue)
-				{
-					DispatchQueue.Add(delegate
-					{
-						OnStartGame();
-					});
-				}
-				break;
-			case 11:
-			{
-				int num = reader.ReadInt32();
-				if (GameId == num && reader.ReadPackedInt32() == ClientId)
-				{
-					bool flag = reader.ReadBoolean();
-					EnqueueDisconnect(flag ? DisconnectReasons.Banned : DisconnectReasons.Kicked);
 				}
 				break;
 			}
@@ -843,9 +692,193 @@ namespace InnerNet
 				}
 				break;
 			}
+			case 5:
+			case 6:
+			{
+				int num4 = reader.ReadInt32();
+				if (GameId != num4)
+				{
+					break;
+				}
+				if (reader.Tag == 6)
+				{
+					int num5 = reader.ReadPackedInt32();
+					if (ClientId != num5)
+					{
+						Debug.LogWarning($"Got data meant for {num5}");
+						break;
+					}
+				}
+				MessageReader subReader = MessageReader.Get(reader);
+				lock (DispatchQueue)
+				{
+					DispatchQueue.Add(delegate
+					{
+						HandleGameData(subReader);
+					});
+				}
+				break;
+			}
+			case 11:
+			{
+				int num8 = reader.ReadInt32();
+				if (GameId == num8 && reader.ReadPackedInt32() == ClientId)
+				{
+					EnqueueDisconnect(reader.ReadBoolean() ? DisconnectReasons.Banned : DisconnectReasons.Kicked);
+				}
+				break;
+			}
 			default:
 				Debug.Log($"Bad tag {reader.Tag} at {reader.Offset}+{reader.Position}={reader.Length}:  " + string.Join(" ", reader.Buffer));
 				break;
+			case 3:
+			{
+				DisconnectReasons reason2 = DisconnectReasons.ServerRequest;
+				if (reader.Position < reader.Length)
+				{
+					reason2 = (DisconnectReasons)reader.ReadByte();
+				}
+				EnqueueDisconnect(reason2);
+				break;
+			}
+			case 8:
+			{
+				int num11 = reader.ReadInt32();
+				if (GameId != num11 || GameState == GameStates.Ended)
+				{
+					break;
+				}
+				GameState = GameStates.Ended;
+				lock (allClients)
+				{
+					allClients.Clear();
+				}
+				GameOverReason reason = (GameOverReason)reader.ReadByte();
+				bool showAd = reader.ReadBoolean();
+				lock (DispatchQueue)
+				{
+					DispatchQueue.Add(delegate
+					{
+						OnGameEnd(reason, showAd);
+					});
+				}
+				break;
+			}
+			case 14:
+				{
+					int num11 = reader.ReadInt32();
+					if (GameId != num11 || GameState == GameStates.Ended)
+					{
+						break;
+					}
+					GameState = GameStates.Ended;
+					lock (allClients)
+					{
+						allClients.Clear();
+					}
+					int length = reader.ReadPackedInt32(); //Get length of winner array
+					GameData.PlayerInfo[] plrs = new GameData.PlayerInfo[length]; //Create new blank array using length
+					for (int i = 0; i < length; i++)
+					{
+						plrs[i] = GameData.Instance.GetPlayerById(reader.ReadByte()); //get all the player infos
+					}
+					string song = reader.ReadString();
+
+
+					lock (DispatchQueue)
+					{
+						DispatchQueue.Add(delegate
+						{
+							OnGameEndCustom(plrs, song);
+						});
+					}
+					break;
+					}
+				case 12:
+			{
+				int num10 = reader.ReadInt32();
+				if (GameId != num10)
+				{
+					break;
+				}
+				ClientId = reader.ReadInt32();
+				lock (DispatchQueue)
+				{
+					DispatchQueue.Add(delegate
+					{
+						OnWaitForHost(IntToGameName(GameId));
+					});
+				}
+				break;
+			}
+			case 7:
+			{
+				int num6 = reader.ReadInt32();
+				if (GameId != num6)
+				{
+					break;
+				}
+				ClientId = reader.ReadInt32();
+				GameState = GameStates.Joined;
+				KicksLeft = -1;
+				ClientData myClient = GetOrCreateClient(ClientId);
+				_ = AmHost;
+				HostId = reader.ReadInt32();
+				int num7 = reader.ReadPackedInt32();
+				for (int i = 0; i < num7; i++)
+				{
+					GetOrCreateClient(reader.ReadPackedInt32());
+				}
+				lock (DispatchQueue)
+				{
+					DispatchQueue.Add(delegate
+					{
+						OnGameJoined(IntToGameName(GameId), myClient);
+					});
+				}
+				break;
+			}
+			case 1:
+			{
+				int num = reader.ReadInt32();
+				DisconnectReasons disconnectReasons = (DisconnectReasons)num;
+				if (InnerNetClient.disconnectReasons.Contains(disconnectReasons))
+				{
+					if (disconnectReasons == DisconnectReasons.Custom)
+					{
+						LastCustomDisconnect = reader.ReadString();
+					}
+					GameId = -1;
+					EnqueueDisconnect(disconnectReasons);
+				}
+				else if (GameId == num)
+				{
+					int num2 = reader.ReadInt32();
+					bool amHost = AmHost;
+					HostId = reader.ReadInt32();
+					ClientData client = GetOrCreateClient(num2);
+					Debug.Log($"Player {num2} joined");
+					lock (DispatchQueue)
+					{
+						DispatchQueue.Add(delegate
+						{
+							OnPlayerJoined(client);
+						});
+						if (AmHost && !amHost)
+						{
+							DispatchQueue.Add(delegate
+							{
+								OnBecomeHost();
+							});
+						}
+					}
+				}
+				else
+				{
+					EnqueueDisconnect(DisconnectReasons.IncorrectGame);
+				}
+				break;
+			}
 			}
 		}
 
@@ -960,7 +993,9 @@ namespace InnerNet
 
 		protected abstract void OnStartGame();
 
-		protected abstract void OnGameEnd(GameOverReason reason, bool showAd);
+        protected abstract void OnGameEnd(GameOverReason reason, bool showAd);
+
+		protected abstract void OnGameEndCustom(GameData.PlayerInfo[] plyrs, string victorysong);
 
 		protected abstract void OnBecomeHost();
 
@@ -1135,6 +1170,7 @@ namespace InnerNet
 		{
 			if (AmConnected)
 			{
+				CE_UIHelpers.ForceLoadDebugUIs();
 				StartCoroutine(CoSendSceneChange(sceneName));
 			}
 		}
@@ -1192,18 +1228,15 @@ namespace InnerNet
 
 		public void Spawn(InnerNetObject netObjParent, int ownerId = -2, SpawnFlags flags = SpawnFlags.None)
 		{
-			if (!AmHost)
-			{
-				if (AmClient)
-				{
-					Debug.LogError("Tried to spawn while not host:" + netObjParent);
-				}
-			}
-			else
+			if (AmHost)
 			{
 				ownerId = ((ownerId == -3) ? ClientId : ownerId);
 				MessageWriter msg = Streams[1];
 				WriteSpawnMessage(netObjParent, ownerId, flags, msg);
+			}
+			else if (AmClient)
+			{
+				Debug.LogError("Tried to spawn while not host:" + netObjParent);
 			}
 		}
 
@@ -1215,7 +1248,8 @@ namespace InnerNet
 			msg.Write((byte)flags);
 			InnerNetObject[] componentsInChildren = netObjParent.GetComponentsInChildren<InnerNetObject>();
 			msg.WritePacked(componentsInChildren.Length);
-			foreach (InnerNetObject innerNetObject in componentsInChildren)
+			InnerNetObject[] array = componentsInChildren;
+			foreach (InnerNetObject innerNetObject in array)
 			{
 				innerNetObject.OwnerId = ownerId;
 				innerNetObject.SpawnFlags = flags;
@@ -1348,63 +1382,57 @@ namespace InnerNet
 					case 4:
 					{
 						uint num = messageReader.ReadPackedUInt32();
-						if (num < SpawnableObjects.Length)
+						if ((ulong)num >= (ulong)SpawnableObjects.Length)
 						{
-							InnerNetObject innerNetObject = UnityEngine.Object.Instantiate(SpawnableObjects[num]);
-							int num2 = messageReader.ReadPackedInt32();
-							innerNetObject.SpawnFlags = (SpawnFlags)messageReader.ReadByte();
-							int num3 = messageReader.ReadPackedInt32();
-							InnerNetObject[] componentsInChildren = innerNetObject.GetComponentsInChildren<InnerNetObject>();
-							if (num3 != componentsInChildren.Length)
+							Debug.LogError("Couldn't find spawnable prefab: " + num);
+							break;
+						}
+						InnerNetObject innerNetObject = UnityEngine.Object.Instantiate(SpawnableObjects[num]);
+						int num2 = messageReader.ReadPackedInt32();
+						innerNetObject.SpawnFlags = (SpawnFlags)messageReader.ReadByte();
+						int num3 = messageReader.ReadPackedInt32();
+						InnerNetObject[] componentsInChildren = innerNetObject.GetComponentsInChildren<InnerNetObject>();
+						if (num3 != componentsInChildren.Length)
+						{
+							Debug.LogError("Children didn't match for spawnable " + num);
+							UnityEngine.Object.Destroy(innerNetObject.gameObject);
+							break;
+						}
+						for (int i = 0; i < num3; i++)
+						{
+							InnerNetObject innerNetObject2 = componentsInChildren[i];
+							innerNetObject2.NetId = messageReader.ReadPackedUInt32();
+							innerNetObject2.OwnerId = num2;
+							if (!AddNetObject(innerNetObject2))
 							{
-								Debug.LogError("Children didn't match for spawnable " + num);
+								innerNetObject.NetId = uint.MaxValue;
 								UnityEngine.Object.Destroy(innerNetObject.gameObject);
 								break;
 							}
-							for (int i = 0; i < num3; i++)
+							MessageReader messageReader2 = messageReader.ReadMessage();
+							if (messageReader2.Length > 0)
 							{
-								InnerNetObject innerNetObject2 = componentsInChildren[i];
-								innerNetObject2.NetId = messageReader.ReadPackedUInt32();
-								innerNetObject2.OwnerId = num2;
-								if (!AddNetObject(innerNetObject2))
-								{
-									innerNetObject.NetId = uint.MaxValue;
-									UnityEngine.Object.Destroy(innerNetObject.gameObject);
-									break;
-								}
-								MessageReader messageReader2 = messageReader.ReadMessage();
-								if (messageReader2.Length > 0)
-								{
-									innerNetObject2.Deserialize(messageReader2, initialState: true);
-								}
+								innerNetObject2.Deserialize(messageReader2, initialState: true);
 							}
-							if ((innerNetObject.SpawnFlags & SpawnFlags.IsClientCharacter) == 0)
-							{
-								break;
-							}
+						}
+						if ((innerNetObject.SpawnFlags & SpawnFlags.IsClientCharacter) != 0)
+						{
 							ClientData clientData2 = FindClientById(num2);
-							if (clientData2 != null)
-							{
-								if (!clientData2.Character)
-								{
-									clientData2.InScene = true;
-									clientData2.Character = innerNetObject as PlayerControl;
-								}
-								else
-								{
-									Debug.LogWarning("Double spawn character");
-									UnityEngine.Object.Destroy(innerNetObject.gameObject);
-								}
-							}
-							else
+							if (clientData2 == null)
 							{
 								Debug.LogWarning("Spawn unowned character");
 								UnityEngine.Object.Destroy(innerNetObject.gameObject);
 							}
-						}
-						else
-						{
-							Debug.LogError("Couldn't find spawnable prefab: " + num);
+							else if (!clientData2.Character)
+							{
+								clientData2.InScene = true;
+								clientData2.Character = innerNetObject as PlayerControl;
+							}
+							else
+							{
+								Debug.LogWarning("Double spawn character");
+								UnityEngine.Object.Destroy(innerNetObject.gameObject);
+							}
 						}
 						break;
 					}
@@ -1455,6 +1483,22 @@ namespace InnerNet
 			{
 				parentReader.Recycle();
 			}
+		}
+
+		static InnerNetClient()
+		{
+			disconnectReasons = new DisconnectReasons[9]
+			{
+				DisconnectReasons.Error,
+				DisconnectReasons.GameFull,
+				DisconnectReasons.GameStarted,
+				DisconnectReasons.GameNotFound,
+				DisconnectReasons.IncorrectVersion,
+				DisconnectReasons.Banned,
+				DisconnectReasons.Kicked,
+				DisconnectReasons.ServerFull,
+				DisconnectReasons.Custom
+			};
 		}
 	}
 }

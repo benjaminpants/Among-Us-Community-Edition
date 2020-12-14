@@ -35,8 +35,26 @@ public class ExileController : MonoBehaviour
 			GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById(exiled.PlayerId);
 			int num2 = GameData.Instance.AllPlayers.Count((GameData.PlayerInfo p) => p.IsImpostor);
 			string text = (exiled.IsImpostor ? string.Empty : "not ");
-			string text2 = ((num2 > 1) ? "An" : "The");
-			completeString = exiled.PlayerName + " was " + text + text2 + " Impostor";
+			string text2 = ((PlayerControl.GameOptions.Gamemode == 1) ? " Infected" : " Impostor");
+			string text3 = ((num2 > 1) ? "An" : "The");
+			if (PlayerControl.GameOptions.Gamemode == 4)
+			{
+				text2 = ((exiled.role == GameData.PlayerInfo.Role.Joker) ? " Joker" : " Impostor");
+				text3 = ((exiled.role == GameData.PlayerInfo.Role.Joker) ? "The" : text3);
+				text = ((exiled.role == GameData.PlayerInfo.Role.Joker) ? string.Empty : text);
+			}
+			if (PlayerControl.GameOptions.ConfirmEject)
+			{
+				completeString = exiled.PlayerName + " was " + text + text3 + text2;
+			}
+			else
+			{
+				completeString = string.Concat(new string[2]
+				{
+					exiled.PlayerName,
+					" was ejected."
+				});
+			}
 			PlayerControl.SetPlayerMaterialColors(playerById.ColorId, Player);
 			PlayerControl.SetHatImage(exiled.HatId, PlayerHat);
 			PlayerSkin.sprite = DestroyableSingleton<HatManager>.Instance.GetSkinById(playerById.SkinId).EjectFrame;
@@ -50,7 +68,21 @@ public class ExileController : MonoBehaviour
 			completeString = string.Format("No one was ejected ({0})", tie ? "Tie" : "Skipped");
 			Player.gameObject.SetActive(value: false);
 		}
-		ImpostorText.Text = num + ((num != 1) ? " impostors remain" : " impostor remains");
+		if (PlayerControl.GameOptions.ConfirmEject)
+		{
+			if (PlayerControl.GameOptions.Gamemode == 1)
+			{
+				ImpostorText.Text = num + " infected remain.";
+			}
+			else
+			{
+				ImpostorText.Text = num + ((num != 1) ? " impostors remain" : " impostor remains");
+			}
+		}
+		else
+		{
+			ImpostorText.Text = "";
+		}
 		StartCoroutine(Animate());
 	}
 
@@ -89,7 +121,11 @@ public class ExileController : MonoBehaviour
 		yield return DestroyableSingleton<HudManager>.Instance.CoFadeFullScreen(Color.clear, Color.black);
 		if (exiled != null)
 		{
-			exiled.Object?.Exiled();
+			PlayerControl @object = exiled.Object;
+			if (@object != null)
+			{
+				@object.Exiled();
+			}
 		}
 		if (DestroyableSingleton<TutorialManager>.InstanceExists || !ShipStatus.Instance.IsGameOverDueToDeath())
 		{
@@ -98,6 +134,29 @@ public class ExileController : MonoBehaviour
 			Camera.main.GetComponent<FollowerCamera>().Locked = false;
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: true);
 		}
+		if (exiled != null && exiled.role == GameData.PlayerInfo.Role.Joker)
+		{
+			ShipStatus.Instance.JokerWin();
+		}
 		Object.Destroy(base.gameObject);
+	}
+
+	private void LateUpdate()
+	{
+		SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(exiled.SkinId);
+		bool isCustom = skinById.isCustom;
+		string key = "ejected";
+		if (isCustom && skinById.FrameList.ContainsKey(key))
+		{
+			CE_CustomSkinDefinition.CustomSkinFrame customSkinFrame = skinById.FrameList[key];
+			float x = customSkinFrame.Position.x;
+			float y = customSkinFrame.Position.y;
+			float x2 = customSkinFrame.Size.x;
+			float y2 = customSkinFrame.Size.y;
+			float x3 = customSkinFrame.Offset.x;
+			float y3 = customSkinFrame.Offset.y;
+			Texture2D texture = customSkinFrame.Texture;
+			PlayerSkin.sprite = Sprite.Create(texture, new Rect(x, y, x2, y2), new Vector2(x3, y3));
+		}
 	}
 }

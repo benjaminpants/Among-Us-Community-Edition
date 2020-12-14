@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class UseButtonManager : MonoBehaviour
 {
-	private static readonly Color DisabledColor = new Color(1f, 1f, 1f, 0.3f);
+	private static readonly Color DisabledColor;
 
-	private static readonly Color EnabledColor = new Color(1f, 1f, 1f, 1f);
+	private static readonly Color EnabledColor;
 
 	public SpriteRenderer UseButton;
 
@@ -21,6 +21,8 @@ public class UseButtonManager : MonoBehaviour
 	public Sprite OptionsImage;
 
 	private IUsable currentTarget;
+
+	private bool KeyPress;
 
 	public void SetTarget(IUsable target)
 	{
@@ -78,7 +80,7 @@ public class UseButtonManager : MonoBehaviour
 
 	public void DoClick()
 	{
-		if (!base.isActiveAndEnabled || !PlayerControl.LocalPlayer)
+		if ((!KeyPress && SaveManager.EnableProHUDMode) || !base.isActiveAndEnabled || !PlayerControl.LocalPlayer)
 		{
 			return;
 		}
@@ -99,5 +101,31 @@ public class UseButtonManager : MonoBehaviour
 	internal void Refresh()
 	{
 		SetTarget(currentTarget);
+	}
+
+	static UseButtonManager()
+	{
+		DisabledColor = new Color(1f, 1f, 1f, 0.3f);
+		EnabledColor = new Color(1f, 1f, 1f, 1f);
+	}
+
+	public void LateUpdate()
+	{
+		bool flag = UseButton.color == DisabledColor || UseButton.sprite == SabotageImage;
+		if (SaveManager.EnableProHUDMode && flag)
+		{
+			UseButton.enabled = false;
+		}
+		else
+		{
+			UseButton.enabled = true;
+		}
+	}
+
+	public void DoKeyClick()
+	{
+		KeyPress = true;
+		DoClick();
+		KeyPress = false;
 	}
 }

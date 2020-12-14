@@ -19,9 +19,18 @@ public class ResolutionSlider : MonoBehaviour
 
 	public void OnEnable()
 	{
-		allResolutions = Screen.resolutions.Where((Resolution r) => r.height > 480).ToArray();
-		targetResolution = Screen.currentResolution;
+		allResolutions = Screen.resolutions.Where(delegate(Resolution r)
+		{
+			Resolution resolution = r;
+			return resolution.height > 480;
+		}).ToArray();
 		targetFullscreen = Screen.fullScreen;
+		targetResolution = (Screen.fullScreen ? Screen.currentResolution : new Resolution
+		{
+			width = Screen.width,
+			height = Screen.height,
+			refreshRate = Screen.currentResolution.refreshRate
+		});
 		targetIdx = allResolutions.IndexOf((Resolution e) => e.width == targetResolution.width && e.height == targetResolution.height);
 		slider.Value = (float)targetIdx / ((float)allResolutions.Length - 1f);
 		Display.Text = $"{targetResolution.width}x{targetResolution.height}";

@@ -26,7 +26,7 @@ public class Scroller : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		if ((bool)Inner)
+		if (!CE_UIHelpers.IsActive() && (bool)Inner)
 		{
 			Vector2 mouseScrollDelta = Input.mouseScrollDelta;
 			mouseScrollDelta.y = 0f - mouseScrollDelta.y;

@@ -40,7 +40,7 @@ public class HatsTab : MonoBehaviour
 			{
 				SelectHat(hat);
 			});
-			colorChip.Inner.sprite = hat.MainImage;
+			colorChip.Inner.sprite = (hat.PreviewImage ? hat.PreviewImage : hat.MainImage);
 			ColorChips.Add(colorChip);
 		}
 		scroller.YBounds.max = 0f - (YStart - (float)(unlockedHats.Length / NumPerRow) * YOffset) - 3f;
@@ -62,7 +62,7 @@ public class HatsTab : MonoBehaviour
 		for (int i = 0; i < ColorChips.Count; i++)
 		{
 			ColorChip colorChip = ColorChips[i];
-			colorChip.InUseForeground.SetActive(hatById.MainImage == colorChip.Inner.sprite);
+			colorChip.InUseForeground.SetActive((hatById.PreviewImage ? hatById.PreviewImage : hatById.MainImage) == colorChip.Inner.sprite);
 		}
 	}
 

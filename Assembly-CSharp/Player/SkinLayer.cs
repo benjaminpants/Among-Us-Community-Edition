@@ -30,11 +30,13 @@ public class SkinLayer : MonoBehaviour
 		if (!skin || !animator)
 		{
 			SetGhost();
+			return;
 		}
-		else if (!animator.IsPlaying(skin.RunAnim))
+		if (!animator.IsPlaying(skin.RunAnim))
 		{
-			animator.Play(skin.RunAnim);
+			animator.Play(skin.RunAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
 		}
+		Update();
 	}
 
 	public void SetSpawn(float time = 0f)
@@ -46,6 +48,7 @@ public class SkinLayer : MonoBehaviour
 		}
 		animator.Play(skin.SpawnAnim);
 		animator.Time = time;
+		Update();
 	}
 
 	public void SetExitVent()
@@ -53,11 +56,10 @@ public class SkinLayer : MonoBehaviour
 		if (!skin || !animator)
 		{
 			SetGhost();
+			return;
 		}
-		else
-		{
-			animator.Play(skin.ExitVentAnim);
-		}
+		animator.Play(skin.ExitVentAnim);
+		Update();
 	}
 
 	public void SetEnterVent()
@@ -65,11 +67,10 @@ public class SkinLayer : MonoBehaviour
 		if (!skin || !animator)
 		{
 			SetGhost();
+			return;
 		}
-		else
-		{
-			animator.Play(skin.EnterVentAnim);
-		}
+		animator.Play(skin.EnterVentAnim);
+		Update();
 	}
 
 	public void SetIdle()
@@ -77,11 +78,13 @@ public class SkinLayer : MonoBehaviour
 		if (!skin || !animator)
 		{
 			SetGhost();
+			return;
 		}
-		else if (!animator.IsPlaying(skin.IdleAnim))
+		if (!animator.IsPlaying(skin.IdleAnim))
 		{
-			animator.Play(skin.IdleAnim);
+			animator.Play(skin.IdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
 		}
+		Update();
 	}
 
 	public void SetGhost()
@@ -90,6 +93,7 @@ public class SkinLayer : MonoBehaviour
 		{
 			animator.Stop();
 			layer.sprite = null;
+			Update();
 		}
 	}
 
@@ -97,5 +101,36 @@ public class SkinLayer : MonoBehaviour
 	{
 		skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId);
 		SetIdle();
+		Update();
+	}
+
+	public void Update()
+	{
+	}
+
+	public void LateUpdate()
+	{
+		if ((bool)skin && skin.isCustom)
+		{
+			CustomDrawSkin();
+		}
+	}
+
+	private void CustomDrawSkin()
+	{
+		string name = layer.sprite.name;
+		string key = name.Substring(name.IndexOf("_") + 1);
+		if (skin.FrameList.ContainsKey(key))
+		{
+			CE_CustomSkinDefinition.CustomSkinFrame customSkinFrame = skin.FrameList[key];
+			float x = customSkinFrame.Position.x;
+			float y = customSkinFrame.Position.y;
+			float x2 = customSkinFrame.Size.x;
+			float y2 = customSkinFrame.Size.y;
+			float x3 = customSkinFrame.Offset.x;
+			float y3 = customSkinFrame.Offset.y;
+			Texture2D texture = customSkinFrame.Texture;
+			layer.sprite = Sprite.Create(texture, new Rect(x, y, x2, y2), new Vector2(x3, y3));
+		}
 	}
 }

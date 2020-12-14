@@ -15,7 +15,7 @@ public class Vent : MonoBehaviour, IUsable
 
 	public AnimationClip ExitVentAnim;
 
-	private static readonly Vector3 CollOffset = new Vector3(0f, -0.3636057f, 0f);
+	private static readonly Vector3 CollOffset;
 
 	private SpriteRenderer myRend;
 
@@ -27,6 +27,49 @@ public class Vent : MonoBehaviour, IUsable
 	{
 		SetButtons(enabled: false);
 		myRend = GetComponent<SpriteRenderer>();
+		byte ventMode = PlayerControl.GameOptions.VentMode;
+		if (PlayerControl.GameOptions.Venting == 2 && !GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).IsImpostor)
+		{
+			Left = null;
+			Right = null;
+			return;
+		}
+		switch (ventMode)
+		{
+		case 1:
+		{
+			Vent[] array = Object.FindObjectsOfType<Vent>();
+			int num = array.IndexOf(this);
+			int num2 = num + 1;
+			int num3 = num - 1;
+			Left = null;
+			Right = null;
+			if (num2 > array.Length)
+			{
+				Left = null;
+			}
+			else
+			{
+				Left = array[num2];
+			}
+			if (num3 == -1)
+			{
+				Right = null;
+			}
+			else
+			{
+				Right = array[num3];
+			}
+			break;
+		}
+		case 2:
+			Left = null;
+			break;
+		case 3:
+			Left = null;
+			Right = null;
+			break;
+		}
 	}
 
 	public void SetButtons(bool enabled)
@@ -67,7 +110,7 @@ public class Vent : MonoBehaviour, IUsable
 	{
 		float num = float.MaxValue;
 		PlayerControl @object = pc.Object;
-		couldUse = pc.IsImpostor && !pc.IsDead && (@object.CanMove || @object.inVent);
+		couldUse = (pc.IsImpostor || PlayerControl.GameOptions.Venting != 0) && PlayerControl.GameOptions.Venting != 3 && !pc.IsDead && (@object.CanMove || @object.inVent);
 		canUse = couldUse;
 		if (canUse)
 		{
@@ -145,5 +188,10 @@ public class Vent : MonoBehaviour, IUsable
 	internal void ExitVent()
 	{
 		GetComponent<SpriteAnim>().Play(ExitVentAnim);
+	}
+
+	static Vent()
+	{
+		CollOffset = new Vector3(0f, -0.3636057f, 0f);
 	}
 }

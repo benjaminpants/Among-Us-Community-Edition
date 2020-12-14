@@ -18,7 +18,7 @@ public class GameSettingMenu : MonoBehaviour
 			Transform transform = AllItems[i];
 			if (transform.gameObject.activeSelf)
 			{
-				if ((AmongUsClient.Instance.GameMode == GameModes.OnlineGame && HideForOnline.IndexOf(transform) != -1) || (transform.name == "MapName" && !TempData.IsDo2Enabled))
+				if (AmongUsClient.Instance.GameMode == GameModes.OnlineGame && HideForOnline.IndexOf(transform) != -1)
 				{
 					transform.gameObject.SetActive(value: false);
 					continue;

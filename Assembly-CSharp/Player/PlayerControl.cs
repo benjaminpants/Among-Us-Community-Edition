@@ -12,7 +12,7 @@ public class PlayerControl : InnerNetObject
 {
 	public class ColliderComparer : IEqualityComparer<Collider2D>
 	{
-		public static readonly ColliderComparer Instance = new ColliderComparer();
+		public static readonly ColliderComparer Instance;
 
 		public bool Equals(Collider2D x, Collider2D y)
 		{
@@ -23,11 +23,16 @@ public class PlayerControl : InnerNetObject
 		{
 			return obj.GetInstanceID();
 		}
+
+		static ColliderComparer()
+		{
+			Instance = new ColliderComparer();
+		}
 	}
 
 	public class UsableComparer : IEqualityComparer<IUsable>
 	{
-		public static readonly UsableComparer Instance = new UsableComparer();
+		public static readonly UsableComparer Instance;
 
 		public bool Equals(IUsable x, IUsable y)
 		{
@@ -37,6 +42,11 @@ public class PlayerControl : InnerNetObject
 		public int GetHashCode(IUsable obj)
 		{
 			return obj.GetHashCode();
+		}
+
+		static UsableComparer()
+		{
+			Instance = new UsableComparer();
 		}
 	}
 
@@ -105,7 +115,7 @@ public class PlayerControl : InnerNetObject
 
 	private Collider2D[] hitBuffer = new Collider2D[20];
 
-	public static GameOptionsData GameOptions = new GameOptionsData();
+	public static GameOptionsData GameOptions;
 
 	public List<PlayerTask> myTasks = new List<PlayerTask>();
 
@@ -126,7 +136,7 @@ public class PlayerControl : InnerNetObject
 
 	public float percImpostor;
 
-	public static List<PlayerControl> AllPlayerControls = new List<PlayerControl>();
+	public static List<PlayerControl> AllPlayerControls;
 
 	private Dictionary<Collider2D, IUsable> cache = new Dictionary<Collider2D, IUsable>(ColliderComparer.Instance);
 
@@ -277,7 +287,7 @@ public class PlayerControl : InnerNetObject
 		{
 			myLight.LightRadius = ShipStatus.Instance.CalculateLightRadius(data);
 		}
-		if (data.IsImpostor && CanMove && !data.IsDead)
+		if ((data.IsImpostor || data.role == GameData.PlayerInfo.Role.Sheriff) && CanMove && !data.IsDead)
 		{
 			SetKillTimer(Mathf.Max(0f, killTimer - Time.fixedDeltaTime));
 			PlayerControl target = FindClosestTarget();
@@ -412,7 +422,7 @@ public class PlayerControl : InnerNetObject
 
 	private void SetScanner(bool on, byte cnt)
 	{
-		if (cnt < scannerCount)
+		if (!GameOptions.Visuals || cnt < scannerCount)
 		{
 			return;
 		}
@@ -423,7 +433,7 @@ public class PlayerControl : InnerNetObject
 			if (on && !Data.IsDead)
 			{
 				spriteAnim.gameObject.SetActive(value: true);
-				spriteAnim.Play();
+				spriteAnim.Play(null, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
 				ScannersImages[i].flipX = !myRend.flipX;
 				continue;
 			}
@@ -453,7 +463,7 @@ public class PlayerControl : InnerNetObject
 		for (int i = 0; i < allPlayers.Count; i++)
 		{
 			GameData.PlayerInfo playerInfo = allPlayers[i];
-			if (playerInfo.Disconnected || playerInfo.PlayerId == PlayerId || playerInfo.IsDead || playerInfo.IsImpostor)
+			if (playerInfo.Disconnected || playerInfo.PlayerId == PlayerId || playerInfo.IsDead || !ShouldKillImp(playerInfo) || playerInfo.Object.inVent)
 			{
 				continue;
 			}
@@ -501,7 +511,10 @@ public class PlayerControl : InnerNetObject
 			{
 				StatsManager.Instance.TimesCrewmate++;
 				StatsManager.Instance.CrewmateStreak++;
-				DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
+				if (Data.role != GameData.PlayerInfo.Role.Sheriff)
+				{
+					DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
+				}
 			}
 			DestroyableSingleton<Telemetry>.Instance.StartGame(SaveManager.SendName, AmongUsClient.Instance.AmHost, GameData.Instance.PlayerCount, GameOptions.NumImpostors, AmongUsClient.Instance.GameMode, StatsManager.Instance.TimesImpostor, StatsManager.Instance.GamesStarted);
 		}
@@ -585,6 +598,30 @@ public class PlayerControl : InnerNetObject
 			SaveManager.LastGameStart = DateTime.MinValue;
 			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: true);
 		}
+		if (Data.role == GameData.PlayerInfo.Role.Sheriff && base.AmOwner)
+		{
+			nameText.Color = Palette.White;
+			List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
+				where !pcd.Disconnected
+				select pcd into pc
+				where !pc.IsDead
+				select pc into pci
+				where !pci.IsImpostor
+				select pci into pcs
+				where pcs != LocalPlayer.Data
+				select pcs).ToList();
+			list.Shuffle();
+			GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[2]
+			{
+				GameData.PlayerInfo.Role.None,
+				GameData.PlayerInfo.Role.Sheriff
+			};
+			LocalPlayer.RpcSetRole(new GameData.PlayerInfo[2]
+			{
+				LocalPlayer.Data,
+				list.Take(1).ToArray()[0]
+			}, roles);
+		}
 	}
 
 	public void Revive()
@@ -595,7 +632,7 @@ public class PlayerControl : InnerNetObject
 		nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 4);
 		if (base.AmOwner)
 		{
-			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(Data.IsImpostor);
+			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(Data.IsImpostor || Data.role == GameData.PlayerInfo.Role.Sheriff);
 			DestroyableSingleton<HudManager>.Instance.Chat.ForceClosed();
 			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: false);
 		}
@@ -635,6 +672,7 @@ public class PlayerControl : InnerNetObject
 
 	public void SetInfected(GameData.PlayerInfo[] infected)
 	{
+		killTimer = 20f;
 		for (int i = 0; i < infected.Length; i++)
 		{
 			infected[i].IsImpostor = true;
@@ -646,9 +684,19 @@ public class PlayerControl : InnerNetObject
 		if (data.IsImpostor)
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
-			for (int j = 0; j < infected.Length; j++)
+			if (GameOptions.Gamemode == 1)
 			{
-				infected[j].Object.nameText.Color = Palette.ImpostorRed;
+				for (int j = 0; j < infected.Length; j++)
+				{
+					infected[j].Object.nameText.Color = Palette.InfectedGreen;
+				}
+			}
+			else
+			{
+				for (int k = 0; k < infected.Length; k++)
+				{
+					infected[k].Object.nameText.Color = Palette.ImpostorRed;
+				}
 			}
 		}
 		if (!DestroyableSingleton<TutorialManager>.InstanceExists)
@@ -917,18 +965,42 @@ public class PlayerControl : InnerNetObject
 				Minigame.Instance.Close();
 				Minigame.Instance.Close();
 			}
-			DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(value: false);
-			base.gameObject.layer = 12;
-			nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
-			DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowOne(this, data);
-			target.RpcSetScanner(value: false);
-			if (!GameOptions.GhostsDoTasks)
+			if (GameOptions.Gamemode == 1)
 			{
-				target.ClearTasks();
 				ImportantTextTask importantTextTask = new GameObject("_Player").AddComponent<ImportantTextTask>();
 				importantTextTask.transform.SetParent(base.transform, worldPositionStays: false);
-				importantTextTask.Text = "You're dead, enjoy the chaos";
+				importantTextTask.Text = "You are infected.";
 				target.myTasks.Add(importantTextTask);
+				List<GameData.PlayerInfo> list = new List<GameData.PlayerInfo>();
+				foreach (GameData.PlayerInfo allPlayer in GameData.Instance.AllPlayers)
+				{
+					if (allPlayer.IsImpostor)
+					{
+						list.Add(allPlayer);
+					}
+				}
+				list.Add(target.Data);
+				foreach (PlayerControl allPlayerControl in AllPlayerControls)
+				{
+					_ = allPlayerControl;
+					target.RpcSetInfectedNoIntro(list.ToArray());
+				}
+			}
+			if (GameOptions.Gamemode != 1)
+			{
+				DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(value: false);
+				base.gameObject.layer = 12;
+				nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
+				DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowOne(this, data);
+				target.RpcSetScanner(value: false);
+				if (!GameOptions.GhostsDoTasks)
+				{
+					target.ClearTasks();
+					ImportantTextTask importantTextTask2 = new GameObject("_Player").AddComponent<ImportantTextTask>();
+					importantTextTask2.transform.SetParent(base.transform, worldPositionStays: false);
+					importantTextTask2.Text = "You're dead, enjoy the chaos";
+					target.myTasks.Add(importantTextTask2);
+				}
 			}
 		}
 		MyPhysics.StartCoroutine(KillAnimations.Random().CoPerformKill(this, target));
@@ -962,7 +1034,21 @@ public class PlayerControl : InnerNetObject
 	{
 		rend.material.SetColor("_BackColor", Palette.ShadowColors[colorId]);
 		rend.material.SetColor("_BodyColor", Palette.PlayerColors[colorId]);
-		rend.material.SetColor("_VisorColor", Palette.VisorColor);
+		switch (colorId)
+		{
+		case 21:
+			rend.material.SetColor("_VisorColor", Palette.VisorColorRed);
+			break;
+		case 22:
+			rend.material.SetColor("_VisorColor", Palette.VisorColorGreen);
+			break;
+		case 23:
+			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
+			break;
+		default:
+			rend.material.SetColor("_VisorColor", Palette.VisorColor);
+			break;
+		}
 	}
 
 	public void RpcSetScanner(bool value)
@@ -989,7 +1075,7 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void RpcCompleteTask(uint idx)
+	public void RpcCompleteTask(uint idx, byte id)
 	{
 		if (AmongUsClient.Instance.AmClient)
 		{
@@ -997,6 +1083,7 @@ public class PlayerControl : InnerNetObject
 		}
 		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 1);
 		messageWriter.WritePacked(idx);
+		messageWriter.Write(id);
 		messageWriter.EndMessage();
 	}
 
@@ -1164,6 +1251,28 @@ public class PlayerControl : InnerNetObject
 		case 0:
 			PlayAnimation(reader.ReadByte());
 			break;
+		case 1:
+			CompleteTask(reader.ReadPackedUInt32());
+			if (CE_LuaLoader.CurrentGMLua && AmongUsClient.Instance.AmHost)
+			{
+					GameData.PlayerInfo plf = GameData.Instance.GetPlayerById(reader.ReadByte());
+					bool shouldcontinue = CE_LuaLoader.GetGamemodeResult("OnTaskCompletionHost", plf.Object.myTasks.Count, PlayerTask.HowManyTasksCompleted(plf.Object), new CE_PlayerInfoLua(plf)).Boolean; //just run it
+			}
+			break;
+		case 2:
+			GameOptions = GameOptionsData.FromBytes(reader.ReadBytesAndSize());
+			break;
+		case 3:
+		{
+			int num2 = reader.ReadPackedInt32();
+			GameData.PlayerInfo[] array3 = new GameData.PlayerInfo[num2];
+			for (int j = 0; j < num2; j++)
+			{
+				array3[j] = GameData.Instance.GetPlayerById(reader.ReadByte());
+			}
+			SetInfected(array3);
+			break;
+		}
 		case 4:
 			Exiled();
 			break;
@@ -1179,36 +1288,16 @@ public class PlayerControl : InnerNetObject
 		case 8:
 			SetColor(reader.ReadByte());
 			break;
-		case 10:
-			SetSkin(reader.ReadPackedUInt32());
-			break;
 		case 9:
 			SetHat(reader.ReadPackedUInt32());
 			break;
-		case 3:
-		{
-			int num = reader.ReadPackedInt32();
-			GameData.PlayerInfo[] array = new GameData.PlayerInfo[num];
-			for (int i = 0; i < num; i++)
-			{
-				array[i] = GameData.Instance.GetPlayerById(reader.ReadByte());
-			}
-			SetInfected(array);
-			break;
-		}
-		case 2:
-			GameOptions = GameOptionsData.FromBytes(reader.ReadBytesAndSize());
+		case 10:
+			SetSkin(reader.ReadPackedUInt32());
 			break;
 		case 11:
 		{
 			GameData.PlayerInfo playerById2 = GameData.Instance.GetPlayerById(reader.ReadByte());
 			ReportDeadBody(playerById2);
-			break;
-		}
-		case 15:
-		{
-			GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById(reader.ReadByte());
-			StartCoroutine(CoStartMeeting(playerById));
 			break;
 		}
 		case 12:
@@ -1217,18 +1306,144 @@ public class PlayerControl : InnerNetObject
 			MurderPlayer(target);
 			break;
 		}
-		case 1:
-			CompleteTask(reader.ReadPackedUInt32());
-			break;
 		case 13:
 			SendChat(reader.ReadString());
 			break;
 		case 14:
 			percImpostor = reader.ReadSingle();
 			break;
+		case 15:
+		{
+			GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById(reader.ReadByte());
+			StartCoroutine(CoStartMeeting(playerById));
+			break;
+		}
 		case 16:
 			SetScanner(reader.ReadBoolean(), reader.ReadByte());
 			break;
+		case 17:
+		{
+			int num3 = reader.ReadPackedInt32();
+			GameData.PlayerInfo[] array4 = new GameData.PlayerInfo[num3];
+			for (int k = 0; k < num3; k++)
+			{
+				array4[k] = GameData.Instance.GetPlayerById(reader.ReadByte());
+			}
+			SetInfectedNoIntro(array4);
+			break;
 		}
+		case 18:
+		{
+			int num = reader.ReadPackedInt32();
+			GameData.PlayerInfo[] array = new GameData.PlayerInfo[num];
+			GameData.PlayerInfo.Role[] array2 = new GameData.PlayerInfo.Role[num];
+			for (int i = 0; i < num; i++)
+			{
+				array[i] = GameData.Instance.GetPlayerById(reader.ReadByte());
+				array2[i] = (GameData.PlayerInfo.Role)reader.ReadByte();
+			}
+			SetRoles(array, array2);
+			break;
+		}
+		}
+	}
+
+	static PlayerControl()
+	{
+		GameOptions = new GameOptionsData();
+		AllPlayerControls = new List<PlayerControl>();
+	}
+
+	public void SetInfectedNoIntro(GameData.PlayerInfo[] infected)
+	{
+		killTimer = GameOptions.KillCooldown;
+		for (int i = 0; i < infected.Length; i++)
+		{
+			infected[i].IsImpostor = true;
+		}
+		DestroyableSingleton<HudManager>.Instance.MapButton.gameObject.SetActive(value: true);
+		DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.SetActive(value: true);
+		if (!LocalPlayer.Data.IsImpostor)
+		{
+			return;
+		}
+		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
+		if (GameOptions.Gamemode == 1)
+		{
+			for (int j = 0; j < infected.Length; j++)
+			{
+				infected[j].Object.nameText.Color = Palette.InfectedGreen;
+			}
+		}
+		else
+		{
+			for (int k = 0; k < infected.Length; k++)
+			{
+				infected[k].Object.nameText.Color = Palette.ImpostorRed;
+			}
+		}
+	}
+
+	public void RpcSetInfectedNoIntro(GameData.PlayerInfo[] infected)
+	{
+		if (AmongUsClient.Instance.AmClient)
+		{
+			SetInfectedNoIntro(infected);
+		}
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 17);
+		messageWriter.WritePacked(infected.Length);
+		for (int i = 0; i < infected.Length; i++)
+		{
+			messageWriter.Write(infected[i].PlayerId);
+		}
+		messageWriter.EndMessage();
+	}
+
+	public void RpcSetRole(GameData.PlayerInfo[] persons, GameData.PlayerInfo.Role[] roles)
+	{
+		Debug.Log("Setting roles(IF THE IMPOSTOR SOMEHOW TRIGGERS THIS I WILL DIE)");
+		if (AmongUsClient.Instance.AmClient)
+		{
+			SetRoles(persons, roles);
+		}
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 18);
+		messageWriter.WritePacked(persons.Length);
+		for (int i = 0; i < persons.Length; i++)
+		{
+			messageWriter.Write(persons[i].PlayerId);
+			messageWriter.Write((byte)roles[i]);
+		}
+		messageWriter.EndMessage();
+	}
+
+	public void SetRoles(GameData.PlayerInfo[] players, GameData.PlayerInfo.Role[] roles)
+	{
+		for (int i = 0; i < players.Length; i++)
+		{
+			players[i].role = roles[i];
+		}
+		Debug.Log("got role " + Enum.GetName(typeof(GameData.PlayerInfo.Role), LocalPlayer.Data.role));
+		if (LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff)
+		{
+			LocalPlayer.nameText.Color = Palette.SheriffYellow;
+			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
+		}
+		if (LocalPlayer.Data.role == GameData.PlayerInfo.Role.Joker)
+		{
+			LocalPlayer.nameText.Color = Palette.Purple;
+		}
+	}
+
+	private bool ShouldKillImp(GameData.PlayerInfo playerinfo)
+	{
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			return CE_LuaLoader.GetGamemodeResult("CanKill", new CE_PlayerInfoLua(Data), new CE_PlayerInfoLua(playerinfo)).Boolean;
+		}
+		if (Data.role != GameData.PlayerInfo.Role.Sheriff)
+		{
+			return !playerinfo.IsImpostor;
+		}
+		return true;
 	}
 }

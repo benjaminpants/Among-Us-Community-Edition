@@ -12,7 +12,7 @@ public class PlayerVoteArea : MonoBehaviour
 
 	public const byte ReportedBit = 32;
 
-	public const byte VoteMask = 15;
+	public const byte VoteMask = 31;
 
 	public GameObject Buttons;
 
@@ -191,9 +191,9 @@ public class PlayerVoteArea : MonoBehaviour
 	{
 		byte b = reader.ReadByte();
 		votedFor = (sbyte)((b & 0xF) - 1);
-		isDead = (b & 0x80) != 0;
-		didVote = (b & 0x40) != 0;
-		didReport = (b & 0x20) != 0;
+		isDead = (b & 0x80) > 0;
+		didVote = (b & 0x40) > 0;
+		didReport = (b & 0x20) > 0;
 		Flag.enabled = didVote && !resultsShowing;
 		Overlay.gameObject.SetActive(isDead);
 		Megaphone.enabled = didReport;

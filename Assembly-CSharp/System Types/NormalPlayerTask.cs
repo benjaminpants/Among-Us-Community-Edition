@@ -100,10 +100,20 @@ public class NormalPlayerTask : PlayerTask
 		UpdateArrow();
 		if (taskStep >= MaxStep)
 		{
-			taskStep = MaxStep;
-			if (!PlayerControl.LocalPlayer)
+            taskStep = MaxStep;
+            if (!PlayerControl.LocalPlayer)
+            {
+                return;
+            }
+			if (CE_LuaLoader.CurrentGMLua)
 			{
-				return;
+				bool continueexecution = CE_LuaLoader.GetGamemodeResult("OnTaskCompletionClient", PlayerControl.LocalPlayer.myTasks.Count, PlayerTask.HowManyTasksCompleted(PlayerControl.LocalPlayer), new CE_PlayerInfoLua(PlayerControl.LocalPlayer.Data)).Boolean;
+				if (!continueexecution)
+				{
+					taskStep--;
+					UpdateArrow();
+					return;
+				}
 			}
 			if (DestroyableSingleton<HudManager>.InstanceExists)
 			{
@@ -114,7 +124,7 @@ public class NormalPlayerTask : PlayerTask
 					StatsManager.Instance.CompletedAllTasks++;
 				}
 			}
-			PlayerControl.LocalPlayer.RpcCompleteTask(base.Id);
+			PlayerControl.LocalPlayer.RpcCompleteTask(base.Id,PlayerControl.LocalPlayer.PlayerId);
 		}
 		else if (ShowTaskStep && Constants.ShouldPlaySfx())
 		{

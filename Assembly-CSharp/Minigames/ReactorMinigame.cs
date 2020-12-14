@@ -36,7 +36,7 @@ public class ReactorMinigame : Minigame
 
 	public void ButtonDown()
 	{
-		if (PlayerControl.LocalPlayer.Data.IsImpostor || !reactor.IsActive)
+		if (!reactor.IsActive)
 		{
 			return;
 		}

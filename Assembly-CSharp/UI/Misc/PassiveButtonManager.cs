@@ -5,7 +5,7 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 {
 	private class DepthComparer : IComparer<PassiveButton>
 	{
-		public static readonly DepthComparer Instance = new DepthComparer();
+		public static readonly DepthComparer Instance;
 
 		public int Compare(PassiveButton x, PassiveButton y)
 		{
@@ -18,6 +18,11 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 				return -1;
 			}
 			return x.transform.position.z.CompareTo(y.transform.position.z);
+		}
+
+		static DepthComparer()
+		{
+			Instance = new DepthComparer();
 		}
 	}
 
@@ -55,6 +60,10 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 
 	public void Update()
 	{
+		if (CE_UIHelpers.IsActive())
+		{
+			return;
+		}
 		Controller.Update();
 		for (int i = 1; i < Buttons.Count; i++)
 		{
@@ -138,6 +147,10 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 
 	private void CheckForDown()
 	{
+		if (CE_UIHelpers.IsActive())
+		{
+			return;
+		}
 		Vector2 touch = GetTouch(downOrUp: true);
 		for (int i = 0; i < Buttons.Count; i++)
 		{
@@ -173,6 +186,10 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 
 	private void HandleFocus(Vector2 pt)
 	{
+		if (CE_UIHelpers.IsActive())
+		{
+			return;
+		}
 		bool flag = false;
 		for (int i = 0; i < FocusHolders.Count; i++)
 		{
@@ -211,7 +228,7 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 
 	private void HandleMouseOut(PassiveButton button)
 	{
-		if (currentOver == button)
+		if (!CE_UIHelpers.IsActive() && currentOver == button)
 		{
 			button.OnMouseOut.Invoke();
 			currentOver = null;
@@ -220,7 +237,7 @@ public class PassiveButtonManager : DestroyableSingleton<PassiveButtonManager>
 
 	private void CheckForUp()
 	{
-		if (!currentDown)
+		if (CE_UIHelpers.IsActive() || !currentDown)
 		{
 			return;
 		}

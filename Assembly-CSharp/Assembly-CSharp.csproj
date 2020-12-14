@@ -9,11 +9,134 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apple">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="AppStoreSettings">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\AppStoreSettings.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\Dependencies\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MoonSharp.Interpreter">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\MoonSharp.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Security">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\System.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="UDP">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UDP.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\Dependencies\UnityEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\Dependencies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.BaselibModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.BaselibModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\Dependencies\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.FileSystemHttpModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.FileSystemHttpModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
       <HintPath>..\Dependencies\UnityEngine.Physics2DModule.dll</HintPath>
@@ -27,14 +150,59 @@
     <Reference Include="System.Core">
       <HintPath>C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpatialTracking">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StyleSheetsModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.StyleSheetsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TimelineModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TimelineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\Dependencies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Hazel">
       <HintPath>..\Dependencies\Hazel.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\Dependencies\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule">
       <HintPath>..\Dependencies\UnityEngine.SpriteMaskModule.dll</HintPath>
@@ -44,6 +212,18 @@
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>..\Dependencies\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UNETModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule">
       <HintPath>..\Dependencies\UnityEngine.UnityAnalyticsModule.dll</HintPath>
@@ -56,6 +236,51 @@
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>..\Dependencies\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>..\..\..\..\Tools\SteamCMD\depotdownloader\depots\945361 modded\5582664\Among Us_Data\Managed\winrt.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

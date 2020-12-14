@@ -47,13 +47,13 @@ public class PlayerAnimator : MonoBehaviour
 		{
 			if (Animator.GetCurrentAnimation() != RunAnim)
 			{
-				Animator.Play(RunAnim);
+				Animator.Play(RunAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
 			}
 			rend.flipX = velocity.x < 0f;
 		}
 		else if (Animator.GetCurrentAnimation() == RunAnim)
 		{
-			Animator.Play(IdleAnim);
+			Animator.Play(IdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
 		}
 	}
 

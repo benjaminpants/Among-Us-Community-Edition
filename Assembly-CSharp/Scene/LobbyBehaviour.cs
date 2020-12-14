@@ -27,7 +27,7 @@ public class LobbyBehaviour : InnerNetObject
 		if ((bool)main)
 		{
 			FollowerCamera component = main.GetComponent<FollowerCamera>();
-			if ((bool)component)
+			if ((bool)component && SaveManager.LobbyShake)
 			{
 				component.shakeAmount = 0.03f;
 				component.shakePeriod = 400f;
@@ -43,7 +43,7 @@ public class LobbyBehaviour : InnerNetObject
 			timer = 0f;
 			if (PlayerControl.GameOptions != null)
 			{
-				int numPlayers = (GameData.Instance ? GameData.Instance.PlayerCount : 10);
+				int numPlayers = (GameData.Instance ? GameData.Instance.PlayerCount : 20);
 				DestroyableSingleton<HudManager>.Instance.GameSettings.Text = PlayerControl.GameOptions.ToHudString(numPlayers);
 				DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(value: true);
 			}
@@ -56,7 +56,7 @@ public class LobbyBehaviour : InnerNetObject
 		if ((bool)main)
 		{
 			FollowerCamera component = main.GetComponent<FollowerCamera>();
-			if ((bool)component)
+			if ((bool)component && SaveManager.LobbyShake)
 			{
 				component.shakeAmount = 0.02f;
 				component.shakePeriod = 0.3f;

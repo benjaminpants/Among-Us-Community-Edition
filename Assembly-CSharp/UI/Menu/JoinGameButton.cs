@@ -43,7 +43,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 			AmongUsClient.Instance.GameMode = GameMode;
 			if (GameMode == GameModes.OnlineGame)
 			{
-				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 22023);
+				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 25565);
 				AmongUsClient.Instance.MainMenuScene = "MMOnline";
 				int num = InnerNetClient.GameNameToInt(GameIdText.text);
 				if (num == -1)
@@ -100,7 +100,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 
 	public void SetGameName(string[] gameNameParts)
 	{
-		gameNameText.Text = gameNameParts[0] + " (" + gameNameParts[2] + "/10)";
+		gameNameText.Text = gameNameParts[0] + " (" + gameNameParts[2] + "/20)";
 	}
 
 	public void StartIcon()

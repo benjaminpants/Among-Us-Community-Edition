@@ -17,7 +17,6 @@ public class CreateOptionsPicker : MonoBehaviour
 
 	public void Start()
 	{
-		MapButtons[1].gameObject.SetActive(TempData.IsDo2Enabled);
 		GameOptionsData targetOptions = GetTargetOptions();
 		UpdateImpostorsButtons(targetOptions.NumImpostors);
 		UpdateMaxPlayersButtons(targetOptions);
@@ -55,9 +54,21 @@ public class CreateOptionsPicker : MonoBehaviour
 	public void SetMaxPlayersButtons(int maxPlayers)
 	{
 		GameOptionsData targetOptions = GetTargetOptions();
-		if (maxPlayers >= GameOptionsData.MinPlayers[targetOptions.NumImpostors])
+		bool flag = false;
+		switch (maxPlayers)
 		{
-			targetOptions.MaxPlayers = maxPlayers;
+		case 5:
+			flag = true;
+			break;
+		case 4:
+			flag = false;
+			break;
+		default:
+			return;
+		}
+		if (maxPlayers >= targetOptions.NumImpostors && (!flag || targetOptions.MaxPlayers + 1 <= 20) && (flag || targetOptions.MaxPlayers - 1 >= 4))
+		{
+			targetOptions.MaxPlayers = (flag ? (targetOptions.MaxPlayers + 1) : (targetOptions.MaxPlayers - 1));
 			SetTargetOptions(targetOptions);
 			if (DestroyableSingleton<FindAGameManager>.InstanceExists)
 			{
@@ -67,27 +78,13 @@ public class CreateOptionsPicker : MonoBehaviour
 		}
 	}
 
-	private void UpdateMaxPlayersButtons(GameOptionsData opts)
-	{
-		if ((bool)CrewArea)
-		{
-			CrewArea.SetCrewSize(opts.MaxPlayers, opts.NumImpostors);
-		}
-		for (int i = 0; i < MaxPlayerButtons.Length; i++)
-		{
-			SpriteRenderer spriteRenderer = MaxPlayerButtons[i];
-			spriteRenderer.enabled = spriteRenderer.name == opts.MaxPlayers.ToString();
-			spriteRenderer.GetComponentInChildren<TextRenderer>().Color = ((int.Parse(spriteRenderer.name) < GameOptionsData.MinPlayers[opts.NumImpostors]) ? Palette.DisabledGrey : Color.white);
-		}
-	}
-
 	public void SetImpostorButtons(int numImpostors)
 	{
 		GameOptionsData targetOptions = GetTargetOptions();
 		targetOptions.NumImpostors = numImpostors;
 		SetTargetOptions(targetOptions);
-		SetMaxPlayersButtons(Mathf.Max(targetOptions.MaxPlayers, GameOptionsData.MinPlayers[numImpostors]));
 		UpdateImpostorsButtons(numImpostors);
+		UpdateMaxPlayersButtons(targetOptions);
 	}
 
 	private void UpdateImpostorsButtons(int numImpostors)
@@ -162,6 +159,31 @@ public class CreateOptionsPicker : MonoBehaviour
 		{
 			SpriteRenderer obj = LanguageButtons[i];
 			obj.enabled = obj.name == button.ToString();
+		}
+	}
+
+	private void UpdateMaxPlayersButtons(GameOptionsData opts)
+	{
+		if ((bool)CrewArea)
+		{
+			CrewArea.SetCrewSize(opts.MaxPlayers, opts.NumImpostors);
+		}
+		for (int i = 0; i < MaxPlayerButtons.Length; i++)
+		{
+			SpriteRenderer spriteRenderer = MaxPlayerButtons[i];
+			if (spriteRenderer.name == "5")
+			{
+				spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "+";
+				continue;
+			}
+			if (spriteRenderer.name == "4")
+			{
+				spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "-";
+				continue;
+			}
+			spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "";
+			spriteRenderer.enabled = false;
+			spriteRenderer.GetComponentInChildren<TextRenderer>().Color = Palette.DisabledGrey;
 		}
 	}
 }

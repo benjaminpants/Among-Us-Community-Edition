@@ -29,6 +29,13 @@ public class GameData : InnerNetObject, IDisconnectHandler
 
 	public class PlayerInfo
 	{
+		public enum Role : byte
+		{
+			None,
+			Sheriff,
+			Joker
+		}
+
 		public readonly byte PlayerId;
 
 		public string PlayerName = string.Empty;
@@ -48,6 +55,8 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		public bool IsDead;
 
 		private PlayerControl _object;
+
+		public Role role;
 
 		public PlayerControl Object
 		{
@@ -78,6 +87,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			writer.Write(ColorId);
 			writer.WritePacked(HatId);
 			writer.WritePacked(SkinId);
+			writer.Write((byte)role);
 			byte b = 0;
 			if (Disconnected)
 			{
@@ -102,7 +112,8 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			}
 			else
 			{
-				writer.Write((byte)0);
+				byte value = 0;
+				writer.Write(value);
 			}
 		}
 
@@ -112,10 +123,11 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			ColorId = reader.ReadByte();
 			HatId = reader.ReadPackedUInt32();
 			SkinId = reader.ReadPackedUInt32();
+			role = (Role)reader.ReadByte();
 			byte b = reader.ReadByte();
-			Disconnected = (b & 1) != 0;
-			IsImpostor = (b & 2) != 0;
-			IsDead = (b & 4) != 0;
+			Disconnected = (b & 1) > 0;
+			IsImpostor = (b & 2) > 0;
+			IsDead = (b & 4) > 0;
 			byte b2 = reader.ReadByte();
 			Tasks = new List<TaskInfo>(b2);
 			for (int i = 0; i < b2; i++)
@@ -186,7 +198,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 	public sbyte GetAvailableId()
 	{
 		sbyte i;
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < 20; i++)
 		{
 			if (!AllPlayers.Any((PlayerInfo p) => p.PlayerId == i))
 			{
@@ -340,22 +352,23 @@ public class GameData : InnerNetObject, IDisconnectHandler
 	public void CompleteTask(PlayerControl pc, uint taskId)
 	{
 		TaskInfo taskInfo = GetPlayerById(pc.PlayerId).FindTaskById(taskId);
-		if (taskInfo != null)
-		{
-			if (!taskInfo.Complete)
-			{
-				taskInfo.Complete = true;
-				CompletedTasks++;
-			}
-			else
-			{
-				Debug.LogWarning("Double complete task: " + taskId);
-			}
-		}
-		else
-		{
-			Debug.LogWarning("Couldn't find task: " + taskId);
-		}
+        if (taskInfo != null)
+        {
+            if (!taskInfo.Complete)
+            {
+                taskInfo.Complete = true;
+                CompletedTasks++;
+            }
+            else
+            {
+                Debug.LogWarning("Double complete task: " + taskId);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Couldn't find task: " + taskId);
+        }
+	
 	}
 
 	public void HandleDisconnect(PlayerControl player, DisconnectReasons reason)

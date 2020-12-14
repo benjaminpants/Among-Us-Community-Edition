@@ -6,28 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class DiscordManager : DestroyableSingleton<DiscordManager>
 {
-	private DiscordRpc.RichPresence presence = new DiscordRpc.RichPresence();
+	private DiscordRpc.RichPresence presence;
 
 	public DiscordRpc.DiscordUser joinRequest;
 
 	private DateTime? StartTime;
 
-	private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+	private static readonly DateTime epoch;
+
+	private readonly string[] Gamemodes;
+
+	private readonly string[] GamemodeIcons;
 
 	public void Start()
 	{
 		if (DestroyableSingleton<DiscordManager>.Instance == this)
 		{
 			DiscordRpc.EventHandlers handlers = default(DiscordRpc.EventHandlers);
-			ref DiscordRpc.ErrorCallback errorCallback = ref handlers.errorCallback;
-			errorCallback = (DiscordRpc.ErrorCallback)Delegate.Combine(errorCallback, new DiscordRpc.ErrorCallback(HandleError));
-			ref DiscordRpc.DisconnectedCallback disconnectedCallback = ref handlers.disconnectedCallback;
-			disconnectedCallback = (DiscordRpc.DisconnectedCallback)Delegate.Combine(disconnectedCallback, new DiscordRpc.DisconnectedCallback(HandleError));
-			ref DiscordRpc.JoinCallback joinCallback = ref handlers.joinCallback;
-			joinCallback = (DiscordRpc.JoinCallback)Delegate.Combine(joinCallback, new DiscordRpc.JoinCallback(HandleJoinRequest));
-			ref DiscordRpc.RequestCallback requestCallback = ref handlers.requestCallback;
-			requestCallback = (DiscordRpc.RequestCallback)Delegate.Combine(requestCallback, new DiscordRpc.RequestCallback(HandleAutoJoin));
-			DiscordRpc.Initialize("477175586805252107", ref handlers, autoRegister: true, null);
+			handlers.errorCallback = (DiscordRpc.ErrorCallback)Delegate.Combine(handlers.errorCallback, new DiscordRpc.ErrorCallback(HandleError));
+			handlers.disconnectedCallback = (DiscordRpc.DisconnectedCallback)Delegate.Combine(handlers.disconnectedCallback, new DiscordRpc.DisconnectedCallback(HandleError));
+			handlers.joinCallback = (DiscordRpc.JoinCallback)Delegate.Combine(handlers.joinCallback, new DiscordRpc.JoinCallback(HandleJoinRequest));
+			handlers.requestCallback = (DiscordRpc.RequestCallback)Delegate.Combine(handlers.requestCallback, new DiscordRpc.RequestCallback(HandleAutoJoin));
+			DiscordRpc.Initialize("780630509704708096", ref handlers, autoRegister: true, null);
 			SetInMenus();
 			SceneManager.sceneLoaded += delegate(Scene scene, LoadSceneMode mode)
 			{
@@ -63,7 +63,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		ClearPresence();
 		StartTime = null;
 		presence.state = "In Menus";
-		presence.largeImageKey = "icon";
+		presence.largeImageKey = "icon_menu";
 		DiscordRpc.UpdatePresence(presence);
 	}
 
@@ -74,7 +74,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 			StartTime = DateTime.UtcNow;
 		}
 		presence.state = "In Game";
-		presence.details = "Playing";
+		presence.details = "Playing " + GameOptionsData.Gamemodes[PlayerControl.GameOptions.Gamemode];
 		presence.largeImageKey = "icon";
 		presence.startTimestamp = ToUnixTime(StartTime.Value);
 		DiscordRpc.UpdatePresence(presence);
@@ -84,7 +84,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 	{
 		ClearPresence();
 		presence.state = "In Freeplay";
-		presence.largeImageKey = "icon";
+		presence.largeImageKey = "icon_freeplay";
 		DiscordRpc.UpdatePresence(presence);
 	}
 
@@ -96,7 +96,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		}
 		ClearPresence();
 		presence.state = "In Lobby";
-		presence.largeImageKey = "icon";
+		presence.largeImageKey = "icon_lobby";
 		presence.startTimestamp = ToUnixTime(StartTime.Value);
 		DiscordRpc.UpdatePresence(presence);
 	}
@@ -122,8 +122,8 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		presence.state = "In Lobby";
 		presence.details = "Hosting a game";
 		presence.partySize = numPlayers;
-		presence.partyMax = 10;
-		presence.smallImageKey = "icon";
+		presence.partyMax = 20;
+		presence.smallImageKey = "icon_lobby";
 		presence.largeImageText = "Ask to play!";
 		presence.joinSecret = "join" + text;
 		presence.matchSecret = "match" + text;
@@ -212,5 +212,31 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 	private static long ToUnixTime(DateTime time)
 	{
 		return (long)(time - epoch).TotalSeconds;
+	}
+
+	public DiscordManager()
+	{
+		Gamemodes = new string[5]
+		{
+			"Classic",
+			"Zombies",
+			"Murder",
+			"Hot Potato",
+			"Classic+Joker"
+		};
+		GamemodeIcons = new string[5]
+		{
+			"icon",
+			"icon_zombie",
+			"icon_murder",
+			"icon_potato",
+			"icon"
+		};
+		presence = new DiscordRpc.RichPresence();
+	}
+
+	static DiscordManager()
+	{
+		epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 	}
 }

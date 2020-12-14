@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.CoreScripts;
 using Hazel;
 using InnerNet;
+using MoonSharp.Interpreter;
 using PowerTools;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class ShipStatus : InnerNetObject
 {
 	public class SystemTypeComparer : IEqualityComparer<SystemTypes>
 	{
-		public static readonly SystemTypeComparer Instance = new SystemTypeComparer();
+		public static readonly SystemTypeComparer Instance;
 
 		public bool Equals(SystemTypes x, SystemTypes y)
 		{
@@ -21,6 +21,11 @@ public class ShipStatus : InnerNetObject
 		public int GetHashCode(SystemTypes obj)
 		{
 			return (int)obj;
+		}
+
+		static SystemTypeComparer()
+		{
+			Instance = new SystemTypeComparer();
 		}
 	}
 
@@ -211,16 +216,19 @@ public class ShipStatus : InnerNetObject
 
 	public void StartShields()
 	{
-		for (int i = 0; i < ShieldsImages.Length; i++)
+		if (PlayerControl.GameOptions.Visuals)
 		{
-			ShieldsImages[i].Play(ShieldsActive);
+			for (int i = 0; i < ShieldsImages.Length; i++)
+			{
+				ShieldsImages[i].Play(ShieldsActive);
+			}
+			ShieldBorder.sprite = ShieldBorderOn;
 		}
-		ShieldBorder.sprite = ShieldBorderOn;
 	}
 
 	public void FireWeapon()
 	{
-		if (!WeaponsImage.IsPlaying())
+		if (PlayerControl.GameOptions.Visuals && !WeaponsImage.IsPlaying())
 		{
 			WeaponsImage.Play(WeaponFires[WeaponFireIdx]);
 			WeaponFireIdx = (WeaponFireIdx + 1) % 2;
@@ -234,7 +242,7 @@ public class ShipStatus : InnerNetObject
 
 	public void OpenHatch()
 	{
-		if (!Hatch.IsPlaying())
+		if (PlayerControl.GameOptions.Visuals && !Hatch.IsPlaying())
 		{
 			Hatch.Play(HatchActive);
 			HatchParticles.Play();
@@ -255,21 +263,47 @@ public class ShipStatus : InnerNetObject
 
 	internal void SelectInfected()
 	{
-		List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
-			where !pcd.Disconnected
-			select pcd into pc
-			where !pc.IsDead
-			select pc).ToList();
-		list.Shuffle();
-		GameData.PlayerInfo[] array = list.Take(PlayerControl.GameOptions.NumImpostors).ToArray();
-		foreach (GameData.PlayerInfo playerInfo in array)
+		if (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode])
 		{
-			if (playerInfo != null)
+			List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
+				where !pcd.Disconnected
+				select pcd into pc
+				where !pc.IsDead
+				select pc).ToList();
+			List<CE_PlayerInfoLua> list2 = new List<CE_PlayerInfoLua>();
+			foreach (GameData.PlayerInfo item in list)
 			{
-				DestroyableSingleton<Telemetry>.Instance.SelectInfected(playerInfo.ColorId, playerInfo.HatId);
+				list2.Add(new CE_PlayerInfoLua(item));
 			}
+			List<GameData.PlayerInfo> list3 = new List<GameData.PlayerInfo>();
+			foreach (DynValue value in CE_LuaLoader.GetGamemodeResult("DecideImpostors", PlayerControl.GameOptions.NumImpostors, list2).Table.Values)
+			{
+				CE_PlayerInfoLua cE_PlayerInfoLua = (CE_PlayerInfoLua)value.UserData.Object;
+				list3.Add(cE_PlayerInfoLua.refplayer);
+			}
+			PlayerControl.LocalPlayer.RpcSetInfected(list3.ToArray());
 		}
-		PlayerControl.LocalPlayer.RpcSetInfected(array);
+		else
+		{
+			if (PlayerControl.GameOptions.Gamemode == 2)
+			{
+				SelectSherrif();
+			}
+			if (PlayerControl.GameOptions.Gamemode == 4)
+			{
+				SelectJoker();
+			}
+			List<GameData.PlayerInfo> list4 = (from pcd in GameData.Instance.AllPlayers
+				where !pcd.Disconnected
+				select pcd into pc
+				where !pc.IsDead
+				select pc into pcx
+				where pcx.role == GameData.PlayerInfo.Role.None
+				select pcx).ToList();
+			list4.Shuffle();
+			GameData.PlayerInfo[] infected = list4.Take(PlayerControl.GameOptions.NumImpostors).ToArray();
+			PlayerControl.LocalPlayer.RpcSetInfected(infected);
+		}
 	}
 
 	private void AssignTaskIndexes()
@@ -497,21 +531,41 @@ public class ShipStatus : InnerNetObject
 		{
 			return;
 		}
+		bool currentGMLua = CE_LuaLoader.CurrentGMLua;
+		bool flag = false;
+		bool flag2 = false;
 		LifeSuppSystemType lifeSuppSystemType = (LifeSuppSystemType)Systems[SystemTypes.LifeSupp];
 		if (lifeSuppSystemType.Countdown < 0f)
 		{
-			EndGameForSabotage();
+			if (!currentGMLua)
+			{
+				EndGameForSabotage();
+			}
+			else
+			{
+				flag = true;
+			}
 			lifeSuppSystemType.Countdown = 10000f;
 		}
 		ReactorSystemType reactorSystemType = (ReactorSystemType)Systems[SystemTypes.Reactor];
 		if (reactorSystemType.Countdown < 0f)
 		{
-			EndGameForSabotage();
+			if (!currentGMLua)
+			{
+				EndGameForSabotage();
+			}
+			else
+			{
+				flag = true;
+			}
 			reactorSystemType.Countdown = 10000f;
 		}
 		int num = 0;
 		int num2 = 0;
 		int num3 = 0;
+        List<CE_PlayerInfoLua> imps = new List<CE_PlayerInfoLua>();
+        List<CE_PlayerInfoLua> crew = new List<CE_PlayerInfoLua>();
+		List<CE_PlayerInfoLua> all = new List<CE_PlayerInfoLua>();
 		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
 		{
 			GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
@@ -521,21 +575,69 @@ public class ShipStatus : InnerNetObject
 			}
 			if (playerInfo.IsImpostor)
 			{
-				num3++;
+				num3++; //this variable is literally never used so
 			}
 			if (!playerInfo.IsDead)
 			{
 				if (playerInfo.IsImpostor)
 				{
 					num2++;
+                    imps.Add(new CE_PlayerInfoLua(playerInfo));
+					all.Add(new CE_PlayerInfoLua(playerInfo));
 				}
 				else
 				{
-					num++;
+                    num++;
+                    crew.Add(new CE_PlayerInfoLua(playerInfo));
+					all.Add(new CE_PlayerInfoLua(playerInfo));
 				}
 			}
 		}
-		if (num2 <= 0 && (!DestroyableSingleton<TutorialManager>.InstanceExists || num3 > 0))
+		if (currentGMLua)
+		{
+			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
+			{
+				flag2 = true;
+			}
+			DynValue output = CE_LuaLoader.GetGamemodeResult("CheckWinCondition", imps, crew, flag, flag2);
+			if (output.Type == DataType.String)
+			{
+				string winnerstring = output.String;
+				if (winnerstring == "impostors")
+				{
+					base.enabled = false;
+					RpcEndGame(GameOverReason.ImpostorByVote, !SaveManager.BoughtNoAds);
+				}
+				else if (winnerstring == "crewmates")
+				{
+					base.enabled = false;
+					RpcEndGame(GameOverReason.HumansByVote, !SaveManager.BoughtNoAds);
+				}
+			}
+			else if (output.Type == DataType.Table) //itsa custom win condition!!!
+            {
+				Debug.Log("wintable");
+                Table winnertable = output.Table;
+				Debug.Log("actualwintable");
+                Table actualwinnertable = winnertable.Get(1).Table;
+				Debug.Log("get winnerinfo");
+				List<GameData.PlayerInfo> winnerinfo = new List<GameData.PlayerInfo>();
+                foreach (DynValue dyn in actualwinnertable.Values)
+                {
+                    CE_PlayerInfoLua plyinfo = (CE_PlayerInfoLua)dyn.UserData.Object;
+                    winnerinfo.Add(plyinfo.refplayer);
+                }
+				Debug.Log("send");
+                RpcCustomEndGame(winnerinfo.ToArray(), winnertable.Get(2).String);
+				Debug.Log("complete");
+
+			}
+			else
+            {
+				Debug.LogError("unknown datatype: " + Enum.GetName(typeof(DataType), output.Type));
+			}
+		}
+		else if (num2 <= 0 && (!DestroyableSingleton<TutorialManager>.InstanceExists || num3 > 0))
 		{
 			if (!DestroyableSingleton<TutorialManager>.InstanceExists)
 			{
@@ -548,36 +650,36 @@ public class ShipStatus : InnerNetObject
 				ReviveEveryone();
 			}
 		}
-		else if (num <= num2)
+		else if (num > num2)
 		{
 			if (!DestroyableSingleton<TutorialManager>.InstanceExists)
 			{
-				base.enabled = false;
-				RpcEndGame(GameData.Instance.LastDeathReason switch
+				if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
 				{
-					DeathReason.Kill => GameOverReason.ImpostorByKill, 
-					DeathReason.Exile => GameOverReason.ImpostorByVote, 
-					_ => GameOverReason.HumansDisconnect, 
-				}, !SaveManager.BoughtNoAds);
+					base.enabled = false;
+					RpcEndGame(GameOverReason.HumansByTask, !SaveManager.BoughtNoAds);
+				}
 			}
-			else
+			else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete))
 			{
-				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Impostor would have just won because The Crew can no longer win. For free play, we revive everyone instead.");
-				ReviveEveryone();
+				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because the task bar is full. For free play, we issue new tasks instead.");
+				Begin();
 			}
 		}
 		else if (!DestroyableSingleton<TutorialManager>.InstanceExists)
 		{
-			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
+			base.enabled = false;
+			RpcEndGame(GameData.Instance.LastDeathReason switch
 			{
-				base.enabled = false;
-				RpcEndGame(GameOverReason.HumansByTask, !SaveManager.BoughtNoAds);
-			}
+				DeathReason.Kill => GameOverReason.ImpostorByKill, 
+				DeathReason.Exile => GameOverReason.ImpostorByVote, 
+				_ => GameOverReason.HumansDisconnect, 
+			}, !SaveManager.BoughtNoAds);
 		}
-		else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete))
+		else
 		{
-			DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because the task bar is full. For free play, we issue new tasks instead.");
-			Begin();
+			DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Impostor would have just won because The Crew can no longer win. For free play, we revive everyone instead.");
+			ReviveEveryone();
 		}
 	}
 
@@ -633,13 +735,30 @@ public class ShipStatus : InnerNetObject
 		return false;
 	}
 
-	private static void RpcEndGame(GameOverReason endReason, bool showAd)
+    private static void RpcEndGame(GameOverReason endReason, bool showAd)
+    {
+        MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
+        messageWriter.Write((byte)endReason);
+        messageWriter.Write(showAd);
+        AmongUsClient.Instance.FinishEndGame(messageWriter);
+    }
+
+	private static void RpcCustomEndGame(GameData.PlayerInfo[] plrs, string song)
 	{
-		MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
-		messageWriter.Write((byte)endReason);
-		messageWriter.Write(showAd);
+		MessageWriter messageWriter = AmongUsClient.Instance.StartCustomEndGame();
+		messageWriter.WritePacked(plrs.Length);
+		for (int i = 0; i < plrs.Length; i++)
+		{
+			messageWriter.Write(plrs[i].PlayerId);
+		}
+		messageWriter.Write(song); //write the song's filename relative to CE_Assets/Audio/CustomWins
 		AmongUsClient.Instance.FinishEndGame(messageWriter);
 	}
+
+	public static void RpcCustomEndGamePublic(GameData.PlayerInfo[] plrs, string song)
+    {
+		RpcCustomEndGame(plrs,song);
+    }
 
 	private static void ReviveEveryone()
 	{
@@ -711,5 +830,61 @@ public class ShipStatus : InnerNetObject
 			RepairSystem((SystemTypes)reader.ReadByte(), reader.ReadNetObject<PlayerControl>(), reader.ReadByte());
 			break;
 		}
+	}
+
+	internal void SelectSherrif()
+	{
+		List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
+			where !pcd.Disconnected
+			select pcd into pc
+			where !pc.IsDead
+			select pc into pci
+			where !pci.IsImpostor
+			select pci).ToList();
+		list.Shuffle();
+		GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[1]
+		{
+			GameData.PlayerInfo.Role.Sheriff
+		};
+		GameData.PlayerInfo[] persons = list.Take(1).ToArray();
+		PlayerControl.LocalPlayer.RpcSetRole(persons, roles);
+	}
+
+	internal void SelectJoker()
+	{
+		List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
+			where !pcd.Disconnected
+			select pcd into pc
+			where !pc.IsDead
+			select pc into pci
+			where !pci.IsImpostor
+			select pci).ToList();
+		list.Shuffle();
+		GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[1]
+		{
+			GameData.PlayerInfo.Role.Joker
+		};
+		GameData.PlayerInfo[] persons = list.Take(1).ToArray();
+		PlayerControl.LocalPlayer.RpcSetRole(persons, roles);
+	}
+
+	public void JokerWin()
+	{
+		if ((bool)GameData.Instance)
+		{
+			RpcEndGame(GameOverReason.JokerEjected, showAd: false);
+		}
+	}
+
+	private static void RpcCustomVictory(GameData.PlayerInfo[] winners, string song)
+	{
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(Instance.NetId, 14);
+		messageWriter.WritePacked(winners.Length);
+		for (int i = 0; i < winners.Length; i++)
+		{
+			messageWriter.Write(winners[i].PlayerId);
+		}
+		messageWriter.Write(song);
+		messageWriter.EndMessage();
 	}
 }
