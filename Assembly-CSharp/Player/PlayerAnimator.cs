@@ -43,17 +43,20 @@ public class PlayerAnimator : MonoBehaviour
 
 	public void LateUpdate()
 	{
+
+		Animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
+
 		if (velocity.sqrMagnitude >= 0.1f)
 		{
 			if (Animator.GetCurrentAnimation() != RunAnim)
 			{
-				Animator.Play(RunAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+				Animator.Play(RunAnim, 1f);
 			}
 			rend.flipX = velocity.x < 0f;
 		}
 		else if (Animator.GetCurrentAnimation() == RunAnim)
 		{
-			Animator.Play(IdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			Animator.Play(IdleAnim, 1f);
 		}
 	}
 

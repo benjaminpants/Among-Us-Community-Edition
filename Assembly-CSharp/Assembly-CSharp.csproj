@@ -8,6 +8,10 @@
     <LangVersion>8.0</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath></OutputPath>
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apple">
       <HintPath>..\Dependencies\Apple.dll</HintPath>

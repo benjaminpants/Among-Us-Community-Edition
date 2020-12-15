@@ -34,7 +34,7 @@ public class SkinLayer : MonoBehaviour
 		}
 		if (!animator.IsPlaying(skin.RunAnim))
 		{
-			animator.Play(skin.RunAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			animator.Play(skin.RunAnim, 1f);
 		}
 		Update();
 	}
@@ -82,7 +82,7 @@ public class SkinLayer : MonoBehaviour
 		}
 		if (!animator.IsPlaying(skin.IdleAnim))
 		{
-			animator.Play(skin.IdleAnim, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+			animator.Play(skin.IdleAnim, 1f);
 		}
 		Update();
 	}
@@ -110,27 +110,14 @@ public class SkinLayer : MonoBehaviour
 
 	public void LateUpdate()
 	{
+		animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
+
 		if ((bool)skin && skin.isCustom)
 		{
-			CustomDrawSkin();
+			var sprite = CE_WardrobeLoader.GetSkin(layer.sprite.name, skin);
+			if (sprite) layer.sprite = sprite;
 		}
 	}
 
-	private void CustomDrawSkin()
-	{
-		string name = layer.sprite.name;
-		string key = name.Substring(name.IndexOf("_") + 1);
-		if (skin.FrameList.ContainsKey(key))
-		{
-			CE_CustomSkinDefinition.CustomSkinFrame customSkinFrame = skin.FrameList[key];
-			float x = customSkinFrame.Position.x;
-			float y = customSkinFrame.Position.y;
-			float x2 = customSkinFrame.Size.x;
-			float y2 = customSkinFrame.Size.y;
-			float x3 = customSkinFrame.Offset.x;
-			float y3 = customSkinFrame.Offset.y;
-			Texture2D texture = customSkinFrame.Texture;
-			layer.sprite = Sprite.Create(texture, new Rect(x, y, x2, y2), new Vector2(x3, y3));
-		}
-	}
+
 }

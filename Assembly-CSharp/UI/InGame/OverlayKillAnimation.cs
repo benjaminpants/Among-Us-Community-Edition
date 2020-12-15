@@ -40,22 +40,28 @@ public class OverlayKillAnimation : MonoBehaviour
 				{
 					switch (KillType)
 					{
-					case KillAnimType.Stab:
-					case KillAnimType.Neck:
-						PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
-						break;
-					case KillAnimType.Tongue:
-					{
-						SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-						renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor);
-						break;
-					}
-					case KillAnimType.Shoot:
-					{
-						SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-						renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor);
-						break;
-					}
+						case KillAnimType.Stab:
+						{
+							PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+							break;
+						}
+						case KillAnimType.Neck:
+						{
+							PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+							break;
+						}
+						case KillAnimType.Tongue:
+						{
+							SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
+							renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, 1f);
+							break;
+						}
+						case KillAnimType.Shoot:
+						{
+							SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
+							renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, 1f);
+							break;
+						}
 					}
 				}
 			}
@@ -79,16 +85,16 @@ public class OverlayKillAnimation : MonoBehaviour
 				switch (KillType)
 				{
 				case KillAnimType.Stab:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillStabVictim);
+					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillStabVictim, 1f);
 					break;
 				case KillAnimType.Tongue:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillTongueVictim);
+					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillTongueVictim, 1f);
 					break;
 				case KillAnimType.Shoot:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillShootVictim);
+					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillShootVictim, 1f);
 					break;
 				case KillAnimType.Neck:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillNeckVictim);
+					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillNeckVictim, 1f);
 					break;
 				}
 			}
@@ -151,10 +157,13 @@ public class OverlayKillAnimation : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (!LastSkinData_Killer || !LastSkinData_Victim)
+		SpriteAnim[] anims = GetComponentsInChildren<SpriteAnim>();
+		for (int i = 0; i < anims.Length; i++)
 		{
-			return;
+			anims[i].Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
 		}
+
+		if (!LastSkinData_Killer || !LastSkinData_Victim) return;
 		if (LastSkinData_Killer.isCustom)
 		{
 			for (int i = 0; i < killerParts.Length; i++)
@@ -162,21 +171,25 @@ public class OverlayKillAnimation : MonoBehaviour
 				Renderer renderer = killerParts[i];
 				if (renderer.name.StartsWith("Skin"))
 				{
-					((SpriteRenderer)renderer).sprite = null;
+					CE_WardrobeLoader.LogPivot(renderer);
+					var sprite = CE_WardrobeLoader.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Killer);
+					if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
 				}
 			}
 		}
-		if (!LastSkinData_Victim.isCustom)
+		if (LastSkinData_Victim.isCustom)
 		{
-			return;
-		}
-		for (int j = 0; j < victimParts.Length; j++)
-		{
-			Renderer renderer2 = victimParts[j];
-			if (renderer2.name.StartsWith("Skin"))
+			for (int j = 0; j < victimParts.Length; j++)
 			{
-				((SpriteRenderer)renderer2).sprite = null;
+				Renderer renderer = victimParts[j];
+				if (renderer.name.StartsWith("Skin"))
+				{
+					CE_WardrobeLoader.LogPivot(renderer);
+					var sprite = CE_WardrobeLoader.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Victim);
+					if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
+				}
 			}
+
 		}
 	}
 }

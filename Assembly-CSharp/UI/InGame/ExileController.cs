@@ -148,7 +148,7 @@ public class ExileController : MonoBehaviour
 		string key = "ejected";
 		if (isCustom && skinById.FrameList.ContainsKey(key))
 		{
-			CE_CustomSkinDefinition.CustomSkinFrame customSkinFrame = skinById.FrameList[key];
+			CE_SpriteFrame customSkinFrame = skinById.FrameList[key];
 			float x = customSkinFrame.Position.x;
 			float y = customSkinFrame.Position.y;
 			float x2 = customSkinFrame.Size.x;

@@ -433,7 +433,7 @@ public class PlayerControl : InnerNetObject
 			if (on && !Data.IsDead)
 			{
 				spriteAnim.gameObject.SetActive(value: true);
-				spriteAnim.Play(null, CE_WardrobeLoader.AnimationDebugMode ? CE_WardrobeLoader.TestPlaybackSpeed : 1f);
+				spriteAnim.Play(null, 1f);
 				ScannersImages[i].flipX = !myRend.flipX;
 				continue;
 			}

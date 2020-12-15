@@ -269,7 +269,7 @@ public class CE_CommonUI
 			if (GUILayout.Button("-", UpDownSettingButtons()))
 			{
 				ClickSoundTrigger();
-				if (value != min)
+				if (value > min)
 				{
 					value -= incrementAmount;
 					if (gameSettings)
@@ -277,13 +277,14 @@ public class CE_CommonUI
 						UpdateSettings();
 					}
 				}
+				else value = min;
 			}
 			HoverSoundTrigger();
 			GUILayout.Label((decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
 			if (GUILayout.Button("+", UpDownSettingButtons()))
 			{
 				ClickSoundTrigger();
-				if (value != max)
+				if (value < max)
 				{
 					value += incrementAmount;
 					if (gameSettings)
@@ -291,6 +292,7 @@ public class CE_CommonUI
 						UpdateSettings();
 					}
 				}
+				else value = max;
 			}
 			HoverSoundTrigger();
 			return value;

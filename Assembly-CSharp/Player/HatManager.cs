@@ -79,8 +79,8 @@ public class HatManager : DestroyableSingleton<HatManager>
 		AllSkins.AddRange(CE_WardrobeLoader.LoadSkins(GetCustomRefrence()));
 		PlayerControl.LocalPlayer.SetSkin(skinId);
 		PlayerControl.LocalPlayer.SetHat(hatId);
-		_ = CE_WardrobeLoader.TestPlaybackMode;
-		CE_WardrobeLoader.TestPlaybackResetAnimations = true;
+		_ = CE_WardrobeLoader.AnimationEditor_Mode;
+		CE_WardrobeLoader.AnimationEditor_Reset = true;
 	}
 
 	private SkinData GetCustomRefrence()

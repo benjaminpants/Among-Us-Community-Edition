@@ -6,104 +6,30 @@ using UnityEngine;
 
 public class CE_WardrobeLoader
 {
-	public static float TestPlaybackSpeed;
-
-	public static int TestPlaybackMode;
-
-	public const int TestPlaybackModeMax = 5;
-
-	public static bool TestPlaybackResetAnimations;
-
-	public static bool TestPlaybackPause;
-
-	public static float TestPlaybackPausePosition;
-
-	public static float TestPlaybackPausePositionSkin;
-
-	public static bool AnimationTestingActive;
-
-	public static float TestPlaybackCurrentPosition;
-
-	public static float TestPlaybackCurrentPositionSkin;
-
-	public static float HatPivot;
-
-	public static float[] HatPivotPoints;
-
-	public static bool AnimationDebugMode
+	#region Common Loader Functions
+	public static FileInfo[] GetJSONFiles(string Path)
 	{
-		get
-		{
-			if (SaveManager.EnableAnimationTestingMode)
-			{
-				return AnimationTestingActive;
-			}
-			return false;
-		}
+		return new DirectoryInfo(Path).GetFiles("*.json");
 	}
 
-	public static List<HatBehaviour> LoadHats()
-	{
-		List<HatBehaviour> list = new List<HatBehaviour>();
-		string text = Path.Combine(Directory.GetCurrentDirectory(), "Hats");
-		List<CE_CustomHatDefinition> list2 = new List<CE_CustomHatDefinition>();
-		FileInfo[] files = new DirectoryInfo(text).GetFiles("*.json");
-		for (int i = 0; i < files.Length; i++)
-		{
-			Debug.Log(files[i].FullName);
-			using StreamReader reader = File.OpenText(files[i].FullName);
-			try
-			{
-				CE_CustomHatDefinition item = (CE_CustomHatDefinition)new JsonSerializer().Deserialize(reader, typeof(CE_CustomHatDefinition));
-				list2.Add(item);
-			}
-			catch (Exception ex)
-			{
-				Debug.Log(ex.Message);
-			}
-		}
-		foreach (CE_CustomHatDefinition item2 in list2)
-		{
-			try
-			{
-				HatBehaviour hatBehaviour = new HatBehaviour();
-				hatBehaviour.InFront = item2.inFront;
-				hatBehaviour.ProductId = item2.ID;
-				hatBehaviour.IsCustom = true;
-				Texture2D texture2D = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(text, item2.NormalImg));
-				Texture2D texture2D2 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(text, item2.FloorImg));
-				Texture2D texture2D3 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(text, item2.PreviewImg));
-				if (item2.UsePointFiltering)
-				{
-					texture2D.filterMode = FilterMode.Point;
-					texture2D2.filterMode = FilterMode.Point;
-					if ((bool)texture2D3)
-					{
-						texture2D3.filterMode = FilterMode.Point;
-					}
-				}
-				hatBehaviour.MainImage = Sprite.Create(texture2D, new Rect(new Vector2(item2.NormalPosX, item2.NormalPosY), new Vector2(item2.NormalWidth, item2.NormalHeight)), new Vector2(item2.NormalPivotX, item2.NormalPivotY));
-				hatBehaviour.FloorImage = Sprite.Create(texture2D2, new Rect(new Vector2(item2.FloorPosX, item2.FloorPosY), new Vector2(item2.FloorWidth, item2.FloorHeight)), new Vector2(item2.FloorPivotX, item2.FloorPivotY));
-				if ((bool)texture2D3)
-				{
-					hatBehaviour.PreviewImage = Sprite.Create(texture2D3, new Rect(new Vector2(item2.PreviewPosX, item2.PreviewPosY), new Vector2(item2.PreviewWidth, item2.PreviewHeight)), new Vector2(item2.PreviewPivotX, item2.PreviewPivotY));
-				}
-				list.Add(hatBehaviour);
-			}
-			catch (Exception ex2)
-			{
-				Debug.Log(ex2.Message);
-			}
-		}
-		return list;
-	}
+	#endregion
 
-	public static List<SkinData> LoadSkins(SkinData BaseSkin)
+	#region Custom Skin Loader
+
+	public static CE_CustomSkinDefinition UpdateSkin(string fileName, CE_CustomSkinDefinition skinDefinition)
 	{
-		List<SkinData> list = new List<SkinData>();
-		string text = Path.Combine(Directory.GetCurrentDirectory(), "Skins");
-		List<CE_CustomSkinDefinition> list2 = new List<CE_CustomSkinDefinition>();
-		FileInfo[] files = new DirectoryInfo(text).GetFiles("*.json");
+		//For Updating Skins Only
+		foreach (var entry in skinDefinition.FrameList)
+		{
+			var offset = GetPixelPivot(entry.Size.x, entry.Size.y, entry.Offset.x, entry.Offset.y);
+			entry.Offset = new Point(offset.x, offset.y);
+		}
+		File.WriteAllText(fileName + ".new", JsonConvert.SerializeObject(skinDefinition, Formatting.Indented));
+		return skinDefinition;
+	}
+	public static List<CE_CustomSkinDefinition> GetSkinDefinitions(FileInfo[] files)
+	{
+		List<CE_CustomSkinDefinition> DefinitionsList = new List<CE_CustomSkinDefinition>();
 		for (int i = 0; i < files.Length; i++)
 		{
 			Debug.Log(files[i].FullName);
@@ -111,15 +37,20 @@ public class CE_WardrobeLoader
 			try
 			{
 				CE_CustomSkinDefinition item = (CE_CustomSkinDefinition)new JsonSerializer().Deserialize(reader, typeof(CE_CustomSkinDefinition));
-				list2.Add(item);
+				DefinitionsList.Add(item);
 			}
 			catch (Exception ex)
 			{
 				Debug.Log(ex.Message);
 			}
 		}
+		return DefinitionsList;
+	}
+	public static List<SkinData> GetSkinData(List<CE_CustomSkinDefinition> Definitions, string RootPath, SkinData BaseSkin)
+	{
+		List<SkinData> DataList = new List<SkinData>();
 		int num = 8;
-		foreach (CE_CustomSkinDefinition item2 in list2)
+		foreach (CE_CustomSkinDefinition item2 in Definitions)
 		{
 			try
 			{
@@ -141,43 +72,262 @@ public class CE_WardrobeLoader
 				skinData.KillStabVictim = BaseSkin.KillStabVictim;
 				skinData.KillTongueImpostor = BaseSkin.KillTongueImpostor;
 				skinData.KillTongueVictim = BaseSkin.KillTongueVictim;
-				foreach (CE_CustomSkinDefinition.CustomSkinFrame frame in item2.FrameList)
+				foreach (CE_SpriteFrame frame in item2.FrameList)
 				{
-					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(text, frame.SpritePath));
+					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, frame.SpritePath));
 					skinData.FrameList.Add(frame.Name, frame);
 				}
 				if (skinData.FrameList.ContainsKey("Display"))
 				{
-					CE_CustomSkinDefinition.CustomSkinFrame customSkinFrame = skinData.FrameList["Display"];
+					CE_SpriteFrame customSkinFrame = skinData.FrameList["Display"];
 					float x = customSkinFrame.Position.x;
 					float y = customSkinFrame.Position.y;
-					float x2 = customSkinFrame.Size.x;
-					float y2 = customSkinFrame.Size.y;
-					float x3 = customSkinFrame.Offset.x;
-					float y3 = customSkinFrame.Offset.y;
+					float width = customSkinFrame.Size.x;
+					float height = customSkinFrame.Size.y;
+					float offset_x = customSkinFrame.Offset.x;
+					float offset_y = customSkinFrame.Offset.y;
 					Texture2D texture = customSkinFrame.Texture;
-					skinData.IdleFrame = Sprite.Create(texture, new Rect(x, y, x2, y2), new Vector2(x3, y3));
+
+					var offset = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
+					var pivot = new Vector2(offset.x, offset_y);
+
+					skinData.IdleFrame = Sprite.Create(texture, new Rect(x, y, width, height), pivot);
 				}
 				num++;
-				list.Add(skinData);
+				DataList.Add(skinData);
 			}
 			catch (Exception ex2)
 			{
 				Debug.Log(ex2.Message);
 			}
 		}
-		return list;
+		return DataList;
 	}
+	public static List<SkinData> LoadSkins(SkinData BaseSkin)
+	{
+		string Directory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Skins");
+		FileInfo[] SkinFiles = GetJSONFiles(Directory);
+		List<CE_CustomSkinDefinition> DefinitionsList = GetSkinDefinitions(SkinFiles);
+		return GetSkinData(DefinitionsList, Directory, BaseSkin);
+	}
+
+	#endregion
+
+	#region Custom Hat Loader
+
+	public static List<CE_CustomHatDefinition> GetHatDefinitions(FileInfo[] files)
+	{
+		List<CE_CustomHatDefinition> DefinitionsList = new List<CE_CustomHatDefinition>();
+		for (int i = 0; i < files.Length; i++)
+		{
+			Debug.Log(files[i].FullName);
+			using StreamReader reader = File.OpenText(files[i].FullName);
+			try
+			{
+				CE_CustomHatDefinition item = (CE_CustomHatDefinition)new JsonSerializer().Deserialize(reader, typeof(CE_CustomHatDefinition));
+				DefinitionsList.Add(item);
+			}
+			catch (Exception ex)
+			{
+				Debug.Log(ex.Message);
+			}
+		}
+		return DefinitionsList;
+	}
+	public static List<HatBehaviour> GetHatBehaviours(List<CE_CustomHatDefinition> Definitions, string RootPath)
+	{
+		List<HatBehaviour> BehaviorsList = new List<HatBehaviour>();
+		foreach (CE_CustomHatDefinition item2 in Definitions)
+		{
+			try
+			{
+				HatBehaviour hatBehaviour = new HatBehaviour();
+				hatBehaviour.InFront = item2.inFront;
+				hatBehaviour.ProductId = item2.ID;
+				hatBehaviour.IsCustom = true;
+				Texture2D texture2D = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.NormalImg));
+				Texture2D texture2D2 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.FloorImg));
+				Texture2D texture2D3 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.PreviewImg));
+				if (item2.UsePointFiltering)
+				{
+					texture2D.filterMode = FilterMode.Point;
+					texture2D2.filterMode = FilterMode.Point;
+					if ((bool)texture2D3)
+					{
+						texture2D3.filterMode = FilterMode.Point;
+					}
+				}
+				hatBehaviour.MainImage = Sprite.Create(texture2D, new Rect(new Vector2(item2.NormalPosX, item2.NormalPosY), new Vector2(item2.NormalWidth, item2.NormalHeight)), new Vector2(item2.NormalPivotX, item2.NormalPivotY));
+				hatBehaviour.FloorImage = Sprite.Create(texture2D2, new Rect(new Vector2(item2.FloorPosX, item2.FloorPosY), new Vector2(item2.FloorWidth, item2.FloorHeight)), new Vector2(item2.FloorPivotX, item2.FloorPivotY));
+				if ((bool)texture2D3)
+				{
+					hatBehaviour.PreviewImage = Sprite.Create(texture2D3, new Rect(new Vector2(item2.PreviewPosX, item2.PreviewPosY), new Vector2(item2.PreviewWidth, item2.PreviewHeight)), new Vector2(item2.PreviewPivotX, item2.PreviewPivotY));
+				}
+				BehaviorsList.Add(hatBehaviour);
+			}
+			catch (Exception ex2)
+			{
+				Debug.Log(ex2.Message);
+			}
+		}
+		return BehaviorsList;
+	}
+	public static List<HatBehaviour> LoadHats()
+	{
+		string Directory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Hats");
+		FileInfo[] HatFiles = GetJSONFiles(Directory);
+		List<CE_CustomHatDefinition> DefinitionsList = GetHatDefinitions(HatFiles);
+		return GetHatBehaviours(DefinitionsList, Directory);
+	}
+
+	#endregion
+
+	#region Animation Debug Stuff
+
+	public static void SetCurrentFramePivot(float x, float y)
+	{
+		SkinData skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(PlayerControl.LocalPlayer.Data.SkinId);
+		int index = DestroyableSingleton<HatManager>.Instance.AllSkins.IndexOf(skin);
+		if (skin.FrameList.ContainsKey(AnimationEditor_LastFrame))
+		{
+			float new_x = skin.FrameList[AnimationEditor_LastFrame].Offset.x + x;
+			float new_y = skin.FrameList[AnimationEditor_LastFrame].Offset.y + y;
+			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+		}
+		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
+	}
+
+	public const int AnimationEditor_ModeMax = 5;
+	public static float AnimationEditor_CurrentSpeed
+    {
+		get
+        {
+			if (AnimationEditor_Pause)
+			{
+				return 0f;
+			}
+			else
+			{
+				return (AnimationEditor_Enabled ? AnimationEditor_Speed : 1f);
+			}
+        }
+    }
+	public static float AnimationEditor_LastPivotX { get; set; }
+	public static float AnimationEditor_LastPivotY { get; set; }
+	public static bool AnimationEditor_Active { get; set; } = false;
+	public static float AnimationEditor_Speed { get; set; } = 1;
+	public static int AnimationEditor_Mode { get; set; } = 0;
+	public static bool AnimationEditor_Pause { get; set; } = false;
+	public static bool AnimationEditor_Reset { get; set; } = false;
+	public static string AnimationEditor_PauseAt { get; set; } = string.Empty;
+	public static bool AnimationEditor_Enabled
+	{
+		get
+		{
+			if (SaveManager.EnableAnimationTestingMode)
+			{
+				return AnimationEditor_Active;
+			}
+			return false;
+		}
+	}
+	public static string AnimationEditor_LastFrame { get; set; }
+	public static void LogPivot(Renderer renderer)
+	{
+		Sprite sprite = null;
+		if (((SpriteRenderer)renderer) != null) sprite = ((SpriteRenderer)renderer).sprite;
+		else if (renderer.GetComponent<SpriteRenderer>() != null) sprite = renderer.GetComponent<SpriteRenderer>().sprite;
+		if (sprite != null)
+		{
+			var pivot = GetPixelOffsetFromCenter(sprite);
+			string contents = string.Format("{2}: {0},{1}", pivot.x, pivot.y, sprite.name);
+			Debug.Log(contents);
+			System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Log.txt"), contents + "\r\n");
+		}
+	}
+
+	#endregion
+
+	#region Skin Rendering Methods
+
+	public static Vector2 GetPixelOffsetFromCenter(float width, float height, float x, float y)
+	{
+		Vector2 pixel_pivot = new Vector2(x * width - (width / 2), y * height - (height / 2));
+		return pixel_pivot;
+	}
+	public static Vector2 GetPixelOffsetFromCenter(Sprite sprite)
+	{
+		float x = -sprite.bounds.center.x / sprite.bounds.extents.x / 2 + 0.5f;
+		float y = -sprite.bounds.center.y / sprite.bounds.extents.y / 2 + 0.5f;
+		Vector2 pixel_pivot = new Vector2(x * sprite.textureRect.width - (sprite.textureRect.width / 2), y * sprite.textureRect.height - (sprite.textureRect.height / 2));
+		return pixel_pivot;
+	}
+	public static Vector2 GetPixelPivot(float width, float height, float x, float y)
+	{
+		Vector2 pixel_pivot = new Vector2(x * width, y * height);
+		return pixel_pivot;
+	}
+	public static Vector2 GetPixelPivot(Sprite sprite)
+	{
+		float x = -sprite.bounds.center.x / sprite.bounds.extents.x / 2 + 0.5f;
+		float y = -sprite.bounds.center.y / sprite.bounds.extents.y / 2 + 0.5f;
+		Vector2 pixel_pivot = new Vector2(x * sprite.textureRect.width, y * sprite.textureRect.height);
+		return pixel_pivot;
+	}
+	public static Vector2 GetPrecentagePivot(float width, float height, Vector2 pixelCoords)
+	{
+		float x = pixelCoords.x / width;
+		float y = pixelCoords.y / height;
+		Vector2 frame_pivot = new Vector2(x, y);
+		return frame_pivot;
+	}
+	public static Vector2 GetPrecentagePivot(Sprite sprite, Vector2 pixelCoords)
+	{
+		float x = pixelCoords.x / sprite.textureRect.width;
+		float y = pixelCoords.y / sprite.textureRect.height;
+		Vector2 frame_pivot = new Vector2(x, y);
+		return frame_pivot;
+	}
+    public static Sprite GetSkin(string name, SkinData skin)
+    {
+        string key = name.Substring(name.IndexOf("_") + 1);
+        if (skin.FrameList.ContainsKey(key))
+        {
+            CE_SpriteFrame customSkinFrame = skin.FrameList[key];
+            float x = customSkinFrame.Position.x;
+            float y = customSkinFrame.Position.y;
+            float width = customSkinFrame.Size.x;
+            float height = customSkinFrame.Size.y;
+            float offset_x = customSkinFrame.Offset.x;
+            float offset_y = customSkinFrame.Offset.y;
+            Texture2D texture = customSkinFrame.Texture;
+
+			AnimationEditor_LastPivotX = offset_x;
+			AnimationEditor_LastPivotY = offset_y;
+
+			if (AnimationEditor_LastFrame != key && key == AnimationEditor_PauseAt && AnimationEditor_PauseAt != string.Empty)
+            {
+				Debug.Log(key);
+				AnimationEditor_Pause = true;
+			}
+			AnimationEditor_LastFrame = key;
+
+			var pivot = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
+            return Sprite.Create(texture, new Rect(x, y, width, height), pivot);
+
+		}
+        else return null;
+    }
+
+	public static void SetHatBobingPhysics()
+	{
+	}
+
+	#endregion
 
 	static CE_WardrobeLoader()
 	{
-		TestPlaybackSpeed = 0.05f;
-		TestPlaybackMode = 0;
-		TestPlaybackPause = false;
-		TestPlaybackPausePosition = -1f;
-		TestPlaybackPausePositionSkin = -1f;
-		TestPlaybackCurrentPosition = -1f;
-		TestPlaybackCurrentPositionSkin = -1f;
+		/*
 		HatPivotPoints = new float[14]
 		{
 			0.019f,
@@ -195,10 +345,7 @@ public class CE_WardrobeLoader
 			0.3f,
 			0.3f
 		};
-		TestPlaybackResetAnimations = false;
+		*/
 	}
 
-	public static void SetHatBobingPhysics()
-	{
-	}
 }

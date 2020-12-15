@@ -40,7 +40,7 @@ public class SkinData : ScriptableObject, IBuyable
 
 	public bool isCustom;
 
-	public Dictionary<string, CE_CustomSkinDefinition.CustomSkinFrame> FrameList = new Dictionary<string, CE_CustomSkinDefinition.CustomSkinFrame>();
+	public Dictionary<string, CE_SpriteFrame> FrameList = new Dictionary<string, CE_SpriteFrame>();
 
 	public Texture2D CustomSource;
 
