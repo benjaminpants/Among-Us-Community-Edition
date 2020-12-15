@@ -147,19 +147,28 @@ public class CE_WardrobeLoader
 				hatBehaviour.IsCustom = true;
 				Texture2D texture2D = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.NormalImg));
 				Texture2D texture2D2 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.FloorImg));
-				Texture2D texture2D3 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.PreviewImg));
+				Texture2D texture2D3;
+				try
+                {
+					 texture2D3 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.PreviewImg));
+				}
+				catch
+                {
+					texture2D3 = null;
+                }
+
 				if (item2.UsePointFiltering)
 				{
 					texture2D.filterMode = FilterMode.Point;
 					texture2D2.filterMode = FilterMode.Point;
-					if ((bool)texture2D3)
+					if (texture2D3 != null)
 					{
 						texture2D3.filterMode = FilterMode.Point;
 					}
 				}
 				hatBehaviour.MainImage = Sprite.Create(texture2D, new Rect(new Vector2(item2.NormalPosX, item2.NormalPosY), new Vector2(item2.NormalWidth, item2.NormalHeight)), new Vector2(item2.NormalPivotX, item2.NormalPivotY));
 				hatBehaviour.FloorImage = Sprite.Create(texture2D2, new Rect(new Vector2(item2.FloorPosX, item2.FloorPosY), new Vector2(item2.FloorWidth, item2.FloorHeight)), new Vector2(item2.FloorPivotX, item2.FloorPivotY));
-				if ((bool)texture2D3)
+				if (texture2D3 != null)
 				{
 					hatBehaviour.PreviewImage = Sprite.Create(texture2D3, new Rect(new Vector2(item2.PreviewPosX, item2.PreviewPosY), new Vector2(item2.PreviewWidth, item2.PreviewHeight)), new Vector2(item2.PreviewPivotX, item2.PreviewPivotY));
 				}
