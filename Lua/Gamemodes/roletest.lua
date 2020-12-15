@@ -2,7 +2,8 @@
 
 
 function InitializeGamemode()
-	return {"Classic Lua",6} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	Game_CreateRole("Bob",{200,200,200},"Become Bob",{1},0,1,true)
+	return {"Role Test",9} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 
@@ -43,9 +44,18 @@ function CanKill(userinfo,targetinfo)
 end
 
 function DecideRoles(playerinfos)
-	return {{},{}} -- no roles, also don't question
+	local RolesToGive = {"Bob"}
+	local Selected = {}
+	local SelectedRoles = {}
+	for i=1, #RolesToGive do
+		local impid = math.random(#playerinfos) --randomly set the impostor id
+		table.insert(Selected,playerinfos[impid]) --add it to the selected list
+		table.insert(SelectedRoles,RolesToGive[i])
+		table.remove(RolesToGive,i)
+		table.remove(playerinfos,impid) --remove the chosen item from the playerinfo list
+	end
+	return {{playerinfos[1]},{"Bob"}} -- sets the first person's role to bob
 end
-
 
 function DecideImpostors(impostorcount,playerinfos)
 	local selected = {}

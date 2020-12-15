@@ -20,6 +20,10 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player)
 	return false
 end
 
+function DecideRoles(playerinfos)
+	return {{},{}} -- no roles, also don't question
+end
+
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	return "none"
 end
