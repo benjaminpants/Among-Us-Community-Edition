@@ -145,6 +145,7 @@ public class CE_WardrobeLoader
 				hatBehaviour.InFront = item2.inFront;
 				hatBehaviour.ProductId = item2.ID;
 				hatBehaviour.IsCustom = true;
+				hatBehaviour.NoBobbing = item2.NoBobbing;
 				Texture2D texture2D = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.NormalImg));
 				Texture2D texture2D2 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.FloorImg));
 				Texture2D texture2D3;
@@ -328,8 +329,61 @@ public class CE_WardrobeLoader
         else return null;
     }
 
-	public static void SetHatBobingPhysics()
-	{
+	public static void SetHatBobingPhysics(PlayerControl playerControl)
+	{ 
+		float num = 0.65f;
+		string name = playerControl.MyPhysics.GetHatRender().sprite.name;
+		if (name == "walkcolor0001")
+		{
+			num += 0.019f;
+		}
+		if (name == "walkcolor0002")
+		{
+			num += 0.05f;
+		}
+		if (name == "walkcolor0003")
+		{
+			num += 0.02f;
+		}
+		if (name == "walkcolor0004")
+		{
+			num += -0.04f;
+		}
+		if (name == "walkcolor0005")
+		{
+			num += -0.09f;
+		}
+		if (name == "walkcolor0006")
+		{
+			num += -0.09f;
+		}
+		if (name == "walkcolor0007")
+		{
+			num += 0.059f;
+		}
+		if (name == "walkcolor0008")
+		{
+			num += 0.089f;
+		}
+		if (name == "walkcolor0009")
+		{
+			num += 0.06f;
+		}
+		if (name == "walkcolor0010")
+		{
+			num += 0f;
+		}
+		if (name == "walkcolor0011")
+		{
+			num += -0.12f;
+		}
+		if (name == "walkcolor0012")
+		{
+			num += -0.129f;
+		}
+		float x = playerControl.HatRenderer.transform.localPosition.x;
+		float z = playerControl.HatRenderer.transform.localPosition.z;
+		playerControl.HatRenderer.transform.localPosition = new Vector3(x, num, z);
 	}
 
 	#endregion
@@ -339,20 +393,7 @@ public class CE_WardrobeLoader
 		/*
 		HatPivotPoints = new float[14]
 		{
-			0.019f,
-			0.05f,
-			0.02f,
-			-0.04f,
-			-0.09f,
-			-0.09f,
-			0.059f,
-			0.089f,
-			0.06f,
-			0f,
-			-0.12f,
-			-0.129f,
-			0.3f,
-			0.3f
+
 		};
 		*/
 	}
