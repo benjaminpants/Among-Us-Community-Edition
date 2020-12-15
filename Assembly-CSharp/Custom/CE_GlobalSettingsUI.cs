@@ -61,7 +61,7 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		SaveManager.LobbyShake = CE_CommonUI.CreateBoolButton(SaveManager.LobbyShake, "Lobby Shaking");
 		SaveManager.EnableProHUDMode = CE_CommonUI.CreateBoolButton(SaveManager.EnableProHUDMode, "Pro HUD Mode");
 		SaveManager.EnableAnimationTestingMode = CE_CommonUI.CreateBoolButton(SaveManager.EnableAnimationTestingMode, "Sprite Debug Mode");
-		SaveManager.DisplayIntro = CE_CommonUI.CreateBoolButton(SaveManager.DisplayIntro, "Show Extra Intros");
+		SaveManager.HideIntro = CE_CommonUI.CreateBoolButton(SaveManager.HideIntro, "Disable Extra Intros");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
 		if (CE_CommonUI.CreateExitButton())
