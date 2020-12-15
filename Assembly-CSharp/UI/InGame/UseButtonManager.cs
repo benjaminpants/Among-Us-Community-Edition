@@ -65,7 +65,7 @@ public class UseButtonManager : MonoBehaviour
 			UseButton.material.SetFloat("_Percent", target.PercentCool);
 			UseButton.color = EnabledColor;
 		}
-		else if (PlayerControl.LocalPlayer.Data.IsImpostor && PlayerControl.LocalPlayer.CanMove)
+		else if ((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Sabotage)) && PlayerControl.LocalPlayer.CanMove)
 		{
 			UseButton.sprite = SabotageImage;
 			UseButton.SetCooldownNormalizedUvs();
@@ -89,7 +89,7 @@ public class UseButtonManager : MonoBehaviour
 		{
 			PlayerControl.LocalPlayer.UseClosest();
 		}
-		else if (data != null && data.IsImpostor)
+		else if (data != null && (data.IsImpostor || CE_RoleManager.GetRoleFromID(data.role).CanDo(CE_Specials.Sabotage)))
 		{
 			DestroyableSingleton<HudManager>.Instance.ShowMap(delegate(MapBehaviour m)
 			{

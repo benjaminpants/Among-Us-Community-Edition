@@ -287,7 +287,7 @@ public class PlayerControl : InnerNetObject
 		{
 			myLight.LightRadius = ShipStatus.Instance.CalculateLightRadius(data);
 		}
-		if ((data.IsImpostor || data.role == GameData.PlayerInfo.Role.Sheriff) && CanMove && !data.IsDead)
+		if ((data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill)) && CanMove && !data.IsDead)
 		{
 			SetKillTimer(Mathf.Max(0f, killTimer - Time.fixedDeltaTime));
 			PlayerControl target = FindClosestTarget();
@@ -511,7 +511,7 @@ public class PlayerControl : InnerNetObject
 			{
 				StatsManager.Instance.TimesCrewmate++;
 				StatsManager.Instance.CrewmateStreak++;
-				if (Data.role != GameData.PlayerInfo.Role.Sheriff)
+				if (!CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill))
 				{
 					DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
 				}
@@ -598,30 +598,6 @@ public class PlayerControl : InnerNetObject
 			SaveManager.LastGameStart = DateTime.MinValue;
 			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: true);
 		}
-		if (Data.role == GameData.PlayerInfo.Role.Sheriff && base.AmOwner)
-		{
-			nameText.Color = Palette.White;
-			List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
-				where !pcd.Disconnected
-				select pcd into pc
-				where !pc.IsDead
-				select pc into pci
-				where !pci.IsImpostor
-				select pci into pcs
-				where pcs != LocalPlayer.Data
-				select pcs).ToList();
-			list.Shuffle();
-			GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[2]
-			{
-				GameData.PlayerInfo.Role.None,
-				GameData.PlayerInfo.Role.Sheriff
-			};
-			LocalPlayer.RpcSetRole(new GameData.PlayerInfo[2]
-			{
-				LocalPlayer.Data,
-				list.Take(1).ToArray()[0]
-			}, roles);
-		}
 	}
 
 	public void Revive()
@@ -632,7 +608,7 @@ public class PlayerControl : InnerNetObject
 		nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 4);
 		if (base.AmOwner)
 		{
-			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(Data.IsImpostor || Data.role == GameData.PlayerInfo.Role.Sheriff);
+			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill));
 			DestroyableSingleton<HudManager>.Instance.Chat.ForceClosed();
 			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: false);
 		}
@@ -1336,11 +1312,11 @@ public class PlayerControl : InnerNetObject
 		{
 			int num = reader.ReadPackedInt32();
 			GameData.PlayerInfo[] array = new GameData.PlayerInfo[num];
-			GameData.PlayerInfo.Role[] array2 = new GameData.PlayerInfo.Role[num];
+			byte[] array2 = new byte[num];
 			for (int i = 0; i < num; i++)
 			{
 				array[i] = GameData.Instance.GetPlayerById(reader.ReadByte());
-				array2[i] = (GameData.PlayerInfo.Role)reader.ReadByte();
+				array2[i] = reader.ReadByte();
 			}
 			SetRoles(array, array2);
 			break;
@@ -1399,7 +1375,7 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void RpcSetRole(GameData.PlayerInfo[] persons, GameData.PlayerInfo.Role[] roles)
+	public void RpcSetRole(GameData.PlayerInfo[] persons, byte[] roles)
 	{
 		Debug.Log("Setting roles(IF THE IMPOSTOR SOMEHOW TRIGGERS THIS I WILL DIE)");
 		if (AmongUsClient.Instance.AmClient)
@@ -1416,21 +1392,20 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void SetRoles(GameData.PlayerInfo[] players, GameData.PlayerInfo.Role[] roles)
+	public void SetRoles(GameData.PlayerInfo[] players, byte[] roles)
 	{
 		for (int i = 0; i < players.Length; i++)
 		{
 			players[i].role = roles[i];
 		}
-		Debug.Log("got role " + Enum.GetName(typeof(GameData.PlayerInfo.Role), LocalPlayer.Data.role));
-		if (LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff)
+		CE_Role selfrole = CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role);
+		if (selfrole.CanDo(CE_Specials.Kill))
 		{
-			LocalPlayer.nameText.Color = Palette.SheriffYellow;
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
 		}
-		if (LocalPlayer.Data.role == GameData.PlayerInfo.Role.Joker)
+		if (LocalPlayer.Data.role != 0)
 		{
-			LocalPlayer.nameText.Color = Palette.Purple;
+			LocalPlayer.nameText.Color = selfrole.RoleColor;
 		}
 	}
 
@@ -1440,10 +1415,6 @@ public class PlayerControl : InnerNetObject
 		{
 			return CE_LuaLoader.GetGamemodeResult("CanKill", new CE_PlayerInfoLua(Data), new CE_PlayerInfoLua(playerinfo)).Boolean;
 		}
-		if (Data.role != GameData.PlayerInfo.Role.Sheriff)
-		{
-			return !playerinfo.IsImpostor;
-		}
-		return true;
+		return !playerinfo.IsImpostor;
 	}
 }

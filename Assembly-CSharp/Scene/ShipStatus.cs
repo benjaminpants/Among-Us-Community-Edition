@@ -265,11 +265,39 @@ public class ShipStatus : InnerNetObject
 	{
 		if (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode])
 		{
+
+			List<GameData.PlayerInfo> listrole = (from pcd in GameData.Instance.AllPlayers
+											  where !pcd.Disconnected
+											  select pcd into pc
+											  where !pc.IsDead
+											  select pc).ToList();
+			List<CE_PlayerInfoLua> list2role = new List<CE_PlayerInfoLua>();
+			foreach (GameData.PlayerInfo item in listrole)
+			{
+				list2role.Add(new CE_PlayerInfoLua(item));
+			}
+			List<GameData.PlayerInfo> list3role = new List<GameData.PlayerInfo>();
+			List<byte> Roles = new List<byte>();
+			Table RolesTable = CE_LuaLoader.GetGamemodeResult("DecideRoles", list2role).Table;
+            foreach (DynValue value in RolesTable.Get(1).Table.Values)
+            {
+                CE_PlayerInfoLua cE_PlayerInfoLua = (CE_PlayerInfoLua)value.UserData.Object;
+                list3role.Add(cE_PlayerInfoLua.refplayer);
+            }
+			foreach (DynValue value in RolesTable.Get(2).Table.Values)
+			{
+				Roles.Add(CE_RoleManager.GetRoleFromName(value.String));
+			}
+			PlayerControl.LocalPlayer.RpcSetRole(list3role.ToArray(),Roles.ToArray());
+
+
 			List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
 				where !pcd.Disconnected
 				select pcd into pc
 				where !pc.IsDead
-				select pc).ToList();
+				select pc into pcx
+				where pcx.role == 0
+				select pcx).ToList();
 			List<CE_PlayerInfoLua> list2 = new List<CE_PlayerInfoLua>();
 			foreach (GameData.PlayerInfo item in list)
 			{
@@ -285,20 +313,12 @@ public class ShipStatus : InnerNetObject
 		}
 		else
 		{
-			if (PlayerControl.GameOptions.Gamemode == 2)
-			{
-				SelectSherrif();
-			}
-			if (PlayerControl.GameOptions.Gamemode == 4)
-			{
-				SelectJoker();
-			}
 			List<GameData.PlayerInfo> list4 = (from pcd in GameData.Instance.AllPlayers
 				where !pcd.Disconnected
 				select pcd into pc
 				where !pc.IsDead
 				select pc into pcx
-				where pcx.role == GameData.PlayerInfo.Role.None
+				where pcx.role == 0
 				select pcx).ToList();
 			list4.Shuffle();
 			GameData.PlayerInfo[] infected = list4.Take(PlayerControl.GameOptions.NumImpostors).ToArray();
@@ -459,7 +479,7 @@ public class ShipStatus : InnerNetObject
 			return MaxLightRadius;
 		}
 		SwitchSystem switchSystem = (SwitchSystem)Systems[SystemTypes.Electrical];
-		if (player.IsImpostor)
+		if (player.IsImpostor || CE_RoleManager.GetRoleFromID(player.role).UseImpVision)
 		{
 			return MaxLightRadius * PlayerControl.GameOptions.ImpostorLightMod;
 		}
@@ -832,41 +852,6 @@ public class ShipStatus : InnerNetObject
 		}
 	}
 
-	internal void SelectSherrif()
-	{
-		List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
-			where !pcd.Disconnected
-			select pcd into pc
-			where !pc.IsDead
-			select pc into pci
-			where !pci.IsImpostor
-			select pci).ToList();
-		list.Shuffle();
-		GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[1]
-		{
-			GameData.PlayerInfo.Role.Sheriff
-		};
-		GameData.PlayerInfo[] persons = list.Take(1).ToArray();
-		PlayerControl.LocalPlayer.RpcSetRole(persons, roles);
-	}
-
-	internal void SelectJoker()
-	{
-		List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
-			where !pcd.Disconnected
-			select pcd into pc
-			where !pc.IsDead
-			select pc into pci
-			where !pci.IsImpostor
-			select pci).ToList();
-		list.Shuffle();
-		GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[1]
-		{
-			GameData.PlayerInfo.Role.Joker
-		};
-		GameData.PlayerInfo[] persons = list.Take(1).ToArray();
-		PlayerControl.LocalPlayer.RpcSetRole(persons, roles);
-	}
 
 	public void JokerWin()
 	{

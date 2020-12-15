@@ -45,7 +45,7 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		{
 			DestroyableSingleton<HudManager>.Instance.OpenInfectedMap();
 		}
-		if ((PlayerControl.LocalPlayer.Data.IsImpostor || PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff) && Input.GetKeyDown(KeyCode.Q))
+		if ((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill)) && Input.GetKeyDown(KeyCode.Q))
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKeybindKill();
 		}

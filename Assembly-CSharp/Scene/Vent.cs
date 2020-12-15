@@ -110,7 +110,7 @@ public class Vent : MonoBehaviour, IUsable
 	{
 		float num = float.MaxValue;
 		PlayerControl @object = pc.Object;
-		couldUse = (pc.IsImpostor || PlayerControl.GameOptions.Venting != 0) && PlayerControl.GameOptions.Venting != 3 && !pc.IsDead && (@object.CanMove || @object.inVent);
+		couldUse = ((pc.IsImpostor || CE_RoleManager.GetRoleFromID(pc.role).CanDo(CE_Specials.Vent)) || PlayerControl.GameOptions.Venting != 0) && PlayerControl.GameOptions.Venting != 3 && !pc.IsDead && (@object.CanMove || @object.inVent);
 		canUse = couldUse;
 		if (canUse)
 		{
@@ -123,8 +123,8 @@ public class Vent : MonoBehaviour, IUsable
 	public void SetOutline(bool on, bool mainTarget)
 	{
 		myRend.material.SetFloat("_Outline", on ? 1 : 0);
-		myRend.material.SetColor("_OutlineColor", Color.red);
-		myRend.material.SetColor("_AddColor", mainTarget ? Color.red : Color.clear);
+		myRend.material.SetColor("_OutlineColor", PlayerControl.LocalPlayer.Data.IsImpostor ? Color.red : CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).RoleColor);
+		myRend.material.SetColor("_AddColor", mainTarget ? (PlayerControl.LocalPlayer.Data.IsImpostor ? Color.red : CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).RoleColor) : Color.clear);
 	}
 
 	public void ClickRight()

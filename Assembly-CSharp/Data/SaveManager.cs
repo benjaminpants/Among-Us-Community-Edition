@@ -105,6 +105,8 @@ public static class SaveManager
 
 	private static bool loadedStats;
 
+	private static bool ShowIntro;
+
 	private static bool loadedAnnounce;
 
 	private static string lastPlayerName;
@@ -501,6 +503,23 @@ public static class SaveManager
 		}
 	}
 
+	public static bool DisplayIntro
+    {
+		get
+        {
+			LoadPlayerPrefs();
+			return ShowIntro;
+        }
+		set
+        {
+			if (DisplayIntro != value)
+            {
+				DisplayIntro = value;
+				SavePlayerPrefs();
+            }
+        }
+    }
+
 	public static bool EnableProHUDMode
 	{
 		get
@@ -687,13 +706,14 @@ public static class SaveManager
 			TryGetBool(array, 17, out animationTestingMode);
 			TryGetBool(array, 18, out lobbyShake);
 			TryGetBool(array, 19, out enableProHUDMode);
+			TryGetBool(array, 20, out ShowIntro);
 		}
 	}
 
 	private static void SavePlayerPrefs()
 	{
 		LoadPlayerPrefs();
-		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", lastPlayerName, touchConfig, colorConfig, 1, sendName, sendTelemetry, sendDataScreen, showAdsScreen, showMinPlayerWarning, showOnlineHelp, lastHat, sfxVolume, musicVolume, joyStickSize.ToString(CultureInfo.InvariantCulture), lastGameStart.Ticks, lastSkin, colorBlindMode, animationTestingMode, lobbyShake, enableProHUDMode));
+		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", lastPlayerName, touchConfig, colorConfig, 1, sendName, sendTelemetry, sendDataScreen, showAdsScreen, showMinPlayerWarning, showOnlineHelp, lastHat, sfxVolume, musicVolume, joyStickSize.ToString(CultureInfo.InvariantCulture), lastGameStart.Ticks, lastSkin, colorBlindMode, animationTestingMode, lobbyShake, enableProHUDMode,ShowIntro));
 	}
 
 	private static void TryGetBool(string[] parts, int index, out bool value)

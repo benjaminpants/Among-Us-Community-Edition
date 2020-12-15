@@ -77,40 +77,42 @@ public class IntroCutscene : MonoBehaviour
 
 	private void BeginCrewmate(List<PlayerControl> yourTeam)
 	{
+		CE_Role UserRole = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
 		Vector3 position = BackgroundBar.transform.position;
 		position.y -= 0.25f;
 		BackgroundBar.transform.position = position;
-		if (PlayerControl.GameOptions.NumImpostors == 1)
+		if (UserRole.RoleText == "default_text" || PlayerControl.LocalPlayer.Data.role == 0)
 		{
-			if (PlayerControl.GameOptions.Gamemode == 1)
+			if (PlayerControl.GameOptions.NumImpostors == 1)
 			{
-				ImpostorText.Text = $"There is [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
+				if (PlayerControl.GameOptions.Gamemode == 1)
+				{
+					ImpostorText.Text = $"There is [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
+				}
+				else
+				{
+					ImpostorText.Text = $"There is [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostor[] among us";
+				}
+			}
+			else if (PlayerControl.GameOptions.Gamemode == 1)
+			{
+				ImpostorText.Text = $"There are [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
 			}
 			else
 			{
-				ImpostorText.Text = $"There is [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostor[] among us";
+				ImpostorText.Text = $"There are [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostors[] among us";
 			}
 		}
-		else if (PlayerControl.GameOptions.Gamemode == 1)
-		{
-			ImpostorText.Text = $"There are [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
-		}
 		else
-		{
-			ImpostorText.Text = $"There are [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostors[] among us";
+        {
+			ImpostorText.Text = UserRole.RoleText;
+
 		}
-		BackgroundBar.material.SetColor("_Color", Palette.CrewmateBlue);
-		if (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff)
+		if (PlayerControl.LocalPlayer.Data.role != 0)
 		{
-			Title.Text = "Sheriff";
-			Title.Color = Palette.SheriffYellow;
-			BackgroundBar.material.SetColor("_Color", Palette.SheriffYellow);
-		}
-		else if (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Joker)
-		{
-			Title.Text = "Joker";
-			Title.Color = Palette.Purple;
-			BackgroundBar.material.SetColor("_Color", Palette.Purple);
+			Title.Text = UserRole.RoleName;
+			Title.Color = UserRole.RoleColor;
+			BackgroundBar.material.SetColor("_Color", UserRole.RoleColor);
 		}
 		else
 		{

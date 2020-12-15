@@ -274,27 +274,13 @@ public class AmongUsClient : InnerNetClient
         TempData.showAd = showAd;
         bool flag = TempData.DidHumansWin(gameOverReason);
         TempData.winners = new List<WinningPlayerData>();
-        if (TempData.DidJokerWin(gameOverReason))
+        for (int j = 0; j < GameData.Instance.PlayerCount; j++) //removed joker specific code
         {
-            for (int i = 0; i < GameData.Instance.PlayerCount; i++)
-            {
-                GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
-                if (playerInfo.role == GameData.PlayerInfo.Role.Joker)
-                {
-                    TempData.winners.Add(new WinningPlayerData(playerInfo));
-                }
-            }
-        }
-        else
-        {
-            for (int j = 0; j < GameData.Instance.PlayerCount; j++)
-            {
-                GameData.PlayerInfo playerInfo2 = GameData.Instance.AllPlayers[j];
-                if (flag != playerInfo2.IsImpostor)
-                {
-                    TempData.winners.Add(new WinningPlayerData(playerInfo2));
-                }
-            }
+			GameData.PlayerInfo playerInfo2 = GameData.Instance.AllPlayers[j];
+			if (flag != playerInfo2.IsImpostor)
+			{
+				TempData.winners.Add(new WinningPlayerData(playerInfo2));
+			}
         }
         StartCoroutine(CoEndGame());
     }

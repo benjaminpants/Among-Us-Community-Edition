@@ -57,7 +57,7 @@ public class MapBehaviour : MonoBehaviour
 			}
 			else
 			{
-				ColorControl.SetColor(Palette.ImpostorRed);
+				ColorControl.SetColor(PlayerControl.LocalPlayer.Data.IsImpostor ? Palette.ImpostorRed : CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).RoleColor);
 			}
 			taskOverlay.Hide();
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: false);
