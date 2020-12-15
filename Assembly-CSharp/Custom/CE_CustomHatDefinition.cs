@@ -4,6 +4,7 @@ public class CE_CustomHatDefinition
 	public string NormalImg { get; set; } = string.Empty;
 	public string FloorImg { get; set; } = string.Empty;
 	public bool inFront { get; set; }
+	public bool NoBobbing { get; set; }
 	public float NormalPosX { get; set; }
 	public float NormalPosY { get; set; }
 	public float NormalWidth { get; set; }

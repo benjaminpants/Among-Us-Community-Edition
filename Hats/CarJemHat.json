@@ -3,6 +3,7 @@
 	"NormalImg": "CarJemHat.png",
 	"FloorImg": "CarJemHat.png",
 	"PreviewImg": "CarJemHat.png",
+	"NoBobbing": true,
 	"NormalPosX": 0,
 	"NormalPosY": 0,
 	"NormalWidth": 84,

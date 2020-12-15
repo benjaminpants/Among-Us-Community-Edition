@@ -21,6 +21,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public int Order;
 
+	public bool NoBobbing;
+
 	public Sprite PreviewImage;
 
 	public bool IsCustom;

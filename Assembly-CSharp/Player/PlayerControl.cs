@@ -719,6 +719,17 @@ public class PlayerControl : InnerNetObject
 		}
 	}
 
+	public void LateUpdate()
+    {
+		for (int i = 0; i < AllPlayerControls.Count; i++)
+        {
+			if (DestroyableSingleton<HatManager>.Instance.GetHatById(AllPlayerControls[i].Data.HatId).NoBobbing)
+			{ 
+				CE_WardrobeLoader.SetHatBobingPhysics(AllPlayerControls[i]);
+			}
+		}
+    }
+
 	public void CheckName(string name)
 	{
 		List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
