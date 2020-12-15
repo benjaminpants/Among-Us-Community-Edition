@@ -56,7 +56,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 
 		private PlayerControl _object;
 
-		public Role role;
+		public byte role;
 
 		public PlayerControl Object
 		{
@@ -123,7 +123,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			ColorId = reader.ReadByte();
 			HatId = reader.ReadPackedUInt32();
 			SkinId = reader.ReadPackedUInt32();
-			role = (Role)reader.ReadByte();
+			role = reader.ReadByte();
 			byte b = reader.ReadByte();
 			Disconnected = (b & 1) > 0;
 			IsImpostor = (b & 2) > 0;

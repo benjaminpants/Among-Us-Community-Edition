@@ -15,9 +15,13 @@ public class VersionShower : MonoBehaviour
 		CE_UIHelpers.LoadDebugConsole();
 		if (!IntroPlayed)
 		{
+			CE_RoleManager.AddRole(new CE_Role());
 			CE_LuaLoader.LoadLua();
-			Intro = Object.Instantiate(new GameObject()).AddComponent<CE_Intro>();
-			CE_Intro.IsShown = true;
+			if (SaveManager.DisplayIntro)
+			{
+                Intro = Object.Instantiate(new GameObject()).AddComponent<CE_Intro>();
+				CE_Intro.IsShown = true;
+			}
 			IntroPlayed = true;
 		}
 	}

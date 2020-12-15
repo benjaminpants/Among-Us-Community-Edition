@@ -22,6 +22,9 @@ public static class CE_LuaLoader
 			string code = streamReader.ReadToEnd();
 			Script script = new Script();
             script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
+            script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
+            script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
+			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>,CE_WinWith, CE_RoleVisibility,bool, bool>)CE_GameLua.CreateRoleComplex;
 			script.DoString(code);
 			Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
 			byte b = (byte)table.Get(2).Number;

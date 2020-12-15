@@ -62,7 +62,7 @@ public class CE_PlayerInfoLua
 		private set;
 	}
 
-	public GameData.PlayerInfo.Role role
+	public byte role
 	{
 		get;
 		private set;

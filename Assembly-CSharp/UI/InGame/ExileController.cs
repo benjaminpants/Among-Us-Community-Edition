@@ -37,11 +37,11 @@ public class ExileController : MonoBehaviour
 			string text = (exiled.IsImpostor ? string.Empty : "not ");
 			string text2 = ((PlayerControl.GameOptions.Gamemode == 1) ? " Infected" : " Impostor");
 			string text3 = ((num2 > 1) ? "An" : "The");
-			if (PlayerControl.GameOptions.Gamemode == 4)
+			if (exiled.role != 0) // TODO: Add
 			{
-				text2 = ((exiled.role == GameData.PlayerInfo.Role.Joker) ? " Joker" : " Impostor");
-				text3 = ((exiled.role == GameData.PlayerInfo.Role.Joker) ? "The" : text3);
-				text = ((exiled.role == GameData.PlayerInfo.Role.Joker) ? string.Empty : text);
+				text2 = " " + CE_RoleManager.GetRoleFromID(exiled.role).RoleName;
+				text3 = ((CE_RoleManager.GetRoleCount(exiled.role) > 1) ? "An" : "The");
+				text = string.Empty;
 			}
 			if (PlayerControl.GameOptions.ConfirmEject)
 			{
@@ -133,10 +133,6 @@ public class ExileController : MonoBehaviour
 			PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
 			Camera.main.GetComponent<FollowerCamera>().Locked = false;
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: true);
-		}
-		if (exiled != null && exiled.role == GameData.PlayerInfo.Role.Joker)
-		{
-			ShipStatus.Instance.JokerWin();
 		}
 		Object.Destroy(base.gameObject);
 	}

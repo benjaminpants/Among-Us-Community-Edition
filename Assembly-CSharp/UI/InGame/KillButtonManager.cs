@@ -55,31 +55,6 @@ public class KillButtonManager : MonoBehaviour
 			PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
 		}
 		Debug.Log("role: " + PlayerControl.LocalPlayer.Data.role);
-		if (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff)
-		{
-			PlayerControl.LocalPlayer.nameText.Color = Palette.White;
-			base.gameObject.SetActive(value: false);
-			List<GameData.PlayerInfo> list2 = (from pcd in GameData.Instance.AllPlayers
-				where !pcd.Disconnected
-				select pcd into pc
-				where !pc.IsDead
-				select pc into pci
-				where !pci.IsImpostor
-				select pci into pcs
-				where pcs != PlayerControl.LocalPlayer.Data
-				select pcs).ToList();
-			list2.Shuffle();
-			GameData.PlayerInfo.Role[] roles = new GameData.PlayerInfo.Role[2]
-			{
-				GameData.PlayerInfo.Role.None,
-				GameData.PlayerInfo.Role.Sheriff
-			};
-			PlayerControl.LocalPlayer.RpcSetRole(new GameData.PlayerInfo[2]
-			{
-				PlayerControl.LocalPlayer.Data,
-				list2.Take(1).ToArray()[0]
-			}, roles);
-		}
 		SetTarget(null);
 	}
 
@@ -94,7 +69,7 @@ public class KillButtonManager : MonoBehaviour
 		{
 			SpriteRenderer component = CurrentTarget.GetComponent<SpriteRenderer>();
 			component.material.SetFloat("_Outline", isActive ? 1 : 0);
-			component.material.SetColor("_OutlineColor", (PlayerControl.LocalPlayer.Data.role == GameData.PlayerInfo.Role.Sheriff) ? Palette.SheriffYellow : Color.red);
+			component.material.SetColor("_OutlineColor", (PlayerControl.LocalPlayer.Data.role != 0) ? CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).RoleColor : Color.red);
 			renderer.color = Palette.EnabledColor;
 			renderer.material.SetFloat("_Desat", 0f);
 		}

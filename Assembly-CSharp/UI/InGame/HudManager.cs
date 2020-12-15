@@ -146,7 +146,7 @@ public class HudManager : DestroyableSingleton<HudManager>
 		DestroyableSingleton<HudManager>.Instance.UseButton.Refresh();
 		DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.SetActive(isActive);
 		GameData.PlayerInfo data = PlayerControl.LocalPlayer.Data;
-		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(isActive && (data.IsImpostor || data.role == GameData.PlayerInfo.Role.Sheriff) && !data.IsDead);
+		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(isActive && (data.IsImpostor || CE_RoleManager.GetRoleFromID(data.role).CanDo(CE_Specials.Kill)) && !data.IsDead);
 		DestroyableSingleton<HudManager>.Instance.TaskText.transform.parent.gameObject.SetActive(isActive);
 	}
 
