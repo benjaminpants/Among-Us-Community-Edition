@@ -80,6 +80,12 @@ public class GameOptionsData : IBytesSerializable
 
 	public static bool[] GamemodesAreLua;
 
+	public int MapRot;
+
+	public float MapScaleX;
+
+	public float MapScaleY;
+
 	public void ToggleMapFilter(byte newId)
 	{
 		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
@@ -121,6 +127,9 @@ public class GameOptionsData : IBytesSerializable
 		Visuals = true;
 		Gamemode = 0;
 		SabControl = 0;
+		MapScaleX = 1f;
+		MapScaleY = 1f;
+		MapRot = 0;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -150,6 +159,9 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(Visuals);
 		writer.Write(Gamemode);
 		writer.Write(SabControl);
+		writer.Write(MapScaleX);
+		writer.Write(MapScaleY);
+		writer.Write(MapRot);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -181,7 +193,10 @@ public class GameOptionsData : IBytesSerializable
 				ConfirmEject = reader.ReadBoolean(),
 				Visuals = reader.ReadBoolean(),
 				Gamemode = reader.ReadByte(),
-				SabControl = reader.ReadByte()
+				SabControl = reader.ReadByte(),
+				MapScaleX = reader.ReadSingle(),
+				MapScaleY = reader.ReadSingle(),
+				MapRot = reader.ReadInt32()
 			};
 		}
 		catch
@@ -248,7 +263,10 @@ public class GameOptionsData : IBytesSerializable
 		stringBuilder.AppendLine("Confirm Ejects: " + ConfirmEject);
 		stringBuilder.AppendLine("Visual Tasks: " + Visuals);
 		stringBuilder.AppendLine("Gamemode: " + Gamemodes[Gamemode]);
-		stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
+        stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
+		stringBuilder.AppendLine("Map X Scale: " + MapScaleX);
+		stringBuilder.AppendLine("Map Y Scale: " + MapScaleY);
+		stringBuilder.AppendLine("Map Rotation: " + MapRot);
 		return stringBuilder.ToString();
 	}
 

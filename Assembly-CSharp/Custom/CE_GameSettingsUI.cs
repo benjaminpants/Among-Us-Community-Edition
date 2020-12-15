@@ -81,7 +81,15 @@ public class CE_GameSettingsUI : MonoBehaviour
 		gameOptions.ConfirmEject = CE_CommonUI.CreateBoolButtonG(gameOptions.ConfirmEject, "Confirm Ejects");
 		gameOptions.Visuals = CE_CommonUI.CreateBoolButtonG(gameOptions.Visuals, "Visual Tasks");
 		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 25, "Gamemode");
-		gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages");
+        gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages");
+		if (CE_CommonUI.CreateCollapsable("Map Scale And Rotation", 1))
+		{
+			CE_CommonUI.CreateSeperator();
+			gameOptions.MapScaleX = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "");
+            gameOptions.MapScaleY = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "");
+			gameOptions.MapRot = (int)CE_CommonUI.CreateValuePickerG(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "°");
+			CE_CommonUI.CreateSeperator();
+		}
 		GUILayout.EndScrollView();
 		if (CE_CommonUI.CreateExitButton())
 		{

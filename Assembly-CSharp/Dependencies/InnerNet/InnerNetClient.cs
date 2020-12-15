@@ -1388,6 +1388,12 @@ namespace InnerNet
 							break;
 						}
 						InnerNetObject innerNetObject = UnityEngine.Object.Instantiate(SpawnableObjects[num]);
+						if (innerNetObject.transform.name == "ShipStatus(Clone)")
+                                {
+									innerNetObject.transform.localScale = new Vector3(PlayerControl.GameOptions.MapScaleX, PlayerControl.GameOptions.MapScaleY, 1f);
+									innerNetObject.transform.eulerAngles = new Vector3(0f, 0f, PlayerControl.GameOptions.MapRot);
+
+								}
 						int num2 = messageReader.ReadPackedInt32();
 						innerNetObject.SpawnFlags = (SpawnFlags)messageReader.ReadByte();
 						int num3 = messageReader.ReadPackedInt32();
