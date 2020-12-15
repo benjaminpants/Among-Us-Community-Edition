@@ -21,6 +21,10 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	return "none"
 end
 
+function DecideRoles(playerinfos)
+	return {{},{}} -- no roles, also don't question
+end
+
 function CanKill(userinfo,targetinfo)
 	return true --the API already prevents the slaying of dead people so make this always return true
 end
