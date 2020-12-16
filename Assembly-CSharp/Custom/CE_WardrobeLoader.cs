@@ -194,7 +194,33 @@ public class CE_WardrobeLoader
 
 	#region Animation Debug Stuff
 
-	public static void SetCurrentFramePivot(float x, float y)
+	public static void SetCurrentFramePivotX(float x)
+    {
+		SkinData skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(PlayerControl.LocalPlayer.Data.SkinId);
+		int index = DestroyableSingleton<HatManager>.Instance.AllSkins.IndexOf(skin);
+		if (skin.FrameList.ContainsKey(AnimationEditor_LastFrame))
+		{
+			float new_x = x;
+			float new_y = skin.FrameList[AnimationEditor_LastFrame].Offset.y;
+			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+		}
+		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
+	}
+
+	public static void SetCurrentFramePivotY(float y)
+	{
+		SkinData skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(PlayerControl.LocalPlayer.Data.SkinId);
+		int index = DestroyableSingleton<HatManager>.Instance.AllSkins.IndexOf(skin);
+		if (skin.FrameList.ContainsKey(AnimationEditor_LastFrame))
+		{
+			float new_x = skin.FrameList[AnimationEditor_LastFrame].Offset.x;
+			float new_y = y;
+			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+		}
+		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
+	}
+
+	public static void NudgeCurrentFramePivot(float x, float y)
 	{
 		SkinData skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(PlayerControl.LocalPlayer.Data.SkinId);
 		int index = DestroyableSingleton<HatManager>.Instance.AllSkins.IndexOf(skin);
@@ -212,24 +238,25 @@ public class CE_WardrobeLoader
     {
 		get
         {
-			if (AnimationEditor_Pause)
-			{
-				return 0f;
-			}
-			else
-			{
-				return (AnimationEditor_Enabled ? AnimationEditor_Speed : 1f);
-			}
+			return (AnimationEditor_Enabled ? AnimationEditor_Speed : 1f);
         }
     }
-	public static float AnimationEditor_LastPivotX { get; set; }
-	public static float AnimationEditor_LastPivotY { get; set; }
+	public static float AnimationEditor_LastPivotX { get; set; } = 0;
+	public static float AnimationEditor_LastPivotY { get; set; } = 0;
 	public static bool AnimationEditor_Active { get; set; } = false;
 	public static float AnimationEditor_Speed { get; set; } = 1;
 	public static int AnimationEditor_Mode { get; set; } = 0;
-	public static bool AnimationEditor_Pause { get; set; } = false;
+	public static bool AnimationEditor_Paused
+	{
+		get
+        {
+			return (AnimationEditor_Enabled ? AnimationEditor_IsPaused : false);
+		}
+	}
+	public static bool AnimationEditor_IsPaused { get; set; } = false;
 	public static bool AnimationEditor_Reset { get; set; } = false;
 	public static string AnimationEditor_PauseAt { get; set; } = string.Empty;
+	public static bool AnimationEditor_NextFrame { get; set; } = false;
 	public static bool AnimationEditor_Enabled
 	{
 		get
@@ -300,8 +327,13 @@ public class CE_WardrobeLoader
 	}
     public static Sprite GetSkin(string name, SkinData skin)
     {
-        string key = name.Substring(name.IndexOf("_") + 1);
-        if (skin.FrameList.ContainsKey(key))
+		string key = name.Substring(name.IndexOf("_") + 1);
+		if (!skin.FrameList.ContainsKey(key))
+        {
+			key = name.Substring(name.IndexOf("-") + 1);
+		}
+
+		if (skin.FrameList.ContainsKey(key))
         {
             CE_SpriteFrame customSkinFrame = skin.FrameList[key];
             float x = customSkinFrame.Position.x;
@@ -315,12 +347,22 @@ public class CE_WardrobeLoader
 			AnimationEditor_LastPivotX = offset_x;
 			AnimationEditor_LastPivotY = offset_y;
 
-			if (AnimationEditor_LastFrame != key && key == AnimationEditor_PauseAt && AnimationEditor_PauseAt != string.Empty)
-            {
-				Debug.Log(key);
-				AnimationEditor_Pause = true;
+			bool NewFrame = AnimationEditor_LastFrame != key;
+			if (AnimationEditor_Enabled && NewFrame)
+			{
+				if (key == AnimationEditor_PauseAt && AnimationEditor_PauseAt != string.Empty)
+                {
+					AnimationEditor_IsPaused = true;
+				}
+				if (AnimationEditor_NextFrame)
+				{
+					AnimationEditor_IsPaused = true;
+					AnimationEditor_NextFrame = false;
+				}
 			}
+
 			AnimationEditor_LastFrame = key;
+
 
 			var pivot = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
             return Sprite.Create(texture, new Rect(x, y, width, height), pivot);
@@ -329,73 +371,32 @@ public class CE_WardrobeLoader
         else return null;
     }
 
-	public static void SetHatBobingPhysics(PlayerControl playerControl)
-	{ 
+	public static Vector3 SetHatBobingPhysics(string name, Vector3 position)
+	{
 		float num = 0.65f;
-		string name = playerControl.MyPhysics.GetHatRender().sprite.name;
-		if (name == "walkcolor0001")
-		{
-			num += 0.019f;
-		}
-		if (name == "walkcolor0002")
-		{
-			num += 0.05f;
-		}
-		if (name == "walkcolor0003")
-		{
-			num += 0.02f;
-		}
-		if (name == "walkcolor0004")
-		{
-			num += -0.04f;
-		}
-		if (name == "walkcolor0005")
-		{
-			num += -0.09f;
-		}
-		if (name == "walkcolor0006")
-		{
-			num += -0.09f;
-		}
-		if (name == "walkcolor0007")
-		{
-			num += 0.059f;
-		}
-		if (name == "walkcolor0008")
-		{
-			num += 0.089f;
-		}
-		if (name == "walkcolor0009")
-		{
-			num += 0.06f;
-		}
-		if (name == "walkcolor0010")
-		{
-			num += 0f;
-		}
-		if (name == "walkcolor0011")
-		{
-			num += -0.12f;
-		}
-		if (name == "walkcolor0012")
-		{
-			num += -0.129f;
-		}
-		float x = playerControl.HatRenderer.transform.localPosition.x;
-		float z = playerControl.HatRenderer.transform.localPosition.z;
-		playerControl.HatRenderer.transform.localPosition = new Vector3(x, num, z);
+		if (name == "walkcolor0001") num += 0.019f;
+		if (name == "walkcolor0002") num += 0.05f;
+		if (name == "walkcolor0003") num += 0.02f;
+		if (name == "walkcolor0004") num += -0.04f;
+		if (name == "walkcolor0005") num += -0.09f;
+		if (name == "walkcolor0006") num += -0.09f;
+		if (name == "walkcolor0007") num += 0.059f;
+		if (name == "walkcolor0008") num += 0.089f;
+		if (name == "walkcolor0009") num += 0.06f;
+		if (name == "walkcolor0010") num += 0f;
+		if (name == "walkcolor0011") num += -0.12f;
+		if (name == "walkcolor0012") num += -0.129f;
+		float x = position.x;
+		float z = position.z;
+		position = new Vector3(x, num, z);
+		return position;
 	}
 
 	#endregion
 
 	static CE_WardrobeLoader()
 	{
-		/*
-		HatPivotPoints = new float[14]
-		{
 
-		};
-		*/
 	}
 
 }

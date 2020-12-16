@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class CE_AnimationDebuger : MonoBehaviour
@@ -41,42 +41,108 @@ public class CE_AnimationDebuger : MonoBehaviour
 		}
 	}
 
+    private string PivotXTemp;
+	private string PivotYTemp;
+	private bool UpdateValues = false;
+
+	public bool CreatePauseBoolButton(bool value, string Title)
+	{
+		using (new GUILayout.HorizontalScope())
+		{
+			GUILayout.Label(Title, CE_CommonUI.UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
+			if (GUILayout.Button(value ? "☑" : "☐", CE_CommonUI.UpDownSettingButtons()))
+			{
+				CE_CommonUI.ClickSoundTrigger();
+				value = !value;
+				UpdateValues = true;
+			}
+			CE_CommonUI.HoverSoundTrigger();
+			return value;
+		}
+	}
+
 	private void GlobalSettingsMenu(int windowID)
 	{
-		float testPlaybackSpeed = CE_WardrobeLoader.AnimationEditor_Speed;
 		CE_UIHelpers.LoadCommonAssets();
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
 		CE_WardrobeLoader.AnimationEditor_Active = CE_CommonUI.CreateBoolButton(CE_WardrobeLoader.AnimationEditor_Active, "Enabled");
 		CE_WardrobeLoader.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Speed, 0.1f, 0f, float.MaxValue, "Animation Speed", "x");
 		CE_WardrobeLoader.AnimationEditor_Mode = (int)CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Mode, 1f, 0f, 5f, "Playback Mode", "");
-        CE_WardrobeLoader.AnimationEditor_Pause = CE_CommonUI.CreateBoolButton(CE_WardrobeLoader.AnimationEditor_Pause, "Pause");
+        CE_WardrobeLoader.AnimationEditor_IsPaused = CreatePauseBoolButton(CE_WardrobeLoader.AnimationEditor_IsPaused, "Pause");
 		GUILayout.Label("Last Frame Name:" + CE_WardrobeLoader.AnimationEditor_LastFrame);
-		GUILayout.Label("Last Pivot X:" + CE_WardrobeLoader.AnimationEditor_LastPivotX);
-		GUILayout.Label("Last Pivot Y:" + CE_WardrobeLoader.AnimationEditor_LastPivotY);
+		GUILayout.Label("Last Pivot X:");
+		GUILayout.BeginHorizontal();
+		if (!CE_WardrobeLoader.AnimationEditor_Paused || UpdateValues)
+		{
+			PivotXTemp = CE_WardrobeLoader.AnimationEditor_LastPivotX.ToString();
+			PivotYTemp = CE_WardrobeLoader.AnimationEditor_LastPivotY.ToString();
+			UpdateValues = false;
+		}
+		PivotXTemp = GUILayout.TextField(PivotXTemp, new GUILayoutOption[0]);
+		if (GUILayout.Button("UPDATE"))
+		{
+			if (float.TryParse(PivotXTemp, out float newPivotX))
+			{
+				CE_WardrobeLoader.SetCurrentFramePivotX(newPivotX);
+				UpdateValues = true;
+			}
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("+X Pivot"))
+		{
+			CE_WardrobeLoader.NudgeCurrentFramePivot(1, 0);
+			UpdateValues = true;
+		}
+		if (GUILayout.Button("-X Pivot"))
+		{
+			CE_WardrobeLoader.NudgeCurrentFramePivot(-1, 0);
+			UpdateValues = true;
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.Label("Last Pivot Y:");
+		GUILayout.BeginHorizontal();
+		PivotYTemp = GUILayout.TextField(PivotYTemp, new GUILayoutOption[0]);
+		if (GUILayout.Button("UPDATE"))
+        {
+			if (float.TryParse(PivotYTemp, out float newPivotY))
+			{ 
+				CE_WardrobeLoader.SetCurrentFramePivotY(newPivotY);
+				UpdateValues = true;
+			}
+		}
+		GUILayout.EndHorizontal();
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("+Y Pivot"))
+		{
+			CE_WardrobeLoader.NudgeCurrentFramePivot(0, 1);
+			UpdateValues = true;
+		}
+		if (GUILayout.Button("-Y Pivot"))
+		{
+			CE_WardrobeLoader.NudgeCurrentFramePivot(0, -1);
+			UpdateValues = true;
+		}
+		GUILayout.EndHorizontal();
 		GUILayout.Label("Pause at:");
 		CE_WardrobeLoader.AnimationEditor_PauseAt = GUILayout.TextArea(CE_WardrobeLoader.AnimationEditor_PauseAt);
+		if (GUILayout.Button("Next Frame"))
+		{
+			CE_WardrobeLoader.AnimationEditor_NextFrame = true;
+			CE_WardrobeLoader.AnimationEditor_IsPaused = false;
+			UpdateValues = true;
+		}
 		GUILayout.Space(15);
 		if (GUILayout.Button("Reload Sprites"))
 		{
 			DestroyableSingleton<HatManager>.Instance.ReloadCustomHatsAndSkins();
 		}
 		GUILayout.Space(15);
-		if (GUILayout.Button("+X Pivot"))
-		{
-			CE_WardrobeLoader.SetCurrentFramePivot(1, 0);
-		}
-		if (GUILayout.Button("-X Pivot"))
-		{
-			CE_WardrobeLoader.SetCurrentFramePivot(-1, 0);
-		}
-		if (GUILayout.Button("+Y Pivot"))
-		{
-			CE_WardrobeLoader.SetCurrentFramePivot(0, 1);
-		}
-		if (GUILayout.Button("-Y Pivot"))
-		{
-			CE_WardrobeLoader.SetCurrentFramePivot(0, -1);
-		}
+
+
+
+
 		GUILayout.Space(15);
 		if (GUILayout.Button("Stab (As Killer)"))
 		{
@@ -132,10 +198,6 @@ public class CE_AnimationDebuger : MonoBehaviour
 		{
 			IsShown = false;
 		}
-		if (testPlaybackSpeed != CE_WardrobeLoader.AnimationEditor_Speed)
-		{
-			CE_WardrobeLoader.AnimationEditor_Reset = true;
-		}
 		GUI.color = Color.black;
 		GUI.backgroundColor = Color.black;
 		GUI.contentColor = Color.white;
@@ -147,19 +209,19 @@ public class CE_AnimationDebuger : MonoBehaviour
         {
 			if (Input.GetKeyDown(KeyCode.DownArrow))
 			{
-				CE_WardrobeLoader.SetCurrentFramePivot(0, -1);
+				CE_WardrobeLoader.NudgeCurrentFramePivot(0, -1);
 			}
 			if (Input.GetKeyDown(KeyCode.UpArrow))
 			{
-				CE_WardrobeLoader.SetCurrentFramePivot(0, 1);
+				CE_WardrobeLoader.NudgeCurrentFramePivot(0, 1);
 			}
 			if (Input.GetKeyDown(KeyCode.LeftArrow))
 			{
-				CE_WardrobeLoader.SetCurrentFramePivot(-1, 0);
+				CE_WardrobeLoader.NudgeCurrentFramePivot(-1, 0);
 			}
 			if (Input.GetKeyDown(KeyCode.RightArrow))
 			{
-				CE_WardrobeLoader.SetCurrentFramePivot(1, 0);
+				CE_WardrobeLoader.NudgeCurrentFramePivot(1, 0);
 			}
 		}
 		if (Input.GetKeyDown(KeyCode.F3))

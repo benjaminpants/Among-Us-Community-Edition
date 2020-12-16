@@ -111,6 +111,7 @@ public class SkinLayer : MonoBehaviour
 	public void LateUpdate()
 	{
 		animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
+		animator.Paused = CE_WardrobeLoader.AnimationEditor_Paused;
 
 		if ((bool)skin && skin.isCustom)
 		{

@@ -71,8 +71,19 @@ public class PlayerPhysics : InnerNetObject
 		}
 	}
 
+	private void UpdateHatBobbing()
+    {
+		bool noHatBobbing = DestroyableSingleton<HatManager>.Instance.GetHatById(myPlayer.Data.HatId).NoBobbing;
+		if (noHatBobbing)
+		{
+			string name = rend.sprite.name;
+			myPlayer.HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(name, myPlayer.HatRenderer.transform.localPosition);
+		}
+	}
+
 	private void LateUpdate()
 	{
+		UpdateHatBobbing();
 		Vector3 position = base.transform.position;
 		position.z = position.y / 1000f;
 		base.transform.position = position;
@@ -320,6 +331,7 @@ public class PlayerPhysics : InnerNetObject
 	private void HandleAnimationTesting()
 	{
 		Animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
+		Animator.Paused = CE_WardrobeLoader.AnimationEditor_Paused;
 
 		if ((Animator.GetCurrentAnimation() != RunAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 0)
 		{
@@ -355,10 +367,5 @@ public class PlayerPhysics : InnerNetObject
 		{
 			CE_WardrobeLoader.AnimationEditor_Reset = false;
 		}
-	}
-
-	public SpriteRenderer GetHatRender()
-	{
-		return rend;
 	}
 }
