@@ -204,6 +204,7 @@ public class CE_WardrobeLoader
 			float new_x = x;
 			float new_y = skin.FrameList[AnimationEditor_LastFrame].Offset.y;
 			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+			skin.FrameList[AnimationEditor_LastFrame].Sprite = null;
 		}
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
 	}
@@ -217,6 +218,7 @@ public class CE_WardrobeLoader
 			float new_x = skin.FrameList[AnimationEditor_LastFrame].Offset.x;
 			float new_y = y;
 			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+			skin.FrameList[AnimationEditor_LastFrame].Sprite = null;
 		}
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
 	}
@@ -230,6 +232,7 @@ public class CE_WardrobeLoader
 			float new_x = skin.FrameList[AnimationEditor_LastFrame].Offset.x + x;
 			float new_y = skin.FrameList[AnimationEditor_LastFrame].Offset.y + y;
 			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+			skin.FrameList[AnimationEditor_LastFrame].Sprite = null;
 		}
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
 	}
