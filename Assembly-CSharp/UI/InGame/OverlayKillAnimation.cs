@@ -41,27 +41,27 @@ public class OverlayKillAnimation : MonoBehaviour
 					switch (KillType)
 					{
 						case KillAnimType.Stab:
-						{
-							PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
-							break;
-						}
+							{
+								PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+								break;
+							}
 						case KillAnimType.Neck:
-						{
-							PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
-							break;
-						}
+							{
+								PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+								break;
+							}
 						case KillAnimType.Tongue:
-						{
-							SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-							renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, 1f);
-							break;
-						}
+							{
+								SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
+								renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, 1f);
+								break;
+							}
 						case KillAnimType.Shoot:
-						{
-							SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-							renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, 1f);
-							break;
-						}
+							{
+								SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
+								renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, 1f);
+								break;
+							}
 					}
 				}
 			}
@@ -84,18 +84,18 @@ public class OverlayKillAnimation : MonoBehaviour
 				SkinData skinById3 = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
 				switch (KillType)
 				{
-				case KillAnimType.Stab:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillStabVictim, 1f);
-					break;
-				case KillAnimType.Tongue:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillTongueVictim, 1f);
-					break;
-				case KillAnimType.Shoot:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillShootVictim, 1f);
-					break;
-				case KillAnimType.Neck:
-					renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillNeckVictim, 1f);
-					break;
+					case KillAnimType.Stab:
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillStabVictim, 1f);
+						break;
+					case KillAnimType.Tongue:
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillTongueVictim, 1f);
+						break;
+					case KillAnimType.Shoot:
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillShootVictim, 1f);
+						break;
+					case KillAnimType.Neck:
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillNeckVictim, 1f);
+						break;
 				}
 			}
 		}
@@ -151,18 +151,16 @@ public class OverlayKillAnimation : MonoBehaviour
 
 	private void UpdateCustomVisual(PlayerControl killer, GameData.PlayerInfo victim)
 	{
-        if (killer != null)
-        {
-            LastSkinData_Killer = DestroyableSingleton<HatManager>.Instance.GetSkinById(killer.Data.SkinId);
-        }
-		if (victim != null)
-		{
-			LastSkinData_Victim = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
-		}
+		if (!LastSkinData_Killer || !LastSkinData_Victim) return;
+
+		LastSkinData_Victim = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
+		LastSkinData_Killer = DestroyableSingleton<HatManager>.Instance.GetSkinById(killer.Data.SkinId);
 	}
 
 	private void LateUpdate()
 	{
+		if (!LastSkinData_Killer || !LastSkinData_Victim) return;
+
 		SpriteAnim[] anims = GetComponentsInChildren<SpriteAnim>();
 		for (int i = 0; i < anims.Length; i++)
 		{
@@ -170,7 +168,7 @@ public class OverlayKillAnimation : MonoBehaviour
 			anims[i].Paused = CE_WardrobeLoader.AnimationEditor_Paused;
 		}
 
-		if (!LastSkinData_Killer || !LastSkinData_Victim) return;
+
 		if (LastSkinData_Killer.isCustom)
 		{
 			for (int i = 0; i < killerParts.Length; i++)

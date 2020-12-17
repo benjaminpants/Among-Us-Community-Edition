@@ -25,6 +25,7 @@ public class CE_SpriteFrame
 	public string Name { get; set; } = string.Empty;
 	public string SpritePath { get; set; }
 	public Texture2D Texture { get; set; }
+	public Sprite Sprite { get; set; }
 	public bool UsePointFiltering { get; set; }
 	public CE_SpriteFrame()
 	{

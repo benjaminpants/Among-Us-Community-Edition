@@ -5,14 +5,19 @@ public class CE_TextureNSpriteExtensions
 {
 	public static Texture2D LoadPNG(string filePath)
 	{
-		Texture2D texture2D = null;
-		if (File.Exists(filePath))
-		{
-			byte[] data = File.ReadAllBytes(filePath);
-			texture2D = new Texture2D(2, 2);
-			texture2D.LoadImage(data);
+		if (DestroyableSingleton<HatManager>.Instance.LoadedTextures.ContainsKey(filePath)) return DestroyableSingleton<HatManager>.Instance.LoadedTextures[filePath];
+		else
+        {
+			Texture2D texture2D = null;
+			if (File.Exists(filePath))
+			{
+				byte[] data = File.ReadAllBytes(filePath);
+				texture2D = new Texture2D(2, 2);
+				texture2D.LoadImage(data);
+			}
+			DestroyableSingleton<HatManager>.Instance.LoadedTextures.Add(filePath, texture2D);
+			return texture2D;
 		}
-		return texture2D;
 	}
 
 	public static Sprite ConvertToSprite(Texture2D texture, Vector2 pivot)

@@ -10,6 +10,8 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public List<SkinData> AllSkins = new List<SkinData>();
 
+	public Dictionary<string, Texture2D> LoadedTextures = new Dictionary<string, Texture2D>();
+
 	public HatBehaviour GetHatById(uint hatId)
 	{
 		if ((ulong)hatId >= (ulong)AllHats.Count)
@@ -73,6 +75,11 @@ public class HatManager : DestroyableSingleton<HatManager>
 	{
 		uint hatId = PlayerControl.LocalPlayer.Data.HatId;
 		uint skinId = PlayerControl.LocalPlayer.Data.SkinId;
+		foreach (var loadedTexture in LoadedTextures)
+		{
+			Object.Destroy(loadedTexture.Value);
+		}
+		LoadedTextures.Clear();
 		AllHats.RemoveAll((HatBehaviour x) => x.IsCustom);
 		AllSkins.RemoveAll((SkinData x) => x.isCustom);
 		AllHats.AddRange(CE_WardrobeLoader.LoadHats());
