@@ -727,7 +727,7 @@ public class PlayerControl : InnerNetObject
 			if (noHatBobbing)
 			{
 				string name = AllPlayerControls[i].myRend.sprite.name;
-				AllPlayerControls[i].HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(name, AllPlayerControls[i].HatRenderer.transform.localPosition);
+				AllPlayerControls[i].HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(AllPlayerControls[i], name, AllPlayerControls[i].HatRenderer.transform.localPosition);
 			}
 		}
     }

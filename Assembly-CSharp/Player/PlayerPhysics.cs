@@ -14,6 +14,11 @@ public class PlayerPhysics : InnerNetObject
 		ExitVent
 	}
 
+	public bool IsHatBobbing()
+    {
+		return !Animator.IsPlaying(SpawnAnim) && !Animator.IsPlaying(ExitVentAnim) && !Animator.IsPlaying(EnterVentAnim);
+	}
+
 	public float Speed = 4.5f;
 
 	public float GhostSpeed = 3f;
@@ -77,7 +82,7 @@ public class PlayerPhysics : InnerNetObject
 		if (noHatBobbing)
 		{
 			string name = rend.sprite.name;
-			myPlayer.HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(name, myPlayer.HatRenderer.transform.localPosition);
+			myPlayer.HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(myPlayer, name, myPlayer.HatRenderer.transform.localPosition);
 		}
 	}
 

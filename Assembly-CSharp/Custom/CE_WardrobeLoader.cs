@@ -387,32 +387,36 @@ public class CE_WardrobeLoader
         else return null;
     }
 
-	public static Vector3 SetHatBobingPhysics(string name, Vector3 position)
+	public static Vector3 SetHatBobingPhysics(PlayerControl player, string name, Vector3 position)
 	{
 		float x = position.x;
 		float y = position.y;
 		float z = position.z;
 
-		float num = 0.65f;
-		if (name == "walkcolor0001") num += 0.019f;
-		if (name == "walkcolor0002") num += 0.05f;
-		if (name == "walkcolor0003") num += 0.02f;
-		if (name == "walkcolor0004") num += -0.04f;
-		if (name == "walkcolor0005") num += -0.09f;
-		if (name == "walkcolor0006") num += -0.09f;
-		if (name == "walkcolor0007") num += 0.059f;
-		if (name == "walkcolor0008") num += 0.089f;
-		if (name == "walkcolor0009") num += 0.06f;
-		if (name == "walkcolor0010") num += 0f;
-		if (name == "walkcolor0011") num += -0.12f;
-		if (name == "walkcolor0012") num += -0.129f;
+		if (player.MyPhysics.IsHatBobbing())
+		{ 
+			float num = 0.65f;
+			if (name == "walkcolor0001") num += 0.019f;
+			if (name == "walkcolor0002") num += 0.05f;
+			if (name == "walkcolor0003") num += 0.02f;
+			if (name == "walkcolor0004") num += -0.04f;
+			if (name == "walkcolor0005") num += -0.09f;
+			if (name == "walkcolor0006") num += -0.09f;
+			if (name == "walkcolor0007") num += 0.059f;
+			if (name == "walkcolor0008") num += 0.089f;
+			if (name == "walkcolor0009") num += 0.06f;
+			if (name == "walkcolor0010") num += 0f;
+			if (name == "walkcolor0011") num += -0.12f;
+			if (name == "walkcolor0012") num += -0.129f;
+			position = new Vector3(x, num, z);
+			return position;
+		}
 		else
         {
 			position = new Vector3(x, y, z);
 			return position;
         }
-		position = new Vector3(x, num, z);
-		return position;
+
 	}
 
 	#endregion
