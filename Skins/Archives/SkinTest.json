@@ -1,0 +1,5829 @@
+{
+  "ID": "NullSkin",
+  "FrameList": [
+    {
+      "Name": "Main",
+      "SpritePath": "Player/idle.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.28,
+        "y": 129.28
+      }
+    },
+    {
+      "Name": "Display",
+      "SpritePath": "Player/idle.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "ejected",
+      "SpritePath": "Player/ejected.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "walk0001",
+      "SpritePath": "Player/walk0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 130.56
+      }
+    },
+    {
+      "Name": "walk0002",
+      "SpritePath": "Player/walk0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 129.28
+      }
+    },
+    {
+      "Name": "walk0003",
+      "SpritePath": "Player/walk0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 131.84
+      }
+    },
+    {
+      "Name": "walk0004",
+      "SpritePath": "Player/walk0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 133.12
+      }
+    },
+    {
+      "Name": "walk0005",
+      "SpritePath": "Player/walk0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 138.24
+      }
+    },
+    {
+      "Name": "walk0006",
+      "SpritePath": "Player/walk0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 138.24
+      }
+    },
+    {
+      "Name": "walk0007",
+      "SpritePath": "Player/walk0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.28,
+        "y": 129.28
+      }
+    },
+    {
+      "Name": "walk0008",
+      "SpritePath": "Player/walk0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.536,
+        "y": 127.232
+      }
+    },
+    {
+      "Name": "walk0009",
+      "SpritePath": "Player/walk0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.536,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "walk0010",
+      "SpritePath": "Player/walk0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 133.12
+      }
+    },
+    {
+      "Name": "walk0011",
+      "SpritePath": "Player/walk0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 139.52
+      }
+    },
+    {
+      "Name": "walk0012",
+      "SpritePath": "Player/walk0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 139.52
+      }
+    },
+    {
+      "Name": "spawn0001",
+      "SpritePath": "Player/spawn0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0002",
+      "SpritePath": "Player/spawn0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0003",
+      "SpritePath": "Player/spawn0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0004",
+      "SpritePath": "Player/spawn0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0005",
+      "SpritePath": "Player/spawn0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0006",
+      "SpritePath": "Player/spawn0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0007",
+      "SpritePath": "Player/spawn0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0008",
+      "SpritePath": "Player/spawn0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0009",
+      "SpritePath": "Player/spawn0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0010",
+      "SpritePath": "Player/spawn0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0011",
+      "SpritePath": "Player/spawn0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0012",
+      "SpritePath": "Player/spawn0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0013",
+      "SpritePath": "Player/spawn0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0014",
+      "SpritePath": "Player/spawn0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0015",
+      "SpritePath": "Player/spawn0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0016",
+      "SpritePath": "Player/spawn0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0017",
+      "SpritePath": "Player/spawn0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0018",
+      "SpritePath": "Player/spawn0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0019",
+      "SpritePath": "Player/spawn0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0020",
+      "SpritePath": "Player/spawn0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0021",
+      "SpritePath": "Player/spawn0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "spawn0022",
+      "SpritePath": "Player/spawn0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0023",
+      "SpritePath": "Player/spawn0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0024",
+      "SpritePath": "Player/spawn0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0025",
+      "SpritePath": "Player/spawn0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0026",
+      "SpritePath": "Player/spawn0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0027",
+      "SpritePath": "Player/spawn0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0028",
+      "SpritePath": "Player/spawn0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0029",
+      "SpritePath": "Player/spawn0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0030",
+      "SpritePath": "Player/spawn0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0031",
+      "SpritePath": "Player/spawn0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0032",
+      "SpritePath": "Player/spawn0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      }
+    },
+    {
+      "Name": "spawn0033",
+      "SpritePath": "Player/spawn0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 156.16,
+        "y": 117.76
+      }
+    },
+    {
+      "Name": "spawn0034",
+      "SpritePath": "Player/spawn0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 156.16,
+        "y": 117.76
+      }
+    },
+    {
+      "Name": "spawn0035",
+      "SpritePath": "Player/spawn0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 156.16,
+        "y": 117.76
+      }
+    },
+    {
+      "Name": "spawn0036",
+      "SpritePath": "Player/spawn0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 156.16,
+        "y": 117.76
+      }
+    },
+    {
+      "Name": "spawn0037",
+      "SpritePath": "Player/spawn0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 117.76
+      }
+    },
+    {
+      "Name": "spawn0038",
+      "SpritePath": "Player/spawn0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 117.76
+      }
+    },
+    {
+      "Name": "spawn0039",
+      "SpritePath": "Player/spawn0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 165.12,
+        "y": 119.04
+      }
+    },
+    {
+      "Name": "spawn0040",
+      "SpritePath": "Player/spawn0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 165.12,
+        "y": 119.04
+      }
+    },
+    {
+      "Name": "spawn0041",
+      "SpritePath": "Player/spawn0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 130.56
+      }
+    },
+    {
+      "Name": "spawn0042",
+      "SpritePath": "Player/spawn0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 130.56
+      }
+    },
+    {
+      "Name": "spawn0043",
+      "SpritePath": "Player/spawn0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.76,
+        "y": 90.88
+      }
+    },
+    {
+      "Name": "spawn0044",
+      "SpritePath": "Player/spawn0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.76,
+        "y": 90.88
+      }
+    },
+    {
+      "Name": "spawn0045",
+      "SpritePath": "Player/spawn0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.76,
+        "y": 90.88
+      }
+    },
+    {
+      "Name": "spawn0046",
+      "SpritePath": "Player/spawn0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.96,
+        "y": 99.84
+      }
+    },
+    {
+      "Name": "spawn0047",
+      "SpritePath": "Player/spawn0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.96,
+        "y": 99.84
+      }
+    },
+    {
+      "Name": "spawn0048",
+      "SpritePath": "Player/spawn0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 98.56,
+        "y": 101.12
+      }
+    },
+    {
+      "Name": "spawn0049",
+      "SpritePath": "Player/spawn0049.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 97.792,
+        "y": 107.52
+      }
+    },
+    {
+      "Name": "spawn0050",
+      "SpritePath": "Player/spawn0050.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 87.04,
+        "y": 163.84
+      }
+    },
+    {
+      "Name": "spawn0051",
+      "SpritePath": "Player/spawn0051.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.16,
+        "y": 151.04
+      }
+    },
+    {
+      "Name": "spawn0052",
+      "SpritePath": "Player/spawn0052.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.16,
+        "y": 151.04
+      }
+    },
+    {
+      "Name": "spawn0053",
+      "SpritePath": "Player/spawn0053.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.16,
+        "y": 151.04
+      }
+    },
+    {
+      "Name": "vent0001",
+      "SpritePath": "Player/vent0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 120.32
+      }
+    },
+    {
+      "Name": "vent0002",
+      "SpritePath": "Player/vent0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 98.56
+      }
+    },
+    {
+      "Name": "vent0003",
+      "SpritePath": "Player/vent0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 98.816
+      }
+    },
+    {
+      "Name": "vent0004",
+      "SpritePath": "Player/vent0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 98.816
+      }
+    },
+    {
+      "Name": "vent0005",
+      "SpritePath": "Player/vent0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 102.4
+      }
+    },
+    {
+      "Name": "vent0006",
+      "SpritePath": "Player/vent0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 136.96
+      }
+    },
+    {
+      "Name": "vent0007",
+      "SpritePath": "Player/vent0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 174.08
+      }
+    },
+    {
+      "Name": "killedneck0001",
+      "SpritePath": "Player/killedneck0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0002",
+      "SpritePath": "Player/killedneck0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0003",
+      "SpritePath": "Player/killedneck0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0004",
+      "SpritePath": "Player/killedneck0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0005",
+      "SpritePath": "Player/killedneck0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0006",
+      "SpritePath": "Player/killedneck0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0007",
+      "SpritePath": "Player/killedneck0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0008",
+      "SpritePath": "Player/killedneck0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0009",
+      "SpritePath": "Player/killedneck0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0010",
+      "SpritePath": "Player/killedneck0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0011",
+      "SpritePath": "Player/killedneck0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0012",
+      "SpritePath": "Player/killedneck0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0013",
+      "SpritePath": "Player/killedneck0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0014",
+      "SpritePath": "Player/killedneck0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0015",
+      "SpritePath": "Player/killedneck0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0016",
+      "SpritePath": "Player/killedneck0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0017",
+      "SpritePath": "Player/killedneck0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0018",
+      "SpritePath": "Player/killedneck0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      }
+    },
+    {
+      "Name": "killedneck0019",
+      "SpritePath": "Player/killedneck0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0020",
+      "SpritePath": "Player/killedneck0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0021",
+      "SpritePath": "Player/killedneck0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0022",
+      "SpritePath": "Player/killedneck0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0023",
+      "SpritePath": "Player/killedneck0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0024",
+      "SpritePath": "Player/killedneck0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0025",
+      "SpritePath": "Player/killedneck0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0026",
+      "SpritePath": "Player/killedneck0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0027",
+      "SpritePath": "Player/killedneck0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0028",
+      "SpritePath": "Player/killedneck0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0029",
+      "SpritePath": "Player/killedneck0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0030",
+      "SpritePath": "Player/killedneck0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedneck0031",
+      "SpritePath": "Player/killedneck0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 96.4,
+        "y": 161.0
+      }
+    },
+    {
+      "Name": "killedneck0032",
+      "SpritePath": "Player/killedneck0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 96.4,
+        "y": 161.0
+      }
+    },
+    {
+      "Name": "killedneck0033",
+      "SpritePath": "Player/killedneck0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0034",
+      "SpritePath": "Player/killedneck0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0035",
+      "SpritePath": "Player/killedneck0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0036",
+      "SpritePath": "Player/killedneck0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0037",
+      "SpritePath": "Player/killedneck0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0038",
+      "SpritePath": "Player/killedneck0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0039",
+      "SpritePath": "Player/killedneck0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0040",
+      "SpritePath": "Player/killedneck0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0041",
+      "SpritePath": "Player/killedneck0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      }
+    },
+    {
+      "Name": "killedneck0042",
+      "SpritePath": "Player/killedneck0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedneck0043",
+      "SpritePath": "Player/killedneck0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedneck0044",
+      "SpritePath": "Player/killedneck0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedneck0045",
+      "SpritePath": "Player/killedneck0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedneck0046",
+      "SpritePath": "Player/killedneck0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedneck0047",
+      "SpritePath": "Player/killedneck0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedneck0048",
+      "SpritePath": "Player/killedneck0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      }
+    },
+    {
+      "Name": "killedgun0000",
+      "SpritePath": "Player/killedgun0000.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0001",
+      "SpritePath": "Player/killedgun0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0002",
+      "SpritePath": "Player/killedgun0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0003",
+      "SpritePath": "Player/killedgun0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0004",
+      "SpritePath": "Player/killedgun0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0005",
+      "SpritePath": "Player/killedgun0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0006",
+      "SpritePath": "Player/killedgun0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0007",
+      "SpritePath": "Player/killedgun0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0008",
+      "SpritePath": "Player/killedgun0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 176.0,
+        "y": 139.0
+      }
+    },
+    {
+      "Name": "killedgun0009",
+      "SpritePath": "Player/killedgun0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 125.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedgun0010",
+      "SpritePath": "Player/killedgun0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 125.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedgun0011",
+      "SpritePath": "Player/killedgun0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 114.0,
+        "y": 165.0
+      }
+    },
+    {
+      "Name": "killedgun0012",
+      "SpritePath": "Player/killedgun0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 111.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedgun0013",
+      "SpritePath": "Player/killedgun0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 107.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedgun0014",
+      "SpritePath": "Player/killedgun0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 101.0,
+        "y": 160.0
+      }
+    },
+    {
+      "Name": "killedgun0015",
+      "SpritePath": "Player/killedgun0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0016",
+      "SpritePath": "Player/killedgun0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0017",
+      "SpritePath": "Player/killedgun0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0018",
+      "SpritePath": "Player/killedgun0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0019",
+      "SpritePath": "Player/killedgun0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0020",
+      "SpritePath": "Player/killedgun0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0021",
+      "SpritePath": "Player/killedgun0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0022",
+      "SpritePath": "Player/killedgun0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0023",
+      "SpritePath": "Player/killedgun0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      }
+    },
+    {
+      "Name": "killedgun0024",
+      "SpritePath": "Player/killedgun0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 79.0,
+        "y": 151.0
+      }
+    },
+    {
+      "Name": "killedgun0025",
+      "SpritePath": "Player/killedgun0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 77.0,
+        "y": 151.0
+      }
+    },
+    {
+      "Name": "killedgun0026",
+      "SpritePath": "Player/killedgun0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 76.0,
+        "y": 149.0
+      }
+    },
+    {
+      "Name": "killedgun0027",
+      "SpritePath": "Player/killedgun0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 76.0,
+        "y": 149.0
+      }
+    },
+    {
+      "Name": "killedgun0028",
+      "SpritePath": "Player/killedgun0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 71.0,
+        "y": 151.0
+      }
+    },
+    {
+      "Name": "killedgun0029",
+      "SpritePath": "Player/killedgun0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 71.0,
+        "y": 151.0
+      }
+    },
+    {
+      "Name": "killedgun0030",
+      "SpritePath": "Player/killedgun0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 75.0,
+        "y": 150.0
+      }
+    },
+    {
+      "Name": "killedgun0031",
+      "SpritePath": "Player/killedgun0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 75.0,
+        "y": 150.0
+      }
+    },
+    {
+      "Name": "killedgun0032",
+      "SpritePath": "Player/killedgun0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 69.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedgun0033",
+      "SpritePath": "Player/killedgun0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 69.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedgun0034",
+      "SpritePath": "Player/killedgun0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 58.0,
+        "y": 143.0
+      }
+    },
+    {
+      "Name": "killedgun0035",
+      "SpritePath": "Player/killedgun0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 58.0,
+        "y": 143.0
+      }
+    },
+    {
+      "Name": "killedgun0036",
+      "SpritePath": "Player/killedgun0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 50.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0037",
+      "SpritePath": "Player/killedgun0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 50.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0038",
+      "SpritePath": "Player/killedgun0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 47.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0039",
+      "SpritePath": "Player/killedgun0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 47.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedgun0040",
+      "SpritePath": "Player/killedgun0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0041",
+      "SpritePath": "Player/killedgun0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0042",
+      "SpritePath": "Player/killedgun0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0043",
+      "SpritePath": "Player/killedgun0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0044",
+      "SpritePath": "Player/killedgun0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0045",
+      "SpritePath": "Player/killedgun0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0046",
+      "SpritePath": "Player/killedgun0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0047",
+      "SpritePath": "Player/killedgun0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedgun0048",
+      "SpritePath": "Player/killedgun0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      }
+    },
+    {
+      "Name": "killedalien0001",
+      "SpritePath": "Player/killedalien0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0002",
+      "SpritePath": "Player/killedalien0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0003",
+      "SpritePath": "Player/killedalien0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0004",
+      "SpritePath": "Player/killedalien0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0005",
+      "SpritePath": "Player/killedalien0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0006",
+      "SpritePath": "Player/killedalien0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0007",
+      "SpritePath": "Player/killedalien0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0008",
+      "SpritePath": "Player/killedalien0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0009",
+      "SpritePath": "Player/killedalien0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0010",
+      "SpritePath": "Player/killedalien0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killedalien0011",
+      "SpritePath": "Player/killedalien0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 52.0,
+        "y": 123.0
+      }
+    },
+    {
+      "Name": "killedalien0012",
+      "SpritePath": "Player/killedalien0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 68.0,
+        "y": 117.0
+      }
+    },
+    {
+      "Name": "killedalien0013",
+      "SpritePath": "Player/killedalien0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 68.0,
+        "y": 117.0
+      }
+    },
+    {
+      "Name": "killedalien0014",
+      "SpritePath": "Player/killedalien0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 78.0,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "killedalien0015",
+      "SpritePath": "Player/killedalien0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 78.0,
+        "y": 128.0
+      }
+    },
+    {
+      "Name": "killedalien0016",
+      "SpritePath": "Player/killedalien0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      }
+    },
+    {
+      "Name": "killedalien0017",
+      "SpritePath": "Player/killedalien0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      }
+    },
+    {
+      "Name": "killedalien0018",
+      "SpritePath": "Player/killedalien0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      }
+    },
+    {
+      "Name": "killedalien0019",
+      "SpritePath": "Player/killedalien0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      }
+    },
+    {
+      "Name": "killedalien0020",
+      "SpritePath": "Player/killedalien0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      }
+    },
+    {
+      "Name": "killedalien0021",
+      "SpritePath": "Player/killedalien0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 91.0,
+        "y": 126.0
+      }
+    },
+    {
+      "Name": "killedalien0022",
+      "SpritePath": "Player/killedalien0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 91.0,
+        "y": 126.0
+      }
+    },
+    {
+      "Name": "killedalien0023",
+      "SpritePath": "Player/killedalien0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 136.0
+      }
+    },
+    {
+      "Name": "killedalien0024",
+      "SpritePath": "Player/killedalien0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 136.0
+      }
+    },
+    {
+      "Name": "killedalien0025",
+      "SpritePath": "Player/killedalien0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 158.0
+      }
+    },
+    {
+      "Name": "killedalien0026",
+      "SpritePath": "Player/killedalien0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 158.0
+      }
+    },
+    {
+      "Name": "killedalien0027",
+      "SpritePath": "Player/killedalien0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 123.0,
+        "y": 158.0
+      }
+    },
+    {
+      "Name": "killedalien0028",
+      "SpritePath": "Player/killedalien0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 123.0,
+        "y": 158.0
+      }
+    },
+    {
+      "Name": "killedalien0029",
+      "SpritePath": "Player/killedalien0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0030",
+      "SpritePath": "Player/killedalien0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0031",
+      "SpritePath": "Player/killedalien0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0032",
+      "SpritePath": "Player/killedalien0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0033",
+      "SpritePath": "Player/killedalien0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0034",
+      "SpritePath": "Player/killedalien0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0035",
+      "SpritePath": "Player/killedalien0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0036",
+      "SpritePath": "Player/killedalien0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0037",
+      "SpritePath": "Player/killedalien0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0038",
+      "SpritePath": "Player/killedalien0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0039",
+      "SpritePath": "Player/killedalien0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0040",
+      "SpritePath": "Player/killedalien0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0041",
+      "SpritePath": "Player/killedalien0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0042",
+      "SpritePath": "Player/killedalien0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0043",
+      "SpritePath": "Player/killedalien0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0044",
+      "SpritePath": "Player/killedalien0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0045",
+      "SpritePath": "Player/killedalien0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0046",
+      "SpritePath": "Player/killedalien0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0047",
+      "SpritePath": "Player/killedalien0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedalien0048",
+      "SpritePath": "Player/killedalien0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      }
+    },
+    {
+      "Name": "killedstab0001",
+      "SpritePath": "Player/killedstab0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0002",
+      "SpritePath": "Player/killedstab0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0003",
+      "SpritePath": "Player/killedstab0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0004",
+      "SpritePath": "Player/killedstab0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0005",
+      "SpritePath": "Player/killedstab0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0006",
+      "SpritePath": "Player/killedstab0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0007",
+      "SpritePath": "Player/killedstab0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0008",
+      "SpritePath": "Player/killedstab0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0009",
+      "SpritePath": "Player/killedstab0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0010",
+      "SpritePath": "Player/killedstab0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      }
+    },
+    {
+      "Name": "killedstab0011",
+      "SpritePath": "Player/killedstab0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      }
+    },
+    {
+      "Name": "killedstab0012",
+      "SpritePath": "Player/killedstab0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      }
+    },
+    {
+      "Name": "killedstab0013",
+      "SpritePath": "Player/killedstab0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      }
+    },
+    {
+      "Name": "killedstab0014",
+      "SpritePath": "Player/killedstab0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      }
+    },
+    {
+      "Name": "killedstab0015",
+      "SpritePath": "Player/killedstab0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      }
+    },
+    {
+      "Name": "killedstab0016",
+      "SpritePath": "Player/killedstab0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      }
+    },
+    {
+      "Name": "killedstab0017",
+      "SpritePath": "Player/killedstab0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      }
+    },
+    {
+      "Name": "killedstab0018",
+      "SpritePath": "Player/killedstab0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      }
+    },
+    {
+      "Name": "killedstab0019",
+      "SpritePath": "Player/killedstab0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      }
+    },
+    {
+      "Name": "killedstab0020",
+      "SpritePath": "Player/killedstab0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      }
+    },
+    {
+      "Name": "killedstab0021",
+      "SpritePath": "Player/killedstab0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0022",
+      "SpritePath": "Player/killedstab0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0023",
+      "SpritePath": "Player/killedstab0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0024",
+      "SpritePath": "Player/killedstab0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0025",
+      "SpritePath": "Player/killedstab0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0026",
+      "SpritePath": "Player/killedstab0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0027",
+      "SpritePath": "Player/killedstab0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0028",
+      "SpritePath": "Player/killedstab0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0029",
+      "SpritePath": "Player/killedstab0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0030",
+      "SpritePath": "Player/killedstab0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      }
+    },
+    {
+      "Name": "killedstab0031",
+      "SpritePath": "Player/killedstab0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.0,
+        "y": 148.0
+      }
+    },
+    {
+      "Name": "killedstab0032",
+      "SpritePath": "Player/killedstab0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.0,
+        "y": 144.0
+      }
+    },
+    {
+      "Name": "killedstab0033",
+      "SpritePath": "Player/killedstab0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedstab0034",
+      "SpritePath": "Player/killedstab0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedstab0035",
+      "SpritePath": "Player/killedstab0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedstab0036",
+      "SpritePath": "Player/killedstab0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedstab0037",
+      "SpritePath": "Player/killedstab0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedstab0038",
+      "SpritePath": "Player/killedstab0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killedstab0039",
+      "SpritePath": "Player/killedstab0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 98.0,
+        "y": 149.0
+      }
+    },
+    {
+      "Name": "killedstab0040",
+      "SpritePath": "Player/killedstab0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0041",
+      "SpritePath": "Player/killedstab0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0042",
+      "SpritePath": "Player/killedstab0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0043",
+      "SpritePath": "Player/killedstab0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0044",
+      "SpritePath": "Player/killedstab0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0045",
+      "SpritePath": "Player/killedstab0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0046",
+      "SpritePath": "Player/killedstab0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0047",
+      "SpritePath": "Player/killedstab0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killedstab0048",
+      "SpritePath": "Player/killedstab0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      }
+    },
+    {
+      "Name": "killalien0001",
+      "SpritePath": "Player/killalien0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killalien0002",
+      "SpritePath": "Player/killalien0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killalien0003",
+      "SpritePath": "Player/killalien0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killalien0004",
+      "SpritePath": "Player/killalien0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killalien0005",
+      "SpritePath": "Player/killalien0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 200.0,
+        "y": 137.0
+      }
+    },
+    {
+      "Name": "killalien0006",
+      "SpritePath": "Player/killalien0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 200.0,
+        "y": 137.0
+      }
+    },
+    {
+      "Name": "killalien0007",
+      "SpritePath": "Player/killalien0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0008",
+      "SpritePath": "Player/killalien0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0009",
+      "SpritePath": "Player/killalien0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0010",
+      "SpritePath": "Player/killalien0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0011",
+      "SpritePath": "Player/killalien0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0012",
+      "SpritePath": "Player/killalien0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0013",
+      "SpritePath": "Player/killalien0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0014",
+      "SpritePath": "Player/killalien0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0015",
+      "SpritePath": "Player/killalien0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0016",
+      "SpritePath": "Player/killalien0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0017",
+      "SpritePath": "Player/killalien0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0018",
+      "SpritePath": "Player/killalien0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0019",
+      "SpritePath": "Player/killalien0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0020",
+      "SpritePath": "Player/killalien0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0021",
+      "SpritePath": "Player/killalien0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0022",
+      "SpritePath": "Player/killalien0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 182.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0023",
+      "SpritePath": "Player/killalien0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 132.0
+      }
+    },
+    {
+      "Name": "killalien0024",
+      "SpritePath": "Player/killalien0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 199.0,
+        "y": 134.0
+      }
+    },
+    {
+      "Name": "killalien0025",
+      "SpritePath": "Player/killalien0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0026",
+      "SpritePath": "Player/killalien0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      }
+    },
+    {
+      "Name": "killalien0027",
+      "SpritePath": "Player/killalien0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0028",
+      "SpritePath": "Player/killalien0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0029",
+      "SpritePath": "Player/killalien0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 189.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killalien0030",
+      "SpritePath": "Player/killalien0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 189.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killalien0031",
+      "SpritePath": "Player/killalien0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 189.0,
+        "y": 136.0
+      }
+    },
+    {
+      "Name": "killalien0032",
+      "SpritePath": "Player/killalien0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0033",
+      "SpritePath": "Player/killalien0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0034",
+      "SpritePath": "Player/killalien0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0035",
+      "SpritePath": "Player/killalien0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0036",
+      "SpritePath": "Player/killalien0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0037",
+      "SpritePath": "Player/killalien0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0038",
+      "SpritePath": "Player/killalien0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0039",
+      "SpritePath": "Player/killalien0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0040",
+      "SpritePath": "Player/killalien0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0041",
+      "SpritePath": "Player/killalien0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0042",
+      "SpritePath": "Player/killalien0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0043",
+      "SpritePath": "Player/killalien0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0044",
+      "SpritePath": "Player/killalien0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0045",
+      "SpritePath": "Player/killalien0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0046",
+      "SpritePath": "Player/killalien0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0047",
+      "SpritePath": "Player/killalien0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killalien0048",
+      "SpritePath": "Player/killalien0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killgun0001",
+      "SpritePath": "Player/killgun0001.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      }
+    },
+    {
+      "Name": "killgun0002",
+      "SpritePath": "Player/killgun0002.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      }
+    },
+    {
+      "Name": "killgun0003",
+      "SpritePath": "Player/killgun0003.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      }
+    },
+    {
+      "Name": "killgun0004",
+      "SpritePath": "Player/killgun0004.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 276.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0005",
+      "SpritePath": "Player/killgun0005.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 282.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0006",
+      "SpritePath": "Player/killgun0006.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 282.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0007",
+      "SpritePath": "Player/killgun0007.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 282.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0008",
+      "SpritePath": "Player/killgun0008.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 244.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0009",
+      "SpritePath": "Player/killgun0009.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killgun0010",
+      "SpritePath": "Player/killgun0010.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killgun0011",
+      "SpritePath": "Player/killgun0011.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killgun0012",
+      "SpritePath": "Player/killgun0012.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      }
+    },
+    {
+      "Name": "killgun0013",
+      "SpritePath": "Player/killgun0013.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      }
+    },
+    {
+      "Name": "killgun0014",
+      "SpritePath": "Player/killgun0014.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 250.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0015",
+      "SpritePath": "Player/killgun0015.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killgun0016",
+      "SpritePath": "Player/killgun0016.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killgun0017",
+      "SpritePath": "Player/killgun0017.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 135.0
+      }
+    },
+    {
+      "Name": "killgun0018",
+      "SpritePath": "Player/killgun0018.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 243.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0019",
+      "SpritePath": "Player/killgun0019.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 243.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0020",
+      "SpritePath": "Player/killgun0020.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 239.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0021",
+      "SpritePath": "Player/killgun0021.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0022",
+      "SpritePath": "Player/killgun0022.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0023",
+      "SpritePath": "Player/killgun0023.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0024",
+      "SpritePath": "Player/killgun0024.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0025",
+      "SpritePath": "Player/killgun0025.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 236.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0026",
+      "SpritePath": "Player/killgun0026.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 231.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0027",
+      "SpritePath": "Player/killgun0027.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 231.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0028",
+      "SpritePath": "Player/killgun0028.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0029",
+      "SpritePath": "Player/killgun0029.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0030",
+      "SpritePath": "Player/killgun0030.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0031",
+      "SpritePath": "Player/killgun0031.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0032",
+      "SpritePath": "Player/killgun0032.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 237.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0033",
+      "SpritePath": "Player/killgun0033.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 237.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0034",
+      "SpritePath": "Player/killgun0034.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 247.0,
+        "y": 143.0
+      }
+    },
+    {
+      "Name": "killgun0035",
+      "SpritePath": "Player/killgun0035.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 247.0,
+        "y": 143.0
+      }
+    },
+    {
+      "Name": "killgun0036",
+      "SpritePath": "Player/killgun0036.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 247.0,
+        "y": 143.0
+      }
+    },
+    {
+      "Name": "killgun0037",
+      "SpritePath": "Player/killgun0037.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0038",
+      "SpritePath": "Player/killgun0038.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0039",
+      "SpritePath": "Player/killgun0039.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0040",
+      "SpritePath": "Player/killgun0040.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0041",
+      "SpritePath": "Player/killgun0041.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0042",
+      "SpritePath": "Player/killgun0042.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0043",
+      "SpritePath": "Player/killgun0043.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 243.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0044",
+      "SpritePath": "Player/killgun0044.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 256.0,
+        "y": 140.0
+      }
+    },
+    {
+      "Name": "killgun0045",
+      "SpritePath": "Player/killgun0045.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 263.0,
+        "y": 146.0
+      }
+    },
+    {
+      "Name": "killgun0046",
+      "SpritePath": "Player/killgun0046.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0047",
+      "SpritePath": "Player/killgun0047.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 145.0
+      }
+    },
+    {
+      "Name": "killgun0048",
+      "SpritePath": "Player/killgun0048.png",
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 145.0
+      }
+    }
+  ]
+}

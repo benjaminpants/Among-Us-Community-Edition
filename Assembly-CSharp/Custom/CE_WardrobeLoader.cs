@@ -58,6 +58,7 @@ public class CE_WardrobeLoader
 				skinData.name = item2.ID;
 				skinData.isCustom = true;
 				skinData.StoreName = item2.ID;
+				skinData.CustomID = num;
 				skinData.Free = true;
 				skinData.Order = num;
 				skinData.SpawnAnim = BaseSkin.SpawnAnim;
@@ -89,9 +90,9 @@ public class CE_WardrobeLoader
 					Texture2D texture = customSkinFrame.Texture;
 
 					var offset = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
-					var pivot = new Vector2(offset.x, offset_y);
+					var pivot = new Vector2(offset.x, offset.y);
 
-					skinData.IdleFrame = Sprite.Create(texture, new Rect(x, y, width, height), pivot);
+					skinData.IdleFrame = Sprite.Create(texture, GetSpriteRect(texture, x, y, width, height), GetSpritePivot(pivot));
 				}
 				num++;
 				DataList.Add(skinData);
@@ -167,11 +168,11 @@ public class CE_WardrobeLoader
 						texture2D3.filterMode = FilterMode.Point;
 					}
 				}
-				hatBehaviour.MainImage = Sprite.Create(texture2D, new Rect(new Vector2(item2.NormalPosX, item2.NormalPosY), new Vector2(item2.NormalWidth, item2.NormalHeight)), new Vector2(item2.NormalPivotX, item2.NormalPivotY));
-				hatBehaviour.FloorImage = Sprite.Create(texture2D2, new Rect(new Vector2(item2.FloorPosX, item2.FloorPosY), new Vector2(item2.FloorWidth, item2.FloorHeight)), new Vector2(item2.FloorPivotX, item2.FloorPivotY));
+				hatBehaviour.MainImage = Sprite.Create(texture2D,  GetSpriteRect(texture2D, item2.NormalPosX, item2.NormalPosY, item2.NormalWidth, item2.NormalHeight), GetSpritePivot(new Vector2(item2.NormalPivotX, item2.NormalPivotY)));
+				hatBehaviour.FloorImage = Sprite.Create(texture2D2,  GetSpriteRect(texture2D2, item2.FloorPosX, item2.FloorPosY, item2.FloorWidth, item2.FloorHeight), GetSpritePivot(new Vector2(item2.FloorPivotX, item2.FloorPivotY)));
 				if (texture2D3 != null)
 				{
-					hatBehaviour.PreviewImage = Sprite.Create(texture2D3, new Rect(new Vector2(item2.PreviewPosX, item2.PreviewPosY), new Vector2(item2.PreviewWidth, item2.PreviewHeight)), new Vector2(item2.PreviewPivotX, item2.PreviewPivotY));
+					hatBehaviour.PreviewImage = Sprite.Create(texture2D3,  GetSpriteRect(texture2D3, item2.PreviewPosX, item2.PreviewPosY, item2.PreviewWidth, item2.PreviewHeight), GetSpritePivot(new Vector2(item2.PreviewPivotX, item2.PreviewPivotY)));
 				}
 				BehaviorsList.Add(hatBehaviour);
 			}
@@ -325,6 +326,22 @@ public class CE_WardrobeLoader
 		Vector2 frame_pivot = new Vector2(x, y);
 		return frame_pivot;
 	}
+	public static Vector2 GetSpritePivot(Vector2 input)
+	{
+		return new Vector2(input.x, input.y);
+	}
+
+	public static Rect GetSpriteRect(Texture texture, float x, float y, float width, float height)
+	{
+		float real_y = texture.height - y;
+		float _finalX = x;
+		float _finalY = real_y - height;
+		float _finalWidth = width;
+		float _finalHeight = height;
+
+		return new Rect(_finalX, _finalY, _finalWidth, _finalHeight);
+	}
+
     public static Sprite GetSkin(string name, SkinData skin)
     {
 		string key = name.Substring(name.IndexOf("_") + 1);
@@ -335,15 +352,16 @@ public class CE_WardrobeLoader
 
 		if (skin.FrameList.ContainsKey(key))
         {
-            CE_SpriteFrame customSkinFrame = skin.FrameList[key];
-            float x = customSkinFrame.Position.x;
-            float y = customSkinFrame.Position.y;
-            float width = customSkinFrame.Size.x;
-            float height = customSkinFrame.Size.y;
-            float offset_x = customSkinFrame.Offset.x;
-            float offset_y = customSkinFrame.Offset.y;
-            Texture2D texture = customSkinFrame.Texture;
+			CE_SpriteFrame customSkinFrame = skin.FrameList[key];
 
+			float x = customSkinFrame.Position.x;
+			float y = customSkinFrame.Position.y;
+			float width = customSkinFrame.Size.x;
+			float height = customSkinFrame.Size.y;
+
+			float offset_x = customSkinFrame.Offset.x;
+			float offset_y = customSkinFrame.Offset.y;
+			Texture2D texture = customSkinFrame.Texture;
 			AnimationEditor_LastPivotX = offset_x;
 			AnimationEditor_LastPivotY = offset_y;
 
@@ -351,7 +369,7 @@ public class CE_WardrobeLoader
 			if (AnimationEditor_Enabled && NewFrame)
 			{
 				if (key == AnimationEditor_PauseAt && AnimationEditor_PauseAt != string.Empty)
-                {
+				{
 					AnimationEditor_IsPaused = true;
 				}
 				if (AnimationEditor_NextFrame)
@@ -362,11 +380,9 @@ public class CE_WardrobeLoader
 			}
 
 			AnimationEditor_LastFrame = key;
-
-
 			var pivot = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
-            return Sprite.Create(texture, new Rect(x, y, width, height), pivot);
-
+			if (skin.FrameList[key].Sprite == null) skin.FrameList[key].Sprite = Sprite.Create(texture, GetSpriteRect(texture, x, y, width, height), GetSpritePivot(pivot));
+			return skin.FrameList[key].Sprite;
 		}
         else return null;
     }
