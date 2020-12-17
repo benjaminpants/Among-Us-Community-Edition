@@ -389,6 +389,10 @@ public class CE_WardrobeLoader
 
 	public static Vector3 SetHatBobingPhysics(string name, Vector3 position)
 	{
+		float x = position.x;
+		float y = position.y;
+		float z = position.z;
+
 		float num = 0.65f;
 		if (name == "walkcolor0001") num += 0.019f;
 		if (name == "walkcolor0002") num += 0.05f;
@@ -402,8 +406,11 @@ public class CE_WardrobeLoader
 		if (name == "walkcolor0010") num += 0f;
 		if (name == "walkcolor0011") num += -0.12f;
 		if (name == "walkcolor0012") num += -0.129f;
-		float x = position.x;
-		float z = position.z;
+		else
+        {
+			position = new Vector3(x, y, z);
+			return position;
+        }
 		position = new Vector3(x, num, z);
 		return position;
 	}
