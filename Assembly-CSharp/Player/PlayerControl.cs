@@ -1407,7 +1407,15 @@ public class PlayerControl : InnerNetObject
 	{
 		for (int i = 0; i < players.Length; i++)
 		{
-			players[i].role = roles[i];
+            players[i].role = roles[i];
+			if (players[i].role != 0)
+			{
+				CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
+				if (playerrole.CanSee(LocalPlayer.Data))
+				{
+					players[i].Object.nameText.Color = playerrole.RoleColor;
+				}
+			}
 		}
 		CE_Role selfrole = CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role);
 		if (selfrole.CanDo(CE_Specials.Kill))

@@ -409,7 +409,7 @@ namespace InnerNet
 
 		private void HandleNewGameJoin(Player client)
 		{
-			if (Clients.Count >= 10)
+			if (Clients.Count >= 20)
 			{
 				MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
 				try
@@ -570,7 +570,7 @@ namespace InnerNet
 			msg.StartMessage(7);
 			msg.Write(32);
 			msg.Write(client.Id);
-			msg.Write(HostId);
+            msg.Write(HostId);
 			msg.WritePacked(Clients.Count - 1);
 			for (int i = 0; i < Clients.Count; i++)
 			{

@@ -43,6 +43,7 @@ static class CE_GameLua
         return PlayFoLua;
     }
 
+
     public static bool CreateRoleSimple(string Name, Table Color, string RoleText)
     {
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
@@ -50,7 +51,7 @@ static class CE_GameLua
     }
     public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis)
     {
-        Color rolcolr = new Color((float)Color.Get(1).Number, (float)Color.Get(2).Number, (float)Color.Get(3).Number);
+        Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
         return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis));
     }
 }

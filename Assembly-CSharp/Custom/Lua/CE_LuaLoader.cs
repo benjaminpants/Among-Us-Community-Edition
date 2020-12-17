@@ -9,6 +9,10 @@ public static class CE_LuaLoader
 {
 	public static Dictionary<byte, CE_GamemodeInfo> GamemodeInfos;
 
+
+	public static string TheOmegaString;
+
+	public static int TheOmegaHash;
 	public static bool CurrentGMLua => GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode];
 
 	public static void LoadLua()
@@ -20,11 +24,13 @@ public static class CE_LuaLoader
 		{
 			using StreamReader streamReader = files[i].OpenText();
 			string code = streamReader.ReadToEnd();
+			TheOmegaString += code;
 			Script script = new Script();
             script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
             script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
             script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
-			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>,CE_WinWith, CE_RoleVisibility,bool, bool>)CE_GameLua.CreateRoleComplex;
+            script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool>)CE_GameLua.CreateRoleComplex;
+			script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
 			script.DoString(code);
 			Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
 			byte b = (byte)table.Get(2).Number;
@@ -37,6 +43,7 @@ public static class CE_LuaLoader
 			CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b);
 			GamemodeInfos.Add(b, value);
 		}
+		TheOmegaHash = TheOmegaString.GetHashCode();
 	}
 
 	static CE_LuaLoader()

@@ -162,7 +162,8 @@ public class IntroCutscene : MonoBehaviour
 
 	private void BeginImpostor(List<PlayerControl> yourTeam)
 	{
-		ImpostorText.gameObject.SetActive(value: false);
+        ImpostorText.gameObject.SetActive(false);
+		CE_Role UserRole = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
 		if (PlayerControl.GameOptions.Gamemode == 1)
 		{
 			Title.Text = "Infected";
@@ -173,6 +174,22 @@ public class IntroCutscene : MonoBehaviour
 		{
 			Title.Text = "Impostor";
 			Title.Color = Palette.ImpostorRed;
+		}
+		string ImpostorMessage = (PlayerControl.GameOptions.NumImpostors == 1) ? "[]You are also the [FF1919FF]Impostor[]." : "[]You are also an [FF1919FF]Impostor[].";
+		if (PlayerControl.LocalPlayer.Data.role != 0)
+        {
+			Title.Text = UserRole.RoleName;
+			Title.Color = UserRole.RoleColor;
+			BackgroundBar.material.SetColor("_Color", UserRole.RoleColor);
+			ImpostorText.gameObject.SetActive(true);
+			if (UserRole.RoleText == "default_text")
+            {
+				ImpostorText.Text = ImpostorMessage;
+            }
+			else
+            {
+				ImpostorText.Text = UserRole.RoleText + "\n\r" + ImpostorMessage;
+            }
 		}
 		for (int i = 0; i < yourTeam.Count; i++)
 		{

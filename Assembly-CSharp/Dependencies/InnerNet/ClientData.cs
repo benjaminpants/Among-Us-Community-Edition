@@ -13,9 +13,16 @@ namespace InnerNet
 
 		public PlayerControl Character;
 
-		public ClientData(int id)
+		public int LuaHash;
+
+        public ClientData(int id)
+        {
+            Id = id;
+        }
+		public ClientData(int id, int hash)
 		{
 			Id = id;
+			LuaHash = hash;
 		}
 	}
 }

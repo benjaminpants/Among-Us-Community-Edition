@@ -151,7 +151,7 @@ public class ShipStatus : InnerNetObject
 
 	private void Awake()
 	{
-		AllRooms = GetComponentsInChildren<ShipRoom>();
+        AllRooms = GetComponentsInChildren<ShipRoom>();
 		AllConsoles = GetComponentsInChildren<Console>();
 		AllVents = GetComponentsInChildren<Vent>();
 		AssignTaskIndexes();
