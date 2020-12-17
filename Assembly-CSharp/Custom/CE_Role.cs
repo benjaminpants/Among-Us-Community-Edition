@@ -16,9 +16,10 @@ public enum CE_RoleVisibility
 { 
 	None,
 	Impostors,
-	Crewmates,
+	Crewmates, //why you would ever make a role crewmates only is beyond me
 	RolesOfSameType,
-	Lua
+	Lua,
+    All
 }
 
 public enum CE_WinWith
@@ -26,7 +27,8 @@ public enum CE_WinWith
 	Impostors,
 	Crewmates,
 	Neither,
-    All
+    All,
+    RoleOfSasmeType
 }
 
 
@@ -103,6 +105,35 @@ public class CE_Role
         return AvailableSpecials.Contains(special);
     }
 
+    public bool CanSee(GameData.PlayerInfo plf) //UNOPTIMIZED
+    {
+        if (RoleVisibility == CE_RoleVisibility.All)
+        {
+            return true;
+        }
+        if (RoleVisibility == CE_RoleVisibility.None)
+        {
+            return false;
+        }
+        if (RoleVisibility == CE_RoleVisibility.Crewmates && !plf.IsImpostor)
+        {
+            return true;
+        }
+        if (RoleVisibility == CE_RoleVisibility.Impostors && plf.IsImpostor)
+        {
+            return true;
+        }
+        if (RoleVisibility == CE_RoleVisibility.RolesOfSameType && plf.role == CE_RoleManager.GetRoleFromName(RoleName))
+        {
+            return true;
+        }
+        if (RoleVisibility == CE_RoleVisibility.Lua)
+        {
+            return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", CE_RoleManager.GetRoleFromName(RoleName),new CE_PlayerInfoLua(plf)).Boolean;
+        }
+        Debug.LogError("Something went horribly wrong in determining whether or not a role can be seen!\n Defaulting to false...");
+        return false;
+    }
     public CE_Role(string Name, Color Color)
     {
         RoleName = Name;

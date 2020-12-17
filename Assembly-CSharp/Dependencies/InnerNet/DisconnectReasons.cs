@@ -18,6 +18,7 @@ namespace InnerNet
 		IntentionalLeaving = 208,
 		FocusLostBackground = 207,
 		FocusLost = 209,
-		NewConnection = 210
+		NewConnection = 210,
+		InvalidHash = 211
 	}
 }

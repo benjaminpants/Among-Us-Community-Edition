@@ -151,37 +151,11 @@ public class ShipStatus : InnerNetObject
 
 	private void Awake()
 	{
-
-		AllRooms = GetComponentsInChildren<ShipRoom>();
+        AllRooms = GetComponentsInChildren<ShipRoom>();
 		AllConsoles = GetComponentsInChildren<Console>();
 		AllVents = GetComponentsInChildren<Vent>();
 		AssignTaskIndexes();
 		Instance = this;
-		CreateCustomMapTest();
-	}
-
-	private void CreateCustomMapTest()
-	{
-		int testNumber = 0;
-		if (testNumber == 1)
-		{
-			Collider2D[] colids = GetComponentsInChildren<Collider2D>();
-			foreach (Collider2D col in colids)
-			{
-				Destroy(col.gameObject);
-			}
-		}
-		else if (testNumber == 2)
-		{
-			Collider2D[] colids = GetComponentsInChildren<Collider2D>();
-			Destroy(colids[0].gameObject);
-		}
-		else if (testNumber == 3)
-		{
-			var collider = GameObject.Instantiate(new GameObject()).AddComponent<BoxCollider2D>();
-			collider.size = new Vector2(6f, 6f);
-
-		}
 	}
 
 	public void Start()
@@ -218,7 +192,7 @@ public class ShipStatus : InnerNetObject
 			ShipRoom room = AllRooms[i];
 			if ((bool)room.AmbientSound)
 			{
-				SoundManager.Instance.PlayDynamicSound("Amb " + room.RoomId, room.AmbientSound, loop: true, delegate (AudioSource player, float dt)
+				SoundManager.Instance.PlayDynamicSound("Amb " + room.RoomId, room.AmbientSound, loop: true, delegate(AudioSource player, float dt)
 				{
 					GetAmbientSoundVolume(room, player, dt);
 				});
@@ -293,10 +267,10 @@ public class ShipStatus : InnerNetObject
 		{
 
 			List<GameData.PlayerInfo> listrole = (from pcd in GameData.Instance.AllPlayers
-												  where !pcd.Disconnected
-												  select pcd into pc
-												  where !pc.IsDead
-												  select pc).ToList();
+											  where !pcd.Disconnected
+											  select pcd into pc
+											  where !pc.IsDead
+											  select pc).ToList();
 			List<CE_PlayerInfoLua> list2role = new List<CE_PlayerInfoLua>();
 			foreach (GameData.PlayerInfo item in listrole)
 			{
@@ -305,25 +279,25 @@ public class ShipStatus : InnerNetObject
 			List<GameData.PlayerInfo> list3role = new List<GameData.PlayerInfo>();
 			List<byte> Roles = new List<byte>();
 			Table RolesTable = CE_LuaLoader.GetGamemodeResult("DecideRoles", list2role).Table;
-			foreach (DynValue value in RolesTable.Get(1).Table.Values)
-			{
-				CE_PlayerInfoLua cE_PlayerInfoLua = (CE_PlayerInfoLua)value.UserData.Object;
-				list3role.Add(cE_PlayerInfoLua.refplayer);
-			}
+            foreach (DynValue value in RolesTable.Get(1).Table.Values)
+            {
+                CE_PlayerInfoLua cE_PlayerInfoLua = (CE_PlayerInfoLua)value.UserData.Object;
+                list3role.Add(cE_PlayerInfoLua.refplayer);
+            }
 			foreach (DynValue value in RolesTable.Get(2).Table.Values)
 			{
 				Roles.Add(CE_RoleManager.GetRoleFromName(value.String));
 			}
-			PlayerControl.LocalPlayer.RpcSetRole(list3role.ToArray(), Roles.ToArray());
+			PlayerControl.LocalPlayer.RpcSetRole(list3role.ToArray(),Roles.ToArray());
 
 
 			List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
-											  where !pcd.Disconnected
-											  select pcd into pc
-											  where !pc.IsDead
-											  select pc into pcx
-											  where pcx.role == 0
-											  select pcx).ToList();
+				where !pcd.Disconnected
+				select pcd into pc
+				where !pc.IsDead
+				select pc into pcx
+				where pcx.role == 0
+				select pcx).ToList();
 			List<CE_PlayerInfoLua> list2 = new List<CE_PlayerInfoLua>();
 			foreach (GameData.PlayerInfo item in list)
 			{
@@ -340,12 +314,12 @@ public class ShipStatus : InnerNetObject
 		else
 		{
 			List<GameData.PlayerInfo> list4 = (from pcd in GameData.Instance.AllPlayers
-											   where !pcd.Disconnected
-											   select pcd into pc
-											   where !pc.IsDead
-											   select pc into pcx
-											   where pcx.role == 0
-											   select pcx).ToList();
+				where !pcd.Disconnected
+				select pcd into pc
+				where !pc.IsDead
+				select pc into pcx
+				where pcx.role == 0
+				select pcx).ToList();
 			list4.Shuffle();
 			GameData.PlayerInfo[] infected = list4.Take(PlayerControl.GameOptions.NumImpostors).ToArray();
 			PlayerControl.LocalPlayer.RpcSetInfected(infected);
@@ -479,7 +453,7 @@ public class ShipStatus : InnerNetObject
 
 	private void GetAmbientSoundVolume(ShipRoom room, AudioSource player, float dt)
 	{
-		if (!PlayerControl.LocalPlayer || !room)
+		if (!PlayerControl.LocalPlayer)
 		{
 			player.volume = 0f;
 			return;
@@ -609,8 +583,8 @@ public class ShipStatus : InnerNetObject
 		int num = 0;
 		int num2 = 0;
 		int num3 = 0;
-		List<CE_PlayerInfoLua> imps = new List<CE_PlayerInfoLua>();
-		List<CE_PlayerInfoLua> crew = new List<CE_PlayerInfoLua>();
+        List<CE_PlayerInfoLua> imps = new List<CE_PlayerInfoLua>();
+        List<CE_PlayerInfoLua> crew = new List<CE_PlayerInfoLua>();
 		List<CE_PlayerInfoLua> all = new List<CE_PlayerInfoLua>();
 		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
 		{
@@ -628,13 +602,13 @@ public class ShipStatus : InnerNetObject
 				if (playerInfo.IsImpostor)
 				{
 					num2++;
-					imps.Add(new CE_PlayerInfoLua(playerInfo));
+                    imps.Add(new CE_PlayerInfoLua(playerInfo));
 					all.Add(new CE_PlayerInfoLua(playerInfo));
 				}
 				else
 				{
-					num++;
-					crew.Add(new CE_PlayerInfoLua(playerInfo));
+                    num++;
+                    crew.Add(new CE_PlayerInfoLua(playerInfo));
 					all.Add(new CE_PlayerInfoLua(playerInfo));
 				}
 			}
@@ -661,25 +635,25 @@ public class ShipStatus : InnerNetObject
 				}
 			}
 			else if (output.Type == DataType.Table) //itsa custom win condition!!!
-			{
+            {
 				Debug.Log("wintable");
-				Table winnertable = output.Table;
+                Table winnertable = output.Table;
 				Debug.Log("actualwintable");
-				Table actualwinnertable = winnertable.Get(1).Table;
+                Table actualwinnertable = winnertable.Get(1).Table;
 				Debug.Log("get winnerinfo");
 				List<GameData.PlayerInfo> winnerinfo = new List<GameData.PlayerInfo>();
-				foreach (DynValue dyn in actualwinnertable.Values)
-				{
-					CE_PlayerInfoLua plyinfo = (CE_PlayerInfoLua)dyn.UserData.Object;
-					winnerinfo.Add(plyinfo.refplayer);
-				}
+                foreach (DynValue dyn in actualwinnertable.Values)
+                {
+                    CE_PlayerInfoLua plyinfo = (CE_PlayerInfoLua)dyn.UserData.Object;
+                    winnerinfo.Add(plyinfo.refplayer);
+                }
 				Debug.Log("send");
-				RpcCustomEndGame(winnerinfo.ToArray(), winnertable.Get(2).String);
+                RpcCustomEndGame(winnerinfo.ToArray(), winnertable.Get(2).String);
 				Debug.Log("complete");
 
 			}
 			else
-			{
+            {
 				Debug.LogError("unknown datatype: " + Enum.GetName(typeof(DataType), output.Type));
 			}
 		}
@@ -717,9 +691,9 @@ public class ShipStatus : InnerNetObject
 			base.enabled = false;
 			RpcEndGame(GameData.Instance.LastDeathReason switch
 			{
-				DeathReason.Kill => GameOverReason.ImpostorByKill,
-				DeathReason.Exile => GameOverReason.ImpostorByVote,
-				_ => GameOverReason.HumansDisconnect,
+				DeathReason.Kill => GameOverReason.ImpostorByKill, 
+				DeathReason.Exile => GameOverReason.ImpostorByVote, 
+				_ => GameOverReason.HumansDisconnect, 
 			}, !SaveManager.BoughtNoAds);
 		}
 		else
@@ -781,13 +755,13 @@ public class ShipStatus : InnerNetObject
 		return false;
 	}
 
-	private static void RpcEndGame(GameOverReason endReason, bool showAd)
-	{
-		MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
-		messageWriter.Write((byte)endReason);
-		messageWriter.Write(showAd);
-		AmongUsClient.Instance.FinishEndGame(messageWriter);
-	}
+    private static void RpcEndGame(GameOverReason endReason, bool showAd)
+    {
+        MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
+        messageWriter.Write((byte)endReason);
+        messageWriter.Write(showAd);
+        AmongUsClient.Instance.FinishEndGame(messageWriter);
+    }
 
 	private static void RpcCustomEndGame(GameData.PlayerInfo[] plrs, string song)
 	{
@@ -802,9 +776,9 @@ public class ShipStatus : InnerNetObject
 	}
 
 	public static void RpcCustomEndGamePublic(GameData.PlayerInfo[] plrs, string song)
-	{
-		RpcCustomEndGame(plrs, song);
-	}
+    {
+		RpcCustomEndGame(plrs,song);
+    }
 
 	private static void ReviveEveryone()
 	{
@@ -812,7 +786,7 @@ public class ShipStatus : InnerNetObject
 		{
 			GameData.Instance.AllPlayers[i].Object.Revive();
 		}
-		UnityEngine.Object.FindObjectsOfType<DeadBody>().ForEach(delegate (DeadBody b)
+		UnityEngine.Object.FindObjectsOfType<DeadBody>().ForEach(delegate(DeadBody b)
 		{
 			UnityEngine.Object.Destroy(b.gameObject);
 		});
@@ -869,12 +843,12 @@ public class ShipStatus : InnerNetObject
 	{
 		switch (callId)
 		{
-			case 0:
-				CloseDoorsOfType((SystemTypes)reader.ReadByte());
-				break;
-			case 1:
-				RepairSystem((SystemTypes)reader.ReadByte(), reader.ReadNetObject<PlayerControl>(), reader.ReadByte());
-				break;
+		case 0:
+			CloseDoorsOfType((SystemTypes)reader.ReadByte());
+			break;
+		case 1:
+			RepairSystem((SystemTypes)reader.ReadByte(), reader.ReadNetObject<PlayerControl>(), reader.ReadByte());
+			break;
 		}
 	}
 
