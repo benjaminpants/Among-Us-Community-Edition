@@ -43,8 +43,8 @@ public class PlayerAnimator : MonoBehaviour
 
 	public void LateUpdate()
 	{
-
 		Animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
+		Animator.Paused = CE_WardrobeLoader.AnimationEditor_Paused;
 
 		if (velocity.sqrMagnitude >= 0.1f)
 		{

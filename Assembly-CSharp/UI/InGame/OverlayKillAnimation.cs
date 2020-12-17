@@ -161,6 +161,7 @@ public class OverlayKillAnimation : MonoBehaviour
 		for (int i = 0; i < anims.Length; i++)
 		{
 			anims[i].Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
+			anims[i].Paused = CE_WardrobeLoader.AnimationEditor_Paused;
 		}
 
 		if (!LastSkinData_Killer || !LastSkinData_Victim) return;

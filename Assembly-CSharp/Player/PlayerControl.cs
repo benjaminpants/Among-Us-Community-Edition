@@ -723,9 +723,11 @@ public class PlayerControl : InnerNetObject
     {
 		for (int i = 0; i < AllPlayerControls.Count; i++)
         {
-			if (DestroyableSingleton<HatManager>.Instance.GetHatById(AllPlayerControls[i].Data.HatId).NoBobbing)
-			{ 
-				CE_WardrobeLoader.SetHatBobingPhysics(AllPlayerControls[i]);
+			bool noHatBobbing = DestroyableSingleton<HatManager>.Instance.GetHatById(AllPlayerControls[i].Data.HatId).NoBobbing;
+			if (noHatBobbing)
+			{
+				string name = AllPlayerControls[i].myRend.sprite.name;
+				AllPlayerControls[i].HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(name, AllPlayerControls[i].HatRenderer.transform.localPosition);
 			}
 		}
     }
@@ -845,7 +847,7 @@ public class PlayerControl : InnerNetObject
 		if ((bool)target && (bool)hat)
 		{
 			target.sprite = hat.MainImage;
-			Vector3 localPosition = target.transform.localPosition;
+			Vector3 localPosition = target.transform.localPosition; 
 			localPosition.z = (hat.InFront ? (-0.0001f) : 0.0001f);
 			target.transform.localPosition = localPosition;
 		}
