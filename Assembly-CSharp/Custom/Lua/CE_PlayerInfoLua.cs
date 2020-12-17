@@ -10,32 +10,32 @@ public class CE_PlayerInfoLua
 	public byte PlayerId
 	{
 		get;
-		private set;
+		set;
 	}
 
 	public string PlayerName
 	{
 		get;
-		private set;
+		set;
 	} = string.Empty;
 
 
 	public byte ColorId
 	{
 		get;
-		private set;
+		set;
 	}
 
 	public uint HatId
 	{
 		get;
-		private set;
+		set;
 	}
 
 	public uint SkinId
 	{
 		get;
-		private set;
+		set;
 	}
 
 	public bool Disconnected

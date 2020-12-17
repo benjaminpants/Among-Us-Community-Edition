@@ -13,6 +13,18 @@ static class CE_GameLua
         throw new NotImplementedException(); // TODO: implement this
     }
 
+
+    public static bool UpdatePlayerInfo(DynValue dynval)
+    {
+        CE_PlayerInfoLua influa = (CE_PlayerInfoLua)dynval.UserData.Object;
+        Debug.Log("Attempting Data Change for:" + influa.PlayerName);
+        influa.refplayer.Object.RpcSetColor(influa.ColorId);
+        influa.refplayer.Object.RpcSetSkin(influa.SkinId);
+        influa.refplayer.Object.RpcSetHat(influa.HatId);
+        influa.refplayer.Object.RpcSetName(influa.PlayerName);
+        return true;
+    }
+
     public static bool ActivateCustomWin(Table plyrs, string song)
     {
         try
