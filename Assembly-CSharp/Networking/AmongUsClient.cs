@@ -279,7 +279,8 @@ public class AmongUsClient : InnerNetClient
         for (int j = 0; j < GameData.Instance.PlayerCount; j++) //removed joker specific code
         {
 			GameData.PlayerInfo playerInfo2 = GameData.Instance.AllPlayers[j];
-			if (flag != playerInfo2.IsImpostor)
+			CE_WinWith win = CE_RoleManager.GetRoleFromID(playerInfo2.role).RoleWinWith;
+			if (flag != ((playerInfo2.IsImpostor && win != CE_WinWith.Crewmates) || (win == CE_WinWith.Impostors)) )
 			{
 				TempData.winners.Add(new WinningPlayerData(playerInfo2));
 			}

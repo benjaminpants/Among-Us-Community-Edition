@@ -31,6 +31,7 @@ public static class CE_LuaLoader
             script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
             script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool>)CE_GameLua.CreateRoleComplex;
 			script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
+			script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
 			script.DoString(code);
 			Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
 			byte b = (byte)table.Get(2).Number;

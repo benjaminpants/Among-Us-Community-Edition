@@ -633,7 +633,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		playerVoteArea.NameText.transform.localScale = new Vector3(0.6f, 1.1f, 1.1f);
 		bool flag = PlayerControl.LocalPlayer.Data.IsImpostor && playerInfo.IsImpostor;
 		CE_Role playerrole = CE_RoleManager.GetRoleFromID(playerInfo.role);
-		if (playerrole.CanSee(PlayerControl.LocalPlayer.Data))
+		if (playerrole.CanSee(PlayerControl.LocalPlayer.Data) && playerInfo.role != 0)
 		{
 			playerVoteArea.NameText.Color = playerrole.RoleColor;
 		}

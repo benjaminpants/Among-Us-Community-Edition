@@ -151,8 +151,14 @@ public class OverlayKillAnimation : MonoBehaviour
 
 	private void UpdateCustomVisual(PlayerControl killer, GameData.PlayerInfo victim)
 	{
-		LastSkinData_Victim = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
-		LastSkinData_Killer = DestroyableSingleton<HatManager>.Instance.GetSkinById(killer.Data.SkinId);
+        if (killer != null)
+        {
+            LastSkinData_Killer = DestroyableSingleton<HatManager>.Instance.GetSkinById(killer.Data.SkinId);
+        }
+		if (victim != null)
+		{
+			LastSkinData_Victim = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
+		}
 	}
 
 	private void LateUpdate()

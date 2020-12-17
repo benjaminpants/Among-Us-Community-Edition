@@ -26,9 +26,7 @@ public enum CE_WinWith
 { 
 	Impostors,
 	Crewmates,
-	Neither,
-    All,
-    RoleOfSasmeType
+	Neither
 }
 
 
@@ -94,7 +92,7 @@ public class CE_Role
 		RoleName = "Undefined";
 		RoleColor = Palette.CrewmateBlue;
 		AvailableSpecials = new List<CE_Specials>();
-		RoleWinWith = CE_WinWith.All;
+		RoleWinWith = CE_WinWith.Neither;
 		RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = false;
         RoleText = "Undefined";
