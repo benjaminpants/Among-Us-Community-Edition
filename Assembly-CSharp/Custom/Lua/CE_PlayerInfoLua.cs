@@ -10,7 +10,7 @@ public class CE_PlayerInfoLua
 	public byte PlayerId
 	{
 		get;
-		set;
+		private set;
 	}
 
 	public string PlayerName

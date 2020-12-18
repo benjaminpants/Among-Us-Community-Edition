@@ -257,7 +257,11 @@ public class AmongUsClient : InnerNetClient
     protected override void OnGameEnd(GameOverReason gameOverReason, bool showAd)
     {
         DisconnectHandlers.Clear();
-        if ((bool)Minigame.Instance)
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			CE_LuaLoader.GetGamemodeResult("OnGameEnd");
+		}
+		if ((bool)Minigame.Instance)
         {
             Minigame.Instance.Close();
             Minigame.Instance.Close();
@@ -290,7 +294,11 @@ public class AmongUsClient : InnerNetClient
 
 	protected override void OnGameEndCustom(GameData.PlayerInfo[] plyrs, string victorysong)
 	{
-		DisconnectHandlers.Clear();
+        DisconnectHandlers.Clear();
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			CE_LuaLoader.GetGamemodeResult("OnGameEnd");
+		}
 		if ((bool)Minigame.Instance)
 		{
 			Minigame.Instance.Close();

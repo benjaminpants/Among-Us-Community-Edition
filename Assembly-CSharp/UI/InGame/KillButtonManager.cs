@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using MoonSharp.Interpreter;
 
 public class KillButtonManager : MonoBehaviour
 {
@@ -31,30 +32,15 @@ public class KillButtonManager : MonoBehaviour
 		{
 			return;
 		}
-		if (PlayerControl.GameOptions.Gamemode == 3)
+		if (CE_LuaLoader.CurrentGMLua)
 		{
-			List<GameData.PlayerInfo> list = new List<GameData.PlayerInfo>();
-			foreach (GameData.PlayerInfo allPlayer in GameData.Instance.AllPlayers)
+			DynValue dyn = CE_LuaLoader.GetGamemodeResult("BeforeKill", new CE_PlayerInfoLua(PlayerControl.LocalPlayer.Data), new CE_PlayerInfoLua(CurrentTarget.Data));
+			if (dyn.Boolean)
 			{
-				if (allPlayer.IsImpostor)
-				{
-					list.Add(allPlayer);
-				}
+				PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
 			}
-			list.Add(CurrentTarget.Data);
-			using List<PlayerControl>.Enumerator enumerator2 = PlayerControl.AllPlayerControls.GetEnumerator();
-			while (enumerator2.MoveNext())
-			{
-				_ = enumerator2.Current;
-				PlayerControl.LocalPlayer.RpcSetInfectedNoIntro(list.ToArray());
-			}
-			PlayerControl.LocalPlayer.RpcMurderPlayer(PlayerControl.LocalPlayer);
+			PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
 		}
-		else
-		{
-			PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
-		}
-		Debug.Log("role: " + PlayerControl.LocalPlayer.Data.role);
 		SetTarget(null);
 	}
 

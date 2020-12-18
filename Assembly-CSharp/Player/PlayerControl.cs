@@ -1076,6 +1076,14 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
+	public void RpcSendUpdate(byte id)
+    {
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 15);
+		messageWriter.Write(AmongUsClient.Instance.GameId);
+		messageWriter.Write(id);
+		messageWriter.EndMessage();
+	}
+
 	public void RpcSyncSettings(GameOptionsData gameOptions)
 	{
 		if (AmongUsClient.Instance.AmHost)

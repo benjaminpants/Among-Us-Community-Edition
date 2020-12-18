@@ -4,6 +4,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
 using System;
+using Hazel;
 
 
 static class CE_GameLua
@@ -25,6 +26,22 @@ static class CE_GameLua
         return true;
     }
 
+
+    public static bool DebugLogLua(string text)
+    {
+        Debug.Log(text);
+        return true;
+    }
+
+    public static bool SendToHostSimple(byte id)
+    {
+        MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId,15,SendOption.Reliable);
+        messageWriter.Write(AmongUsClient.Instance.GameId);
+        messageWriter.Write(id);
+        messageWriter.EndMessage();
+        messageWriter.Recycle();
+        return true;
+    }
     public static bool ActivateCustomWin(Table plyrs, string song)
     {
         try
