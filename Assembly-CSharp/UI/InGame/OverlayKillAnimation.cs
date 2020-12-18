@@ -24,7 +24,6 @@ public class OverlayKillAnimation : MonoBehaviour
 
 	public void Begin(PlayerControl killer, GameData.PlayerInfo victim)
 	{
-		UpdateCustomVisual(killer, victim);
 		if (killerParts != null)
 		{
 			GameData.PlayerInfo data = killer.Data;
@@ -70,6 +69,7 @@ public class OverlayKillAnimation : MonoBehaviour
 		{
 			return;
 		}
+		UpdateCustomVisual(killer, victim);
 		victimHat = victim.HatId;
 		for (int j = 0; j < victimParts.Length; j++)
 		{
@@ -151,7 +151,7 @@ public class OverlayKillAnimation : MonoBehaviour
 
 	private void UpdateCustomVisual(PlayerControl killer, GameData.PlayerInfo victim)
 	{
-		if (!LastSkinData_Killer || !LastSkinData_Victim) return;
+		if (!killer || victim == null) return;
 
 		LastSkinData_Victim = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
 		LastSkinData_Killer = DestroyableSingleton<HatManager>.Instance.GetSkinById(killer.Data.SkinId);
