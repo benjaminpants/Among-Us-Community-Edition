@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	return {"Battle Royale",7} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Battle Royale",5} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
@@ -23,6 +23,22 @@ end
 
 function DecideRoles(playerinfos)
 	return {{},{}} -- no roles, also don't question
+end
+
+function BeforeKill(killer,victim)
+	return true
+end
+
+function OnGameEnd()
+
+end
+
+function OnExile(exiled)
+	
+end
+
+function OnExileSkip()
+
 end
 
 function CanKill(userinfo,targetinfo)

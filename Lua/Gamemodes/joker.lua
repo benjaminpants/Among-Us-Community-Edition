@@ -2,7 +2,8 @@
 
 
 function InitializeGamemode()
-	return {"Classic",1} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,0,false)
+	return {"Joker",4} 
 end
 
 
@@ -15,6 +16,18 @@ end
 
 function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on the hosts end, usually used to trigger host only events like Winning, we don't need to do anything with this so we're going to make it return false
 	return false --this isn't used
+end
+
+function OnExile(exiled)
+	if (exiled.role == Game_GetRoleIDFromName("Joker")) then
+		if (Net_AmHost) then
+			Game_ActivateCustomWin({exiled},"joker_win")
+		end
+	end
+end
+
+function OnExileSkip()
+
 end
 
 
@@ -42,15 +55,6 @@ function CanKill(userinfo,targetinfo)
 	return false
 end
 
-function OnExile(exiled)
-	
-end
-
-function OnExileSkip()
-
-end
-
-
 function BeforeKill(killer,victim)
 	return true
 end
@@ -60,7 +64,17 @@ function OnGameEnd()
 end
 
 function DecideRoles(playerinfos)
-	return {{},{}} -- no roles, also don't question
+	local RolesToGive = {"Joker"}
+	local Selected = {}
+	local SelectedRoles = {}
+	for i=1, #RolesToGive do
+		local impid = math.random(#playerinfos) --randomly set the impostor id
+		table.insert(Selected,playerinfos[impid]) --add it to the selected list
+		table.insert(SelectedRoles,RolesToGive[i])
+		table.remove(RolesToGive,i)
+		table.remove(playerinfos,impid) --remove the chosen item from the playerinfo list
+	end
+	return {Selected,SelectedRoles} -- sets the roles
 end
 
 

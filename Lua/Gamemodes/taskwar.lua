@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	return {"Task War",8} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Task War",6} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
@@ -22,6 +22,23 @@ end
 
 function DecideRoles(playerinfos)
 	return {{},{}} -- no roles, also don't question
+end
+
+function BeforeKill(killer,victim)
+	return true
+end
+
+function OnGameEnd()
+
+end
+
+
+function OnExile(exiled)
+	
+end
+
+function OnExileSkip()
+
 end
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
