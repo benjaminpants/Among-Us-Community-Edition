@@ -18,11 +18,12 @@ public class CE_CommonUI
 
 	public static GUIStyle UpDownSettingButtons()
 	{
+		float scale = GetScale(Screen.width, Screen.height);
 		return new GUIStyle(GUI.skin.button)
 		{
-			fixedWidth = 50f,
-			fixedHeight = 50f,
-			fontSize = 25,
+			fixedWidth = 50f * scale,
+			fixedHeight = 50f * scale,
+			fontSize = 25 * (int)scale,
 			normal = 
 			{
 				textColor = Color.white
@@ -32,13 +33,14 @@ public class CE_CommonUI
 
 	public static GUIStyle UpDownSettingLabel(float width = 250f)
 	{
+		float scale = GetScale(Screen.width, Screen.height);
 		if (width == 0f)
 		{
 			return new GUIStyle(GUI.skin.label)
 			{
-				fixedHeight = 50f,
-				fixedWidth = width,
-				fontSize = 25,
+				fixedHeight = 50f * scale,
+				fixedWidth = width * scale,
+				fontSize = 25 * (int)scale,
 				normal = 
 				{
 					textColor = Color.white
@@ -48,9 +50,9 @@ public class CE_CommonUI
 		return new GUIStyle(GUI.skin.label)
 		{
 			alignment = TextAnchor.MiddleCenter,
-			fixedHeight = 50f,
-			fixedWidth = width,
-			fontSize = 25,
+			fixedHeight = 50f * scale,
+			fixedWidth = width * scale,
+			fontSize = 25 * (int)scale,
 			normal = 
 			{
 				textColor = Color.white
@@ -85,6 +87,17 @@ public class CE_CommonUI
 		GUI.Box(position, GUIContent.none, _staticRectStyle);
 	}
 
+	private static float GetScale(int width, int height, Vector2 scalerReferenceResolution, float scalerMatchWidthOrHeight)
+	{
+		return Mathf.Pow(width / scalerReferenceResolution.x, 1f - scalerMatchWidthOrHeight) *
+			   Mathf.Pow(height / scalerReferenceResolution.y, scalerMatchWidthOrHeight);
+	}
+
+	private static float GetScale(int width, int height)
+    {
+		return GetScale(width, height, new Vector2(1920, 1080), 1f);
+    }
+
 	static CE_CommonUI()
 	{
 		FullWindowRect = new Rect(0f, 0f, Screen.width, Screen.height);
@@ -112,11 +125,12 @@ public class CE_CommonUI
 
 	public static bool CreateExitButton()
 	{
+		float scale = GetScale(Screen.width, Screen.height);
 		bool result = false;
 		if (GUILayout.Button("Back", new GUIStyle(GUI.skin.button)
 		{
-			fixedHeight = 50f,
-			fontSize = 25
+			fixedHeight = 50f * scale,
+			fontSize = 25 * (int)scale
 		}))
 		{
 			ClickSoundTrigger();
@@ -128,39 +142,56 @@ public class CE_CommonUI
 
 	public static Rect GameSettingsRect()
 	{
-		float num = (float)Screen.width / 12f;
-		float num2 = (float)Screen.height / 8f;
-		float width = (float)Screen.width - num * 2f;
-		float height = (float)Screen.height - num2 * 2f;
-		return new Rect(num, num2, width, height);
+		float scale = GetScale(Screen.width, Screen.height);
+
+		int desired_width = 990;
+		int desired_height = 810;
+
+		float width = desired_width * scale;
+		float height = desired_height * scale;
+
+		float x = (Screen.width - width) / 2;
+		float y = (Screen.height - height) / 2;
+
+		return new Rect(x, y, width, height);
 	}
 
 	public static Rect StockSettingsRect()
 	{
-		float num = (float)Screen.width / 12f;
-		float num2 = (float)Screen.height / 54f;
-		float width = (float)Screen.width - num * 2f;
-		float height = (float)Screen.height - num2 * 2f;
-		return new Rect(num, num2, width, height);
+		float scale = GetScale(Screen.width, Screen.height);
+
+		int desired_width = 996;
+		int desired_height = 1040;
+
+		float width = desired_width * scale;
+		float height = desired_height * scale;
+
+		float x = (Screen.width - width) / 2;
+		float y = (Screen.height - height) / 2;
+
+		return new Rect(x, y, width, height);
 	}
 
 	public static void CreateHeaderLabel(string text)
 	{
+		float scale = GetScale(Screen.width, Screen.height);
+
 		GUILayout.Label(text, new GUIStyle(GUI.skin.label)
 		{
-			fixedHeight = 60f,
-			fontSize = 30,
+			fixedHeight = 60f * scale,
+			fontSize = 30 * (int)scale,
 			fontStyle = FontStyle.Bold
 		});
 	}
 
 	public static bool CreateCollapsable(string name, int index)
 	{
+		float scale = GetScale(Screen.width, Screen.height);
 		bool flag = ColapsableGroupStateCollection[index];
 		if (GUILayout.Button(name, new GUIStyle(GUI.skin.button)
 		{
-			fixedHeight = 50f,
-			fontSize = 25,
+			fixedHeight = 50f * scale,
+			fontSize = 25 * (int)scale,
 			alignment = TextAnchor.MiddleCenter
 		}))
 		{
@@ -175,6 +206,7 @@ public class CE_CommonUI
 
 	public static void CreateSeperator()
 	{
+		
 		GUIStyle gUIStyle = new GUIStyle();
 		gUIStyle.normal.background = Texture2D.whiteTexture;
 		gUIStyle.margin = new RectOffset(0, 0, 4, 4);
@@ -328,19 +360,21 @@ public class CE_CommonUI
 
 	public static void CreateButtonLabel(string buttonName, string firstText, string nextText)
 	{
+		float scale = GetScale(Screen.width, Screen.height);
+
 		using (new GUILayout.HorizontalScope())
 		{
 			GUILayout.Label(firstText, new GUIStyle(GUI.skin.label)
 			{
-				fixedHeight = 40f,
-				fontSize = 20,
+				fixedHeight = 40f * scale,
+				fontSize = 20 * (int)scale,
 				fontStyle = FontStyle.Bold
 			});
 			GUILayout.FlexibleSpace();
 			GUILayout.Label(nextText, new GUIStyle(GUI.skin.label)
 			{
-				fixedHeight = 40f,
-				fontSize = 20,
+				fixedHeight = 40f * scale,
+				fontSize = 20 * (int)scale,
 				fontStyle = FontStyle.Normal
 			});
 		}
