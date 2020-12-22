@@ -26,7 +26,7 @@ namespace InnerNet
 
 		public const int NoClientId = -1;
 
-		private string networkAddress = "192.168.0.102";
+		private string networkAddress = "127.0.0.1";
 
 		private int networkPort;
 
