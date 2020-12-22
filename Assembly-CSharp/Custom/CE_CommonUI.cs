@@ -20,47 +20,91 @@ public class CE_CommonUI
 
 	public static bool[] ColapsableGroupStateCollection;
 
+	private static Texture2D ButtonTexture;
+
+	private static Texture2D ButtonSelected;
+
+	private static Texture2D MenuTexture;
+
+	private static void LoadAssets()
+    {
+		if (!MenuTexture)
+        {
+			MenuTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "MenuOptionsBG.png"));
+		}
+		if (!ButtonTexture)
+        {
+			ButtonTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "MenuOptionsButton.png"));
+		}
+		if (!ButtonSelected)
+		{
+			ButtonSelected = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "MenuOptionsButtonS.png"));
+		}
+	}
+
+
 	public static GUIStyle WindowStyle()
 	{
+		LoadAssets();
 		float scale = GetScale(Screen.width, Screen.height);
 		var style = new GUIStyle(GUI.skin.window)
 		{
-			
 			normal =
             {
-				background = null
-            },
+				background = MenuTexture
+			},
 			focused =
             {
-				background = null
-            },
+				background = MenuTexture
+			},
 			active =
 			{
-				background = null
+				background = MenuTexture
 			},
 			hover =
             {
-				background = null
-            }
+				background = MenuTexture
+			}
 			
 		};
-		style.onNormal.background = null;
+		style.padding = new RectOffset(30, 30, 30, 30);
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = MenuTexture;
 		return style;
 	}
 
 	public static GUIStyle UpDownSettingButtons()
 	{
 		float scale = GetScale(Screen.width, Screen.height);
-		return new GUIStyle(GUI.skin.button)
+		var style = new GUIStyle(GUI.skin.button)
 		{
 			fixedWidth = (50f + TextHeightUpscale) * scale,
 			fixedHeight = (50f + TextHeightUpscale) * scale,
 			fontSize = (int)((45 + TextUpscale) * scale),
 			normal = 
 			{
-				textColor = Color.white
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = ButtonSelected
 			}
 		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+		return style;
 	}
 
 	public static GUIStyle UpDownSettingLabel(float width = 250f)
@@ -159,11 +203,38 @@ public class CE_CommonUI
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 		bool result = false;
-		if (GUILayout.Button("Back", new GUIStyle(GUI.skin.button)
+
+
+		var style = new GUIStyle(GUI.skin.button)
 		{
 			fixedHeight = (50f + TextHeightUpscale) * scale,
-			fontSize = (int)((45 + TextUpscale) * scale)
-		}))
+			fontSize = (int)((45 + TextUpscale) * scale),
+			alignment = TextAnchor.MiddleCenter,
+			normal =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = ButtonSelected
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+
+		if (GUILayout.Button("Back", style))
 		{
 			ClickSoundTrigger();
 			result = true;
@@ -220,18 +291,40 @@ public class CE_CommonUI
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 		bool flag = ColapsableGroupStateCollection[index];
-		if (GUILayout.Button(name, new GUIStyle(GUI.skin.button)
+		var style =  new GUIStyle(GUI.skin.button)
 		{
 			fixedHeight = (50f + TextHeightUpscale) * scale,
 			fontSize = (int)((45 + TextUpscale) * scale),
-			alignment = TextAnchor.MiddleCenter
-		}))
+			alignment = TextAnchor.MiddleCenter,
+			normal =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = ButtonSelected
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+		if (GUILayout.Button(name, style))
 		{
 			ClickSoundTrigger();
 			flag = !ColapsableGroupStateCollection[index];
 		}
 		HoverSoundTrigger();
-		GUI.backgroundColor = new Color(0.531f, 0.649f, 0.539f);
 		ColapsableGroupStateCollection[index] = flag;
 		return flag;
 	}
@@ -310,7 +403,7 @@ public class CE_CommonUI
 		{
 			GUILayout.Label(Title, UpDownSettingLabel(0f));
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button(value ? "☑" : "☐", UpDownSettingButtons()))
+			if (GUILayout.Button(value ? "✓" : " ", UpDownSettingButtons()))
 			{
 				ClickSoundTrigger();
 				value = !value;
