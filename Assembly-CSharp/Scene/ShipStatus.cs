@@ -744,6 +744,10 @@ public class ShipStatus : InnerNetObject
 				}
 			}
 		}
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			return false; //hopefully this won't cause problems
+		}
 		if (num2 <= 0 && (!DestroyableSingleton<TutorialManager>.InstanceExists || num3 > 0))
 		{
 			return true;
@@ -863,7 +867,7 @@ public class ShipStatus : InnerNetObject
 
 	private static void RpcCustomVictory(GameData.PlayerInfo[] winners, string song)
 	{
-		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(Instance.NetId, 14);
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(Instance.NetId, 255);
 		messageWriter.WritePacked(winners.Length);
 		for (int i = 0; i < winners.Length; i++)
 		{

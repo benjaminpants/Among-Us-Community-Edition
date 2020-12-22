@@ -348,11 +348,11 @@ public class GameOptionsData : IBytesSerializable
 		};
 		Gamemodes = new string[25]
 		{
-			"Classic",
+			"",
 			"Zombies",
-			"Murder",
-			"Hot Potato",
-			"Classic+Joker",
+			"",
+			"",
+			"",
 			"",
 			"",
 			"",

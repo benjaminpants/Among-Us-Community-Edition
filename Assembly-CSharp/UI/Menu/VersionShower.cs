@@ -10,7 +10,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Start()
 	{
-		text.Text = "v0.3.3";
+		text.Text = "v0.4.0 - Lua API Beta";
 		Screen.sleepTimeout = -1;
 		CE_UIHelpers.LoadDebugConsole();
 		if (!IntroPlayed)

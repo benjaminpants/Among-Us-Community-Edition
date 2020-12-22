@@ -1078,7 +1078,11 @@ public class PlayerControl : InnerNetObject
 
 	public void RpcSendUpdate(byte id)
     {
-		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 15);
+		if (AmongUsClient.Instance.AmClient && AmongUsClient.Instance.AmHost)
+        {
+			CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
+		}
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 254);
 		messageWriter.Write(AmongUsClient.Instance.GameId);
 		messageWriter.Write(id);
 		messageWriter.EndMessage();
@@ -1256,7 +1260,18 @@ public class PlayerControl : InnerNetObject
 					bool shouldcontinue = CE_LuaLoader.GetGamemodeResult("OnTaskCompletionHost", plf.Object.myTasks.Count, PlayerTask.HowManyTasksCompleted(plf.Object), new CE_PlayerInfoLua(plf)).Boolean; //just run it
 			}
 			break;
-		case 2:
+			case 254:
+			{
+				int gameid = reader.ReadInt32();
+				if (AmongUsClient.Instance.GameId != gameid || !AmongUsClient.Instance.AmHost)
+				{
+					break;
+				}
+				byte id = reader.ReadByte();
+				CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
+				break;
+				}
+			case 2:
 			GameOptions = GameOptionsData.FromBytes(reader.ReadBytesAndSize());
 			break;
 		case 3:
@@ -1426,11 +1441,22 @@ public class PlayerControl : InnerNetObject
 					players[i].Object.nameText.Color = playerrole.RoleColor;
 				}
 			}
+			else
+            {
+				if (!players[i].IsImpostor)
+                {
+					players[i].Object.nameText.Color = Palette.White;
+				}
+			}
 		}
 		CE_Role selfrole = CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role);
-		if (selfrole.CanDo(CE_Specials.Kill))
+		if (selfrole.CanDo(CE_Specials.Kill) || LocalPlayer.Data.IsImpostor)
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
+		}
+		else
+        {
+			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
 		}
 		if (LocalPlayer.Data.role != 0)
 		{

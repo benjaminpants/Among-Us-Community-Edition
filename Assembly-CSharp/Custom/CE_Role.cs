@@ -26,7 +26,8 @@ public enum CE_WinWith
 { 
 	Impostors,
 	Crewmates,
-	Neither
+	Neither,
+    All
 }
 
 
@@ -92,7 +93,7 @@ public class CE_Role
 		RoleName = "Undefined";
 		RoleColor = Palette.CrewmateBlue;
 		AvailableSpecials = new List<CE_Specials>();
-		RoleWinWith = CE_WinWith.Neither;
+		RoleWinWith = CE_WinWith.All; //all does not mean all but more of "don't fuck with whether or not you win please"
 		RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = false;
         RoleText = "Undefined";
@@ -127,7 +128,7 @@ public class CE_Role
         }
         if (RoleVisibility == CE_RoleVisibility.Lua)
         {
-            return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", CE_RoleManager.GetRoleFromName(RoleName),new CE_PlayerInfoLua(plf)).Boolean;
+            return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", RoleName,new CE_PlayerInfoLua(plf)).Boolean;
         }
         Debug.LogError("Something went horribly wrong in determining whether or not a role can be seen!\n Defaulting to false...");
         return false;

@@ -35,12 +35,39 @@ static class CE_GameLua
 
     public static bool SendToHostSimple(byte id)
     {
-        MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(PlayerControl.LocalPlayer.NetId,15,SendOption.Reliable);
-        messageWriter.Write(AmongUsClient.Instance.GameId);
-        messageWriter.Write(id);
-        messageWriter.EndMessage();
-        messageWriter.Recycle();
+        PlayerControl.LocalPlayer.RpcSendUpdate(id);
         return true;
+    }
+
+    public static bool SetRoles(Table plyrs, Table roles)
+    {
+        try
+        {
+            List<GameData.PlayerInfo> playerinfos = new List<GameData.PlayerInfo>();
+            foreach (DynValue ply in plyrs.Values)
+            {
+                CE_PlayerInfoLua infolua = (CE_PlayerInfoLua)ply.UserData.Object;
+                playerinfos.Add(infolua.refplayer);
+            }
+            List<byte> role = new List<byte>();
+            foreach (DynValue ply in roles.Values)
+            {
+                byte infolua = CE_RoleManager.GetRoleFromName(ply.String);
+                role.Add(infolua);
+            }
+            PlayerControl.LocalPlayer.RpcSetRole(playerinfos.ToArray(), role.ToArray());
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return false;
+        }
+    }
+
+    public static bool AmHost()
+    {
+        return AmongUsClient.Instance.AmHost;
     }
     public static bool ActivateCustomWin(Table plyrs, string song)
     {
@@ -68,6 +95,20 @@ static class CE_GameLua
         foreach (GameData.PlayerInfo plrfo in GameData.Instance.AllPlayers)
         {
             PlayFoLua.Add(new CE_PlayerInfoLua(plrfo));
+        }
+        return PlayFoLua;
+    }
+
+
+    public static List<CE_PlayerInfoLua> GetAllPlayersComplex(bool alive, bool canbeimp)
+    {
+        List<CE_PlayerInfoLua> PlayFoLua = new List<CE_PlayerInfoLua>();
+        foreach (GameData.PlayerInfo plrfo in GameData.Instance.AllPlayers)
+        {
+            if ((!plrfo.IsDead || alive) && (!plrfo.IsImpostor || canbeimp))
+            {
+                PlayFoLua.Add(new CE_PlayerInfoLua(plrfo));
+            }
         }
         return PlayFoLua;
     }

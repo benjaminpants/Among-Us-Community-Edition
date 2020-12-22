@@ -19,17 +19,9 @@ public class CreateGameOptions : MonoBehaviour, IConnectButton
 	{
 		if (!NameTextBehaviour.Instance.ShakeIfInvalid())
 		{
-			if (SaveManager.AmBanned)
-			{
-				AmongUsClient.Instance.LastDisconnectReason = DisconnectReasons.IntentionalLeaving;
-				DestroyableSingleton<DisconnectPopup>.Instance.Show();
-			}
-			else
-			{
 				base.gameObject.SetActive(value: true);
 				Content.SetActive(value: false);
 				StartCoroutine(CoShow());
-			}
 		}
 	}
 

@@ -37,7 +37,7 @@ public class ExileController : MonoBehaviour
 			string text = (exiled.IsImpostor ? string.Empty : "not ");
 			string text2 = ((PlayerControl.GameOptions.Gamemode == 1) ? " Infected" : " Impostor");
 			string text3 = ((num2 > 1) ? "An" : "The");
-			if (exiled.role != 0) // TODO: Add
+			if (exiled.role != 0) 
 			{
 				text2 = " " + CE_RoleManager.GetRoleFromID(exiled.role).RoleName;
 				text3 = ((CE_RoleManager.GetRoleCount(exiled.role) > 1) ? "An" : "The");
@@ -133,6 +133,14 @@ public class ExileController : MonoBehaviour
 			PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
 			Camera.main.GetComponent<FollowerCamera>().Locked = false;
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: true);
+		}
+		if (exiled != null)
+		{
+			CE_LuaLoader.GetGamemodeResult("OnExile", new CE_PlayerInfoLua(exiled));
+		}
+		else
+        {
+			CE_LuaLoader.GetGamemodeResult("OnExileSkip");
 		}
 		Object.Destroy(base.gameObject);
 	}

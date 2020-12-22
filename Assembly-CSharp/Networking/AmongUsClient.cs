@@ -284,9 +284,12 @@ public class AmongUsClient : InnerNetClient
         {
 			GameData.PlayerInfo playerInfo2 = GameData.Instance.AllPlayers[j];
 			CE_WinWith win = CE_RoleManager.GetRoleFromID(playerInfo2.role).RoleWinWith;
-			if (flag != ((playerInfo2.IsImpostor && win != CE_WinWith.Crewmates) || (win == CE_WinWith.Impostors)) )
+			if (flag != ((playerInfo2.IsImpostor && win != CE_WinWith.Crewmates) || (win == CE_WinWith.Impostors)))
 			{
-				TempData.winners.Add(new WinningPlayerData(playerInfo2));
+				if (win != CE_WinWith.Neither)
+				{
+					TempData.winners.Add(new WinningPlayerData(playerInfo2));
+				}
 			}
         }
         StartCoroutine(CoEndGame());
