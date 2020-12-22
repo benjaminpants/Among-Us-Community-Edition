@@ -29,8 +29,22 @@ static class CE_GameLua
 
     public static bool DebugLogLua(string text)
     {
-        Debug.Log(text);
+        Debug.Log(text); //debug log
         return true;
+    }
+
+
+    public static CE_LuaSpawnableObject CreateObject(string id)
+    {
+        if (id == "DeadBody")
+        {
+            return new CE_LuaDeadBody();
+        }
+        return new CE_LuaSpawnableObject();
+    }
+    public static bool GameStarted()
+    {
+        return (InnerNet.InnerNetServer.Instance.CurrentGState() == InnerNet.GameStates.Started);
     }
 
     public static bool SendToHostSimple(byte id)

@@ -13,7 +13,7 @@ public static class CE_LuaLoader
 	public static string TheOmegaString;
 
 	public static int TheOmegaHash;
-	public static bool CurrentGMLua => GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode];
+	public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists));
 
 	public static void LoadLua()
 	{
@@ -33,8 +33,9 @@ public static class CE_LuaLoader
             script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool>)CE_GameLua.CreateRoleComplex;
 			script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
             script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
-			script.Globals["Game_SetRoles"] = (Func<Table,Table, bool>)CE_GameLua.SetRoles;
-            script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
+            script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
+			script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
+			script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
 			script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
 			script.Globals["Debug_Log"] = (Func<string,bool>)CE_GameLua.DebugLogLua;
 			script.DoString(code);
@@ -68,12 +69,12 @@ public static class CE_LuaLoader
 			}
 			catch(Exception E)
             {
-				Debug.LogError(E.Message + "\nUnable to find function:" + fn + "\nAttempting to call function in base lua...");
+				Debug.LogWarning(E.Message + "\nUnable to find function:" + fn + "\nAttempting to call function in base lua...");
                 if (GamemodeInfos.TryGetValue(1, out var value2))
                 {
 					try
 					{
-						return value2.script.Call(script.Globals[fn], obj);
+						return value2.script.Call(value2.script.Globals[fn], obj);
 					}
 					catch(Exception E2)
                     {

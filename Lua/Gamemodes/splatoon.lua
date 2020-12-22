@@ -46,13 +46,6 @@ function BeforeKill(killer,victim)
 	return false
 end
 
-function OnExile(exiled)
-	
-end
-
-function OnExileSkip()
-
-end
 
 
 function OnHostRecieveSimple(id)

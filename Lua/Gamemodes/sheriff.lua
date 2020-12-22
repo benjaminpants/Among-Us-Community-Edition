@@ -36,10 +36,6 @@ function OnExile(exiled)
 	end
 end
 
-function OnExileSkip()
-
-end
-
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (not sab) then --If the check isn't due to a sabotage
@@ -58,10 +54,6 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	end
 end
 
-
-function OnGameEnd()
-
-end
 
 function CanKill(userinfo,targetinfo)
 	if ((userinfo.IsImpostor and not targetinfo.IsImpostor) or userinfo.role == Game_GetRoleIDFromName("Sheriff")) then --if the person doing the kill is an impostor and the victim

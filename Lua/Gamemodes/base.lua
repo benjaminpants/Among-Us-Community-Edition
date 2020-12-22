@@ -17,6 +17,19 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on
 	return false --this isn't used
 end
 
+function OnChat(message, player)
+	
+end
+
+function OnExile(exiled)
+	
+end
+
+function OnExileSkip()
+
+end
+
+
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (not sab) then --If the check isn't due to a sabotage
@@ -40,14 +53,6 @@ function CanKill(userinfo,targetinfo)
 		return true
 	end
 	return false
-end
-
-function OnExile(exiled)
-	
-end
-
-function OnExileSkip()
-
 end
 
 

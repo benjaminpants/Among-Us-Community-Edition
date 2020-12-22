@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using MoonSharp.Interpreter;
 
+[MoonSharpUserData]
 class CE_LuaSpawnableObject
 {
     protected byte ID;

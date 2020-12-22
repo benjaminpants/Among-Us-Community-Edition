@@ -54,6 +54,11 @@ namespace InnerNet
 
 		private List<Player> Clients = new List<Player>();
 
+		public GameStates CurrentGState()
+        {
+			return GameState;
+        }
+
 		public override void OnDestroy()
 		{
 			StopServer();

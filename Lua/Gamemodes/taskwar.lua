@@ -28,18 +28,6 @@ function BeforeKill(killer,victim)
 	return true
 end
 
-function OnGameEnd()
-
-end
-
-
-function OnExile(exiled)
-	
-end
-
-function OnExileSkip()
-
-end
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	return "none"

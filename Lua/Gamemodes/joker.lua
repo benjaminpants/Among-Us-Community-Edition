@@ -26,10 +26,6 @@ function OnExile(exiled)
 	end
 end
 
-function OnExileSkip()
-
-end
-
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (not sab) then --If the check isn't due to a sabotage
@@ -59,9 +55,6 @@ function BeforeKill(killer,victim)
 	return true
 end
 
-function OnGameEnd()
-
-end
 
 function DecideRoles(playerinfos)
 	local RolesToGive = {"Joker"}

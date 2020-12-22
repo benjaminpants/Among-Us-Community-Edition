@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MoonSharp.Interpreter;
+[MoonSharpUserData]
 class CE_LuaDeadBody : CE_LuaSpawnableObject
 {
 
