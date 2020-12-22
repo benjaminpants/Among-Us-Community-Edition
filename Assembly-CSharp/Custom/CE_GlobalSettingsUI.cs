@@ -28,7 +28,7 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		if (IsShown)
 		{
 			CE_CommonUI.GUIDrawRect(CE_CommonUI.StockSettingsRect(), Color.black);
-			GUILayout.Window(-4, CE_CommonUI.StockSettingsRect(), GlobalSettingsMenu, "");
+			GUILayout.Window(-4, CE_CommonUI.StockSettingsRect(), GlobalSettingsMenu, "", CE_CommonUI.WindowStyle());
 		}
 	}
 

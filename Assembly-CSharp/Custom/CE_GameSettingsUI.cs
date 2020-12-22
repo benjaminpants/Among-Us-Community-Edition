@@ -27,7 +27,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 		if (IsShown)
 		{
 			CE_CommonUI.GUIDrawRect(CE_CommonUI.GameSettingsRect(), GameSettingsColor);
-			GUILayout.Window(-5, CE_CommonUI.GameSettingsRect(), CustomSettingsMenu, "");
+			GUILayout.Window(-5, CE_CommonUI.GameSettingsRect(), CustomSettingsMenu, "", CE_CommonUI.WindowStyle());
 		}
 	}
 

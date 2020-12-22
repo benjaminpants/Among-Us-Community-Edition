@@ -10,20 +10,52 @@ public class CE_CommonUI
 
 	private static Rect LastHoverRect;
 
+	private static int TextUpscale = -15;
+	private static int TextHeightUpscale = 20;
+
+
 	public static Rect FullWindowRect;
 
 	public static bool GameSettingsChanged;
 
 	public static bool[] ColapsableGroupStateCollection;
 
+	public static GUIStyle WindowStyle()
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		var style = new GUIStyle(GUI.skin.window)
+		{
+			
+			normal =
+            {
+				background = null
+            },
+			focused =
+            {
+				background = null
+            },
+			active =
+			{
+				background = null
+			},
+			hover =
+            {
+				background = null
+            }
+			
+		};
+		style.onNormal.background = null;
+		return style;
+	}
+
 	public static GUIStyle UpDownSettingButtons()
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 		return new GUIStyle(GUI.skin.button)
 		{
-			fixedWidth = 50f * scale,
-			fixedHeight = 50f * scale,
-			fontSize = 25 * (int)scale,
+			fixedWidth = (50f + TextHeightUpscale) * scale,
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
 			normal = 
 			{
 				textColor = Color.white
@@ -38,9 +70,9 @@ public class CE_CommonUI
 		{
 			return new GUIStyle(GUI.skin.label)
 			{
-				fixedHeight = 50f * scale,
+				fixedHeight = (50f + TextHeightUpscale) * scale,
 				fixedWidth = width * scale,
-				fontSize = 25 * (int)scale,
+				fontSize = (int)((45 + TextUpscale) * scale),
 				normal = 
 				{
 					textColor = Color.white
@@ -50,9 +82,9 @@ public class CE_CommonUI
 		return new GUIStyle(GUI.skin.label)
 		{
 			alignment = TextAnchor.MiddleCenter,
-			fixedHeight = 50f * scale,
+			fixedHeight = (50f + TextHeightUpscale) * scale,
 			fixedWidth = width * scale,
-			fontSize = 25 * (int)scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
 			normal = 
 			{
 				textColor = Color.white
@@ -129,8 +161,8 @@ public class CE_CommonUI
 		bool result = false;
 		if (GUILayout.Button("Back", new GUIStyle(GUI.skin.button)
 		{
-			fixedHeight = 50f * scale,
-			fontSize = 25 * (int)scale
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale)
 		}))
 		{
 			ClickSoundTrigger();
@@ -178,8 +210,8 @@ public class CE_CommonUI
 
 		GUILayout.Label(text, new GUIStyle(GUI.skin.label)
 		{
-			fixedHeight = 60f * scale,
-			fontSize = 30 * (int)scale,
+			fixedHeight = (60f + TextHeightUpscale) * scale,
+			fontSize = (int)((50 + TextUpscale) * scale),
 			fontStyle = FontStyle.Bold
 		});
 	}
@@ -190,8 +222,8 @@ public class CE_CommonUI
 		bool flag = ColapsableGroupStateCollection[index];
 		if (GUILayout.Button(name, new GUIStyle(GUI.skin.button)
 		{
-			fixedHeight = 50f * scale,
-			fontSize = 25 * (int)scale,
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
 			alignment = TextAnchor.MiddleCenter
 		}))
 		{
@@ -366,15 +398,15 @@ public class CE_CommonUI
 		{
 			GUILayout.Label(firstText, new GUIStyle(GUI.skin.label)
 			{
-				fixedHeight = 40f * scale,
-				fontSize = 20 * (int)scale,
+				fixedHeight = (40f + TextHeightUpscale) * scale,
+				fontSize = (int)((40 + TextUpscale) * scale),
 				fontStyle = FontStyle.Bold
 			});
 			GUILayout.FlexibleSpace();
 			GUILayout.Label(nextText, new GUIStyle(GUI.skin.label)
 			{
-				fixedHeight = 40f * scale,
-				fontSize = 20 * (int)scale,
+				fixedHeight = (40f + TextHeightUpscale) * scale,
+				fontSize = (int)((40 + TextUpscale) * scale),
 				fontStyle = FontStyle.Normal
 			});
 		}
