@@ -7,7 +7,7 @@ end
 
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player) --use this to cancel tasks
-	if (not userinfo.IsImpostor) then
+	if (not player.IsImpostor) then
 		return true
 	end
 	return false

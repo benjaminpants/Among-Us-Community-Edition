@@ -1200,7 +1200,6 @@ public class PlayerControl : InnerNetObject
 		{
 			return false;
 		}
-		chatText = BlockedWords.CensorWords(chatText);
 		if (AmongUsClient.Instance.AmClient)
 		{
 			SendChat(chatText);
@@ -1319,7 +1318,8 @@ public class PlayerControl : InnerNetObject
 			break;
 		}
 		case 13:
-			SendChat(reader.ReadString());
+			string chatmessage = reader.ReadString();
+			SendChat(chatmessage);
 			break;
 		case 14:
 			percImpostor = reader.ReadSingle();

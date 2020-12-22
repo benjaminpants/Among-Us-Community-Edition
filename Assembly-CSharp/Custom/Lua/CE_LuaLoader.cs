@@ -24,7 +24,7 @@ public static class CE_LuaLoader
 		{
 			using StreamReader streamReader = files[i].OpenText();
 			string code = streamReader.ReadToEnd();
-			TheOmegaString += code;
+			TheOmegaString += code; //nothing is done with this atm
 			Script script = new Script();
             script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
             script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
@@ -59,8 +59,39 @@ public static class CE_LuaLoader
 
 	public static DynValue GetGamemodeResult(string fn, params object[] obj)
 	{
-		GamemodeInfos.TryGetValue((byte)(PlayerControl.GameOptions.Gamemode + 1), out var value);
-		Script script = value.script;
-		return script.Call(script.Globals[fn], obj);
+		if (GamemodeInfos.TryGetValue((byte)(PlayerControl.GameOptions.Gamemode + 1), out var value))
+		{
+			Script script = value.script;
+			try
+			{
+				return script.Call(script.Globals[fn], obj);
+			}
+			catch(Exception E)
+            {
+				Debug.LogError(E.Message + "\nUnable to find function:" + fn + "\nAttempting to call function in base lua...");
+                if (GamemodeInfos.TryGetValue(1, out var value2))
+                {
+					try
+					{
+						return value2.script.Call(script.Globals[fn], obj);
+					}
+					catch(Exception E2)
+                    {
+						Debug.LogError(E2.Message + "\nScript 1 doesn't have a definition for this function!\nReturning new DynValue...");
+						return new DynValue();
+					}
+				}
+                else
+                {
+                    Debug.LogError("No script with base ID 1... THIS SHOULDN'T BE POSSIBLE");
+                }
+				return new DynValue();
+			}
+		}
+		else
+        {
+			Debug.LogError("Current Gamemode marked as Lua even though it isn't!\nGamemode ID(Raw):" + PlayerControl.GameOptions.Gamemode + "\nGamemode ID:" + (PlayerControl.GameOptions.Gamemode + 1));
+			return new DynValue();
+        }
 	}
 }
