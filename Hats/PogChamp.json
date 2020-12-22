@@ -1,0 +1,18 @@
+{
+	"ID": "Poggers",
+	"NormalImg": "pogchamp.png",
+	"FloorImg": "pogchamp_crumple.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 70,
+	"NormalHeight": 71,
+	"NormalPivotX": 0.38,
+	"NormalPivotY": 1.05,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 71,
+	"FloorHeight": 36,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true"
+}

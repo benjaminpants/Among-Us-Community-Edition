@@ -1,0 +1,18 @@
+{
+	"ID": "Sven_hat",
+	"NormalImg": "svenhat.png",
+	"FloorImg": "svenhat_crumple.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 73,
+	"NormalHeight": 69,
+	"NormalPivotX": 0.37,
+	"NormalPivotY": 0.75,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 75,
+	"FloorHeight": 61,
+	"FloorPivotX": 0.33,
+	"FloorPivotY": 0.85,
+	"inFront": "true"
+}

@@ -1,0 +1,18 @@
+{
+	"ID": "Fedora",
+	"NormalImg": "fedora.png",
+	"FloorImg": "fedora_crumple.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 85,
+	"NormalHeight": 42,
+	"NormalPivotX": 0.4,
+	"NormalPivotY": 0.95,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 85,
+	"FloorHeight": 40,
+	"FloorPivotX": 0.4,
+	"FloorPivotY": 0.95,
+	"inFront": "true"
+}

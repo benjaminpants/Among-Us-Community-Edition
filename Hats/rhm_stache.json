@@ -1,0 +1,18 @@
+{
+	"ID": "Mustache",
+	"NormalImg": "rhm_stache.png",
+	"FloorImg": "rhm_stache_crumple.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 63,
+	"NormalHeight": 48,
+	"NormalPivotX": 0.22,
+	"NormalPivotY": 1.94,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 98,
+	"FloorHeight": 25,
+	"FloorPivotX": 0.22,
+	"FloorPivotY": 1.94,
+	"inFront": "true"
+}

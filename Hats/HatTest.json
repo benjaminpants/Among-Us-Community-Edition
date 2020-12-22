@@ -2,8 +2,6 @@
 	"ID": "CarJem the Hedgefox",
 	"NormalImg": "CarJemHat.png",
 	"FloorImg": "CarJemHat.png",
-	"PreviewImg": "CarJemHat.png",
-	"NoBobbing": true,
 	"NormalPosX": 0,
 	"NormalPosY": 0,
 	"NormalWidth": 84,
@@ -16,12 +14,5 @@
 	"FloorHeight": 86,
 	"FloorPivotX": 0.5,
 	"FloorPivotY": 0.5,
-	"PreviewPosX": 0,
-	"PreviewPosY": 0,
-	"PreviewWidth": 84,
-	"PreviewHeight": 86,
-	"PreviewPivotX": 0.5,
-	"PreviewPivotY": 0.5,
-	"inFront": "true",
-	"UsePointFiltering": false
+	"inFront": "true"
 }
