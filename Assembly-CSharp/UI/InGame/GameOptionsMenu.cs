@@ -21,7 +21,10 @@ public class GameOptionsMenu : MonoBehaviour
 		{
 			OptionBehaviour optionBehaviour = Children[i];
 			optionBehaviour.OnValueChanged = ValueChanged;
-			if ((bool)AmongUsClient.Instance && !AmongUsClient.Instance.AmHost)
+
+			bool clientDisabled = optionBehaviour.Title != "Recommended Settings" && !AmongUsClient.Instance.AmHost;
+
+			if ((bool)AmongUsClient.Instance && clientDisabled)
 			{
 				optionBehaviour.SetAsPlayer();
 			}
@@ -50,13 +53,13 @@ public class GameOptionsMenu : MonoBehaviour
 
 	public void ValueChanged(OptionBehaviour option)
 	{
-		if (!AmongUsClient.Instance || !AmongUsClient.Instance.AmHost)
-		{
-			return;
-		}
 		if (option.Title == "Recommended Settings")
 		{
 			CE_GameSettingsUI.IsShown = true;
+		}
+		if (!AmongUsClient.Instance || !AmongUsClient.Instance.AmHost)
+		{
+			return;
 		}
 		else
 		{
