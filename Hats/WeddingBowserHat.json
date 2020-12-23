@@ -1,0 +1,19 @@
+{
+	"ID": "BowserWeddingHat",
+	"NormalImg": "BowserWeddingHat.png",
+	"FloorImg": "BowserWeddingHat_Crumple.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 65,
+	"NormalHeight": 55,
+	"NormalPivotX": 0.4,
+	"NormalPivotY": 0.68,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 65,
+	"FloorHeight": 43,
+	"FloorPivotX": 0.43,
+	"FloorPivotY": 0.6,
+	"inFront": "true",
+	"UsePointFiltering": true
+}

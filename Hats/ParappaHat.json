@@ -1,0 +1,18 @@
+{
+	"ID": "ParappaRappa",
+	"NormalImg": "ParappaNormal.png",
+	"FloorImg": "ParappaCrunk.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 64,
+	"NormalHeight": 64,
+	"NormalPivotX": 0.37,
+	"NormalPivotY": 0.67,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 64,
+	"FloorHeight": 64,
+	"FloorPivotX": 0.33,
+	"FloorPivotY": 0.85,
+	"inFront": "true"
+}

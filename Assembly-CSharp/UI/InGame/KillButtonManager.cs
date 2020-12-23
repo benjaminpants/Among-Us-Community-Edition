@@ -41,6 +41,10 @@ public class KillButtonManager : MonoBehaviour
 			}
 			PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
 		}
+		else
+        {
+			PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
+		}
 		SetTarget(null);
 	}
 
