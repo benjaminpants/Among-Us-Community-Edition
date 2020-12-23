@@ -77,7 +77,6 @@ end
 
 
 function DecideImpostors(impostorcount,playerinfos)
-	OGPlayers = playerinfos
 	return playerinfos
 end
 

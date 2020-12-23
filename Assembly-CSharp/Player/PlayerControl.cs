@@ -1260,7 +1260,6 @@ public class PlayerControl : InnerNetObject
 			}
 			break;
 			case 254:
-			{
 				int gameid = reader.ReadInt32();
 				if (AmongUsClient.Instance.GameId != gameid || !AmongUsClient.Instance.AmHost)
 				{
@@ -1269,12 +1268,10 @@ public class PlayerControl : InnerNetObject
 				byte id = reader.ReadByte();
 				CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
 				break;
-				}
 			case 2:
 			GameOptions = GameOptionsData.FromBytes(reader.ReadBytesAndSize());
 			break;
 		case 3:
-		{
 			int num2 = reader.ReadPackedInt32();
 			GameData.PlayerInfo[] array3 = new GameData.PlayerInfo[num2];
 			for (int j = 0; j < num2; j++)
@@ -1283,7 +1280,6 @@ public class PlayerControl : InnerNetObject
 			}
 			SetInfected(array3);
 			break;
-		}
 		case 4:
 			Exiled();
 			break;

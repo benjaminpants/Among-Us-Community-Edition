@@ -381,7 +381,19 @@ public class ShipStatus : InnerNetObject
 			if ((bool)playerInfo.Object && !playerInfo.Object.GetComponent<DummyBehaviour>().enabled)
 			{
 				byte[] taskTypeIds = list.ToArray();
-				GameData.Instance.RpcSetTasks(playerInfo.PlayerId, taskTypeIds);
+				bool alreadyassigned = false;
+				if (CE_LuaLoader.CurrentGMLua)
+                {
+					if (!CE_LuaLoader.GetGamemodeResult("GiveTasks",new CE_PlayerInfoLua(playerInfo)).Boolean)
+                    {
+						alreadyassigned = true;
+						GameData.Instance.RpcSetTasks(playerInfo.PlayerId, new byte[0]);
+					}
+                }
+				if (!alreadyassigned)
+				{
+					GameData.Instance.RpcSetTasks(playerInfo.PlayerId, taskTypeIds);
+				}
 			}
 		}
 		base.enabled = true;

@@ -22,7 +22,7 @@ public class VersionShower : MonoBehaviour
                 Intro = Object.Instantiate(new GameObject()).AddComponent<CE_Intro>();
 				CE_Intro.IsShown = true;
 			}
-			IntroPlayed = true;
 		}
+		IntroPlayed = true;
 	}
 }

@@ -20,8 +20,14 @@ static class CE_GameLua
         CE_PlayerInfoLua influa = (CE_PlayerInfoLua)dynval.UserData.Object;
         Debug.Log("Attempting Data Change for:" + influa.PlayerName);
         influa.refplayer.Object.RpcSetColor(influa.ColorId);
-        influa.refplayer.Object.RpcSetSkin(influa.SkinId);
-        influa.refplayer.Object.RpcSetHat(influa.HatId);
+        if (influa.refplayer.SkinId != influa.SkinId)
+        {
+            influa.refplayer.Object.RpcSetSkin(influa.SkinId);
+        }
+        if (influa.refplayer.HatId != influa.HatId)
+        {
+            influa.refplayer.Object.RpcSetHat(influa.HatId);
+        }
         influa.refplayer.Object.RpcSetName(influa.PlayerName);
         return true;
     }

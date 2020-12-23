@@ -1,0 +1,18 @@
+{
+	"ID": "SHH",
+	"NormalImg": "shh.png",
+	"FloorImg": "shh.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 97,
+	"NormalHeight": 24,
+	"NormalPivotX": 0.43,
+	"NormalPivotY": 0.6,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 97,
+	"FloorHeight": 24,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.4,
+	"inFront": "true"
+}

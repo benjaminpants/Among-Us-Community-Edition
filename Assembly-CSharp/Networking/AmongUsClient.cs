@@ -219,7 +219,8 @@ public class AmongUsClient : InnerNetClient
 		if (!ShipStatus.Instance)
 		{
 			ShipStatus.Instance = UnityEngine.Object.Instantiate(ShipPrefabs[gameOptions.MapId]);
-			ShipStatus.Instance.transform.localScale = new Vector3(PlayerControl.GameOptions.MapScaleX, PlayerControl.GameOptions.MapScaleY, 1f);
+			ShipStatus.Instance.transform.localScale = new Vector3(ShipStatus.Instance.transform.localScale.x * PlayerControl.GameOptions.MapScaleX, ShipStatus.Instance.transform.localScale.y * PlayerControl.GameOptions.MapScaleY, 1f);
+
 			ShipStatus.Instance.transform.eulerAngles = new Vector3(0f, 0f, PlayerControl.GameOptions.MapRot);
 		}
 		Spawn(ShipStatus.Instance);

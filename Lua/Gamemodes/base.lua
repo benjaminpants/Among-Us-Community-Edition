@@ -29,6 +29,9 @@ function OnExileSkip()
 
 end
 
+function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
+	return true
+end
 
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required

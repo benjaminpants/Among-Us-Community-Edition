@@ -26,6 +26,13 @@ function OnExile(exiled)
 	end
 end
 
+function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
+	if (playerinfo.role == Game_GetRoleIDFromName("Joker")) then
+		return false
+	end
+	return true
+end
+
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (not sab) then --If the check isn't due to a sabotage

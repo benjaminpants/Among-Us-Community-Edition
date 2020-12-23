@@ -29,7 +29,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 		{
 			return;
 		}
-		if (SaveManager.AmBanned)
+		if (false)
 		{
 			AmongUsClient.Instance.LastDisconnectReason = DisconnectReasons.IntentionalLeaving;
 			DestroyableSingleton<DisconnectPopup>.Instance.Show();

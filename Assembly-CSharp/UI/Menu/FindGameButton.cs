@@ -14,7 +14,7 @@ public class FindGameButton : MonoBehaviour, IConnectButton
 	{
 		if (!NameTextBehaviour.Instance.ShakeIfInvalid())
 		{
-			if (SaveManager.AmBanned)
+			if (false)
 			{
 				AmongUsClient.Instance.LastDisconnectReason = DisconnectReasons.IntentionalLeaving;
 				DestroyableSingleton<DisconnectPopup>.Instance.Show();

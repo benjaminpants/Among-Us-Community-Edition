@@ -1,0 +1,18 @@
+{
+	"ID": "CarJem the Hedgefox",
+	"NormalImg": "CatteHatNormal.png",
+	"FloorImg": "CatteHatCrunk.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 84,
+	"NormalHeight": 86,
+	"NormalPivotX": 0.43,
+	"NormalPivotY": 0.85,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 84,
+	"FloorHeight": 86,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true"
+}
