@@ -10,7 +10,7 @@ public class CE_UIHelpers
 
 	public static bool IsActive()
 	{
-		if (!CE_Intro.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown)
+		if (!CE_Intro.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown)
 		{
 			return CE_AnimationDebuger.IsShown;
 		}
@@ -23,6 +23,7 @@ public class CE_UIHelpers
 		CE_GameSettingsUI.IsShown = false;
 		CE_GlobalSettingsUI.IsShown = false;
 		CE_ControlsUI.IsShown = false;
+		CE_DevTool.IsShown = false;
 	}
 
 	static CE_UIHelpers()
@@ -109,11 +110,16 @@ public class CE_UIHelpers
 		{
 			Object.Instantiate(new GameObject()).AddComponent<CE_AnimationDebuger>();
 		}
+		if (!DestroyableSingleton<CE_DevTool>.InstanceExists)
+		{
+			Object.Instantiate(new GameObject()).AddComponent<CE_DevTool>();
+		}
 	}
 
 	public static void ForceLoadDebugUIs()
 	{
 		Object.Instantiate(new GameObject()).AddComponent<ProblemTraceConsole>();
 		Object.Instantiate(new GameObject()).AddComponent<CE_AnimationDebuger>();
+		Object.Instantiate(new GameObject()).AddComponent<CE_DevTool>();
 	}
 }
