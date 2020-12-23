@@ -16,5 +16,11 @@
 	"FloorHeight": 86,
 	"FloorPivotX": 0.5,
 	"FloorPivotY": 0.5,
+	"PreviewPosX": 0,
+	"PreviewPosY": 0,
+	"PreviewWidth": 84,
+	"PreviewHeight": 86,
+	"PreviewPivotX": 0.5,
+	"PreviewPivotY": 0.5,
 	"inFront": "true"
 }
