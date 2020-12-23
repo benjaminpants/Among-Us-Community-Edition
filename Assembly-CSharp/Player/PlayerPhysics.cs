@@ -16,7 +16,7 @@ public class PlayerPhysics : InnerNetObject
 
 	public bool IsHatBobbing()
     {
-		return !Animator.IsPlaying(SpawnAnim) && !Animator.IsPlaying(ExitVentAnim) && !Animator.IsPlaying(EnterVentAnim);
+		return !Animator.IsPlaying(SpawnAnim) && !Animator.IsPlaying(ExitVentAnim) && !Animator.IsPlaying(GhostIdleAnim) && !Animator.IsPlaying(EnterVentAnim);
 	}
 
 	public float Speed = 4.5f;
