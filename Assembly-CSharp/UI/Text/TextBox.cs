@@ -99,7 +99,12 @@ public class TextBox : MonoBehaviour, IFocusHolder
 		{
 			return;
 		}
+
 		string inputString = Input.inputString;
+		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.V))
+		{
+			inputString += GUIUtility.systemCopyBuffer;
+		}
 		if (inputString.Length > 0 || compoText != Input.compositionString)
 		{
 			if (text == null || text == "Enter Name")
