@@ -169,7 +169,7 @@ public class MedScanMinigame : Minigame
 
 	static MedScanMinigame()
 	{
-		ColorNames = new string[23]
+		ColorNames = new string[]
 		{
 			"Red",
 			"Blue",
@@ -183,7 +183,7 @@ public class MedScanMinigame : Minigame
 			"Brown",
 			"Cyan",
 			"Lime",
-			"Tan",
+			"Flesh",
 			"Baby Red",
 			"Blurple",
 			"Kiwi",
@@ -193,7 +193,12 @@ public class MedScanMinigame : Minigame
 			"Light Purple",
 			"Gold",
 			"Impostor",
-			"Shaderless"
+			"Shaderless",
+			"Jed",
+			"Tan",
+			"Doodle",
+			"Jlue",
+			"Highlighter"
 		};
 		BloodTypes = new string[8]
 		{

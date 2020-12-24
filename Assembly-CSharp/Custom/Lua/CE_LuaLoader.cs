@@ -25,30 +25,38 @@ public static class CE_LuaLoader
 			using StreamReader streamReader = files[i].OpenText();
 			string code = streamReader.ReadToEnd();
 			TheOmegaString += code; //nothing is done with this atm
-			Script script = new Script();
-            script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
-            script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
-			script.Globals["Game_GetAllPlayersComplex"] = (Func<bool,bool,List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayersComplex;
-			script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
-            script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool>)CE_GameLua.CreateRoleComplex;
-			script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
-            script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
-            script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
-			script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
-			script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
-			script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
-			script.Globals["Debug_Log"] = (Func<string,bool>)CE_GameLua.DebugLogLua;
-			script.DoString(code);
-			Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
-			byte b = (byte)table.Get(2).Number;
-            string gamemodename = table.Get(1).String;
-			gamemodename = new string((from c in gamemodename
-			where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
-			select c
-			).ToArray()); //Removes non letter or number characters from Gamemode name
-			Debug.Log("Loaded Gamemode: " + gamemodename);
-			CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b);
-			GamemodeInfos.Add(b, value);
+			try
+			{
+				Script script = new Script();
+				script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
+				script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
+				script.Globals["Game_GetAllPlayersComplex"] = (Func<bool, bool, List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayersComplex;
+				script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
+				script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool>)CE_GameLua.CreateRoleComplex;
+				script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
+				script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
+				script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
+				script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
+				script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
+				script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
+                script.Globals["Debug_Log"] = (Func<string, bool>)CE_GameLua.DebugLogLua;
+				script.Globals["Debug_Error"] = (Func<string, bool>)CE_GameLua.DebugErrorLua;
+				script.DoString(code);
+				Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
+				byte b = (byte)table.Get(2).Number;
+				string gamemodename = table.Get(1).String;
+				gamemodename = new string((from c in gamemodename
+										   where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
+										   select c
+				).ToArray()); //Removes non letter or number characters from Gamemode name
+				Debug.Log("Loaded Gamemode: " + gamemodename);
+				CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b);
+				GamemodeInfos.Add(b, value);
+			}
+			catch(Exception E)
+            {
+				Debug.LogError("Error encountered when trying to load gamemode with filename:" + files[i].Name + "\nException Message:" + E.Message);
+            }
 		}
 		TheOmegaHash = TheOmegaString.GetHashCode();
 	}

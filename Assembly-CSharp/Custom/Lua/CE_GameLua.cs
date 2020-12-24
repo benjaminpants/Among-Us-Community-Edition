@@ -38,6 +38,11 @@ static class CE_GameLua
         Debug.Log(text); //debug log
         return true;
     }
+    public static bool DebugErrorLua(string text)
+    {
+        Debug.LogError(text); //debug log
+        return true;
+    }
 
 
     public static CE_LuaSpawnableObject CreateObject(string id)
@@ -133,7 +138,7 @@ static class CE_GameLua
         return PlayFoLua;
     }
 
-
+   
     public static bool CreateRoleSimple(string Name, Table Color, string RoleText)
     {
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
