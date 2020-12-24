@@ -1,0 +1,18 @@
+{
+	"ID": "JokerHat",
+	"NormalImg": "JokerHat.png",
+	"FloorImg": "JokerHat.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 110,
+	"NormalHeight": 62,
+	"NormalPivotX": 0.43,
+	"NormalPivotY": 0.85,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 84,
+	"FloorHeight": 86,
+	"FloorPivotX": 0.5,
+	"FloorPivotY": 0.5,
+	"inFront": "true"
+}

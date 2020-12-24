@@ -1033,10 +1033,16 @@ public class PlayerControl : InnerNetObject
 			break;
 		case 23:
 			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
+            break;
+		case 25:
+			rend.material.SetColor("_VisorColor", Palette.Black);
+            break;
+		case 26:
+			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
 			break;
 		default:
-			rend.material.SetColor("_VisorColor", Palette.VisorColor);
-			break;
+		rend.material.SetColor("_VisorColor", Palette.VisorColor);
+		break;
 		}
 	}
 

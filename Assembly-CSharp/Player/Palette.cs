@@ -64,22 +64,22 @@ public static class Palette
 		ImpostorRed = new Color32(byte.MaxValue, 25, 25, byte.MaxValue);
 		SheriffYellow = new Color32(byte.MaxValue, 216, 0, byte.MaxValue);
 		InfectedGreen = new Color32(98, 167, 74, byte.MaxValue);
-		PlayerColors = new Color32[24]
+		PlayerColors = new Color32[28]
 		{
-			new Color32(198, 17, 17, byte.MaxValue),
-			new Color32(19, 46, 210, byte.MaxValue),
-			new Color32(17, 128, 45, byte.MaxValue),
-			new Color32(238, 84, 187, byte.MaxValue),
-			new Color32(240, 125, 13, byte.MaxValue),
-			new Color32(246, 246, 87, byte.MaxValue),
-			new Color32(63, 71, 78, byte.MaxValue),
-			new Color32(215, 225, 241, byte.MaxValue),
-			new Color32(107, 47, 188, byte.MaxValue),
-			new Color32(113, 73, 30, byte.MaxValue),
-			new Color32(56, byte.MaxValue, 221, byte.MaxValue),
-			new Color32(80, 240, 57, byte.MaxValue),
-			new Color32(byte.MaxValue, 187, 142, byte.MaxValue),
-			new Color32(byte.MaxValue, 127, 127, byte.MaxValue),
+			new Color32(198, 17, 17, byte.MaxValue), //red
+			new Color32(19, 46, 210, byte.MaxValue), //blue
+			new Color32(17, 128, 45, byte.MaxValue), //green
+			new Color32(238, 84, 187, byte.MaxValue), //pink
+			new Color32(240, 125, 13, byte.MaxValue), //orange
+			new Color32(246, 246, 87, byte.MaxValue), //yellow
+			new Color32(63, 71, 78, byte.MaxValue), //black
+			new Color32(215, 225, 241, byte.MaxValue), //white
+			new Color32(107, 47, 188, byte.MaxValue), //purple
+			new Color32(113, 73, 30, byte.MaxValue), //brown
+			new Color32(56, byte.MaxValue, 221, byte.MaxValue), //cyan
+			new Color32(80, 240, 57, byte.MaxValue), //lime
+			new Color32(byte.MaxValue, 187, 142, byte.MaxValue), //flesh?
+			new Color32(byte.MaxValue, 127, 127, byte.MaxValue), //pink
 			new Color32(114, 137, 218, byte.MaxValue),
 			new Color32(165, byte.MaxValue, 127, byte.MaxValue),
 			new Color32(127, 106, 0, byte.MaxValue),
@@ -89,9 +89,13 @@ public static class Palette
 			new Color32(byte.MaxValue, 233, 127, byte.MaxValue),
 			new Color32(85, 102, 101, byte.MaxValue),
 			new Color32(byte.MaxValue, 0, 0, byte.MaxValue),
-			new Color32(122, 7, 7, byte.MaxValue)
+			new Color32(122, 7, 7, byte.MaxValue),
+			new Color32(145,136,119, byte.MaxValue),
+			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
+			new Color32(7, 7, 122, byte.MaxValue), //carjem but blue
+			new Color32(182, 255, 0, byte.MaxValue)
 		};
-		ShadowColors = new Color32[24]
+		ShadowColors = new Color32[28]
 		{
 			new Color32(122, 8, 56, byte.MaxValue),
 			new Color32(9, 21, 142, byte.MaxValue),
@@ -106,9 +110,9 @@ public static class Palette
 			new Color32(36, 169, 191, byte.MaxValue),
 			new Color32(21, 168, 66, byte.MaxValue),
 			new Color32(224, 152, 65, byte.MaxValue),
-			new Color32(124, 39, 39, byte.MaxValue),
+			new Color32(188, 60, 60, byte.MaxValue),
 			new Color32(78, 89, 148, byte.MaxValue),
-			new Color32(42, 124, 52, byte.MaxValue),
+			new Color32(56, 165, 69, byte.MaxValue),
 			new Color32(99, 72, 0, byte.MaxValue),
 			new Color32(73, 7, 0, byte.MaxValue),
 			new Color32(0, 9, 63, byte.MaxValue),
@@ -116,7 +120,11 @@ public static class Palette
 			new Color32(168, 149, 67, byte.MaxValue),
 			new Color32(51, 50, 69, byte.MaxValue),
 			new Color32(0, 0, byte.MaxValue, byte.MaxValue),
-			new Color32(byte.MaxValue, 0, 42, byte.MaxValue)
+			new Color32(byte.MaxValue, 0, 42, byte.MaxValue),
+			new Color32(81,65,62, byte.MaxValue),
+			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
+			new Color32(42, 0, byte.MaxValue, byte.MaxValue), //carjem but blue
+			new Color32(160, 224, 5, byte.MaxValue)
 		};
 		VisorColor = new Color32(149, 202, 220, byte.MaxValue);
 		VisorColorRed = new Color32(192, 15, 11, byte.MaxValue);

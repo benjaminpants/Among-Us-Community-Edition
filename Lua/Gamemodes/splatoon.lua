@@ -52,7 +52,7 @@ function OnHostRecieveSimple(id)
 	if (id == 0) then
 		plys = Game_GetAllPlayers()
 		local winlist = {}
-		for i=1, 24 do
+		for i=1, 29 do
 			table.insert(winlist,0)
 		end
 		local winners = {}

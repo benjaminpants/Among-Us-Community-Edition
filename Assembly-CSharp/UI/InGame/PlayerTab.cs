@@ -23,14 +23,15 @@ public class PlayerTab : MonoBehaviour
 
 	public void Start()
 	{
-		float num = 1.6f;
-		float num2 = -0.52f;
+		float num = 1.65f;
+		float num2 = -0.33f;
 		_ = (float)Palette.PlayerColors.Length / 3f;
 		float num3 = 0f;
 		int num4 = 0;
+		Sprite specsprite = Sprite.Create(CE_CommonUI.SpecialClrChip,new Rect(0f,0f, CE_CommonUI.SpecialClrChip.width, CE_CommonUI.SpecialClrChip.height),new Vector2(0.5f,0.5f));
 		while (num4 < Palette.PlayerColors.Length)
 		{
-			for (float num5 = 0f; num5 < 2f; num5 += 0.5f)
+			for (float num5 = 0f; num5 < 1.5f; num5 += 0.48f)
 			{
 				if (num4 < Palette.PlayerColors.Length)
 				{
@@ -38,11 +39,33 @@ public class PlayerTab : MonoBehaviour
 					colorChip.transform.SetParent(base.transform);
 					colorChip.transform.localPosition = new Vector3(num + num5, num2 + num3, -1f);
 					int i = num4;
+                    colorChip.transform.localScale *= 0.75f;
 					colorChip.Button.OnClick.AddListener(delegate
 					{
 						SelectColor(i);
 					});
 					colorChip.Inner.color = Palette.PlayerColors[num4];
+					switch (i) //below code is a mess
+					{
+						case 21:
+							colorChip.Inner.sprite = specsprite;
+							break;
+						case 22:
+							colorChip.Inner.sprite = specsprite;
+							break;
+						case 23:
+							colorChip.Inner.sprite = specsprite;
+							break;
+						case 25:
+							colorChip.Inner.sprite = specsprite;
+							break;
+						case 26:
+							colorChip.Inner.sprite = specsprite;
+							break;
+						default:
+							//do nothing
+							break;
+					}
 					ColorChips.Add(colorChip);
 					num4++;
 				}

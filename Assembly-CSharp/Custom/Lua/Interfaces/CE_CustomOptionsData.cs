@@ -25,6 +25,15 @@ static class CE_CustomOptionsDataManager
             else if ((int)x.OptionType < (int)y.OptionType) return -1;
             else return 0;
         });
+        CE_OptDataTypes prevtype = CE_OptDataTypes.None;
+        foreach (CE_CustomOptionsData data in CompressableData)
+        { 
+            if (prevtype != data.OptionType)
+            {
+                writer.Write((byte)data.OptionType);
+            }
+            writer.Write((byte)255); //placeholder
+        }
     }
 }
 
@@ -39,7 +48,9 @@ public enum CE_OptDataTypes : byte
     BoolArray,
     FloatArray,
     IntArray,
-    StringArray
+    StringArray,
+    ByteRange,
+    ByteArray
 }
 class CE_CustomOptionsData
 {
@@ -54,6 +65,26 @@ class CE_CustomOptionsData
     public CE_CustomOptionsData(CE_OptDataTypes type)
     {
         OptionType = type;
-        CanBeCompressed = (type == CE_OptDataTypes.Toggle || type == CE_OptDataTypes.String || type == CE_OptDataTypes.FloatRange || type == CE_OptDataTypes.IntRange);
+        CanBeCompressed = (type == CE_OptDataTypes.Toggle || type == CE_OptDataTypes.String || type == CE_OptDataTypes.FloatRange || type == CE_OptDataTypes.IntRange || type == CE_OptDataTypes.ByteRange);
+        if (OptionType == CE_OptDataTypes.Toggle)
+        {
+            DefaultValue = false;
+        }
+        if (OptionType == CE_OptDataTypes.String)
+        {
+            DefaultValue = "Default";
+        }
+        if (OptionType == CE_OptDataTypes.FloatRange)
+        {
+            DefaultValue = 0.5f;
+        }
+        if (OptionType == CE_OptDataTypes.IntRange)
+        {
+            DefaultValue = 5;
+        }
+        if (OptionType == CE_OptDataTypes.ByteRange)
+        {
+            DefaultValue = (byte)255;
+        }
     }
 }

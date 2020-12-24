@@ -17,6 +17,7 @@ public class CE_CommonUI
 	public static Rect FullWindowRect;
 
 	public static bool GameSettingsChanged;
+	public static Texture2D SpecialClrChip;
 
 	public static bool[] ColapsableGroupStateCollection;
 
@@ -102,9 +103,13 @@ public class CE_CommonUI
 		{
 			GameMenuDropdownTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown.png"));
 		}
-		if (!GameMenuDropdownSelectedTexture)
+        if (!GameMenuDropdownSelectedTexture)
+        {
+            GameMenuDropdownSelectedTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown_Selected.png"));
+        }
+		if (!SpecialClrChip)
 		{
-			GameMenuDropdownSelectedTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown_Selected.png"));
+			SpecialClrChip = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "colorchip_special.png"));
 		}
 	}
 
@@ -335,6 +340,7 @@ public class CE_CommonUI
 	{
 		FullWindowRect = new Rect(0f, 0f, Screen.width, Screen.height);
 		ColapsableGroupStateCollection = new bool[8];
+		LoadAssets();
 	}
 
 	public static void HoverSoundTrigger()
