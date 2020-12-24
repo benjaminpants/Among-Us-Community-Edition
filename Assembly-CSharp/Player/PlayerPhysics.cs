@@ -14,9 +14,10 @@ public class PlayerPhysics : InnerNetObject
 		ExitVent
 	}
 
-	public bool IsHatBobbing()
+	public bool IsWalking()
     {
-		return !Animator.IsPlaying(SpawnAnim) && !Animator.IsPlaying(ExitVentAnim) && !Animator.IsPlaying(GhostIdleAnim) && !Animator.IsPlaying(EnterVentAnim);
+		string CurrentAnimation = Animator.GetCurrentAnimation()?.name ?? string.Empty;
+		return CurrentAnimation == "Walk";
 	}
 
 	public float Speed = 4.5f;

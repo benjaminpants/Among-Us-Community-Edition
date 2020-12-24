@@ -242,10 +242,25 @@
       }
     },
     {
+      "Position": {
+        "x": 4096.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
       "Name": "spawn0001",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 4096.0,
+        "x": 4352.0,
         "y": 0.0
       },
       "Size": {
@@ -255,13 +270,14 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0002",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 4352.0,
+        "x": 4608.0,
         "y": 0.0
       },
       "Size": {
@@ -271,13 +287,14 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0003",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 4608.0,
+        "x": 4864.0,
         "y": 0.0
       },
       "Size": {
@@ -287,14 +304,15 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0004",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 4864.0,
-        "y": 0.0
+        "x": 0.0,
+        "y": 256.0
       },
       "Size": {
         "x": 256.0,
@@ -303,13 +321,14 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0005",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 0.0,
+        "x": 256.0,
         "y": 256.0
       },
       "Size": {
@@ -319,13 +338,14 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0006",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 256.0,
+        "x": 512.0,
         "y": 256.0
       },
       "Size": {
@@ -335,13 +355,14 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0007",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 512.0,
+        "x": 768.0,
         "y": 256.0
       },
       "Size": {
@@ -351,13 +372,14 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0008",
       "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
+    },
+    {
       "Position": {
-        "x": 768.0,
+        "x": 1024.0,
         "y": 256.0
       },
       "Size": {
@@ -367,27 +389,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
-    },
-    {
+      },
       "Name": "spawn0009",
       "SpritePath": "TemplateA.png",
-      "Position": {
-        "x": 1024.0,
-        "y": 256.0
-      },
-      "Size": {
-        "x": 256.0,
-        "y": 256.0
-      },
-      "Offset": {
-        "x": 153.6,
-        "y": 128.0
-      }
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0010",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1280.0,
         "y": 256.0
@@ -399,11 +406,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0010",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0011",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1536.0,
         "y": 256.0
@@ -415,11 +423,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0011",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0012",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1792.0,
         "y": 256.0
@@ -431,11 +440,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0012",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0013",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2048.0,
         "y": 256.0
@@ -447,11 +457,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0013",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0014",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2304.0,
         "y": 256.0
@@ -463,11 +474,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0014",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0015",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2560.0,
         "y": 256.0
@@ -479,11 +491,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0015",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0016",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2816.0,
         "y": 256.0
@@ -495,11 +508,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0016",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0017",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3072.0,
         "y": 256.0
@@ -511,11 +525,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0017",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0018",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3328.0,
         "y": 256.0
@@ -527,11 +542,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0018",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0019",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3584.0,
         "y": 256.0
@@ -543,11 +559,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0019",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0020",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3840.0,
         "y": 256.0
@@ -559,11 +576,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0020",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0021",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4096.0,
         "y": 256.0
@@ -575,11 +593,12 @@
       "Offset": {
         "x": 153.6,
         "y": 128.0
-      }
+      },
+      "Name": "spawn0021",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0022",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4352.0,
         "y": 256.0
@@ -591,11 +610,12 @@
       "Offset": {
         "x": 161.28,
         "y": 125.44
-      }
+      },
+      "Name": "spawn0022",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0023",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4608.0,
         "y": 256.0
@@ -605,13 +625,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0023",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0024",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4864.0,
         "y": 256.0
@@ -621,13 +642,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0024",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0025",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 0.0,
         "y": 512.0
@@ -637,13 +659,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0025",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0026",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 256.0,
         "y": 512.0
@@ -653,13 +676,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0026",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0027",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 512.0,
         "y": 512.0
@@ -669,13 +693,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0027",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0028",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 768.0,
         "y": 512.0
@@ -685,13 +710,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0028",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0029",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1024.0,
         "y": 512.0
@@ -701,13 +727,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0029",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0030",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1280.0,
         "y": 512.0
@@ -717,13 +744,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0030",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0031",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1536.0,
         "y": 512.0
@@ -733,13 +761,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0031",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0032",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1792.0,
         "y": 512.0
@@ -749,13 +778,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 161.28,
-        "y": 125.44
-      }
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0032",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0033",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2048.0,
         "y": 512.0
@@ -765,13 +795,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 156.16,
-        "y": 117.76
-      }
+        "x": 159.28,
+        "y": 125.44
+      },
+      "Name": "spawn0033",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0034",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2304.0,
         "y": 512.0
@@ -781,13 +812,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 156.16,
-        "y": 117.76
-      }
+        "x": 160.28,
+        "y": 124.44
+      },
+      "Name": "spawn0034",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0035",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2560.0,
         "y": 512.0
@@ -797,13 +829,14 @@
         "y": 256.0
       },
       "Offset": {
-        "x": 156.16,
-        "y": 117.76
-      }
+        "x": 161.28,
+        "y": 123.44
+      },
+      "Name": "spawn0035",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0036",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 2816.0,
         "y": 512.0
@@ -815,11 +848,12 @@
       "Offset": {
         "x": 156.16,
         "y": 117.76
-      }
+      },
+      "Name": "spawn0036",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0037",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3072.0,
         "y": 512.0
@@ -831,11 +865,12 @@
       "Offset": {
         "x": 160.0,
         "y": 117.76
-      }
+      },
+      "Name": "spawn0037",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0038",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3328.0,
         "y": 512.0
@@ -847,11 +882,12 @@
       "Offset": {
         "x": 160.0,
         "y": 117.76
-      }
+      },
+      "Name": "spawn0038",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0039",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3584.0,
         "y": 512.0
@@ -863,11 +899,12 @@
       "Offset": {
         "x": 165.12,
         "y": 119.04
-      }
+      },
+      "Name": "spawn0039",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0040",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 3840.0,
         "y": 512.0
@@ -879,11 +916,12 @@
       "Offset": {
         "x": 165.12,
         "y": 119.04
-      }
+      },
+      "Name": "spawn0040",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0041",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4096.0,
         "y": 512.0
@@ -895,11 +933,12 @@
       "Offset": {
         "x": 160.0,
         "y": 130.56
-      }
+      },
+      "Name": "spawn0041",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0042",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4352.0,
         "y": 512.0
@@ -911,11 +950,12 @@
       "Offset": {
         "x": 160.0,
         "y": 130.56
-      }
+      },
+      "Name": "spawn0042",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0043",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4608.0,
         "y": 512.0
@@ -927,11 +967,12 @@
       "Offset": {
         "x": 117.76,
         "y": 90.88
-      }
+      },
+      "Name": "spawn0043",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0044",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 4864.0,
         "y": 512.0
@@ -943,11 +984,12 @@
       "Offset": {
         "x": 117.76,
         "y": 90.88
-      }
+      },
+      "Name": "spawn0044",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0045",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 0.0,
         "y": 768.0
@@ -959,11 +1001,12 @@
       "Offset": {
         "x": 117.76,
         "y": 90.88
-      }
+      },
+      "Name": "spawn0045",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0046",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 256.0,
         "y": 768.0
@@ -975,11 +1018,12 @@
       "Offset": {
         "x": 104.96,
         "y": 99.84
-      }
+      },
+      "Name": "spawn0046",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0047",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 512.0,
         "y": 768.0
@@ -991,11 +1035,12 @@
       "Offset": {
         "x": 104.96,
         "y": 99.84
-      }
+      },
+      "Name": "spawn0047",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0048",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 768.0,
         "y": 768.0
@@ -1007,11 +1052,12 @@
       "Offset": {
         "x": 98.56,
         "y": 101.12
-      }
+      },
+      "Name": "spawn0048",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0049",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1024.0,
         "y": 768.0
@@ -1023,11 +1069,12 @@
       "Offset": {
         "x": 97.792,
         "y": 107.52
-      }
+      },
+      "Name": "spawn0049",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0050",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1280.0,
         "y": 768.0
@@ -1039,11 +1086,12 @@
       "Offset": {
         "x": 87.04,
         "y": 163.84
-      }
+      },
+      "Name": "spawn0050",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0051",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1536.0,
         "y": 768.0
@@ -1055,11 +1103,12 @@
       "Offset": {
         "x": 92.16,
         "y": 151.04
-      }
+      },
+      "Name": "spawn0051",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
-      "Name": "spawn0052",
-      "SpritePath": "TemplateA.png",
       "Position": {
         "x": 1792.0,
         "y": 768.0
@@ -1071,7 +1120,10 @@
       "Offset": {
         "x": 92.16,
         "y": 151.04
-      }
+      },
+      "Name": "spawn0052",
+      "SpritePath": "TemplateA.png",
+      "UsePointFiltering": false
     },
     {
       "Name": "vent0001",

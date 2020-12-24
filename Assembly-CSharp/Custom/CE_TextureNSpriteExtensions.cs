@@ -1,9 +1,31 @@
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CE_TextureNSpriteExtensions
 {
+
+	public static Dictionary<string, Texture2D> GlobalLoadedTextures = new Dictionary<string, Texture2D>();
+
+
 	public static Texture2D LoadPNG(string filePath)
+	{
+		if (CE_TextureNSpriteExtensions.GlobalLoadedTextures.ContainsKey(filePath)) return CE_TextureNSpriteExtensions.GlobalLoadedTextures[filePath];
+		else
+		{
+			Texture2D texture2D = null;
+			if (File.Exists(filePath))
+			{
+				byte[] data = File.ReadAllBytes(filePath);
+				texture2D = new Texture2D(2, 2);
+				texture2D.LoadImage(data);
+			}
+			CE_TextureNSpriteExtensions.GlobalLoadedTextures.Add(filePath, texture2D);
+			return texture2D;
+		}
+	}
+
+	public static Texture2D LoadPNG_HatManager(string filePath)
 	{
 		if (DestroyableSingleton<HatManager>.Instance.LoadedTextures.ContainsKey(filePath)) return DestroyableSingleton<HatManager>.Instance.LoadedTextures[filePath];
 		else

@@ -24,7 +24,9 @@ public class CE_SpriteFrame
 	}
 	public string Name { get; set; } = string.Empty;
 	public string SpritePath { get; set; }
+	[Newtonsoft.Json.JsonIgnore]
 	public Texture2D Texture { get; set; }
+	[Newtonsoft.Json.JsonIgnore]
 	public Sprite Sprite { get; set; }
 	public bool UsePointFiltering { get; set; }
 	public CE_SpriteFrame()

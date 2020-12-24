@@ -17,17 +17,6 @@ public class CE_WardrobeLoader
 
 	#region Custom Skin Loader
 
-	public static CE_CustomSkinDefinition UpdateSkin(string fileName, CE_CustomSkinDefinition skinDefinition)
-	{
-		//For Updating Skins Only
-		foreach (var entry in skinDefinition.FrameList)
-		{
-			var offset = GetPixelPivot(entry.Size.x, entry.Size.y, entry.Offset.x, entry.Offset.y);
-			entry.Offset = new Point(offset.x, offset.y);
-		}
-		File.WriteAllText(fileName, JsonConvert.SerializeObject(skinDefinition, Formatting.Indented));
-		return skinDefinition;
-	}
 	public static List<CE_CustomSkinDefinition> GetSkinDefinitions(FileInfo[] files)
 	{
 		List<CE_CustomSkinDefinition> DefinitionsList = new List<CE_CustomSkinDefinition>();
@@ -79,7 +68,7 @@ public class CE_WardrobeLoader
 				skinData.KillTongueVictim = BaseSkin.KillTongueVictim;
 				foreach (CE_SpriteFrame frame in item2.FrameList)
 				{
-					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, frame.SpritePath));
+					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, frame.SpritePath));
 					skinData.FrameList.Add(frame.Name, frame);
 					
 				}
@@ -152,12 +141,12 @@ public class CE_WardrobeLoader
 				hatBehaviour.ProductId = item2.ID;
 				hatBehaviour.IsCustom = true;
 				hatBehaviour.NoBobbing = item2.NoBobbing;
-				Texture2D texture2D = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.NormalImg));
-				Texture2D texture2D2 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.FloorImg));
+				Texture2D texture2D = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, item2.NormalImg));
+				Texture2D texture2D2 = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, item2.FloorImg));
 				Texture2D texture2D3;
 				try
                 {
-					 texture2D3 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, item2.PreviewImg));
+					 texture2D3 = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, item2.PreviewImg));
 				}
 				catch
                 {
@@ -237,7 +226,7 @@ public class CE_WardrobeLoader
 			skinToSave.FilePath = skin.CustomPath;
 			skinToSave.ID = skin.CustomID;
 			skinToSave.FrameList = skin.FrameList.Select(frame => frame.Value).ToList();
-			UpdateSkin(skinToSave.FilePath, skinToSave);
+			File.WriteAllText(skinToSave.FilePath, JsonConvert.SerializeObject(skinToSave, Formatting.Indented));
 		}
 
 	}
@@ -414,7 +403,7 @@ public class CE_WardrobeLoader
 		float y = position.y;
 		float z = position.z;
 
-		if (player.MyPhysics.IsHatBobbing())
+		if (player.MyPhysics.IsWalking())
 		{ 
 			float num = 0.65f;
 			if (name == "walkcolor0001") num += 0.019f;

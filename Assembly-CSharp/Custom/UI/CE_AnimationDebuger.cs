@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class CE_AnimationDebuger : MonoBehaviour
 {
@@ -67,16 +68,15 @@ public class CE_AnimationDebuger : MonoBehaviour
 		CE_UIHelpers.LoadCommonAssets();
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
 		CE_WardrobeLoader.AnimationEditor_Active = CE_CommonUI.CreateBoolButton(CE_WardrobeLoader.AnimationEditor_Active, "Enabled");
-		CE_WardrobeLoader.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Speed, 0.1f, 0f, float.MaxValue, "Animation Speed", "x");
+		CE_WardrobeLoader.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Speed, 0.01f, 0f, float.MaxValue, "Animation Speed", "x");
+		CE_WardrobeLoader.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Speed, 0.1f, 0f, float.MaxValue, "Animation Speed (Large Shift)", "x");
 		CE_WardrobeLoader.AnimationEditor_Mode = (int)CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Mode, 1f, 0f, 5f, "Playback Mode", "");
         CE_WardrobeLoader.AnimationEditor_IsPaused = CreatePauseBoolButton(CE_WardrobeLoader.AnimationEditor_IsPaused, "Pause");
 		GUILayout.Label("Last Frame Name:" + CE_WardrobeLoader.AnimationEditor_LastFrame);
-		GUILayout.Label("Last Pivot X:");
+		GUILayout.Label("Last Pivot X: " + CE_WardrobeLoader.AnimationEditor_LastPivotX.ToString());
 		GUILayout.BeginHorizontal();
 		if (!CE_WardrobeLoader.AnimationEditor_Paused || UpdateValues)
 		{
-			PivotXTemp = CE_WardrobeLoader.AnimationEditor_LastPivotX.ToString();
-			PivotYTemp = CE_WardrobeLoader.AnimationEditor_LastPivotY.ToString();
 			UpdateValues = false;
 		}
 		PivotXTemp = GUILayout.TextField(PivotXTemp, new GUILayoutOption[0]);
@@ -101,7 +101,7 @@ public class CE_AnimationDebuger : MonoBehaviour
 			UpdateValues = true;
 		}
 		GUILayout.EndHorizontal();
-		GUILayout.Label("Last Pivot Y:");
+		GUILayout.Label("Last Pivot Y: " + CE_WardrobeLoader.AnimationEditor_LastPivotY.ToString());
 		GUILayout.BeginHorizontal();
 		PivotYTemp = GUILayout.TextField(PivotYTemp, new GUILayoutOption[0]);
 		if (GUILayout.Button("UPDATE"))
@@ -129,7 +129,10 @@ public class CE_AnimationDebuger : MonoBehaviour
 		CE_WardrobeLoader.AnimationEditor_PauseAt = GUILayout.TextArea(CE_WardrobeLoader.AnimationEditor_PauseAt);
 		if (GUILayout.Button("Next Frame"))
 		{
-			CE_WardrobeLoader.AnimationEditor_NextFrame = true;
+			var prefix = Regex.Match(CE_WardrobeLoader.AnimationEditor_PauseAt, "^\\D+").Value;
+			var number = Regex.Replace(CE_WardrobeLoader.AnimationEditor_PauseAt, "^\\D+", "");
+			var i = int.Parse(number) + 1;
+			CE_WardrobeLoader.AnimationEditor_PauseAt = prefix + i.ToString(new string('0', number.Length));
 			CE_WardrobeLoader.AnimationEditor_IsPaused = false;
 			UpdateValues = true;
 		}
