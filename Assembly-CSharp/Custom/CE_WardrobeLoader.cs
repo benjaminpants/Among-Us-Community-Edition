@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
+using System.Linq;
 
 public class CE_WardrobeLoader
 {
@@ -24,7 +25,7 @@ public class CE_WardrobeLoader
 			var offset = GetPixelPivot(entry.Size.x, entry.Size.y, entry.Offset.x, entry.Offset.y);
 			entry.Offset = new Point(offset.x, offset.y);
 		}
-		File.WriteAllText(fileName + ".new", JsonConvert.SerializeObject(skinDefinition, Formatting.Indented));
+		File.WriteAllText(fileName, JsonConvert.SerializeObject(skinDefinition, Formatting.Indented));
 		return skinDefinition;
 	}
 	public static List<CE_CustomSkinDefinition> GetSkinDefinitions(FileInfo[] files)
@@ -37,12 +38,14 @@ public class CE_WardrobeLoader
 			try
 			{
 				CE_CustomSkinDefinition item = (CE_CustomSkinDefinition)new JsonSerializer().Deserialize(reader, typeof(CE_CustomSkinDefinition));
+				item.FilePath = files[i].FullName;
 				DefinitionsList.Add(item);
 			}
 			catch (Exception ex)
 			{
 				Debug.Log(ex.Message);
 			}
+			reader.Close();
 		}
 		return DefinitionsList;
 	}
@@ -58,7 +61,8 @@ public class CE_WardrobeLoader
 				skinData.name = item2.ID;
 				skinData.isCustom = true;
 				skinData.StoreName = item2.ID;
-				skinData.CustomID = num;
+				skinData.CustomID = item2.ID;
+				skinData.CustomPath = item2.FilePath;
 				skinData.Free = true;
 				skinData.Order = num;
 				skinData.SpawnAnim = BaseSkin.SpawnAnim;
@@ -77,6 +81,7 @@ public class CE_WardrobeLoader
 				{
 					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(RootPath, frame.SpritePath));
 					skinData.FrameList.Add(frame.Name, frame);
+					
 				}
 				if (skinData.FrameList.ContainsKey("Display"))
 				{
@@ -223,6 +228,19 @@ public class CE_WardrobeLoader
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
 	}
 
+	public static void SaveCurrentSkin()
+    {
+		SkinData skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(PlayerControl.LocalPlayer.Data.SkinId);
+		if (skin.isCustom)
+		{ 		
+			CE_CustomSkinDefinition skinToSave = new CE_CustomSkinDefinition();
+			skinToSave.FilePath = skin.CustomPath;
+			skinToSave.ID = skin.CustomID;
+			skinToSave.FrameList = skin.FrameList.Select(frame => frame.Value).ToList();
+			UpdateSkin(skinToSave.FilePath, skinToSave);
+		}
+
+	}
 	public static void NudgeCurrentFramePivot(float x, float y)
 	{
 		SkinData skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(PlayerControl.LocalPlayer.Data.SkinId);

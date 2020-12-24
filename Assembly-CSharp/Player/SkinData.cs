@@ -42,7 +42,9 @@ public class SkinData : ScriptableObject, IBuyable
 
 	public Dictionary<string, CE_SpriteFrame> FrameList = new Dictionary<string, CE_SpriteFrame>();
 
-	public int CustomID;
+	public string CustomID;
+
+	public string CustomPath;
 
 	public string ProdId => RelatedHat.ProductId;
 }

@@ -140,7 +140,10 @@ public class CE_AnimationDebuger : MonoBehaviour
 		}
 		GUILayout.Space(15);
 
-
+		if (GUILayout.Button("Save Current"))
+		{
+			CE_WardrobeLoader.SaveCurrentSkin();
+		}
 
 
 		GUILayout.Space(15);
