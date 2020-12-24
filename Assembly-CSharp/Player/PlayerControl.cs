@@ -872,7 +872,7 @@ public class PlayerControl : InnerNetObject
 		if (!AmongUsClient.Instance.IsGameOver && !MeetingHud.Instance && !Data.IsDead)
 		{
 			MeetingRoomManager.Instance.AssignSelf(this, target);
-			if (AmongUsClient.Instance.AmHost && !ShipStatus.Instance.CheckTaskCompletion())
+			if (AmongUsClient.Instance.AmHost) //FIXED
 			{
 				DestroyableSingleton<HudManager>.Instance.OpenMeetingRoom(this);
 				RpcStartMeeting(target);
