@@ -62,8 +62,38 @@ public class CE_DevTool : MonoBehaviour
 	private static string DevFloat9S;
 	private static string DevFloat10S;
 
-	private void GlobalSettingsMenu(int windowID)
-	{
+	private static int TabIndex = 0;
+
+
+	private int CurrentTabUI(int LastTab)
+    {
+		GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Value Shifter")) LastTab = 0;
+		if (GUILayout.Button("Loaded Roles")) LastTab = 1;
+		GUILayout.EndHorizontal();
+		CE_CommonUI.CreateSeperator();
+		return LastTab;
+
+	}
+
+	private void LoadedRoleListTabPage()
+    {
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
+		if (CE_RoleManager.Roles != null)
+        {
+			RoleLister("ID", "Role");
+			CE_CommonUI.CreateSeperator();
+			foreach (var entry in CE_RoleManager.Roles)
+			{
+				RoleLister(entry.Key.ToString(), entry.Value.RoleName);
+			}
+		}
+
+		GUILayout.EndScrollView();
+	}
+
+	private void ValueShifterTabPage()
+    {
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
 		DevFloat1 = ValueShifter("DevFloat1", ref DevFloat1S, DevFloat1);
 		DevFloat2 = ValueShifter("DevFloat2", ref DevFloat2S, DevFloat2);
@@ -76,6 +106,18 @@ public class CE_DevTool : MonoBehaviour
 		DevFloat4 = ValueShifter("DevFloat9", ref DevFloat9S, DevFloat9);
 		DevFloat5 = ValueShifter("DevFloat10", ref DevFloat10S, DevFloat10);
 		GUILayout.EndScrollView();
+	}
+
+	private void GlobalSettingsMenu(int windowID)
+	{
+		TabIndex = CurrentTabUI(TabIndex);
+		if (TabIndex == 0) ValueShifterTabPage();
+		else if (TabIndex == 1) LoadedRoleListTabPage();
+	}
+
+	private void RoleLister(string num, string name)
+    {
+		GUILayout.SelectionGrid(0, new string[]{ num, "|", name }, 3);
 	}
 
 	private float ValueShifter(string name, ref string typed_value, float current_value)

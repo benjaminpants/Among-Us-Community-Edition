@@ -535,7 +535,7 @@ public class CE_CommonUI
 		{
 			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
 			GUILayout.FlexibleSpace();
-			if (CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons(gameSettings)))
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons(gameSettings)))
 			{
 				if (!readOnly) ClickSoundTrigger();
 				if (value != min)
@@ -549,7 +549,7 @@ public class CE_CommonUI
 			}
 			if (!readOnly) HoverSoundTrigger();
 			CE_CustomUIElements.Label(valueNames[value], UpDownSettingLabel());
-			if (CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
 			{
 				if (!readOnly) ClickSoundTrigger();
 				if (value != max)
@@ -578,7 +578,7 @@ public class CE_CommonUI
 			string checkbox_style_A = value ? "✓" : " ";
 			string checkbox_style_B = value ? "☑" : "☐";
 
-			if (CE_CustomUIElements.Button(gameSettings ? checkbox_style_B : checkbox_style_A, UpDownSettingButtons(gameSettings)))
+			if (!readOnly && CE_CustomUIElements.Button(gameSettings ? checkbox_style_B : checkbox_style_A, UpDownSettingButtons(gameSettings)))
 			{
 				if (!readOnly) ClickSoundTrigger();
 				value = !value;
@@ -600,7 +600,7 @@ public class CE_CommonUI
 		{
 			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
 			GUILayout.FlexibleSpace();
-			if (CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons(gameSettings)))
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons(gameSettings)))
 			{
 				if (!readOnly) ClickSoundTrigger();
 				if (value > min)
@@ -615,7 +615,7 @@ public class CE_CommonUI
 			}
 			if (!readOnly) HoverSoundTrigger();
 			CE_CustomUIElements.Label((decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
-			if (CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
 			{
 				if (!readOnly) ClickSoundTrigger();
 				if (value < max)

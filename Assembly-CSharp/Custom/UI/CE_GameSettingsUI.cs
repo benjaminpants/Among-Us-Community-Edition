@@ -52,7 +52,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 		CE_UIHelpers.LoadCommonAssets();
 		bool isDefaults = gameOptions.isDefaults;
 		gameOptions.isDefaults = CE_CommonUI.CreateBoolButtonG(gameOptions.isDefaults, "Recommended Settings (Classic Only)", readOnly);
-		if (!isDefaults && gameOptions.isDefaults)
+		if (!isDefaults && gameOptions.isDefaults && !readOnly)
 		{
 			gameOptions.SetRecommendations(GameData.Instance.PlayerCount, AmongUsClient.Instance.GameMode);
 		}
