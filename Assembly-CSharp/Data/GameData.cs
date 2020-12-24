@@ -288,7 +288,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		for (int i = 0; i < AllPlayers.Count; i++)
 		{
 			PlayerInfo playerInfo = AllPlayers[i];
-			if (playerInfo.Disconnected || playerInfo.Tasks == null || !playerInfo.Object || (!PlayerControl.GameOptions.GhostsDoTasks && playerInfo.IsDead) || playerInfo.IsImpostor)
+			if (playerInfo.Disconnected || playerInfo.Tasks == null || !playerInfo.Object || (!PlayerControl.GameOptions.GhostsDoTasks && playerInfo.IsDead) || (playerInfo.IsImpostor || CE_RoleManager.GetRoleFromID(playerInfo.role).DoesNotDoTasks()))
 			{
 				continue;
 			}

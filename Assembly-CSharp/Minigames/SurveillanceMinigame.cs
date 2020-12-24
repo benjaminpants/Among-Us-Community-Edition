@@ -36,6 +36,24 @@ public class SurveillanceMinigame : Minigame
 		}
 	}
 
+	public void Update()
+    {
+		if (PlayerTask.PlayerHasHudTask(PlayerControl.LocalPlayer))
+        {
+			for (int j = 0; j < FilteredRooms.Length; j++)
+			{
+				ViewPorts[j].enabled = false;
+			}
+		}
+		else
+        {
+			for (int j = 0; j < FilteredRooms.Length; j++)
+			{
+				ViewPorts[j].enabled = true;
+			}
+		}
+    }
+
 	protected override IEnumerator CoAnimateOpen()
 	{
 		Viewables.SetActive(value: false);

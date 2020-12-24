@@ -85,7 +85,7 @@ public class CE_DevTool : MonoBehaviour
 			CE_CommonUI.CreateSeperator();
 			foreach (var entry in CE_RoleManager.Roles)
 			{
-				RoleLister(entry.Key.ToString(), entry.Value.RoleName);
+				RoleLister(entry.Value.UUID, entry.Value.RoleName);
 			}
 		}
 
@@ -117,7 +117,7 @@ public class CE_DevTool : MonoBehaviour
 
 	private void RoleLister(string num, string name)
     {
-		GUILayout.SelectionGrid(0, new string[]{ num, "|", name }, 3);
+		GUILayout.SelectionGrid(0, new string[]{ num, name }, 3);
 	}
 
 	private float ValueShifter(string name, ref string typed_value, float current_value)

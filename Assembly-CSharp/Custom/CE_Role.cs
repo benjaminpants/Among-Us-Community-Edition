@@ -49,9 +49,20 @@ public static class CE_RoleManager
 
     public static byte GetRoleFromName(string Name)
     {
-        foreach (KeyValuePair<byte,CE_Role> kvp in Roles)
+        foreach (KeyValuePair<byte, CE_Role> kvp in Roles)
         {
             if (kvp.Value.RoleName == Name)
+            {
+                return kvp.Key;
+            }
+        }
+        return 0; //return the null role, AKA assign no role.
+    }
+    public static byte GetRoleFromUUID(string Name)
+    {
+        foreach (KeyValuePair<byte, CE_Role> kvp in Roles)
+        {
+            if (kvp.Value.UUID == Name)
             {
                 return kvp.Key;
             }
@@ -97,11 +108,18 @@ public class CE_Role
 		RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = false;
         RoleText = "Undefined";
+        HasTasks = true;
+        UUID = "undefined_undefined";
     }
 
     public bool CanDo(CE_Specials special)
     {
         return AvailableSpecials.Contains(special);
+    }
+
+    public bool DoesNotDoTasks()
+    {
+        return !HasTasks;
     }
 
     public bool CanSee(GameData.PlayerInfo plf) //UNOPTIMIZED
@@ -142,6 +160,8 @@ public class CE_Role
         RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = false;
         RoleText = "default_text";
+        HasTasks = false;
+        UUID = CE_LuaLoader.CurrentGMName + "_" + Name;
     }
 
     public CE_Role(string Name, Color Color, string RoleTxT)
@@ -153,9 +173,11 @@ public class CE_Role
         RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = false;
         RoleText = RoleTxT;
+        HasTasks = false;
+        UUID = CE_LuaLoader.CurrentGMName + "_" + Name;
     }
 
-    public CE_Role(string Name, Color Color, string RoleTxt, List<CE_Specials> Specials, CE_WinWith WinWith = CE_WinWith.Neither, CE_RoleVisibility Visibility = CE_RoleVisibility.None, bool ImpVision = false)
+    public CE_Role(string Name, Color Color, string RoleTxt, List<CE_Specials> Specials, CE_WinWith WinWith = CE_WinWith.Neither, CE_RoleVisibility Visibility = CE_RoleVisibility.None, bool ImpVision = false, bool dotask = true)
     {
         RoleName = Name;
         RoleColor = Color;
@@ -164,10 +186,16 @@ public class CE_Role
         RoleVisibility = Visibility;
         UseImpVision = ImpVision;
         RoleText = RoleTxt;
+        HasTasks = dotask;
+        UUID = CE_LuaLoader.CurrentGMName + "_" + Name;
     }
     public string RoleName;
 
+    public string UUID;
+
 	public Color RoleColor;
+
+    public bool HasTasks;
 
 	public List<CE_Specials> AvailableSpecials;
 

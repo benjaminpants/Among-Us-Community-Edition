@@ -348,31 +348,31 @@ public class GameOptionsData : IBytesSerializable
 		};
 		Gamemodes = new string[25]
 		{
-			"",
+			"[FF0000FF]Invalid[]",
 			"Zombies",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			""
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]"
 		};
 		GamemodesAreLua = new bool[25];
 		VentModeStrings = new string[4]
@@ -382,12 +382,14 @@ public class GameOptionsData : IBytesSerializable
 			"Crewmates Hide Only",
 			"Nobody"
 		};
-		VentMode2Strings = new string[4]
+		VentMode2Strings = new string[6]
 		{
 			"Default",
 			"Linked",
 			"Pairs",
-			"Locked"
+			"Locked",
+			"Randomized(Client)",
+			"Randomized(One-Way Client)"
 		};
 		SabControlStrings = new string[5]
 		{

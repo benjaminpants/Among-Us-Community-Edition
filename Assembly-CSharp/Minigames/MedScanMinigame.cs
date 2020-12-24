@@ -198,7 +198,7 @@ public class MedScanMinigame : Minigame
 			"Tan",
 			"Doodle",
 			"Jlue",
-			"Highlighter"
+			"Jreen"
 		};
 		BloodTypes = new string[8]
 		{

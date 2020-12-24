@@ -66,7 +66,7 @@ public class HudOverrideTask : SabotageTask
 	{
 		even = !even;
 		Color color = (even ? Color.yellow : Color.red);
-		sb.Append(color.ToTextColor() + "Hud Sabotaged[]");
+		sb.Append(color.ToTextColor() + "Comms Sabotaged[]");
 		for (int i = 0; i < Arrows.Length; i++)
 		{
 			Arrows[i].GetComponent<SpriteRenderer>().color = color;

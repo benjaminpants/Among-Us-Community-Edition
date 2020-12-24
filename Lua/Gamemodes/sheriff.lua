@@ -24,7 +24,7 @@ function ShouldSeeRole(rolename,playerinfo)
 end
 
 function OnExile(exiled)
-	if (exiled.role == Game_GetRoleIDFromName("Sheriff")) then
+	if (exiled.role == Game_GetRoleIDFromName("Sheriff") and Net_AmHost()) then
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if (players[i].PlayerName == exiled.PlayerName or players[i].IsDead or players[i].IsImpostor) then
@@ -88,7 +88,7 @@ function BeforeKill(killer,victim)
 end
 
 function DecideRolesFunction(playerinfos)
-	local RolesToGive = {"Sheriff"}
+	local RolesToGive = {"sheriff_Sheriff"}
 	local Selected = {}
 	local SelectedRoles = {}
 	for i=1, #RolesToGive do

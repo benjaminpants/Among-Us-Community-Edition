@@ -96,10 +96,10 @@ function DecideRoles(playerinfos)
 	local blueteamcount = #playerinfos - redteamcount
 	local RolesToGive = {}
 	for i=1,redteamcount do
-	table.insert(RolesToGive,"Red Team")
+	table.insert(RolesToGive,"splatoon_teams_Red Team")
 	end
 	for i=1,blueteamcount do
-	table.insert(RolesToGive,"Blue Team")
+	table.insert(RolesToGive,"splatoon_teams_Blue Team")
 	end
 	local Selected = {}
 	local SelectedRoles = {}

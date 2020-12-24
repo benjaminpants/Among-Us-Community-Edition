@@ -12,6 +12,10 @@ public static class CE_LuaLoader
 
 	public static string TheOmegaString;
 
+	public static bool IsInitializing;
+
+	public static string CurrentGMName;
+
 	public static int TheOmegaHash;
 	public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists));
 
@@ -20,6 +24,7 @@ public static class CE_LuaLoader
 		UserData.RegisterAssembly();
 		new List<string>();
 		FileInfo[] files = new DirectoryInfo(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Lua"), "Gamemodes")).GetFiles("*.lua");
+		IsInitializing = true;
 		for (int i = 0; i < files.Length; i++)
 		{
 			using StreamReader streamReader = files[i].OpenText();
@@ -27,15 +32,18 @@ public static class CE_LuaLoader
 			TheOmegaString += code; //nothing is done with this atm
 			try
 			{
+				CurrentGMName = files[i].Name.Remove(files[i].Name.Length - 4);
 				Script script = new Script();
 				script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
 				script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
 				script.Globals["Game_GetAllPlayersComplex"] = (Func<bool, bool, List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayersComplex;
 				script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
-				script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool>)CE_GameLua.CreateRoleComplex;
-				script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
+				script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, bool>)CE_GameLua.CreateRoleComplex;
+                script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
+				script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
 				script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
-				script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
+                script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
+				script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
 				script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
 				script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
 				script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
@@ -58,6 +66,8 @@ public static class CE_LuaLoader
 				Debug.LogError("Error encountered when trying to load gamemode with filename:" + files[i].Name + "\nException Message:" + E.Message);
             }
 		}
+		CurrentGMName = null;
+		IsInitializing = false;
 		TheOmegaHash = TheOmegaString.GetHashCode();
 	}
 

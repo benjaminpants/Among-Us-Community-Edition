@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,0,false)
+	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,0,false,false)
 	return {"Joker",4} 
 end
 
@@ -19,7 +19,7 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on
 end
 
 function OnExile(exiled)
-	if (exiled.role == Game_GetRoleIDFromName("Joker")) then
+	if (exiled.role == Game_GetRoleIDFromUUID("joker_Joker")) then
 		if (Net_AmHost) then
 			Game_ActivateCustomWin({exiled},"joker_win")
 		end
@@ -27,9 +27,6 @@ function OnExile(exiled)
 end
 
 function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
-	if (playerinfo.role == Game_GetRoleIDFromName("Joker")) then
-		return false
-	end
 	return true
 end
 
@@ -64,7 +61,7 @@ end
 
 
 function DecideRoles(playerinfos)
-	local RolesToGive = {"Joker"}
+	local RolesToGive = {"joker_Joker"}
 	local Selected = {}
 	local SelectedRoles = {}
 	for i=1, #RolesToGive do

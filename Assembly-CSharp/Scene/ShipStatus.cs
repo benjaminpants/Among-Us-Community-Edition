@@ -93,6 +93,8 @@ public class ShipStatus : InnerNetObject
 
 	public float Timer;
 
+	public float TimeSinceLastRound;
+
 	private RaycastHit2D[] volumeBuffer = new RaycastHit2D[5];
 
 	public ShipRoom[] AllRooms
@@ -286,7 +288,7 @@ public class ShipStatus : InnerNetObject
             }
 			foreach (DynValue value in RolesTable.Get(2).Table.Values)
 			{
-				Roles.Add(CE_RoleManager.GetRoleFromName(value.String));
+				Roles.Add(CE_RoleManager.GetRoleFromUUID(value.String));
 			}
 			PlayerControl.LocalPlayer.RpcSetRole(list3role.ToArray(),Roles.ToArray());
 
@@ -437,6 +439,7 @@ public class ShipStatus : InnerNetObject
 			return;
 		}
 		Timer += Time.fixedDeltaTime;
+		TimeSinceLastRound += Time.fixedDeltaTime;
 		if (Timer > 75f && SaveManager.LastGameStart != DateTime.MinValue)
 		{
 			SaveManager.LastGameStart = DateTime.MinValue;
@@ -578,6 +581,7 @@ public class ShipStatus : InnerNetObject
 				flag = true;
 			}
 			lifeSuppSystemType.Countdown = 10000f;
+			RpcRepairSystem(SystemTypes.LifeSupp, 0);
 		}
 		ReactorSystemType reactorSystemType = (ReactorSystemType)Systems[SystemTypes.Reactor];
 		if (reactorSystemType.Countdown < 0f)
@@ -590,7 +594,8 @@ public class ShipStatus : InnerNetObject
 			{
 				flag = true;
 			}
-			reactorSystemType.Countdown = 10000f;
+            reactorSystemType.Countdown = 10000f;
+			RpcRepairSystem(SystemTypes.Reactor, 0);
 		}
 		int num = 0;
 		int num2 = 0;

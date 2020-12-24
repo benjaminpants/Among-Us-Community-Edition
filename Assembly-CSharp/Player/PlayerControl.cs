@@ -507,6 +507,15 @@ public class PlayerControl : InnerNetObject
 				importantTextTask.Text = "Sabotage and kill everyone\r\n[FFFFFFFF]Fake Tasks:";
 				myTasks.Add(importantTextTask);
 			}
+			else if (CE_RoleManager.GetRoleFromID(Data.role).DoesNotDoTasks())
+            {
+				StatsManager.Instance.TimesImpostor++;
+				StatsManager.Instance.CrewmateStreak = 0u;
+				ImportantTextTask importantTextTask = new GameObject("_Player").AddComponent<ImportantTextTask>();
+				importantTextTask.transform.SetParent(base.transform, worldPositionStays: false);
+				importantTextTask.Text = "[FFFFFFFF]Fake Tasks:";
+				myTasks.Add(importantTextTask);
+			}
 			else
 			{
 				StatsManager.Instance.TimesCrewmate++;
@@ -713,7 +722,7 @@ public class PlayerControl : InnerNetObject
 			}
 			else
 			{
-				importantTextTask.Text = "You are dead, but finish your tasks anyway.";
+				importantTextTask.Text = "You are dead. Finish your tasks to win.";
 			}
 			myTasks.Add(importantTextTask);
 		}
@@ -1035,12 +1044,15 @@ public class PlayerControl : InnerNetObject
 			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
             break;
 		case 25:
-			rend.material.SetColor("_VisorColor", Palette.Black);
+			rend.material.SetColor("_VisorColor", Palette.VisorColorBlack);
             break;
 		case 26:
 			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
 			break;
-		default:
+		case 27:
+			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
+			break;
+			default:
 		rend.material.SetColor("_VisorColor", Palette.VisorColor);
 		break;
 		}
