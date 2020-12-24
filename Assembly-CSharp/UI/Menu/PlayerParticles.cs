@@ -14,19 +14,29 @@ public class PlayerParticles : MonoBehaviour
 
 	public Camera FollowCamera;
 
+	private int CurrentColor;
+
+	private int MaxColors = Palette.PlayerColors.Length;
+
 	private RandomFill<PlayerParticleInfo> fill;
 
 	public void Start()
 	{
 		fill = new RandomFill<PlayerParticleInfo>();
 		fill.Set(Sprites);
-		int num = 0;
+		CurrentColor = Random.Range(0, Palette.PlayerColors.Length - 1);
 		while (pool.NotInUse > 0)
 		{
 			PlayerParticle playerParticle = pool.Get<PlayerParticle>();
-			PlayerControl.SetPlayerMaterialColors(num++, playerParticle.myRend);
 			PlacePlayer(playerParticle, initial: true);
 		}
+	}
+
+	private int GetPlayerColor()
+    {
+		CurrentColor++;
+		if (CurrentColor >= MaxColors) CurrentColor = 0;
+		return CurrentColor;
 	}
 
 	public void Update()
@@ -45,6 +55,7 @@ public class PlayerParticles : MonoBehaviour
 		{
 			localPosition.Normalize();
 		}
+		PlayerControl.SetPlayerMaterialColors(GetPlayerColor(), part.myRend);
 		localPosition *= StartRadius;
 		float num = scale.Next();
 		part.transform.localScale = new Vector3(num, num, num);
