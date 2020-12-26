@@ -112,11 +112,11 @@ public class CE_DevTool : MonoBehaviour
 		DevFloat3 = ValueShifter("DevFloat3", ref DevFloat3S, DevFloat3);
 		DevFloat4 = ValueShifter("DevFloat4", ref DevFloat4S, DevFloat4);
 		DevFloat5 = ValueShifter("DevFloat5", ref DevFloat5S, DevFloat5);
-		DevFloat1 = ValueShifter("DevFloat6", ref DevFloat6S, DevFloat6);
-		DevFloat2 = ValueShifter("DevFloat7", ref DevFloat7S, DevFloat7);
-		DevFloat3 = ValueShifter("DevFloat8", ref DevFloat8S, DevFloat8);
-		DevFloat4 = ValueShifter("DevFloat9", ref DevFloat9S, DevFloat9);
-		DevFloat5 = ValueShifter("DevFloat10", ref DevFloat10S, DevFloat10);
+		DevFloat6 = ValueShifter("DevFloat6", ref DevFloat6S, DevFloat6);
+		DevFloat7 = ValueShifter("DevFloat7", ref DevFloat7S, DevFloat7);
+		DevFloat8 = ValueShifter("DevFloat8", ref DevFloat8S, DevFloat8);
+		DevFloat9 = ValueShifter("DevFloat9", ref DevFloat9S, DevFloat9);
+		DevFloat10 = ValueShifter("DevFloat10", ref DevFloat10S, DevFloat10);
 		GUILayout.EndScrollView();
 	}
 
@@ -150,11 +150,11 @@ public class CE_DevTool : MonoBehaviour
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("-"))
 		{
-			current_value -= 1;
+			current_value -= 1f;
 		}
 		if (GUILayout.Button("+"))
 		{
-			current_value += 1;
+			current_value += 1f;
 		}
 		GUILayout.EndHorizontal();
 		return current_value;

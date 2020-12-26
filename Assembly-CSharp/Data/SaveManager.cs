@@ -161,6 +161,8 @@ public static class SaveManager
 
 	private static bool animationTestingMode;
 
+	private static bool enableVSync = false;
+
 	public static bool AmBanned => (DateTime.UtcNow - LastGameStart).TotalMinutes < 5.0;
 
 	public static int BanMinutesLeft
@@ -554,6 +556,20 @@ public static class SaveManager
 		}
 	}
 
+	public static bool EnableVSync
+    {
+		get
+        {
+			LoadPlayerPrefs();
+			return enableVSync;
+        }
+		set
+        {
+			enableVSync = value;
+			SavePlayerPrefs();
+		}
+    }
+
 	private static void SaveSecureData2()
 	{
 		secure2.SaveData(lastStartDate.Ticks);
@@ -707,13 +723,36 @@ public static class SaveManager
 			TryGetBool(array, 18, out lobbyShake);
 			TryGetBool(array, 19, out enableProHUDMode);
 			TryGetBool(array, 20, out hideIntro);
+			TryGetBool(array, 21, out enableVSync);
 		}
 	}
 
 	private static void SavePlayerPrefs()
 	{
 		LoadPlayerPrefs();
-		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", lastPlayerName, touchConfig, colorConfig, 1, sendName, sendTelemetry, sendDataScreen, showAdsScreen, showMinPlayerWarning, showOnlineHelp, lastHat, sfxVolume, musicVolume, joyStickSize.ToString(CultureInfo.InvariantCulture), lastGameStart.Ticks, lastSkin, colorBlindMode, animationTestingMode, lobbyShake, enableProHUDMode,hideIntro));
+		List<object> options = new List<object>();
+		options.Add(lastPlayerName); options.Add(touchConfig);
+		options.Add(colorConfig);
+		options.Add(1);
+		options.Add(sendName);
+		options.Add(sendTelemetry);
+		options.Add(sendDataScreen);
+		options.Add(showAdsScreen);
+		options.Add(showMinPlayerWarning);
+		options.Add(showOnlineHelp);
+		options.Add(lastHat);
+		options.Add(sfxVolume);
+		options.Add(musicVolume);
+		options.Add(joyStickSize.ToString(CultureInfo.InvariantCulture));
+		options.Add(lastGameStart.Ticks);
+		options.Add(lastSkin);
+		options.Add(colorBlindMode);
+		options.Add(animationTestingMode);
+		options.Add(lobbyShake);
+		options.Add(enableProHUDMode);
+		options.Add(hideIntro);
+		options.Add(enableVSync);
+		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 
 	private static void TryGetBool(string[] parts, int index, out bool value)

@@ -27,6 +27,15 @@ public class PassiveButton : MonoBehaviour
 		}
 	}
 
+	public void Recreate()
+    {
+		DestroyableSingleton<PassiveButtonManager>.Instance.RegisterOne(this);
+		if (Colliders == null || Colliders.Length == 0)
+		{
+			Colliders = GetComponents<Collider2D>();
+		}
+	}
+
 	public void DoClick()
 	{
 		if ((bool)ClickSound)

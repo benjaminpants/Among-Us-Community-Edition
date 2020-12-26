@@ -11,6 +11,12 @@ public static class ResolutionManager
 		Screen.SetResolution(width, height, fullscreen);
 	}
 
+	public static void SetVSync(bool vSync)
+    {
+		SaveManager.EnableVSync = vSync;
+		QualitySettings.vSyncCount = (SaveManager.EnableVSync ? 1 : 0);
+	}
+
 	public static void ToggleFullscreen()
 	{
 		bool flag = !Screen.fullScreen;
