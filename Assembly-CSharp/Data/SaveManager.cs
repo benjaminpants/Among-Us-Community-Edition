@@ -731,7 +731,8 @@ public static class SaveManager
 	{
 		LoadPlayerPrefs();
 		List<object> options = new List<object>();
-		options.Add(lastPlayerName); options.Add(touchConfig);
+		options.Add(lastPlayerName); 
+		options.Add(touchConfig);
 		options.Add(colorConfig);
 		options.Add(1);
 		options.Add(sendName);
