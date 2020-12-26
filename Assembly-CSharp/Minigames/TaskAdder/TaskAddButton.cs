@@ -14,13 +14,39 @@ public class TaskAddButton : MonoBehaviour
 
 	public bool ImpostorTask;
 
+	public bool OptionsTask;
+
+	public event System.EventHandler OnOptionsTask;
+
+	public void SetOptionsTask()
+    {
+		var renders = this.gameObject.GetComponents<SpriteRenderer>();
+		foreach (var render in renders)
+        {
+			Debug.Log(render.name);
+			render.color = Color.gray;
+        }
+
+	}
+
 	public void Start()
 	{
 		if (ImpostorTask)
 		{
+            Text.scale -= 0.2f;
+			Text.maxWidth += 0.4f;
 			GameData.PlayerInfo data = PlayerControl.LocalPlayer.Data;
 			Overlay.enabled = data.IsImpostor;
 			Overlay.sprite = CheckImage;
+			return;
+		}
+		if (OptionsTask)
+        {
+			Text.scale -= 0.2f;
+			Text.maxWidth += 0.4f;
+			Overlay.enabled = false;
+			Overlay.sprite = CheckImage;
+			SetOptionsTask();
 			return;
 		}
 		PlayerTask playerTask = FindTaskByType();
@@ -55,6 +81,11 @@ public class TaskAddButton : MonoBehaviour
 			}
 			return;
 		}
+		if (OptionsTask)
+        {
+			OnOptionsTask.Invoke(this, null);
+			return;
+        }
 		PlayerTask playerTask = FindTaskByType();
 		if (!playerTask)
 		{

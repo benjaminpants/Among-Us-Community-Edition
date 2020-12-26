@@ -70,6 +70,7 @@ public class CE_DevTool : MonoBehaviour
 		GUILayout.BeginHorizontal();
         if (GUILayout.Button("Value Shifter")) LastTab = 0;
 		if (GUILayout.Button("Loaded Roles")) LastTab = 1;
+		if (GUILayout.Button("Loaded Objects")) LastTab = 2;
 		GUILayout.EndHorizontal();
 		CE_CommonUI.CreateSeperator();
 		return LastTab;
@@ -89,6 +90,17 @@ public class CE_DevTool : MonoBehaviour
 			}
 		}
 
+		GUILayout.EndScrollView();
+	}
+
+	private void ElementsListerTabPage()
+    {
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
+		GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+		foreach (GameObject go in allObjects)
+        {
+			RoleLister(go.name, go.GetType().FullName);
+		}
 		GUILayout.EndScrollView();
 	}
 
@@ -113,6 +125,7 @@ public class CE_DevTool : MonoBehaviour
 		TabIndex = CurrentTabUI(TabIndex);
 		if (TabIndex == 0) ValueShifterTabPage();
 		else if (TabIndex == 1) LoadedRoleListTabPage();
+		else if (TabIndex == 2) ElementsListerTabPage();
 	}
 
 	private void RoleLister(string num, string name)

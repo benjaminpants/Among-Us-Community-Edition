@@ -140,10 +140,23 @@ public class TaskAdderGame : Minigame
 		}
 		if (Heirarchy.Count == 1)
 		{
+			TaskAddButton taskAddButton3 = Object.Instantiate(InfectedButton);
+			taskAddButton3.Text.Text = "Set_Settings\r\n.exe";
+			taskAddButton3.OptionsTask = true;
+			taskAddButton3.ImpostorTask = false;
+			taskAddButton3.OnOptionsTask += TaskAddButton3_OnOptionsTask;
+			AddFileAsChild(taskAddButton3, ref xCursor, ref yCursor);
+
 			TaskAddButton taskAddButton2 = Object.Instantiate(InfectedButton);
-			taskAddButton2.Text.Text = "Be_Impostor.exe";
+			taskAddButton2.Text.Text = "Be_Impostor\r\n.exe";
 			AddFileAsChild(taskAddButton2, ref xCursor, ref yCursor);
 		}
+	}
+
+    private void TaskAddButton3_OnOptionsTask(object sender, System.EventArgs e)
+    {
+		CE_PlayerOptions.Open();
+		base.Close();
 	}
 
 	private void AddFileAsChild(TaskAddButton item, ref float xCursor, ref float yCursor)
