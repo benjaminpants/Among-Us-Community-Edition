@@ -65,6 +65,9 @@ public class PlayerTab : MonoBehaviour
 						case 27:
 							colorChip.Inner.sprite = specsprite;
 							break;
+						case 28:
+							colorChip.Inner.sprite = specsprite;
+							break;
 						default:
 							//do nothing
 							break;
@@ -93,9 +96,32 @@ public class PlayerTab : MonoBehaviour
 		}
 	}
 
+	private void Freeplay_SwapColor(byte colorId, byte lastColorId)
+    {
+		if ((bool)GameData.Instance)
+		{
+			List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
+			for (int j = 0; j < allPlayers.Count; j++)
+			{
+				GameData.PlayerInfo playerInfo = allPlayers[j];
+				if (playerInfo.ColorId == colorId)
+                {
+                    playerInfo.Object.RpcSetColor(lastColorId);
+					PlayerControl.LocalPlayer.RpcSetColor(colorId);
+					return;
+				}
+			}
+			PlayerControl.LocalPlayer.RpcSetColor(colorId);
+		}
+	}
+
 	private void SelectColor(int colorId)
 	{
 		UpdateAvailableColors();
+		if (AmongUsClient.Instance.GameMode == GameModes.FreePlay)
+        {
+			if (AmongUsClient.Instance.GameMode == GameModes.FreePlay) Freeplay_SwapColor((byte)colorId, SaveManager.BodyColor);
+		}
 		if (AvailableColors.Remove(colorId))
 		{
 			SaveManager.BodyColor = (byte)colorId;
@@ -113,14 +139,29 @@ public class PlayerTab : MonoBehaviour
 		{
 			AvailableColors.Add(i);
 		}
-		if ((bool)GameData.Instance)
+
+		if (AmongUsClient.Instance.GameMode == GameModes.FreePlay)
 		{
-			List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
-			for (int j = 0; j < allPlayers.Count; j++)
+			if ((bool)GameData.Instance)
 			{
-				GameData.PlayerInfo playerInfo = allPlayers[j];
-				AvailableColors.Remove(playerInfo.ColorId);
+				AvailableColors.Remove(SaveManager.BodyColor);
+				return;
+			}
+
+		}
+		else
+		{
+			if ((bool)GameData.Instance)
+			{
+				List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
+				for (int j = 0; j < allPlayers.Count; j++)
+				{
+					GameData.PlayerInfo playerInfo = allPlayers[j];
+					AvailableColors.Remove(playerInfo.ColorId);
+				}
 			}
 		}
+
+
 	}
 }
