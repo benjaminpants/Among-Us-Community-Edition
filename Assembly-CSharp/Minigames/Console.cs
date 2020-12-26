@@ -101,6 +101,6 @@ public class Console : MonoBehaviour, IUsable
 		catch (Exception)
 		{
 		}
-		return pc.IsImpostor;
+		return pc.IsImpostor || CE_RoleManager.GetRoleFromID(pc.role).DoesNotDoTasks();
 	}
 }

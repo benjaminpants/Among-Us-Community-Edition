@@ -124,6 +124,18 @@ static class CE_GameLua
         return PlayFoLua;
     }
 
+    public static uint GetHatIDFromProductID(string id)
+    {
+        foreach (HatBehaviour hat in HatManager.Instance.AllHats)
+        {
+            if (hat.ProdId == id)
+            {
+                return (uint)HatManager.Instance.AllHats.FindIndex(a => a == hat);
+            }
+        }
+        return 0;
+    }
+
 
     public static List<CE_PlayerInfoLua> GetAllPlayersComplex(bool alive, bool canbeimp)
     {
@@ -144,9 +156,9 @@ static class CE_GameLua
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
         return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText));
     }
-    public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis)
+    public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis, bool dotask = true)
     {
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
-        return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis));
+        return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis,dotask));
     }
 }

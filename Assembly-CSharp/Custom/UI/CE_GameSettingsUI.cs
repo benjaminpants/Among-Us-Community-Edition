@@ -98,7 +98,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
 				gameOptions.Venting = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.Venting, GameOptionsData.VentModeStrings, 0, 3, "Vents", readOnly);
-				gameOptions.VentMode = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.VentMode, GameOptionsData.VentMode2Strings, 0, 3, "Vent Movement", readOnly);
+				gameOptions.VentMode = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.VentMode, GameOptionsData.VentMode2Strings, 0, 5, "Vent Movement", readOnly);
 			}
 
 		}

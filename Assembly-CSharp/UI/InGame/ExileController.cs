@@ -142,6 +142,7 @@ public class ExileController : MonoBehaviour
         {
 			CE_LuaLoader.GetGamemodeResult("OnExileSkip");
 		}
+		ShipStatus.Instance.TimeSinceLastRound = 0f;
 		Object.Destroy(base.gameObject);
 	}
 

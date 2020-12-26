@@ -28,7 +28,11 @@ public class Vent : MonoBehaviour, IUsable
 		SetButtons(enabled: false);
 		myRend = GetComponent<SpriteRenderer>();
 		byte ventMode = PlayerControl.GameOptions.VentMode;
-		if (PlayerControl.GameOptions.Venting == 2 && !GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).IsImpostor)
+		if (PlayerControl.GameOptions.Venting == 3)
+        {
+			myRend.enabled = false;
+        }
+		if (PlayerControl.GameOptions.Venting == 2 && (!GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).IsImpostor || CE_RoleManager.GetRoleFromID(GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).role).CanDo(CE_Specials.Vent)))
 		{
 			Left = null;
 			Right = null;
@@ -67,6 +71,16 @@ public class Vent : MonoBehaviour, IUsable
 			break;
 		case 3:
 			Left = null;
+			Right = null;
+			break;
+        case 4:
+			Vent[] array2 = Object.FindObjectsOfType<Vent>();
+            Left = array2[UnityEngine.Random.Range(0, array2.Length)];
+			Right = array2[UnityEngine.Random.Range(0, array2.Length)];
+			break;
+		case 5:
+			Vent[] array3 = Object.FindObjectsOfType<Vent>();
+			Left = array3[UnityEngine.Random.Range(0, array3.Length)];
 			Right = null;
 			break;
 		}

@@ -61,6 +61,9 @@ public class PlayerTab : MonoBehaviour
 							break;
 						case 26:
 							colorChip.Inner.sprite = specsprite;
+                            break;
+						case 27:
+							colorChip.Inner.sprite = specsprite;
 							break;
 						default:
 							//do nothing

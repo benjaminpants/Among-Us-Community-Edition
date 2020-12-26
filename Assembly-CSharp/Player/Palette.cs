@@ -36,7 +36,8 @@ public static class Palette
 
 	public static readonly Color32 VisorColor;
 
-	public static readonly Color32 VisorColorRed;
+    public static readonly Color32 VisorColorRed;
+	public static readonly Color32 VisorColorBlack;
 
 	public static readonly Color32 VisorColorGreen;
 
@@ -93,7 +94,7 @@ public static class Palette
 			new Color32(145,136,119, byte.MaxValue),
 			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
 			new Color32(7, 7, 122, byte.MaxValue), //carjem but blue
-			new Color32(182, 255, 0, byte.MaxValue)
+			new Color32(7, 122, 7, byte.MaxValue)
 		};
 		ShadowColors = new Color32[28]
 		{
@@ -124,9 +125,10 @@ public static class Palette
 			new Color32(81,65,62, byte.MaxValue),
 			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
 			new Color32(42, 0, byte.MaxValue, byte.MaxValue), //carjem but blue
-			new Color32(160, 224, 5, byte.MaxValue)
+			new Color32(0, 255, 42, byte.MaxValue)
 		};
-		VisorColor = new Color32(149, 202, 220, byte.MaxValue);
+        VisorColor = new Color32(149, 202, 220, byte.MaxValue);
+		VisorColorBlack = new Color32(15, 15, 15, byte.MaxValue);
 		VisorColorRed = new Color32(192, 15, 11, byte.MaxValue);
 		VisorColorGreen = new Color32(0, byte.MaxValue, 0, byte.MaxValue);
 		VisorColorCarJemGenerations = new Color32(220, 220, 220, byte.MaxValue);

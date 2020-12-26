@@ -31,11 +31,11 @@ public class EmergencyMinigame : Minigame
 
 	public void Update()
 	{
-		if (ShipStatus.Instance.Timer < 15f)
+		if (ShipStatus.Instance.TimeSinceLastRound < PlayerControl.GameOptions.KillCooldown)
 		{
-			int num = Mathf.CeilToInt(15f - ShipStatus.Instance.Timer);
+			int num = Mathf.CeilToInt(PlayerControl.GameOptions.KillCooldown - ShipStatus.Instance.TimeSinceLastRound);
 			ButtonActive = false;
-			StatusText.Text = "CREWMATES MUST WAIT\r\n\r\nBEFORE FIRST EMERGENCY";
+			StatusText.Text = "CREWMATES MUST WAIT\r\n\r\nBEFORE EMERGENCY";
 			NumberText.Text = num + "s";
 			ClosedLid.gameObject.SetActive(value: true);
 			OpenLid.gameObject.SetActive(value: false);
