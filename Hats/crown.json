@@ -1,18 +1,47 @@
 {
-	"ID": "AUPORT_crown",
-	"NormalImg": "crown.png",
-	"FloorImg": "crown.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 46,
-	"NormalHeight": 44,
-	"NormalPivotX": 0.35,
-	"NormalPivotY": 0.6,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 46,
-	"FloorHeight": 44,
-	"FloorPivotX": 0.35,
-	"FloorPivotY": 0.6,
-	"inFront": "true"
+  "ID": "AUPORT_crown",
+  "Name": "AUPORT_crown",
+  "StoreName": "AUPORT_crown",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 46.0,
+        "y": 44.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Normal",
+      "SpritePath": "crown.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 46.0,
+        "y": 44.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "crown.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

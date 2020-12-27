@@ -1,18 +1,47 @@
 {
-	"ID": "AUPORT_Egg",
-	"NormalImg": "egg.png",
-	"FloorImg": "egg_fall.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 50,
-	"NormalHeight": 39,
-	"NormalPivotX": 0.39,
-	"NormalPivotY": 1,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 80,
-	"FloorHeight": 27,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.5,
-	"inFront": "true"
+  "ID": "AUPORT_Egg",
+  "Name": "AUPORT_Egg",
+  "StoreName": "AUPORT_Egg",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 50.0,
+        "y": 39.0
+      },
+      "Offset": {
+        "x": 0.39,
+        "y": 1.0
+      },
+      "Name": "Normal",
+      "SpritePath": "egg.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 80.0,
+        "y": 27.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "egg_fall.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

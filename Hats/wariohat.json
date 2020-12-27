@@ -1,18 +1,47 @@
 {
-	"ID": "wario_hat",
-	"NormalImg": "wariohat.png",
-	"FloorImg": "wariohat_crumple.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 72,
-	"NormalHeight": 54,
-	"NormalPivotX": 0.37,
-	"NormalPivotY": 0.69,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 72,
-	"FloorHeight": 54,
-	"FloorPivotX": 0.33,
-	"FloorPivotY": 0.85,
-	"inFront": "true"
+  "ID": "wario_hat",
+  "Name": "wario_hat",
+  "StoreName": "wario_hat",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 72.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.37,
+        "y": 0.69
+      },
+      "Name": "Normal",
+      "SpritePath": "wariohat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 72.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "wariohat_crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

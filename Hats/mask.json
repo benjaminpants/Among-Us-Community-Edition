@@ -1,18 +1,47 @@
 {
-	"ID": "AUPORT_mask",
-	"NormalImg": "mask.png",
-	"FloorImg": "mask_fall.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 65,
-	"NormalHeight": 40,
-	"NormalPivotX": 0.35,
-	"NormalPivotY": 1.6,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 62,
-	"FloorHeight": 28,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.5,
-	"inFront": "true"
+  "ID": "AUPORT_mask",
+  "Name": "AUPORT_mask",
+  "StoreName": "AUPORT_mask",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 40.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 1.6
+      },
+      "Name": "Normal",
+      "SpritePath": "mask.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 62.0,
+        "y": 28.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "mask_fall.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

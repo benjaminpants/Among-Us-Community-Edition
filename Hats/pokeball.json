@@ -1,19 +1,47 @@
 {
-	"ID": "pokeball",
-	"NormalImg": "pokeball.png",
-	"FloorImg": "pokeball.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 60,
-	"NormalHeight": 60,
-	"NormalPivotX": 0.4,
-	"NormalPivotY": 0.4,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 60,
-	"FloorHeight": 60,
-	"FloorPivotX": 0.4,
-	"FloorPivotY": 0.4,
-	"inFront": "true",
-	"UsePointFiltering": true
+  "ID": "pokeball",
+  "Name": "pokeball",
+  "StoreName": "pokeball",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": true,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 60.0,
+        "y": 60.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.4
+      },
+      "Name": "Normal",
+      "SpritePath": "pokeball.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 60.0,
+        "y": 60.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.4
+      },
+      "Name": "Floor",
+      "SpritePath": "pokeball.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

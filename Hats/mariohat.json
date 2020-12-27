@@ -1,18 +1,47 @@
 {
-	"ID": "mario_hat",
-	"NormalImg": "mariohat.png",
-	"FloorImg": "mariohat_crumple.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 72,
-	"NormalHeight": 54,
-	"NormalPivotX": 0.37,
-	"NormalPivotY": 0.69,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 72,
-	"FloorHeight": 54,
-	"FloorPivotX": 0.33,
-	"FloorPivotY": 0.85,
-	"inFront": "true"
+  "ID": "mario_hat",
+  "Name": "mario_hat",
+  "StoreName": "mario_hat",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 72.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.37,
+        "y": 0.69
+      },
+      "Name": "Normal",
+      "SpritePath": "mariohat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 72.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "mariohat_crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

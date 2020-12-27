@@ -1,27 +1,64 @@
 {
-	"ID": "CarJem the Hedgefox",
-	"NormalImg": "CarJemHat.png",
-	"FloorImg": "CarJemHat.png",
-	"PreviewImg": "CarJemHat.png",
-	"NoBobbing": "true",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 84,
-	"NormalHeight": 86,
-	"NormalPivotX": 0.43,
-	"NormalPivotY": 0.85,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 84,
-	"FloorHeight": 86,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.5,
-	"PreviewPosX": 0,
-	"PreviewPosY": 0,
-	"PreviewWidth": 84,
-	"PreviewHeight": 86,
-	"PreviewPivotX": 0.5,
-	"PreviewPivotY": 0.5,
-	"inFront": "true",
-	"UsePointFiltering": "false"
+  "ID": "CarJem the Hedgefox",
+  "Name": "CarJem the Hedgefox",
+  "StoreName": "CarJem the Hedgefox",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.85
+      },
+      "Name": "Normal",
+      "SpritePath": "CarJemHat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "CarJemHat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Preview",
+      "SpritePath": "CarJemHat.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

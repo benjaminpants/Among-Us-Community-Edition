@@ -1,4 +1,4 @@
-public class CE_CustomHatDefinition
+public class CE_OldCustomHatDefinition
 {
 	public string ID { get; set; } = "NullHat";
 	public string NormalImg { get; set; } = string.Empty;

@@ -27,7 +27,7 @@ public class CE_TextureNSpriteExtensions
 
 	public static Texture2D LoadPNG_HatManager(string filePath)
 	{
-		if (DestroyableSingleton<HatManager>.Instance.LoadedTextures.ContainsKey(filePath)) return DestroyableSingleton<HatManager>.Instance.LoadedTextures[filePath];
+		if (CE_WardrobeLoader.LoadedTextures.ContainsKey(filePath)) return CE_WardrobeLoader.LoadedTextures[filePath];
 		else
         {
 			Texture2D texture2D = null;
@@ -37,7 +37,7 @@ public class CE_TextureNSpriteExtensions
 				texture2D = new Texture2D(2, 2);
 				texture2D.LoadImage(data);
 			}
-			DestroyableSingleton<HatManager>.Instance.LoadedTextures.Add(filePath, texture2D);
+			CE_WardrobeLoader.LoadedTextures.Add(filePath, texture2D);
 			return texture2D;
 		}
 	}

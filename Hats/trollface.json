@@ -1,18 +1,47 @@
 {
-	"ID": "Troll",
-	"NormalImg": "Trollface.png",
-	"FloorImg": "Trollface.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 70,
-	"NormalHeight": 71,
-	"NormalPivotX": 0.38,
-	"NormalPivotY": 1.10,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 71,
-	"FloorHeight": 36,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.5,
-	"inFront": "true"
+  "ID": "Troll",
+  "Name": "Troll",
+  "StoreName": "Troll",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 70.0,
+        "y": 71.0
+      },
+      "Offset": {
+        "x": 0.38,
+        "y": 1.1
+      },
+      "Name": "Normal",
+      "SpritePath": "Trollface.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 71.0,
+        "y": 36.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "Trollface.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

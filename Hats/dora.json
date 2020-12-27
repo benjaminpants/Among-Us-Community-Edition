@@ -1,18 +1,47 @@
 {
-	"ID": "AUPORT_wig",
-	"NormalImg": "dora.png",
-	"FloorImg": "dora_crump.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 66,
-	"NormalHeight": 54,
-	"NormalPivotX": 0.33,
-	"NormalPivotY": 0.85,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 72,
-	"FloorHeight": 54,
-	"FloorPivotX": 0.33,
-	"FloorPivotY": 0.85,
-	"inFront": "true"
+  "ID": "AUPORT_wig",
+  "Name": "AUPORT_wig",
+  "StoreName": "AUPORT_wig",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 66.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Normal",
+      "SpritePath": "dora.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 72.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "dora_crump.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

@@ -1,18 +1,47 @@
 {
-	"ID": "portalpotatOS",
-	"NormalImg": "potot.png",
-	"FloorImg": "potot.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 66,
-	"NormalHeight": 54,
-	"NormalPivotX": 0.33,
-	"NormalPivotY": 0.85,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 66,
-	"FloorHeight": 54,
-	"FloorPivotX": 0.33,
-	"FloorPivotY": 0.85,
-	"inFront": "true"
+  "ID": "portalpotatOS",
+  "Name": "portalpotatOS",
+  "StoreName": "portalpotatOS",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 66.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Normal",
+      "SpritePath": "potot.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 66.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "potot.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

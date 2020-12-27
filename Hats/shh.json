@@ -1,18 +1,47 @@
 {
-	"ID": "SHH",
-	"NormalImg": "shh.png",
-	"FloorImg": "shh.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 97,
-	"NormalHeight": 24,
-	"NormalPivotX": 0.43,
-	"NormalPivotY": 0.6,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 97,
-	"FloorHeight": 24,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.4,
-	"inFront": "true"
+  "ID": "SHH",
+  "Name": "SHH",
+  "StoreName": "SHH",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 97.0,
+        "y": 24.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.6
+      },
+      "Name": "Normal",
+      "SpritePath": "shh.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 97.0,
+        "y": 24.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "Name": "Floor",
+      "SpritePath": "shh.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

@@ -15,6 +15,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public SkinData RelatedSkin;
 
+	public string RelatedSkinName;
+
 	public string StoreName;
 
 	public string ProductId;

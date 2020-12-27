@@ -107,7 +107,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		}
 		if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXPlayer)
 		{
-			extensions.GetExtension<IAppleExtensions>().RestoreTransactions(delegate(bool result)
+			extensions.GetExtension<IAppleExtensions>().RestoreTransactions(delegate (bool result)
 			{
 				if (!result)
 				{
@@ -216,9 +216,9 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		if (PurchaseState == PurchaseStates.Success)
 		{
 			foreach (PurchaseButton item in from p in AllObjects
-				select p.GetComponent<PurchaseButton>() into h
-				where (bool)h && h.ProductId == button.ProductId
-				select h)
+											select p.GetComponent<PurchaseButton>() into h
+											where (bool)h && h.ProductId == button.ProductId
+											select h)
 			{
 				item.SetPurchased();
 			}
@@ -244,30 +244,14 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		RestorePurchasesButton.transform.parent.gameObject.SetActive(value: false);
 		HorizontalLine.gameObject.SetActive(value: false);
 		Product[] array = controller.products.all.ToArray();
-		for (int i = 0; i < array.Length; i++)
-		{
-			if (array[i].hasReceipt)
-			{
-				SaveManager.SetPurchased(array[i].definition.id);
-			}
-		}
 		ScriptableObject[] hats;
-		if (DateTime.UtcNow.Month == 12)
-		{
-			HatBehaviour[] array2 = DestroyableSingleton<HatManager>.Instance.AllHats.Where((HatBehaviour h) => h.LimitedMonth == 12).ToArray();
-			vector = InsertBanner(vector, HolidayBanner);
-			vector.y += -0.375f;
-			Vector3 position = vector;
-			hats = array2;
-			vector = InsertHatsFromList(position, array, hats);
-		}
 		vector.y += -0.375f;
 		SkinData[] array3 = DestroyableSingleton<HatManager>.Instance.AllSkins.Where((SkinData h) => !h.Free).ToArray();
 		vector = InsertBanner(vector, SkinsBanner);
 		Vector3 position2 = vector;
 		hats = array3;
 		vector = InsertHatsFromList(position2, array, hats);
-		HatBehaviour[] array4 = DestroyableSingleton<HatManager>.Instance.AllHats.Where((HatBehaviour h) => h.LimitedMonth == 0).ToArray();
+		HatBehaviour[] array4 = DestroyableSingleton<HatManager>.Instance.AllHats.ToArray();
 		vector = InsertBanner(vector, HatBanner);
 		vector.y += -0.375f;
 		Vector3 position3 = vector;
@@ -283,7 +267,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		{
 			IBuyable item = hats[i] as IBuyable;
 			Product product = allProducts.FirstOrDefault((Product p) => item.ProdId == p.definition.id);
-			if (product != null && product.availableToPurchase)
+			if (product != null)
 			{
 				int num2 = num % NumPerRow;
 				position.x = StartPositionVertical.x + XRange.Lerp((float)num2 / ((float)NumPerRow - 1f));
@@ -305,11 +289,9 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		AllObjects.Add(purchaseButton.gameObject);
 		purchaseButton.transform.localPosition = position;
 		purchaseButton.Parent = this;
-		purchaseButton.SetItem(item, product.definition.id, product.metadata.localizedTitle.Replace("(Among Us)", ""), product.metadata.localizedPriceString, product.hasReceipt || SaveManager.GetPurchase(product.definition.id));
-		if (product.hasReceipt)
-		{
-			SaveManager.SetPurchased(product.definition.id);
-		}
+		purchaseButton.SetItem(item, product.definition.id, product.metadata.localizedTitle.Replace("(Among Us)", ""), product.metadata.localizedPriceString, true);
+		SaveManager.SetPurchased(product.definition.id);
+
 	}
 
 	private Vector3 InsertBanner(Vector3 position, Sprite s)

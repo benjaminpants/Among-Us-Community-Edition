@@ -1,18 +1,47 @@
 {
-	"ID": "Fedora",
-	"NormalImg": "fedora.png",
-	"FloorImg": "fedora_crumple.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 85,
-	"NormalHeight": 42,
-	"NormalPivotX": 0.4,
-	"NormalPivotY": 0.95,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 85,
-	"FloorHeight": 40,
-	"FloorPivotX": 0.4,
-	"FloorPivotY": 0.95,
-	"inFront": "true"
+  "ID": "Fedora",
+  "Name": "Fedora",
+  "StoreName": "Fedora",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 85.0,
+        "y": 42.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.95
+      },
+      "Name": "Normal",
+      "SpritePath": "fedora.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 85.0,
+        "y": 40.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.95
+      },
+      "Name": "Floor",
+      "SpritePath": "fedora_crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

@@ -1,18 +1,47 @@
 {
-	"ID": "JokerHat",
-	"NormalImg": "JokerHat.png",
-	"FloorImg": "JokerHat.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 110,
-	"NormalHeight": 62,
-	"NormalPivotX": 0.43,
-	"NormalPivotY": 0.85,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 84,
-	"FloorHeight": 86,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.5,
-	"inFront": "true"
+  "ID": "JokerHat",
+  "Name": "JokerHat",
+  "StoreName": "JokerHat",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 110.0,
+        "y": 62.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.85
+      },
+      "Name": "Normal",
+      "SpritePath": "JokerHat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "JokerHat.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

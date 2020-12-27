@@ -1,18 +1,47 @@
 {
-	"ID": "Henry's Hat",
-	"NormalImg": "henryhat.png",
-	"FloorImg": "henryhat_crumple.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 65,
-	"NormalHeight": 65,
-	"NormalPivotX": 0.58,
-	"NormalPivotY": 0.62,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 71,
-	"FloorHeight": 60,
-	"FloorPivotX": 0.5,
-	"FloorPivotY": 0.5,
-	"inFront": "false"
+  "ID": "Henry's Hat",
+  "Name": "Henry's Hat",
+  "StoreName": "Henry's Hat",
+  "HatInFront": false,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 65.0
+      },
+      "Offset": {
+        "x": 0.58,
+        "y": 0.62
+      },
+      "Name": "Normal",
+      "SpritePath": "henryhat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 71.0,
+        "y": 60.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "henryhat_crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

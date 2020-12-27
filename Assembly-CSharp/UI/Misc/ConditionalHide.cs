@@ -9,12 +9,16 @@ public class ConditionalHide : MonoBehaviour
 
 	private void Awake()
 	{
-		for (int i = 0; i < HideForPlatforms.Length; i++)
-		{
-			if (HideForPlatforms[i] == RuntimePlatform.WindowsPlayer)
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenu")
+        {
+			for (int i = 0; i < HideForPlatforms.Length; i++)
 			{
-				base.gameObject.SetActive(value: false);
+				if (HideForPlatforms[i] == RuntimePlatform.WindowsPlayer)
+				{
+					base.gameObject.SetActive(value: false);
+				}
 			}
 		}
+		
 	}
 }

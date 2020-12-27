@@ -1,19 +1,47 @@
 {
-	"ID": "BowserWeddingHat",
-	"NormalImg": "BowserWeddingHat.png",
-	"FloorImg": "BowserWeddingHat_Crumple.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 65,
-	"NormalHeight": 55,
-	"NormalPivotX": 0.4,
-	"NormalPivotY": 0.68,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 65,
-	"FloorHeight": 43,
-	"FloorPivotX": 0.43,
-	"FloorPivotY": 0.6,
-	"inFront": "true",
-	"UsePointFiltering": true
+  "ID": "BowserWeddingHat",
+  "Name": "BowserWeddingHat",
+  "StoreName": "BowserWeddingHat",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": true,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 55.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.68
+      },
+      "Name": "Normal",
+      "SpritePath": "BowserWeddingHat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 43.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "BowserWeddingHat_Crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
 }

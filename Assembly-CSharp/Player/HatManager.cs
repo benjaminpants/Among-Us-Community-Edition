@@ -10,8 +10,6 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public List<SkinData> AllSkins = new List<SkinData>();
 
-	public Dictionary<string, Texture2D> LoadedTextures = new Dictionary<string, Texture2D>();
-
 	public HatBehaviour GetHatById(uint hatId)
 	{
 		if ((ulong)hatId >= (ulong)AllHats.Count)
@@ -67,31 +65,11 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public void Start()
 	{
-		AllHats.AddRange(CE_WardrobeLoader.LoadHats());
-		AllSkins.AddRange(CE_WardrobeLoader.LoadSkins(GetCustomRefrence()));
+		CE_WardrobeLoader.Init();
 	}
 
 	public void ReloadCustomHatsAndSkins()
 	{
-		uint hatId = PlayerControl.LocalPlayer.Data.HatId;
-		uint skinId = PlayerControl.LocalPlayer.Data.SkinId;
-		foreach (var loadedTexture in LoadedTextures)
-		{
-			Object.Destroy(loadedTexture.Value);
-		}
-		LoadedTextures.Clear();
-		AllHats.RemoveAll((HatBehaviour x) => x.IsCustom);
-		AllSkins.RemoveAll((SkinData x) => x.isCustom);
-		AllHats.AddRange(CE_WardrobeLoader.LoadHats());
-		AllSkins.AddRange(CE_WardrobeLoader.LoadSkins(GetCustomRefrence()));
-		PlayerControl.LocalPlayer.SetSkin(skinId);
-		PlayerControl.LocalPlayer.SetHat(hatId);
-		_ = CE_WardrobeLoader.AnimationEditor_Mode;
-		CE_WardrobeLoader.AnimationEditor_Reset = true;
-	}
-
-	private SkinData GetCustomRefrence()
-	{
-		return AllSkins.Where((SkinData x) => x.name == "Police").FirstOrDefault();
+		CE_WardrobeLoader.Reload();
 	}
 }

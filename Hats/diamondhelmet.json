@@ -1,19 +1,47 @@
 {
-	"ID": "helmethat",
-	"NormalImg": "diamondhelmet.png",
-	"FloorImg": "diamondhelmet_floor.png",
-	"NormalPosX": 0,
-	"NormalPosY": 0,
-	"NormalWidth": 56,
-	"NormalHeight": 45,
-	"NormalPivotX": 0.33,
-	"NormalPivotY": 1.15,
-	"FloorPosX": 0,
-	"FloorPosY": 0,
-	"FloorWidth": 56,
-	"FloorHeight": 45,
-	"FloorPivotX": 0.33,
-	"FloorPivotY": 1.15,
-	"inFront": "true",
-	"UsePointFiltering": true
+  "ID": "helmethat",
+  "Name": "helmethat",
+  "StoreName": "helmethat",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": true,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 56.0,
+        "y": 45.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 1.15
+      },
+      "Name": "Normal",
+      "SpritePath": "diamondhelmet.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 56.0,
+        "y": 45.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 1.15
+      },
+      "Name": "Floor",
+      "SpritePath": "diamondhelmet_floor.png",
+      "UsePointFiltering": false
+    }
+  ]
 }
