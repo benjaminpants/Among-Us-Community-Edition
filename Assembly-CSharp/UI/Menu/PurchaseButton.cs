@@ -70,7 +70,7 @@ public class PurchaseButton : MonoBehaviour
 	internal void SetPurchased()
 	{
 		Purchased = true;
-		PurchasedIcon.enabled = true;
+		PurchasedIcon.enabled = false;
 	}
 
 	public void DoPurchase()
