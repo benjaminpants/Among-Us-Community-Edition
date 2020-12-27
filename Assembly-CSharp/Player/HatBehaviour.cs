@@ -15,8 +15,6 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public SkinData RelatedSkin;
 
-	public string RelatedSkinName;
-
 	public string StoreName;
 
 	public string ProductId;
@@ -28,6 +26,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 	public Sprite PreviewImage;
 
 	public bool IsCustom;
+
+	public string RelatedSkinName;
 
 	public string ProdId => ProductId;
 }

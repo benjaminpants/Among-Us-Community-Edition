@@ -15,36 +15,33 @@ public class CE_WardrobeLoader
 	{
 		return new DirectoryInfo(Path).GetFiles("*.json");
 	}
-	private static SkinData GetSkinRefrence()
+	public static SkinData GetSkinRefrence()
     {
 		return DestroyableSingleton<HatManager>.Instance.AllSkins.Where((SkinData x) => x.name == "Police").FirstOrDefault();
 	}
-	private static void LinkSkinsAndHats()
+	public static void LinkSkinsAndHats()
     {
 
 		foreach (var hat in DestroyableSingleton<HatManager>.Instance.AllHats)
         {
 			foreach (var skin in DestroyableSingleton<HatManager>.Instance.AllSkins)
 			{
-				bool validHatPair = !string.IsNullOrEmpty(skin.RelatedHatName) && !string.IsNullOrEmpty(hat.StoreName);
-				bool validSkinPair = !string.IsNullOrEmpty(hat.RelatedSkinName) && !string.IsNullOrEmpty(skin.StoreName);
+				if (hat.IsCustom && skin.isCustom)
+                {
+					bool validHatPair = !string.IsNullOrEmpty(skin.RelatedHatName) && !string.IsNullOrEmpty(hat.StoreName);
+					bool validSkinPair = !string.IsNullOrEmpty(hat.RelatedSkinName) && !string.IsNullOrEmpty(skin.StoreName);
 
-				if (skin.RelatedHatName == hat.StoreName && validHatPair)
-				{
-					skin.RelatedHat = hat;
-				}
-				if (hat.RelatedSkinName == skin.StoreName && validSkinPair)
-				{
-					hat.RelatedSkin = skin;
+					if (skin.RelatedHatName == hat.StoreName && validHatPair)
+					{
+						skin.RelatedHat = hat;
+					}
+					if (hat.RelatedSkinName == skin.StoreName && validSkinPair)
+					{
+						hat.RelatedSkin = skin;
+					}
 				}
 			}
 		}
-	}
-	public static void Init()
-    {
-		DestroyableSingleton<HatManager>.Instance.AllHats.AddRange(LoadHats());
-		DestroyableSingleton<HatManager>.Instance.AllSkins.AddRange(LoadSkins(GetSkinRefrence()));
-		LinkSkinsAndHats();
 	}
 	public static void Reload()
     {

@@ -75,10 +75,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		configurationBuilder.AddProduct("bought_ads", ProductType.NonConsumable);
 		foreach (HatBehaviour allHat in DestroyableSingleton<HatManager>.Instance.AllHats)
 		{
-			if (!allHat.Free)
-			{
-				configurationBuilder.AddProduct(allHat.ProductId, ProductType.NonConsumable);
-			}
+			configurationBuilder.AddProduct(allHat.ProductId, ProductType.NonConsumable);
 		}
 		foreach (SkinData allSkin in DestroyableSingleton<HatManager>.Instance.AllSkins)
 		{

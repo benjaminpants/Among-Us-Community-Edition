@@ -65,7 +65,9 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public void Start()
 	{
-		CE_WardrobeLoader.Init();
+		AllHats.AddRange(CE_WardrobeLoader.LoadHats());
+		AllSkins.AddRange(CE_WardrobeLoader.LoadSkins(CE_WardrobeLoader.GetSkinRefrence()));
+		CE_WardrobeLoader.LinkSkinsAndHats();
 	}
 
 	public void ReloadCustomHatsAndSkins()
