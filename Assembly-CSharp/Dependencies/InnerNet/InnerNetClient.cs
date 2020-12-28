@@ -596,20 +596,25 @@ namespace InnerNet
 
 		private void HandleMessage(MessageReader reader)
 		{
-			Debug.Log(reader.Tag);
 			switch (reader.Tag)
 			{
                 case 15:
-					GameId = reader.ReadInt32();
-					byte id = reader.ReadByte();
-					float x = reader.ReadSingle();
-					float y = reader.ReadSingle();
-					Debug.Log("ID:" + id);
-					if (id == 0)
 					{
-						DeadBody bod = GameObject.Instantiate(PlayerControl.LocalPlayer.KillAnimations[1].bodyPrefab);
-						Debug.Log(bod.transform.name);
-						bod.transform.position = new Vector3(x, y, y / 1000f);
+						int GameIDD = reader.ReadInt32();
+						Debug.Log("ID:" + GameIDD);
+						if (GameId != GameIDD)
+                        {
+							break;
+                        }
+						byte id = reader.ReadByte();
+						float x = reader.ReadSingle();
+						float y = reader.ReadSingle();
+						if (id == 0)
+						{
+							DeadBody bod = GameObject.Instantiate(PlayerControl.LocalPlayer.KillAnimations[1].bodyPrefab);
+							Debug.Log(bod.transform.name);
+							bod.transform.position = new Vector3(x, y, y / 1000f);
+						}
 					}
 					break;
 				case 0:

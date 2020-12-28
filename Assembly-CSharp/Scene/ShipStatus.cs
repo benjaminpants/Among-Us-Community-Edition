@@ -798,11 +798,15 @@ public class ShipStatus : InnerNetObject
 
 	private static void WriteRPCObject(CE_LuaSpawnableObject obj)
     {
-		MessageWriter messageWriter = AmongUsClient.Instance.StartSendObject();
-		messageWriter.Write(obj.ID);
-		messageWriter.Write(obj.Position.x);
-		messageWriter.Write(obj.Position.y);
-		AmongUsClient.Instance.FinishEndGame(messageWriter);
+		if (AmongUsClient.Instance.AmHost)
+		{
+			MessageWriter messageWriter = AmongUsClient.Instance.StartSendObject();
+			messageWriter.Write(obj.ID);
+			messageWriter.Write(obj.Position.x);
+			messageWriter.Write(obj.Position.y);
+			AmongUsClient.Instance.FinishEndGame(messageWriter);
+			Debug.Log("Sent Object to Server/Host!");
+		}
 	}
 
     public static void RpcCustomEndGamePublic(GameData.PlayerInfo[] plrs, string song)
