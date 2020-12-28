@@ -351,6 +351,7 @@ public class AmongUsClient : InnerNetClient
 		{
 			PlayerControl character = data.Character;
 			Debug.Log($"Player {data.Id}({character.name}) left due to {reason}: {data.IsReady}");
+			CE_LuaLoader.GetGamemodeResult("OnPlayerDC",new CE_PlayerInfoLua(data.Character.Data));
 			for (int num = DisconnectHandlers.Count - 1; num > -1; num--)
 			{
 				try

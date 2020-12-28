@@ -182,7 +182,7 @@ public class ChatController : MonoBehaviour
 	{
 		if (CE_LuaLoader.CurrentGMLua)
 		{
-			CE_LuaLoader.GetGamemodeResult("OnChat", chatText, new CE_PlayerInfoLua(sourcePlayer.Data));
+            CE_LuaLoader.GetGamemodeResult("OnChat", chatText, new CE_PlayerInfoLua(sourcePlayer.Data));
 		}
 		if (!sourcePlayer)
 		{

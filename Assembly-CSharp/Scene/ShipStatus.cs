@@ -796,10 +796,24 @@ public class ShipStatus : InnerNetObject
 		AmongUsClient.Instance.FinishEndGame(messageWriter);
 	}
 
-	public static void RpcCustomEndGamePublic(GameData.PlayerInfo[] plrs, string song)
+	private static void WriteRPCObject(CE_LuaSpawnableObject obj)
     {
-		RpcCustomEndGame(plrs,song);
+		MessageWriter messageWriter = AmongUsClient.Instance.StartSendObject();
+		messageWriter.Write(obj.ID);
+		messageWriter.Write(obj.Position.x);
+		messageWriter.Write(obj.Position.y);
+		AmongUsClient.Instance.FinishEndGame(messageWriter);
+	}
+
+    public static void RpcCustomEndGamePublic(GameData.PlayerInfo[] plrs, string song)
+    {
+        RpcCustomEndGame(plrs, song);
     }
+
+	public static void WriteRPCObjectPublic(CE_LuaSpawnableObject obj)
+	{
+		WriteRPCObject(obj);
+	}
 
 	private static void ReviveEveryone()
 	{
@@ -882,15 +896,4 @@ public class ShipStatus : InnerNetObject
 		}
 	}
 
-	private static void RpcCustomVictory(GameData.PlayerInfo[] winners, string song)
-	{
-		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(Instance.NetId, 255);
-		messageWriter.WritePacked(winners.Length);
-		for (int i = 0; i < winners.Length; i++)
-		{
-			messageWriter.Write(winners[i].PlayerId);
-		}
-		messageWriter.Write(song);
-		messageWriter.EndMessage();
-	}
 }

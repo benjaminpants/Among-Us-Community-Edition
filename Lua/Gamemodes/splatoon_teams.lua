@@ -2,8 +2,8 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("Red Team",{255,15,15},"Convert the entire [0F0FFFFF]Blue Team[].",{0},0,0,false)
-	Game_CreateRole("Blue Team",{15,15,255},"Convert the entire [FF0F0FFF]Red Team[].",{0},0,0,false)
+	Game_CreateRole("Red Team",{255,15,15},"Convert the entire [0F0FFFFF]Blue Team[].",{0},0,0,false,false)
+	Game_CreateRole("Blue Team",{15,15,255},"Convert the entire [FF0F0FFF]Red Team[].",{0},0,0,false,false)
 	return {"Splatoon Teams",8} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 

@@ -1240,16 +1240,17 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void RpcStartMeeting(GameData.PlayerInfo info)
-	{
-		if (AmongUsClient.Instance.AmClient)
-		{
-			StartCoroutine(CoStartMeeting(info));
-		}
-		MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 15, SendOption.Reliable);
-		messageWriter.Write(info?.PlayerId ?? byte.MaxValue);
-		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
-	}
+    public void RpcStartMeeting(GameData.PlayerInfo info)
+    {
+        if (AmongUsClient.Instance.AmClient)
+        {
+            StartCoroutine(CoStartMeeting(info));
+        }
+        MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 15, SendOption.Reliable);
+        messageWriter.Write(info?.PlayerId ?? byte.MaxValue);
+        AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
+    }
+
 
 	public void RpcMurderPlayer(PlayerControl target)
 	{

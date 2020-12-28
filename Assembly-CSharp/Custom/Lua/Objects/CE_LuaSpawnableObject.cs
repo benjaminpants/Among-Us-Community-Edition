@@ -7,9 +7,9 @@ using UnityEngine;
 using MoonSharp.Interpreter;
 
 [MoonSharpUserData]
-class CE_LuaSpawnableObject
+public class CE_LuaSpawnableObject
 {
-    protected byte ID;
+    public byte ID { get; protected set; }
     public Vector3 Position;
     public Vector3 EulerAngles;
     public bool ClientSide;

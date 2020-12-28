@@ -426,10 +426,10 @@ public class GameOptionsData : IBytesSerializable
 		};
 		RecommendedImpostors = new int[21]
 		{
-			0,
-			0,
-			0,
-			0,
+			1,
+			1,
+			1,
+			1,
 			1,
 			1,
 			1,
@@ -450,10 +450,10 @@ public class GameOptionsData : IBytesSerializable
 		};
 		MaxImpostors = new int[21]
 		{
-			0,
-			0,
-			0,
-			0,
+			1,
+			1,
+			1,
+			1,
 			1,
 			1,
 			1,

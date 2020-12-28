@@ -488,6 +488,13 @@ namespace InnerNet
             messageWriter.Write(GameId);
             return messageWriter;
         }
+		public MessageWriter StartSendObject()
+		{
+			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
+            messageWriter.StartMessage(15);
+			messageWriter.Write(GameId);
+			return messageWriter;
+		}
 
 		public MessageWriter StartCustomEndGame()
 		{
@@ -589,9 +596,23 @@ namespace InnerNet
 
 		private void HandleMessage(MessageReader reader)
 		{
+			Debug.Log(reader.Tag);
 			switch (reader.Tag)
 			{
-			case 0:
+                case 15:
+					GameId = reader.ReadInt32();
+					byte id = reader.ReadByte();
+					float x = reader.ReadSingle();
+					float y = reader.ReadSingle();
+					Debug.Log("ID:" + id);
+					if (id == 0)
+					{
+						DeadBody bod = GameObject.Instantiate(PlayerControl.LocalPlayer.KillAnimations[1].bodyPrefab);
+						Debug.Log(bod.transform.name);
+						bod.transform.position = new Vector3(x, y, y / 1000f);
+					}
+					break;
+				case 0:
 				GameId = reader.ReadInt32();
 				Debug.Log("Client hosting game: " + IntToGameName(GameId));
 				lock (DispatchQueue)
@@ -794,7 +815,7 @@ namespace InnerNet
 					}
 					break;
 					}
-				case 12:
+			case 12:
 			{
 				int num10 = reader.ReadInt32();
 				if (GameId != num10)
