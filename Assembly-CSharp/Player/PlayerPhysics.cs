@@ -159,7 +159,7 @@ public class PlayerPhysics : InnerNetObject
 				{
 					if (currentAnimation != RunAnim)
 					{
-						Animator.Play(RunAnim, 1f);
+						Animator.Play(RunAnim, PlayerControl.GameOptions.PlayerSpeedMod);
 						Skin.SetRun();
 					}
 					if (velocity.x < -0.01f)

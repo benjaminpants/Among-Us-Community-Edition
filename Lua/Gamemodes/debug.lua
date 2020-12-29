@@ -1,5 +1,4 @@
---debug gamemode, the game is currently hardwired to allow this gamemode to have chat enabled
-
+--debug gamemode, the game is currently hardwired to allow this gamemode to have chat enabled midround
 
 function InitializeGamemode()
 	return {"Debug",9} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
