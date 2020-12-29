@@ -64,7 +64,7 @@ public class ChatController : MonoBehaviour
 	{
 		Debug.Log("Chat is hidden: " + visible);
 		DestroyableSingleton<HudManager>.Instance.Chat.ForceClosed();
-		base.gameObject.SetActive(visible);
+		base.gameObject.SetActive(visible || GameOptionsData.Gamemodes[PlayerControl.GameOptions.Gamemode] == "Debug");
 	}
 
 	public void ForceClosed()

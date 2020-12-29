@@ -15,7 +15,7 @@ public class ProgressTracker : MonoBehaviour
 
 	public void FixedUpdate()
 	{
-		if (PlayerTask.PlayerHasHudTask(PlayerControl.LocalPlayer))
+		if (PlayerTask.PlayerHasHudTask(PlayerControl.LocalPlayer) || PlayerControl.GameOptions.TaskBarUpdates == 2)
 		{
 			TileParent.enabled = false;
 			return;
@@ -30,7 +30,10 @@ public class ProgressTracker : MonoBehaviour
 			int num = (DestroyableSingleton<TutorialManager>.InstanceExists ? 1 : (instance.AllPlayers.Count - PlayerControl.GameOptions.NumImpostors));
 			num -= instance.AllPlayers.Count((GameData.PlayerInfo p) => p.Disconnected);
 			float b = (float)instance.CompletedTasks / (float)instance.TotalTasks * (float)num;
-			curValue = Mathf.Lerp(curValue, b, Time.fixedDeltaTime * 2f);
+			if ((bool)MeetingHud.Instance || !(PlayerControl.GameOptions.TaskBarUpdates == 1))
+			{
+				curValue = Mathf.Lerp(curValue, b, Time.fixedDeltaTime * 2f);
+			}
 			TileParent.material.SetFloat("_Buckets", num);
 			TileParent.material.SetFloat("_FullBuckets", curValue);
 		}

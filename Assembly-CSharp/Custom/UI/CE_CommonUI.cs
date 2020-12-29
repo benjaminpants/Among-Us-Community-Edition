@@ -16,6 +16,7 @@ public class CE_CommonUI
 
 	public static Rect FullWindowRect;
 
+	public static Texture2D GhostImage;
 	public static bool GameSettingsChanged;
 	public static Texture2D SpecialClrChip;
 
@@ -107,9 +108,13 @@ public class CE_CommonUI
         {
             GameMenuDropdownSelectedTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown_Selected.png"));
         }
-		if (!SpecialClrChip)
+        if (!SpecialClrChip)
+        {
+            SpecialClrChip = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "colorchip_special.png"));
+        }
+		if (!GhostImage)
 		{
-			SpecialClrChip = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "colorchip_special.png"));
+			GhostImage = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "new_ghost_sprite_lol.png"));
 		}
 	}
 
@@ -548,7 +553,14 @@ public class CE_CommonUI
 				}
 			}
 			if (!readOnly) HoverSoundTrigger();
-			CE_CustomUIElements.Label(valueNames[value], UpDownSettingLabel());
+			try
+			{
+				CE_CustomUIElements.Label(valueNames[value], UpDownSettingLabel());
+			}
+			catch
+            {
+				CE_CustomUIElements.Label("Invalid", UpDownSettingLabel());
+			}
 			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
 			{
 				if (!readOnly) ClickSoundTrigger();

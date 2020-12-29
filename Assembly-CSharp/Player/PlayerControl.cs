@@ -277,7 +277,7 @@ public class PlayerControl : InnerNetObject
 		}
 		if (data.IsDead && (bool)LocalPlayer)
 		{
-			Visible = LocalPlayer.Data.IsDead;
+			Visible = ((((LocalPlayer.Data.IsDead && PlayerControl.GameOptions.CanSeeGhosts != 3) || data.PlayerId == PlayerControl.LocalPlayer.Data.PlayerId) || LocalPlayer.Data.IsImpostor && PlayerControl.GameOptions.CanSeeGhosts == 1) || PlayerControl.GameOptions.CanSeeGhosts == 2);
 		}
 		if (!base.AmOwner)
 		{
@@ -463,7 +463,7 @@ public class PlayerControl : InnerNetObject
 		for (int i = 0; i < allPlayers.Count; i++)
 		{
 			GameData.PlayerInfo playerInfo = allPlayers[i];
-			if (playerInfo.Disconnected || playerInfo.PlayerId == PlayerId || playerInfo.IsDead || !ShouldKillImp(playerInfo) || playerInfo.Object.inVent)
+			if (playerInfo.Disconnected || playerInfo.PlayerId == PlayerId || playerInfo.IsDead || !ShouldKillImp(playerInfo) || (playerInfo.Object.inVent == !PlayerControl.LocalPlayer.inVent))
 			{
 				continue;
 			}
