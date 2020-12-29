@@ -14,6 +14,8 @@ static class CE_GameLua
         throw new NotImplementedException(); // TODO: implement this
     }
 
+    public static DeadBody bodpref;
+
 
     public static bool UpdatePlayerInfo(DynValue dynval)
     {
@@ -52,6 +54,12 @@ static class CE_GameLua
             return new CE_LuaDeadBody();
         }
         return new CE_LuaSpawnableObject();
+    }
+
+    public static bool DoThing()
+    {
+        SendObject(new CE_LuaSpawnableObject());
+        return true;
     }
     public static bool GameStarted()
     {
@@ -111,6 +119,18 @@ static class CE_GameLua
             Debug.LogError(e);
             return false;
         }
+        return true;
+    }
+
+    public static bool SnapPlayerToPos(float x, float y, CE_PlayerInfoLua pllua)
+    {
+        pllua.refplayer.Object.NetTransform.RpcSnapTo(new Vector2(x,y));
+        return true;
+    }
+
+    public static bool SendObject(CE_LuaSpawnableObject obj)
+    {
+        ShipStatus.WriteRPCObjectPublic(obj);
         return true;
     }
 

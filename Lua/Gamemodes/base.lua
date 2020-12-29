@@ -18,7 +18,6 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on
 end
 
 function OnChat(message, player)
-	
 end
 
 function OnExile(exiled)
@@ -26,6 +25,10 @@ function OnExile(exiled)
 end
 
 function OnExileSkip()
+
+end
+
+function OnPlayerDC(playerinfo)
 
 end
 

@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("Sheriff",{255,216,0},"Find and Kill the [FF1919FF]Impostor[].",{0},1,0,false)
+	Game_CreateRole("Sheriff",{255,216,0},"Find and Kill the [FF1919FF]Impostor[].",{0},1,0,false,true)
 	return {"Murder",3} 
 end
 
@@ -21,6 +21,10 @@ end
 
 function ShouldSeeRole(rolename,playerinfo)
 	return false
+end
+
+function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
+	return true
 end
 
 function OnExile(exiled)

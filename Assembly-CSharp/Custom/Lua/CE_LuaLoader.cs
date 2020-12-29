@@ -43,7 +43,11 @@ public static class CE_LuaLoader
 				script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
 				script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
                 script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
-				script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
+                script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
+                script.Globals["Game_StartObjectInit"] = (Func<string, CE_LuaSpawnableObject>)CE_GameLua.CreateObject;
+                script.Globals["Game_SendObjectToServer"] = (Func<CE_LuaSpawnableObject, bool>)CE_GameLua.SendObject;
+				script.Globals["Debug_A"] = (Func<bool>)CE_GameLua.DoThing;
+				script.Globals["Player_SnapPosTo"] = (Func<float, float, CE_PlayerInfoLua, bool>)CE_GameLua.SnapPlayerToPos;
 				script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
 				script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
 				script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
