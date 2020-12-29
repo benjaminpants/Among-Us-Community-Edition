@@ -1,8 +1,15 @@
 {
   "profiles": {
-    "Assembly-CSharp": {
-      "commandName": "Project",
-      "nativeDebugging": true
+    "Start": {
+      "commandName": "Executable",
+      "executablePath": "$(SolutionDir)\\Build\\LaunchCE.bat",
+      "commandLineArgs": "$(SolutionDir)"
+    },
+    "Publish": {
+      "commandName": "Executable",
+      "executablePath": "$(SolutionDir)\\Build\\PublishCE.bat",
+      "commandLineArgs": "$(TargetDir)",
+      "workingDirectory": "$(SolutionDir)"
     }
   }
 }
