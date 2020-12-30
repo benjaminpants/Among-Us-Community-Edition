@@ -151,6 +151,25 @@ public class WireMinigame : Minigame
 		}
 	}
 
+	private void LateUpdate()
+    {
+		//TODO: Implement Color Blind Friendly Sprites
+		/*
+		for (int i = 0; i < LeftNodes.Length; i++)
+        {
+			LeftNodes[i].ColorBase.color = Color.black;
+		}
+
+		for (int i = 0; i < RightNodes.Length; i++)
+		{
+			for (int j = 0; j < RightNodes[i].WireColors.Length; j++)
+			{
+				RightNodes[i].WireColors[j].color = Color.black;
+			}
+		}
+		*/
+	}
+
 	static WireMinigame()
 	{
 		colors = new Color[4]
