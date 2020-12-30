@@ -47,7 +47,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 
 	private void CustomSettingsMenu(int windowID)
 	{
-		bool readOnly = !AmongUsClient.Instance.AmHost;
+		bool readOnly = !AmongUsClient.Instance.AmHost || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
 		GameOptionsData gameOptions = PlayerControl.GameOptions;
 		CE_UIHelpers.LoadCommonAssets();
 		bool isDefaults = gameOptions.isDefaults;
