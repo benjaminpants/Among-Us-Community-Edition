@@ -147,7 +147,7 @@ public class CE_WardrobeLoader
 	}
 	public static List<SkinData> LoadSkins(SkinData BaseSkin)
 	{
-		string Directory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Skins");
+		string Directory = System.IO.Path.Combine(CE_Extensions.GetGameDirectory(), "Skins");
 		FileInfo[] SkinFiles = GetJSONFiles(Directory);
 		List<CE_FrameSet> DefinitionsList = GetSkinDefinitions(SkinFiles);
 		return GetSkinData(DefinitionsList, Directory, BaseSkin);
@@ -288,7 +288,7 @@ public class CE_WardrobeLoader
 	}
 	public static List<HatBehaviour> LoadHats()
 	{
-		string Directory = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Hats");
+		string Directory = System.IO.Path.Combine(CE_Extensions.GetGameDirectory(), "Hats");
 		FileInfo[] HatFiles = GetJSONFiles(Directory);
 		List<CE_FrameSet> DefinitionsList = GetHatDefinitions(HatFiles);
 		return GetHatBehaviours(DefinitionsList, Directory);

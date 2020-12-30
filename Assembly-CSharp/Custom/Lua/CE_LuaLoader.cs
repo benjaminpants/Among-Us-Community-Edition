@@ -23,7 +23,7 @@ public static class CE_LuaLoader
 	{
 		UserData.RegisterAssembly();
 		new List<string>();
-		FileInfo[] files = new DirectoryInfo(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "Lua"), "Gamemodes")).GetFiles("*.lua");
+		FileInfo[] files = new DirectoryInfo(Path.Combine(Path.Combine(CE_Extensions.GetGameDirectory(), "Lua"), "Gamemodes")).GetFiles("*.lua");
 		IsInitializing = true;
 		for (int i = 0; i < files.Length; i++)
 		{

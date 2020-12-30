@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 
-public class CE_Startup
+public class CE_Extensions
 {
 	private static bool hasPlayed;
 
 	private static CE_Intro Intro;
 
+	public static string GetGameDirectory()
+    {
+		return System.IO.Directory.GetParent(Application.dataPath).FullName;
+    }
 
 	private static void PlayIntro()
 	{
