@@ -56,6 +56,14 @@ public class GameOptionsData : IBytesSerializable
 
 	public static readonly int[] MinPlayers;
 
+	public static readonly string[] TaskBarUpStrings;
+
+	public static readonly string[] CanSeeGhostsStrings;
+
+	public byte CanSeeGhosts;
+
+	public byte TaskBarUpdates;
+
 	public byte Venting;
 
 	public static readonly string[] VentModeStrings;
@@ -103,7 +111,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public void SetRecommendations(int numPlayers, GameModes modes)
 	{
-		numPlayers = Mathf.Clamp(numPlayers, 4, 10);
+		numPlayers = Mathf.Clamp(numPlayers, 4, 20);
 		PlayerSpeedMod = 1f;
 		CrewLightMod = 1f;
 		ImpostorLightMod = 1.5f;
@@ -130,6 +138,9 @@ public class GameOptionsData : IBytesSerializable
 		MapScaleX = 1f;
 		MapScaleY = 1f;
 		MapRot = 0;
+		TaskBarUpdates = 0;
+        GhostsDoTasks = true;
+		CanSeeGhosts = 0;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -162,6 +173,9 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(MapScaleX);
 		writer.Write(MapScaleY);
 		writer.Write(MapRot);
+		writer.Write(TaskBarUpdates);
+		writer.Write(GhostsDoTasks);
+		writer.Write(CanSeeGhosts);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -196,7 +210,10 @@ public class GameOptionsData : IBytesSerializable
 				SabControl = reader.ReadByte(),
 				MapScaleX = reader.ReadSingle(),
 				MapScaleY = reader.ReadSingle(),
-				MapRot = reader.ReadInt32()
+				MapRot = reader.ReadInt32(),
+				TaskBarUpdates = reader.ReadByte(),
+				GhostsDoTasks = reader.ReadBoolean(),
+				CanSeeGhosts = reader.ReadByte()
 			};
 		}
 		catch
@@ -250,8 +267,8 @@ public class GameOptionsData : IBytesSerializable
 			stringBuilder.AppendLine("Voting Time: ∞s");
 		}
 		stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
-		stringBuilder.AppendLine($"Crew Light: {CrewLightMod}x");
-		stringBuilder.AppendLine($"Impostor Light: {ImpostorLightMod}x");
+		stringBuilder.AppendLine($"Crewmate Vision: {CrewLightMod}x");
+		stringBuilder.AppendLine($"Impostor Vision: {ImpostorLightMod}x");
 		stringBuilder.AppendLine($"Kill Cooldown: {KillCooldown}s");
 		stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
 		stringBuilder.AppendLine("Common Tasks: " + NumCommonTasks);
@@ -266,7 +283,10 @@ public class GameOptionsData : IBytesSerializable
         stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
 		stringBuilder.AppendLine("Map X Scale: " + MapScaleX);
 		stringBuilder.AppendLine("Map Y Scale: " + MapScaleY);
-		stringBuilder.AppendLine("Map Rotation: " + MapRot);
+        stringBuilder.AppendLine("Map Rotation: " + MapRot);
+        stringBuilder.AppendLine("Taskbar Updates: " + TaskBarUpStrings[TaskBarUpdates]);
+        stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
+		stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
 		return stringBuilder.ToString();
 	}
 
@@ -313,6 +333,8 @@ public class GameOptionsData : IBytesSerializable
 		ConfirmEject = true;
 		Visuals = true;
 		Gamemode = 0;
+		TaskBarUpdates = 0;
+		CanSeeGhosts = 0;
 		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
 			CE_GamemodeInfo value = gamemodeInfo.Value;
@@ -346,6 +368,22 @@ public class GameOptionsData : IBytesSerializable
 			"XL",
 			"∞"
 		};
+
+		TaskBarUpStrings = new string[]
+		{
+			"Always",
+			"Meetings",
+			"Never"
+		};
+
+		CanSeeGhostsStrings = new string[]
+		{
+			"Dead Only",
+			"Impostors Only",
+			"Everyone",
+			"Nobody"
+		};
+
 		Gamemodes = new string[25]
 		{
 			"[FF0000FF]Invalid[]",
@@ -396,7 +434,7 @@ public class GameOptionsData : IBytesSerializable
 			"Normal",
 			"Systems Only",
 			"Doors Only",
-			"Random",
+			"Random(Unimplemented)", //seriously we need to implement this
 			"None"
 		};
 		RecommendedKillCooldown = new int[22]

@@ -90,7 +90,9 @@ public class CE_GameSettingsUI : MonoBehaviour
 				gameOptions.NumCommonTasks = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumCommonTasks, 1f, 0f, 2f, "# Common Tasks", "", false, readOnly);
 				gameOptions.NumLongTasks = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumLongTasks, 1f, 0f, 3f, "# Long Tasks", "", false, readOnly);
 				gameOptions.NumShortTasks = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumShortTasks, 1f, 0f, 5f, "# Short Tasks", "", false, readOnly);
-				gameOptions.Visuals = CE_CommonUI.CreateBoolButtonG(gameOptions.Visuals, "Visual Tasks", readOnly);
+                gameOptions.Visuals = CE_CommonUI.CreateBoolButtonG(gameOptions.Visuals, "Visual Tasks", readOnly);
+				gameOptions.TaskBarUpdates = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.TaskBarUpdates, GameOptionsData.TaskBarUpStrings, 0, 2, "Taskbar Updates", readOnly);
+				gameOptions.GhostsDoTasks = CE_CommonUI.CreateBoolButtonG(gameOptions.GhostsDoTasks, "Ghosts Do Tasks", readOnly);
 			}
 		}
 		if (CE_CommonUI.CreateCollapsable("Vent Controls", 3, true))
@@ -102,15 +104,22 @@ public class CE_GameSettingsUI : MonoBehaviour
 			}
 
 		}
-		if (CE_CommonUI.CreateCollapsable("Map Scale And Rotation", 4, true))
+        if (CE_CommonUI.CreateCollapsable("Map Scale And Rotation", 4, true))
+        {
+            using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+            {
+                gameOptions.MapScaleX = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "", false, readOnly);
+                gameOptions.MapScaleY = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "", false, readOnly);
+                gameOptions.MapRot = (int)CE_CommonUI.CreateValuePickerG(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "°", false, readOnly);
+            }
+
+        }
+		if (CE_CommonUI.CreateCollapsable("Misc Modifiers", 5, true))
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
-            {
-				gameOptions.MapScaleX = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "", false, readOnly);
-				gameOptions.MapScaleY = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "", false, readOnly);
-				gameOptions.MapRot = (int)CE_CommonUI.CreateValuePickerG(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "°", false, readOnly);
+			{
+				gameOptions.CanSeeGhosts = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.CanSeeGhosts, GameOptionsData.CanSeeGhostsStrings, 0, 3, "Ghost Visibility", readOnly);
 			}
-
 		}
 		GUILayout.EndScrollView();
 		if (CE_CommonUI.CreateExitButton(true))
