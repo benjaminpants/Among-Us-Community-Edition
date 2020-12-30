@@ -5,8 +5,7 @@ function InitializeGamemode()
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
-	print("how") --how
-	return false
+	return true
 end
 
 function OnTaskCompletionHost(totaltasks,completedtasks,player)
@@ -44,6 +43,19 @@ function OnChat(message, player)
 		local bodd = Game_StartObjectInit("DeadBody")
 		Game_SendObjectToServer(bodd)
 	end
+	if (cmd[1] == "sab") then
+		Game_SabSystem(cmd[2],player,false,tonumber(cmd[3]))
+	end
+	if (cmd[1] == "fixsab") then
+		Game_SabSystem(cmd[2],player,true,tonumber(cmd[3]))
+	end
+	if (cmd[1] == "broadcast") then
+		Client_ShowMessage(cmd[2])
+	end
+end
+
+function OnHostUpdate(timer,timesincelastround)
+	
 end
 
 function OnExile(exiled)

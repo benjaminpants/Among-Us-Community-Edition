@@ -285,7 +285,30 @@ public class PlayerControl : InnerNetObject
 		}
 		if ((bool)ShipStatus.Instance)
 		{
-			myLight.LightRadius = ShipStatus.Instance.CalculateLightRadius(data);
+			if (data.IsImpostor || CE_RoleManager.GetRoleFromID(data.role).UseImpVision)
+            {
+				if (PlayerControl.GameOptions.ImpostorLightMod != 0f)
+                {
+                    myLight.LightRadius = ShipStatus.Instance.CalculateLightRadius(data);
+					DestroyableSingleton<HudManager>.Instance.ShadowQuad.enabled = true;
+				}
+				else
+                {
+					DestroyableSingleton<HudManager>.Instance.ShadowQuad.enabled = false;
+				}
+            }
+			else
+            {
+				if (PlayerControl.GameOptions.CrewLightMod != 0f)
+				{
+					myLight.LightRadius = ShipStatus.Instance.CalculateLightRadius(data);
+					DestroyableSingleton<HudManager>.Instance.ShadowQuad.enabled = true;
+				}
+				else
+				{
+					DestroyableSingleton<HudManager>.Instance.ShadowQuad.enabled = false;
+				}
+			}
 		}
 		if ((data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill)) && CanMove && !data.IsDead)
 		{
