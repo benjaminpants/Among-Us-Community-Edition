@@ -17,6 +17,53 @@ static class CE_GameLua
     public static DeadBody bodpref;
 
 
+
+    public static bool SabSystem(string sysname, CE_PlayerInfoLua plfo, bool fix, int fixoverride = -1)
+    {
+        byte sab;
+        SystemTypes systype;
+        switch (sysname)
+        {
+            case "Reactor":
+                sab = 3;
+                systype = SystemTypes.Reactor;
+                break;
+            case "Oxy":
+                sab = 8;
+                systype = SystemTypes.LifeSupp;
+                break;
+            case "Comms":
+                sab = 14;
+                systype = SystemTypes.Comms;
+                break;
+            case "Lights":
+                sab = 8;
+                systype = SystemTypes.Electrical;
+                break;
+            default:
+                Debug.LogError("Unknown System Type:" + sysname);
+                return false;
+        }
+        if (!fix && systype != SystemTypes.Electrical)
+        {
+            SabotageSystemType.RepairDamageStatic(plfo.refplayer.Object, sab);
+        }
+        else if (fixoverride != -1)
+        {
+            ShipStatus.Instance.RepairSystem(systype, plfo.refplayer.Object, (byte)fixoverride);
+        }
+        else
+        {
+            ShipStatus.Instance.RepairSystem(systype, plfo.refplayer.Object, 0);
+        }
+        return true;
+    }
+
+    public static bool ShowCLMessage(string msg)
+    {
+        DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(msg);
+        return true;
+    }
     public static bool UpdatePlayerInfo(DynValue dynval)
     {
         CE_PlayerInfoLua influa = (CE_PlayerInfoLua)dynval.UserData.Object;

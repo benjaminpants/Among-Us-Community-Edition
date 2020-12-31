@@ -17,6 +17,14 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on
 	return false --this isn't used
 end
 
+function OnHostUpdate(timer,timesincelastround)
+
+end
+
+function OnClientUpdate(timer,timesincelastround)
+	
+end
+
 function OnChat(message, player)
 end
 

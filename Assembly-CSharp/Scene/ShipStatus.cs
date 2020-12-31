@@ -441,6 +441,15 @@ public class ShipStatus : InnerNetObject
 		}
 		Timer += Time.fixedDeltaTime;
 		TimeSinceLastRound += Time.fixedDeltaTime;
+        if (CE_LuaLoader.CurrentGMLua && AmongUsClient.Instance.AmHost)
+        {
+            CE_LuaLoader.GetGamemodeResult("OnHostUpdate", Timer, TimeSinceLastRound);
+        }
+
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			CE_LuaLoader.GetGamemodeResult("OnClientUpdate", Timer, TimeSinceLastRound);
+		}
 		if (Timer > 75f && SaveManager.LastGameStart != DateTime.MinValue)
 		{
 			SaveManager.LastGameStart = DateTime.MinValue;

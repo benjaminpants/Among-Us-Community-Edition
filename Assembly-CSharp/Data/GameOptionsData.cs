@@ -267,8 +267,22 @@ public class GameOptionsData : IBytesSerializable
 			stringBuilder.AppendLine("Voting Time: ∞s");
 		}
 		stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
-		stringBuilder.AppendLine($"Crewmate Vision: {CrewLightMod}x");
-		stringBuilder.AppendLine($"Impostor Vision: {ImpostorLightMod}x");
+        if (CrewLightMod == 0f)
+        {
+			stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
+		}
+        else
+        {
+			stringBuilder.AppendLine($"Crewmate Vision: {CrewLightMod}x");
+		}
+		if (ImpostorLightMod == 0f)
+		{
+			stringBuilder.AppendLine($"Impostor Vision: {Constants.InfinitySymbol}x");
+		}
+		else
+		{
+			stringBuilder.AppendLine($"Impostor Vision: {ImpostorLightMod}x");
+		}
 		stringBuilder.AppendLine($"Kill Cooldown: {KillCooldown}s");
 		stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
 		stringBuilder.AppendLine("Common Tasks: " + NumCommonTasks);

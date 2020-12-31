@@ -37,42 +37,74 @@ public class SabotageSystemType : ISystemType
 		return dirty;
 	}
 
-	public void RepairDamage(PlayerControl player, byte amount)
+    public void RepairDamage(PlayerControl player, byte amount)
+    {
+        dirty = true;
+        if (Timer > 0f || (bool)MeetingHud.Instance)
+        {
+            return;
+        }
+        if (AmongUsClient.Instance.AmHost)
+        {
+            switch (amount)
+            {
+                case 3:
+                    ShipStatus.Instance.RepairSystem(SystemTypes.Reactor, player, 128);
+                    break;
+                case 8:
+                    ShipStatus.Instance.RepairSystem(SystemTypes.LifeSupp, player, 128);
+                    break;
+                case 14:
+                    ShipStatus.Instance.RepairSystem(SystemTypes.Comms, player, 128);
+                    break;
+                case 7:
+                    {
+                        byte b = 4;
+                        for (int i = 0; i < 5; i++)
+                        {
+                            if (BoolRange.Next())
+                            {
+                                b = (byte)(b | (byte)(1 << i));
+                            }
+                        }
+                        ShipStatus.Instance.RpcRepairSystem(SystemTypes.Electrical, (byte)(b | 0x80));
+                        break;
+                    }
+            }
+        }
+        Timer = 30f;
+    }
+
+	public static void RepairDamageStatic(PlayerControl player, byte amount)
 	{
-		dirty = true;
-		if (Timer > 0f || (bool)MeetingHud.Instance)
-		{
-			return;
-		}
 		if (AmongUsClient.Instance.AmHost)
 		{
 			switch (amount)
 			{
-			case 3:
-				ShipStatus.Instance.RepairSystem(SystemTypes.Reactor, player, 128);
-				break;
-			case 8:
-				ShipStatus.Instance.RepairSystem(SystemTypes.LifeSupp, player, 128);
-				break;
-			case 14:
-				ShipStatus.Instance.RepairSystem(SystemTypes.Comms, player, 128);
-				break;
-			case 7:
-			{
-				byte b = 4;
-				for (int i = 0; i < 5; i++)
-				{
-					if (BoolRange.Next())
+				case 3:
+					ShipStatus.Instance.RepairSystem(SystemTypes.Reactor, player, 128);
+					break;
+				case 8:
+					ShipStatus.Instance.RepairSystem(SystemTypes.LifeSupp, player, 128);
+					break;
+				case 14:
+					ShipStatus.Instance.RepairSystem(SystemTypes.Comms, player, 128);
+					break;
+				case 7:
 					{
-						b = (byte)(b | (byte)(1 << i));
+						byte b = 4;
+						for (int i = 0; i < 5; i++)
+						{
+							if (BoolRange.Next())
+							{
+								b = (byte)(b | (byte)(1 << i));
+							}
+						}
+						ShipStatus.Instance.RpcRepairSystem(SystemTypes.Electrical, (byte)(b | 0x80));
+						break;
 					}
-				}
-				ShipStatus.Instance.RpcRepairSystem(SystemTypes.Electrical, (byte)(b | 0x80));
-				break;
-			}
 			}
 		}
-		Timer = 30f;
 	}
 
 	public void Serialize(MessageWriter writer, bool initialState)

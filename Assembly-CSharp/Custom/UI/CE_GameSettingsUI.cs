@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class CE_GameSettingsUI : MonoBehaviour
 {
@@ -64,13 +64,13 @@ public class CE_GameSettingsUI : MonoBehaviour
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
-				gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, GlobalReadOnly);
-				gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePickerG(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, FreeplayAllowed);
-				gameOptions.KillCooldown = CE_CommonUI.CreateValuePickerG(gameOptions.KillCooldown, 0.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, GlobalReadOnly);
-				gameOptions.KillDistance = CE_CommonUI.CreateStringPickerG(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", GlobalReadOnly);
-				gameOptions.CrewLightMod = CE_CommonUI.CreateValuePickerG(gameOptions.CrewLightMod, 0.25f, 0.25f, 5f, "Crewmate Vision", "x", decmialView: true, GlobalReadOnly);
-				gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePickerG(gameOptions.ImpostorLightMod, 0.25f, 0.25f, 5f, "Impostor Vision", "x", decmialView: true, GlobalReadOnly);
-				gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages", GlobalReadOnly);
+				gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, readOnly);
+				gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePickerG(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, readOnly);
+				gameOptions.KillCooldown = CE_CommonUI.CreateValuePickerG(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, readOnly);
+				gameOptions.KillDistance = CE_CommonUI.CreateStringPickerG(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", readOnly);
+				gameOptions.CrewLightMod = CE_CommonUI.CreateValuePickerG(gameOptions.CrewLightMod, 0.25f, 0f, 5f, "Crewmate Vision", "x", decmialView: true, readOnly);
+				gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePickerG(gameOptions.ImpostorLightMod, 0.25f, 0f, 5f, "Impostor Vision", "x", decmialView: true, readOnly);
+				gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages", readOnly);
 			}
 		}
 		if (CE_CommonUI.CreateCollapsable("Meetings", 1, true))
@@ -111,7 +111,7 @@ public class CE_GameSettingsUI : MonoBehaviour
             {
                 gameOptions.MapScaleX = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "", false, GlobalReadOnly);
                 gameOptions.MapScaleY = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "", false, GlobalReadOnly);
-                gameOptions.MapRot = (int)CE_CommonUI.CreateValuePickerG(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "°", false, GlobalReadOnly);
+                gameOptions.MapRot = (int)CE_CommonUI.CreateValuePickerG(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "ï¿½", false, GlobalReadOnly);
             }
 
         }
