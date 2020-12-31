@@ -99,7 +99,10 @@ public class CE_DevTool : MonoBehaviour
 		GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
 		foreach (GameObject go in allObjects)
         {
+			GUILayout.BeginHorizontal();
 			RoleLister(go.name, go.GetType().FullName);
+			go.SetActive(CE_CommonUI.CreateSimpleBoolSwitch(go.activeSelf));
+			GUILayout.EndHorizontal();
 		}
 		GUILayout.EndScrollView();
 	}

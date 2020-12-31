@@ -605,6 +605,19 @@ public class CE_CommonUI
 		}
 	}
 
+	public static bool CreateSimpleBoolSwitch(bool value)
+    {
+		string checkbox_style = value ? "☑" : "☐";
+
+		if (CE_CustomUIElements.Button(checkbox_style, GUI.skin.button))
+		{
+			ClickSoundTrigger();
+			value = !value;
+		}
+		HoverSoundTrigger();
+		return value;
+	}
+
 	public static float CreateValuePicker(float value, float incrementAmount, float min, float max, string title, string subString, bool decmialView = false, bool gameSettings = false, bool readOnly = false)
 	{
 		float last_value = value;
