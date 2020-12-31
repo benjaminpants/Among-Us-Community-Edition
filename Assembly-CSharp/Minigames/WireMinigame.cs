@@ -20,6 +20,8 @@ public class WireMinigame : Minigame
 
 	public AudioClip[] WireSounds;
 
+	private Sprite[] IconSprites;
+
 	private bool TaskIsForThisPanel()
 	{
 		if (MyNormTask.taskStep < MyNormTask.Data.Length && !MyNormTask.IsComplete)
@@ -32,6 +34,7 @@ public class WireMinigame : Minigame
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
+		CreateSprites();
 		IntRange.FillRandomRange(ExpectedWires);
 		for (int i = 0; i < LeftNodes.Length; i++)
 		{
@@ -151,23 +154,32 @@ public class WireMinigame : Minigame
 		}
 	}
 
-	private void LateUpdate()
-    {
-		//TODO: Implement Color Blind Friendly Sprites
-		/*
-		for (int i = 0; i < LeftNodes.Length; i++)
-        {
-			LeftNodes[i].ColorBase.color = Color.black;
-		}
 
-		for (int i = 0; i < RightNodes.Length; i++)
+
+	private bool CreateSprites()
+    {
+		//TODO: Actually Use
+		if (IconSprites == null)
 		{
-			for (int j = 0; j < RightNodes[i].WireColors.Length; j++)
+			System.Collections.Generic.List<string> IconFilePaths = new System.Collections.Generic.List<string>()
 			{
-				RightNodes[i].WireColors[j].color = Color.black;
+				"WireIcon1.png",
+				"WireIcon2.png",
+				"WireIcon3.png",
+				"WireIcon4.png"
+			};
+
+			IconSprites = new Sprite[4];
+
+			for (int i = 0; i < IconSprites.Length; i++)
+			{
+				string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Minigames"), IconFilePaths[i]);
+				var texture = CE_TextureNSpriteExtensions.LoadPNG(path);
+				texture.filterMode = FilterMode.Point;
+				IconSprites[i] = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 			}
 		}
-		*/
+		return true;
 	}
 
 	static WireMinigame()

@@ -11,6 +11,12 @@ public class CE_Extensions
 		return System.IO.Directory.GetParent(Application.dataPath).FullName;
     }
 
+	public static string GetTexturesDirectory(string ExtraDir = null)
+    {
+		if (string.IsNullOrEmpty(ExtraDir)) return System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures");
+		else return System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", ExtraDir);
+	}
+
 	private static void PlayIntro()
 	{
 		if (!SaveManager.HideIntro)
