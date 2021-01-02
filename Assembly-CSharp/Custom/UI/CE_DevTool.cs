@@ -100,8 +100,12 @@ public class CE_DevTool : MonoBehaviour
 		foreach (GameObject go in allObjects)
         {
 			GUILayout.BeginHorizontal();
-			RoleLister(go.name, go.GetType().FullName);
-			go.SetActive(CE_CommonUI.CreateSimpleBoolSwitch(go.activeSelf));
+			RoleLister(go.name, LayerMask.LayerToName(go.gameObject.layer));
+			if (CE_CommonUI.CreateSimpleBoolSwitch(false))
+            {
+				PlayerControl.LocalPlayer.NetTransform.SnapTo(new Vector2(go.transform.position.x, go.transform.position.y));
+            }
+
 			GUILayout.EndHorizontal();
 		}
 		GUILayout.EndScrollView();

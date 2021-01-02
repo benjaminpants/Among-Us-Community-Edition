@@ -38,7 +38,7 @@ public class CE_CustomMap
 
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         GameObject go = new GameObject("Test");
-        go.layer = 0;
+        go.layer = LayerMask.NameToLayer("Ship");
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         var position = renderer.transform.position;
         position.x = 0.5f * x;
