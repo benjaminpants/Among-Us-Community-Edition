@@ -15,6 +15,7 @@ ROBOCOPY "%SOLUTION_DIR%\Among Us_Data" "%SOLUTION_DIR%\Publish\Among Us_Data" /
 ROBOCOPY "%SOLUTION_DIR%\Hats" "%SOLUTION_DIR%\Publish\Hats" /E /NFL /NDL /NJH /NJS /nc /ns /np
 ROBOCOPY "%SOLUTION_DIR%\Skins" "%SOLUTION_DIR%\Publish\Skins" /E /NFL /NDL /NJH /NJS /nc /ns /np
 ROBOCOPY "%SOLUTION_DIR%\Lua" "%SOLUTION_DIR%\Publish\Lua" /E /NFL /NDL /NJH /NJS /nc /ns /np
+ROBOCOPY "%SOLUTION_DIR%\DepotDownloader" "%SOLUTION_DIR%\Publish" /E /NFL /NDL /NJH /NJS /nc /ns /np
 
 :: Copy All Needed Files
 COPY "%TARGET_DIR%\Assembly-CSharp.dll" 									"%SOLUTION_DIR%\Publish\Among Us_Data\Managed\Assembly-CSharp.dll"
