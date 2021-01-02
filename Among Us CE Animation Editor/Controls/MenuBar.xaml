@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="AmongUsCE_AnimationEditor.Controls.MenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AmongUsCE_AnimationEditor"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Menu Background="{DynamicResource MenuBar}">
+        <MenuItem Header="File">
+            <MenuItem Name="NewMenuItem" Header="New" InputGestureText="Ctrl + N" Click="NewFileEvent"></MenuItem>
+            <Separator></Separator>
+            <MenuItem Name="OpenMenuItem" Header="Open..." InputGestureText="Ctrl + O" Click="OpenFileEvent"></MenuItem>
+            <MenuItem Name="OpenRecentsMenuItem" Header="Open Recent..." SubmenuOpened="OpenRecentsMenuItem_SubmenuOpened">
+                <MenuItem Name="NoRecentFiles" Header="No Recent Files" IsEnabled="False"></MenuItem>
+            </MenuItem>
+            <Separator></Separator>
+            <MenuItem Name="SaveMenuItem" Header="Save" InputGestureText="Ctrl + S" Click="SaveFileEvent"></MenuItem>
+            <MenuItem Name="SaveAsMenuItem" Header="Save As..." InputGestureText="Ctrl + Alt + S" Click="SaveFileAsEvent"></MenuItem>
+            <Separator></Separator>
+            <MenuItem Name="UnloadMenuItem" Header="Unload" Click="UnloadEvent" InputGestureText="Ctrl + U"></MenuItem>
+            <Separator></Separator>
+            <MenuItem Name="ExitMenuItem" Header="Exit" Click="ExitEditor"></MenuItem>
+        </MenuItem>
+        <MenuItem Header="Edit">
+            <MenuItem Header="Copy Values..." Name="CopyButton" Click="CopyButton_Click"></MenuItem>
+            <MenuItem Header="Paste Values..." Name="PasteButton" Click="PasteButton_Click"></MenuItem>
+            <MenuItem Header="Paste Offset..." Name="PasteOffsetButton" Click="PasteOffsetButton_Click"></MenuItem>
+            <Separator></Separator>
+            <MenuItem Header="Experiemental...">
+                <MenuItem Header="Special Fix..." Name="SpecialFixButton" Click="SpecialFixButton_Click"></MenuItem>
+                <MenuItem Header="Paste Values To All..." Name="PasteAllButton" Click="PasteAllButton_Click"></MenuItem>
+                <MenuItem Header="Create Frames From Images..." Name="FramesFromImages" Click="FramesFromImages_Click"></MenuItem>
+            </MenuItem>
+        </MenuItem>
+        <MenuItem Header="View">
+            <MenuItem IsCheckable="True" Header="Show Frame Remove Warnings" Name="AllowRemoveWarnings" IsChecked="True" Checked="AllowRemoveWarnings_Checked" Unchecked="AllowRemoveWarnings_Checked"/>
+            <MenuItem IsCheckable="True" Header="Show Alignment Lines" Name="ShowCenterAlignmentLines" Checked="ShowCenterAlignmentLines_Checked" Unchecked="ShowCenterAlignmentLines_Checked"/>
+        </MenuItem>
+        <MenuItem Header="Options">
+            <MenuItem Header="Use Dark Mode" Name="DarkModeButton" Click="DarkModeButton_Click"></MenuItem>
+            <MenuItem Name="AboutMenuItem" Header="About..." Click="AboutMenuItem_Click"></MenuItem>
+        </MenuItem>
+    </Menu>
+</UserControl>

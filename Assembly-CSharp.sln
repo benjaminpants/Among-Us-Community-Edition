@@ -11,19 +11,53 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{0EBC72AD
 		Build\PublishCE.bat = Build\PublishCE.bat
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Among Us CE Animation Editor", "Among Us CE Animation Editor\Among Us CE Animation Editor.csproj", "{41460D41-64A5-4A2D-832B-8130EB48AE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Among Us CE Installer", "AmongUs_CE_Installer\Among Us CE Installer.csproj", "{BD9A615D-40DB-4461-A739-3DBE48BC94EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{5031250E-5A78-4216-8FB2-7B662DBFA703}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmongUs-API", "AmongUs-API\AmongUs-API.csproj", "{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Publish|Any CPU = Publish|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FEC8CB89-5608-4C17-82B9-7D4DFFDD8DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FEC8CB89-5608-4C17-82B9-7D4DFFDD8DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC8CB89-5608-4C17-82B9-7D4DFFDD8DDA}.Publish|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC8CB89-5608-4C17-82B9-7D4DFFDD8DDA}.Publish|Any CPU.Build.0 = Release|Any CPU
 		{FEC8CB89-5608-4C17-82B9-7D4DFFDD8DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC8CB89-5608-4C17-82B9-7D4DFFDD8DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA}.Publish|Any CPU.Build.0 = Debug|Any CPU
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}.Publish|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}.Publish|Any CPU.Build.0 = Debug|Any CPU
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41460D41-64A5-4A2D-832B-8130EB48AE0E} = {5031250E-5A78-4216-8FB2-7B662DBFA703}
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA} = {5031250E-5A78-4216-8FB2-7B662DBFA703}
+		{A25F2702-94BB-4C4F-9378-33F8BBF0DA8C} = {5031250E-5A78-4216-8FB2-7B662DBFA703}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5D52F05-E151-443D-A975-C9BC38F6673A}
