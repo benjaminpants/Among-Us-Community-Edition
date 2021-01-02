@@ -44,5 +44,7 @@ public class SkinData : ScriptableObject, IBuyable
 
 	public Dictionary<string, CE_SpriteFrame> FrameList = new Dictionary<string, CE_SpriteFrame>();
 
-	public string ProdId => RelatedHat.ProductId;
+	public string ID;
+
+	public string ProdId => (RelatedHat != null ? RelatedHat.ProductId : ID);
 }

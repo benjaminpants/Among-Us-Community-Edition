@@ -21,7 +21,7 @@ public class CE_WardrobeLoader
 	}
 	public static void LinkSkinsAndHats()
     {
-
+		
 		foreach (var hat in DestroyableSingleton<HatManager>.Instance.AllHats)
         {
 			foreach (var skin in DestroyableSingleton<HatManager>.Instance.AllSkins)
@@ -100,6 +100,7 @@ public class CE_WardrobeLoader
 				skinData.isCustom = true;
 				skinData.StoreName = item2.StoreName;
 				skinData.Free = true;
+				skinData.ID = item2.ID;
 				skinData.Order = num;
 				skinData.SpawnAnim = BaseSkin.SpawnAnim;
 				skinData.IdleAnim = BaseSkin.IdleAnim;

@@ -79,10 +79,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		}
 		foreach (SkinData allSkin in DestroyableSingleton<HatManager>.Instance.AllSkins)
 		{
-			if (!allSkin.Free)
-			{
-				configurationBuilder.AddProduct(allSkin.ProdId, ProductType.NonConsumable);
-			}
+			configurationBuilder.AddProduct(allSkin.ProdId, ProductType.NonConsumable);
 		}
 		UnityPurchasing.Initialize(this, configurationBuilder);
 		PurchaseBackground.color = new Color(0.5f, 0.5f, 0.5f, 1f);
@@ -160,7 +157,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 			ItemName.Text = (string.IsNullOrWhiteSpace(hatBehaviour.StoreName) ? hatBehaviour.name : hatBehaviour.StoreName);
 			if ((bool)hatBehaviour.RelatedSkin)
 			{
-				ItemName.Text += " (Includes skin!)";
+				ItemName.Text += " (includes skin!)";
 				SkinSlot.gameObject.SetActive(value: true);
 				PlayerControl.SetSkinImage(hatBehaviour.RelatedSkin, SkinSlot);
 			}
@@ -169,10 +166,15 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		{
 			SkinData skinData = (SkinData)CurrentButton.Product;
 			SkinSlot.gameObject.SetActive(value: true);
-			HatSlot.gameObject.SetActive(value: true);
-			PlayerControl.SetHatImage(skinData.RelatedHat, HatSlot);
+			HatSlot.gameObject.SetActive(value: false);
 			PlayerControl.SetSkinImage(skinData, SkinSlot);
 			ItemName.Text = (string.IsNullOrWhiteSpace(skinData.StoreName) ? skinData.name : skinData.StoreName);
+			if ((bool)skinData.RelatedHat && !ItemName.Text.Contains("(includes hat!)"))
+			{
+				ItemName.Text += " (includes hat!)";
+				HatSlot.gameObject.SetActive(value: true);
+				PlayerControl.SetHatImage(skinData.RelatedHat, HatSlot);
+			}
 		}
 		else
 		{
@@ -243,7 +245,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 		Product[] array = controller.products.all.ToArray();
 		ScriptableObject[] hats;
 		vector.y += -0.375f;
-		SkinData[] array3 = DestroyableSingleton<HatManager>.Instance.AllSkins.Where((SkinData h) => !h.Free).ToArray();
+		SkinData[] array3 = DestroyableSingleton<HatManager>.Instance.AllSkins.ToArray();
 		vector = InsertBanner(vector, SkinsBanner);
 		Vector3 position2 = vector;
 		hats = array3;
