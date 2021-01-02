@@ -256,9 +256,9 @@ namespace AmongUsCE_AnimationEditor
                 float pivotX = (float)CenterXNUD.Value.GetValueOrDefault();
                 float pivotY = (float)CenterYNUD.Value.GetValueOrDefault();
 
-                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Position = new Point(x, y);
-                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Size = new Point(width, height);
-                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Offset = new Point(pivotX, pivotY);
+                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Position = new CE_Point(x, y);
+                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Size = new CE_Point(width, height);
+                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Offset = new CE_Point(pivotX, pivotY);
 
                 AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].SpritePath = FileTextBox.Text;
                 AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Name = NameTextBox.Text;

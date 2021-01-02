@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-public class WavUtility
+public class CE_WavUtility
 {
 	private const int BlockSize_16Bit = 2;
 

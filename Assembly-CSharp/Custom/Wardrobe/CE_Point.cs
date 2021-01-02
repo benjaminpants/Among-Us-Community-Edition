@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public struct Point
+public struct CE_Point
 {
-	public static Point Zero;
+	public static CE_Point Zero;
 
 	public float x
 	{
@@ -20,20 +20,20 @@ public struct Point
 		set;
 	}
 
-	public Point(int _x, int _y)
+	public CE_Point(int _x, int _y)
 	{
 		x = _x;
 		y = _y;
 	}
 
-	public Point(float _x, float _y)
+	public CE_Point(float _x, float _y)
 	{
 		x = _x;
 		y = _y;
 	}
 
-	static Point()
+	static CE_Point()
 	{
-		Zero = new Point(0, 0);
+		Zero = new CE_Point(0, 0);
 	}
 }

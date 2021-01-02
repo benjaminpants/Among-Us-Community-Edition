@@ -270,7 +270,7 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                 {
                     int position_x = 256 * x;
                     int position_y = 256 * y;
-                    entry.Position = new Point(position_x, position_y);
+                    entry.Position = new CE_Point(position_x, position_y);
                     entry.SpritePath = "SkinTest.png";
                     if (x < 19) x++;
                     else
@@ -296,9 +296,9 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                     {
                         System.Drawing.Bitmap png = new System.Drawing.Bitmap(item.FullName);
                         var newItem = new CE_SpriteFrame();
-                        newItem.Offset = new Point(0.5f, 0.5f);
-                        newItem.Position = new Point(0.0f, 0.0f);
-                        newItem.Size = new Point(png.Width, png.Height);
+                        newItem.Offset = new CE_Point(0.5f, 0.5f);
+                        newItem.Position = new CE_Point(0.0f, 0.0f);
+                        newItem.Size = new CE_Point(png.Width, png.Height);
                         newItem.SpritePath = item.Name.Replace(AnimationHelpers.GetFileDirectory(CurrentAnimation), "");
                         newItem.Name = System.IO.Path.GetFileNameWithoutExtension(item.Name);
                         CurrentAnimation.FrameList.Add(newItem);

@@ -171,17 +171,17 @@ public class CE_WardrobeLoader
 
 		CE_SpriteFrame NormalImg = new CE_SpriteFrame();
 		NormalImg.Name = "Normal";
-		NormalImg.Position = new Point(OldHatFormat.NormalPosX, OldHatFormat.NormalPosY);
-		NormalImg.Size = new Point(OldHatFormat.NormalWidth, OldHatFormat.NormalHeight);
-		NormalImg.Offset = new Point(OldHatFormat.NormalPivotX, OldHatFormat.NormalPivotY);
+		NormalImg.Position = new CE_Point(OldHatFormat.NormalPosX, OldHatFormat.NormalPosY);
+		NormalImg.Size = new CE_Point(OldHatFormat.NormalWidth, OldHatFormat.NormalHeight);
+		NormalImg.Offset = new CE_Point(OldHatFormat.NormalPivotX, OldHatFormat.NormalPivotY);
 		NormalImg.SpritePath = OldHatFormat.NormalImg;
 		NewHatFormat.FrameList.Add(NormalImg);
 
 		CE_SpriteFrame FloorImg = new CE_SpriteFrame();
 		FloorImg.Name = "Floor";
-		FloorImg.Position = new Point(OldHatFormat.FloorPosX, OldHatFormat.FloorPosY);
-		FloorImg.Size = new Point(OldHatFormat.FloorWidth, OldHatFormat.FloorHeight);
-		FloorImg.Offset = new Point(OldHatFormat.FloorPivotX, OldHatFormat.FloorPivotY);
+		FloorImg.Position = new CE_Point(OldHatFormat.FloorPosX, OldHatFormat.FloorPosY);
+		FloorImg.Size = new CE_Point(OldHatFormat.FloorWidth, OldHatFormat.FloorHeight);
+		FloorImg.Offset = new CE_Point(OldHatFormat.FloorPivotX, OldHatFormat.FloorPivotY);
 		FloorImg.SpritePath = OldHatFormat.FloorImg;
 		NewHatFormat.FrameList.Add(FloorImg);
 
@@ -189,9 +189,9 @@ public class CE_WardrobeLoader
         {
 			CE_SpriteFrame PreviewImg = new CE_SpriteFrame();
 			PreviewImg.Name = "Preview";
-			PreviewImg.Position = new Point(OldHatFormat.PreviewPosX, OldHatFormat.PreviewPosY);
-			PreviewImg.Size = new Point(OldHatFormat.PreviewWidth, OldHatFormat.PreviewHeight);
-			PreviewImg.Offset = new Point(OldHatFormat.PreviewPivotX, OldHatFormat.PreviewPivotY);
+			PreviewImg.Position = new CE_Point(OldHatFormat.PreviewPosX, OldHatFormat.PreviewPosY);
+			PreviewImg.Size = new CE_Point(OldHatFormat.PreviewWidth, OldHatFormat.PreviewHeight);
+			PreviewImg.Offset = new CE_Point(OldHatFormat.PreviewPivotX, OldHatFormat.PreviewPivotY);
 			PreviewImg.SpritePath = OldHatFormat.PreviewImg;
 			NewHatFormat.FrameList.Add(PreviewImg);
 		}
@@ -307,7 +307,7 @@ public class CE_WardrobeLoader
 		{
 			float new_x = x;
 			float new_y = skin.FrameList[AnimationEditor_LastFrame].Offset.y;
-			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+			skin.FrameList[AnimationEditor_LastFrame].Offset = new CE_Point(new_x, new_y);
 			skin.FrameList[AnimationEditor_LastFrame].Sprite = null;
 		}
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
@@ -320,7 +320,7 @@ public class CE_WardrobeLoader
 		{
 			float new_x = skin.FrameList[AnimationEditor_LastFrame].Offset.x;
 			float new_y = y;
-			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+			skin.FrameList[AnimationEditor_LastFrame].Offset = new CE_Point(new_x, new_y);
 			skin.FrameList[AnimationEditor_LastFrame].Sprite = null;
 		}
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);
@@ -344,7 +344,7 @@ public class CE_WardrobeLoader
 		{
 			float new_x = skin.FrameList[AnimationEditor_LastFrame].Offset.x + x;
 			float new_y = skin.FrameList[AnimationEditor_LastFrame].Offset.y + y;
-			skin.FrameList[AnimationEditor_LastFrame].Offset = new Point(new_x, new_y);
+			skin.FrameList[AnimationEditor_LastFrame].Offset = new CE_Point(new_x, new_y);
 			skin.FrameList[AnimationEditor_LastFrame].Sprite = null;
 		}
 		PlayerControl.LocalPlayer.SetSkin(PlayerControl.LocalPlayer.Data.SkinId);

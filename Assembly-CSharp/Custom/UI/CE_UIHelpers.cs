@@ -34,11 +34,11 @@ public class CE_UIHelpers
 	{
 		if (!ClickSound)
 		{
-			ClickSound = WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "UI_Select.wav"));
+			ClickSound = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "UI_Select.wav"));
 		}
 		if (!HoverSound)
 		{
-			HoverSound = WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "UI_Hover.wav"));
+			HoverSound = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "UI_Hover.wav"));
 		}
 	}
 

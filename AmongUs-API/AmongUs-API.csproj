@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="CE_SpriteFrame.cs" />
     <Compile Include="CE_FrameSet.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="CE_Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
