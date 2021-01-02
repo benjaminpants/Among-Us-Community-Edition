@@ -20,7 +20,9 @@ namespace AmongUs_CE_Installer
         {
             textbox.Invoke((MethodInvoker)(() =>
             {
+                textbox.ReadOnly = false;
                 textbox.AppendText(value.ToString());
+                textbox.ReadOnly = true;
             }));
 
         }
@@ -29,7 +31,9 @@ namespace AmongUs_CE_Installer
         {
             textbox.Invoke((MethodInvoker)(() =>
             {
+                textbox.ReadOnly = false;
                 textbox.AppendText(value);
+                textbox.ReadOnly = true;
             }));
 
         }

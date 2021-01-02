@@ -31,14 +31,28 @@ namespace AmongUs_CE_Installer
 
         private void UpdateSavedPrefrences()
         {
-            bool SavePassword = Properties.Settings.Default.RememberPassword;
-            Properties.Settings.Default.LastPassword = (SavePassword ? PasswordBox.Text : string.Empty);
+            UpdateCollapsePanel();
             Properties.Settings.Default.Save();
+        }
+
+        private void UpdateCollapsePanel(bool Startup = false)
+        {
+            if (Properties.Settings.Default.UpgradeMode)
+            {
+                SplitContainer2.Panel1Collapsed = true;
+                if (Startup) UpgradeOption.Checked = true;
+            }
+            else
+            {
+                SplitContainer2.Panel1Collapsed = false;
+                if (Startup) InstallOption.Checked = true;
+            }
         }
 
         private void GetDefaultValues()
         {
             InstallLocationBox.Text = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "Among Us CE");
+            UpdateCollapsePanel(true);
         }
 
         private async void Install()
@@ -53,31 +67,7 @@ namespace AmongUs_CE_Installer
             InstallButton.Invoke((MethodInvoker)(() =>
             {
                 InstallButton.Enabled = false;
-            }));
-
-            UsernameBox.Invoke((MethodInvoker)(() =>
-            {
-                UsernameBox.Enabled = false;
-            }));
-
-            PasswordBox.Invoke((MethodInvoker)(() =>
-            {
-                PasswordBox.Enabled = false;
-            }));
-
-            RememberPasswordCheckbox.Invoke((MethodInvoker)(() =>
-            {
-                RememberPasswordCheckbox.Enabled = false;
-            }));
-
-            InstallLocationBox.Invoke((MethodInvoker)(() =>
-            {
-                InstallLocationBox.Enabled = false;
-            }));
-
-            InstallLocationButton.Invoke((MethodInvoker)(() =>
-            {
-                InstallLocationButton.Enabled = false;
+                InstallButton.Text = "Working...";
             }));
 
             InstallMethodGroup.Invoke((MethodInvoker)(() =>
@@ -85,8 +75,15 @@ namespace AmongUs_CE_Installer
                 InstallMethodGroup.Enabled = false;
             }));
 
+            SteamInputGroup.Invoke((MethodInvoker)(() =>
+            {
+                SteamInputGroup.Enabled = false;
+            }));
+
             if (!UpgradeOnly) await DepotDownloader.Program.MainAsync(Arguments);
             await MoveModFilesAsync(InstallLocation);
+
+            Console.WriteLine("Finished Installing!");
 
             InstallButton.Invoke((MethodInvoker)(() =>
             {
@@ -97,11 +94,6 @@ namespace AmongUs_CE_Installer
             AlreadyRun = true;
 
 
-        }
-
-        private void UsernameBox_TextChanged(object sender, EventArgs e)
-        {
-            UpdateSavedPrefrences();
         }
 
         private void InstallLocationButton_Click(object sender, EventArgs e)
@@ -125,13 +117,33 @@ namespace AmongUs_CE_Installer
             string SourcePath = ModFilesLocation;
             string DestinationPath = InstallDirectory;
 
-            foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+            if (System.IO.Directory.Exists(SourcePath))
             {
-                Console.WriteLine(System.IO.Path.GetFileName(newPath));
-                await Task.Run(() => File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true));
+                foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+                {
+                    Console.WriteLine(System.IO.Path.GetFileName(newPath));
+                    await Task.Run(() => File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true));
+                }
             }
 
             return 1;
+        }
+
+        private void Installer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpgradeOption_CheckedChanged(object sender, EventArgs e)
+        {
+            if (UpgradeOption.Checked) Properties.Settings.Default.UpgradeMode = true;
+            UpdateSavedPrefrences();
+        }
+
+        private void InstallOption_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InstallOption.Checked) Properties.Settings.Default.UpgradeMode = false;
+            UpdateSavedPrefrences();
         }
     }
 }

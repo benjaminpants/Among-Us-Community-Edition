@@ -13,11 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{0EBC72AD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Among Us CE Animation Editor", "Among Us CE Animation Editor\Among Us CE Animation Editor.csproj", "{41460D41-64A5-4A2D-832B-8130EB48AE0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmongUs_CE_Installer", "AmongUs_CE_Installer\AmongUs_CE_Installer.csproj", "{BD9A615D-40DB-4461-A739-3DBE48BC94EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Among Us CE Installer", "AmongUs_CE_Installer\Among Us CE Installer.csproj", "{BD9A615D-40DB-4461-A739-3DBE48BC94EA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{B060750F-1DD3-42A5-9E7C-6A83BEF758CA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Animation Editor", "Animation Editor", "{5031250E-5A78-4216-8FB2-7B662DBFA703}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{5031250E-5A78-4216-8FB2-7B662DBFA703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,7 +48,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{41460D41-64A5-4A2D-832B-8130EB48AE0E} = {5031250E-5A78-4216-8FB2-7B662DBFA703}
-		{BD9A615D-40DB-4461-A739-3DBE48BC94EA} = {B060750F-1DD3-42A5-9E7C-6A83BEF758CA}
+		{BD9A615D-40DB-4461-A739-3DBE48BC94EA} = {5031250E-5A78-4216-8FB2-7B662DBFA703}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5D52F05-E151-443D-A975-C9BC38F6673A}

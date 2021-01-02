@@ -2,8 +2,10 @@
 SET TARGET_DIR=%~1
 SET SOLUTION_DIR=%CD%
 
+set /p WARNING1=WARNING: MAKE SURE THAT YOU HAVE BUILT THE CE INSTALLER BEFORE PROCEEDING!
+
 :: Clean Publish Directory
-RMDIR /S "%SOLUTION_DIR%\Publish"
+RMDIR /S /Q "%SOLUTION_DIR%\Publish"
 MKDIR "%SOLUTION_DIR%\Publish"
 MKDIR "%SOLUTION_DIR%\Publish\Mod"
 MKDIR "%SOLUTION_DIR%\Publish\Mod\Hats"
@@ -16,7 +18,7 @@ ROBOCOPY "%SOLUTION_DIR%\Among Us_Data" "%SOLUTION_DIR%\Publish\Mod\Among Us_Dat
 ROBOCOPY "%SOLUTION_DIR%\Hats" "%SOLUTION_DIR%\Publish\Mod\Hats" /E /NFL /NDL /NJH /NJS /nc /ns /np
 ROBOCOPY "%SOLUTION_DIR%\Skins" "%SOLUTION_DIR%\Publish\Mod\Skins" /E /NFL /NDL /NJH /NJS /nc /ns /np
 ROBOCOPY "%SOLUTION_DIR%\Lua" "%SOLUTION_DIR%\Publish\Mod\Lua" /E /NFL /NDL /NJH /NJS /nc /ns /np
-ROBOCOPY "%SOLUTION_DIR%\AmongUs_CE_Installer\bin\Release" "%SOLUTION_DIR%\Publish" /E /NFL /NDL /NJH /NJS /nc /ns /np
+ROBOCOPY "%SOLUTION_DIR%\AmongUs_CE_Installer\bin\Release" "%SOLUTION_DIR%\Publish" /NFL /NDL /NJH /NJS /nc /ns /np
 
 :: Copy All Needed Files
 COPY "%TARGET_DIR%\Assembly-CSharp.dll" 									"%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed\Assembly-CSharp.dll"
