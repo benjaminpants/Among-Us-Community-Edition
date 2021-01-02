@@ -336,9 +336,9 @@
     <Resource Include="Resources\AnimationEditorBanner.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Assembly-CSharp\Assembly-CSharp.csproj">
-      <Project>{fec8cb89-5608-4c17-82b9-7d4dffdd8dda}</Project>
-      <Name>Assembly-CSharp</Name>
+    <ProjectReference Include="..\AmongUs-API\AmongUs-API.csproj">
+      <Project>{a25f2702-94bb-4c4f-9378-33f8bbf0da8c}</Project>
+      <Name>AmongUs-API</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
