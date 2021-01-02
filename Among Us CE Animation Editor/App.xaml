@@ -1,0 +1,37 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AmongUsCE_AnimationEditor"
+             xmlns:gen="clr-namespace:GenerationsLib.WPF.Styles;assembly=GenerationsLib.WPF"
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=NumericUpDown" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+             xmlns:Themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit" 
+             x:Class="AmongUsCE_AnimationEditor.App" ShutdownMode="OnLastWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:SkinResourceDictionary DarkSource="/GenerationsLib.WPF/Template Themes/ColorLibraryDark.xaml" LightSource="/GenerationsLib.WPF/Template Themes/ColorLibraryLight.xaml" />
+                <ResourceDictionary Source="AppSpecificStyles.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/IconLibrary.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/CheckboxStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ButtonStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ItemContainerStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/MenuItemContextStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/FlatButtonStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ExpanderStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/TabItemStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ListViewStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/RepeatButtonStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/ToolbarStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/SliderStyle.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/CommonStyles.xaml"/>
+                <ResourceDictionary Source="/GenerationsLib.WPF/Styles/GroupBoxStyle.xaml"/>
+                <ResourceDictionary Source="RSDK.AnimationEditor.Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
