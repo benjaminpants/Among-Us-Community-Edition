@@ -218,8 +218,10 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 			for (int i = 0; i < playerStates.Length; i++)
 			{
 				PlayerVoteArea obj = playerStates[i];
+				int num = i / 5;
+				int num2 = i % 5;
 				obj.transform.SetParent(base.transform);
-				SetButtonsInit(obj, i);
+				obj.transform.localPosition = VoteOrigin + new Vector3(VoteButtonOffsets.x * (float)num, VoteButtonOffsets.y * (float)num2, -0.1f);
 			}
 		}
 	}
@@ -617,33 +619,9 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 			select p).ToArray();
 		for (int i = 0; i < array.Length; i++)
 		{
-			SetButtons(array[i], i);
-		}
-	}
-	private void SetButtonsInit(PlayerVoteArea obj, int i)
-	{
-		int num = i / 5;
-		int num2 = i % 5;
-		obj.transform.SetParent(base.transform);
-		obj.transform.localPosition = VoteOrigin + new Vector3(VoteButtonOffsets.x * (float)num, VoteButtonOffsets.y * (float)num2, -0.1f);
-	}
-
-	private void SetButtons(PlayerVoteArea obj, int i)
-    {
-		int num = i % 2;
-		int num2 = i / 2;
-		obj.transform.localPosition = VoteOrigin + new Vector3(VoteButtonOffsets.x * (float)num, (VoteButtonOffsets.y / 2) * (float)num2 + 0.20f, -1f);
-	}
-
-	private void UpdateIcons(PlayerVoteArea playerVoteArea)
-	{
-		if (SaveManager.UseLegacyVoteIcons)
-        {
-			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
-		}
-		else
-        {
-			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.35f, 0.6f, 1f);
+			int num = i % 2;
+			int num2 = i / 2;
+			array[i].transform.localPosition = VoteOrigin + new Vector3(VoteButtonOffsets.x * (float)num, (VoteButtonOffsets.y / 2) * (float)num2 + 0.20f, -1f);
 		}
 	}
 
@@ -744,6 +722,18 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		case 3:
 			ClearVote();
 			break;
+		}
+	}
+
+	private void UpdateIcons(PlayerVoteArea playerVoteArea)
+	{
+		if (SaveManager.UseLegacyVoteIcons)
+		{
+			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
+		}
+		else
+		{
+			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.35f, 0.6f, 1f);
 		}
 	}
 }

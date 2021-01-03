@@ -23,7 +23,7 @@ public class EmergencyMinigame : Minigame
 
 	public const int MinEmergencyTime = 15;
 
-	private bool UseCooldown = false;
+	private bool UseCooldown = true;
 
 	public override void Begin(PlayerTask task)
 	{

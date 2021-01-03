@@ -573,6 +573,11 @@ public class CE_WardrobeManager
 		ExtraHatRenderer.transform.localRotation = HatRenderer.transform.localRotation;
 		ExtraHatRenderer.transform.localScale = HatRenderer.transform.localScale;
 		ExtraHatRenderer.transform.localPosition = HatRenderer.transform.localPosition;
+		ExtraHatRenderer.sortingLayerID = HatRenderer.sortingLayerID;
+		ExtraHatRenderer.drawMode = HatRenderer.drawMode;
+		ExtraHatRenderer.material = HatRenderer.material;
+		ExtraHatRenderer.maskInteraction = HatRenderer.maskInteraction;
+		ExtraHatRenderer.renderingLayerMask = HatRenderer.renderingLayerMask;
 	}
 	public static SpriteRenderer CreateExtHatCutscenes(SpriteRenderer _ref, int index)
 	{
