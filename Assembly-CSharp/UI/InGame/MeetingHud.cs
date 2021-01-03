@@ -625,18 +625,6 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		}
 	}
 
-	private void UpdateIcons(PlayerVoteArea playerVoteArea)
-	{
-		if (SaveManager.UseLegacyVoteIcons)
-        {
-			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
-		}
-		else
-        {
-			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.35f, 0.6f, 1f);
-		}
-	}
-
 	private PlayerVoteArea CreateButton(GameData.PlayerInfo playerInfo)
 	{
 		PlayerVoteArea playerVoteArea = Object.Instantiate(PlayerButtonPrefab, ButtonParent.transform);
@@ -734,6 +722,18 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		case 3:
 			ClearVote();
 			break;
+		}
+	}
+
+	private void UpdateIcons(PlayerVoteArea playerVoteArea)
+	{
+		if (SaveManager.UseLegacyVoteIcons)
+		{
+			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
+		}
+		else
+		{
+			playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.35f, 0.6f, 1f);
 		}
 	}
 }
