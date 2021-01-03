@@ -116,10 +116,13 @@ public class SkinLayer : MonoBehaviour
 			animator.Paused = CE_WardrobeManager.AnimationEditor_Paused;
 		}
 
-		if ((bool)skin && skin.isCustom)
+		if (skin && layer)
 		{
-			var sprite = CE_WardrobeManager.GetSkin(layer.sprite.name, skin);
-			if (sprite) layer.sprite = sprite;
+			if (skin.isCustom && layer.sprite)
+            {
+				var sprite = CE_WardrobeManager.GetSkin(layer.sprite.name, skin);
+				if (sprite) layer.sprite = sprite;
+			}
 		}
 	}
 
