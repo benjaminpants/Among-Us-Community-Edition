@@ -220,6 +220,7 @@ public class PlayerVoteArea : MonoBehaviour
 
 	public byte GetState()
 	{
+		//TODO: Invalid Vote Mask
 		return (byte)(((uint)(votedFor + 1) & 0xFu) | (isDead ? 128u : 0u) | (didVote ? 64u : 0u) | (didReport ? 32u : 0u));
 	}
 
