@@ -208,7 +208,8 @@ public class PlayerVoteArea : MonoBehaviour
 	public void Deserialize(MessageReader reader)
 	{
 		byte b = reader.ReadByte();
-		votedFor = (sbyte)((b & 0xF) - 1);
+		//TODO: Invalid Vote Mask
+		votedFor = (sbyte)((b & 0x1F) - 1);
 		isDead = (b & 0x80) > 0;
 		didVote = (b & 0x40) > 0;
 		didReport = (b & 0x20) > 0;
