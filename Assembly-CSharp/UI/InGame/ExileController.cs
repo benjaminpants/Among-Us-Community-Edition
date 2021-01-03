@@ -182,19 +182,22 @@ public class ExileController : MonoBehaviour
 	private void LateUpdate()
 	{
 		SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(exiled.SkinId);
-		bool isCustom = skinById.isCustom;
-		string key = "ejected";
-		if (isCustom && skinById.FrameList.ContainsKey(key))
-		{
-			CE_SpriteFrame customSkinFrame = skinById.FrameList[key];
-			float x = customSkinFrame.Position.x;
-			float y = customSkinFrame.Position.y;
-			float x2 = customSkinFrame.Size.x;
-			float y2 = customSkinFrame.Size.y;
-			float x3 = customSkinFrame.Offset.x;
-			float y3 = customSkinFrame.Offset.y;
-			Texture2D texture = customSkinFrame.Texture;
-			PlayerSkin.sprite = Sprite.Create(texture, new Rect(x, y, x2, y2), new Vector2(x3, y3));
+		if (skinById)
+        {
+			bool isCustom = skinById.isCustom;
+			string key = "ejected";
+			if (isCustom && skinById.FrameList.ContainsKey(key))
+			{
+				CE_SpriteFrame customSkinFrame = skinById.FrameList[key];
+				float x = customSkinFrame.Position.x;
+				float y = customSkinFrame.Position.y;
+				float x2 = customSkinFrame.Size.x;
+				float y2 = customSkinFrame.Size.y;
+				float x3 = customSkinFrame.Offset.x;
+				float y3 = customSkinFrame.Offset.y;
+				Texture2D texture = customSkinFrame.Texture;
+				PlayerSkin.sprite = Sprite.Create(texture, new Rect(x, y, x2, y2), new Vector2(x3, y3));
+			}
 		}
 	}
 }
