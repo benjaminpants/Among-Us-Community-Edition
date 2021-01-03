@@ -44,19 +44,19 @@ namespace AmongUs_CE_Installer
             this.UsernameBox = new System.Windows.Forms.TextBox();
             this.SteamInputGroup = new System.Windows.Forms.GroupBox();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
-            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.SplitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.InstallMethodGroup.SuspendLayout();
             this.SteamInputGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer2)).BeginInit();
             this.SplitContainer2.Panel1.SuspendLayout();
             this.SplitContainer2.Panel2.SuspendLayout();
             this.SplitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // PasswordBox
@@ -216,16 +216,6 @@ namespace AmongUs_CE_Installer
             this.SplitContainer.SplitterDistance = 70;
             this.SplitContainer.TabIndex = 11;
             // 
-            // PictureBox
-            // 
-            this.PictureBox.BackgroundImage = global::AmongUs_CE_Installer.Properties.Resources.Banner;
-            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PictureBox.Location = new System.Drawing.Point(485, 10);
-            this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(227, 430);
-            this.PictureBox.TabIndex = 12;
-            this.PictureBox.TabStop = false;
-            // 
             // SplitContainer2
             // 
             this.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -244,6 +234,16 @@ namespace AmongUs_CE_Installer
             this.SplitContainer2.Size = new System.Drawing.Size(467, 356);
             this.SplitContainer2.SplitterDistance = 110;
             this.SplitContainer2.TabIndex = 4;
+            // 
+            // PictureBox
+            // 
+            this.PictureBox.BackgroundImage = global::AmongUs_CE_Installer.Properties.Resources.Banner;
+            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBox.Location = new System.Drawing.Point(485, 10);
+            this.PictureBox.Name = "PictureBox";
+            this.PictureBox.Size = new System.Drawing.Size(227, 430);
+            this.PictureBox.TabIndex = 12;
+            this.PictureBox.TabStop = false;
             // 
             // Installer
             // 
@@ -266,11 +266,11 @@ namespace AmongUs_CE_Installer
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.SplitContainer2.Panel1.ResumeLayout(false);
             this.SplitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer2)).EndInit();
             this.SplitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,7 +278,6 @@ namespace AmongUs_CE_Installer
         #endregion
 
         private System.Windows.Forms.TextBox UsernameBox;
-        private System.Windows.Forms.MaskedTextBox PasswordBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox InstallLocationBox;
@@ -293,6 +292,7 @@ namespace AmongUs_CE_Installer
         private System.Windows.Forms.SplitContainer SplitContainer;
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.SplitContainer SplitContainer2;
+        private System.Windows.Forms.MaskedTextBox PasswordBox;
     }
 }
 

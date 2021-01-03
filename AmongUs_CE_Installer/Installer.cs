@@ -14,7 +14,7 @@ namespace AmongUs_CE_Installer
     public partial class Installer : Form
     {
         private bool AlreadyRun = false;
-        public const string ArgumentsString = "-app 945360 -depot 945361 -manifest 2146956919302566155 -user {0} -password {1} -dir \"{2}\"";
+        public const string ArgumentsString = "-app 945360 -depot 945361 -manifest 2146956919302566155 -user {0} -password \"{1}\" -dir \"{2}\"";
         public Installer()
         {
             InitializeComponent();
@@ -80,7 +80,29 @@ namespace AmongUs_CE_Installer
                 SteamInputGroup.Enabled = false;
             }));
 
-            if (!UpgradeOnly) await DepotDownloader.Program.MainAsync(Arguments);
+            if (!UpgradeOnly)
+            {
+                if (await DepotDownloader.Program.MainAsync(Arguments) != 0)
+                {
+                    Console.WriteLine("An error occured with the install! Cancelling...");
+                    InstallButton.Invoke((MethodInvoker)(() =>
+                    {
+                        InstallButton.Enabled = true;
+                        InstallButton.Text = "Install";
+                    }));
+
+                    InstallMethodGroup.Invoke((MethodInvoker)(() =>
+                    {
+                        InstallMethodGroup.Enabled = true;
+                    }));
+
+                    SteamInputGroup.Invoke((MethodInvoker)(() =>
+                    {
+                        SteamInputGroup.Enabled = true;
+                    }));
+                    return;
+                }
+            }
             await MoveModFilesAsync(InstallLocation);
 
             Console.WriteLine("Finished Installing!");
