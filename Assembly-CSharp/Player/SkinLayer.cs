@@ -110,15 +110,15 @@ public class SkinLayer : MonoBehaviour
 
 	public void LateUpdate()
 	{
-		if (CE_WardrobeLoader.AnimationEditor_Active)
+		if (CE_WardrobeManager.AnimationEditor_Active)
 		{
-			animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
-			animator.Paused = CE_WardrobeLoader.AnimationEditor_Paused;
+			animator.Speed = CE_WardrobeManager.AnimationEditor_CurrentSpeed;
+			animator.Paused = CE_WardrobeManager.AnimationEditor_Paused;
 		}
 
 		if ((bool)skin && skin.isCustom)
 		{
-			var sprite = CE_WardrobeLoader.GetSkin(layer.sprite.name, skin);
+			var sprite = CE_WardrobeManager.GetSkin(layer.sprite.name, skin);
 			if (sprite) layer.sprite = sprite;
 		}
 	}

@@ -89,7 +89,7 @@ public class KillOverlay : MonoBehaviour
 			SoundManager.Instance.PlaySound(anim.Stinger, loop: false).volume = anim.StingerVolume;
 		}
 		WaitForSeconds wait = new WaitForSeconds(0.0833333358f);
-		background.enabled = true;
+		background.enabled = true; 
 		yield return wait;
 		background.enabled = false;
 		flameParent.SetActive(value: true);

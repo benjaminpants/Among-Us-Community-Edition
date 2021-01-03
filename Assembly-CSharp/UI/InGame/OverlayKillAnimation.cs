@@ -1,6 +1,8 @@
 using System.Collections;
 using PowerTools;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class OverlayKillAnimation : MonoBehaviour
 {
@@ -21,7 +23,11 @@ public class OverlayKillAnimation : MonoBehaviour
 	private SkinData LastSkinData_Victim;
 
 	private SkinData LastSkinData_Killer;
-
+	
+	public void Awake()
+    {
+		InitCustomHatLayers();
+	}
 	public void Begin(PlayerControl killer, GameData.PlayerInfo victim)
 	{
 		if (killerParts != null)
@@ -31,10 +37,7 @@ public class OverlayKillAnimation : MonoBehaviour
 			{
 				Renderer renderer = killerParts[i];
 				PlayerControl.SetPlayerMaterialColors(data.ColorId, renderer);
-				if (renderer.name.StartsWith("HatSlot"))
-				{
-					PlayerControl.SetHatImage(data.HatId, (SpriteRenderer)renderer);
-				}
+				if (SetHatNormal(ref renderer, data.HatId)) continue;
 				else if (renderer.name.StartsWith("Skin"))
 				{
 					switch (KillType)
@@ -75,10 +78,7 @@ public class OverlayKillAnimation : MonoBehaviour
 		{
 			Renderer renderer2 = victimParts[j];
 			PlayerControl.SetPlayerMaterialColors(victim.ColorId, renderer2);
-			if (renderer2.name.StartsWith("HatSlot"))
-			{
-				PlayerControl.SetHatImage(victimHat, (SpriteRenderer)renderer2);
-			}
+			if (SetHatNormal(ref renderer2, victimHat)) continue;
 			else if (renderer2.name.StartsWith("Skin"))
 			{
 				SkinData skinById3 = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
@@ -100,7 +100,6 @@ public class OverlayKillAnimation : MonoBehaviour
 			}
 		}
 	}
-
 	public void SetHatFloor()
 	{
 		for (int i = 0; i < victimParts.Length; i++)
@@ -110,9 +109,24 @@ public class OverlayKillAnimation : MonoBehaviour
 			{
 				((SpriteRenderer)renderer).sprite = DestroyableSingleton<HatManager>.Instance.GetHatById(victimHat).FloorImage;
 			}
+			else if (renderer.name.StartsWith("ExtHatSlot1"))
+            {
+				((SpriteRenderer)renderer).sprite = DestroyableSingleton<HatManager>.Instance.GetHatById(victimHat).FloorImageExt;
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot2"))
+			{
+				((SpriteRenderer)renderer).sprite = DestroyableSingleton<HatManager>.Instance.GetHatById(victimHat).FloorImageExt2;
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot3"))
+			{
+				((SpriteRenderer)renderer).sprite = DestroyableSingleton<HatManager>.Instance.GetHatById(victimHat).FloorImageExt3;
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot4"))
+			{
+				((SpriteRenderer)renderer).sprite = DestroyableSingleton<HatManager>.Instance.GetHatById(victimHat).FloorImageExt4;
+			}
 		}
 	}
-
 	public void PlayKillSound()
 	{
 		if (Constants.ShouldPlaySfx())
@@ -120,7 +134,6 @@ public class OverlayKillAnimation : MonoBehaviour
 			SoundManager.Instance.PlaySound(Sfx, loop: false).volume = 0.8f;
 		}
 	}
-
 	public IEnumerator WaitForFinish()
 	{
 		SpriteAnim[] anims = GetComponentsInChildren<SpriteAnim>();
@@ -148,7 +161,88 @@ public class OverlayKillAnimation : MonoBehaviour
 			break;
 		}
 	}
-
+	public bool SetHatNormal(ref Renderer renderer, uint hatID)
+	{
+		if (renderer.name.StartsWith("HatSlot"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot1"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 1);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot2"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 2);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot3"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 3);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot4"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 4);
+			return true;
+		}
+		else return false;
+	}
+	public void UpdateMultiHat()
+    {
+		SpriteRenderer victimSource = null;
+		SpriteRenderer killerSource = null;
+		for (int j = 0; j < victimParts.Length; j++)
+		{
+			Renderer renderer = victimParts[j];
+			if (renderer.name.StartsWith("HatSlot"))
+			{
+				victimSource = (SpriteRenderer)renderer;
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot1") && victimSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot2") && victimSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot3") && victimSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot4") && victimSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+			}
+		}
+		for (int i = 0; i < killerParts.Length; i++)
+		{
+			Renderer renderer = killerParts[i];
+			if (renderer.name.StartsWith("HatSlot"))
+			{
+				killerSource = (SpriteRenderer)renderer;
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot1") && killerSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot2") && killerSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot3") && killerSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+			}
+			else if (renderer.name.StartsWith("ExtHatSlot4") && killerSource)
+			{
+				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+			}
+		}
+	}
 	private void UpdateCustomVisual(PlayerControl killer, GameData.PlayerInfo victim)
 	{
 		if (!killer || victim == null) return;
@@ -156,7 +250,46 @@ public class OverlayKillAnimation : MonoBehaviour
 		LastSkinData_Victim = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
 		LastSkinData_Killer = DestroyableSingleton<HatManager>.Instance.GetSkinById(killer.Data.SkinId);
 	}
+	private void InitCustomHatLayers()
+    {
+		SpriteRenderer VictimRef = null;
+		for (int i = 0; i < victimParts.Length; i++)
+		{
+			Renderer renderer = victimParts[i];
+			if (renderer.name.StartsWith("HatSlot"))
+			{
+				VictimRef = ((SpriteRenderer)renderer);
+			}
+		}
+		if (VictimRef != null)
+		{
+			var list = victimParts.ToList();
+			for (int i = 0; i < 4; i++)
+			{
+				list.Add(CE_WardrobeManager.CreateExtraHatOverlayKill(VictimRef, i));
+			}
+			victimParts = list.ToArray();
+		}
 
+		SpriteRenderer KillerRef = null;
+		for (int i = 0; i < killerParts.Length; i++)
+		{
+			Renderer renderer = killerParts[i];
+			if (renderer.name.StartsWith("HatSlot"))
+			{
+				KillerRef = ((SpriteRenderer)renderer);
+			}
+		}
+		if (KillerRef != null)
+		{
+			var list = killerParts.ToList();
+			for (int i = 0; i < 4; i++)
+			{
+				list.Add(CE_WardrobeManager.CreateExtraHatOverlayKill(KillerRef, i));
+			}
+			killerParts = list.ToArray();
+		}
+	}
 	private void LateUpdate()
 	{
 		if (!LastSkinData_Killer || !LastSkinData_Victim) return;
@@ -164,9 +297,11 @@ public class OverlayKillAnimation : MonoBehaviour
 		SpriteAnim[] anims = GetComponentsInChildren<SpriteAnim>();
 		for (int i = 0; i < anims.Length; i++)
 		{
-			anims[i].Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
-			anims[i].Paused = CE_WardrobeLoader.AnimationEditor_Paused;
+			anims[i].Speed = CE_WardrobeManager.AnimationEditor_CurrentSpeed;
+			anims[i].Paused = CE_WardrobeManager.AnimationEditor_Paused;
 		}
+
+		UpdateMultiHat();
 
 
 		if (LastSkinData_Killer.isCustom)
@@ -176,8 +311,8 @@ public class OverlayKillAnimation : MonoBehaviour
 				Renderer renderer = killerParts[i];
 				if (renderer.name.StartsWith("Skin"))
 				{
-					CE_WardrobeLoader.LogPivot(renderer);
-					var sprite = CE_WardrobeLoader.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Killer);
+					CE_WardrobeManager.LogPivot(renderer);
+					var sprite = CE_WardrobeManager.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Killer);
 					if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
 				}
 			}
@@ -189,8 +324,8 @@ public class OverlayKillAnimation : MonoBehaviour
 				Renderer renderer = victimParts[j];
 				if (renderer.name.StartsWith("Skin"))
 				{
-					CE_WardrobeLoader.LogPivot(renderer);
-					var sprite = CE_WardrobeLoader.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Victim);
+					CE_WardrobeManager.LogPivot(renderer);
+					var sprite = CE_WardrobeManager.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Victim);
 					if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
 				}
 			}

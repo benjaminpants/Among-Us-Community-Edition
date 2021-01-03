@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Purchasing;
 
-public class CE_WardrobeLoader
+public class CE_WardrobeManager
 {
 	#region Common Loader Functions
 
@@ -59,7 +59,7 @@ public class CE_WardrobeLoader
 		DestroyableSingleton<HatManager>.Instance.AllSkins.AddRange(LoadSkins(GetSkinRefrence()));
 		PlayerControl.LocalPlayer.SetSkin(skinId);
 		PlayerControl.LocalPlayer.SetHat(hatId);
-		CE_WardrobeLoader.AnimationEditor_Reset = true;
+		CE_WardrobeManager.AnimationEditor_Reset = true;
 	}
 
 	#endregion
@@ -235,7 +235,11 @@ public class CE_WardrobeLoader
 				hatBehaviour.StoreName = item2.Name;
 				hatBehaviour.RelatedSkinName = item2.RelatedSkin;
 				hatBehaviour.IsCustom = true;
-				hatBehaviour.NoBobbing = item2.NoHatBobbing;
+                hatBehaviour.NoBobbing = item2.NoHatBobbing;
+                hatBehaviour.NoBobbingExt = item2.NoHatBobbingExt;
+                hatBehaviour.NoBobbingExt2 = item2.NoHatBobbingExt2;
+                hatBehaviour.NoBobbingExt3 = item2.NoHatBobbingExt3;
+				hatBehaviour.NoBobbingExt4 = item2.NoHatBobbingExt4;
 
 				foreach (CE_SpriteFrame frame in item2.FrameList)
 				{
@@ -275,6 +279,30 @@ public class CE_WardrobeLoader
 							break;
 						case "Preview":
 							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "NormalExt":
+							hatBehaviour.MainImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "FloorExt":
+							hatBehaviour.FloorImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "NormalExt2":
+							hatBehaviour.MainImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "FloorExt2":
+							hatBehaviour.FloorImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "NormalExt3":
+							hatBehaviour.MainImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "FloorExt3":
+							hatBehaviour.FloorImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "NormalExt4":
+							hatBehaviour.MainImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "FloorExt4":
+							hatBehaviour.FloorImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 					}
 				}
@@ -402,7 +430,7 @@ public class CE_WardrobeLoader
 
 	#endregion
 
-	#region Skin Rendering Methods
+	#region Skin Calculating Methods
 
 	public static Vector2 GetPixelOffsetFromCenter(float width, float height, float x, float y)
 	{
@@ -446,7 +474,6 @@ public class CE_WardrobeLoader
 	{
 		return new Vector2(input.x, input.y);
 	}
-
 	public static Rect GetSpriteRect(Texture texture, float x, float y, float width, float height)
 	{
 		float real_y = texture.height - y;
@@ -458,16 +485,20 @@ public class CE_WardrobeLoader
 		return new Rect(_finalX, _finalY, _finalWidth, _finalHeight);
 	}
 
-    public static Sprite GetSkin(string name, SkinData skin)
-    {
+	#endregion
+
+	#region Skin/Hat Rendering Methods
+
+	public static Sprite GetSkin(string name, SkinData skin)
+	{
 		string key = name.Substring(name.IndexOf("_") + 1);
 		if (!skin.FrameList.ContainsKey(key))
-        {
+		{
 			key = name.Substring(name.IndexOf("-") + 1);
 		}
 
 		if (skin.FrameList.ContainsKey(key))
-        {
+		{
 			CE_SpriteFrame customSkinFrame = skin.FrameList[key];
 
 			float x = customSkinFrame.Position.x;
@@ -500,44 +531,153 @@ public class CE_WardrobeLoader
 			if (skin.FrameList[key].Sprite == null) skin.FrameList[key].Sprite = Sprite.Create(texture, GetSpriteRect(texture, x, y, width, height), GetSpritePivot(pivot));
 			return skin.FrameList[key].Sprite;
 		}
-        else return null;
-    }
-
-	public static Vector3 SetHatBobingPhysics(PlayerControl player, string name, Vector3 position)
+		else return null;
+	}
+	public static void SetHatBobbingPhysics(PlayerControl player, string name, ref SpriteRenderer spriteRenderer, int hatSlot)
 	{
-		float x = position.x;
-		float y = position.y;
-		float z = position.z;
+		var hat = DestroyableSingleton<HatManager>.Instance.GetHatById(player.Data.HatId);
+		bool noBobbing;
+		switch (hatSlot)
+        {
+			case 0:
+				noBobbing = hat.NoBobbing;
+				break;
+			case 1:
+				noBobbing = hat.NoBobbingExt;
+				break;
+			case 2:
+				noBobbing = hat.NoBobbingExt2;
+				break;
+			case 3:
+				noBobbing = hat.NoBobbingExt3;
+				break;
+			case 4:
+				noBobbing = hat.NoBobbingExt4;
+				break;
+			default:
+				noBobbing = hat.NoBobbing;
+				break;
+		}
 
-		if (player.MyPhysics.IsWalking())
-		{ 
-			float num = 0.65f;
-			if (name == "walkcolor0001") num += 0.019f;
-			if (name == "walkcolor0002") num += 0.05f;
-			if (name == "walkcolor0003") num += 0.02f;
-			if (name == "walkcolor0004") num += -0.04f;
-			if (name == "walkcolor0005") num += -0.09f;
-			if (name == "walkcolor0006") num += -0.09f;
-			if (name == "walkcolor0007") num += 0.059f;
-			if (name == "walkcolor0008") num += 0.089f;
-			if (name == "walkcolor0009") num += 0.06f;
-			if (name == "walkcolor0010") num += 0f;
-			if (name == "walkcolor0011") num += -0.12f;
-			if (name == "walkcolor0012") num += -0.129f;
-			position = new Vector3(x, num, z);
-			return position;
+		if (noBobbing)
+        {
+			var position = spriteRenderer.transform.localPosition;
+
+			float x = position.x;
+			float y = position.y;
+			float z = position.z;
+
+			if (player.MyPhysics.IsWalking())
+			{
+				float num = 0.65f;
+				if (name == "walkcolor0001") num += 0.019f;
+				if (name == "walkcolor0002") num += 0.05f;
+				if (name == "walkcolor0003") num += 0.02f;
+				if (name == "walkcolor0004") num += -0.04f;
+				if (name == "walkcolor0005") num += -0.09f;
+				if (name == "walkcolor0006") num += -0.09f;
+				if (name == "walkcolor0007") num += 0.059f;
+				if (name == "walkcolor0008") num += 0.089f;
+				if (name == "walkcolor0009") num += 0.06f;
+				if (name == "walkcolor0010") num += 0f;
+				if (name == "walkcolor0011") num += -0.12f;
+				if (name == "walkcolor0012") num += -0.129f;
+				spriteRenderer.transform.localPosition = new Vector3(x, num, z);
+			}
+			else
+			{
+				spriteRenderer.transform.localPosition = new Vector3(x, y, z);
+			}
+		}
+	}
+	public static void UpdateMultiHat(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
+	{
+		ExtraHatRenderer.flipX = HatRenderer.flipX;
+		ExtraHatRenderer.flipY = HatRenderer.flipY;
+		ExtraHatRenderer.transform.parent = HatRenderer.transform.parent;
+		ExtraHatRenderer.transform.localRotation = HatRenderer.transform.localRotation;
+		ExtraHatRenderer.transform.localScale = HatRenderer.transform.localScale;
+		ExtraHatRenderer.transform.localPosition = HatRenderer.transform.localPosition;
+	}
+	public static SpriteRenderer CreateExtraHatOverlayKill(SpriteRenderer _ref, int index)
+	{
+		string realIndex = string.Format("{0}", index + 1);
+		GameObject gameObject = new GameObject("ExtHatSlot" + realIndex);
+		gameObject.layer = _ref.gameObject.layer;
+		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
+		HatRendererExt.transform.SetParent(_ref.transform);
+		return HatRendererExt;
+	}
+	public static SpriteRenderer CreateExtraHat(PlayerControl playerControl)
+	{	
+		GameObject gameObject = new GameObject("ExtraHatRenderer");
+		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
+		HatRendererExt.transform.SetParent(playerControl.transform);
+		return HatRendererExt;
+	}
+	public static void SetHatRendererActive(SpriteRenderer HatRendererExt, bool value)
+	{
+		HatRendererExt.enabled = value;
+	}
+	public static void SetExtHatImage(HatBehaviour hat, SpriteRenderer target, int hatSlot)
+	{
+		if ((bool)target && (bool)hat)
+		{
+			Sprite MainImage;
+			bool InFront;
+			switch (hatSlot)
+			{
+				case 0:
+					MainImage = hat.MainImage;
+					InFront = hat.InFront;
+					break;
+				case 1:
+					MainImage = hat.MainImageExt;
+					InFront = hat.InFrontExt;
+					break;
+				case 2:
+					MainImage = hat.MainImageExt2;
+					InFront = hat.InFrontExt2;
+					break;
+				case 3:
+					MainImage = hat.MainImageExt3;
+					InFront = hat.InFrontExt3;
+					break;
+				case 4:
+					MainImage = hat.MainImageExt4;
+					InFront = hat.InFrontExt4;
+					break;
+				default:
+					MainImage = hat.MainImage;
+					InFront = hat.InFront;
+					break;
+			}
+
+			
+			target.sprite = MainImage;
+			if (MainImage)
+			{
+				Vector3 localPosition = target.transform.localPosition;
+				localPosition.z = (InFront ? (-0.0001f) : 0.0001f);
+				target.transform.localPosition = localPosition;
+			}
 		}
 		else
-        {
-			position = new Vector3(x, y, z);
-			return position;
-        }
+		{
+			string str = ((!target) ? "null" : target.name);
+			string str2 = ((!hat) ? "null" : hat.name);
+			Debug.LogError("Player: " + str + "\tHat: " + str2);
+		}
+	}
+	public static void SetExtHatAlpha(ref SpriteRenderer spriteRenderer, Color alpha)
+    {
+		spriteRenderer.color = alpha;
 
 	}
 
 	#endregion
 
-	static CE_WardrobeLoader()
+	static CE_WardrobeManager()
 	{
 
 	}

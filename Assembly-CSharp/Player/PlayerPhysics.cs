@@ -79,12 +79,12 @@ public class PlayerPhysics : InnerNetObject
 
 	private void UpdateHatBobbing()
     {
-		bool noHatBobbing = DestroyableSingleton<HatManager>.Instance.GetHatById(myPlayer.Data.HatId).NoBobbing;
-		if (noHatBobbing)
-		{
-			string name = rend.sprite.name;
-			myPlayer.HatRenderer.transform.localPosition = CE_WardrobeLoader.SetHatBobingPhysics(myPlayer, name, myPlayer.HatRenderer.transform.localPosition);
-		}
+		string name = rend.sprite.name;
+		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRenderer, 0);
+		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt, 1);
+		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt2, 2);
+		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt3, 3);
+		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt4, 3);
 	}
 
 	private void LateUpdate()
@@ -136,7 +136,7 @@ public class PlayerPhysics : InnerNetObject
 
 	private void HandleAnimation()
 	{
-		if (CE_WardrobeLoader.AnimationEditor_Enabled)
+		if (CE_WardrobeManager.AnimationEditor_Enabled)
 		{
 			HandleAnimationTesting();
 		}
@@ -336,42 +336,42 @@ public class PlayerPhysics : InnerNetObject
 
 	private void HandleAnimationTesting()
 	{
-		Animator.Speed = CE_WardrobeLoader.AnimationEditor_CurrentSpeed;
-		Animator.Paused = CE_WardrobeLoader.AnimationEditor_Paused;
+		Animator.Speed = CE_WardrobeManager.AnimationEditor_CurrentSpeed;
+		Animator.Paused = CE_WardrobeManager.AnimationEditor_Paused;
 
-		if ((Animator.GetCurrentAnimation() != RunAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 0)
+		if ((Animator.GetCurrentAnimation() != RunAnim || CE_WardrobeManager.AnimationEditor_Reset) && CE_WardrobeManager.AnimationEditor_Mode == 0)
 		{
 			Animator.Play(RunAnim, 1f);
 			Skin.SetRun();
 		}
-		if ((Animator.GetCurrentAnimation() != SpawnAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 1)
+		if ((Animator.GetCurrentAnimation() != SpawnAnim || CE_WardrobeManager.AnimationEditor_Reset) && CE_WardrobeManager.AnimationEditor_Mode == 1)
 		{
 			Animator.Play(SpawnAnim, 1f);
 			Skin.SetSpawn();
 		}
-		if ((Animator.GetCurrentAnimation() != IdleAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 2)
+		if ((Animator.GetCurrentAnimation() != IdleAnim || CE_WardrobeManager.AnimationEditor_Reset) && CE_WardrobeManager.AnimationEditor_Mode == 2)
 		{
 			Animator.Play(IdleAnim, 1f);
 			Skin.SetIdle();
 		}
-		if ((Animator.GetCurrentAnimation() != EnterVentAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 3)
+		if ((Animator.GetCurrentAnimation() != EnterVentAnim || CE_WardrobeManager.AnimationEditor_Reset) && CE_WardrobeManager.AnimationEditor_Mode == 3)
 		{
 			Animator.Play(EnterVentAnim, 1f);
 			Skin.SetEnterVent();
 		}
-		if ((Animator.GetCurrentAnimation() != ExitVentAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 4)
+		if ((Animator.GetCurrentAnimation() != ExitVentAnim || CE_WardrobeManager.AnimationEditor_Reset) && CE_WardrobeManager.AnimationEditor_Mode == 4)
 		{
 			Animator.Play(ExitVentAnim, 1f);
 			Skin.SetExitVent();
 		}
-		if ((Animator.GetCurrentAnimation() != GhostIdleAnim || CE_WardrobeLoader.AnimationEditor_Reset) && CE_WardrobeLoader.AnimationEditor_Mode == 5)
+		if ((Animator.GetCurrentAnimation() != GhostIdleAnim || CE_WardrobeManager.AnimationEditor_Reset) && CE_WardrobeManager.AnimationEditor_Mode == 5)
 		{
 			Animator.Play(GhostIdleAnim, 1f);
 			Skin.SetGhost();
 		}
-		if (CE_WardrobeLoader.AnimationEditor_Reset)
+		if (CE_WardrobeManager.AnimationEditor_Reset)
 		{
-			CE_WardrobeLoader.AnimationEditor_Reset = false;
+			CE_WardrobeManager.AnimationEditor_Reset = false;
 		}
 	}
 }

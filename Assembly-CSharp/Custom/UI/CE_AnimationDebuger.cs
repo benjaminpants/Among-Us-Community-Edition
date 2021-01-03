@@ -67,15 +67,15 @@ public class CE_AnimationDebuger : MonoBehaviour
 	{
 		CE_UIHelpers.LoadCommonAssets();
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
-		CE_WardrobeLoader.AnimationEditor_Active = CE_CommonUI.CreateBoolButton(CE_WardrobeLoader.AnimationEditor_Active, "Enabled");
-		CE_WardrobeLoader.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Speed, 0.01f, 0f, float.MaxValue, "Animation Speed", "x");
-		CE_WardrobeLoader.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Speed, 0.1f, 0f, float.MaxValue, "Animation Speed (Large Shift)", "x");
-		CE_WardrobeLoader.AnimationEditor_Mode = (int)CE_CommonUI.CreateValuePicker(CE_WardrobeLoader.AnimationEditor_Mode, 1f, 0f, 5f, "Playback Mode", "");
-        CE_WardrobeLoader.AnimationEditor_IsPaused = CreatePauseBoolButton(CE_WardrobeLoader.AnimationEditor_IsPaused, "Pause");
-		GUILayout.Label("Last Frame Name:" + CE_WardrobeLoader.AnimationEditor_LastFrame);
-		GUILayout.Label("Last Pivot X: " + CE_WardrobeLoader.AnimationEditor_LastPivotX.ToString());
+		CE_WardrobeManager.AnimationEditor_Active = CE_CommonUI.CreateBoolButton(CE_WardrobeManager.AnimationEditor_Active, "Enabled");
+		CE_WardrobeManager.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeManager.AnimationEditor_Speed, 0.01f, 0f, float.MaxValue, "Animation Speed", "x");
+		CE_WardrobeManager.AnimationEditor_Speed = CE_CommonUI.CreateValuePicker(CE_WardrobeManager.AnimationEditor_Speed, 0.1f, 0f, float.MaxValue, "Animation Speed (Large Shift)", "x");
+		CE_WardrobeManager.AnimationEditor_Mode = (int)CE_CommonUI.CreateValuePicker(CE_WardrobeManager.AnimationEditor_Mode, 1f, 0f, 5f, "Playback Mode", "");
+        CE_WardrobeManager.AnimationEditor_IsPaused = CreatePauseBoolButton(CE_WardrobeManager.AnimationEditor_IsPaused, "Pause");
+		GUILayout.Label("Last Frame Name:" + CE_WardrobeManager.AnimationEditor_LastFrame);
+		GUILayout.Label("Last Pivot X: " + CE_WardrobeManager.AnimationEditor_LastPivotX.ToString());
 		GUILayout.BeginHorizontal();
-		if (!CE_WardrobeLoader.AnimationEditor_Paused || UpdateValues)
+		if (!CE_WardrobeManager.AnimationEditor_Paused || UpdateValues)
 		{
 			UpdateValues = false;
 		}
@@ -84,7 +84,7 @@ public class CE_AnimationDebuger : MonoBehaviour
 		{
 			if (float.TryParse(PivotXTemp, out float newPivotX))
 			{
-				CE_WardrobeLoader.SetCurrentFramePivotX(newPivotX);
+				CE_WardrobeManager.SetCurrentFramePivotX(newPivotX);
 				UpdateValues = true;
 			}
 		}
@@ -92,23 +92,23 @@ public class CE_AnimationDebuger : MonoBehaviour
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("+X Pivot"))
 		{
-			CE_WardrobeLoader.NudgeCurrentFramePivot(1, 0);
+			CE_WardrobeManager.NudgeCurrentFramePivot(1, 0);
 			UpdateValues = true;
 		}
 		if (GUILayout.Button("-X Pivot"))
 		{
-			CE_WardrobeLoader.NudgeCurrentFramePivot(-1, 0);
+			CE_WardrobeManager.NudgeCurrentFramePivot(-1, 0);
 			UpdateValues = true;
 		}
 		GUILayout.EndHorizontal();
-		GUILayout.Label("Last Pivot Y: " + CE_WardrobeLoader.AnimationEditor_LastPivotY.ToString());
+		GUILayout.Label("Last Pivot Y: " + CE_WardrobeManager.AnimationEditor_LastPivotY.ToString());
 		GUILayout.BeginHorizontal();
 		PivotYTemp = GUILayout.TextField(PivotYTemp, new GUILayoutOption[0]);
 		if (GUILayout.Button("UPDATE"))
         {
 			if (float.TryParse(PivotYTemp, out float newPivotY))
 			{ 
-				CE_WardrobeLoader.SetCurrentFramePivotY(newPivotY);
+				CE_WardrobeManager.SetCurrentFramePivotY(newPivotY);
 				UpdateValues = true;
 			}
 		}
@@ -116,24 +116,24 @@ public class CE_AnimationDebuger : MonoBehaviour
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("+Y Pivot"))
 		{
-			CE_WardrobeLoader.NudgeCurrentFramePivot(0, 1);
+			CE_WardrobeManager.NudgeCurrentFramePivot(0, 1);
 			UpdateValues = true;
 		}
 		if (GUILayout.Button("-Y Pivot"))
 		{
-			CE_WardrobeLoader.NudgeCurrentFramePivot(0, -1);
+			CE_WardrobeManager.NudgeCurrentFramePivot(0, -1);
 			UpdateValues = true;
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.Label("Pause at:");
-		CE_WardrobeLoader.AnimationEditor_PauseAt = GUILayout.TextArea(CE_WardrobeLoader.AnimationEditor_PauseAt);
+		CE_WardrobeManager.AnimationEditor_PauseAt = GUILayout.TextArea(CE_WardrobeManager.AnimationEditor_PauseAt);
 		if (GUILayout.Button("Next Frame"))
 		{
-			var prefix = Regex.Match(CE_WardrobeLoader.AnimationEditor_PauseAt, "^\\D+").Value;
-			var number = Regex.Replace(CE_WardrobeLoader.AnimationEditor_PauseAt, "^\\D+", "");
+			var prefix = Regex.Match(CE_WardrobeManager.AnimationEditor_PauseAt, "^\\D+").Value;
+			var number = Regex.Replace(CE_WardrobeManager.AnimationEditor_PauseAt, "^\\D+", "");
 			var i = int.Parse(number) + 1;
-			CE_WardrobeLoader.AnimationEditor_PauseAt = prefix + i.ToString(new string('0', number.Length));
-			CE_WardrobeLoader.AnimationEditor_IsPaused = false;
+			CE_WardrobeManager.AnimationEditor_PauseAt = prefix + i.ToString(new string('0', number.Length));
+			CE_WardrobeManager.AnimationEditor_IsPaused = false;
 			UpdateValues = true;
 		}
 		GUILayout.Space(15);
@@ -145,7 +145,7 @@ public class CE_AnimationDebuger : MonoBehaviour
 
 		if (GUILayout.Button("Save Current"))
 		{
-			CE_WardrobeLoader.SaveCurrentSkin();
+			CE_WardrobeManager.SaveCurrentSkin();
 		}
 
 
@@ -215,19 +215,19 @@ public class CE_AnimationDebuger : MonoBehaviour
         {
 			if (Input.GetKeyDown(KeyCode.DownArrow))
 			{
-				CE_WardrobeLoader.NudgeCurrentFramePivot(0, -1);
+				CE_WardrobeManager.NudgeCurrentFramePivot(0, -1);
 			}
 			if (Input.GetKeyDown(KeyCode.UpArrow))
 			{
-				CE_WardrobeLoader.NudgeCurrentFramePivot(0, 1);
+				CE_WardrobeManager.NudgeCurrentFramePivot(0, 1);
 			}
 			if (Input.GetKeyDown(KeyCode.LeftArrow))
 			{
-				CE_WardrobeLoader.NudgeCurrentFramePivot(-1, 0);
+				CE_WardrobeManager.NudgeCurrentFramePivot(-1, 0);
 			}
 			if (Input.GetKeyDown(KeyCode.RightArrow))
 			{
-				CE_WardrobeLoader.NudgeCurrentFramePivot(1, 0);
+				CE_WardrobeManager.NudgeCurrentFramePivot(1, 0);
 			}
 		}
 		if (Input.GetKeyDown(KeyCode.F3))
