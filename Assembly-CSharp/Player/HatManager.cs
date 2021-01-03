@@ -21,11 +21,9 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public HatBehaviour[] GetUnlockedHats()
 	{
-		return (from h in AllHats
-			where h.LimitedMonth == 0 || SaveManager.GetPurchase(h.ProductId)
-			select h into o
-			orderby o.Order descending, o.name
-			select o).ToArray();
+		return (from o in AllHats
+			orderby o.IsCustom descending, o.name orderby o.Order descending
+				select o).ToArray();
 	}
 
 	public uint GetIdFromHat(HatBehaviour hat)

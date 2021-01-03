@@ -54,10 +54,13 @@ public class TutorialManager : DestroyableSingleton<TutorialManager>
 					GameData.Instance.AddPlayer(playerControl);
 					AmongUsClient.Instance.Spawn(playerControl);
 					playerControl.transform.position = DummyLocations[i].position;
+					playerControl.transform.position += new Vector3(Random.Range(-0.2f,0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
 					playerControl.GetComponent<DummyBehaviour>().enabled = true;
 					playerControl.NetTransform.enabled = false;
-					playerControl.SetName("Dummy " + (i + 1));
-					playerControl.SetColor((byte)((i < SaveManager.BodyColor) ? i : (i + 1)));
+					playerControl.SetName("Dummy " + CurrentPlayer);
+					playerControl.SetColor((byte)((CurrentPlayer < SaveManager.BodyColor) ? CurrentPlayer : (CurrentPlayer + 1)));
+                    playerControl.SetHat((uint)Random.Range(0, HatManager.Instance.AllHats.Count));
+					playerControl.SetSkin((uint)Random.Range(0, HatManager.Instance.AllSkins.Count));
 					GameData.Instance.RpcSetTasks(playerControl.PlayerId, new byte[0]);
 					CurrentPlayer++;
 				}

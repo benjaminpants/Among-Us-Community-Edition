@@ -14,7 +14,7 @@ static class CE_GameLua
         throw new NotImplementedException(); // TODO: implement this
     }
 
-    public static DeadBody bodpref;
+    public static DeadBody bodpref; //unused
 
 
 

@@ -95,7 +95,7 @@ public class CE_WardrobeManager
 		{
 			try
 			{
-				SkinData skinData = new SkinData();
+				SkinData skinData = ScriptableObject.CreateInstance<SkinData>();
 				skinData.name = item2.Name;
 				skinData.isCustom = true;
 				skinData.StoreName = item2.StoreName;
@@ -188,7 +188,7 @@ public class CE_WardrobeManager
 		{
 			try
 			{
-				HatBehaviour hatBehaviour = new HatBehaviour();
+				HatBehaviour hatBehaviour = ScriptableObject.CreateInstance<HatBehaviour>();
 				hatBehaviour.InFront = item2.HatInFront;
 				hatBehaviour.InFrontExt = item2.HatInFrontExt;
 				hatBehaviour.InFrontExt2 = item2.HatInFrontExt2;
