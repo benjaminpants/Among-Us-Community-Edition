@@ -43,12 +43,12 @@ public class HatsTab : MonoBehaviour
 			float x = XRange.Lerp((float)(i % NumPerRow) / ((float)NumPerRow - 1f));
 			float y = YStart - (float)(i / NumPerRow) * YOffset;
 			ColorChip colorChip = Object.Instantiate(ColorTabPrefab, scroller.Inner);
-			colorChip.transform.localPosition = new Vector3(x, y, -1f);
 			colorChip.Button.OnClick.AddListener(delegate
 			{
 				SelectHat(hat);
 			});
 			SetColorChipImages(colorChip, hat);
+			colorChip.transform.localPosition = new Vector3(x, y, -1f);
 			ColorChips.Add(colorChip);
 		}
 		scroller.YBounds.max = 0f - (YStart - (float)(unlockedHats.Length / NumPerRow) * YOffset) - 3f;
