@@ -17,6 +17,10 @@ public class CE_FrameSet
 	} = "CustomSkin";
 	public string StoreName { get; set; }
 	public bool HatInFront { get; set; }
+	public bool HatInFrontExt { get; set; }
+	public bool HatInFrontExt2 { get; set; }
+	public bool HatInFrontExt3 { get; set; }
+	public bool HatInFrontExt4 { get; set; }
 	public bool NoHatBobbing { get; set; }
 	public bool NoHatBobbingExt { get; set; }
 	public bool NoHatBobbingExt2 { get; set; }

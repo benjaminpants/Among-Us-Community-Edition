@@ -61,6 +61,7 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		SaveManager.EnableProHUDMode = CE_CommonUI.CreateBoolButton(SaveManager.EnableProHUDMode, "Pro HUD Mode");
 		SaveManager.EnableAnimationTestingMode = CE_CommonUI.CreateBoolButton(SaveManager.EnableAnimationTestingMode, "Sprite Debug Mode");
 		SaveManager.HideIntro = CE_CommonUI.CreateBoolButton(SaveManager.HideIntro, "Disable Extra Intros");
+		SaveManager.UseLegacyVoteIcons = CE_CommonUI.CreateBoolButton(SaveManager.UseLegacyVoteIcons, "Use Legacy Vote Icons");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
 		if (CE_CommonUI.CreateExitButton())

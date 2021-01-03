@@ -279,6 +279,16 @@ public class HudManager : DestroyableSingleton<HudManager>
 		}
 	}
 
+	public IEnumerator ForceShowIntro(List<PlayerControl> yourTeam, bool IsImpostor)
+	{
+		DestroyableSingleton<HudManager>.Instance.FullScreen.transform.localPosition = new Vector3(0f, 0f, -250f);
+		yield return DestroyableSingleton<HudManager>.Instance.ShowEmblem(shhh: true);
+		IntroCutscene introCutscene = UnityEngine.Object.Instantiate(IntroPrefab, base.transform);
+		yield return introCutscene.CoBegin(yourTeam, IsImpostor);
+		yield return CoFadeFullScreen(Color.black, Color.clear);
+		DestroyableSingleton<HudManager>.Instance.FullScreen.transform.localPosition = new Vector3(0f, 0f, -500f);
+	}
+
 	public IEnumerator CoShowIntro(List<PlayerControl> yourTeam)
 	{
 		DestroyableSingleton<HudManager>.Instance.FullScreen.transform.localPosition = new Vector3(0f, 0f, -250f);

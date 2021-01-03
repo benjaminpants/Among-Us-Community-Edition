@@ -36,6 +36,8 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 
 	private float stingerTime;
 
+	public Dictionary<int, List<SpriteRenderer>> TeamHatGroups = new Dictionary<int, List<SpriteRenderer>>();
+
 	public void Start()
 	{
 		SaveManager.LastGameStart = DateTime.MinValue;
@@ -125,7 +127,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 		for (int i = 0; i < list.Count; i++)
 		{
 			WinningPlayerData winningPlayerData2 = list[i];
-			SpriteRenderer spriteRenderer = UnityEngine.Object.Instantiate(PlayerPrefab, base.transform);
+				SpriteRenderer spriteRenderer = InstantiatePlayerPrefab(i);
 			spriteRenderer.flipX = i % 2 == 0;
 			if (winningPlayerData2.IsDead)
 			{
@@ -175,7 +177,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 				localPosition.x = 0f - localPosition.x;
 			}
 			component2.transform.localPosition = localPosition;
-			PlayerControl.SetHatImage(winningPlayerData2.HatId, component2);
+			HatBegin(ref component2, winningPlayerData2.HatId);
 		}
 	}
 
@@ -259,6 +261,66 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 				break;
 			}
 			yield return null;
+		}
+	}
+	private SpriteRenderer InstantiatePlayerPrefab(int index)
+	{
+		var prefab = UnityEngine.Object.Instantiate(PlayerPrefab, base.transform);
+		TeamHatGroups.Add(index, new List<SpriteRenderer>());
+		TeamHatGroups[index].Add(prefab.transform.Find("HatSlot").GetComponent<SpriteRenderer>());
+		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 0));
+		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 1));
+		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 2));
+		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 3));
+		return prefab;
+	}
+
+	private void Update()
+	{
+		for (int i = 0; i < TeamHatGroups.Count; i++)
+		{
+			var list = TeamHatGroups[i];
+			SpriteRenderer refrence = null;
+			for (int j = 0; j < list.Count; j++)
+			{
+				if (j != 0 && refrence)
+				{
+					CE_WardrobeManager.UpdateSpriteRenderer(TeamHatGroups[i][j], refrence);
+				}
+				else
+				{
+					refrence = TeamHatGroups[i][j];
+				}
+
+			}
+		}
+	}
+
+	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId)
+	{
+		SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
+		component2.flipX = !spriteRenderer.flipX;
+		if (spriteRenderer.flipX)
+		{
+			Vector3 localPosition = component2.transform.localPosition;
+			localPosition.x = 0f - localPosition.x;
+			component2.transform.localPosition = localPosition;
+		}
+		PlayerControl.SetHatImage(HatId, component2);
+
+		for (int i = 0; i < 4; i++)
+		{
+			int index = i + 1;
+			string childName = string.Format("ExtHatSlot{0}", index);
+			SpriteRenderer component3 = spriteRenderer.transform.Find(childName).GetComponent<SpriteRenderer>();
+			component3.flipX = !spriteRenderer.flipX;
+			if (spriteRenderer.flipX)
+			{
+				Vector3 localPosition = component3.transform.localPosition;
+				localPosition.x = 0f - localPosition.x;
+				component3.transform.localPosition = localPosition;
+			}
+			PlayerControl.SetHatImage(HatId, component3, index);
 		}
 	}
 }

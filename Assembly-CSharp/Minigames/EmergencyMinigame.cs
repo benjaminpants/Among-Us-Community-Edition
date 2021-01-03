@@ -23,6 +23,8 @@ public class EmergencyMinigame : Minigame
 
 	public const int MinEmergencyTime = 15;
 
+	private bool UseCooldown = false;
+
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
@@ -31,7 +33,7 @@ public class EmergencyMinigame : Minigame
 
 	public void Update()
 	{
-		if (ShipStatus.Instance.TimeSinceLastRound < PlayerControl.GameOptions.KillCooldown)
+		if (ShipStatus.Instance.TimeSinceLastRound < PlayerControl.GameOptions.KillCooldown && UseCooldown)
 		{
 			int num = Mathf.CeilToInt(PlayerControl.GameOptions.KillCooldown - ShipStatus.Instance.TimeSinceLastRound);
 			ButtonActive = false;

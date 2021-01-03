@@ -163,6 +163,8 @@ public static class SaveManager
 
 	private static bool enableVSync = false;
 
+	private static bool useLegacyVoteIcons = false;
+
 	public static bool AmBanned => (DateTime.UtcNow - LastGameStart).TotalMinutes < 5.0;
 
 	public static int BanMinutesLeft
@@ -570,6 +572,23 @@ public static class SaveManager
 		}
     }
 
+	public static bool UseLegacyVoteIcons
+	{
+		get
+		{
+			LoadPlayerPrefs();
+			return useLegacyVoteIcons;
+		}
+		set
+		{
+			if (useLegacyVoteIcons != value)
+			{
+				useLegacyVoteIcons = value;
+				SavePlayerPrefs();
+			}
+		}
+	}
+
 	private static void SaveSecureData2()
 	{
 		secure2.SaveData(lastStartDate.Ticks);
@@ -724,6 +743,7 @@ public static class SaveManager
 			TryGetBool(array, 19, out enableProHUDMode);
 			TryGetBool(array, 20, out hideIntro);
 			TryGetBool(array, 21, out enableVSync);
+			TryGetBool(array, 22, out useLegacyVoteIcons);
 		}
 	}
 
@@ -753,6 +773,7 @@ public static class SaveManager
 		options.Add(enableProHUDMode);
 		options.Add(hideIntro);
 		options.Add(enableVSync);
+		options.Add(useLegacyVoteIcons);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 

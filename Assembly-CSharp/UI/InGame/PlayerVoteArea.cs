@@ -44,6 +44,24 @@ public class PlayerVoteArea : MonoBehaviour
 		set;
 	}
 
+    public SpriteRenderer PlayerHat;
+
+	public SpriteRenderer PlayerHatExt;
+
+	public SpriteRenderer PlayerHatExt2;
+
+	public SpriteRenderer PlayerHatExt3;
+
+	public SpriteRenderer PlayerHatExt4;
+
+	public SpriteRenderer PlayerSkin;
+
+	public Sprite PlayerSprite;
+
+	public Sprite LegacyPlayerSprite;
+
+	public bool IconsLoaded = false;
+
 	public void SetDead(bool isMe, bool didReport, bool isDead)
 	{
 		this.isDead = isDead;
@@ -202,5 +220,113 @@ public class PlayerVoteArea : MonoBehaviour
 	public byte GetState()
 	{
 		return (byte)(((uint)(votedFor + 1) & 0xFu) | (isDead ? 128u : 0u) | (didVote ? 64u : 0u) | (didReport ? 32u : 0u));
+	}
+
+	public void Update()
+    {
+
+		if (PlayerIcon != null)
+        {
+			PlayerControl playerControl = PlayerControl.AllPlayerControls[TargetPlayerId];
+			var hatID = playerControl.Data.HatId;
+			HatBehaviour Hat = DestroyableSingleton<HatManager>.Instance.GetHatById(playerControl.Data.HatId);
+
+			if (!IconsLoaded)
+            {
+				PlayerHat = CreateNewSprite(PlayerIcon);
+				PlayerHatExt = CreateNewSprite(PlayerIcon);
+				PlayerHatExt2 = CreateNewSprite(PlayerIcon);
+				PlayerHatExt3 = CreateNewSprite(PlayerIcon);
+				PlayerHatExt4 = CreateNewSprite(PlayerIcon);
+				PlayerSkin = CreateNewSprite(PlayerIcon);
+
+
+				PlayerControl.SetHatImage(hatID, PlayerHat, 0);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt, 1);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt2, 2);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt3, 3);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt4, 4);
+				PlayerControl.SetSkinImage(playerControl.Data.SkinId, PlayerSkin);
+				IconsLoaded = true;
+			}
+
+			if (!PlayerSprite)
+            {
+				string PlayerSpritePath = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("UI"), "VotePlayerIcon.png");
+				PlayerSprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_TextureNSpriteExtensions.LoadPNG(PlayerSpritePath), new Vector2(0.5f, 0.5f));				
+			}
+
+			if (!LegacyPlayerSprite)
+			{
+				LegacyPlayerSprite = PlayerIcon.sprite;
+			}
+
+			if (SaveManager.UseLegacyVoteIcons)
+			{
+				PlayerIcon.sprite = LegacyPlayerSprite;
+			}
+			else
+            {
+				PlayerIcon.sprite = PlayerSprite;
+			}
+
+			UpdateHatLayer(PlayerHat, PlayerIcon, Hat.InFront, 1f);
+			UpdateHatLayer(PlayerHatExt, PlayerIcon, Hat.InFrontExt, 2f);
+			UpdateHatLayer(PlayerHatExt2, PlayerIcon, Hat.InFrontExt2, 3f);
+			UpdateHatLayer(PlayerHatExt3, PlayerIcon, Hat.InFrontExt3, 4f);
+			UpdateHatLayer(PlayerHatExt4, PlayerIcon, Hat.InFrontExt4, 5f);
+			UpdateSpriteLayer(PlayerSkin, PlayerIcon);
+		}
+	}
+
+	public void UpdateHatLayer(SpriteRenderer dest, SpriteRenderer source, bool inFront, float offset)
+	{
+		if (!SaveManager.UseLegacyVoteIcons)
+        {
+			dest.enabled = true;
+			dest.flipX = source.flipX;
+			dest.flipY = source.flipY;
+			dest.transform.parent = source.transform.parent;
+			dest.transform.localRotation = source.transform.localRotation;
+			dest.transform.localScale = source.transform.localScale;
+			var localPos = source.transform.localPosition;
+			localPos.y += 0.4f;
+			if (inFront) localPos.z -= offset;
+			dest.transform.localPosition = localPos;
+		}
+		else
+        {
+			dest.enabled = false;
+		}
+
+	}
+
+	public void UpdateSpriteLayer(SpriteRenderer dest, SpriteRenderer source)
+	{
+		if (!SaveManager.UseLegacyVoteIcons)
+		{
+			dest.enabled = true;
+			dest.flipX = source.flipX;
+			dest.flipY = source.flipY;
+			dest.transform.parent = source.transform.parent;
+			dest.transform.localRotation = source.transform.localRotation;
+			dest.transform.localScale = source.transform.localScale;
+			var localPos = source.transform.localPosition;
+			localPos.z -= 1f;
+			dest.transform.localPosition = localPos;
+		}
+		else
+        {
+			dest.enabled = false;
+		}
+	}
+
+	public SpriteRenderer CreateNewSprite(SpriteRenderer spriteRenderer)
+	{
+		GameObject gameObject = new GameObject();
+		SpriteRenderer newSprite = gameObject.AddComponent<SpriteRenderer>();
+		gameObject.layer = spriteRenderer.gameObject.layer;
+		newSprite.transform.SetParent(spriteRenderer.transform);
+		return newSprite;
 	}
 }

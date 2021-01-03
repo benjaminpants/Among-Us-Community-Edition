@@ -188,11 +188,11 @@ public class PlayerControl : InnerNetObject
 		{
 			myRend.enabled = value;
 			MyPhysics.Skin.Visible = value;
-			CE_WardrobeManager.SetHatRendererActive(HatRenderer, value);
-			CE_WardrobeManager.SetHatRendererActive(HatRendererExt, value);
-			CE_WardrobeManager.SetHatRendererActive(HatRendererExt2, value);
-			CE_WardrobeManager.SetHatRendererActive(HatRendererExt3, value);
-			CE_WardrobeManager.SetHatRendererActive(HatRendererExt4, value);
+			CE_WardrobeManager.SetSpriteRendererActive(HatRenderer, value);
+			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt, value);
+			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt2, value);
+			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt3, value);
+			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt4, value);
 			nameText.gameObject.SetActive(value);
 		}
 	}
@@ -216,10 +216,10 @@ public class PlayerControl : InnerNetObject
 		MyPhysics = GetComponent<PlayerPhysics>();
 		NetTransform = GetComponent<CustomNetworkTransform>();
 		Collider = GetComponent<Collider2D>();
-		HatRendererExt = CE_WardrobeManager.CreateExtraHat(this);
-		HatRendererExt2 = CE_WardrobeManager.CreateExtraHat(this);
-		HatRendererExt3 = CE_WardrobeManager.CreateExtraHat(this);
-		HatRendererExt4 = CE_WardrobeManager.CreateExtraHat(this);
+		HatRendererExt = CE_WardrobeManager.CreateExtHat(this);
+		HatRendererExt2 = CE_WardrobeManager.CreateExtHat(this);
+		HatRendererExt3 = CE_WardrobeManager.CreateExtHat(this);
+		HatRendererExt4 = CE_WardrobeManager.CreateExtHat(this);
 		AllPlayerControls.Add(this);
 	}
 
@@ -769,10 +769,10 @@ public class PlayerControl : InnerNetObject
 
 	public void Update()
     {
-		CE_WardrobeManager.UpdateMultiHat(HatRendererExt, HatRenderer);
-		CE_WardrobeManager.UpdateMultiHat(HatRendererExt2, HatRenderer);
-		CE_WardrobeManager.UpdateMultiHat(HatRendererExt3, HatRenderer);
-		CE_WardrobeManager.UpdateMultiHat(HatRendererExt4, HatRenderer);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt, HatRenderer);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt2, HatRenderer);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt3, HatRenderer);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt4, HatRenderer);
 	}
 
 	public void LateUpdate()
@@ -842,11 +842,11 @@ public class PlayerControl : InnerNetObject
 	{
 		Color white = Color.white;
 		white.a = a;
-		CE_WardrobeManager.SetExtHatAlpha(ref HatRenderer, white);
-		CE_WardrobeManager.SetExtHatAlpha(ref HatRendererExt, white);
-		CE_WardrobeManager.SetExtHatAlpha(ref HatRendererExt2, white);
-		CE_WardrobeManager.SetExtHatAlpha(ref HatRendererExt3, white);
-		CE_WardrobeManager.SetExtHatAlpha(ref HatRendererExt4, white);
+		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRenderer, white);
+		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt, white);
+		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt2, white);
+		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt3, white);
+		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt4, white);
 	}
 
 	public void SetColor(byte bodyColor)

@@ -198,6 +198,14 @@ public class CE_AnimationDebuger : MonoBehaviour
 			var animation = DestroyableSingleton<HudManager>.Instance.KillOverlay.KillAnims[3];
 			DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowOne(animation, killer, PlayerControl.LocalPlayer.Data);
 		}
+		if (GUILayout.Button("Impostor Intro"))
+		{
+			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.ForceShowIntro(PlayerControl.AllPlayerControls, true));
+		}
+		if (GUILayout.Button("Crewmate Intro"))
+		{
+			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.ForceShowIntro(PlayerControl.AllPlayerControls, false));
+		}
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
 		if (CE_CommonUI.CreateExitButton())

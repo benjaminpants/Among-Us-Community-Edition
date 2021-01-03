@@ -203,19 +203,19 @@ public class OverlayKillAnimation : MonoBehaviour
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot1") && victimSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot2") && victimSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot3") && victimSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot4") && victimSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
 			}
 		}
 		for (int i = 0; i < killerParts.Length; i++)
@@ -227,19 +227,19 @@ public class OverlayKillAnimation : MonoBehaviour
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot1") && killerSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot2") && killerSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot3") && killerSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot4") && killerSource)
 			{
-				CE_WardrobeManager.UpdateMultiHat(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
 			}
 		}
 	}
@@ -266,7 +266,7 @@ public class OverlayKillAnimation : MonoBehaviour
 			var list = victimParts.ToList();
 			for (int i = 0; i < 4; i++)
 			{
-				list.Add(CE_WardrobeManager.CreateExtraHatOverlayKill(VictimRef, i));
+				list.Add(CE_WardrobeManager.CreateExtHatCutscenes(VictimRef, i));
 			}
 			victimParts = list.ToArray();
 		}
@@ -285,7 +285,7 @@ public class OverlayKillAnimation : MonoBehaviour
 			var list = killerParts.ToList();
 			for (int i = 0; i < 4; i++)
 			{
-				list.Add(CE_WardrobeManager.CreateExtraHatOverlayKill(KillerRef, i));
+				list.Add(CE_WardrobeManager.CreateExtHatCutscenes(KillerRef, i));
 			}
 			killerParts = list.ToArray();
 		}

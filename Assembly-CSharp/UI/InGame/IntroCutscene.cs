@@ -24,6 +24,8 @@ public class IntroCutscene : MonoBehaviour
 
 	public float BaseY = -0.25f;
 
+	public Dictionary<int, List<SpriteRenderer>> TeamHatGroups = new Dictionary<int, List<SpriteRenderer>>();
+
 	public IEnumerator CoBegin(List<PlayerControl> yourTeam, bool isImpostor)
 	{
 		SoundManager.Instance.PlaySound(IntroStinger, loop: false);
@@ -130,7 +132,7 @@ public class IntroCutscene : MonoBehaviour
 			GameData.PlayerInfo data = playerControl.Data;
 			if (data != null)
 			{
-				SpriteRenderer spriteRenderer = Object.Instantiate(PlayerPrefab, base.transform);
+				SpriteRenderer spriteRenderer = InstantiatePlayerPrefab(i);
 				spriteRenderer.name = data.PlayerName + "Dummy";
 				spriteRenderer.flipX = i % 2 == 0;
 				float d = 1.5f;
@@ -147,15 +149,7 @@ public class IntroCutscene : MonoBehaviour
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, data.SkinId);
-				SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
-				component2.flipX = !spriteRenderer.flipX;
-				if (spriteRenderer.flipX)
-				{
-					Vector3 localPosition = component2.transform.localPosition;
-					localPosition.x = 0f - localPosition.x;
-					component2.transform.localPosition = localPosition;
-				}
-				PlayerControl.SetHatImage(data.HatId, component2);
+				HatBegin(ref spriteRenderer, data.HatId);
 			}
 		}
 	}
@@ -201,7 +195,7 @@ public class IntroCutscene : MonoBehaviour
 			GameData.PlayerInfo data = playerControl.Data;
 			if (data != null)
 			{
-				SpriteRenderer spriteRenderer = Object.Instantiate(PlayerPrefab, base.transform);
+				SpriteRenderer spriteRenderer = InstantiatePlayerPrefab(i);
 				spriteRenderer.flipX = i % 2 == 1;
 				float d = 1.5f;
 				int num = ((i % 2 != 0) ? 1 : (-1));
@@ -219,16 +213,69 @@ public class IntroCutscene : MonoBehaviour
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, data.SkinId);
-				SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
-				component2.flipX = !spriteRenderer.flipX;
-				if (spriteRenderer.flipX)
-				{
-					Vector3 localPosition = component2.transform.localPosition;
-					localPosition.x = 0f - localPosition.x;
-					component2.transform.localPosition = localPosition;
-				}
-				PlayerControl.SetHatImage(data.HatId, component2);
+				HatBegin(ref spriteRenderer, data.HatId);
 			}
+		}
+	}
+
+	private SpriteRenderer InstantiatePlayerPrefab(int index)
+    {
+		var prefab = Object.Instantiate(PlayerPrefab, base.transform);
+		TeamHatGroups.Add(index, new List<SpriteRenderer>());
+		TeamHatGroups[index].Add(prefab.transform.Find("HatSlot").GetComponent<SpriteRenderer>());
+		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 0));
+        TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 1));
+        TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 2));
+		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 3));		
+		return prefab;
+	}
+
+	private void Update()
+    {
+		for (int i = 0; i < TeamHatGroups.Count; i++)
+        {
+			var list = TeamHatGroups[i];
+			SpriteRenderer refrence = null;
+			for (int j = 0; j < list.Count; j++)
+            {
+				if (j != 0 && refrence)
+                {
+					CE_WardrobeManager.UpdateSpriteRenderer(TeamHatGroups[i][j], refrence); 
+				}
+				else
+                {
+					refrence = TeamHatGroups[i][j];
+				}
+
+            }
+		}
+    }
+
+	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId)
+    {
+		SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
+		component2.flipX = !spriteRenderer.flipX;
+		if (spriteRenderer.flipX)
+		{
+			Vector3 localPosition = component2.transform.localPosition;
+			localPosition.x = 0f - localPosition.x;
+			component2.transform.localPosition = localPosition;
+		}
+		PlayerControl.SetHatImage(HatId, component2);
+
+		for (int i = 0; i < 4; i++)
+        {
+			int index = i + 1;
+			string childName = string.Format("ExtHatSlot{0}", index);
+			SpriteRenderer component3 = spriteRenderer.transform.Find(childName).GetComponent<SpriteRenderer>();
+			component3.flipX = !spriteRenderer.flipX;
+			if (spriteRenderer.flipX)
+			{
+				Vector3 localPosition = component3.transform.localPosition;
+				localPosition.x = 0f - localPosition.x;
+				component3.transform.localPosition = localPosition;
+			}
+			PlayerControl.SetHatImage(HatId, component3, index);
 		}
 	}
 }

@@ -35,6 +35,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public Sprite FloorImageExt;
 
+	public Sprite PreviewImageExt;
+
 	public bool InFrontExt;
 
 	public bool NoBobbingExt;
@@ -42,6 +44,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 	public Sprite MainImageExt2;
 
 	public Sprite FloorImageExt2;
+
+	public Sprite PreviewImageExt2;
 
 	public bool InFrontExt2;
 
@@ -51,6 +55,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public Sprite FloorImageExt3;
 
+	public Sprite PreviewImageExt3;
+
 	public bool InFrontExt3;
 
 	public bool NoBobbingExt3;
@@ -58,6 +64,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 	public Sprite MainImageExt4;
 
 	public Sprite FloorImageExt4;
+
+	public Sprite PreviewImageExt4;
 
 	public bool InFrontExt4;
 

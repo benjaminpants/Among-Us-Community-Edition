@@ -1,0 +1,89 @@
+{
+  "ID": "Astrohat-Multi",
+  "Name": "Astrohat-Multi",
+  "StoreName": "Astrohat-Multi",
+  "HatInFront": true,
+  "HatInFrontExt": true,
+  "HatInFrontExt2": true,
+  "HatInFrontExt3": true,
+  "HatInFrontExt4": true,
+  "NoHatBobbing": false,
+  "NoHatBobbingExt": false,
+  "NoHatBobbingExt2": false,
+  "NoHatBobbingExt3": false,
+  "NoHatBobbingExt4": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.5
+      },
+      "Name": "Normal",
+      "SpritePath": "astrohat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.7
+      },
+      "Name": "NormalExt",
+      "SpritePath": "astrohat.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "astrohat_cry.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.7
+      },
+      "Name": "FloorExt",
+      "SpritePath": "astrohat_cry.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

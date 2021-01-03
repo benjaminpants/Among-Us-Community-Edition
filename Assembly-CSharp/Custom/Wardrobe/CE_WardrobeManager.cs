@@ -157,47 +157,6 @@ public class CE_WardrobeManager
 	#endregion
 
 	#region Custom Hat Loader
-
-	public static CE_FrameSet UpgradeClassicHat(CE_OldCustomHatDefinition OldHatFormat)
-    {
-		CE_FrameSet NewHatFormat = new CE_FrameSet();
-		NewHatFormat.Name = OldHatFormat.ID;
-		NewHatFormat.ID = OldHatFormat.ID;
-		NewHatFormat.StoreName = OldHatFormat.ID;
-		NewHatFormat.NoHatBobbing = OldHatFormat.NoBobbing;
-		NewHatFormat.UsePointFilteringGlobally = OldHatFormat.UsePointFiltering;
-		NewHatFormat.HatInFront = OldHatFormat.inFront;
-		NewHatFormat.UsePercentageBasedPivot = true;
-
-		CE_SpriteFrame NormalImg = new CE_SpriteFrame();
-		NormalImg.Name = "Normal";
-		NormalImg.Position = new CE_Point(OldHatFormat.NormalPosX, OldHatFormat.NormalPosY);
-		NormalImg.Size = new CE_Point(OldHatFormat.NormalWidth, OldHatFormat.NormalHeight);
-		NormalImg.Offset = new CE_Point(OldHatFormat.NormalPivotX, OldHatFormat.NormalPivotY);
-		NormalImg.SpritePath = OldHatFormat.NormalImg;
-		NewHatFormat.FrameList.Add(NormalImg);
-
-		CE_SpriteFrame FloorImg = new CE_SpriteFrame();
-		FloorImg.Name = "Floor";
-		FloorImg.Position = new CE_Point(OldHatFormat.FloorPosX, OldHatFormat.FloorPosY);
-		FloorImg.Size = new CE_Point(OldHatFormat.FloorWidth, OldHatFormat.FloorHeight);
-		FloorImg.Offset = new CE_Point(OldHatFormat.FloorPivotX, OldHatFormat.FloorPivotY);
-		FloorImg.SpritePath = OldHatFormat.FloorImg;
-		NewHatFormat.FrameList.Add(FloorImg);
-
-		if (OldHatFormat.PreviewImg != string.Empty && OldHatFormat.PreviewImg != null)
-        {
-			CE_SpriteFrame PreviewImg = new CE_SpriteFrame();
-			PreviewImg.Name = "Preview";
-			PreviewImg.Position = new CE_Point(OldHatFormat.PreviewPosX, OldHatFormat.PreviewPosY);
-			PreviewImg.Size = new CE_Point(OldHatFormat.PreviewWidth, OldHatFormat.PreviewHeight);
-			PreviewImg.Offset = new CE_Point(OldHatFormat.PreviewPivotX, OldHatFormat.PreviewPivotY);
-			PreviewImg.SpritePath = OldHatFormat.PreviewImg;
-			NewHatFormat.FrameList.Add(PreviewImg);
-		}
-
-		return NewHatFormat;
-	}
 	public static List<CE_FrameSet> GetHatDefinitions(FileInfo[] files)
 	{
 		List<CE_FrameSet> DefinitionsList = new List<CE_FrameSet>();
@@ -231,6 +190,10 @@ public class CE_WardrobeManager
 			{
 				HatBehaviour hatBehaviour = new HatBehaviour();
 				hatBehaviour.InFront = item2.HatInFront;
+				hatBehaviour.InFrontExt = item2.HatInFrontExt;
+				hatBehaviour.InFrontExt2 = item2.HatInFrontExt2;
+				hatBehaviour.InFrontExt3 = item2.HatInFrontExt3;
+				hatBehaviour.InFrontExt4 = item2.HatInFrontExt4;
 				hatBehaviour.ProductId = item2.ID;
 				hatBehaviour.StoreName = item2.Name;
 				hatBehaviour.RelatedSkinName = item2.RelatedSkin;
@@ -286,11 +249,17 @@ public class CE_WardrobeManager
 						case "FloorExt":
 							hatBehaviour.FloorImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
+						case "PreviewExt":
+							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
 						case "NormalExt2":
 							hatBehaviour.MainImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "FloorExt2":
 							hatBehaviour.FloorImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "PreviewExt2":
+							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "NormalExt3":
 							hatBehaviour.MainImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -298,11 +267,17 @@ public class CE_WardrobeManager
 						case "FloorExt3":
 							hatBehaviour.FloorImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
+						case "PreviewExt3":
+							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
 						case "NormalExt4":
 							hatBehaviour.MainImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "FloorExt4":
 							hatBehaviour.FloorImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							break;
+						case "PreviewExt4":
+							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 					}
 				}
@@ -590,7 +565,7 @@ public class CE_WardrobeManager
 			}
 		}
 	}
-	public static void UpdateMultiHat(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
+	public static void UpdateSpriteRenderer(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
 	{
 		ExtraHatRenderer.flipX = HatRenderer.flipX;
 		ExtraHatRenderer.flipY = HatRenderer.flipY;
@@ -599,7 +574,7 @@ public class CE_WardrobeManager
 		ExtraHatRenderer.transform.localScale = HatRenderer.transform.localScale;
 		ExtraHatRenderer.transform.localPosition = HatRenderer.transform.localPosition;
 	}
-	public static SpriteRenderer CreateExtraHatOverlayKill(SpriteRenderer _ref, int index)
+	public static SpriteRenderer CreateExtHatCutscenes(SpriteRenderer _ref, int index)
 	{
 		string realIndex = string.Format("{0}", index + 1);
 		GameObject gameObject = new GameObject("ExtHatSlot" + realIndex);
@@ -608,14 +583,22 @@ public class CE_WardrobeManager
 		HatRendererExt.transform.SetParent(_ref.transform);
 		return HatRendererExt;
 	}
-	public static SpriteRenderer CreateExtraHat(PlayerControl playerControl)
+	public static SpriteRenderer CreateExtHat(PlayerControl playerControl)
 	{	
-		GameObject gameObject = new GameObject("ExtraHatRenderer");
+		GameObject gameObject = new GameObject("ExtHatSlot");
 		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
 		HatRendererExt.transform.SetParent(playerControl.transform);
 		return HatRendererExt;
 	}
-	public static void SetHatRendererActive(SpriteRenderer HatRendererExt, bool value)
+	public static SpriteRenderer CreateExtSpriteRender(SpriteRenderer _ref, string name = "ExtHatSlot")
+    {
+		GameObject gameObject = new GameObject(name);
+		gameObject.layer = _ref.gameObject.layer;
+		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
+		HatRendererExt.transform.SetParent(_ref.transform);
+		return HatRendererExt;
+	}
+	public static void SetSpriteRendererActive(SpriteRenderer HatRendererExt, bool value)
 	{
 		HatRendererExt.enabled = value;
 	}
@@ -669,10 +652,9 @@ public class CE_WardrobeManager
 			Debug.LogError("Player: " + str + "\tHat: " + str2);
 		}
 	}
-	public static void SetExtHatAlpha(ref SpriteRenderer spriteRenderer, Color alpha)
+	public static void SetSpriteRenderAlpha(ref SpriteRenderer spriteRenderer, Color alpha)
     {
 		spriteRenderer.color = alpha;
-
 	}
 
 	#endregion

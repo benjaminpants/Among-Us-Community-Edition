@@ -63,6 +63,14 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 
 	private const float BoxHeight = -0.75f;
 
+	public SpriteRenderer HatSlotExt;
+
+	public SpriteRenderer HatSlotExt2;
+
+	public SpriteRenderer HatSlotExt3;
+
+	public SpriteRenderer HatSlotExt4;
+
 	public PurchaseStates PurchaseState
 	{
 		get;
@@ -91,6 +99,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 	{
 		TopArrow.enabled = !Scroller.AtTop;
 		BottomArrow.enabled = !Scroller.AtBottom;
+		UpdateExtHats();
 	}
 
 	public void RestorePurchases()
@@ -153,7 +162,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 			HatBehaviour hatBehaviour = (HatBehaviour)CurrentButton.Product;
 			HatSlot.gameObject.SetActive(value: true);
 			SkinSlot.gameObject.SetActive(value: false);
-			PlayerControl.SetHatImage(hatBehaviour, HatSlot);
+			SetHatImage(hatBehaviour);
 			ItemName.Text = (string.IsNullOrWhiteSpace(hatBehaviour.StoreName) ? hatBehaviour.name : hatBehaviour.StoreName);
 			if ((bool)hatBehaviour.RelatedSkin)
 			{
@@ -173,7 +182,7 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 			{
 				ItemName.Text += " (includes hat!)";
 				HatSlot.gameObject.SetActive(value: true);
-				PlayerControl.SetHatImage(skinData.RelatedHat, HatSlot);
+				SetHatImage(skinData.RelatedHat);
 			}
 		}
 		else
@@ -339,5 +348,30 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 	{
 		Debug.LogError("Failed: " + p);
 		PurchaseState = PurchaseStates.Fail;
+	}
+
+	public void UpdateExtHats()
+	{
+		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt, HatSlot);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt2, HatSlot);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt3, HatSlot);
+		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt4, HatSlot);
+	}
+
+	public void Awake()
+	{
+		HatSlotExt = CE_WardrobeManager.CreateExtSpriteRender(HatSlot);
+		HatSlotExt2 = CE_WardrobeManager.CreateExtSpriteRender(HatSlot);
+		HatSlotExt3 = CE_WardrobeManager.CreateExtSpriteRender(HatSlot);
+		HatSlotExt4 = CE_WardrobeManager.CreateExtSpriteRender(HatSlot);
+	}
+
+	public void SetHatImage(HatBehaviour hatId)
+	{
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlot, 0);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt, 1);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt2, 2);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt3, 3);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt4, 4);
 	}
 }

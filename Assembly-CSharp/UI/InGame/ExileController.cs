@@ -24,6 +24,22 @@ public class ExileController : MonoBehaviour
 
 	private GameData.PlayerInfo exiled;
 
+	public SpriteRenderer PlayerHatExt;
+
+	public SpriteRenderer PlayerHatExt2;
+
+	public SpriteRenderer PlayerHatExt3;
+
+	public SpriteRenderer PlayerHatExt4;
+
+	public void Awake()
+    {
+		PlayerHatExt = CE_WardrobeManager.CreateExtSpriteRender(PlayerHat);
+		PlayerHatExt2 = CE_WardrobeManager.CreateExtSpriteRender(PlayerHat);
+		PlayerHatExt3 = CE_WardrobeManager.CreateExtSpriteRender(PlayerHat);
+		PlayerHatExt4 = CE_WardrobeManager.CreateExtSpriteRender(PlayerHat);
+	}
+
 	public void Begin(GameData.PlayerInfo exiled, bool tie)
 	{
 		this.exiled = exiled;
@@ -56,7 +72,7 @@ public class ExileController : MonoBehaviour
 				});
 			}
 			PlayerControl.SetPlayerMaterialColors(playerById.ColorId, Player);
-			PlayerControl.SetHatImage(exiled.HatId, PlayerHat);
+			SetPlayerHat(exiled.HatId);
 			PlayerSkin.sprite = DestroyableSingleton<HatManager>.Instance.GetSkinById(playerById.SkinId).EjectFrame;
 			if (exiled.IsImpostor)
 			{
@@ -84,6 +100,15 @@ public class ExileController : MonoBehaviour
 			ImpostorText.Text = "";
 		}
 		StartCoroutine(Animate());
+	}
+
+	private void SetPlayerHat(uint hatId)
+    {
+		PlayerControl.SetHatImage(hatId, PlayerHat, 0);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt, 1);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt2, 2);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt3, 3);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt4, 4);
 	}
 
 	private IEnumerator Animate()
@@ -144,6 +169,14 @@ public class ExileController : MonoBehaviour
 		}
 		ShipStatus.Instance.TimeSinceLastRound = 0f;
 		Object.Destroy(base.gameObject);
+	}
+
+	private void Update()
+    {
+		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt, PlayerHat);
+		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt2, PlayerHat);
+		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt3, PlayerHat);
+		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt4, PlayerHat);
 	}
 
 	private void LateUpdate()
