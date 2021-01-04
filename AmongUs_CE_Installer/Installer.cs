@@ -136,10 +136,13 @@ namespace AmongUs_CE_Installer
 
             if (System.IO.Directory.Exists(SourcePath))
             {
-                foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+                foreach (string srcPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
                 {
-                    Console.WriteLine(System.IO.Path.GetFileName(newPath));
-                    await Task.Run(() => File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true));
+                    string destPath = srcPath.Replace(SourcePath, DestinationPath);
+                    string destDir = System.IO.Path.GetDirectoryName(destPath);
+                    if (!Directory.Exists(destDir)) Directory.CreateDirectory(destDir);
+                    Console.WriteLine(System.IO.Path.GetFileName(srcPath));
+                    await Task.Run(() => File.Copy(srcPath, destPath, true));
                 }
             }
 
