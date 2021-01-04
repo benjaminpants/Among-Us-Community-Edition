@@ -140,7 +140,7 @@ namespace AmongUs_CE_Installer
                 {
                     string destPath = srcPath.Replace(SourcePath, DestinationPath);
                     string destDir = System.IO.Path.GetDirectoryName(destPath);
-                    if (!Directory.Exists(destDir)) Directory.CreateDirectory(destDir);
+                    Directory.CreateDirectory(destDir);
                     Console.WriteLine(System.IO.Path.GetFileName(srcPath));
                     await Task.Run(() => File.Copy(srcPath, destPath, true));
                 }
