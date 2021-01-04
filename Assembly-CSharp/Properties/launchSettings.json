@@ -8,7 +8,7 @@
     "Publish": {
       "commandName": "Executable",
       "executablePath": "$(SolutionDir)\\Build\\PublishCE.bat",
-      "commandLineArgs": "\"$(TargetDir)\"",
+      "commandLineArgs": "$(TargetDir)",
       "workingDirectory": "$(SolutionDir)"
     },
     "Start (Multiple)": {
