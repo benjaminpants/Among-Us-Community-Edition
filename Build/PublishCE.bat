@@ -14,12 +14,14 @@ MKDIR "%SOLUTION_DIR%\Publish\Mod\Lua"
 MKDIR "%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed"
 
 :: Copy All Needed Folder
-ROBOCOPY "%SOLUTION_DIR%\Among Us_Data" "%SOLUTION_DIR%\Publish\Mod\Among Us_Data" /E /NFL /NDL /NJH /NJS /nc /ns /np
-ROBOCOPY "%SOLUTION_DIR%\Hats" "%SOLUTION_DIR%\Publish\Mod\Hats" /E /NFL /NDL /NJH /NJS /nc /ns /np
-ROBOCOPY "%SOLUTION_DIR%\Skins" "%SOLUTION_DIR%\Publish\Mod\Skins" /E /NFL /NDL /NJH /NJS /nc /ns /np
-ROBOCOPY "%SOLUTION_DIR%\Lua" "%SOLUTION_DIR%\Publish\Mod\Lua" /E /NFL /NDL /NJH /NJS /nc /ns /np
-ROBOCOPY "%SOLUTION_DIR%\AmongUs_CE_Installer\bin\Release" "%SOLUTION_DIR%\Publish" /NFL /NDL /NJH /NJS /nc /ns /np
+ROBOCOPY "%SOLUTION_DIR%\Among Us_Data" "%SOLUTION_DIR%\Publish\Mod\Among Us_Data" /E
+ROBOCOPY "%SOLUTION_DIR%\Hats" "%SOLUTION_DIR%\Publish\Mod\Hats" /E
+ROBOCOPY "%SOLUTION_DIR%\Skins" "%SOLUTION_DIR%\Publish\Mod\Skins" /E 
+ROBOCOPY "%SOLUTION_DIR%\Lua" "%SOLUTION_DIR%\Publish\Mod\Lua" /E
+ROBOCOPY "%SOLUTION_DIR%\AmongUs_CE_Installer\bin\Release" "%SOLUTION_DIR%\Publish" 
 
+
+@ECHO ON
 :: Copy All Needed Files
 COPY "%TARGET_DIR%\Assembly-CSharp.dll" 									"%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed\Assembly-CSharp.dll"
 COPY "%SOLUTION_DIR%\Build\Assemblies\System.Runtime.Serialization.dll" 	"%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed\System.Runtime.Serialization.dll"
@@ -28,6 +30,7 @@ COPY "%SOLUTION_DIR%\Build\Assemblies\System.Data.dll" 						"%SOLUTION_DIR%\Pub
 COPY "%TARGET_DIR%\Newtonsoft.Json.dll" 									"%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed\Newtonsoft.Json.dll"
 COPY "%TARGET_DIR%\MoonSharp.Interpreter.xml" 								"%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed\MoonSharp.Interpreter.xml"
 COPY "%TARGET_DIR%\MoonSharp.Interpreter.dll" 								"%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed\MoonSharp.Interpreter.dll"
+@ECHO OFF
 
 set /p DUMMY=Hit ENTER to open result, or close this window to exit...
 
