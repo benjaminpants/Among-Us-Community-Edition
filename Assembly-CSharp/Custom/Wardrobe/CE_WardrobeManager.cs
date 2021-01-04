@@ -189,20 +189,14 @@ public class CE_WardrobeManager
 			try
 			{
 				HatBehaviour hatBehaviour = ScriptableObject.CreateInstance<HatBehaviour>();
-				hatBehaviour.InFront = item2.HatInFront;
-				hatBehaviour.InFrontExt = item2.HatInFrontExt;
-				hatBehaviour.InFrontExt2 = item2.HatInFrontExt2;
-				hatBehaviour.InFrontExt3 = item2.HatInFrontExt3;
-				hatBehaviour.InFrontExt4 = item2.HatInFrontExt4;
 				hatBehaviour.ProductId = item2.ID;
 				hatBehaviour.StoreName = item2.Name;
 				hatBehaviour.RelatedSkinName = item2.RelatedSkin;
 				hatBehaviour.IsCustom = true;
-                hatBehaviour.NoBobbing = item2.NoHatBobbing;
-                hatBehaviour.NoBobbingExt = item2.NoHatBobbingExt;
-                hatBehaviour.NoBobbingExt2 = item2.NoHatBobbingExt2;
-                hatBehaviour.NoBobbingExt3 = item2.NoHatBobbingExt3;
-				hatBehaviour.NoBobbingExt4 = item2.NoHatBobbingExt4;
+				CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, item2);
+				CE_LoadHats_SetHatInFrontState(ref hatBehaviour, item2);
+				CE_LoadHats_SetColorFilterState(ref hatBehaviour, item2);
+
 
 				foreach (CE_SpriteFrame frame in item2.FrameList)
 				{
@@ -236,6 +230,9 @@ public class CE_WardrobeManager
 					{
 						case "Normal":
 							hatBehaviour.MainImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 0);
+							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 0);
+							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 0);
 							break;
 						case "Floor":
 							hatBehaviour.FloorImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -245,6 +242,9 @@ public class CE_WardrobeManager
 							break;
 						case "NormalExt":
 							hatBehaviour.MainImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 1);
+							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 1);
+							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 1);
 							break;
 						case "FloorExt":
 							hatBehaviour.FloorImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -254,6 +254,9 @@ public class CE_WardrobeManager
 							break;
 						case "NormalExt2":
 							hatBehaviour.MainImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 2);
+							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 2);
+							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 2);
 							break;
 						case "FloorExt2":
 							hatBehaviour.FloorImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -263,6 +266,9 @@ public class CE_WardrobeManager
 							break;
 						case "NormalExt3":
 							hatBehaviour.MainImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 3);
+							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 3);
+							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 3);
 							break;
 						case "FloorExt3":
 							hatBehaviour.FloorImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -272,6 +278,9 @@ public class CE_WardrobeManager
 							break;
 						case "NormalExt4":
 							hatBehaviour.MainImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 4);
+							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 4);
+							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 4);
 							break;
 						case "FloorExt4":
 							hatBehaviour.FloorImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -296,6 +305,94 @@ public class CE_WardrobeManager
 		FileInfo[] HatFiles = GetJSONFiles(Directory);
 		List<CE_FrameSet> DefinitionsList = GetHatDefinitions(HatFiles);
 		return GetHatBehaviours(DefinitionsList, Directory);
+	}
+
+	public static void CE_LoadHats_SetColorFilterState(ref HatBehaviour hatBehaviour, CE_SpriteFrame item2, int index)
+	{
+		switch (index)
+		{
+			case 0:
+				hatBehaviour.IsColorFiltered = item2.UseColorFiltering;
+				break;
+			case 1:
+				hatBehaviour.IsColorFilteredExt = item2.UseColorFiltering;
+				break;
+			case 2:
+				hatBehaviour.IsColorFilteredExt2 = item2.UseColorFiltering;
+				break;
+			case 3:
+				hatBehaviour.IsColorFilteredExt3 = item2.UseColorFiltering;
+				break;
+			case 4:
+				hatBehaviour.IsColorFilteredExt4 = item2.UseColorFiltering;
+				break;
+		}
+	}
+	public static void CE_LoadHats_SetColorFilterState(ref HatBehaviour hatBehaviour, CE_FrameSet item2)
+	{
+		hatBehaviour.IsColorFiltered = item2.UseColorFilteringGlobally;
+		hatBehaviour.IsColorFilteredExt = item2.UseColorFilteringGlobally;
+		hatBehaviour.IsColorFilteredExt2 = item2.UseColorFilteringGlobally;
+		hatBehaviour.IsColorFilteredExt3 = item2.UseColorFilteringGlobally;
+		hatBehaviour.IsColorFilteredExt4 = item2.UseColorFilteringGlobally;
+	}
+	public static void CE_LoadHats_SetHatNoBobbingState(ref HatBehaviour hatBehaviour, CE_SpriteFrame item2, int index)
+	{
+		switch (index)
+		{
+			case 0:
+				hatBehaviour.NoBobbing = item2.Hat_NoBobbing;
+				break;
+			case 1:
+				hatBehaviour.NoBobbingExt = item2.Hat_NoBobbing;
+				break;
+			case 2:
+				hatBehaviour.NoBobbingExt2 = item2.Hat_NoBobbing;
+				break;
+			case 3:
+				hatBehaviour.NoBobbingExt3 = item2.Hat_NoBobbing;
+				break;
+			case 4:
+				hatBehaviour.NoBobbingExt4 = item2.Hat_NoBobbing;
+				break;
+		}
+	}
+	public static void CE_LoadHats_SetHatNoBobbingState(ref HatBehaviour hatBehaviour, CE_FrameSet item2)
+	{
+		hatBehaviour.NoBobbing = item2.NoHatBobbing;
+		hatBehaviour.NoBobbingExt = item2.NoHatBobbing;
+		hatBehaviour.NoBobbingExt2 = item2.NoHatBobbing;
+		hatBehaviour.NoBobbingExt3 = item2.NoHatBobbing;
+		hatBehaviour.NoBobbingExt4 = item2.NoHatBobbing;
+	}
+	public static void CE_LoadHats_SetHatInFrontState(ref HatBehaviour hatBehaviour, CE_SpriteFrame item2, int index)
+	{
+		switch (index)
+		{
+			case 0:
+				hatBehaviour.InFront = item2.InFront;
+				break;
+			case 1:
+				hatBehaviour.InFrontExt = item2.InFront;
+				break;
+			case 2:
+				hatBehaviour.InFrontExt2 = item2.InFront;
+				break;
+			case 3:
+				hatBehaviour.InFrontExt3 = item2.InFront;
+				break;
+			case 4:
+				hatBehaviour.InFrontExt4 = item2.InFront;
+				break;
+		}
+	}
+	public static void CE_LoadHats_SetHatInFrontState(ref HatBehaviour hatBehaviour, CE_FrameSet item2)
+	{
+		hatBehaviour.InFront = item2.HatInFront;
+		hatBehaviour.InFrontExt = item2.HatInFront;
+		hatBehaviour.InFrontExt2 = item2.HatInFront;
+		hatBehaviour.InFrontExt3 = item2.HatInFront;
+		hatBehaviour.InFrontExt4 = item2.HatInFront;
 	}
 
 	#endregion

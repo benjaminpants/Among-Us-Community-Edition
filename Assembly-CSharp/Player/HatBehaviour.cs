@@ -21,15 +21,17 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public int Order;
 
+	public Sprite PreviewImage;
+
 	public bool NoBobbing;
 
-	public Sprite PreviewImage;
+	public bool IsColorFiltered;
 
 	public bool IsCustom;
 
 	public string RelatedSkinName;
 
-    #region Extra Hat Layers
+    #region Extra Hat Layer 1
 
     public Sprite MainImageExt;
 
@@ -41,6 +43,12 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public bool NoBobbingExt;
 
+	public bool IsColorFilteredExt;
+
+	#endregion
+
+	#region Extra Hat Layer 2
+
 	public Sprite MainImageExt2;
 
 	public Sprite FloorImageExt2;
@@ -50,6 +58,12 @@ public class HatBehaviour : ScriptableObject, IBuyable
 	public bool InFrontExt2;
 
 	public bool NoBobbingExt2;
+
+	public bool IsColorFilteredExt2;
+
+	#endregion
+
+	#region Extra Hat Layer 3
 
 	public Sprite MainImageExt3;
 
@@ -61,6 +75,12 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public bool NoBobbingExt3;
 
+	public bool IsColorFilteredExt3;
+
+	#endregion
+
+	#region Extra Hat Layer 4
+
 	public Sprite MainImageExt4;
 
 	public Sprite FloorImageExt4;
@@ -71,7 +91,9 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public bool NoBobbingExt4;
 
-    #endregion
+	public bool IsColorFilteredExt4;
 
-    public string ProdId => ProductId;
+	#endregion
+
+	public string ProdId => ProductId;
 }

@@ -222,6 +222,10 @@ namespace AmongUsCE_AnimationEditor
 
                 CenterXNUD.Value = AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Offset.x;
                 CenterYNUD.Value = AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Offset.y;
+
+                NoHatBobbingFrameCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Hat_NoBobbing;
+                HatInFrontFrameCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].InFront;
+                UseColorFilteringCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].UseColorFiltering;
             }
 
             if (AnimationModel.Instance.isAnimationLoaded)
@@ -233,8 +237,9 @@ namespace AmongUsCE_AnimationEditor
                 PointFilteringGloballyCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.UsePointFilteringGlobally;
                 UsePercentageBasedPivotCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.UsePercentageBasedPivot;
 
-                NoHatBobbingCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.NoHatBobbing;
-                HatInFrontCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.HatInFront;
+                NoHatBobbingCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.NoHatBobbingGlobally;
+                HatInFrontCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.HatInFrontGlobally;
+                UseColorFilteringGloballyCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.UseColorFilteringGlobally;
 
                 RelatedHatTextBox.Text = AnimationModel.Instance.CurrentAnimation.RelatedHat;
                 RelatedSkinTextBox.Text = AnimationModel.Instance.CurrentAnimation.RelatedSkin;
@@ -263,6 +268,10 @@ namespace AmongUsCE_AnimationEditor
                 AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].SpritePath = FileTextBox.Text;
                 AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Name = NameTextBox.Text;
                 AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].UsePointFiltering = PointFilteringCheckbox.IsChecked.GetValueOrDefault(false);
+
+                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].Hat_NoBobbing = NoHatBobbingFrameCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].InFront = HatInFrontFrameCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.FrameList[SelectedIndex].UseColorFiltering = UseColorFilteringCheckbox.IsChecked.GetValueOrDefault(false);
             }
 
             if (AnimationModel.Instance.isAnimationLoaded)
@@ -274,8 +283,9 @@ namespace AmongUsCE_AnimationEditor
                 AnimationModel.Instance.CurrentAnimation.UsePointFilteringGlobally = PointFilteringGloballyCheckbox.IsChecked.GetValueOrDefault(false);
                 AnimationModel.Instance.CurrentAnimation.UsePercentageBasedPivot = UsePercentageBasedPivotCheckbox.IsChecked.GetValueOrDefault(false);
 
-                AnimationModel.Instance.CurrentAnimation.NoHatBobbing = NoHatBobbingCheckbox.IsChecked.GetValueOrDefault(false);
-                AnimationModel.Instance.CurrentAnimation.HatInFront = HatInFrontCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.NoHatBobbingGlobally = NoHatBobbingCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.HatInFrontGlobally = HatInFrontCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.UseColorFilteringGlobally = UseColorFilteringGloballyCheckbox.IsChecked.GetValueOrDefault(false);
 
                 AnimationModel.Instance.CurrentAnimation.RelatedHat = RelatedHatTextBox.Text;
                 AnimationModel.Instance.CurrentAnimation.RelatedSkin = RelatedSkinTextBox.Text;
@@ -545,6 +555,38 @@ namespace AmongUsCE_AnimationEditor
             {
                 var guid = Guid.NewGuid().ToString();
                 IDTextBox.Text = guid;
+                UpdateUI();
+            }
+        }
+
+        private void HatInFrontFrameCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (AllowUpdate && AnimationModel.Instance.isAnimationLoaded && AnimationModel.Instance.isValidSelection)
+            {
+                UpdateUI();
+            }
+        }
+
+        private void NoHatBobbingFrameCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (AllowUpdate && AnimationModel.Instance.isAnimationLoaded && AnimationModel.Instance.isValidSelection)
+            {
+                UpdateUI();
+            }
+        }
+
+        private void UseColorFilteringCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (AllowUpdate && AnimationModel.Instance.isAnimationLoaded)
+            {
+                UpdateUI();
+            }
+        }
+
+        private void UseColorFilteringGloballyCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (AllowUpdate && AnimationModel.Instance.isAnimationLoaded)
+            {
                 UpdateUI();
             }
         }

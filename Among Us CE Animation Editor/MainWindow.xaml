@@ -79,170 +79,171 @@
             <ScrollViewer Grid.Column="3" Grid.RowSpan="4" Margin="0">
                 <StackPanel>
                     <Expander IsExpanded="True" Margin="5,0" Header="Frame Properties:" Foreground="{DynamicResource NormalText}">
-                        <StackPanel>
-                            <Grid Margin="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="X:"></TextBlock>
-                                <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="PosXNUD"  Grid.Row="1" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
-                                <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Y:" Grid.Column="2"></TextBlock>
-                                <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="PosYNUD"  Grid.Row="1" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
-                            </Grid>
-                            <Grid Margin="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Width:"></TextBlock>
-                                <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="1" IsManipulationEnabled="True" HorizontalAlignment="Stretch" Width="Auto"  Name="WidthNUD" ValueChanged="NUD_ValueChanged" Mouse.MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
-                                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0"  HorizontalAlignment="Left" Text="Height:" Grid.Column="2"></TextBlock>
-                                <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto"  Name="HeightNUD" Grid.Row="1" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
-                            </Grid>
-                            <Grid Margin="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition SharedSizeGroup="A"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Center X:"></TextBlock>
-                                <wpfTool:SingleUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="CenterXNUD"  Grid.Row="0" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Maximum="256" Minimum="-256" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:SingleUpDown>
-                                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0"  HorizontalAlignment="Left" Text="Center Y:" Grid.Column="2"></TextBlock>
-                                <wpfTool:SingleUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="CenterYNUD"  Grid.Row="0" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Maximum="256" Minimum="-256" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:SingleUpDown>
-
-                            </Grid>
-                            <StackPanel Margin="1">
-                                <Grid>
+                        <Border BorderThickness="1" Padding="5" BorderBrush="{DynamicResource NormalText}">
+                            <StackPanel>
+                                <Grid Margin="1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"></ColumnDefinition>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Name:" Grid.Column="0"></TextBlock>
-                                    <TextBox Name="NameTextBox" Grid.Column="1" Height="20" TextChanged="FrameTextBox_TextChanged"></TextBox>
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="X:"></TextBlock>
+                                    <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="PosXNUD"  Grid.Row="1" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
+                                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Y:" Grid.Column="2"></TextBlock>
+                                    <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="PosYNUD"  Grid.Row="1" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
+                                </Grid>
+                                <Grid Margin="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Width:"></TextBlock>
+                                    <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="1" IsManipulationEnabled="True" HorizontalAlignment="Stretch" Width="Auto"  Name="WidthNUD" ValueChanged="NUD_ValueChanged" Mouse.MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
+                                    <TextBlock VerticalAlignment="Center" Margin="5,0,0,0"  HorizontalAlignment="Left" Text="Height:" Grid.Column="2"></TextBlock>
+                                    <wpfTool:IntegerUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto"  Name="HeightNUD" Grid.Row="1" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:IntegerUpDown>
+                                </Grid>
+                                <Grid Margin="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="A"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Center X:"></TextBlock>
+                                    <wpfTool:SingleUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="CenterXNUD"  Grid.Row="0" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Maximum="256" Minimum="-256" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:SingleUpDown>
+                                    <TextBlock VerticalAlignment="Center" Margin="5,0,0,0"  HorizontalAlignment="Left" Text="Center Y:" Grid.Column="2"></TextBlock>
+                                    <wpfTool:SingleUpDown BorderBrush="{DynamicResource ButtonBorder}" Background="{DynamicResource TextBoxBackground}" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="CenterYNUD"  Grid.Row="0" ValueChanged="NUD_ValueChanged" MouseWheel="NUD_MouseWheel" Maximum="256" Minimum="-256" Keyboard.KeyDown="NUD_KeyDown" Keyboard.KeyUp="NUD_KeyDown"></wpfTool:SingleUpDown>
+
+                                </Grid>
+                                <StackPanel Margin="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Name:" Grid.Column="0"></TextBlock>
+                                        <TextBox Name="NameTextBox" Grid.Column="1" Height="20" TextChanged="FrameTextBox_TextChanged"></TextBox>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"></ColumnDefinition>
+                                            <ColumnDefinition></ColumnDefinition>
+                                            <ColumnDefinition Width="20"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="File:" Grid.Column="0"></TextBlock>
+                                        <TextBox Name="FileTextBox" Height="20" TextChanged="FrameTextBox_TextChanged" Grid.Column="1"></TextBox>
+                                        <Button x:Name="FileSpriteSelectButton" Click="FileSpriteSelectButton_Click" Margin="0,3,0,3" Content="..." Grid.Column="2">
+                                            <Button.ContextMenu>
+                                                <ContextMenu Style="{DynamicResource DefaultContextMenuStyle}" Name="SpriteSheetFileList"></ContextMenu>
+                                            </Button.ContextMenu>
+                                        </Button>
+                                    </Grid>
+                                </StackPanel>
+                                <CheckBox Content="Use Point Filtering" x:Name="PointFilteringCheckbox" Click="PointFilteringCheckbox_Click"></CheckBox>
+                                <GroupBox Header="Out of Bound Distances">
+                                    <StackPanel>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Left:"></TextBlock>
+                                            <TextBlock Text="0" Foreground="White" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="DiffLeft" Grid.Row="1"></TextBlock>
+                                            <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Top:" Grid.Column="2"></TextBlock>
+                                            <TextBlock Text="0" Foreground="White" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="DiffTop" Grid.Row="1"></TextBlock>
+                                        </Grid>
+                                        <Grid Margin="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Right:"></TextBlock>
+                                            <TextBlock Text="0" Foreground="White" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="DiffRight" Grid.Row="1"></TextBlock>
+                                            <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Bottom:" Grid.Column="2"></TextBlock>
+                                            <TextBlock Text="0"  Foreground="White" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="DiffBottom" Grid.Row="1"></TextBlock>
+                                        </Grid>
+                                    </StackPanel>
+                                </GroupBox>
+                                <Expander Header="Hat/Skin Modifiers:" Margin="5,0" Foreground="{DynamicResource NormalText}">
+                                    <StackPanel>
+                                        <CheckBox Content="In Front" x:Name="HatInFrontFrameCheckbox" Click="HatInFrontFrameCheckbox_Click"></CheckBox>
+                                        <CheckBox Content="No Hat Bobbing" x:Name="NoHatBobbingFrameCheckbox" Click="NoHatBobbingFrameCheckbox_Click"></CheckBox>
+                                        <CheckBox Content="Use Color Filtering" x:Name="UseColorFilteringCheckbox" Click="UseColorFilteringCheckbox_Click"></CheckBox>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+                        </Border>
+                    </Expander>
+                    <Expander Header="Global Properties" IsExpanded="True" Margin="5,0" Foreground="{DynamicResource NormalText}">
+                        <Border BorderThickness="1" Padding="5" BorderBrush="{DynamicResource NormalText}">
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Set Name:" Grid.Column="0"></TextBlock>
+                                    <TextBox Name="SetNameTextBox" Grid.Column="1" Height="20" TextChanged="SetNameTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
                                 </Grid>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"></ColumnDefinition>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
                                         <ColumnDefinition Width="20"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="File:" Grid.Column="0"></TextBlock>
-                                    <TextBox Name="FileTextBox" Height="20" TextChanged="FrameTextBox_TextChanged" Grid.Column="1"></TextBox>
-                                    <Button x:Name="FileSpriteSelectButton" Click="FileSpriteSelectButton_Click" Margin="0,3,0,3" Content="..." Grid.Column="2">
-                                        <Button.ContextMenu>
-                                            <ContextMenu Style="{DynamicResource DefaultContextMenuStyle}" Name="SpriteSheetFileList"></ContextMenu>
-                                        </Button.ContextMenu>
-                                    </Button>
+                                    <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="ID:" Grid.Column="0"></TextBlock>
+                                    <TextBox Name="IDTextBox" Grid.Column="1" Height="20" TextChanged="IDTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
+                                    <Button x:Name="IDGeneratorButton" Click="IDGeneratorButton_Click" Margin="0,0,0,3" Content="..." Grid.Column="2"></Button>
                                 </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Store Name:" Grid.Column="0"></TextBlock>
+                                    <TextBox Name="StoreNameTextBox" Grid.Column="1" Height="20" TextChanged="StoreNameTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
+                                </Grid>
+                                <CheckBox Content="Use Point Filtering (Globally)" x:Name="PointFilteringGloballyCheckbox" Click="PointFilteringGloballyCheckbox_Click"></CheckBox>
+                                <CheckBox Content="Use Percentage Based Pivot" x:Name="UsePercentageBasedPivotCheckbox" Click="UsePercentageBasedPivotCheckbox_Click"></CheckBox>
+                                <Expander Header="Hat/Skin Modifiers:" Margin="5,0" Foreground="{DynamicResource NormalText}">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Related Skin:" Grid.Column="0"></TextBlock>
+                                            <TextBox Name="RelatedSkinTextBox" Grid.Column="1" Height="20" TextChanged="RelatedSkinTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70"></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Related Hat:" Grid.Column="0"></TextBlock>
+                                            <TextBox Name="RelatedHatTextBox" Grid.Column="1" Height="20" TextChanged="RelatedHatTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
+                                        </Grid>
+                                        <CheckBox Content="In Front (Globally)" x:Name="HatInFrontCheckbox" Click="HatInFrontCheckbox_Click"></CheckBox>
+                                        <CheckBox Content="No Hat Bobbing (Globally)" x:Name="NoHatBobbingCheckbox" Click="NoHatBobbingCheckbox_Click"></CheckBox>
+                                        <CheckBox Content="Use Color Filtering (Globally)" x:Name="UseColorFilteringGloballyCheckbox" Click="UseColorFilteringGloballyCheckbox_Click"></CheckBox>
+                                    </StackPanel>
+                                </Expander>
                             </StackPanel>
-                            <CheckBox Content="Use Point Filtering" x:Name="PointFilteringCheckbox" Click="PointFilteringCheckbox_Click"></CheckBox>
-                            <GroupBox Header="Out of Bound Distances">
-                                <StackPanel>
-                                    <Grid Margin="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Left:"></TextBlock>
-                                        <TextBlock Text="0" Foreground="White" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="DiffLeft" Grid.Row="1"></TextBlock>
-                                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Top:" Grid.Column="2"></TextBlock>
-                                        <TextBlock Text="0" Foreground="White" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="DiffTop" Grid.Row="1"></TextBlock>
-                                    </Grid>
-                                    <Grid Margin="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Right:"></TextBlock>
-                                        <TextBlock Text="0" Foreground="White" Grid.Column="1" HorizontalAlignment="Stretch" Width="Auto" Name="DiffRight" Grid.Row="1"></TextBlock>
-                                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Bottom:" Grid.Column="2"></TextBlock>
-                                        <TextBlock Text="0"  Foreground="White" Grid.Column="3" HorizontalAlignment="Stretch" Width="Auto" Name="DiffBottom" Grid.Row="1"></TextBlock>
-                                    </Grid>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                    </Expander>
-                    <Expander Header="File Properties" IsExpanded="True" Margin="5,0" Foreground="{DynamicResource NormalText}">
-                        <StackPanel>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Set Name:" Grid.Column="0"></TextBlock>
-                                <TextBox Name="SetNameTextBox" Grid.Column="1" Height="20" TextChanged="SetNameTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="20"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="ID:" Grid.Column="0"></TextBlock>
-                                <TextBox Name="IDTextBox" Grid.Column="1" Height="20" TextChanged="IDTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
-                                <Button x:Name="IDGeneratorButton" Click="IDGeneratorButton_Click" Margin="0,0,0,3" Content="..." Grid.Column="2"></Button>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Store Name:" Grid.Column="0"></TextBlock>
-                                <TextBox Name="StoreNameTextBox" Grid.Column="1" Height="20" TextChanged="StoreNameTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
-                            </Grid>
-                            <CheckBox Content="Use Point Filtering (Globally)" x:Name="PointFilteringGloballyCheckbox" Click="PointFilteringGloballyCheckbox_Click"></CheckBox>
-                            <CheckBox Content="Use Percentage Based Pivot" x:Name="UsePercentageBasedPivotCheckbox" Click="UsePercentageBasedPivotCheckbox_Click"></CheckBox>
-                        </StackPanel>
-                    </Expander>
-                    <Expander Header="Special Properties" Margin="5,0" Foreground="{DynamicResource NormalText}">
-                        <StackPanel>
-                            <GroupBox Header="Hat Properties" Margin="5,0" Foreground="{DynamicResource NormalText}">
-                                <StackPanel>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Related Skin:" Grid.Column="0"></TextBlock>
-                                        <TextBox Name="RelatedSkinTextBox" Grid.Column="1" Height="20" TextChanged="RelatedSkinTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
-                                    </Grid>
-                                    <CheckBox Content="In Front" x:Name="HatInFrontCheckbox" Click="HatInFrontCheckbox_Click"></CheckBox>
-                                    <CheckBox Content="No Bobbing" x:Name="NoHatBobbingCheckbox" Click="NoHatBobbingCheckbox_Click"></CheckBox>
-
-
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Header="Skin Properties" Margin="5,0" Foreground="{DynamicResource NormalText}">
-                                <StackPanel>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70"></ColumnDefinition>
-                                            <ColumnDefinition></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock VerticalAlignment="Center" Padding="0,0,5,0" HorizontalAlignment="Left" Text="Related Hat:" Grid.Column="0"></TextBlock>
-                                        <TextBox Name="RelatedHatTextBox" Grid.Column="1" Height="20" TextChanged="RelatedHatTextBox_TextChanged" Margin="0,0,0,3"></TextBox>
-                                    </Grid>
-
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
+                        </Border>
                     </Expander>
                 </StackPanel>
             </ScrollViewer>

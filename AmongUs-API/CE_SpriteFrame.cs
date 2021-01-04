@@ -12,7 +12,10 @@ public class CE_SpriteFrame
 	public CE_Point Offset { get; set; }
 	public string Name { get; set; } = string.Empty;
 	public string SpritePath { get; set; }
+	public bool Hat_NoBobbing { get; set; }
+	public bool InFront { get; set; }
 	public bool UsePointFiltering { get; set; }
+	public bool UseColorFiltering { get; set; }
 	public CE_SpriteFrame()
 	{
 		Position = CE_Point.Zero;
