@@ -160,24 +160,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, winningPlayerData2.SkinId);
 			}
-			SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
-			Vector3 localPosition = component2.transform.localPosition;
-			if (winningPlayerData2.IsDead)
-			{
-				component2.flipX = spriteRenderer.flipX;
-				component2.color = new Color(1f, 1f, 1f, 0.5f);
-				localPosition.y = 0.725f;
-			}
-			else
-			{
-				component2.flipX = !spriteRenderer.flipX;
-			}
-			if (spriteRenderer.flipX)
-			{
-				localPosition.x = 0f - localPosition.x;
-			}
-			component2.transform.localPosition = localPosition;
-			HatBegin(ref spriteRenderer, winningPlayerData2.HatId);
+			HatBegin(ref spriteRenderer, winningPlayerData2.HatId, winningPlayerData2);
 		}
 	}
 
@@ -274,7 +257,6 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 		TeamHatGroups[index].Add(CE_WardrobeManager.CreateExtHatCutscenes(prefab, 3));
 		return prefab;
 	}
-
 	private void Update()
 	{
 		for (int i = 0; i < TeamHatGroups.Count; i++)
@@ -295,33 +277,52 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			}
 		}
 	}
-
-	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId)
+	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId, WinningPlayerData winningPlayerData2)
 	{
 		try
 		{
+			
 			SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
-			component2.flipX = !spriteRenderer.flipX;
+			Vector3 localPosition = component2.transform.localPosition;
+			if (winningPlayerData2.IsDead)
+			{
+				component2.flipX = spriteRenderer.flipX;
+				component2.color = new Color(1f, 1f, 1f, 0.5f);
+				localPosition.y = 0.725f;
+			}
+			else
+			{
+				component2.flipX = !spriteRenderer.flipX;
+			}
 			if (spriteRenderer.flipX)
 			{
-				Vector3 localPosition = component2.transform.localPosition;
 				localPosition.x = 0f - localPosition.x;
-				component2.transform.localPosition = localPosition;
 			}
+			component2.transform.localPosition = localPosition;
 			PlayerControl.SetHatImage(HatId, component2);
+			
 
 			for (int i = 0; i < 4; i++)
 			{
 				int index = i + 1;
 				string childName = string.Format("ExtHatSlot{0}", index);
 				SpriteRenderer component3 = spriteRenderer.transform.Find(childName).GetComponent<SpriteRenderer>();
-				component3.flipX = !spriteRenderer.flipX;
+				Vector3 localPosition2 = component3.transform.localPosition;
+				if (winningPlayerData2.IsDead)
+				{
+					component3.flipX = spriteRenderer.flipX;
+					component3.color = new Color(1f, 1f, 1f, 0.5f);
+					localPosition2.y = 0.725f;
+				}
+				else
+				{
+					component3.flipX = !spriteRenderer.flipX;
+				}
 				if (spriteRenderer.flipX)
 				{
-					Vector3 localPosition = component3.transform.localPosition;
-					localPosition.x = 0f - localPosition.x;
-					component3.transform.localPosition = localPosition;
+					localPosition2.x = 0f - localPosition2.x;
 				}
+				component3.transform.localPosition = localPosition2;
 				PlayerControl.SetHatImage(HatId, component3, index);
 			}
 		}

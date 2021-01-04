@@ -786,7 +786,7 @@ public class ShipStatus : InnerNetObject
 		return false;
 	}
 
-    private static void RpcEndGame(GameOverReason endReason, bool showAd)
+    public static void RpcEndGame(GameOverReason endReason, bool showAd)
     {
         MessageWriter messageWriter = AmongUsClient.Instance.StartEndGame();
         messageWriter.Write((byte)endReason);

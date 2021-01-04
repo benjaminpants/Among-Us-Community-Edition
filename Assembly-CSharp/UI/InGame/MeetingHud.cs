@@ -574,12 +574,24 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		}
 	}
 
+
+	private void CE_UpdateButtons()
+	{
+		for (int i = 0; i < playerStates.Length; i++)
+		{
+			PlayerVoteArea playerVoteArea = playerStates[i];
+			UpdateIcons(playerVoteArea);
+			playerVoteArea.Update();
+		}
+	}
+
 	private void UpdateButtons()
 	{
 		if (PlayerControl.LocalPlayer.Data.IsDead && !amDead)
 		{
 			SetForegroundForDead();
 		}
+		CE_UpdateButtons();
 		if (!AmongUsClient.Instance.AmHost)
 		{
 			return;
@@ -588,7 +600,6 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		{			
 			GameData.PlayerInfo playerInfo = GameData.Instance.AllPlayers[i];
 			PlayerVoteArea playerVoteArea = playerStates[i];
-			UpdateIcons(playerVoteArea);
 			bool flag = playerInfo.Disconnected || playerInfo.IsDead;
 			if (flag != playerVoteArea.isDead)
 			{

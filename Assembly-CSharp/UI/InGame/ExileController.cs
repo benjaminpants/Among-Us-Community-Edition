@@ -32,6 +32,8 @@ public class ExileController : MonoBehaviour
 
 	public SpriteRenderer PlayerHatExt4;
 
+	public bool IsDebugging = false;
+
 	public void Awake()
     {
 		PlayerHatExt = CE_WardrobeManager.CreateExtSpriteRender(PlayerHat);
@@ -147,7 +149,7 @@ public class ExileController : MonoBehaviour
 		if (exiled != null)
 		{
 			PlayerControl @object = exiled.Object;
-			if (@object != null)
+			if (@object != null && !IsDebugging)
 			{
 				@object.Exiled();
 			}
@@ -168,6 +170,7 @@ public class ExileController : MonoBehaviour
 			CE_LuaLoader.GetGamemodeResult("OnExileSkip");
 		}
 		ShipStatus.Instance.TimeSinceLastRound = 0f;
+		IsDebugging = false;
 		Object.Destroy(base.gameObject);
 	}
 

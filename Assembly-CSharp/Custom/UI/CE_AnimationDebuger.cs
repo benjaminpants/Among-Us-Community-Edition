@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 public class CE_AnimationDebuger : MonoBehaviour
 {
@@ -147,6 +148,9 @@ public class CE_AnimationDebuger : MonoBehaviour
 		{
 			CE_WardrobeManager.SaveCurrentSkin();
 		}
+		GUILayout.Space(15);
+
+		PlayerControl.LocalPlayer.Data.IsDead = CE_CommonUI.CreateBoolButton(PlayerControl.LocalPlayer.Data.IsDead, "Is Player Dead");
 
 
 		GUILayout.Space(15);
@@ -198,13 +202,21 @@ public class CE_AnimationDebuger : MonoBehaviour
 			var animation = DestroyableSingleton<HudManager>.Instance.KillOverlay.KillAnims[3];
 			DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowOne(animation, killer, PlayerControl.LocalPlayer.Data);
 		}
-		if (GUILayout.Button("Impostor Intro"))
+		if (GUILayout.Button("Impostor Intro Cutscene"))
 		{
 			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.ForceShowIntro(PlayerControl.AllPlayerControls, true));
 		}
-		if (GUILayout.Button("Crewmate Intro"))
+		if (GUILayout.Button("Crewmate Intro Cutscene"))
 		{
 			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.ForceShowIntro(PlayerControl.AllPlayerControls, false));
+		}
+		if (GUILayout.Button("Exile Cutscene"))
+		{
+			CoExileControllerTest();
+		}
+		if (GUILayout.Button("Victory Cutscene"))
+		{
+			ShipStatus.RpcEndGame(GameOverReason.HumansByTask, false);
 		}
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
@@ -215,6 +227,28 @@ public class CE_AnimationDebuger : MonoBehaviour
 		GUI.color = Color.black;
 		GUI.backgroundColor = Color.black;
 		GUI.contentColor = Color.white;
+	}
+
+
+	private void CoExileControllerTest()
+    {
+		var resources = UnityEngine.Resources.FindObjectsOfTypeAll(typeof(ExileController));
+		if (resources != null)
+		{
+			foreach (var item in resources)
+			{
+				if (item.name == "ExileCutscene")
+				{
+					DestroyableSingleton<HudManager>.Instance.CoFadeFullScreen(Color.clear, Color.black, 1f);
+					ExileController exileController = GameObject.Instantiate<ExileController>(item as ExileController);
+					exileController.transform.SetParent(DestroyableSingleton<HudManager>.Instance.transform, worldPositionStays: false);
+					exileController.transform.localPosition = new Vector3(0f, 0f, -60f);
+					exileController.IsDebugging = true;
+					exileController.Begin(PlayerControl.LocalPlayer.Data, false);
+					PlayerControl.LocalPlayer.Data.IsDead = false;
+				}
+			}
+		}
 	}
 
 	public void Update()

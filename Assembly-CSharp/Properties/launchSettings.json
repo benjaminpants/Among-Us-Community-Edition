@@ -10,6 +10,11 @@
       "executablePath": "$(SolutionDir)\\Build\\PublishCE.bat",
       "commandLineArgs": "$(TargetDir)",
       "workingDirectory": "$(SolutionDir)"
+    },
+    "Start (Multiple)": {
+      "commandName": "Executable",
+      "executablePath": "$(SolutionDir)\\Build\\MultiLaunchCE.bat",
+      "commandLineArgs": "$(SolutionDir)"
     }
   }
 }

@@ -21,4 +21,10 @@ GOTO VERIFY
 
 :LAUNCH_PROGRAM
 @ECHO "%DEST%\%EXE_NAME%"
+set /P loopcount=Number of Instances:
+:START_PROGRAM_LOOP
 START "" "%DEST%\%EXE_NAME%"
+set /a loopcount=loopcount-1
+if %loopcount%==0 goto EXIT_START_PROGRAM_LOOP
+goto START_PROGRAM_LOOP
+:EXIT_START_PROGRAM_LOOP
