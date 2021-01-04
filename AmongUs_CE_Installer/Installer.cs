@@ -189,7 +189,6 @@ namespace AmongUs_CE_Installer
             "and is immiedetly discarded as soon as the download is finished.";
             string Title = "Why do I need to Input my Steam information?";
             MessageBox.Show(Message, Title);
-            ConsoleInput.ShowDialog(Message);
         }
 
         private void Installer_FormClosing(object sender, FormClosingEventArgs e)

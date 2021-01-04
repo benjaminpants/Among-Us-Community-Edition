@@ -372,6 +372,9 @@ public class GameOptionsData : IBytesSerializable
 		CanSeeGhosts = 0;
 		BodyDecayTime = 1;
 		BodyEffect = 0;
+		MapScaleX = 1f;
+		MapScaleY = 1f;
+		MapRot = 0;
 		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
 			CE_GamemodeInfo value = gamemodeInfo.Value;
