@@ -91,28 +91,10 @@ namespace AmongUs_CE_Installer
                     InstallButton.Invoke((MethodInvoker)(() =>
                     {
                         InstallButton.Enabled = true;
-                        InstallButton.Text = "Install";
+                        InstallButton.Text = "Close";
                     }));
 
-                    SplitContainer.Invoke((MethodInvoker)(() =>
-                    {
-                        SplitContainer.Panel1Collapsed = false;
-                    }));
-
-                    SplitContainer2.Invoke((MethodInvoker)(() =>
-                    {
-                        SplitContainer2.Panel1Collapsed = false;
-                    }));
-
-                    InstallMethodGroup.Invoke((MethodInvoker)(() =>
-                    {
-                        InstallMethodGroup.Enabled = true;
-                    }));
-
-                    SteamInputGroup.Invoke((MethodInvoker)(() =>
-                    {
-                        SteamInputGroup.Enabled = true;
-                    }));
+                    AlreadyRun = true;
                     return;
                 }
             }
@@ -189,7 +171,6 @@ namespace AmongUs_CE_Installer
             "and is immiedetly discarded as soon as the download is finished.";
             string Title = "Why do I need to Input my Steam information?";
             MessageBox.Show(Message, Title);
-            ConsoleInput.ShowDialog(Message);
         }
 
         private void Installer_FormClosing(object sender, FormClosingEventArgs e)
