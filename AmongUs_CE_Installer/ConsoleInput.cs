@@ -13,6 +13,10 @@ namespace AmongUs_CE_Installer
     {
         public static string ShowDialog(string promptText = null, string value = null)
         {
+            return Microsoft.VisualBasic.Interaction.InputBox(promptText, " ", value);
+
+            /*
+            //Legacy Input Dialog
             Form form = new Form();
             Label label = new Label();
             TextBox textBox = new TextBox();
@@ -50,6 +54,7 @@ namespace AmongUs_CE_Installer
 
             DialogResult dialogResult = form.ShowDialog();
             return textBox.Text;
+            */
         }
     }
 }

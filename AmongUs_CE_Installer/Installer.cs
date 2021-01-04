@@ -14,6 +14,9 @@ namespace AmongUs_CE_Installer
     public partial class Installer : Form
     {
         private bool AlreadyRun = false;
+
+        private bool UpgradeMode = false;
+
         public const string ArgumentsString = "-app 945360 -depot 945361 -manifest 2146956919302566155 -user {0} -password \"{1}\" -dir \"{2}\"";
         public Installer()
         {
@@ -24,7 +27,8 @@ namespace AmongUs_CE_Installer
 
         private void InstallButton_Click(object sender, EventArgs e)
         {
-            UpdateSavedPrefrences();
+            SplitContainer.Panel1Collapsed = true;
+            SplitContainer2.Panel1Collapsed = true;
             if (!AlreadyRun) Task.Run(Install);
             else Close();
         }
@@ -32,12 +36,11 @@ namespace AmongUs_CE_Installer
         private void UpdateSavedPrefrences()
         {
             UpdateCollapsePanel();
-            Properties.Settings.Default.Save();
         }
 
         private void UpdateCollapsePanel(bool Startup = false)
         {
-            if (Properties.Settings.Default.UpgradeMode)
+            if (UpgradeMode)
             {
                 SplitContainer2.Panel1Collapsed = true;
                 if (Startup) UpgradeOption.Checked = true;
@@ -62,7 +65,7 @@ namespace AmongUs_CE_Installer
             string InstallLocation = InstallLocationBox.Text;
             var ResultingString = string.Format(ArgumentsString, Username, Password, InstallLocation);  
             var Arguments = Extensions.CommandLineToArgs(ResultingString);
-            bool UpgradeOnly = Properties.Settings.Default.UpgradeMode;
+            bool UpgradeOnly = UpgradeMode;
 
             InstallButton.Invoke((MethodInvoker)(() =>
             {
@@ -89,6 +92,16 @@ namespace AmongUs_CE_Installer
                     {
                         InstallButton.Enabled = true;
                         InstallButton.Text = "Install";
+                    }));
+
+                    SplitContainer.Invoke((MethodInvoker)(() =>
+                    {
+                        SplitContainer.Panel1Collapsed = false;
+                    }));
+
+                    SplitContainer2.Invoke((MethodInvoker)(() =>
+                    {
+                        SplitContainer2.Panel1Collapsed = false;
                     }));
 
                     InstallMethodGroup.Invoke((MethodInvoker)(() =>
@@ -158,14 +171,30 @@ namespace AmongUs_CE_Installer
 
         private void UpgradeOption_CheckedChanged(object sender, EventArgs e)
         {
-            if (UpgradeOption.Checked) Properties.Settings.Default.UpgradeMode = true;
+            if (UpgradeOption.Checked) UpgradeMode = true;
             UpdateSavedPrefrences();
         }
 
         private void InstallOption_CheckedChanged(object sender, EventArgs e)
         {
-            if (InstallOption.Checked) Properties.Settings.Default.UpgradeMode = false;
+            if (InstallOption.Checked) UpgradeMode = false;
             UpdateSavedPrefrences();
+        }
+
+        private void WhyMySteamInfoLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string Message = "Among Us: CE runs on an older version of Among Us, which is only accessable on Steam." +
+            "The only legal way to download this old version is through the official Steam API, which requires a username and password." +
+            "Rest assured that CE and its installer does not store this information anywhere" +
+            "and is immiedetly discarded as soon as the download is finished.";
+            string Title = "Why do I need to Input my Steam information?";
+            MessageBox.Show(Message, Title);
+            ConsoleInput.ShowDialog(Message);
+        }
+
+        private void Installer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(Environment.ExitCode);
         }
     }
 }

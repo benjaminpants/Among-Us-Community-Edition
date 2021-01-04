@@ -43,9 +43,11 @@ namespace AmongUs_CE_Installer
             this.UpgradeOption = new System.Windows.Forms.RadioButton();
             this.UsernameBox = new System.Windows.Forms.TextBox();
             this.SteamInputGroup = new System.Windows.Forms.GroupBox();
+            this.WhyMySteamInfoLink = new System.Windows.Forms.LinkLabel();
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.SplitContainer2 = new System.Windows.Forms.SplitContainer();
             this.PictureBox = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.InstallMethodGroup.SuspendLayout();
             this.SteamInputGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
@@ -113,9 +115,9 @@ namespace AmongUs_CE_Installer
             // 
             // InstallButton
             // 
-            this.InstallButton.Location = new System.Drawing.Point(12, 446);
+            this.InstallButton.Location = new System.Drawing.Point(12, 443);
             this.InstallButton.Name = "InstallButton";
-            this.InstallButton.Size = new System.Drawing.Size(700, 23);
+            this.InstallButton.Size = new System.Drawing.Size(467, 44);
             this.InstallButton.TabIndex = 7;
             this.InstallButton.Text = "Install";
             this.InstallButton.UseVisualStyleBackColor = true;
@@ -176,15 +178,14 @@ namespace AmongUs_CE_Installer
             // 
             // UsernameBox
             // 
-            this.UsernameBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AmongUs_CE_Installer.Properties.Settings.Default, "LastUsername", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.UsernameBox.Location = new System.Drawing.Point(6, 39);
             this.UsernameBox.Name = "UsernameBox";
             this.UsernameBox.Size = new System.Drawing.Size(455, 20);
             this.UsernameBox.TabIndex = 0;
-            this.UsernameBox.Text = global::AmongUs_CE_Installer.Properties.Settings.Default.LastUsername;
             // 
             // SteamInputGroup
             // 
+            this.SteamInputGroup.Controls.Add(this.WhyMySteamInfoLink);
             this.SteamInputGroup.Controls.Add(this.label1);
             this.SteamInputGroup.Controls.Add(this.UsernameBox);
             this.SteamInputGroup.Controls.Add(this.PasswordBox);
@@ -196,6 +197,17 @@ namespace AmongUs_CE_Installer
             this.SteamInputGroup.TabIndex = 14;
             this.SteamInputGroup.TabStop = false;
             this.SteamInputGroup.Text = "Steam Login:";
+            // 
+            // WhyMySteamInfoLink
+            // 
+            this.WhyMySteamInfoLink.AutoSize = true;
+            this.WhyMySteamInfoLink.Location = new System.Drawing.Point(236, 23);
+            this.WhyMySteamInfoLink.Name = "WhyMySteamInfoLink";
+            this.WhyMySteamInfoLink.Size = new System.Drawing.Size(225, 13);
+            this.WhyMySteamInfoLink.TabIndex = 13;
+            this.WhyMySteamInfoLink.TabStop = true;
+            this.WhyMySteamInfoLink.Text = "Why do I need to Input my Steam information?";
+            this.WhyMySteamInfoLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WhyMySteamInfoLink_LinkClicked);
             // 
             // SplitContainer
             // 
@@ -238,18 +250,29 @@ namespace AmongUs_CE_Installer
             // PictureBox
             // 
             this.PictureBox.BackgroundImage = global::AmongUs_CE_Installer.Properties.Resources.Banner;
-            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PictureBox.Location = new System.Drawing.Point(485, 10);
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Size = new System.Drawing.Size(227, 430);
             this.PictureBox.TabIndex = 12;
             this.PictureBox.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(485, 443);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(227, 44);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Installer By: \r\nCarJem Generations\r\nMissingTextureMan101 © 2021\r\n";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Installer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 481);
+            this.ClientSize = new System.Drawing.Size(717, 496);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.SplitContainer);
             this.Controls.Add(this.InstallButton);
@@ -257,6 +280,7 @@ namespace AmongUs_CE_Installer
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Installer";
             this.Text = "Among Us C.E. Installer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Installer_FormClosing);
             this.Load += new System.EventHandler(this.Installer_Load);
             this.InstallMethodGroup.ResumeLayout(false);
             this.InstallMethodGroup.PerformLayout();
@@ -293,6 +317,8 @@ namespace AmongUs_CE_Installer
         private System.Windows.Forms.PictureBox PictureBox;
         private System.Windows.Forms.SplitContainer SplitContainer2;
         private System.Windows.Forms.MaskedTextBox PasswordBox;
+        private System.Windows.Forms.LinkLabel WhyMySteamInfoLink;
+        private System.Windows.Forms.Label label4;
     }
 }
 
