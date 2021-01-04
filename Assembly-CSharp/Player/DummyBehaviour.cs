@@ -30,6 +30,10 @@ public class DummyBehaviour : MonoBehaviour
 		}
 		else
 		{
+			if (!myPlayer.MyPhysics.IsWalking())
+			{
+				myPlayer.MyPhysics.WalkPlayerTo(new Vector2(transform.position.x + Random.Range(-0.2f, 0.2f), transform.position.y + Random.Range(-0.2f, 0.2f)));
+			}
 			voted = false;
 		}
 	}

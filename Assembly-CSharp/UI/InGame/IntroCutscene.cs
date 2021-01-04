@@ -253,29 +253,36 @@ public class IntroCutscene : MonoBehaviour
 
 	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId)
     {
-		SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
-		component2.flipX = !spriteRenderer.flipX;
-		if (spriteRenderer.flipX)
+		try
 		{
-			Vector3 localPosition = component2.transform.localPosition;
-			localPosition.x = 0f - localPosition.x;
-			component2.transform.localPosition = localPosition;
-		}
-		PlayerControl.SetHatImage(HatId, component2);
-
-		for (int i = 0; i < 4; i++)
-        {
-			int index = i + 1;
-			string childName = string.Format("ExtHatSlot{0}", index);
-			SpriteRenderer component3 = spriteRenderer.transform.Find(childName).GetComponent<SpriteRenderer>();
-			component3.flipX = !spriteRenderer.flipX;
+			SpriteRenderer component2 = spriteRenderer.transform.Find("HatSlot").GetComponent<SpriteRenderer>();
+			component2.flipX = !spriteRenderer.flipX;
 			if (spriteRenderer.flipX)
 			{
-				Vector3 localPosition = component3.transform.localPosition;
+				Vector3 localPosition = component2.transform.localPosition;
 				localPosition.x = 0f - localPosition.x;
-				component3.transform.localPosition = localPosition;
+				component2.transform.localPosition = localPosition;
 			}
-			PlayerControl.SetHatImage(HatId, component3, index);
+			PlayerControl.SetHatImage(HatId, component2);
+
+			for (int i = 0; i < 4; i++)
+			{
+				int index = i + 1;
+				string childName = string.Format("ExtHatSlot{0}", index);
+				SpriteRenderer component3 = spriteRenderer.transform.Find(childName).GetComponent<SpriteRenderer>();
+				component3.flipX = !spriteRenderer.flipX;
+				if (spriteRenderer.flipX)
+				{
+					Vector3 localPosition = component3.transform.localPosition;
+					localPosition.x = 0f - localPosition.x;
+					component3.transform.localPosition = localPosition;
+				}
+				PlayerControl.SetHatImage(HatId, component3, index);
+			}
 		}
+		catch(System.Exception E)
+        {
+			Debug.LogError(E.Message);
+        }
 	}
 }

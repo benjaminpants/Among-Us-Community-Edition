@@ -10,7 +10,22 @@ public class DeadBody : MonoBehaviour
 
 	public Collider2D myCollider;
 
+	public SpriteRenderer rend;
+
+	public float colmul;
+	public float coldec;
 	public Vector2 TruePosition => base.transform.position + (Vector3)myCollider.offset;
+
+	public void Start()
+    {
+        rend = transform.gameObject.GetComponent<SpriteRenderer>();
+		coldec = 10000f * GameOptionsData.BodyDecayMul[PlayerControl.GameOptions.BodyDecayTime];
+		if (PlayerControl.GameOptions.BodyEffect == 2)
+        {
+            transform.gameObject.GetComponent<SpriteRenderer>().material.SetColor("_BackColor", Color.black);
+			transform.gameObject.GetComponent<SpriteRenderer>().material.SetColor("_BodyColor", Color.black);
+		}
+	}
 
 	public void OnClick()
 	{
@@ -18,11 +33,21 @@ public class DeadBody : MonoBehaviour
 		{
 			Reported = true;
 			GameData.PlayerInfo target = PlayerControl.LocalPlayer.Data;
-			if (PlayerControl.GameOptions.Gamemode != 1)
+			if (PlayerControl.GameOptions.Gamemode != 1 && PlayerControl.GameOptions.BodyEffect != 1 && PlayerControl.GameOptions.BodyEffect != 2)
 			{
 				target = GameData.Instance.GetPlayerById(ParentId);
 			}
 			PlayerControl.LocalPlayer.CmdReportDeadBody(target);
+		}
+	}
+
+	public void Update()
+    {
+		if (PlayerControl.GameOptions.BodyEffect == 1)
+		{
+			colmul += Time.deltaTime / coldec;
+			transform.gameObject.GetComponent<SpriteRenderer>().material.SetColor("_BackColor", Color.Lerp(rend.material.GetColor("_BackColor"), Palette.Brown, colmul));
+			transform.gameObject.GetComponent<SpriteRenderer>().material.SetColor("_BodyColor", Color.Lerp(rend.material.GetColor("_BodyColor"), Palette.Brown, colmul));
 		}
 	}
 }

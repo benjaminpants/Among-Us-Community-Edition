@@ -115,13 +115,18 @@ public class CE_GameSettingsUI : MonoBehaviour
             }
 
         }
-		if (CE_CommonUI.CreateCollapsable("Misc Modifiers", 5, true))
-		{
-			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
-			{
-				gameOptions.CanSeeGhosts = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.CanSeeGhosts, GameOptionsData.CanSeeGhostsStrings, 0, 3, "Ghost Visibility", GlobalReadOnly);
+        if (CE_CommonUI.CreateCollapsable("Misc Modifiers", 5, true))
+        {
+            using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+            {
+                gameOptions.CanSeeGhosts = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.CanSeeGhosts, GameOptionsData.CanSeeGhostsStrings, 0, 3, "Ghost Visibility", GlobalReadOnly);
+				gameOptions.BodyEffect = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.BodyEffect, GameOptionsData.BodySett, 0, 2, "Body Effect", GlobalReadOnly);
+				if (gameOptions.BodyEffect == 1)
+				{
+					gameOptions.BodyDecayTime = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.BodyDecayTime, GameOptionsData.BodyDecayTimes, 0, 2, "Body Decay Time", GlobalReadOnly);
+				}
 			}
-		}
+        }
 		GUILayout.EndScrollView();
 		if (CE_CommonUI.CreateExitButton(true))
 		{

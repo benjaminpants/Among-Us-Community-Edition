@@ -56,7 +56,13 @@ public class GameOptionsData : IBytesSerializable
 
 	public static readonly int[] MinPlayers;
 
-	public static readonly string[] TaskBarUpStrings;
+    public static readonly string[] TaskBarUpStrings;
+
+    public static readonly string[] BodySett;
+
+    public static readonly string[] BodyDecayTimes;
+
+	public static readonly float[] BodyDecayMul;
 
 	public static readonly string[] CanSeeGhostsStrings;
 
@@ -93,6 +99,10 @@ public class GameOptionsData : IBytesSerializable
 	public float MapScaleX;
 
 	public float MapScaleY;
+
+	public byte BodyEffect;
+
+	public byte BodyDecayTime;
 
 	public void ToggleMapFilter(byte newId)
 	{
@@ -141,6 +151,8 @@ public class GameOptionsData : IBytesSerializable
 		TaskBarUpdates = 0;
         GhostsDoTasks = true;
 		CanSeeGhosts = 0;
+		BodyEffect = 0;
+		BodyDecayTime = 1;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -176,6 +188,8 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(TaskBarUpdates);
 		writer.Write(GhostsDoTasks);
 		writer.Write(CanSeeGhosts);
+		writer.Write(BodyEffect);
+		writer.Write(BodyDecayTime);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -213,7 +227,9 @@ public class GameOptionsData : IBytesSerializable
 				MapRot = reader.ReadInt32(),
 				TaskBarUpdates = reader.ReadByte(),
 				GhostsDoTasks = reader.ReadBoolean(),
-				CanSeeGhosts = reader.ReadByte()
+				CanSeeGhosts = reader.ReadByte(),
+				BodyEffect = reader.ReadByte(),
+				BodyDecayTime = reader.ReadByte()
 			};
 		}
 		catch
@@ -300,7 +316,12 @@ public class GameOptionsData : IBytesSerializable
         stringBuilder.AppendLine("Map Rotation: " + MapRot);
         stringBuilder.AppendLine("Taskbar Updates: " + TaskBarUpStrings[TaskBarUpdates]);
         stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
-		stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
+        stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
+        stringBuilder.AppendLine("Body Effect: " + BodySett[BodyEffect]);
+		if (BodyEffect == 1)
+		{
+			stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
+		}
 		return stringBuilder.ToString();
 	}
 
@@ -349,6 +370,8 @@ public class GameOptionsData : IBytesSerializable
 		Gamemode = 0;
 		TaskBarUpdates = 0;
 		CanSeeGhosts = 0;
+		BodyDecayTime = 1;
+		BodyEffect = 0;
 		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
 			CE_GamemodeInfo value = gamemodeInfo.Value;
@@ -381,6 +404,27 @@ public class GameOptionsData : IBytesSerializable
 			"Long",
 			"XL",
 			"∞"
+		};
+
+        BodySett = new string[]
+        {
+            "Vanilla",
+            "Decay",
+            "Anon"
+        };
+
+        BodyDecayTimes = new string[]
+        {
+            "Short",
+            "Medium",
+            "Long"
+        };
+
+		BodyDecayMul = new float[]
+		{
+			0.5f,
+			1f,
+			1.5f
 		};
 
 		TaskBarUpStrings = new string[]
