@@ -171,6 +171,13 @@ public class CE_DevTool : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.F12))
 		{
+			if ((bool)AmongUsClient.Instance)
+            {
+				if (AmongUsClient.Instance.GameMode == GameModes.OnlineGame)
+                {
+					return;
+                }
+            }
 			if (IsShown)
 			{
 				IsShown = false;
