@@ -48,6 +48,7 @@ namespace AmongUs_CE_Installer
             this.SplitContainer2 = new System.Windows.Forms.SplitContainer();
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.CleanFilesCheckbox = new System.Windows.Forms.CheckBox();
             this.InstallMethodGroup.SuspendLayout();
             this.SteamInputGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
@@ -132,7 +133,7 @@ namespace AmongUs_CE_Installer
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.LogBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.LogBox.Size = new System.Drawing.Size(467, 242);
+            this.LogBox.Size = new System.Drawing.Size(467, 222);
             this.LogBox.TabIndex = 9;
             this.LogBox.Text = "";
             // 
@@ -149,6 +150,7 @@ namespace AmongUs_CE_Installer
             // 
             // InstallMethodGroup
             // 
+            this.InstallMethodGroup.Controls.Add(this.CleanFilesCheckbox);
             this.InstallMethodGroup.Controls.Add(this.InstallOption);
             this.InstallMethodGroup.Controls.Add(this.UpgradeOption);
             this.InstallMethodGroup.Controls.Add(this.InstallLocationButton);
@@ -157,10 +159,10 @@ namespace AmongUs_CE_Installer
             this.InstallMethodGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InstallMethodGroup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.InstallMethodGroup.Location = new System.Drawing.Point(0, 0);
-            this.InstallMethodGroup.MaximumSize = new System.Drawing.Size(467, 71);
-            this.InstallMethodGroup.MinimumSize = new System.Drawing.Size(467, 71);
+            this.InstallMethodGroup.MaximumSize = new System.Drawing.Size(467, 100);
+            this.InstallMethodGroup.MinimumSize = new System.Drawing.Size(467, 100);
             this.InstallMethodGroup.Name = "InstallMethodGroup";
-            this.InstallMethodGroup.Size = new System.Drawing.Size(467, 71);
+            this.InstallMethodGroup.Size = new System.Drawing.Size(467, 100);
             this.InstallMethodGroup.TabIndex = 13;
             this.InstallMethodGroup.TabStop = false;
             this.InstallMethodGroup.Text = "Install Options:";
@@ -193,7 +195,7 @@ namespace AmongUs_CE_Installer
             this.SteamInputGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SteamInputGroup.Location = new System.Drawing.Point(0, 0);
             this.SteamInputGroup.Name = "SteamInputGroup";
-            this.SteamInputGroup.Size = new System.Drawing.Size(467, 110);
+            this.SteamInputGroup.Size = new System.Drawing.Size(467, 100);
             this.SteamInputGroup.TabIndex = 14;
             this.SteamInputGroup.TabStop = false;
             this.SteamInputGroup.Text = "Steam Login:";
@@ -225,7 +227,7 @@ namespace AmongUs_CE_Installer
             this.SplitContainer.Panel2.Controls.Add(this.SplitContainer2);
             this.SplitContainer.Panel2MinSize = 120;
             this.SplitContainer.Size = new System.Drawing.Size(467, 430);
-            this.SplitContainer.SplitterDistance = 70;
+            this.SplitContainer.SplitterDistance = 100;
             this.SplitContainer.TabIndex = 11;
             // 
             // SplitContainer2
@@ -243,8 +245,8 @@ namespace AmongUs_CE_Installer
             // SplitContainer2.Panel2
             // 
             this.SplitContainer2.Panel2.Controls.Add(this.LogBox);
-            this.SplitContainer2.Size = new System.Drawing.Size(467, 356);
-            this.SplitContainer2.SplitterDistance = 110;
+            this.SplitContainer2.Size = new System.Drawing.Size(467, 326);
+            this.SplitContainer2.SplitterDistance = 100;
             this.SplitContainer2.TabIndex = 4;
             // 
             // PictureBox
@@ -266,6 +268,17 @@ namespace AmongUs_CE_Installer
             this.label4.TabIndex = 13;
             this.label4.Text = "Installer By: \r\nCarJem Generations\r\nMissingTextureMan101 © 2021\r\n";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CleanFilesCheckbox
+            // 
+            this.CleanFilesCheckbox.AutoSize = true;
+            this.CleanFilesCheckbox.Location = new System.Drawing.Point(352, 64);
+            this.CleanFilesCheckbox.Name = "CleanFilesCheckbox";
+            this.CleanFilesCheckbox.Size = new System.Drawing.Size(109, 30);
+            this.CleanFilesCheckbox.TabIndex = 13;
+            this.CleanFilesCheckbox.Text = "Remove Old Files\r\n(Recommended)\r\n";
+            this.CleanFilesCheckbox.UseVisualStyleBackColor = true;
+            this.CleanFilesCheckbox.CheckedChanged += new System.EventHandler(this.CleanFilesCheckbox_CheckedChanged);
             // 
             // Installer
             // 
@@ -319,6 +332,7 @@ namespace AmongUs_CE_Installer
         private System.Windows.Forms.MaskedTextBox PasswordBox;
         private System.Windows.Forms.LinkLabel WhyMySteamInfoLink;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox CleanFilesCheckbox;
     }
 }
 

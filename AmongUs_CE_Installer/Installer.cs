@@ -17,6 +17,8 @@ namespace AmongUs_CE_Installer
 
         private bool UpgradeMode = false;
 
+        private bool RemoveOldFiles = true;
+
         public const string ArgumentsString = "-app 945360 -depot 945361 -manifest 2146956919302566155 -user {0} -password \"{1}\" -dir \"{2}\"";
         public Installer()
         {
@@ -27,10 +29,19 @@ namespace AmongUs_CE_Installer
 
         private void InstallButton_Click(object sender, EventArgs e)
         {
-            SplitContainer.Panel1Collapsed = true;
-            SplitContainer2.Panel1Collapsed = true;
-            if (!AlreadyRun) Task.Run(Install);
-            else Close();
+            if (!AlreadyRun)
+            {
+                if (RemoveOldFiles && !WarnOfFileRemoval()) return;
+
+                SplitContainer.Panel1Collapsed = true;
+                SplitContainer2.Panel1Collapsed = true;
+
+                Task.Run(Install);
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private void UpdateSavedPrefrences()
@@ -55,6 +66,7 @@ namespace AmongUs_CE_Installer
         private void GetDefaultValues()
         {
             InstallLocationBox.Text = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "Among Us CE");
+            CleanFilesCheckbox.Checked = RemoveOldFiles;
             UpdateCollapsePanel(true);
         }
 
@@ -66,6 +78,7 @@ namespace AmongUs_CE_Installer
             var ResultingString = string.Format(ArgumentsString, Username, Password, InstallLocation);  
             var Arguments = Extensions.CommandLineToArgs(ResultingString);
             bool UpgradeOnly = UpgradeMode;
+            bool DeleteOldFiles = RemoveOldFiles;
 
             InstallButton.Invoke((MethodInvoker)(() =>
             {
@@ -98,7 +111,7 @@ namespace AmongUs_CE_Installer
                     return;
                 }
             }
-            await MoveModFilesAsync(InstallLocation);
+            await MoveModFilesAsync(InstallLocation, DeleteOldFiles);
 
             Console.WriteLine("Finished Installing!");
 
@@ -124,8 +137,31 @@ namespace AmongUs_CE_Installer
             }
         }
 
-        private static async Task<int> MoveModFilesAsync(string InstallDirectory)
+        private static async Task<int> DeleteOldModFiles(string InstallDirectory)
         {
+            Console.WriteLine("Removing Old Mod Files...");
+
+            string SkinsFolder = Path.Combine(InstallDirectory, "Skins");
+            string LuaFolder = Path.Combine(InstallDirectory, "Lua");
+            string HatsFolder = Path.Combine(InstallDirectory, "Hats");
+            string AssetsFolder = Path.Combine(InstallDirectory, "Among Us_Data", "CE_Assets");
+
+            string[] FoldersToRemove = new string[] { SkinsFolder, LuaFolder, HatsFolder, AssetsFolder };
+
+            foreach (string FolderToRemove in FoldersToRemove)
+            {
+                if (System.IO.Directory.Exists(FolderToRemove))
+                {
+                    await Task.Run(() => Directory.Delete(FolderToRemove, true));
+                }
+            }
+            return 1;
+        }
+
+        private static async Task<int> MoveModFilesAsync(string InstallDirectory, bool ClearOldFiles)
+        {
+            if (ClearOldFiles) await DeleteOldModFiles(InstallDirectory);
+
             Console.WriteLine("Moving Mod Files...");
 
             string InstallerDirectory = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
@@ -176,9 +212,26 @@ namespace AmongUs_CE_Installer
             MessageBox.Show(Message, Title);
         }
 
+        private bool WarnOfFileRemoval()
+        {
+            string title = "HEADS UP!";
+            string message = "Are you sure you want to remove files from the install destination directory?\r\n" +
+            "This will reduce the likely hood of hat, skin, and role desync.\r\n\r\n" +
+            "WARNING: THIS WILL DELETE ALL CUSTOM GAMEMODES, HATS, AND SKINS!\r\n" +
+            "PLEASE BACK THEM UP IF YOU DECIDE TO CLEAR OLD DATA";
+            var Result = MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            return (Result == DialogResult.Yes);
+        }
+
         private void Installer_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(Environment.ExitCode);
+        }
+
+        private void CleanFilesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CleanFilesCheckbox.Checked) RemoveOldFiles = true;
+            else RemoveOldFiles = false;
         }
     }
 }
