@@ -1,6 +1,7 @@
 using System.Collections;
 using Hazel;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerVoteArea : MonoBehaviour
 {
@@ -224,10 +225,10 @@ public class PlayerVoteArea : MonoBehaviour
 
 	public void Update()
     {
-
 		if (PlayerIcon != null)
         {
-			PlayerControl playerControl = PlayerControl.AllPlayerControls[TargetPlayerId];
+			PlayerControl playerControl = PlayerControl.AllPlayerControls.FirstOrDefault((PlayerControl p) => p.PlayerId == TargetPlayerId);
+			if (playerControl == null) return;
 			var hatID = playerControl.Data.HatId;
 			HatBehaviour Hat = DestroyableSingleton<HatManager>.Instance.GetHatById(playerControl.Data.HatId);
 
