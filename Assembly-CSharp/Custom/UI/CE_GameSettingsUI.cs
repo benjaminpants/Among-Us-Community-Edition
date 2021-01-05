@@ -10,6 +10,24 @@ public class CE_GameSettingsUI : MonoBehaviour
 
 	public static bool IsShown;
 
+	private static GameOptionsData gameOptions;
+
+	private static bool ReadOnly
+	{
+		get
+        {
+			return !AmongUsClient.Instance.AmHost || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
+		}
+	}
+
+	private static bool ReadOnly_Freeplay
+    {
+		get
+        {
+			return !AmongUsClient.Instance.AmHost;
+		}
+    }
+
 	private void OnEnable()
 	{
 		if (instance == null)
@@ -26,7 +44,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 	{
 		if (IsShown)
 		{
-			GUILayout.Window(-5, CE_CommonUI.GameSettingsRect(), CustomSettingsMenu, "", CE_CommonUI.WindowStyle(true));
+			CE_CommonUI.WindowHoverBounds = GUILayout.Window(-5, CE_CommonUI.GameSettingsRect(), CustomSettingsMenu, "", CE_CommonUI.WindowStyle_GS());
 		}
 	}
 
@@ -45,100 +63,136 @@ public class CE_GameSettingsUI : MonoBehaviour
 		GameSettingsColor = new Color(0.631f, 0.749f, 0.639f);
 	}
 
-	private void CustomSettingsMenu(int windowID)
-	{
-		bool FreeplayAllowed = !AmongUsClient.Instance.AmHost;
-		bool GlobalReadOnly = !AmongUsClient.Instance.AmHost || AmongUsClient.Instance.GameMode == GameModes.FreePlay;
-		GameOptionsData gameOptions = PlayerControl.GameOptions;
-		CE_UIHelpers.LoadCommonAssets();
+	private void CE_ListedItems()
+    {
+		CE_GeneralModifiersDropdown();
+		CE_MeetingsDropdown();
+		CE_TasksDropdown();
+		CE_VentControlsDropdown();
+		CE_MapControlsDropdown();
+		CE_MiscControlsDropdown();
+	}
+
+	private void CE_CoreItems()
+    {
 		bool isDefaults = gameOptions.isDefaults;
-		gameOptions.isDefaults = CE_CommonUI.CreateBoolButtonG(gameOptions.isDefaults, "Recommended Settings (Classic Only)", GlobalReadOnly);
-		if (!isDefaults && gameOptions.isDefaults && !GlobalReadOnly)
+		gameOptions.isDefaults = CE_CommonUI.CreateBoolButton_GS(gameOptions.isDefaults, "Recommended Settings\n(for Classic)", ReadOnly);
+		if (!isDefaults && gameOptions.isDefaults && !ReadOnly)
 		{
 			gameOptions.SetRecommendations(GameData.Instance.PlayerCount, AmongUsClient.Instance.GameMode);
 		}
-		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
-		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.MapId, GameOptionsData.MapNames, 0, 1, "Map", GlobalReadOnly);
-		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 25, "Gamemode", GlobalReadOnly);
-		if (CE_CommonUI.CreateCollapsable("General Modifiers", 0, true))
+		scrollPosition = CE_CommonUI.CE_BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
+		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 1, "Map", ReadOnly);
+		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 25, "Gamemode", ReadOnly);
+		CE_ListedItems();
+		CE_CommonUI.CE_EndScrollView();
+		if (CE_CommonUI.CreateExitButton_GS()) IsShown = false;
+	}
+
+	private void CE_GeneralModifiersDropdown()
+    {
+		if (CE_CommonUI.CreateCollapsable_GS("General Modifiers", 0))
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
-				gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, GlobalReadOnly);
-				gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePickerG(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, FreeplayAllowed);
-				gameOptions.KillCooldown = CE_CommonUI.CreateValuePickerG(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, GlobalReadOnly);
-				gameOptions.KillDistance = CE_CommonUI.CreateStringPickerG(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", GlobalReadOnly);
-				gameOptions.CrewLightMod = CE_CommonUI.CreateValuePickerG(gameOptions.CrewLightMod, 0.25f, 0f, 5f, "Crewmate Vision", "x", decmialView: true, GlobalReadOnly);
-				gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePickerG(gameOptions.ImpostorLightMod, 0.25f, 0f, 5f, "Impostor Vision", "x", decmialView: true, GlobalReadOnly);
-				gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages", GlobalReadOnly);
+				gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, ReadOnly);
+				gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, ReadOnly_Freeplay);
+				gameOptions.KillCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, ReadOnly);
+				gameOptions.KillDistance = CE_CommonUI.CreateStringPicker_GS(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", ReadOnly);
+				gameOptions.CrewLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.CrewLightMod, 0.25f, 0f, 5f, "Crewmate Vision", "x", decmialView: true, ReadOnly);
+				gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.ImpostorLightMod, 0.25f, 0f, 5f, "Impostor Vision", "x", decmialView: true, ReadOnly);
+				gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages", ReadOnly);
 			}
 		}
-		if (CE_CommonUI.CreateCollapsable("Meetings", 1, true))
+	}
+
+	private void CE_MeetingsDropdown()
+	{
+		if (CE_CommonUI.CreateCollapsable_GS("Meetings", 1))
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
-				gameOptions.DiscussionTime = (int)CE_CommonUI.CreateValuePickerG(gameOptions.DiscussionTime, 5f, 0f, 300f, "Discussion Time", "s", false, GlobalReadOnly);
-				gameOptions.VotingTime = (int)CE_CommonUI.CreateValuePickerG(gameOptions.VotingTime, 5f, 0f, 300f, "Voting Time", "s", false, GlobalReadOnly);
-				gameOptions.NumEmergencyMeetings = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumEmergencyMeetings, 1f, 0f, float.MaxValue, "# Emergency Meetings", "", false, GlobalReadOnly);
-				gameOptions.AnonVotes = CE_CommonUI.CreateBoolButtonG(gameOptions.AnonVotes, "Anonymous Votes", GlobalReadOnly);
-				gameOptions.ConfirmEject = CE_CommonUI.CreateBoolButtonG(gameOptions.ConfirmEject, "Confirm Ejects", GlobalReadOnly);
+				gameOptions.DiscussionTime = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.DiscussionTime, 5f, 0f, 300f, "Discussion Time", "s", false, ReadOnly);
+				gameOptions.VotingTime = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.VotingTime, 5f, 0f, 300f, "Voting Time", "s", false, ReadOnly);
+				gameOptions.NumEmergencyMeetings = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumEmergencyMeetings, 1f, 0f, float.MaxValue, "# Emergency Meetings", "", false, ReadOnly);
+				gameOptions.AnonVotes = CE_CommonUI.CreateBoolButton_GS(gameOptions.AnonVotes, "Anonymous Votes", ReadOnly);
+				gameOptions.ConfirmEject = CE_CommonUI.CreateBoolButton_GS(gameOptions.ConfirmEject, "Confirm Ejects", ReadOnly);
 			}
 		}
-		if (CE_CommonUI.CreateCollapsable("Tasks", 2, true))
+	}
+
+	private void CE_TasksDropdown()
+	{
+		if (CE_CommonUI.CreateCollapsable_GS("Tasks", 2))
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
-				gameOptions.NumCommonTasks = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumCommonTasks, 1f, 0f, 2f, "# Common Tasks", "", false, GlobalReadOnly);
-				gameOptions.NumLongTasks = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumLongTasks, 1f, 0f, 3f, "# Long Tasks", "", false, GlobalReadOnly);
-				gameOptions.NumShortTasks = (int)CE_CommonUI.CreateValuePickerG(gameOptions.NumShortTasks, 1f, 0f, 5f, "# Short Tasks", "", false, GlobalReadOnly);
-                gameOptions.Visuals = CE_CommonUI.CreateBoolButtonG(gameOptions.Visuals, "Visual Tasks", GlobalReadOnly);
-				gameOptions.TaskBarUpdates = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.TaskBarUpdates, GameOptionsData.TaskBarUpStrings, 0, 2, "Taskbar Updates", GlobalReadOnly);
-				gameOptions.GhostsDoTasks = CE_CommonUI.CreateBoolButtonG(gameOptions.GhostsDoTasks, "Ghosts Do Tasks", GlobalReadOnly);
+				gameOptions.NumCommonTasks = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumCommonTasks, 1f, 0f, 2f, "# Common Tasks", "", false, ReadOnly);
+				gameOptions.NumLongTasks = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumLongTasks, 1f, 0f, 3f, "# Long Tasks", "", false, ReadOnly);
+				gameOptions.NumShortTasks = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumShortTasks, 1f, 0f, 5f, "# Short Tasks", "", false, ReadOnly);
+				gameOptions.Visuals = CE_CommonUI.CreateBoolButton_GS(gameOptions.Visuals, "Visual Tasks", ReadOnly);
+				gameOptions.TaskBarUpdates = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.TaskBarUpdates, GameOptionsData.TaskBarUpStrings, 0, 2, "Taskbar Updates", ReadOnly);
+				gameOptions.GhostsDoTasks = CE_CommonUI.CreateBoolButton_GS(gameOptions.GhostsDoTasks, "Ghosts Do Tasks", ReadOnly);
 			}
 		}
-		if (CE_CommonUI.CreateCollapsable("Vent Controls", 3, true))
+	}
+
+	private void CE_VentControlsDropdown()
+	{
+		if (CE_CommonUI.CreateCollapsable_GS("Vent Controls", 3))
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
-				gameOptions.Venting = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.Venting, GameOptionsData.VentModeStrings, 0, 3, "Vents", GlobalReadOnly);
-				gameOptions.VentMode = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.VentMode, GameOptionsData.VentMode2Strings, 0, 5, "Vent Movement", GlobalReadOnly);
+				gameOptions.Venting = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Venting, GameOptionsData.VentModeStrings, 0, 3, "Vents", ReadOnly);
+				gameOptions.VentMode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.VentMode, GameOptionsData.VentMode2Strings, 0, 5, "Vent Movement", ReadOnly);
 			}
 
 		}
-        if (CE_CommonUI.CreateCollapsable("Map Scale And Rotation", 4, true))
-        {
-            using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
-            {
-                gameOptions.MapScaleX = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "", false, GlobalReadOnly);
-                gameOptions.MapScaleY = CE_CommonUI.CreateValuePickerG(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "", false, GlobalReadOnly);
-                gameOptions.MapRot = (int)CE_CommonUI.CreateValuePickerG(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "�", false, GlobalReadOnly);
-            }
+	}
 
-        }
-        if (CE_CommonUI.CreateCollapsable("Misc Modifiers", 5, true))
-        {
-            using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
-            {
-                gameOptions.CanSeeGhosts = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.CanSeeGhosts, GameOptionsData.CanSeeGhostsStrings, 0, 3, "Ghost Visibility", GlobalReadOnly);
-				gameOptions.BodyEffect = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.BodyEffect, GameOptionsData.BodySett, 0, 2, "Body Effect", GlobalReadOnly);
+	private void CE_MapControlsDropdown()
+	{
+		if (CE_CommonUI.CreateCollapsable_GS("Map Scale And Rotation", 4))
+		{
+			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+			{
+				gameOptions.MapScaleX = CE_CommonUI.CreateValuePicker_GS(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "", false, ReadOnly);
+				gameOptions.MapScaleY = CE_CommonUI.CreateValuePicker_GS(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "", false, ReadOnly);
+				gameOptions.MapRot = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "�", false, ReadOnly);
+			}
+
+		}
+	}
+
+	private void CE_MiscControlsDropdown()
+	{
+		if (CE_CommonUI.CreateCollapsable_GS("Misc Modifiers", 5))
+		{
+			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+			{
+				gameOptions.CanSeeGhosts = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.CanSeeGhosts, GameOptionsData.CanSeeGhostsStrings, 0, 3, "Ghost Visibility", ReadOnly);
+				gameOptions.BodyEffect = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.BodyEffect, GameOptionsData.BodySett, 0, 2, "Body Effect", ReadOnly);
 				if (gameOptions.BodyEffect == 1)
 				{
-					gameOptions.BodyDecayTime = (byte)CE_CommonUI.CreateStringPickerG(gameOptions.BodyDecayTime, GameOptionsData.BodyDecayTimes, 0, 2, "Body Decay Time", GlobalReadOnly);
+					gameOptions.BodyDecayTime = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.BodyDecayTime, GameOptionsData.BodyDecayTimes, 0, 2, "Body Decay Time", ReadOnly);
 				}
 			}
-        }
-		GUILayout.EndScrollView();
-		if (CE_CommonUI.CreateExitButton(true))
-		{
-			IsShown = false;
 		}
+	}
+
+	private void SetStyle()
+    {
 		GUI.color = GameSettingsColor;
 		GUI.backgroundColor = GameSettingsColor;
 		GUI.contentColor = Color.white;
-		CE_CommonUI.SyncSettings();
 	}
 
-	static CE_GameSettingsUI()
+	private void CustomSettingsMenu(int windowID)
 	{
+		gameOptions = PlayerControl.GameOptions;
+		CE_UIHelpers.LoadCommonAssets();
+		CE_CoreItems();
+		SetStyle();
+		CE_CommonUI.SyncSettings_GS();
 	}
 }

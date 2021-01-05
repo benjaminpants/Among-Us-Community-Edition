@@ -31,12 +31,15 @@ public class PlayerTab : MonoBehaviour
 
 	public void Start()
 	{
+
+		var SpecialClrChip = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "colorchip_special.png"));
+
 		float num = 1.65f;
 		float num2 = -0.33f;
 		_ = (float)Palette.PlayerColors.Length / 3f;
 		float num3 = 0f;
 		int num4 = 0;
-		Sprite specsprite = Sprite.Create(CE_CommonUI.SpecialClrChip,new Rect(0f,0f, CE_CommonUI.SpecialClrChip.width, CE_CommonUI.SpecialClrChip.height),new Vector2(0.5f,0.5f));
+		Sprite specsprite = Sprite.Create(SpecialClrChip,new Rect(0f,0f, SpecialClrChip.width, SpecialClrChip.height),new Vector2(0.5f,0.5f));
 		while (num4 < Palette.PlayerColors.Length)
 		{
 			for (float num5 = 0f; num5 < 1.5f; num5 += 0.48f)

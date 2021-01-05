@@ -2,25 +2,12 @@ using UnityEngine;
 
 public class CE_CommonUI
 {
-	private static Texture2D _staticRectTexture;
+	static CE_CommonUI()
+	{
+		LoadAssets();
+	}
 
-	private static GUIStyle _staticRectStyle;
-
-	private static bool PlayHoverSound;
-
-	private static Rect LastHoverRect;
-
-	private static int TextUpscale = -15;
-	private static int TextHeightUpscale = 20;
-
-
-	public static Rect FullWindowRect;
-
-	public static Texture2D GhostImage;
-	public static bool GameSettingsChanged;
-	public static Texture2D SpecialClrChip;
-
-	public static bool[] ColapsableGroupStateCollection;
+	#region Textures / Assets
 
 	private static Texture2D ButtonTexture;
 
@@ -108,18 +95,60 @@ public class CE_CommonUI
         {
             GameMenuDropdownSelectedTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown_Selected.png"));
         }
-        if (!SpecialClrChip)
-        {
-            SpecialClrChip = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "colorchip_special.png"));
-        }
-		if (!GhostImage)
-		{
-			GhostImage = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "new_ghost_sprite_lol.png"));
-		}
 	}
 
+	#endregion
 
-	public static GUIStyle WindowStyle(bool GameWindow = false)
+	#region UI Scaling Methods
+
+	private static int TextUpscale = -15;
+	private static int TextHeightUpscale = 20;
+	private static float GetScale(int width, int height, Vector2 scalerReferenceResolution, float scalerMatchWidthOrHeight)
+	{
+		return Mathf.Pow(width / scalerReferenceResolution.x, 1f - scalerMatchWidthOrHeight) *
+			   Mathf.Pow(height / scalerReferenceResolution.y, scalerMatchWidthOrHeight);
+	}
+	private static float GetScale(int width, int height)
+    {
+		return GetScale(width, height, new Vector2(1920, 1080), 1f);
+    }
+
+	#endregion
+
+	#region UI Sound FX Methods
+
+	private static bool InScrollView = false;
+	public static Rect WindowHoverBounds;
+	private static Rect CurrentScrollViewSize;
+	private static Rect LastHoverRect;
+
+	public static void HoverSoundTrigger()
+	{
+		Rect lastRect = GUILayoutUtility.GetLastRect();
+		bool IsRepaint = Event.current.type == EventType.Repaint;
+		bool IsHoveringOver = GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition);
+		if (IsRepaint && IsHoveringOver)
+		{
+			if (lastRect != LastHoverRect)
+			{
+				LastHoverRect = lastRect;
+				SoundManager.Instance.PlaySoundImmediate(CE_UIHelpers.HoverSound, loop: false);
+			}
+		}
+	}
+	public static void ClickSoundTrigger()
+	{
+		SoundManager.Instance.PlaySoundImmediate(CE_UIHelpers.ClickSound, loop: false);
+	}
+
+	#endregion
+
+	#region Game Settings Controls / Styles
+
+	public static bool GameSettingsChanged;
+	public static bool[] ColapsableGroupStateCollection_GS = new bool[8];
+
+	public static GUIStyle WindowStyle_GS()
 	{
 		LoadAssets();
 		float scale = GetScale(Screen.width, Screen.height);
@@ -127,30 +156,29 @@ public class CE_CommonUI
 		{
 			normal =
 			{
-				background = (GameWindow ? GameMenuTexture : MenuTexture)
+				background = GameMenuTexture
 			},
 			focused =
-            {
-				background = (GameWindow ? GameMenuTexture : MenuTexture)
+			{
+				background = GameMenuTexture
 			},
 			active =
 			{
-				background = (GameWindow ? GameMenuTexture : MenuTexture)
+				background = GameMenuTexture
 			},
 			hover =
-            {
-				background = (GameWindow ? GameMenuTexture : MenuTexture)
+			{
+				background = GameMenuTexture
 			}
-			
+
 		};
 		style.padding = new RectOffset(30, 30, 30, 30);
 		style.border = new RectOffset(15, 15, 15, 15);
-		style.onNormal.background = (GameWindow ? GameMenuTexture : MenuTexture);
+		style.onNormal.background = GameMenuTexture;
 		return style;
 	}
-
 	public static GUIStyle GameDropDownBGStyle()
-    {
+	{
 		var style = new GUIStyle()
 		{
 			normal =
@@ -179,43 +207,37 @@ public class CE_CommonUI
 		style.onNormal.background = GameMenuDropdownBGTexture;
 		return style;
 	}
-
-	public static GUIStyle HorizontalScopeStyle(bool gameSettings = false, bool readOnly = false)
-    {
-		if (gameSettings)
+	public static GUIStyle HorizontalScopeStyle_GS(bool readOnly = false)
+	{
+		var style = new GUIStyle()
 		{
-			var style = new GUIStyle()
-			{
-				normal =
+			normal =
 			{
 				textColor = Color.white,
 				background = GameScrollViewBackground2
 			},
-				focused =
+			focused =
 			{
 				textColor = Color.white,
 				background = GameScrollViewBackground2
 			},
-				active =
+			active =
 			{
 				textColor = Color.white,
 				background = GameScrollViewBackground2
 			},
-				hover =
+			hover =
 			{
 				textColor = Color.white,
 				background = readOnly ? GameScrollViewBackground2 : GameScrollViewBackground3
 			}
-			};
-			style.padding = new RectOffset(15, 15, 15, 15);
-			style.border = new RectOffset(15, 15, 15, 15);
-			style.onNormal.background = GameScrollViewBackground2;
-			return style;
-		}
-		else return new GUIStyle();
-    }
-
-	public static GUIStyle UpDownSettingButtons(bool gameSettings = false)
+		};
+		style.padding = new RectOffset(15, 15, 15, 15);
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = GameScrollViewBackground2;
+		return style;
+	}
+	public static GUIStyle UpDownSettingButtons_GS()
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 		var style = new GUIStyle(GUI.skin.button)
@@ -223,87 +245,54 @@ public class CE_CommonUI
 			fixedWidth = (50f + TextHeightUpscale) * scale,
 			fixedHeight = (50f + TextHeightUpscale) * scale,
 			fontSize = (int)((45 + TextUpscale) * scale),
-			normal = 
+			normal =
 			{
 				textColor = Color.white,
-				background = (gameSettings ? GameButtonTexture : ButtonTexture)
+				background = GameButtonTexture
 			},
 			focused =
 			{
 				textColor = Color.white,
-				background = (gameSettings ? GameButtonTexture :ButtonTexture)
+				background = GameButtonTexture
 			},
 			active =
 			{
 				textColor = Color.white,
-				background = (gameSettings ? GameButtonTexture :ButtonTexture)
+				background = GameButtonTexture
 			},
 			hover =
 			{
 				textColor = Color.white,
-				background = (gameSettings ? GameButtonSelected :ButtonSelected)
+				background = GameButtonSelected
 			}
 		};
 		style.border = new RectOffset(15, 15, 15, 15);
 		style.onNormal.background = ButtonTexture;
 		return style;
 	}
-
-	public static GUIStyle UpDownSettingLabel(float width = 250f)
+	public static Rect GameSettingsRect()
 	{
 		float scale = GetScale(Screen.width, Screen.height);
-		if (width == 0f)
-		{
-			return new GUIStyle(GUI.skin.label)
-			{
-				fixedHeight = (50f + TextHeightUpscale) * scale,
-				fixedWidth = width * scale,
-				fontSize = (int)((45 + TextUpscale) * scale),
-				normal = 
-				{
-					textColor = Color.white
-				}
-			};
-		}
-		return new GUIStyle(GUI.skin.label)
-		{
-			alignment = TextAnchor.MiddleCenter,
-			fixedHeight = (50f + TextHeightUpscale) * scale,
-			fixedWidth = width * scale,
-			fontSize = (int)((45 + TextUpscale) * scale),
-			normal = 
-			{
-				textColor = Color.white
-			}
-		};
-	}
 
-	public static void GUIDrawRect(Rect position, Color color)
-	{
-		if (_staticRectTexture == null)
-		{
-			_staticRectTexture = new Texture2D(1, 1);
-		}
-		if (_staticRectStyle == null)
-		{
-			_staticRectStyle = new GUIStyle();
-		}
-		_staticRectTexture.SetPixel(0, 0, color);
-		_staticRectTexture.Apply();
-		_staticRectStyle.normal.background = _staticRectTexture;
-		GUI.Box(position, GUIContent.none, _staticRectStyle);
-	}
+		int desired_width = 990;
+		int desired_height = 810;
 
+		float width = desired_width * scale;
+		float height = desired_height * scale;
+
+		float x = (Screen.width - width) / 2;
+		float y = (Screen.height - height) / 2;
+
+		return new Rect(x, y, width, height);
+	}
 	public static GUIStyle GameScrollbarStyleV()
 	{
 		return new GUIStyle(GUI.skin.verticalScrollbar);
 	}
-
 	public static GUIStyle GameScrollbarStyleH()
 	{
 		return new GUIStyle(GUI.skin.horizontalScrollbar);
 	}
-
 	public static GUIStyle GameScrollViewStyle()
 	{
 		var style = new GUIStyle(GUI.skin.scrollView)
@@ -329,141 +318,15 @@ public class CE_CommonUI
 		style.onNormal.background = GameScrollViewBackground;
 		return style;
 	}
-
-	private static float GetScale(int width, int height, Vector2 scalerReferenceResolution, float scalerMatchWidthOrHeight)
-	{
-		return Mathf.Pow(width / scalerReferenceResolution.x, 1f - scalerMatchWidthOrHeight) *
-			   Mathf.Pow(height / scalerReferenceResolution.y, scalerMatchWidthOrHeight);
-	}
-
-	private static float GetScale(int width, int height)
-    {
-		return GetScale(width, height, new Vector2(1920, 1080), 1f);
-    }
-
-	static CE_CommonUI()
-	{
-		FullWindowRect = new Rect(0f, 0f, Screen.width, Screen.height);
-		ColapsableGroupStateCollection = new bool[8];
-		LoadAssets();
-	}
-
-	public static void HoverSoundTrigger()
-	{
-		Rect lastRect = GUILayoutUtility.GetLastRect();
-		if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
-		{
-			if (lastRect != LastHoverRect)
-			{
-				LastHoverRect = lastRect;
-				SoundManager.Instance.PlaySoundImmediate(CE_UIHelpers.HoverSound, loop: false);
-			}
-			PlayHoverSound = false;
-		}
-	}
-
-	public static void ClickSoundTrigger()
-	{
-		SoundManager.Instance.PlaySoundImmediate(CE_UIHelpers.ClickSound, loop: false);
-	}
-
-	public static bool CreateExitButton(bool gameSettings = false)
+	public static bool CreateCollapsable_GS(string name, int index)
 	{
 		float scale = GetScale(Screen.width, Screen.height);
-		bool result = false;
+		bool flag = ColapsableGroupStateCollection_GS[index];
 
+		var texture = (flag ? GameMenuDropdownOpenTexture : GameMenuDropdownTexture);
+		var sel_texture = (flag ? GameMenuDropdownOpenSelectedTexture : GameMenuDropdownSelectedTexture);
 
 		var style = new GUIStyle(GUI.skin.button)
-		{
-			fixedHeight = (50f + TextHeightUpscale) * scale,
-			fontSize = (int)((45 + TextUpscale) * scale),
-			alignment = TextAnchor.MiddleCenter,
-			normal =
-			{
-				textColor = Color.white,
-				background = (gameSettings ? GameMenuDropdownTexture : ButtonTexture)
-			},
-			focused =
-			{
-				textColor = Color.white,
-				background = (gameSettings ? GameMenuDropdownTexture :ButtonTexture)
-			},
-			active =
-			{
-				textColor = Color.white,
-				background = (gameSettings ? GameMenuDropdownTexture :ButtonTexture)
-			},
-			hover =
-			{
-				textColor = Color.white,
-				background = (gameSettings ? GameMenuDropdownSelectedTexture :ButtonSelected)
-			}
-		};
-		style.border = new RectOffset(15, 15, 15, 15);
-		style.onNormal.background = ButtonTexture;
-
-		if (CE_CustomUIElements.Button("Back", style))
-		{
-			ClickSoundTrigger();
-			result = true;
-		}
-		HoverSoundTrigger();
-		return result;
-	}
-
-	public static Rect GameSettingsRect()
-	{
-		float scale = GetScale(Screen.width, Screen.height);
-
-		int desired_width = 990;
-		int desired_height = 810;
-
-		float width = desired_width * scale;
-		float height = desired_height * scale;
-
-		float x = (Screen.width - width) / 2;
-		float y = (Screen.height - height) / 2;
-
-		return new Rect(x, y, width, height);
-	}
-
-	public static Rect StockSettingsRect()
-	{
-		float scale = GetScale(Screen.width, Screen.height);
-
-		int desired_width = 996;
-		int desired_height = 1040;
-
-		float width = desired_width * scale;
-		float height = desired_height * scale;
-
-		float x = (Screen.width - width) / 2;
-		float y = (Screen.height - height) / 2;
-
-		return new Rect(x, y, width, height);
-	}
-
-	public static void CreateHeaderLabel(string text)
-	{
-		float scale = GetScale(Screen.width, Screen.height);
-
-		CE_CustomUIElements.Label(text, new GUIStyle(GUI.skin.label)
-		{
-			fixedHeight = (60f + TextHeightUpscale) * scale,
-			fontSize = (int)((50 + TextUpscale) * scale),
-			fontStyle = FontStyle.Bold
-		});
-	}
-
-	public static bool CreateCollapsable(string name, int index, bool gameSettings = false)
-	{
-		float scale = GetScale(Screen.width, Screen.height);
-		bool flag = ColapsableGroupStateCollection[index];
-
-		var texture = (flag ? GameMenuDropdownOpenTexture : (gameSettings ? GameMenuDropdownTexture : ButtonTexture));
-		var sel_texture = (flag ? GameMenuDropdownOpenSelectedTexture : (gameSettings ? GameMenuDropdownSelectedTexture : ButtonSelected));
-
-		var style =  new GUIStyle(GUI.skin.button)
 		{
 			fixedHeight = (50f + TextHeightUpscale) * scale,
 			fontSize = (int)((45 + TextUpscale) * scale),
@@ -491,17 +354,198 @@ public class CE_CommonUI
 		};
 		style.border = new RectOffset(15, 15, 15, 15);
 		style.margin = new RectOffset(0, 0, 0, 0);
-		style.onNormal.background = (gameSettings ? GameButtonTexture : ButtonTexture);
+		style.onNormal.background = GameButtonTexture;
 		if (CE_CustomUIElements.Button(name, style))
 		{
 			ClickSoundTrigger();
-			flag = !ColapsableGroupStateCollection[index];
+			flag = !ColapsableGroupStateCollection_GS[index];
 		}
 		HoverSoundTrigger();
-		ColapsableGroupStateCollection[index] = flag;
+		ColapsableGroupStateCollection_GS[index] = flag;
 		return flag;
 	}
+	public static int CreateStringPicker_GS(int value, string[] valueNames, int min, int max, string title, bool readOnly = false)
+	{
+		var last_value = value;
+		using (new GUILayout.HorizontalScope(HorizontalScopeStyle_GS(readOnly)))
+		{
+			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons_GS()))
+			{
+				if (!readOnly) ClickSoundTrigger();
+				if (value != min)
+				{
+					value--;
+					if (title != "Map")
+					{
+						UpdateSettings_GS();
+					}
+				}
+			}
+			if (!readOnly) HoverSoundTrigger();
+			try
+			{
+				CE_CustomUIElements.Label(valueNames[value], UpDownSettingLabel());
+			}
+			catch
+			{
+				CE_CustomUIElements.Label("Invalid", UpDownSettingLabel());
+			}
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons_GS()))
+			{
+				if (!readOnly) ClickSoundTrigger();
+				if (value != max)
+				{
+					value++;
+					if (title != "Map")
+					{
+						UpdateSettings_GS();
+					}
+				}
+			}
+			if (!readOnly) HoverSoundTrigger();
+			if (readOnly) return last_value;
+			return value;
+		}
+	}
+	public static bool CreateBoolButton_GS(bool value, string Title, bool readOnly = false)
+	{
+		var last_value = value;
+		using (new GUILayout.HorizontalScope(HorizontalScopeStyle_GS(readOnly)))
+		{
+			CE_CustomUIElements.Label(Title, UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
 
+			string checkbox_style_B = value ? "☑" : "☐";
+
+			if (!readOnly && CE_CustomUIElements.Button(checkbox_style_B, UpDownSettingButtons_GS()))
+			{
+				if (!readOnly) ClickSoundTrigger();
+				value = !value;
+				UpdateSettings_GS();
+			}
+			if (!readOnly) HoverSoundTrigger();
+			if (readOnly) return last_value;
+			return value;
+		}
+	}
+	public static float CreateValuePicker_GS(float value, float incrementAmount, float min, float max, string title, string subString, bool decmialView = false, bool readOnly = false)
+	{
+		float last_value = value;
+		using (new GUILayout.HorizontalScope(HorizontalScopeStyle_GS(readOnly)))
+		{
+			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons_GS()))
+			{
+				if (!readOnly) ClickSoundTrigger();
+				if (value > min)
+				{
+					value -= incrementAmount;
+					UpdateSettings_GS();
+				}
+				else value = min;
+			}
+			if (!readOnly) HoverSoundTrigger();
+			CE_CustomUIElements.Label((decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
+			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons_GS()))
+			{
+				if (!readOnly) ClickSoundTrigger();
+				if (value < max)
+				{
+					value += incrementAmount;
+					UpdateSettings_GS();
+				}
+				else value = max;
+			}
+			if (!readOnly) HoverSoundTrigger();
+			if (readOnly) return last_value;
+			return value;
+		}
+	}
+	public static bool CreateExitButton_GS()
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		bool result = false;
+
+
+		var style = new GUIStyle(GUI.skin.button)
+		{
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
+			alignment = TextAnchor.MiddleCenter,
+			normal =
+			{
+				textColor = Color.white,
+				background = GameMenuDropdownTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = GameMenuDropdownTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = GameMenuDropdownTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = GameMenuDropdownSelectedTexture
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+
+		if (CE_CustomUIElements.Button("Back", style))
+		{
+			ClickSoundTrigger();
+			result = true;
+		}
+		HoverSoundTrigger();
+		return result;
+	}
+	public static void UpdateSettings_GS()
+	{
+		PlayerControl.GameOptions.isDefaults = false;
+		GameSettingsChanged = true;
+	}
+	public static void SyncSettings_GS()
+	{
+		if (GameSettingsChanged)
+		{
+			PlayerControl localPlayer = PlayerControl.LocalPlayer;
+			if (!(localPlayer == null))
+			{
+				localPlayer.RpcSyncSettings(PlayerControl.GameOptions);
+			}
+		}
+	}
+
+	#endregion
+
+	#region General Controls / Styles
+
+	public static Rect FullWindowRect = new Rect(0f, 0f, Screen.width, Screen.height);
+	private static GUIStyle _SolidRectStyle;
+	private static Texture2D _SolidRectTexture;
+	public static void GUIDrawRect(Rect position, Color color)
+	{
+		if (_SolidRectTexture == null)
+		{
+			_SolidRectTexture = new Texture2D(1, 1);
+		}
+		if (_SolidRectStyle == null)
+		{
+			_SolidRectStyle = new GUIStyle();
+		}
+		_SolidRectTexture.SetPixel(0, 0, color);
+		_SolidRectTexture.Apply();
+		_SolidRectStyle.normal.background = _SolidRectTexture;
+		GUI.Box(position, GUIContent.none, _SolidRectStyle);
+	}
 	public static void CreateSeperator()
 	{
 		
@@ -514,99 +558,8 @@ public class CE_CommonUI
 		GUILayout.Box(GUIContent.none, gUIStyle);
 		GUI.color = color;
 	}
-
-	public static void UpdateSettings()
-	{
-		PlayerControl.GameOptions.isDefaults = false;
-		GameSettingsChanged = true;
-	}
-
-	public static void SyncSettings()
-	{
-		if (GameSettingsChanged)
-		{
-			PlayerControl localPlayer = PlayerControl.LocalPlayer;
-			if (!(localPlayer == null))
-			{
-				localPlayer.RpcSyncSettings(PlayerControl.GameOptions);
-			}
-		}
-	}
-
-	public static int CreateStringPicker(int value, string[] valueNames, int min, int max, string title, bool gameSettings = false, bool readOnly = false)
-	{
-		var last_value = value;
-		using (new GUILayout.HorizontalScope(HorizontalScopeStyle(gameSettings, readOnly)))
-		{
-			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
-			GUILayout.FlexibleSpace();
-			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons(gameSettings)))
-			{
-				if (!readOnly) ClickSoundTrigger();
-				if (value != min)
-				{
-					value--;
-					if (title != "Map" && gameSettings)
-					{
-						UpdateSettings();
-					}
-				}
-			}
-			if (!readOnly) HoverSoundTrigger();
-			try
-			{
-				CE_CustomUIElements.Label(valueNames[value], UpDownSettingLabel());
-			}
-			catch
-            {
-				CE_CustomUIElements.Label("Invalid", UpDownSettingLabel());
-			}
-			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
-			{
-				if (!readOnly) ClickSoundTrigger();
-				if (value != max)
-				{
-					value++;
-					if (title != "Map" && gameSettings)
-					{
-						UpdateSettings();
-					}
-				}
-			}
-			if (!readOnly) HoverSoundTrigger();
-			if (readOnly) return last_value;
-			return value;
-		}
-	}
-
-	public static bool CreateBoolButton(bool value, string Title, bool gameSettings = false, bool readOnly = false)
-	{
-		var last_value = value;
-		using (new GUILayout.HorizontalScope(HorizontalScopeStyle(gameSettings, readOnly)))
-		{
-			CE_CustomUIElements.Label(Title, UpDownSettingLabel(0f));
-			GUILayout.FlexibleSpace();
-
-			string checkbox_style_A = value ? "✓" : " ";
-			string checkbox_style_B = value ? "☑" : "☐";
-
-			if (!readOnly && CE_CustomUIElements.Button(gameSettings ? checkbox_style_B : checkbox_style_A, UpDownSettingButtons(gameSettings)))
-			{
-				if (!readOnly) ClickSoundTrigger();
-				value = !value;
-				if (gameSettings)
-				{
-					UpdateSettings();
-				}
-			}
-			if (!readOnly) HoverSoundTrigger();
-			if (readOnly) return last_value;
-			return value;
-		}
-	}
-
 	public static bool CreateSimpleBoolSwitch(bool value)
-    {
+	{
 		string checkbox_style = value ? "☑" : "☐";
 
 		if (CE_CustomUIElements.Button(checkbox_style, GUI.skin.button))
@@ -617,63 +570,6 @@ public class CE_CommonUI
 		HoverSoundTrigger();
 		return value;
 	}
-
-	public static float CreateValuePicker(float value, float incrementAmount, float min, float max, string title, string subString, bool decmialView = false, bool gameSettings = false, bool readOnly = false)
-	{
-		float last_value = value;
-		using (new GUILayout.HorizontalScope(HorizontalScopeStyle(gameSettings, readOnly)))
-		{
-			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
-			GUILayout.FlexibleSpace();
-			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "-", UpDownSettingButtons(gameSettings)))
-			{
-				if (!readOnly) ClickSoundTrigger();
-				if (value > min)
-				{
-					value -= incrementAmount;
-					if (gameSettings)
-					{
-						UpdateSettings();
-					}
-				}
-				else value = min;
-			}
-			if (!readOnly) HoverSoundTrigger();
-			CE_CustomUIElements.Label((decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
-			if (!readOnly && CE_CustomUIElements.Button(readOnly ? "" : "+", UpDownSettingButtons(gameSettings)))
-			{
-				if (!readOnly) ClickSoundTrigger();
-				if (value < max)
-				{
-					value += incrementAmount;
-					if (gameSettings)
-					{
-						UpdateSettings();
-					}
-				}
-				else value = max;
-			}
-			if (!readOnly) HoverSoundTrigger();
-			if (readOnly) return last_value;
-			return value;
-		}
-	}
-
-	public static int CreateStringPickerG(int value, string[] valueNames, int min, int max, string title, bool readOnly = false)
-	{
-		return CreateStringPicker(value, valueNames, min, max, title, gameSettings: true, readOnly);
-	}
-
-	public static bool CreateBoolButtonG(bool value, string Title, bool readOnly = false)
-	{
-		return CreateBoolButton(value, Title, gameSettings: true, readOnly);
-	}
-
-	public static float CreateValuePickerG(float value, float incrementAmount, float min, float max, string title, string subString, bool decmialView = false, bool readOnly = false)
-	{
-		return CreateValuePicker(value, incrementAmount, min, max, title, subString, decmialView, gameSettings: true, readOnly);
-	}
-
 	public static void HorizontalLine(Color color)
 	{
 		GUIStyle gUIStyle = new GUIStyle();
@@ -685,7 +581,323 @@ public class CE_CommonUI
 		GUILayout.Box(GUIContent.none, gUIStyle);
 		GUI.color = color2;
 	}
+	public static void CreateHeaderLabel(string text)
+	{
+		float scale = GetScale(Screen.width, Screen.height);
 
+		CE_CustomUIElements.Label(text, new GUIStyle(GUI.skin.label)
+		{
+			fixedHeight = (60f + TextHeightUpscale) * scale,
+			fontSize = (int)((50 + TextUpscale) * scale),
+			fontStyle = FontStyle.Bold
+		});
+	}
+
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, params GUILayoutOption[] options)
+    {
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, horizontalScrollbar, verticalScrollbar, options);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, params GUILayoutOption[] options)
+	{
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, horizontalScrollbar, verticalScrollbar, options);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, GUIStyle style, params GUILayoutOption[] options)
+	{
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, style, options);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, GUIStyle style)
+	{
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, style);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, GUIStyle background, params GUILayoutOption[] options)
+	{
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, horizontalScrollbar, verticalScrollbar, background, options);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, params GUILayoutOption[] options)
+	{
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, options);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, params GUILayoutOption[] options)
+	{
+		var scrollPos = GUILayout.BeginScrollView(scrollPosition, options);
+		GUILayout.BeginVertical();
+		return scrollPos;
+	}
+
+	public static void CE_EndScrollView()
+	{
+		GUILayout.Label(GUIContent.none, GUIStyle.none, GUILayout.MaxHeight(0), GUILayout.ExpandWidth(true));
+		bool IsHoveringOver = GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition);
+		if (Event.current.type == EventType.Repaint)
+		{
+			Rect r = GUILayoutUtility.GetLastRect();
+			CurrentScrollViewSize.x = CurrentScrollViewSize.y = 0;
+			CurrentScrollViewSize.width = r.width;
+			CurrentScrollViewSize.height = r.yMin;
+			InScrollView = IsHoveringOver;
+		}
+		GUILayout.EndVertical();
+		GUILayout.EndScrollView();
+	}
+
+	#endregion
+
+	#region Options Menu Controls / Styles
+
+	public static bool[] ColapsableGroupStateCollection = new bool[8];
+	public static GUIStyle WindowStyle()
+	{
+		LoadAssets();
+		float scale = GetScale(Screen.width, Screen.height);
+		var style = new GUIStyle(GUI.skin.window)
+		{
+			normal =
+			{
+				background = MenuTexture
+			},
+			focused =
+			{
+				background = MenuTexture
+			},
+			active =
+			{
+				background = MenuTexture
+			},
+			hover =
+			{
+				background = MenuTexture
+			}
+
+		};
+		style.padding = new RectOffset(30, 30, 30, 30);
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = MenuTexture;
+		return style;
+	}
+	public static Rect StockSettingsRect()
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+
+		int desired_width = 996;
+		int desired_height = 1040;
+
+		float width = desired_width * scale;
+		float height = desired_height * scale;
+
+		float x = (Screen.width - width) / 2;
+		float y = (Screen.height - height) / 2;
+
+		return new Rect(x, y, width, height);
+	}
+	public static GUIStyle HorizontalScopeStyle()
+	{
+		return new GUIStyle();
+	}
+	public static GUIStyle UpDownSettingButtons()
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		var style = new GUIStyle(GUI.skin.button)
+		{
+			fixedWidth = (50f + TextHeightUpscale) * scale,
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
+			normal =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = ButtonSelected
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+		return style;
+	}
+	public static GUIStyle UpDownSettingLabel(float width = 250f)
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		if (width == 0f)
+		{
+			return new GUIStyle(GUI.skin.label)
+			{
+				fixedHeight = (50f + TextHeightUpscale) * scale,
+				fixedWidth = width * scale,
+				fontSize = (int)((45 + TextUpscale) * scale),
+				normal =
+				{
+					textColor = Color.white
+				}
+			};
+		}
+		return new GUIStyle(GUI.skin.label)
+		{
+			alignment = TextAnchor.MiddleCenter,
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fixedWidth = width * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
+			normal =
+			{
+				textColor = Color.white
+			}
+		};
+	}
+	public static bool CreateCollapsable(string name, int index)
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		bool flag = ColapsableGroupStateCollection[index];
+
+		var texture = (flag ? GameMenuDropdownOpenTexture : ButtonTexture);
+		var sel_texture = (flag ? GameMenuDropdownOpenSelectedTexture : ButtonSelected);
+
+		var style = new GUIStyle(GUI.skin.button)
+		{
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
+			alignment = TextAnchor.MiddleCenter,
+			normal =
+			{
+				textColor = Color.white,
+				background = texture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = texture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = texture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = sel_texture
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.margin = new RectOffset(0, 0, 0, 0);
+		style.onNormal.background = ButtonTexture;
+		if (CE_CustomUIElements.Button(name, style))
+		{
+			ClickSoundTrigger();
+			flag = !ColapsableGroupStateCollection[index];
+		}
+		HoverSoundTrigger();
+		ColapsableGroupStateCollection[index] = flag;
+		return flag;
+	}
+	public static int CreateStringPicker(int value, string[] valueNames, int min, int max, string title)
+	{
+		var last_value = value;
+		using (new GUILayout.HorizontalScope(HorizontalScopeStyle()))
+		{
+			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
+			if (CE_CustomUIElements.Button("-", UpDownSettingButtons()))
+			{
+				ClickSoundTrigger();
+				if (value != min)
+				{
+					value--;
+				}
+			}
+			HoverSoundTrigger();
+			try
+			{
+				CE_CustomUIElements.Label(valueNames[value], UpDownSettingLabel());
+			}
+			catch
+            {
+				CE_CustomUIElements.Label("Invalid", UpDownSettingLabel());
+			}
+			if (CE_CustomUIElements.Button("+", UpDownSettingButtons()))
+			{
+				ClickSoundTrigger();
+				if (value != max)
+				{
+					value++;
+				}
+			}
+			HoverSoundTrigger();
+			return value;
+		}
+	}
+	public static bool CreateBoolButton(bool value, string Title)
+	{
+		var last_value = value;
+		using (new GUILayout.HorizontalScope(HorizontalScopeStyle()))
+		{
+			CE_CustomUIElements.Label(Title, UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
+
+			string checkbox_style_A = value ? "✓" : " ";
+
+			if (CE_CustomUIElements.Button(checkbox_style_A, UpDownSettingButtons()))
+			{
+				ClickSoundTrigger();
+				value = !value;
+			}
+			HoverSoundTrigger();
+			return value;
+		}
+	}
+	public static float CreateValuePicker(float value, float incrementAmount, float min, float max, string title, string subString, bool decmialView = false)
+	{
+		float last_value = value;
+		using (new GUILayout.HorizontalScope(HorizontalScopeStyle()))
+		{
+			CE_CustomUIElements.Label(title, UpDownSettingLabel(0f));
+			GUILayout.FlexibleSpace();
+			if (CE_CustomUIElements.Button("-", UpDownSettingButtons()))
+			{
+				ClickSoundTrigger();
+				if (value > min)
+				{
+					value -= incrementAmount;
+				}
+				else value = min;
+			}
+			HoverSoundTrigger();
+			CE_CustomUIElements.Label((decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
+			if (CE_CustomUIElements.Button("+", UpDownSettingButtons()))
+			{
+				ClickSoundTrigger();
+				if (value < max)
+				{
+					value += incrementAmount;
+				}
+				else value = max;
+			}
+			HoverSoundTrigger();
+			return value;
+		}
+	}
 	public static void CreateButtonLabel(string buttonName, string firstText, string nextText)
 	{
 		float scale = GetScale(Screen.width, Screen.height);
@@ -708,4 +920,49 @@ public class CE_CommonUI
 		}
 		HorizontalLine(Color.white);
 	}
+	public static bool CreateExitButton()
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		bool result = false;
+
+
+		var style = new GUIStyle(GUI.skin.button)
+		{
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
+			alignment = TextAnchor.MiddleCenter,
+			normal =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = ButtonSelected
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+
+		if (CE_CustomUIElements.Button("Back", style))
+		{
+			ClickSoundTrigger();
+			result = true;
+		}
+		HoverSoundTrigger();
+		return result;
+	}
+
+	#endregion
 }
