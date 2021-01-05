@@ -115,6 +115,7 @@ public class CE_WardrobeManager
 				skinData.KillTongueImpostor = BaseSkin.KillTongueImpostor;
 				skinData.KillTongueVictim = BaseSkin.KillTongueVictim;
 				skinData.RelatedHatName = item2.RelatedHat;
+				skinData.IsHidden = item2.IsHidden;
 				foreach (CE_SpriteFrame frame in item2.FrameList)
 				{
 					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, frame.SpritePath));
@@ -193,6 +194,7 @@ public class CE_WardrobeManager
 				hatBehaviour.StoreName = item2.Name;
 				hatBehaviour.RelatedSkinName = item2.RelatedSkin;
 				hatBehaviour.IsCustom = true;
+				hatBehaviour.IsHidden = item2.IsHidden;
 				CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, item2);
 				CE_LoadHats_SetHatInFrontState(ref hatBehaviour, item2);
 				CE_LoadHats_SetColorFilterState(ref hatBehaviour, item2);

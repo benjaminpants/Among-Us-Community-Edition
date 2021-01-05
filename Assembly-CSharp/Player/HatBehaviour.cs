@@ -31,6 +31,8 @@ public class HatBehaviour : ScriptableObject, IBuyable
 
 	public string RelatedSkinName;
 
+	public bool IsHidden;
+
     #region Extra Hat Layer 1
 
     public Sprite MainImageExt;

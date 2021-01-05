@@ -237,8 +237,9 @@ namespace AmongUsCE_AnimationEditor
                 PointFilteringGloballyCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.UsePointFilteringGlobally;
                 UsePercentageBasedPivotCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.UsePercentageBasedPivot;
 
-                NoHatBobbingCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.NoHatBobbingGlobally;
-                HatInFrontCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.HatInFrontGlobally;
+                NoHatBobbingCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.NoHatBobbing;
+                HatInFrontCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.HatInFront;
+                IsHiddenCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.IsHidden;
                 UseColorFilteringGloballyCheckbox.IsChecked = AnimationModel.Instance.CurrentAnimation.UseColorFilteringGlobally;
 
                 RelatedHatTextBox.Text = AnimationModel.Instance.CurrentAnimation.RelatedHat;
@@ -283,9 +284,10 @@ namespace AmongUsCE_AnimationEditor
                 AnimationModel.Instance.CurrentAnimation.UsePointFilteringGlobally = PointFilteringGloballyCheckbox.IsChecked.GetValueOrDefault(false);
                 AnimationModel.Instance.CurrentAnimation.UsePercentageBasedPivot = UsePercentageBasedPivotCheckbox.IsChecked.GetValueOrDefault(false);
 
-                AnimationModel.Instance.CurrentAnimation.NoHatBobbingGlobally = NoHatBobbingCheckbox.IsChecked.GetValueOrDefault(false);
-                AnimationModel.Instance.CurrentAnimation.HatInFrontGlobally = HatInFrontCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.NoHatBobbing = NoHatBobbingCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.HatInFront = HatInFrontCheckbox.IsChecked.GetValueOrDefault(false);
                 AnimationModel.Instance.CurrentAnimation.UseColorFilteringGlobally = UseColorFilteringGloballyCheckbox.IsChecked.GetValueOrDefault(false);
+                AnimationModel.Instance.CurrentAnimation.IsHidden = IsHiddenCheckbox.IsChecked.GetValueOrDefault(false);
 
                 AnimationModel.Instance.CurrentAnimation.RelatedHat = RelatedHatTextBox.Text;
                 AnimationModel.Instance.CurrentAnimation.RelatedSkin = RelatedSkinTextBox.Text;
@@ -584,6 +586,13 @@ namespace AmongUsCE_AnimationEditor
         }
 
         private void UseColorFilteringGloballyCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (AllowUpdate && AnimationModel.Instance.isAnimationLoaded)
+            {
+                UpdateUI();
+            }
+        }
+        private void IsHiddenCheckbox_Click(object sender, RoutedEventArgs e)
         {
             if (AllowUpdate && AnimationModel.Instance.isAnimationLoaded)
             {

@@ -23,6 +23,7 @@ public class CE_FrameSet
 	public string RelatedSkin { get; set; }
 	public string RelatedHat { get; set; }
 	public bool UsePercentageBasedPivot { get; set; }
+	public bool IsHidden { get; set; }
 	public List<CE_SpriteFrame> FrameList
 	{
 		get;

@@ -40,16 +40,19 @@ public class SkinsTab : MonoBehaviour
 		for (int i = 0; i < unlockedSkins.Length; i++)
 		{
 			SkinData skin = unlockedSkins[i];
-			float x = XRange.Lerp((float)(i % NumPerRow) / ((float)NumPerRow - 1f));
-			float y = YStart - (float)(i / NumPerRow) * YOffset;
-			ColorChip colorChip = Object.Instantiate(ColorTabPrefab, scroller.Inner);
-			colorChip.transform.localPosition = new Vector3(x, y, -1f);
-			colorChip.Button.OnClick.AddListener(delegate
+			if (!skin.IsHidden)
 			{
-				SelectHat(skin);
-			});
-			colorChip.Inner.sprite = skin.IdleFrame;
-			ColorChips.Add(colorChip);
+				float x = XRange.Lerp((float)(i % NumPerRow) / ((float)NumPerRow - 1f));
+				float y = YStart - (float)(i / NumPerRow) * YOffset;
+				ColorChip colorChip = Object.Instantiate(ColorTabPrefab, scroller.Inner);
+				colorChip.transform.localPosition = new Vector3(x, y, -1f);
+				colorChip.Button.OnClick.AddListener(delegate
+				{
+					SelectHat(skin);
+				});
+				colorChip.Inner.sprite = skin.IdleFrame;
+				ColorChips.Add(colorChip);
+			}
 		}
 		scroller.YBounds.max = 0f - (YStart - (float)(unlockedSkins.Length / NumPerRow) * YOffset) - 3f;
 	}

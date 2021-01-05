@@ -16,13 +16,14 @@ public class CE_FrameSet
 		set;
 	} = "CustomSkin";
 	public string StoreName { get; set; }
-	public bool HatInFrontGlobally { get; set; }
-	public bool NoHatBobbingGlobally { get; set; }
+	public bool HatInFront { get; set; }
+	public bool NoHatBobbing { get; set; }
 	public bool UsePointFilteringGlobally { get; set; }
 	public bool UseColorFilteringGlobally { get; set; }
 	public string RelatedSkin { get; set; }
 	public string RelatedHat { get; set; }
 	public bool UsePercentageBasedPivot { get; set; }
+	public bool IsHidden { get; set; }
 	public List<CE_SpriteFrame> FrameList
 	{
 		get;
