@@ -184,14 +184,18 @@ public class ExileController : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(exiled.SkinId);
-		if (skinById)
+		if (exiled != null)
         {
-			bool isCustom = skinById.isCustom;
-			if (isCustom)
+			SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(exiled.SkinId);
+			if (skinById)
 			{
-				PlayerSkin.sprite = CE_WardrobeManager.GetSkin("ejected", skinById);
+				bool isCustom = skinById.isCustom;
+				if (isCustom)
+				{
+					PlayerSkin.sprite = CE_WardrobeManager.GetSkin("ejected", skinById);
+				}
 			}
 		}
+
 	}
 }
