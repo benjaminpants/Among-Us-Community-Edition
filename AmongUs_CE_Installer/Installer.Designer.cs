@@ -272,7 +272,7 @@ namespace AmongUs_CE_Installer
             // CleanFilesCheckbox
             // 
             this.CleanFilesCheckbox.AutoSize = true;
-            this.CleanFilesCheckbox.Location = new System.Drawing.Point(352, 64);
+            this.CleanFilesCheckbox.Location = new System.Drawing.Point(6, 64);
             this.CleanFilesCheckbox.Name = "CleanFilesCheckbox";
             this.CleanFilesCheckbox.Size = new System.Drawing.Size(109, 30);
             this.CleanFilesCheckbox.TabIndex = 13;
