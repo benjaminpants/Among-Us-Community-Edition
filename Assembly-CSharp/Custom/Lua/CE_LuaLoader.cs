@@ -92,7 +92,7 @@ public static class CE_LuaLoader
 			}
 			catch(Exception E)
             {
-				Debug.LogWarning(E.Message + "\nUnable to find function:" + fn + "\nAttempting to call function in base lua...");
+				//Debug.LogWarning(E.Message + "\nUnable to find function:" + fn + "\nAttempting to call function in base lua...");
                 if (GamemodeInfos.TryGetValue(1, out var value2))
                 {
 					try
