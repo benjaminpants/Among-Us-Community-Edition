@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
-
+using System.Runtime.InteropServices;
 public class CE_Extensions
 {
 	private static bool hasPlayed;
 
 	private static CE_Intro Intro;
+
+	private static bool TitleChanged = false;
+
+	//Import the following.
+	[DllImport("user32.dll", EntryPoint = "SetWindowText")]
+	public static extern bool SetWindowText(System.IntPtr hwnd, System.String lpString);
+	[DllImport("user32.dll", EntryPoint = "FindWindow")]
+	public static extern System.IntPtr FindWindow(System.String className, System.String windowName);
+	[DllImport("user32.dll")]
+	private static extern System.IntPtr GetActiveWindow();
 
 	public static string GetGameDirectory()
     {
@@ -15,6 +25,20 @@ public class CE_Extensions
     {
 		if (string.IsNullOrEmpty(ExtraDir)) return System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures");
 		else return System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", ExtraDir);
+	}
+
+	public static void UpdateWindowTitle()
+    {
+		if (!TitleChanged)
+        {
+			bool isFocused = Application.isFocused;
+			var windowPtr = FindWindow(null, "Among Us");
+			if (windowPtr == GetActiveWindow() && isFocused)
+			{
+				SetWindowText(windowPtr, "Among Us: Community Edition");
+				TitleChanged = true;
+			}
+		}
 	}
 
 	private static void PlayIntro()

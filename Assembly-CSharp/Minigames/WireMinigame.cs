@@ -20,7 +20,11 @@ public class WireMinigame : Minigame
 
 	public AudioClip[] WireSounds;
 
-	private Sprite[] IconSprites;
+	private Sprite[] IconSpritesR;
+
+	private Sprite[] IconSpritesL;
+
+	private SpriteRenderer[] Icons;
 
 	private bool TaskIsForThisPanel()
 	{
@@ -104,8 +108,71 @@ public class WireMinigame : Minigame
 		UpdateLights();
 	}
 
+	private void UpdateIcons()
+    {
+		float y_pos = -0.16f;
+		float y_pos2 = -0.17f;
+		float z_pos = 1f;
+		int index = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			var position = LeftLights[i].transform.position;
+			position.y += y_pos;
+			position.z += z_pos;
+
+			Icons[index].transform.localPosition = LeftLights[i].transform.localPosition;
+			Icons[index].transform.position = position;
+			Icons[index].enabled = false; //TODO: Validate Icons
+			switch (LeftNodes[i].WireId)
+			{
+				case 0:
+					Icons[index].sprite = IconSpritesL[0];
+					break;
+				case 1:
+					Icons[index].sprite = IconSpritesL[1];
+					break;
+				case 2:
+					Icons[index].sprite = IconSpritesL[2];
+					break;
+				case 3:
+					Icons[index].sprite = IconSpritesL[3];
+					break;
+			}
+
+			index++;
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			var position = RightLights[i].transform.position;
+			position.y += y_pos2;
+			position.z -= z_pos;
+
+			Icons[index].transform.localPosition = RightLights[i].transform.localPosition;
+			Icons[index].transform.position = position;
+			Icons[index].enabled = false; //TODO: Validate Icons
+			switch (ExpectedWires[i])
+            {
+				case 0:
+					Icons[index].sprite = IconSpritesR[0];
+					break;
+				case 1:
+					Icons[index].sprite = IconSpritesR[1];
+					break;
+				case 2:
+					Icons[index].sprite = IconSpritesR[2];
+					break;
+				case 3:
+					Icons[index].sprite = IconSpritesR[3];
+					break;
+			}
+
+			index++;
+		}
+	}
+
 	private void UpdateLights()
 	{
+		UpdateIcons();
 		for (int i = 0; i < ActualWires.Length; i++)
 		{
 			Color yellow = Color.yellow;
@@ -159,7 +226,7 @@ public class WireMinigame : Minigame
 	private bool CreateSprites()
     {
 		//TODO: Actually Use
-		if (IconSprites == null)
+		if (IconSpritesL == null || IconSpritesR == null)
 		{
 			System.Collections.Generic.List<string> IconFilePaths = new System.Collections.Generic.List<string>()
 			{
@@ -169,17 +236,42 @@ public class WireMinigame : Minigame
 				"WireIcon4.png"
 			};
 
-			IconSprites = new Sprite[4];
+            IconSpritesL = new Sprite[4];
+			IconSpritesR = new Sprite[4];
+			Icons = new SpriteRenderer[8];
 
-			for (int i = 0; i < IconSprites.Length; i++)
+			for (int i = 0; i < IconSpritesR.Length; i++)
 			{
 				string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Minigames"), IconFilePaths[i]);
 				var texture = CE_TextureNSpriteExtensions.LoadPNG(path);
 				texture.filterMode = FilterMode.Point;
-				IconSprites[i] = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+				IconSpritesR[i] = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));			
+			}
+
+			for (int i = 0; i < IconSpritesL.Length; i++)
+			{
+				string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Minigames"), IconFilePaths[i]);
+				var texture = CE_TextureNSpriteExtensions.LoadPNG(path);
+				texture.filterMode = FilterMode.Point;
+				IconSpritesL[i] = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+			}
+
+			for (int i = 0; i < 8; i++)
+            {
+				Icons[i] = CreateColorBlindIcon(this.gameObject.layer);
 			}
 		}
 		return true;
+	}
+
+	private SpriteRenderer CreateColorBlindIcon(int layer)
+    {
+		GameObject gameObject = new GameObject("ColorBlindIcon");
+		gameObject.layer = layer;
+		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
+		HatRendererExt.transform.SetParent(this.transform);
+		HatRendererExt.transform.position = this.transform.position;
+		return HatRendererExt;
 	}
 
 	static WireMinigame()

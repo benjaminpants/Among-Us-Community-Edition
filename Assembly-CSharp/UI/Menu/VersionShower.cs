@@ -10,4 +10,9 @@ public class VersionShower : MonoBehaviour
 		Screen.sleepTimeout = -1;
 		CE_Extensions.OnStartup();
 	}
+
+	public void Update()
+    {
+		CE_Extensions.UpdateWindowTitle();
+	}
 }
