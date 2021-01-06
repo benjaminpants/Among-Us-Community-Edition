@@ -141,25 +141,40 @@ public class TaskAdderGame : Minigame
 		if (Heirarchy.Count == 1)
 		{
 			TaskAddButton taskAddButton3 = Object.Instantiate(InfectedButton);
-			taskAddButton3.Text.Text = "Set_Settings\r\n.exe";
+			taskAddButton3.Text.Text = "Settings.exe";
 			taskAddButton3.OptionsTask = true;
 			taskAddButton3.ImpostorTask = false;
 			taskAddButton3.OnOptionsTask += TaskAddButton3_OnOptionsTask;
-			AddFileAsChild(taskAddButton3, ref xCursor, ref yCursor);
+			AddFileAsChild(taskAddButton3, ref xCursor, ref yCursor, true);
+			taskAddButton3.SetOptionsTaskColor(Color.gray);
+
+			TaskAddButton taskAddButton4 = Object.Instantiate(InfectedButton);
+			taskAddButton4.Text.Text = "TODO.txt";
+			taskAddButton4.OptionsTask = true;
+			taskAddButton4.ImpostorTask = false;
+			taskAddButton4.OnOptionsTask += TaskAddButton4_OnOptionsTask;
+			AddFileAsChild(taskAddButton4, ref xCursor, ref yCursor, true);
+			taskAddButton4.SetOptionsTaskColor(Color.white);
 
 			TaskAddButton taskAddButton2 = Object.Instantiate(InfectedButton);
-			taskAddButton2.Text.Text = "Be_Impostor\r\n.exe";
-			AddFileAsChild(taskAddButton2, ref xCursor, ref yCursor);
+			taskAddButton2.Text.Text = "Impostor.exe";
+			AddFileAsChild(taskAddButton2, ref xCursor, ref yCursor, true);
 		}
 	}
 
-    private void TaskAddButton3_OnOptionsTask(object sender, System.EventArgs e)
+	private void TaskAddButton4_OnOptionsTask(object sender, System.EventArgs e)
+	{
+		CE_DevMinigame.IsShown = true;
+		base.Close();
+	}
+
+	private void TaskAddButton3_OnOptionsTask(object sender, System.EventArgs e)
     {
 		CE_PlayerOptions.Open();
 		base.Close();
 	}
 
-	private void AddFileAsChild(TaskAddButton item, ref float xCursor, ref float yCursor)
+	private void AddFileAsChild(TaskAddButton item, ref float xCursor, ref float yCursor, bool addInstead = false)
 	{
 		item.transform.SetParent(TaskParent);
 		item.transform.localPosition = new Vector3(xCursor, yCursor, 0f);
@@ -168,7 +183,8 @@ public class TaskAdderGame : Minigame
 		if (xCursor > lineWidth)
 		{
 			xCursor = 0f;
-			yCursor -= lineHeight;
+			if (addInstead) yCursor += lineHeight;
+			else yCursor -= lineHeight;
 		}
 		ActiveItems.Add(item.transform);
 	}

@@ -15,6 +15,8 @@ public class CE_CommonUI
 
 	private static Texture2D MenuTexture;
 
+	public static Texture2D TXT_Texture;
+
 	private static Texture2D GameButtonTexture;
 
 	private static Texture2D GameButtonSelected;
@@ -95,20 +97,24 @@ public class CE_CommonUI
         {
             GameMenuDropdownSelectedTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown_Selected.png"));
         }
+		if (!TXT_Texture)
+        {
+			TXT_Texture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "TXTBackground.png"));
+		}
 	}
 
 	#endregion
 
 	#region UI Scaling Methods
 
-	private static int TextUpscale = -15;
-	private static int TextHeightUpscale = 20;
-	private static float GetScale(int width, int height, Vector2 scalerReferenceResolution, float scalerMatchWidthOrHeight)
+	public static int TextUpscale = -15;
+	public static int TextHeightUpscale = 20;
+	public static float GetScale(int width, int height, Vector2 scalerReferenceResolution, float scalerMatchWidthOrHeight)
 	{
 		return Mathf.Pow(width / scalerReferenceResolution.x, 1f - scalerMatchWidthOrHeight) *
 			   Mathf.Pow(height / scalerReferenceResolution.y, scalerMatchWidthOrHeight);
 	}
-	private static float GetScale(int width, int height)
+	public static float GetScale(int width, int height)
     {
 		return GetScale(width, height, new Vector2(1920, 1080), 1f);
     }
@@ -684,6 +690,36 @@ public class CE_CommonUI
 		style.padding = new RectOffset(30, 30, 30, 30);
 		style.border = new RectOffset(15, 15, 15, 15);
 		style.onNormal.background = MenuTexture;
+		return style;
+	}
+	public static GUIStyle WindowStyle_TXT()
+	{
+		LoadAssets();
+		float scale = GetScale(Screen.width, Screen.height);
+		var style = new GUIStyle(GUI.skin.window)
+		{
+			normal =
+			{
+				background = TXT_Texture
+			},
+			focused =
+			{
+				background = TXT_Texture
+			},
+			active =
+			{
+				background = TXT_Texture
+			},
+			hover =
+			{
+				background = TXT_Texture
+			}
+
+		};
+		style.onNormal.background = TXT_Texture;
+		style.padding = new RectOffset(30, 30, 30, 30);
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = TXT_Texture;
 		return style;
 	}
 	public static Rect StockSettingsRect()

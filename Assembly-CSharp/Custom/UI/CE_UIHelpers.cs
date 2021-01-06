@@ -10,7 +10,7 @@ public class CE_UIHelpers
 
 	public static bool IsActive()
 	{
-		if (!CE_Intro.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown)
+		if (!CE_Intro.IsShown && !CE_DevMinigame.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown)
 		{
 			return CE_AnimationDebuger.IsShown;
 		}
@@ -24,6 +24,7 @@ public class CE_UIHelpers
 		CE_GlobalSettingsUI.IsShown = false;
 		CE_ControlsUI.IsShown = false;
 		CE_DevTool.IsShown = false;
+		CE_DevMinigame.IsShown = false;
 	}
 
 	static CE_UIHelpers()
@@ -42,64 +43,6 @@ public class CE_UIHelpers
 		}
 	}
 
-	public static bool isProblemTraceConsoleActive()
-	{
-		return false;
-	}
-
-	private static GUIStyle UpDownSettingButtons()
-	{
-		return new GUIStyle(GUI.skin.button)
-		{
-			fixedWidth = 50f,
-			fixedHeight = 50f,
-			fontSize = 25,
-			normal = 
-			{
-				textColor = Color.white
-			}
-		};
-	}
-
-	private static GUIStyle UpDownSettingLabel(float width = 250f)
-	{
-		if (width == 0f)
-		{
-			return new GUIStyle(GUI.skin.label)
-			{
-				fixedHeight = 50f,
-				fixedWidth = width,
-				fontSize = 25,
-				normal = 
-				{
-					textColor = Color.white
-				}
-			};
-		}
-		return new GUIStyle(GUI.skin.label)
-		{
-			alignment = TextAnchor.MiddleCenter,
-			fixedHeight = 50f,
-			fixedWidth = width,
-			fontSize = 25,
-			normal = 
-			{
-				textColor = Color.white
-			}
-		};
-	}
-
-	private static GUIStyle WindowStyle(int w, int h)
-	{
-		return new GUIStyle(GUI.skin.window)
-		{
-			normal = 
-			{
-				background = CE_TextureNSpriteExtensions.MakeTex(1, 1, Color.black)
-			}
-		};
-	}
-
 	public static void LoadDebugConsole()
 	{
 		if (!DestroyableSingleton<ProblemTraceConsole>.InstanceExists)
@@ -114,6 +57,10 @@ public class CE_UIHelpers
 		{
 			Object.Instantiate(new GameObject()).AddComponent<CE_DevTool>();
 		}
+		if (!DestroyableSingleton<CE_DevMinigame>.InstanceExists)
+		{
+			Object.Instantiate(new GameObject()).AddComponent<CE_DevMinigame>();
+		}
 	}
 
 	public static void ForceLoadDebugUIs()
@@ -121,5 +68,6 @@ public class CE_UIHelpers
 		Object.Instantiate(new GameObject()).AddComponent<ProblemTraceConsole>();
 		Object.Instantiate(new GameObject()).AddComponent<CE_AnimationDebuger>();
 		Object.Instantiate(new GameObject()).AddComponent<CE_DevTool>();
+		Object.Instantiate(new GameObject()).AddComponent<CE_DevMinigame>();
 	}
 }

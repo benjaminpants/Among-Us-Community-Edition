@@ -36,7 +36,7 @@ public class CE_DevTool : MonoBehaviour
 		if (!(instance != null))
 		{
 			GameObject gameObject = new GameObject();
-			gameObject.AddComponent<CE_AnimationDebuger>();
+			gameObject.AddComponent<CE_DevTool>();
 			Object.DontDestroyOnLoad(gameObject);
 		}
 	}

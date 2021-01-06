@@ -18,13 +18,13 @@ public class TaskAddButton : MonoBehaviour
 
 	public event System.EventHandler OnOptionsTask;
 
-	public void SetOptionsTask()
+	public void SetOptionsTaskColor(Color color)
     {
 		var renders = this.gameObject.GetComponents<SpriteRenderer>();
 		foreach (var render in renders)
         {
 			Debug.Log(render.name);
-			render.color = Color.gray;
+			render.color = color;
         }
 
 	}
@@ -46,7 +46,6 @@ public class TaskAddButton : MonoBehaviour
 			Text.maxWidth += 0.4f;
 			Overlay.enabled = false;
 			Overlay.sprite = CheckImage;
-			SetOptionsTask();
 			return;
 		}
 		PlayerTask playerTask = FindTaskByType();
