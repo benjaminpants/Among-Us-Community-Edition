@@ -14,6 +14,12 @@ public class OverlayKillAnimation : MonoBehaviour
 
 	private uint victimHat;
 
+	private uint killerHat;
+
+	private int victimColor;
+
+	private int killerColor;
+
 	public AudioClip Stinger;
 
 	public AudioClip Sfx;
@@ -23,7 +29,7 @@ public class OverlayKillAnimation : MonoBehaviour
 	private SkinData LastSkinData_Victim;
 
 	private SkinData LastSkinData_Killer;
-	
+
 	public void Awake()
     {
 		InitCustomHatLayers();
@@ -37,7 +43,7 @@ public class OverlayKillAnimation : MonoBehaviour
 			{
 				Renderer renderer = killerParts[i];
 				PlayerControl.SetPlayerMaterialColors(data.ColorId, renderer);
-				if (SetHatNormal(ref renderer, data.HatId)) continue;
+				if (SetHatKiller(ref renderer, data.HatId, (int)data.ColorId)) continue;
 				else if (renderer.name.StartsWith("Skin"))
 				{
 					switch (KillType)
@@ -78,7 +84,7 @@ public class OverlayKillAnimation : MonoBehaviour
 		{
 			Renderer renderer2 = victimParts[j];
 			PlayerControl.SetPlayerMaterialColors(victim.ColorId, renderer2);
-			if (SetHatNormal(ref renderer2, victimHat)) continue;
+			if (SetHatVictim(ref renderer2, victimHat, (int)victim.ColorId)) continue;
 			else if (renderer2.name.StartsWith("Skin"))
 			{
 				SkinData skinById3 = DestroyableSingleton<HatManager>.Instance.GetSkinById(victim.SkinId);
@@ -161,31 +167,64 @@ public class OverlayKillAnimation : MonoBehaviour
 			break;
 		}
 	}
-	public bool SetHatNormal(ref Renderer renderer, uint hatID)
+	public bool SetHatVictim(ref Renderer renderer, uint hatID, int colorID)
 	{
+		victimHat = hatID;
+		victimColor = colorID;
 		if (renderer.name.StartsWith("HatSlot"))
 		{
-			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer);
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 0, colorID);
 			return true;
 		}
 		else if (renderer.name.StartsWith("ExtHatSlot1"))
 		{
-			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 1);
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 1, colorID);
 			return true;
 		}
 		else if (renderer.name.StartsWith("ExtHatSlot2"))
 		{
-			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 2);
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 2, colorID);
 			return true;
 		}
 		else if (renderer.name.StartsWith("ExtHatSlot3"))
 		{
-			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 3);
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 3, colorID);
 			return true;
 		}
 		else if (renderer.name.StartsWith("ExtHatSlot4"))
 		{
-			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 4);
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 4, colorID);
+			return true;
+		}
+		else return false;
+	}
+	public bool SetHatKiller(ref Renderer renderer, uint hatID, int colorID)
+	{
+		killerHat = hatID;
+		killerColor = colorID;
+		if (renderer.name.StartsWith("HatSlot"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 0, colorID);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot1"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 1, colorID);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot2"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 2, colorID);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot3"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 3, colorID);
+			return true;
+		}
+		else if (renderer.name.StartsWith("ExtHatSlot4"))
+		{
+			PlayerControl.SetHatImage(hatID, (SpriteRenderer)renderer, 4, colorID);
 			return true;
 		}
 		else return false;
@@ -203,21 +242,26 @@ public class OverlayKillAnimation : MonoBehaviour
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot1") && victimSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), victimSource);
+				PlayerControl.SetHatImage(victimHat, (SpriteRenderer)renderer, 1, victimColor);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot2") && victimSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), victimSource);
+				PlayerControl.SetHatImage(victimHat, (SpriteRenderer)renderer, 2, victimColor);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot3") && victimSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), victimSource);
+				PlayerControl.SetHatImage(victimHat, (SpriteRenderer)renderer, 3, victimColor);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot4") && victimSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), victimSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), victimSource);
+				PlayerControl.SetHatImage(victimHat, (SpriteRenderer)renderer, 4, victimColor);
 			}
 		}
+
 		for (int i = 0; i < killerParts.Length; i++)
 		{
 			Renderer renderer = killerParts[i];
@@ -227,19 +271,23 @@ public class OverlayKillAnimation : MonoBehaviour
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot1") && killerSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), killerSource);
+				PlayerControl.SetHatImage(killerHat, (SpriteRenderer)renderer, 1, killerColor);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot2") && killerSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), killerSource);
+				PlayerControl.SetHatImage(killerHat, (SpriteRenderer)renderer, 2, killerColor);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot3") && killerSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), killerSource);
+				PlayerControl.SetHatImage(killerHat, (SpriteRenderer)renderer, 3, killerColor);
 			}
 			else if (renderer.name.StartsWith("ExtHatSlot4") && killerSource)
 			{
-				CE_WardrobeManager.UpdateSpriteRenderer(((SpriteRenderer)renderer), killerSource);
+				CE_WardrobeManager.MatchBaseHatRender(((SpriteRenderer)renderer), killerSource);
+				PlayerControl.SetHatImage(killerHat, (SpriteRenderer)renderer, 4, killerColor);
 			}
 		}
 	}

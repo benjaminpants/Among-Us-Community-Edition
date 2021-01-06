@@ -31,6 +31,11 @@ public class HatsTab : MonoBehaviour
 
 	public SpriteRenderer HatImageExt4;
 
+	public void OnStart()
+	{
+		SetHat();
+	}
+
 	public void OnEnable()
 	{
 		PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.ColorId, DemoImage);
@@ -50,6 +55,7 @@ public class HatsTab : MonoBehaviour
 					SelectHat(hat);
 				});
 				SetColorChipImages(colorChip, hat);
+				colorChip.hatId = DestroyableSingleton<HatManager>.Instance.GetIdFromHat(hat);
 				colorChip.transform.localPosition = new Vector3(x, y, -1f);
 				ColorChips.Add(colorChip);
 			}
@@ -74,6 +80,7 @@ public class HatsTab : MonoBehaviour
 		{
 			ColorChip colorChip = ColorChips[i];
 			colorChip.InUseForeground.SetActive((hatById.PreviewImage ? hatById.PreviewImage : hatById.MainImage) == colorChip.Inner.sprite);
+			colorChip.UpdateHat();
 		}
 		UpdateExtHats();
 	}
@@ -90,10 +97,16 @@ public class HatsTab : MonoBehaviour
 
 	public void UpdateExtHats()
     {
-		CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt, HatImage);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt2, HatImage);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt3, HatImage);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt4, HatImage);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImage, 0, (int)SaveManager.BodyColor);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt, 1, (int)SaveManager.BodyColor);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt2, 2, (int)SaveManager.BodyColor);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt3, 3, (int)SaveManager.BodyColor);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt4, 4, (int)SaveManager.BodyColor);
+
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt2, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt3, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt4, HatImage);
 	}
 
 	public void Awake()
@@ -106,20 +119,30 @@ public class HatsTab : MonoBehaviour
 
 	public void SetHatImage(uint hatId)
 	{
-		PlayerControl.SetHatImage(hatId, HatImage);
-		PlayerControl.SetHatImage(hatId, HatImageExt, 1);
-		PlayerControl.SetHatImage(hatId, HatImageExt2, 2);
-		PlayerControl.SetHatImage(hatId, HatImageExt3, 3);
-		PlayerControl.SetHatImage(hatId, HatImageExt4, 4);
+		PlayerControl.SetHatImage(hatId, HatImage, 0, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt, 1, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt2, 2, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt3, 3, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt4, 4, PlayerControl.LocalPlayer.Data.ColorId);
+
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt2, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt3, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt4, HatImage);
 	}
 
 	public void SetHat()
 	{
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImage);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt, 1);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt2, 2);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt3, 3);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt4, 4);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImage, 0, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt, 1, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt2, 2, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt3, 3, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt4, 4, PlayerControl.LocalPlayer.Data.ColorId);
+
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt2, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt3, HatImage);
+		CE_WardrobeManager.MatchBaseHatRender(HatImageExt4, HatImage);
 	}
 
 	private void SetColorChipImages(ColorChip colorChip, HatBehaviour hat)

@@ -77,19 +77,19 @@ public class PlayerPhysics : InnerNetObject
 		}
 	}
 
-	private void UpdateHatBobbing()
+	private void UpdateHats()
     {
 		string name = rend.sprite.name;
-		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRenderer, 0);
-		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt, 1);
-		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt2, 2);
-		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt3, 3);
-		CE_WardrobeManager.SetHatBobbingPhysics(myPlayer, name, ref myPlayer.HatRendererExt4, 3);
+		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRenderer, 0);
+		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt, 1);
+		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt2, 2);
+		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt3, 3);
+		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt4, 3);
 	}
 
 	private void LateUpdate()
 	{
-		UpdateHatBobbing();
+		UpdateHats();
 		Vector3 position = base.transform.position;
 		position.z = position.y / 1000f;
 		base.transform.position = position;

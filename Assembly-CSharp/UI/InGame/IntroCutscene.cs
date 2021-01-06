@@ -149,7 +149,7 @@ public class IntroCutscene : MonoBehaviour
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, data.SkinId);
-				HatBegin(ref spriteRenderer, data.HatId);
+				HatBegin(ref spriteRenderer, data.HatId, data.ColorId);
 			}
 		}
 	}
@@ -213,7 +213,7 @@ public class IntroCutscene : MonoBehaviour
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, data.SkinId);
-				HatBegin(ref spriteRenderer, data.HatId);
+				HatBegin(ref spriteRenderer, data.HatId, data.ColorId);
 			}
 		}
 	}
@@ -240,7 +240,7 @@ public class IntroCutscene : MonoBehaviour
             {
 				if (j != 0 && refrence)
                 {
-					CE_WardrobeManager.UpdateSpriteRenderer(TeamHatGroups[i][j], refrence); 
+					CE_WardrobeManager.MatchBaseHatRender(TeamHatGroups[i][j], refrence); 
 				}
 				else
                 {
@@ -251,7 +251,7 @@ public class IntroCutscene : MonoBehaviour
 		}
     }
 
-	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId)
+	private void HatBegin(ref SpriteRenderer spriteRenderer, uint HatId, int ColorId)
     {
 		try
 		{
@@ -263,7 +263,7 @@ public class IntroCutscene : MonoBehaviour
 				localPosition.x = 0f - localPosition.x;
 				component2.transform.localPosition = localPosition;
 			}
-			PlayerControl.SetHatImage(HatId, component2);
+			PlayerControl.SetHatImage(HatId, component2, 0, ColorId);
 
 			for (int i = 0; i < 4; i++)
 			{
@@ -277,7 +277,7 @@ public class IntroCutscene : MonoBehaviour
 					localPosition.x = 0f - localPosition.x;
 					component3.transform.localPosition = localPosition;
 				}
-				PlayerControl.SetHatImage(HatId, component3, index);
+				PlayerControl.SetHatImage(HatId, component3, index, ColorId);
 			}
 		}
 		catch(System.Exception E)

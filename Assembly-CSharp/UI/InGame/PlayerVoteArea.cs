@@ -242,11 +242,11 @@ public class PlayerVoteArea : MonoBehaviour
 				PlayerSkin = CreateNewSprite(PlayerIcon);
 
 
-				PlayerControl.SetHatImage(hatID, PlayerHat, 0);
-				PlayerControl.SetHatImage(hatID, PlayerHatExt, 1);
-				PlayerControl.SetHatImage(hatID, PlayerHatExt2, 2);
-				PlayerControl.SetHatImage(hatID, PlayerHatExt3, 3);
-				PlayerControl.SetHatImage(hatID, PlayerHatExt4, 4);
+				PlayerControl.SetHatImage(hatID, PlayerHat, 0, playerControl.Data.ColorId);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt, 1, playerControl.Data.ColorId);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt2, 2, playerControl.Data.ColorId);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt3, 3, playerControl.Data.ColorId);
+				PlayerControl.SetHatImage(hatID, PlayerHatExt4, 4, playerControl.Data.ColorId);
 				PlayerControl.SetSkinImage(playerControl.Data.SkinId, PlayerSkin);
 				IconsLoaded = true;
 			}

@@ -267,7 +267,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			{
 				if (j != 0 && refrence)
 				{
-					CE_WardrobeManager.UpdateSpriteRenderer(TeamHatGroups[i][j], refrence);
+					CE_WardrobeManager.MatchBaseHatRender(TeamHatGroups[i][j], refrence);
 				}
 				else
 				{
@@ -299,7 +299,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 				localPosition.x = 0f - localPosition.x;
 			}
 			component2.transform.localPosition = localPosition;
-			PlayerControl.SetHatImage(HatId, component2);
+			PlayerControl.SetHatImage(HatId, component2, 0, winningPlayerData2.ColorId);
 			
 
 			for (int i = 0; i < 4; i++)
@@ -323,7 +323,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 					localPosition2.x = 0f - localPosition2.x;
 				}
 				component3.transform.localPosition = localPosition2;
-				PlayerControl.SetHatImage(HatId, component3, index);
+				PlayerControl.SetHatImage(HatId, component3, index, winningPlayerData2.ColorId);
 			}
 		}
 		catch(System.Exception E)

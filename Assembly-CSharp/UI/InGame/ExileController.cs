@@ -74,7 +74,7 @@ public class ExileController : MonoBehaviour
 				});
 			}
 			PlayerControl.SetPlayerMaterialColors(playerById.ColorId, Player);
-			SetPlayerHat(exiled.HatId);
+			SetPlayerHat(exiled.HatId, exiled.ColorId);
 			PlayerSkin.sprite = DestroyableSingleton<HatManager>.Instance.GetSkinById(playerById.SkinId).EjectFrame;
 			if (exiled.IsImpostor)
 			{
@@ -104,13 +104,18 @@ public class ExileController : MonoBehaviour
 		StartCoroutine(Animate());
 	}
 
-	private void SetPlayerHat(uint hatId)
+	private void SetPlayerHat(uint hatId, int ColorId)
     {
-		PlayerControl.SetHatImage(hatId, PlayerHat, 0);
-		PlayerControl.SetHatImage(hatId, PlayerHatExt, 1);
-		PlayerControl.SetHatImage(hatId, PlayerHatExt2, 2);
-		PlayerControl.SetHatImage(hatId, PlayerHatExt3, 3);
-		PlayerControl.SetHatImage(hatId, PlayerHatExt4, 4);
+		CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt, PlayerHat);
+		CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt2, PlayerHat);
+		CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt3, PlayerHat);
+		CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt4, PlayerHat);
+
+		PlayerControl.SetHatImage(hatId, PlayerHat, 0, ColorId);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt, 1,  ColorId);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt2, 2, ColorId);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt3, 3, ColorId);
+		PlayerControl.SetHatImage(hatId, PlayerHatExt4, 4, ColorId);
 	}
 
 	private IEnumerator Animate()
@@ -176,10 +181,13 @@ public class ExileController : MonoBehaviour
 
 	private void Update()
     {
-		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt, PlayerHat);
-		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt2, PlayerHat);
-		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt3, PlayerHat);
-		CE_WardrobeManager.UpdateSpriteRenderer(PlayerHatExt4, PlayerHat);
+		if (exiled != null)
+		{
+			CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt, PlayerHat);
+			CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt2, PlayerHat);
+			CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt3, PlayerHat);
+			CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt4, PlayerHat);
+		}
 	}
 
 	private void LateUpdate()

@@ -352,10 +352,10 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 
 	public void UpdateExtHats()
 	{
-		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt, HatSlot);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt2, HatSlot);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt3, HatSlot);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatSlotExt4, HatSlot);
+		CE_WardrobeManager.MatchBaseHatRender(HatSlotExt, HatSlot);
+		CE_WardrobeManager.MatchBaseHatRender(HatSlotExt2, HatSlot);
+		CE_WardrobeManager.MatchBaseHatRender(HatSlotExt3, HatSlot);
+		CE_WardrobeManager.MatchBaseHatRender(HatSlotExt4, HatSlot);
 	}
 
 	public void Awake()
@@ -368,10 +368,10 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 
 	public void SetHatImage(HatBehaviour hatId)
 	{
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlot, 0);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt, 1);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt2, 2);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt3, 3);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt4, 4);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlot, 0, SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt, 1, SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt2, 2, SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt3, 3, SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt4, 4, SaveManager.BodyColor);
 	}
 }

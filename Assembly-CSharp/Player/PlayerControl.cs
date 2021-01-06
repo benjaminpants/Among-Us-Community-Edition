@@ -769,10 +769,10 @@ public class PlayerControl : InnerNetObject
 
 	public void Update()
     {
-		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt, HatRenderer);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt2, HatRenderer);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt3, HatRenderer);
-		CE_WardrobeManager.UpdateSpriteRenderer(HatRendererExt4, HatRenderer);
+		CE_WardrobeManager.MatchBaseHatRender(HatRendererExt, HatRenderer);
+		CE_WardrobeManager.MatchBaseHatRender(HatRendererExt2, HatRenderer);
+		CE_WardrobeManager.MatchBaseHatRender(HatRendererExt3, HatRenderer);
+		CE_WardrobeManager.MatchBaseHatRender(HatRendererExt4, HatRenderer);
 	}
 
 	public void LateUpdate()
@@ -780,11 +780,11 @@ public class PlayerControl : InnerNetObject
 		for (int i = 0; i < AllPlayerControls.Count; i++)
         {
 				string name = AllPlayerControls[i].myRend.sprite.name;
-				CE_WardrobeManager.SetHatBobbingPhysics(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRenderer, 0);
-				CE_WardrobeManager.SetHatBobbingPhysics(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt, 1);
-				CE_WardrobeManager.SetHatBobbingPhysics(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt2, 2);
-				CE_WardrobeManager.SetHatBobbingPhysics(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt3, 3);
-				CE_WardrobeManager.SetHatBobbingPhysics(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt4, 4);
+				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRenderer, 0);
+				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt, 1);
+				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt2, 2);
+				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt3, 3);
+				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt4, 4);
 		}
     }
 
@@ -877,11 +877,11 @@ public class PlayerControl : InnerNetObject
 		{
 			GameData.Instance.UpdateHat(PlayerId, hatId);
 		}
-		SetHatImage(hatId, HatRenderer, 0);
-		SetHatImage(hatId, HatRendererExt, 1);
-		SetHatImage(hatId, HatRendererExt2, 2);
-		SetHatImage(hatId, HatRendererExt3, 3);
-		SetHatImage(hatId, HatRendererExt4, 4);
+		SetHatImage(hatId, HatRenderer, 0, Data.ColorId);
+		SetHatImage(hatId, HatRendererExt, 1, Data.ColorId);
+		SetHatImage(hatId, HatRendererExt2, 2, Data.ColorId);
+		SetHatImage(hatId, HatRendererExt3, 3, Data.ColorId);
+		SetHatImage(hatId, HatRendererExt4, 4, Data.ColorId);
 		nameText.transform.localPosition = new Vector3(0f, (hatId == 0) ? 0.7f : 1.05f, -0.5f);
 	}
 	public static void SetSkinImage(uint skinId, SpriteRenderer target)
@@ -895,11 +895,11 @@ public class PlayerControl : InnerNetObject
 	{
 		target.sprite = skin.IdleFrame;
 	}
-	public static void SetHatImage(uint hatId, SpriteRenderer target, int hatSlot = 0)
+	public static void SetHatImage(uint hatId, SpriteRenderer target, int hatSlot = 0, int playerColor = 0)
 	{
 		if (DestroyableSingleton<HatManager>.InstanceExists)
 		{
-			CE_WardrobeManager.SetExtHatImage(DestroyableSingleton<HatManager>.Instance.GetHatById(hatId), target, hatSlot);
+			CE_WardrobeManager.SetExtHatImage(DestroyableSingleton<HatManager>.Instance.GetHatById(hatId), target, hatSlot, playerColor);
 		}
 	}
 	public static void SetHatImage(HatBehaviour hat, SpriteRenderer target)

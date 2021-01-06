@@ -1,0 +1,135 @@
+{
+  "ID": "GOIS",
+  "Name": "GOIS",
+  "StoreName": "GOIS",
+  "HatInFront": false,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.83
+      },
+      "Name": "Normal",
+      "SpritePath": "GOIS.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.3,
+        "y": 1.15
+      },
+      "Name": "NormalExt",
+      "SpritePath": "GOIS_2.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.83
+      },
+      "Name": "Floor",
+      "SpritePath": "GOIS.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.3,
+        "y": 1.15
+      },
+      "Name": "FloorExt",
+      "SpritePath": "GOIS_2.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Preview",
+      "SpritePath": "GOIS.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 84.0,
+        "y": 86.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "Name": "PreviewExt",
+      "SpritePath": "GOIS_2.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

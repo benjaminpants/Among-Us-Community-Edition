@@ -96,10 +96,10 @@ public class PurchaseButton : MonoBehaviour
 	{
 		if (Product is HatBehaviour)
 		{
-			CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt, HatImage);
-			CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt2, HatImage);
-			CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt3, HatImage);
-			CE_WardrobeManager.UpdateSpriteRenderer(HatImageExt4, HatImage);
+			CE_WardrobeManager.MatchBaseHatRender(HatImageExt, HatImage);
+			CE_WardrobeManager.MatchBaseHatRender(HatImageExt2, HatImage);
+			CE_WardrobeManager.MatchBaseHatRender(HatImageExt3, HatImage);
+			CE_WardrobeManager.MatchBaseHatRender(HatImageExt4, HatImage);
 		}
 	}
 
@@ -113,10 +113,10 @@ public class PurchaseButton : MonoBehaviour
 
 	public void SetHatImage(HatBehaviour hatId)
 	{
-		CE_WardrobeManager.SetExtHatImage(hatId, HatImage, 0);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt, 1);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt2, 2);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt3, 3);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt4, 4);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatImage, 0, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt, 1, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt2, 2, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt3, 3, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatImageExt4, 4, (int)SaveManager.BodyColor);
 	}
 }

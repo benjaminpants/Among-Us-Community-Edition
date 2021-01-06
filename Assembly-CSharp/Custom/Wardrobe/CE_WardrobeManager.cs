@@ -232,9 +232,9 @@ public class CE_WardrobeManager
 					{
 						case "Normal":
 							hatBehaviour.MainImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
-							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 0);
-							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 0);
-							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 0);
+							if (item2.HatInFront == false) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 0);
+							if (item2.NoHatBobbing == false) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 0);
+							if (item2.UseColorFilteringGlobally == false) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 0);
 							break;
 						case "Floor":
 							hatBehaviour.FloorImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
@@ -244,51 +244,51 @@ public class CE_WardrobeManager
 							break;
 						case "NormalExt":
 							hatBehaviour.MainImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
-							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 1);
-							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 1);
-							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 1);
+							if (item2.HatInFront == false) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 1);
+							if (item2.NoHatBobbing == false) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 1);
+							if (item2.UseColorFilteringGlobally == false) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 1);
 							break;
 						case "FloorExt":
 							hatBehaviour.FloorImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "PreviewExt":
-							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							hatBehaviour.PreviewImageExt = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "NormalExt2":
 							hatBehaviour.MainImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
-							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 2);
-							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 2);
-							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 2);
+							if (item2.HatInFront == false) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 2);
+							if (item2.NoHatBobbing == false) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 2);
+							if (item2.UseColorFilteringGlobally == false) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 2);
 							break;
 						case "FloorExt2":
 							hatBehaviour.FloorImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "PreviewExt2":
-							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							hatBehaviour.PreviewImageExt2 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "NormalExt3":
 							hatBehaviour.MainImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
-							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 3);
-							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 3);
-							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 3);
+							if (item2.HatInFront == false) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 3);
+							if (item2.NoHatBobbing == false) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 3);
+							if (item2.UseColorFilteringGlobally == false) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 3);
 							break;
 						case "FloorExt3":
 							hatBehaviour.FloorImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "PreviewExt3":
-							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							hatBehaviour.PreviewImageExt3 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "NormalExt4":
 							hatBehaviour.MainImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
-							if (!item2.HatInFront) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 4);
-							if (!item2.NoHatBobbing) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 4);
-							if (!item2.UseColorFilteringGlobally) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 4);
+							if (item2.HatInFront == false) CE_LoadHats_SetHatInFrontState(ref hatBehaviour, frame, 4);
+							if (item2.NoHatBobbing == false) CE_LoadHats_SetHatNoBobbingState(ref hatBehaviour, frame, 4);
+							if (item2.UseColorFilteringGlobally == false) CE_LoadHats_SetColorFilterState(ref hatBehaviour, frame, 4);
 							break;
 						case "FloorExt4":
 							hatBehaviour.FloorImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 						case "PreviewExt4":
-							hatBehaviour.PreviewImage = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
+							hatBehaviour.PreviewImageExt4 = Sprite.Create(frame.Texture, GetSpriteRect(frame.Texture, x, y, width, height), pivot);
 							break;
 					}
 				}
@@ -563,6 +563,10 @@ public class CE_WardrobeManager
 
 	#region Skin/Hat Rendering Methods
 
+	private static Material HatShaderMaterial;
+
+	private static Material HatShaderlessMaterial;
+
 	public static Sprite GetSkin(string name, SkinData skin)
 	{
 		string key = name.Substring(name.IndexOf("_") + 1);
@@ -607,12 +611,13 @@ public class CE_WardrobeManager
 		}
 		else return null;
 	}
-	public static void SetHatBobbingPhysics(PlayerControl player, string name, ref SpriteRenderer spriteRenderer, int hatSlot)
-	{
+
+	public static void UpdateActiveHatRender(PlayerControl player, string name, ref SpriteRenderer spriteRenderer, int hatSlot)
+    {
 		var hat = DestroyableSingleton<HatManager>.Instance.GetHatById(player.Data.HatId);
 		bool noBobbing;
 		switch (hatSlot)
-        {
+		{
 			case 0:
 				noBobbing = hat.NoBobbing;
 				break;
@@ -634,7 +639,7 @@ public class CE_WardrobeManager
 		}
 
 		if (noBobbing)
-        {
+		{
 			var position = spriteRenderer.transform.localPosition;
 
 			float x = position.x;
@@ -664,20 +669,40 @@ public class CE_WardrobeManager
 			}
 		}
 	}
-	public static void UpdateSpriteRenderer(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
+
+	public static void MatchBaseHatRender(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
 	{
 		ExtraHatRenderer.flipX = HatRenderer.flipX;
 		ExtraHatRenderer.flipY = HatRenderer.flipY;
 		ExtraHatRenderer.transform.parent = HatRenderer.transform.parent;
 		ExtraHatRenderer.transform.localRotation = HatRenderer.transform.localRotation;
 		ExtraHatRenderer.transform.localScale = HatRenderer.transform.localScale;
-		ExtraHatRenderer.transform.localPosition = HatRenderer.transform.localPosition;
+
+		var LocalPos = ExtraHatRenderer.transform.localPosition;
+		LocalPos.x = HatRenderer.transform.localPosition.x;
+		LocalPos.y = HatRenderer.transform.localPosition.y;
+		ExtraHatRenderer.transform.localPosition = LocalPos;
+
 		ExtraHatRenderer.sortingLayerID = HatRenderer.sortingLayerID;
 		ExtraHatRenderer.drawMode = HatRenderer.drawMode;
-		ExtraHatRenderer.material = HatRenderer.material;
 		ExtraHatRenderer.maskInteraction = HatRenderer.maskInteraction;
 		ExtraHatRenderer.renderingLayerMask = HatRenderer.renderingLayerMask;
 	}
+
+	public static void MatchSpriteRenderer(SpriteRenderer Target, SpriteRenderer Source)
+	{
+		Target.flipX = Source.flipX;
+		Target.flipY = Source.flipY;
+		Target.transform.parent = Source.transform.parent;
+		Target.transform.localRotation = Source.transform.localRotation;
+		Target.transform.localScale = Source.transform.localScale;
+		Target.transform.localPosition = Source.transform.localPosition;
+		Target.sortingLayerID = Source.sortingLayerID;
+		Target.drawMode = Source.drawMode;
+		Target.maskInteraction = Source.maskInteraction;
+		Target.renderingLayerMask = Source.renderingLayerMask;
+	}
+
 	public static SpriteRenderer CreateExtHatCutscenes(SpriteRenderer _ref, int index)
 	{
 		string realIndex = string.Format("{0}", index + 1);
@@ -694,59 +719,74 @@ public class CE_WardrobeManager
 		HatRendererExt.transform.SetParent(playerControl.transform);
 		return HatRendererExt;
 	}
-	public static SpriteRenderer CreateExtSpriteRender(SpriteRenderer _ref, string name = "ExtHatSlot")
+	public static SpriteRenderer CreateExtSpriteRender(SpriteRenderer _ref, string name = "ExtHatSlot", bool inFront = false)
     {
 		GameObject gameObject = new GameObject(name);
-		gameObject.layer = _ref.gameObject.layer;
+		gameObject.layer = _ref.gameObject.layer + (inFront ? 1 : 0);
 		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
 		HatRendererExt.transform.SetParent(_ref.transform);
 		return HatRendererExt;
 	}
+
 	public static void SetSpriteRendererActive(SpriteRenderer HatRendererExt, bool value)
 	{
 		HatRendererExt.enabled = value;
 	}
-	public static void SetExtHatImage(HatBehaviour hat, SpriteRenderer target, int hatSlot)
+	public static void SetExtHatImage(HatBehaviour hat, SpriteRenderer target, int hatSlot, int playerColor, bool PreviewMode = false)
 	{
 		if ((bool)target && (bool)hat)
 		{
 			Sprite MainImage;
 			bool InFront;
+			bool Colored;
 			switch (hatSlot)
 			{
 				case 0:
-					MainImage = hat.MainImage;
+					if (PreviewMode) MainImage = (hat.PreviewImage ? hat.PreviewImage : hat.MainImage);
+					else MainImage = hat.MainImage;
 					InFront = hat.InFront;
+					Colored = hat.IsColorFiltered;
 					break;
 				case 1:
-					MainImage = hat.MainImageExt;
+					if (PreviewMode) MainImage = (hat.PreviewImageExt ? hat.PreviewImageExt : hat.MainImageExt);
+					else MainImage = hat.MainImageExt;
 					InFront = hat.InFrontExt;
+					Colored = hat.IsColorFilteredExt;
 					break;
 				case 2:
-					MainImage = hat.MainImageExt2;
+					if (PreviewMode) MainImage = (hat.PreviewImageExt2 ? hat.PreviewImageExt2 : hat.MainImageExt2);
+					else MainImage = hat.MainImageExt2;
 					InFront = hat.InFrontExt2;
+					Colored = hat.IsColorFilteredExt2;
 					break;
 				case 3:
-					MainImage = hat.MainImageExt3;
+					if (PreviewMode) MainImage = (hat.PreviewImageExt3 ? hat.PreviewImageExt3 : hat.MainImageExt3);
+					else MainImage = hat.MainImageExt3;
 					InFront = hat.InFrontExt3;
+					Colored = hat.IsColorFilteredExt3;
 					break;
 				case 4:
-					MainImage = hat.MainImageExt4;
+					if (PreviewMode) MainImage = (hat.PreviewImageExt4 ? hat.PreviewImageExt4 : hat.MainImageExt4);
+					else MainImage = hat.MainImageExt4;
 					InFront = hat.InFrontExt4;
+					Colored = hat.IsColorFilteredExt4;
 					break;
 				default:
-					MainImage = hat.MainImage;
+					if (PreviewMode) MainImage = (hat.PreviewImage ? hat.PreviewImage : hat.MainImage);
+					else MainImage = hat.MainImage;
 					InFront = hat.InFront;
+					Colored = hat.IsColorFiltered;
 					break;
 			}
 
 			
 			target.sprite = MainImage;
 			if (MainImage)
-			{
+            {
 				Vector3 localPosition = target.transform.localPosition;
 				localPosition.z = (InFront ? (-0.0001f) : 0.0001f);
 				target.transform.localPosition = localPosition;
+				SetHatRenderColors(target, (int)playerColor, Colored);
 			}
 		}
 		else
@@ -759,6 +799,38 @@ public class CE_WardrobeManager
 	public static void SetSpriteRenderAlpha(ref SpriteRenderer spriteRenderer, Color alpha)
     {
 		spriteRenderer.color = alpha;
+	}
+	public static void SetHatRenderColors(SpriteRenderer spriteRenderer, int colorId, bool useShader)
+    {
+		string obj_Name = "PlayerMaterial";
+		if (!HatShaderMaterial)
+		{
+			var resources = UnityEngine.Resources.FindObjectsOfTypeAll(typeof(Material));
+			if (resources != null)
+			{
+				foreach (var item in resources)
+				{
+					if (item.name == obj_Name)
+					{
+                        HatShaderMaterial = UnityEngine.Object.Instantiate(item as Material);
+						HatShaderlessMaterial = UnityEngine.Object.Instantiate(spriteRenderer.material);
+					}
+				}
+			}
+		}
+		if (HatShaderMaterial)
+		{
+			if (useShader)
+            {
+				spriteRenderer.material = HatShaderMaterial;
+				PlayerControl.SetPlayerMaterialColors(colorId, spriteRenderer);
+			}
+			else
+            {
+				spriteRenderer.material = HatShaderlessMaterial;
+			}
+
+		}
 	}
 
 	#endregion
