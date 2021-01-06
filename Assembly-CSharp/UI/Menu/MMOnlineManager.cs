@@ -21,7 +21,7 @@ public class MMOnlineManager : DestroyableSingleton<MMOnlineManager>
 
 	private void Update()
 	{
-		if (Input.GetKeyUp(KeyCode.Escape))
+		if (CE_Input.CE_GetKeyUp(KeyCode.Escape))
 		{
 			SceneChanger.ChangeScene("MainMenu");
 		}

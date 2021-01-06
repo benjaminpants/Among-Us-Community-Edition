@@ -320,7 +320,7 @@ namespace InnerNet
 
 		public void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
+			if (CE_Input.CE_GetKeyDown(KeyCode.Return) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
 			{
 				ResolutionManager.ToggleFullscreen();
 			}

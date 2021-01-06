@@ -44,9 +44,17 @@ public class MainMenuManager : MonoBehaviour
 		StartCoroutine(RunStartUp());
 	}
 
+	public void Quit()
+    {
+		StartCoroutine(CloseApp());
+		IEnumerator CloseApp()
+        {
+			yield return this.DataPolicy.Show(true);
+		}
+    }
+
 	private IEnumerator RunStartUp()
 	{
-		yield return DataPolicy.Show();
 		yield return Announcement.Show();
 		yield return UnlockPop.Show();
 		DateTime utcNow = DateTime.UtcNow;
@@ -62,9 +70,9 @@ public class MainMenuManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyUp(KeyCode.Escape))
+		if (CE_Input.CE_GetKeyUp(KeyCode.Escape))
 		{
-			Application.Quit();
+			CE_Input.EscapeFunctionality_MainMenu(this);
 		}
 	}
 

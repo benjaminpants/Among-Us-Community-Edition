@@ -255,28 +255,28 @@ public class CE_AnimationDebuger : MonoBehaviour
 	{
 		if (IsShown)
         {
-			if (Input.GetKeyDown(KeyCode.DownArrow))
+			if (CE_Input.CE_GetKeyDown(KeyCode.DownArrow))
 			{
 				CE_WardrobeManager.NudgeCurrentFramePivot(0, -1);
 			}
-			if (Input.GetKeyDown(KeyCode.UpArrow))
+			if (CE_Input.CE_GetKeyDown(KeyCode.UpArrow))
 			{
 				CE_WardrobeManager.NudgeCurrentFramePivot(0, 1);
 			}
-			if (Input.GetKeyDown(KeyCode.LeftArrow))
+			if (CE_Input.CE_GetKeyDown(KeyCode.LeftArrow))
 			{
 				CE_WardrobeManager.NudgeCurrentFramePivot(-1, 0);
 			}
-			if (Input.GetKeyDown(KeyCode.RightArrow))
+			if (CE_Input.CE_GetKeyDown(KeyCode.RightArrow))
 			{
 				CE_WardrobeManager.NudgeCurrentFramePivot(1, 0);
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.F3))
+		if (CE_Input.CE_GetKeyDown(KeyCode.F3))
 		{
 			DestroyableSingleton<HatManager>.Instance.ReloadCustomHatsAndSkins();
 		}
-		if (Input.GetKeyDown(KeyCode.F5) && SaveManager.EnableAnimationTestingMode)
+		if (CE_Input.CE_GetKeyDown(KeyCode.F5) && SaveManager.EnableAnimationTestingMode)
 		{
 			if (IsShown)
 			{

@@ -16,7 +16,7 @@ public class ResSetter : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.S))
+		if (CE_Input.CE_GetKeyDown(KeyCode.S))
 		{
 			Directory.CreateDirectory("C:\\AmongUsSS");
 			ScreenCapture.CaptureScreenshot($"C:\\AmongUsSS\\Screenshot-{cnt++}.png");

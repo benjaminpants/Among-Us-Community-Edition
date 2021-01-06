@@ -47,17 +47,21 @@ public class OptionsMenuBehaviour : MonoBehaviour
 		}
 	}
 
+	private bool BlockFirstEscape = false;
+
 	private void Update()
 	{
 		CE_ModifyMenu();
-		if (Input.GetKeyUp(KeyCode.Escape))
+		if (CE_Input.CE_GetKeyUp(KeyCode.Escape))
 		{
-			Close();
+			if (BlockFirstEscape) BlockFirstEscape = false;
+			else Close();
 		}
 	}
 
 	public void Open()
 	{
+		BlockFirstEscape = true;
 		CustomMenu = Object.Instantiate(new GameObject()).AddComponent<CE_GlobalSettingsUI>();
 		ControlsMenu = Object.Instantiate(new GameObject()).AddComponent<CE_ControlsUI>();
 		JoystickButton.transform.parent.GetComponentInChildren<TextRenderer>().Text = "Mouse";
@@ -65,7 +69,7 @@ public class OptionsMenuBehaviour : MonoBehaviour
 		JoystickSizeSlider.gameObject.SetActive(value: false);
 		if (base.gameObject.activeSelf)
 		{
-			if (Toggle)
+			if (!Toggle)
 			{
 				GetComponent<TransitionOpen>().Close();
 			}

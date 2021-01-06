@@ -13,3 +13,4 @@
 - Arrow Key Support For Venting
 - Proper Linked Vents
 - Hats for Chat
+- Spawn In for Hats Not Rendered Acurately (needs testing)

@@ -11,6 +11,8 @@ public class DataCollectScreen : MonoBehaviour
 
 	public AdDataCollectScreen AdPolicy;
 
+	private bool QuitGameMode = false;
+
 	private void Start()
 	{
 		Instance = this;
@@ -19,8 +21,14 @@ public class DataCollectScreen : MonoBehaviour
 
 	public IEnumerator Show()
 	{
-		if (!SaveManager.SendDataScreen)
-		{
+		yield return Show(false);
+	}
+
+	public IEnumerator Show(bool QuitDialogMode)
+	{
+		QuitGameMode = QuitDialogMode;
+		if (QuitGameMode)
+        {
 			base.gameObject.SetActive(value: true);
 			while (base.gameObject.activeSelf)
 			{
@@ -31,24 +39,46 @@ public class DataCollectScreen : MonoBehaviour
 
 	public void Close()
 	{
-		SaveManager.SendDataScreen = true;
+		base.gameObject.SetActive(value: false);
 	}
 
 	public void ToggleSendTelemetry()
 	{
-		SaveManager.SendTelemetry = !SaveManager.SendTelemetry;
-		UpdateButtons();
+		Close();
 	}
 
 	public void ToggleSendName()
 	{
-		SaveManager.SendName = !SaveManager.SendName;
-		UpdateButtons();
+		Application.Quit();
 	}
 
 	public void UpdateButtons()
 	{
-		SendNameButton.UpdateText(SaveManager.SendName);
-		SendTelemButton.UpdateText(SaveManager.SendTelemetry);
+		SendNameButton.Text.Text = "Yes";
+		SendNameButton.Text.Color = Color.red;
+		SendTelemButton.Text.Text = "No";
+		SendTelemButton.Text.Color = Color.green;
+
+		GameObject[] array = UnityEngine.Object.FindObjectsOfType<GameObject>();
+		for (int i = 0; i < array.Length; i++)
+		{
+			if (array[i].name == "LinkButton")
+			{
+				array[i].gameObject.SetActive(false);
+			}
+			if (array[i].name == "CloseButton")
+			{
+				array[i].gameObject.SetActive(false);
+			}
+			if (array[i].name == "TitleText")
+			{
+				array[i].gameObject.SetActive(false);
+			}
+			if (array[i].name == "InfoText")
+			{
+				var textObject = array[i].GetComponent<TextRenderer>();
+				textObject.Text = "Are you sure you want to quit?";
+			}
+		}
 	}
 }

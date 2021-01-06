@@ -74,11 +74,11 @@ namespace FaDe.Unity.Core
 
 		private void Update()
 		{
-			if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) && Input.GetKeyDown(toggleKey))
+			if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) && CE_Input.CE_GetKeyDown(toggleKey))
 			{
 				show = !show;
 			}
-			if (Input.GetKeyDown(KeyCode.C))
+			if (CE_Input.CE_GetKeyDown(KeyCode.C))
 			{
 				logs.Clear();
 			}

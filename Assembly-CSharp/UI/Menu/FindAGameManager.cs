@@ -81,7 +81,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 		{
 			RefreshSpinner.Disappear();
 		}
-		if (Input.GetKeyUp(KeyCode.Escape))
+		if (CE_Input.CE_GetKeyUp(KeyCode.Escape))
 		{
 			ExitGame();
 		}

@@ -28,6 +28,10 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		if (IsShown)
 		{
 			GUILayout.Window(-4, CE_CommonUI.StockSettingsRect(), GlobalSettingsMenu, "", CE_CommonUI.WindowStyle());
+			if (CE_CommonUI.CreateCloseButton(CE_CommonUI.StockSettingsRect()))
+			{
+				IsShown = false;
+			}
 		}
 	}
 
@@ -64,10 +68,6 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		SaveManager.UseLegacyVoteIcons = CE_CommonUI.CreateBoolButton(SaveManager.UseLegacyVoteIcons, "Use Legacy Vote Icons");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
-		if (CE_CommonUI.CreateExitButton())
-		{
-			IsShown = false;
-		}
 		GUI.color = Color.black;
 		GUI.backgroundColor = Color.black;
 		GUI.contentColor = Color.white;

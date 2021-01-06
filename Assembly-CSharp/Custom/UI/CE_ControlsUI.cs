@@ -8,8 +8,6 @@ public class CE_ControlsUI : MonoBehaviour
 
 	public static bool IsShown;
 
-	private bool NewFeaturesReadyYet;
-
 	private void OnEnable()
 	{
 		if (instance == null)
@@ -27,6 +25,10 @@ public class CE_ControlsUI : MonoBehaviour
 		if (IsShown)
 		{
 			GUILayout.Window(-3, CE_CommonUI.StockSettingsRect(), GlobalSettingsMenu, "", CE_CommonUI.WindowStyle());
+			if (CE_CommonUI.CreateCloseButton(CE_CommonUI.StockSettingsRect()))
+			{
+				IsShown = false;
+			}
 		}
 	}
 
@@ -42,7 +44,6 @@ public class CE_ControlsUI : MonoBehaviour
 
 	private void GlobalSettingsMenu(int windowID)
 	{
-		_ = PlayerControl.GameOptions;
 		CE_UIHelpers.LoadCommonAssets();
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
 		CE_CommonUI.CreateHeaderLabel("Keyboard Controls:");
@@ -54,10 +55,6 @@ public class CE_ControlsUI : MonoBehaviour
 		CE_CommonUI.CreateButtonLabel("Controls5", "F", "Open Sabotage Map");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
-		if (CE_CommonUI.CreateExitButton())
-		{
-			IsShown = false;
-		}
 		GUI.color = Color.black;
 		GUI.backgroundColor = Color.black;
 		GUI.contentColor = Color.white;

@@ -1,11 +1,29 @@
 using System.IO;
 using UnityEngine;
-
+using System.Collections;
 public class CE_Intro : MonoBehaviour
 {
 	private static CE_Intro instance;
 
-	public static bool IsShown;
+	private static bool _IsShown = false;
+	public static bool IsShown
+    {
+		get
+        {
+			return _IsShown;
+
+		}
+		set
+        {
+			_IsShown = value;
+			if (_IsShown == true) Startup();
+		}
+    }
+	private static bool inPause = false;
+	private static void Startup()
+    {
+		instance.StartCoroutine(instance.ExtendedIntroCo());
+	}
 
 	private Texture2D CarJemLogo;
 
@@ -18,6 +36,10 @@ public class CE_Intro : MonoBehaviour
 	private int LogoOutProgress2;
 
 	private int IntroOutProgress = 100;
+
+	private float LeftCome = 0;
+
+	private float RightCome = 0;
 
 	private Texture2D MTMLogo;
 
@@ -45,7 +67,7 @@ public class CE_Intro : MonoBehaviour
 		{
 			float a = (float)((double)IntroOutProgress * 0.01);
 			CE_CommonUI.GUIDrawRect(CE_CommonUI.FullWindowRect, new Color(0f, 0f, 0f, a));
-			GUILayout.Window(-1, CE_CommonUI.FullWindowRect, ExtendedIntro, "");
+			GUILayout.Window(-1, CE_CommonUI.FullWindowRect, ExtendedIntro2, "");
 		}
 	}
 
@@ -132,6 +154,74 @@ public class CE_Intro : MonoBehaviour
 			GUI.skin.window = InitalStyle;
 			IsShown = false;
 		}
+	}
+
+	private void ExtendedIntro2(int windowID)
+	{
+		LoadAssets();
+		GUI.skin.window = null;
+
+		float spacing = (Screen.height / 2);
+		float offset = (Screen.height / 4);
+
+		if (SkipActive)
+		{
+			LogoProgress = 326;
+		}
+		if (LogoProgress < 325)
+		{
+			float a = (float)((double)LogoProgress * 0.01);
+			if (LogoProgress < 175)
+			{
+				GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, a);
+				if (!inPause) LogoOutProgress = 100;
+			}
+			else
+			{
+				float a2 = (float)((double)LogoOutProgress * 0.01);
+				GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, a2);
+				if (!inPause) LogoOutProgress--;
+			}
+
+			LeftCome += 0.20f;
+			RightCome += 0.20f;
+
+			float startposPadding = 25f;
+
+			float num2 = (float)MTMLogo.width / 2f;
+			float num3 = (float)MTMLogo.height / 2f;
+			float startposL = 0 + startposPadding;
+			GUI.DrawTexture(new Rect(startposL + LeftCome, (float)(spacing - offset) - num3 / 2f, num2, num3), MTMLogo);
+
+			float num5 = (float)CarJemLogo.width / 2f;
+			float num6 = (float)CarJemLogo.height / 2f;
+			float startposR = Screen.width - num5 - startposPadding;
+			GUI.DrawTexture(new Rect(startposR - RightCome, (float)(spacing + offset) - num6 / 2f, num5, num6), CarJemLogo);
+
+
+			if (!inPause) LogoProgress++;
+			if (LogoProgress == 175) inPause = true;
+		}
+		else if (IntroOutProgress > 0)
+		{
+			if (!inPause) IntroOutProgress--;
+		}
+		else
+		{
+			GUI.skin.window = InitalStyle;
+			IsShown = false;
+		}
+	}
+
+	private IEnumerator ExtendedIntroCo()
+    {
+		while (!inPause)
+        {
+			yield return null;
+        }
+		yield return new WaitForSecondsRealtime(2);
+		if (inPause) LogoProgress++;
+		inPause = false;
 	}
 
 	private void LoadAssets()

@@ -169,7 +169,7 @@ public class CE_DevTool : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.F12))
+		if (CE_Input.CE_GetKeyDown(KeyCode.F12))
 		{
 			if ((bool)AmongUsClient.Instance)
             {

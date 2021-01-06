@@ -101,7 +101,7 @@ public class TextBox : MonoBehaviour, IFocusHolder
 		}
 
 		string inputString = Input.inputString;
-		if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.V))
+		if (Input.GetKey(KeyCode.LeftControl) && CE_Input.CE_GetKeyDown(KeyCode.V))
 		{
 			inputString += GUIUtility.systemCopyBuffer;
 		}

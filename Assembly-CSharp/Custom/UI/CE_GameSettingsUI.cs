@@ -45,6 +45,10 @@ public class CE_GameSettingsUI : MonoBehaviour
 		if (IsShown)
 		{
 			CE_CommonUI.WindowHoverBounds = GUILayout.Window(-5, CE_CommonUI.GameSettingsRect(), CustomSettingsMenu, "", CE_CommonUI.WindowStyle_GS());
+			if (CE_CommonUI.CreateCloseButton(CE_CommonUI.GameSettingsRect()))
+			{
+				IsShown = false;
+			}
 		}
 	}
 
@@ -81,12 +85,11 @@ public class CE_GameSettingsUI : MonoBehaviour
 		{
 			gameOptions.SetRecommendations(GameData.Instance.PlayerCount, AmongUsClient.Instance.GameMode);
 		}
-		scrollPosition = CE_CommonUI.CE_BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
 		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 1, "Map", ReadOnly);
 		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 25, "Gamemode", ReadOnly);
 		CE_ListedItems();
-		CE_CommonUI.CE_EndScrollView();
-		if (CE_CommonUI.CreateExitButton_GS()) IsShown = false;
+		GUILayout.EndScrollView();
 	}
 
 	private void CE_GeneralModifiersDropdown()

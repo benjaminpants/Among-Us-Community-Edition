@@ -46,6 +46,11 @@ public class CE_DevMinigame : MonoBehaviour
 		if (IsShown)
 		{
 			CE_CommonUI.WindowHoverBounds = GUILayout.Window(-5, CE_CommonUI.StockSettingsRect(), WindowMenu, "", CE_CommonUI.WindowStyle_TXT());
+			if (CE_CommonUI.CreateCloseButton(CE_CommonUI.StockSettingsRect()))
+			{
+				Save();
+				IsShown = false;
+			}
 		}
 	}
 
@@ -99,56 +104,7 @@ public class CE_DevMinigame : MonoBehaviour
 		var lastColor = GUI.skin.settings.cursorColor;
 		GUI.skin.settings.cursorColor = Color.black;
 		TextDocument = GUILayout.TextArea(TextDocument, TXTStyle(), new GUILayoutOption[] { GUILayout.ExpandHeight(true) });
-		if (CreateExitButton())
-        {
-			Save();
-			IsShown = false;
-        }
 		GUI.skin.settings.cursorColor = lastColor;
-	}
-
-	public static bool CreateExitButton()
-	{
-		float scale = CE_CommonUI.GetScale(Screen.width, Screen.height);
-		bool result = false;
-
-		var style = new GUIStyle(GUI.skin.button)
-		{
-			fixedHeight = (50f + CE_CommonUI.TextHeightUpscale) * scale,
-			fontSize = (int)((45 + CE_CommonUI.TextUpscale) * scale),
-			alignment = TextAnchor.MiddleCenter,
-			normal =
-			{
-				background = CE_CommonUI.TXT_Texture,
-				textColor = Color.black
-			},
-			focused =
-			{
-				background = CE_CommonUI.TXT_Texture,
-				textColor = Color.black
-			},
-			active =
-			{
-				background = CE_CommonUI.TXT_Texture,
-				textColor = Color.black
-			},
-			hover =
-			{
-				background = CE_CommonUI.TXT_Texture,
-				textColor = Color.gray
-			}
-
-		};
-		style.onNormal.textColor = Color.black;
-		style.border = new RectOffset(20, 20, 20, 20);
-		style.padding = new RectOffset(15, 15, 15, 15);
-		style.onNormal.background = CE_CommonUI.TXT_Texture;
-
-		if (GUILayout.Button("Close & Save", style))
-		{
-			result = true;
-		}
-		return result;
 	}
 
 	public void Update()

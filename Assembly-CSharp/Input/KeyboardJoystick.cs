@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 {
@@ -29,45 +30,31 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		{
 			del.y -= 1f;
 		}
-		if (Input.GetKeyDown(KeyCode.R))
+		if (CE_Input.CE_GetKeyDown(KeyCode.R))
 		{
 			DestroyableSingleton<HudManager>.Instance.ReportButton.DoKeyClick();
 		}
-		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+		if (CE_Input.CE_GetKeyDown(KeyCode.Space) || CE_Input.CE_GetKeyDown(KeyCode.E))
 		{
 			DestroyableSingleton<HudManager>.Instance.UseButton.DoKeyClick();
 		}
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (CE_Input.CE_GetKeyDown(KeyCode.Tab))
 		{
 			DestroyableSingleton<HudManager>.Instance.OpenMap();
 		}
-		if (Input.GetKeyDown(KeyCode.F) && PlayerControl.LocalPlayer.Data.IsImpostor)
+		if (CE_Input.CE_GetKeyDown(KeyCode.F) && PlayerControl.LocalPlayer.Data.IsImpostor)
 		{
 			DestroyableSingleton<HudManager>.Instance.OpenInfectedMap();
 		}
-		if ((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill)) && Input.GetKeyDown(KeyCode.Q))
+		if ((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill)) && CE_Input.CE_GetKeyDown(KeyCode.Q))
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKeybindKill();
 		}
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (CE_Input.CE_GetKeyDown(KeyCode.Escape))
 		{
-			if ((bool)Minigame.Instance)
-			{
-				Minigame.Instance.Close();
-			}
-			else if (DestroyableSingleton<HudManager>.InstanceExists && (bool)MapBehaviour.Instance && MapBehaviour.Instance.IsOpen)
-			{
-				MapBehaviour.Instance.Close();
-			}
-			else
-			{
-				CustomPlayerMenu customPlayerMenu = Object.FindObjectOfType<CustomPlayerMenu>();
-				if ((bool)customPlayerMenu)
-				{
-					customPlayerMenu.Close(canMove: true);
-				}
-			}
+			CE_Input.EscapeFunctionality();
 		}
 		del.Normalize();
 	}
+
 }

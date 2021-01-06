@@ -39,6 +39,8 @@ public class CE_CommonUI
 
 	private static Texture2D GameMenuDropdownOpenSelectedTexture;
 
+	private static Texture2D CloseButtonTexture;
+
 	private static void LoadAssets()
     {
 		if (!MenuTexture)
@@ -97,6 +99,10 @@ public class CE_CommonUI
         {
             GameMenuDropdownSelectedTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "GameOptionsDropdown_Selected.png"));
         }
+		if (!CloseButtonTexture)
+		{
+			CloseButtonTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "UI", "CloseButton.png"));
+		}
 		if (!TXT_Texture)
         {
 			TXT_Texture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "TXTBackground.png"));
@@ -280,7 +286,9 @@ public class CE_CommonUI
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 
-		int desired_width = 990;
+		int extended_width = 200;
+
+		int desired_width = 990 + extended_width;
 		int desired_height = 810;
 
 		float width = desired_width * scale;
@@ -470,49 +478,6 @@ public class CE_CommonUI
 			return value;
 		}
 	}
-	public static bool CreateExitButton_GS()
-	{
-		float scale = GetScale(Screen.width, Screen.height);
-		bool result = false;
-
-
-		var style = new GUIStyle(GUI.skin.button)
-		{
-			fixedHeight = (50f + TextHeightUpscale) * scale,
-			fontSize = (int)((45 + TextUpscale) * scale),
-			alignment = TextAnchor.MiddleCenter,
-			normal =
-			{
-				textColor = Color.white,
-				background = GameMenuDropdownTexture
-			},
-			focused =
-			{
-				textColor = Color.white,
-				background = GameMenuDropdownTexture
-			},
-			active =
-			{
-				textColor = Color.white,
-				background = GameMenuDropdownTexture
-			},
-			hover =
-			{
-				textColor = Color.white,
-				background = GameMenuDropdownSelectedTexture
-			}
-		};
-		style.border = new RectOffset(15, 15, 15, 15);
-		style.onNormal.background = ButtonTexture;
-
-		if (CE_CustomUIElements.Button("Back", style))
-		{
-			ClickSoundTrigger();
-			result = true;
-		}
-		HoverSoundTrigger();
-		return result;
-	}
 	public static void UpdateSettings_GS()
 	{
 		PlayerControl.GameOptions.isDefaults = false;
@@ -537,6 +502,20 @@ public class CE_CommonUI
 	public static Rect FullWindowRect = new Rect(0f, 0f, Screen.width, Screen.height);
 	private static GUIStyle _SolidRectStyle;
 	private static Texture2D _SolidRectTexture;
+
+	public static bool CreateCloseButton(Rect WindowSize)
+    {
+		LoadAssets();
+		float scale = GetScale(Screen.width, Screen.height);
+		var style = new GUIStyle();
+		style.padding = new RectOffset(0, 0, 0, 0);
+
+		float width = CloseButtonTexture.width * 1.25f * scale;
+		float height = CloseButtonTexture.height * 1.25f * scale;
+
+		GUI.DrawTexture(new Rect(WindowSize.x - width, WindowSize.y, width, height), CloseButtonTexture);
+		return GUI.Button(new Rect(WindowSize.x - width, WindowSize.y, width, height), GUIContent.none, style);
+    }
 	public static void GUIDrawRect(Rect position, Color color)
 	{
 		if (_SolidRectTexture == null)
@@ -597,65 +576,6 @@ public class CE_CommonUI
 			fontSize = (int)((50 + TextUpscale) * scale),
 			fontStyle = FontStyle.Bold
 		});
-	}
-
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, params GUILayoutOption[] options)
-    {
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, horizontalScrollbar, verticalScrollbar, options);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, params GUILayoutOption[] options)
-	{
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, horizontalScrollbar, verticalScrollbar, options);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, GUIStyle style, params GUILayoutOption[] options)
-	{
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, style, options);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, GUIStyle style)
-	{
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, style);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, GUIStyle horizontalScrollbar, GUIStyle verticalScrollbar, GUIStyle background, params GUILayoutOption[] options)
-	{
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, horizontalScrollbar, verticalScrollbar, background, options);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, params GUILayoutOption[] options)
-	{
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, alwaysShowHorizontal, alwaysShowVertical, options);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-	public static Vector2 CE_BeginScrollView(Vector2 scrollPosition, params GUILayoutOption[] options)
-	{
-		var scrollPos = GUILayout.BeginScrollView(scrollPosition, options);
-		GUILayout.BeginVertical();
-		return scrollPos;
-	}
-
-	public static void CE_EndScrollView()
-	{
-		GUILayout.Label(GUIContent.none, GUIStyle.none, GUILayout.MaxHeight(0), GUILayout.ExpandWidth(true));
-		bool IsHoveringOver = GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition);
-		if (Event.current.type == EventType.Repaint)
-		{
-			Rect r = GUILayoutUtility.GetLastRect();
-			CurrentScrollViewSize.x = CurrentScrollViewSize.y = 0;
-			CurrentScrollViewSize.width = r.width;
-			CurrentScrollViewSize.height = r.yMin;
-			InScrollView = IsHoveringOver;
-		}
-		GUILayout.EndVertical();
-		GUILayout.EndScrollView();
 	}
 
 	#endregion
@@ -726,7 +646,9 @@ public class CE_CommonUI
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 
-		int desired_width = 996;
+		int extended_width = 200;
+
+		int desired_width = 996 + extended_width;
 		int desired_height = 1040;
 
 		float width = desired_width * scale;
