@@ -19,6 +19,10 @@ public class MainMenuManager : MonoBehaviour
 
 	public Sprite CustomLogo;
 
+	public Sprite PlayerIcon;
+
+	public Sprite FoundersIcon;
+
 	public void Start()
 	{
 		SaveManager.SendTelemetry = false;
@@ -82,30 +86,51 @@ public class MainMenuManager : MonoBehaviour
 
 	private void LoadLogo()
 	{
-		Texture2D texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "logo.png"));
-		CustomLogo = CE_TextureNSpriteExtensions.ConvertToSprite(texture, new Vector2(0.5f, 0.65f));
+		if (!CustomLogo)
+        {
+			Texture2D texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "logo.png"));
+			CustomLogo = CE_TextureNSpriteExtensions.ConvertToSprite(texture, new Vector2(0.5f, 0.65f));
+		}
+
+		if (!FoundersIcon)
+        {
+			Texture2D texture2 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "UI", "FoundersIcon.png"));
+			FoundersIcon = CE_TextureNSpriteExtensions.ConvertToSprite(texture2, new Vector2(0.5f, 0.5f));
+		}
+
+		if (!PlayerIcon)
+        {
+			Texture2D texture3 = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "UI", "PlayerButton.png"));
+			PlayerIcon = CE_TextureNSpriteExtensions.ConvertToSprite(texture3, new Vector2(0.5f, 0.5f));
+		}
 	}
 
-	private void ModifyLogo()
+	private void ModifyImages()
 	{
+		LoadLogo();
 		GameObject[] array = UnityEngine.Object.FindObjectsOfType<GameObject>();
 		for (int i = 0; i < array.Length; i++)
 		{
 			SpriteRenderer component = array[i].GetComponent<SpriteRenderer>();
 			if ((bool)component && component.name == "bannerLogo_AmongUs")
 			{
-				if (!CustomLogo)
-				{
-					LoadLogo();
-					break;
-				}
 				component.sprite = CustomLogo;
 			}
+			if ((bool)component && component.name == "StoreButton")
+			{
+				component.sprite = PlayerIcon;
+			}
+			/*
+			if ((bool)component && component.name == "CreditsButton")
+			{
+				component.sprite = FoundersIcon;
+			}
+			*/
 		}
 	}
 
 	private void LateUpdate()
 	{
-		ModifyLogo();
+		ModifyImages();
 	}
 }
