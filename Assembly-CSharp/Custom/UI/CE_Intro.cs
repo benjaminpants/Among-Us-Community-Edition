@@ -161,6 +161,8 @@ public class CE_Intro : MonoBehaviour
 		LoadAssets();
 		GUI.skin.window = null;
 
+		var scale = CE_CommonUI.GetScale(Screen.width, Screen.height);
+
 		float spacing = (Screen.height / 2);
 		float offset = (Screen.height / 4);
 
@@ -188,13 +190,13 @@ public class CE_Intro : MonoBehaviour
 
 			float startposPadding = 25f;
 
-			float num2 = (float)MTMLogo.width / 2f;
-			float num3 = (float)MTMLogo.height / 2f;
+			float num2 = (float)(MTMLogo.width / 2f) * scale;
+			float num3 = (float)(MTMLogo.height / 2f) * scale;
 			float startposL = 0 + startposPadding;
 			GUI.DrawTexture(new Rect(startposL + LeftCome, (float)(spacing - offset) - num3 / 2f, num2, num3), MTMLogo);
 
-			float num5 = (float)CarJemLogo.width / 2f;
-			float num6 = (float)CarJemLogo.height / 2f;
+			float num5 = (float)(CarJemLogo.width / 2f) * scale;
+			float num6 = (float)(CarJemLogo.height / 2f) * scale;
 			float startposR = Screen.width - num5 - startposPadding;
 			GUI.DrawTexture(new Rect(startposR - RightCome, (float)(spacing + offset) - num6 / 2f, num5, num6), CarJemLogo);
 
