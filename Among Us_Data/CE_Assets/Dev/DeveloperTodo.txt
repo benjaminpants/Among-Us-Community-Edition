@@ -14,3 +14,4 @@
 - Proper Linked Vents
 - Hats for Chat
 - Spawn In for Hats Not Rendered Acurately (needs testing)
+- Fix map being openable on the lobby after a game
