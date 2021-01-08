@@ -654,9 +654,11 @@ public class CE_WardrobeManager
 	}
 	public static void UpdateActiveHatRender(PlayerControl player, string name, ref SpriteRenderer spriteRenderer, int hatSlot)
     {
+		if (player == null || spriteRenderer == null) return;
 		if (!DestroyableSingleton<HatManager>.InstanceExists) return;
 
 		var hat = DestroyableSingleton<HatManager>.Instance.GetHatById(player.Data.HatId);
+		if (hat == null) return;
 		bool noBobbing;
 		switch (hatSlot)
 		{
@@ -724,6 +726,9 @@ public class CE_WardrobeManager
 		LocalPos.y = HatRenderer.transform.localPosition.y;
 		ExtraHatRenderer.transform.localPosition = LocalPos;
 
+		ExtraHatRenderer.realtimeLightmapIndex = HatRenderer.realtimeLightmapIndex;
+		ExtraHatRenderer.enabled = HatRenderer.enabled;
+		ExtraHatRenderer.color = HatRenderer.color;
 		ExtraHatRenderer.sortingLayerID = HatRenderer.sortingLayerID;
 		ExtraHatRenderer.drawMode = HatRenderer.drawMode;
 		ExtraHatRenderer.maskInteraction = HatRenderer.maskInteraction;
@@ -765,10 +770,6 @@ public class CE_WardrobeManager
 		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
 		HatRendererExt.transform.SetParent(_ref.transform);
 		return HatRendererExt;
-	}
-	public static void SetSpriteRendererActive(SpriteRenderer HatRendererExt, bool value)
-	{
-		HatRendererExt.enabled = value;
 	}
 	public static void SetExtHatImage(HatBehaviour hat, SpriteRenderer target, int hatSlot, int playerColor, bool PreviewMode = false)
 	{
@@ -834,10 +835,6 @@ public class CE_WardrobeManager
 			Debug.LogError("Player: " + str + "\tHat: " + str2);
 		}
 	}
-	public static void SetSpriteRenderAlpha(ref SpriteRenderer spriteRenderer, Color alpha)
-    {
-		spriteRenderer.color = alpha;
-	}
 	public static void SetHatRenderColors(SpriteRenderer spriteRenderer, int colorId, bool useShader)
     {
 		string obj_Name = "PlayerMaterial";
@@ -869,6 +866,17 @@ public class CE_WardrobeManager
 			}
 
 		}
+	}
+
+	public static void CE_SetHatAlpha(ref SpriteRenderer HatRenderer, float a)
+    {
+		Color white = Color.white;
+		white.a = a;
+		HatRenderer.color = white;
+
+		var _Color = HatRenderer.material.color;
+		_Color = new Color(_Color.r, _Color.g, _Color.b, a);
+		HatRenderer.material.color = _Color;
 	}
 
 	#endregion

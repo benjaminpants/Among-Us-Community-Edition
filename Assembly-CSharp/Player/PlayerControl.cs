@@ -188,11 +188,7 @@ public class PlayerControl : InnerNetObject
 		{
 			myRend.enabled = value;
 			MyPhysics.Skin.Visible = value;
-			CE_WardrobeManager.SetSpriteRendererActive(HatRenderer, value);
-			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt, value);
-			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt2, value);
-			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt3, value);
-			CE_WardrobeManager.SetSpriteRendererActive(HatRendererExt4, value);
+			HatRenderer.enabled = value;
 			nameText.gameObject.SetActive(value);
 		}
 	}
@@ -842,11 +838,12 @@ public class PlayerControl : InnerNetObject
 	{
 		Color white = Color.white;
 		white.a = a;
-		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRenderer, white);
-		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt, white);
-		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt2, white);
-		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt3, white);
-		CE_WardrobeManager.SetSpriteRenderAlpha(ref HatRendererExt4, white);
+		HatRenderer.color = white;
+
+		CE_WardrobeManager.CE_SetHatAlpha(ref HatRendererExt, a);
+        CE_WardrobeManager.CE_SetHatAlpha(ref HatRendererExt2, a);
+        CE_WardrobeManager.CE_SetHatAlpha(ref HatRendererExt3, a);
+		CE_WardrobeManager.CE_SetHatAlpha(ref HatRendererExt4, a);
 	}
 
 	public void SetColor(byte bodyColor)
@@ -877,12 +874,12 @@ public class PlayerControl : InnerNetObject
 		{
 			GameData.Instance.UpdateHat(PlayerId, hatId);
 		}
-		SetHatImage(hatId, HatRenderer, 0, Data.ColorId);
-		SetHatImage(hatId, HatRendererExt, 1, Data.ColorId);
-		SetHatImage(hatId, HatRendererExt2, 2, Data.ColorId);
-		SetHatImage(hatId, HatRendererExt3, 3, Data.ColorId);
-		SetHatImage(hatId, HatRendererExt4, 4, Data.ColorId);
-		nameText.transform.localPosition = new Vector3(0f, (hatId == 0) ? 0.7f : 1.05f, -0.5f);
+		if (HatRenderer != null && Data != null) SetHatImage(hatId, HatRenderer, 0, Data.ColorId);
+		if (HatRendererExt != null && Data != null) SetHatImage(hatId, HatRendererExt, 1, Data.ColorId);
+		if (HatRendererExt2 != null && Data != null) SetHatImage(hatId, HatRendererExt2, 2, Data.ColorId);
+		if (HatRendererExt3 != null && Data != null) SetHatImage(hatId, HatRendererExt3, 3, Data.ColorId);
+		if (HatRendererExt4 != null && Data != null) SetHatImage(hatId, HatRendererExt4, 4, Data.ColorId);
+		if (nameText != null) nameText.transform.localPosition = new Vector3(0f, (hatId == 0) ? 0.7f : 1.05f, -0.5f);
 	}
 	public static void SetSkinImage(uint skinId, SpriteRenderer target)
 	{
