@@ -41,7 +41,9 @@ public class ChatController : MonoBehaviour
 
 	private Coroutine notificationRoutine;
 
-	public BanMenu BanButton;
+    public BanMenu BanButton;
+
+	private bool TypingImpOnly;
 
 	public bool IsOpen => Content.activeInHierarchy;
 
@@ -149,7 +151,20 @@ public class ChatController : MonoBehaviour
 
 	private void Update()
 	{
-		TimeSinceLastMessage += Time.deltaTime;
+        TimeSinceLastMessage += Time.deltaTime;
+		if (!PlayerControl.LocalPlayer.Data.IsImpostor || !PlayerControl.GameOptions.ImpOnlyChat)
+        {
+            TypingImpOnly = false;
+			TextArea.GetTexRen().Color = Color.black;
+		}
+		else
+        {
+			if (Input.GetKeyDown(KeyCode.DownArrow))
+			{
+				TypingImpOnly = !TypingImpOnly;
+				TextArea.GetTexRen().Color = TypingImpOnly ? Color.red : Color.black;
+			}
+		}
 		if (SendRateMessage.isActiveAndEnabled)
 		{
 			float num = 3f - TimeSinceLastMessage;
@@ -171,14 +186,14 @@ public class ChatController : MonoBehaviour
 			SendRateMessage.gameObject.SetActive(value: true);
 			SendRateMessage.Text = $"Too fast. Wait {Mathf.CeilToInt(num)} seconds";
 		}
-		else if (PlayerControl.LocalPlayer.RpcSendChat(TextArea.text))
+		else if (PlayerControl.LocalPlayer.RpcSendChat(TextArea.text,TypingImpOnly))
 		{
 			TimeSinceLastMessage = 0f;
 			TextArea.Clear();
 		}
 	}
 
-	public void AddChat(PlayerControl sourcePlayer, string chatText)
+	public void AddChat(PlayerControl sourcePlayer, string chatText, bool impostoronly = false)
 	{
 		if (CE_LuaLoader.CurrentGMLua)
 		{
@@ -190,7 +205,7 @@ public class ChatController : MonoBehaviour
 		}
 		GameData.PlayerInfo data = PlayerControl.LocalPlayer.Data;
 		GameData.PlayerInfo data2 = sourcePlayer.Data;
-		if (data2 == null || data == null || (data2.IsDead && !data.IsDead))
+		if (data2 == null || data == null || (data2.IsDead && !data.IsDead) || ((!data.IsImpostor) && impostoronly))
 		{
 			return;
 		}
@@ -215,7 +230,7 @@ public class ChatController : MonoBehaviour
 				chatBubble2.SetLeft();
 			}
 			PlayerControl.SetPlayerMaterialColors(data2.ColorId, chatBubble2.ChatFace);
-			chatBubble2.SetName(data2.PlayerName, data2.IsDead, data.IsImpostor && data2.IsImpostor);
+			chatBubble2.SetName(data2.PlayerName, data2.IsDead, data.IsImpostor && data2.IsImpostor,impostoronly);
 			chatBubble2.TextArea.Text = chatText;
 			chatBubble2.TextArea.RefreshMesh();
 			chatBubble2.Background.size = new Vector2(5.52f, 0.2f + chatBubble2.NameText.Height + chatBubble2.TextArea.Height);

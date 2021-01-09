@@ -44,7 +44,7 @@ public static class Palette
 	public static readonly Color InfectedGreen;
 
 	public static readonly Color SheriffYellow;
-
+	public static readonly Color32 ImpostorOnlyRed;
 	public static readonly Color32 VisorColorCarJemGenerations;
 
 	static Palette()
@@ -65,6 +65,7 @@ public static class Palette
 		ImpostorRed = new Color32(byte.MaxValue, 25, 25, byte.MaxValue);
 		SheriffYellow = new Color32(byte.MaxValue, 216, 0, byte.MaxValue);
 		InfectedGreen = new Color32(98, 167, 74, byte.MaxValue);
+		ImpostorOnlyRed = new Color32(206, 121, 139, byte.MaxValue);
 		PlayerColors = new Color32[28]
 		{
 			new Color32(198, 17, 17, byte.MaxValue), //red

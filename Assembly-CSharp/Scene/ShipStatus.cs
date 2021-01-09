@@ -499,16 +499,32 @@ public class ShipStatus : InnerNetObject
 
 	public float CalculateLightRadius(GameData.PlayerInfo player)
 	{
+        bool islocal = PlayerControl.LocalPlayer.Data == player;
+		if (!islocal && !PlayerControl.GameOptions.ShowOtherVision)
+        {
+			return 0;
+        }
 		if (player.IsDead)
 		{
-			return MaxLightRadius;
+			if (islocal)
+			{
+				return MaxLightRadius;
+			}
+			else
+            {
+				return 0;
+            }
 		}
 		SwitchSystem switchSystem = (SwitchSystem)Systems[SystemTypes.Electrical];
-		if (player.IsImpostor || CE_RoleManager.GetRoleFromID(player.role).UseImpVision)
+		if ((player.IsImpostor || CE_RoleManager.GetRoleFromID(player.role).UseImpVision) && islocal)
 		{
 			return MaxLightRadius * PlayerControl.GameOptions.ImpostorLightMod;
 		}
-		float t = (float)(int)switchSystem.Value / 255f;
+        float t = (float)(int)switchSystem.Value / 255f;
+		if (!islocal)
+		{
+			return Mathf.Lerp(0, MaxLightRadius, t) * PlayerControl.GameOptions.CrewLightMod;
+		}
 		return Mathf.Lerp(MinLightRadius, MaxLightRadius, t) * PlayerControl.GameOptions.CrewLightMod;
 	}
 
