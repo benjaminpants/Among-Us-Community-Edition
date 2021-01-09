@@ -84,7 +84,7 @@ public class PlayerPhysics : InnerNetObject
 		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt, 1);
 		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt2, 2);
 		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt3, 3);
-		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt4, 3);
+		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt4, 4);
 	}
 
 	private void LateUpdate()

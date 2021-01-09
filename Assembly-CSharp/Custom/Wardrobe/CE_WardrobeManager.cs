@@ -548,6 +548,16 @@ public class CE_WardrobeManager
 	{
 		return new Vector2(input.x, input.y);
 	}
+	public static Rect GetSpriteRect(Texture texture, Sprite sprite)
+	{
+		float real_y = sprite.rect.y + texture.height;
+		float _finalX = sprite.rect.x;
+		float _finalY = real_y + sprite.rect.height;
+		float _finalWidth = sprite.rect.width;
+		float _finalHeight = sprite.rect.height;
+
+		return new Rect(_finalX, _finalY, _finalWidth, _finalHeight);
+	}
 	public static Rect GetSpriteRect(Texture texture, float x, float y, float width, float height)
 	{
 		float real_y = texture.height - y;
@@ -567,14 +577,27 @@ public class CE_WardrobeManager
 
 	private static Material HatShaderlessMaterial;
 
+	public static CE_SpriteFrame ConvertToFrame(string name, Sprite sprite)
+    {
+		CE_SpriteFrame frame = new CE_SpriteFrame();
+		frame.Name = name;
+		frame.Texture = sprite.texture;
+		frame.Sprite = sprite;
+		var rect = GetSpriteRect(sprite.texture, sprite);
+		frame.Size = new CE_Point(rect.width, rect.height);
+		frame.Position = new CE_Point(rect.x, rect.y);
+		var pivot = GetPixelPivot(sprite);
+		frame.Offset = new CE_Point(pivot.x, pivot.y);
+		return frame;
+    }
 	public static Sprite GetSkin(string name, SkinData skin)
 	{
+		bool AllowNormalSkin = false;
 		string key = name.Substring(name.IndexOf("_") + 1);
 		if (!skin.FrameList.ContainsKey(key))
 		{
 			key = name.Substring(name.IndexOf("-") + 1);
 		}
-
 		if (skin.FrameList.ContainsKey(key))
 		{
 			CE_SpriteFrame customSkinFrame = skin.FrameList[key];
@@ -609,12 +632,33 @@ public class CE_WardrobeManager
 			if (skin.FrameList[key].Sprite == null) skin.FrameList[key].Sprite = Sprite.Create(texture, GetSpriteRect(texture, x, y, width, height), GetSpritePivot(pivot));
 			return skin.FrameList[key].Sprite;
 		}
-		else return null;
+		else
+        {
+			/*if (!skin.isCustom && AllowNormalSkin)
+            {
+				if (key == "Main")
+				{
+					var frame = ConvertToFrame(key, skin.IdleFrame);
+					skin.FrameList.Add(key, frame);
+					return skin.FrameList[key].Sprite;
+				}
+				else
+				{
+					var frame = ConvertToFrame(key, sprite);
+					skin.FrameList.Add(key, frame);
+					return skin.FrameList[key].Sprite;
+				}
+			}*/
+			return null;
+		}
 	}
-
 	public static void UpdateActiveHatRender(PlayerControl player, string name, ref SpriteRenderer spriteRenderer, int hatSlot)
     {
+		if (player == null || spriteRenderer == null) return;
+		if (!DestroyableSingleton<HatManager>.InstanceExists) return;
+
 		var hat = DestroyableSingleton<HatManager>.Instance.GetHatById(player.Data.HatId);
+		if (hat == null) return;
 		bool noBobbing;
 		switch (hatSlot)
 		{
@@ -669,7 +713,6 @@ public class CE_WardrobeManager
 			}
 		}
 	}
-
 	public static void MatchBaseHatRender(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
 	{
 		ExtraHatRenderer.flipX = HatRenderer.flipX;
@@ -683,12 +726,14 @@ public class CE_WardrobeManager
 		LocalPos.y = HatRenderer.transform.localPosition.y;
 		ExtraHatRenderer.transform.localPosition = LocalPos;
 
+		ExtraHatRenderer.realtimeLightmapIndex = HatRenderer.realtimeLightmapIndex;
+		ExtraHatRenderer.enabled = HatRenderer.enabled;
+		ExtraHatRenderer.color = HatRenderer.color;
 		ExtraHatRenderer.sortingLayerID = HatRenderer.sortingLayerID;
 		ExtraHatRenderer.drawMode = HatRenderer.drawMode;
 		ExtraHatRenderer.maskInteraction = HatRenderer.maskInteraction;
 		ExtraHatRenderer.renderingLayerMask = HatRenderer.renderingLayerMask;
 	}
-
 	public static void MatchSpriteRenderer(SpriteRenderer Target, SpriteRenderer Source)
 	{
 		Target.flipX = Source.flipX;
@@ -702,7 +747,6 @@ public class CE_WardrobeManager
 		Target.maskInteraction = Source.maskInteraction;
 		Target.renderingLayerMask = Source.renderingLayerMask;
 	}
-
 	public static SpriteRenderer CreateExtHatCutscenes(SpriteRenderer _ref, int index)
 	{
 		string realIndex = string.Format("{0}", index + 1);
@@ -726,11 +770,6 @@ public class CE_WardrobeManager
 		SpriteRenderer HatRendererExt = gameObject.AddComponent<SpriteRenderer>();
 		HatRendererExt.transform.SetParent(_ref.transform);
 		return HatRendererExt;
-	}
-
-	public static void SetSpriteRendererActive(SpriteRenderer HatRendererExt, bool value)
-	{
-		HatRendererExt.enabled = value;
 	}
 	public static void SetExtHatImage(HatBehaviour hat, SpriteRenderer target, int hatSlot, int playerColor, bool PreviewMode = false)
 	{
@@ -796,10 +835,6 @@ public class CE_WardrobeManager
 			Debug.LogError("Player: " + str + "\tHat: " + str2);
 		}
 	}
-	public static void SetSpriteRenderAlpha(ref SpriteRenderer spriteRenderer, Color alpha)
-    {
-		spriteRenderer.color = alpha;
-	}
 	public static void SetHatRenderColors(SpriteRenderer spriteRenderer, int colorId, bool useShader)
     {
 		string obj_Name = "PlayerMaterial";
@@ -831,6 +866,17 @@ public class CE_WardrobeManager
 			}
 
 		}
+	}
+
+	public static void CE_SetHatAlpha(ref SpriteRenderer HatRenderer, float a)
+    {
+		Color white = Color.white;
+		white.a = a;
+		HatRenderer.color = white;
+
+		var _Color = HatRenderer.material.color;
+		_Color = new Color(_Color.r, _Color.g, _Color.b, a);
+		HatRenderer.material.color = _Color;
 	}
 
 	#endregion
