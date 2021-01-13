@@ -268,10 +268,22 @@ public class PlayerControl : InnerNetObject
 		SetHat(Data.HatId);
 		SetSkin(Data.SkinId);
 		Visible = true;
+		myLight = UnityEngine.Object.Instantiate(LightPrefab);
+		myLight.transform.SetParent(transform);
+		myLight.transform.localPosition = Collider.offset; //patch
 	}
+
+	public void DestroyLight()
+    {
+		Debug.Log("Destroying light");
+
+		myLight.LightRadius = 0;
+		Destroy(myLight.transform.gameObject);
+    }
 
 	public override void OnDestroy()
 	{
+		DestroyLight();
 		AllPlayerControls.Remove(this);
 		base.OnDestroy();
 	}
@@ -290,6 +302,10 @@ public class PlayerControl : InnerNetObject
 		if (data.IsDead && (bool)LocalPlayer)
 		{
 			Visible = ((((LocalPlayer.Data.IsDead && PlayerControl.GameOptions.CanSeeGhosts != 3) || data.PlayerId == PlayerControl.LocalPlayer.Data.PlayerId) || LocalPlayer.Data.IsImpostor && PlayerControl.GameOptions.CanSeeGhosts == 1) || PlayerControl.GameOptions.CanSeeGhosts == 2);
+		}
+		if ((bool)ShipStatus.Instance)
+		{
+			myLight.LightRadius = ShipStatus.Instance.CalculateLightRadius(data);
 		}
 		if (!base.AmOwner)
 		{
@@ -921,11 +937,11 @@ public class PlayerControl : InnerNetObject
 		}
 	}
 
-	public void SendChat(string chatText)
+	public void SendChat(string chatText, bool imponly = false)
 	{
 		if ((bool)DestroyableSingleton<HudManager>.Instance)
 		{
-			DestroyableSingleton<HudManager>.Instance.Chat.AddChat(this, chatText);
+			DestroyableSingleton<HudManager>.Instance.Chat.AddChat(this, chatText,imponly);
 		}
 	}
 
@@ -1265,7 +1281,7 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public bool RpcSendChat(string chatText)
+	public bool RpcSendChat(string chatText, bool isimponly)
 	{
 		if (string.IsNullOrWhiteSpace(chatText))
 		{
@@ -1273,10 +1289,11 @@ public class PlayerControl : InnerNetObject
 		}
 		if (AmongUsClient.Instance.AmClient)
 		{
-			SendChat(chatText);
+			SendChat(chatText,isimponly);
 		}
 		MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 13, SendOption.Reliable);
 		messageWriter.Write(chatText);
+		messageWriter.Write(isimponly);
 		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
 		return true;
 	}
@@ -1387,7 +1404,8 @@ public class PlayerControl : InnerNetObject
 		}
 		case 13:
 			string chatmessage = reader.ReadString();
-			SendChat(chatmessage);
+			bool imponly = reader.ReadBoolean();
+			SendChat(chatmessage,imponly);
 			break;
 		case 14:
 			percImpostor = reader.ReadSingle();

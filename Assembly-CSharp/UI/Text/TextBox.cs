@@ -61,6 +61,7 @@ public class TextBox : MonoBehaviour, IFocusHolder
 
 	private bool hasFocus;
 
+
 	private StringBuilder tempTxt = new StringBuilder();
 
 	public float TextHeight => outputText.Height;
@@ -242,6 +243,12 @@ public class TextBox : MonoBehaviour, IFocusHolder
 		{
 			Pipe.transform.localPosition = outputText.CursorPos;
 		}
+	}
+
+	public TextRenderer GetTexRen()
+    {
+		return outputText;
+
 	}
 
 	public bool IsCharAllowed(char i)

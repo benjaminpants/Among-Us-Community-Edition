@@ -161,7 +161,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 			{
 				gameOptions.MapScaleX = CE_CommonUI.CreateValuePicker_GS(gameOptions.MapScaleX, 0.25f, -5f, 5f, "Map Scale X", "", false, ReadOnly);
 				gameOptions.MapScaleY = CE_CommonUI.CreateValuePicker_GS(gameOptions.MapScaleY, 0.25f, -5f, 5f, "Map Scale Y", "", false, ReadOnly);
-				gameOptions.MapRot = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "�", false, ReadOnly);
+				gameOptions.MapRot = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.MapRot, 15f, -360f, 360f, "Map Rotation", "°", false, ReadOnly);
 			}
 
 		}
@@ -175,10 +175,12 @@ public class CE_GameSettingsUI : MonoBehaviour
 			{
 				gameOptions.CanSeeGhosts = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.CanSeeGhosts, GameOptionsData.CanSeeGhostsStrings, 0, 3, "Ghost Visibility", ReadOnly);
 				gameOptions.BodyEffect = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.BodyEffect, GameOptionsData.BodySett, 0, 2, "Body Effect", ReadOnly);
-				if (gameOptions.BodyEffect == 1)
-				{
-					gameOptions.BodyDecayTime = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.BodyDecayTime, GameOptionsData.BodyDecayTimes, 0, 2, "Body Decay Time", ReadOnly);
-				}
+                if (gameOptions.BodyEffect == 1)
+                {
+                    gameOptions.BodyDecayTime = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.BodyDecayTime, GameOptionsData.BodyDecayTimes, 0, 2, "Body Decay Time", ReadOnly);
+                }
+                gameOptions.ImpOnlyChat = CE_CommonUI.CreateBoolButton_GS(gameOptions.ImpOnlyChat, "Allow Impostor Only Chat", ReadOnly);
+				gameOptions.ShowOtherVision = CE_CommonUI.CreateBoolButton_GS(gameOptions.ShowOtherVision, "Show All Vision", ReadOnly);
 			}
 		}
 	}

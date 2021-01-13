@@ -36,7 +36,7 @@ internal class ChatBubble : PoolableBehavior
 		TextArea.RightAligned = true;
 	}
 
-	public void SetName(string playerName, bool isDead, bool isImpostor)
+	public void SetName(string playerName, bool isDead, bool isImpostor, bool imponly = false)
 	{
 		NameText.Text = playerName ?? "...";
 		if (PlayerControl.GameOptions.Gamemode == 1)
@@ -47,7 +47,11 @@ internal class ChatBubble : PoolableBehavior
 		{
 			NameText.Color = (isImpostor ? Palette.ImpostorRed : Color.white);
 		}
-		NameText.RefreshMesh();
+        NameText.RefreshMesh();
+		if (imponly)
+		{
+			Background.color = Palette.ImpostorOnlyRed;
+		}
 		if (isDead)
 		{
 			Xmark.enabled = true;

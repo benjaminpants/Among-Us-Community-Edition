@@ -6,7 +6,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Start()
 	{
-		text.Text = "v0.4.5 - Lua API Beta + Crashfix";
+		text.Text = "v0.4.7 - Lua API Beta + Patch";
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}

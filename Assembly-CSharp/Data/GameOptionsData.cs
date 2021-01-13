@@ -48,6 +48,10 @@ public class GameOptionsData : IBytesSerializable
 
 	public bool isDefaults;
 
+	public bool ImpOnlyChat;
+
+	public bool ShowOtherVision;
+
 	private static readonly int[] RecommendedKillCooldown;
 
 	private static readonly int[] RecommendedImpostors;
@@ -153,6 +157,8 @@ public class GameOptionsData : IBytesSerializable
 		CanSeeGhosts = 0;
 		BodyEffect = 0;
 		BodyDecayTime = 1;
+		ImpOnlyChat = false;
+		ShowOtherVision = false;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -189,7 +195,9 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(GhostsDoTasks);
 		writer.Write(CanSeeGhosts);
 		writer.Write(BodyEffect);
-		writer.Write(BodyDecayTime);
+        writer.Write(BodyDecayTime);
+		writer.Write(ImpOnlyChat);
+		writer.Write(ShowOtherVision);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -229,7 +237,9 @@ public class GameOptionsData : IBytesSerializable
 				GhostsDoTasks = reader.ReadBoolean(),
 				CanSeeGhosts = reader.ReadByte(),
 				BodyEffect = reader.ReadByte(),
-				BodyDecayTime = reader.ReadByte()
+				BodyDecayTime = reader.ReadByte(),
+				ImpOnlyChat = reader.ReadBoolean(),
+				ShowOtherVision = reader.ReadBoolean()
 			};
 		}
 		catch
@@ -318,10 +328,12 @@ public class GameOptionsData : IBytesSerializable
         stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
         stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
         stringBuilder.AppendLine("Body Effect: " + BodySett[BodyEffect]);
-		if (BodyEffect == 1)
-		{
-			stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
-		}
+        if (BodyEffect == 1)
+        {
+            stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
+        }
+        stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
+		stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
 		return stringBuilder.ToString();
 	}
 
@@ -375,6 +387,11 @@ public class GameOptionsData : IBytesSerializable
 		MapScaleX = 1f;
 		MapScaleY = 1f;
 		MapRot = 0;
+		TaskBarUpdates = 0;
+		GhostsDoTasks = true;
+		CanSeeGhosts = 0;
+		BodyEffect = 0;
+		BodyDecayTime = 1;
 		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
 			CE_GamemodeInfo value = gamemodeInfo.Value;
