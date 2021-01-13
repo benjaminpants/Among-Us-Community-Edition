@@ -773,14 +773,19 @@ public class PlayerControl : InnerNetObject
 
 	public void LateUpdate()
     {
+		
 		for (int i = 0; i < AllPlayerControls.Count; i++)
         {
+			bool canProceed = (AllPlayerControls[i].myRend != null && AllPlayerControls[i].myRend.sprite != null);
+			if (canProceed)
+            {
 				string name = AllPlayerControls[i].myRend.sprite.name;
 				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRenderer, 0);
 				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt, 1);
 				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt2, 2);
 				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt3, 3);
 				CE_WardrobeManager.UpdateActiveHatRender(AllPlayerControls[i], name, ref AllPlayerControls[i].HatRendererExt4, 4);
+			}
 		}
     }
 

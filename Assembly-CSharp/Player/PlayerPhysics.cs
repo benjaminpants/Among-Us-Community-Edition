@@ -79,12 +79,15 @@ public class PlayerPhysics : InnerNetObject
 
 	private void UpdateHats()
     {
-		string name = rend.sprite.name;
-		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRenderer, 0);
-		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt, 1);
-		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt2, 2);
-		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt3, 3);
-		CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt4, 4);
+		if (rend.sprite != null)
+        {
+			string name = rend.sprite.name;
+			CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRenderer, 0);
+			CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt, 1);
+			CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt2, 2);
+			CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt3, 3);
+			CE_WardrobeManager.UpdateActiveHatRender(myPlayer, name, ref myPlayer.HatRendererExt4, 4);
+		}
 	}
 
 	private void LateUpdate()
