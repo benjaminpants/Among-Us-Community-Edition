@@ -38,11 +38,11 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		{
 			DestroyableSingleton<HudManager>.Instance.UseButton.DoKeyClick();
 		}
-		if (CE_Input.CE_GetKeyDown(KeyCode.Tab))
+		if (CE_Input.CE_GetKeyDown(KeyCode.Tab) && !(bool)LobbyBehaviour.Instance)
 		{
 			DestroyableSingleton<HudManager>.Instance.OpenMap();
 		}
-		if (CE_Input.CE_GetKeyDown(KeyCode.F) && PlayerControl.LocalPlayer.Data.IsImpostor)
+		if (CE_Input.CE_GetKeyDown(KeyCode.F) && PlayerControl.LocalPlayer.Data.IsImpostor && !(bool)LobbyBehaviour.Instance)
 		{
 			DestroyableSingleton<HudManager>.Instance.OpenInfectedMap();
 		}

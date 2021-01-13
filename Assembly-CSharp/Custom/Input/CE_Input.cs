@@ -39,6 +39,25 @@ public static class CE_Input
 		else if (ClosePlayerMenu()) return;
 		else OpenOptionsMenu();
 
+		/*
+		if ((bool)Minigame.Instance)
+		{
+			Minigame.Instance.Close();
+		}
+		else if (DestroyableSingleton<HudManager>.InstanceExists && (bool)MapBehaviour.Instance && MapBehaviour.Instance.IsOpen)
+		{
+			MapBehaviour.Instance.Close();
+		}
+		else
+		{
+			CustomPlayerMenu customPlayerMenu = Object.FindObjectOfType<CustomPlayerMenu>();
+			if ((bool)customPlayerMenu)
+			{
+				customPlayerMenu.Close(canMove: true);
+			}
+		}
+		*/
+
 		bool CloseMinigame()
         {
 			bool exists = (bool)Minigame.Instance;
