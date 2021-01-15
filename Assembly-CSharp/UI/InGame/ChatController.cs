@@ -152,17 +152,25 @@ public class ChatController : MonoBehaviour
 	private void Update()
 	{
         TimeSinceLastMessage += Time.deltaTime;
-		if (!PlayerControl.LocalPlayer.Data.IsImpostor || (PlayerControl.GameOptions.ImpOnlyChat && PlayerControl.LocalPlayer.Data.IsImpostor))
+		if (!PlayerControl.LocalPlayer.Data.IsImpostor)
         {
             TypingImpOnly = false;
 			TextArea.GetTexRen().Color = Color.black;
 		}
 		else
         {
-			if (Input.GetKeyDown(KeyCode.DownArrow))
-			{
-				TypingImpOnly = !TypingImpOnly;
-				TextArea.GetTexRen().Color = TypingImpOnly ? Color.red : Color.black;
+			if (PlayerControl.GameOptions.ImpOnlyChat)
+            {
+				if (Input.GetKeyDown(KeyCode.DownArrow))
+				{
+					TypingImpOnly = !TypingImpOnly;
+					TextArea.GetTexRen().Color = TypingImpOnly ? Color.red : Color.black;
+				}
+			}
+			else
+            {
+				TypingImpOnly = false;
+				TextArea.GetTexRen().Color = Color.black;
 			}
 		}
 		if (SendRateMessage.isActiveAndEnabled)
