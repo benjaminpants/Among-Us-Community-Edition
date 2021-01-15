@@ -152,7 +152,7 @@ public class ChatController : MonoBehaviour
 	private void Update()
 	{
         TimeSinceLastMessage += Time.deltaTime;
-		if (!PlayerControl.LocalPlayer.Data.IsImpostor || !PlayerControl.GameOptions.ImpOnlyChat)
+		if (!PlayerControl.LocalPlayer.Data.IsImpostor || (PlayerControl.GameOptions.ImpOnlyChat && PlayerControl.LocalPlayer.Data.IsImpostor))
         {
             TypingImpOnly = false;
 			TextArea.GetTexRen().Color = Color.black;
