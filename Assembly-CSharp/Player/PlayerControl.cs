@@ -978,17 +978,6 @@ public class PlayerControl : InnerNetObject
 				playerControl.NetTransform.SnapTo(ShipStatus.Instance.GetSpawnLocation(playerControl.PlayerId, GameData.Instance.PlayerCount));
 			}
 		}
-		if (base.AmOwner)
-		{
-			if (target != null)
-			{
-				StatsManager.Instance.BodiesReported++;
-			}
-			else
-			{
-				StatsManager.Instance.EmergenciesCalled++;
-			}
-		}
 		if ((bool)MapBehaviour.Instance)
 		{
 			MapBehaviour.Instance.Close();
