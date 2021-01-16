@@ -958,30 +958,33 @@ public class PlayerControl : InnerNetObject
 
 	public IEnumerator CoStartMeeting(GameData.PlayerInfo target)
 	{
-		DestroyableSingleton<Telemetry>.Instance.WriteMeetingStarted(target == null);
-		while (!MeetingHud.Instance)
-		{
-			yield return null;
-		}
-		MeetingRoomManager.Instance.RemoveSelf();
+        DestroyableSingleton<Telemetry>.Instance.WriteMeetingStarted(target == null);
+        while (!MeetingHud.Instance)
+        {
+            yield return null;
+        }
+        MeetingRoomManager.Instance.RemoveSelf();
 		DeadBody[] array = UnityEngine.Object.FindObjectsOfType<DeadBody>();
 		for (int i = 0; i < array.Length; i++)
 		{
 			UnityEngine.Object.Destroy(array[i].gameObject);
 		}
-		for (int j = 0; j < AllPlayerControls.Count; j++)
-		{
-			PlayerControl playerControl = AllPlayerControls[j];
-			var commponent = playerControl.GetComponent<DummyBehaviour>();
-			if (commponent)
+        for (int j = 0; j < AllPlayerControls.Count; j++)
+        {
+            PlayerControl playerControl = AllPlayerControls[j];
+			if (playerControl != null)
 			{
-				if (!commponent.enabled)
-                {
-					playerControl.MyPhysics.ExitAllVents();
-					playerControl.NetTransform.SnapTo(ShipStatus.Instance.GetSpawnLocation(playerControl.PlayerId, GameData.Instance.PlayerCount));
+                DummyBehaviour commponent = playerControl.GetComponent<DummyBehaviour>();
+				if ((bool)commponent)
+				{
+					if (!commponent.enabled)
+					{
+						playerControl.MyPhysics.ExitAllVents();
+						playerControl.NetTransform.SnapTo(ShipStatus.Instance.GetSpawnLocation(playerControl.PlayerId, GameData.Instance.PlayerCount));
+					}
 				}
 			}
-		}
+        }
 		if ((bool)MapBehaviour.Instance)
 		{
 			MapBehaviour.Instance.Close();
