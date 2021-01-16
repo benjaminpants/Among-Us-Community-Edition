@@ -972,10 +972,14 @@ public class PlayerControl : InnerNetObject
 		for (int j = 0; j < AllPlayerControls.Count; j++)
 		{
 			PlayerControl playerControl = AllPlayerControls[j];
-			if (!playerControl.GetComponent<DummyBehaviour>().enabled)
+			var commponent = playerControl.GetComponent<DummyBehaviour>();
+			if (commponent)
 			{
-				playerControl.MyPhysics.ExitAllVents();
-				playerControl.NetTransform.SnapTo(ShipStatus.Instance.GetSpawnLocation(playerControl.PlayerId, GameData.Instance.PlayerCount));
+				if (!commponent.enabled)
+                {
+					playerControl.MyPhysics.ExitAllVents();
+					playerControl.NetTransform.SnapTo(ShipStatus.Instance.GetSpawnLocation(playerControl.PlayerId, GameData.Instance.PlayerCount));
+				}
 			}
 		}
 		if (base.AmOwner)

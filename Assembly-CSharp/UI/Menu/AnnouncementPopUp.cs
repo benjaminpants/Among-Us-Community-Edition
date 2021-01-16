@@ -25,6 +25,8 @@ public class AnnouncementPopUp : MonoBehaviour
 
 	private Announcement announcementUpdate;
 
+	private bool LocalMode = false;
+
 	private static bool IsSuccess(AnnounceState state)
 	{
 		if (state != AnnounceState.Success)
@@ -36,6 +38,16 @@ public class AnnouncementPopUp : MonoBehaviour
 
 	public IEnumerator Init()
 	{
+		return Init_Original();
+	}
+
+	public IEnumerator Init_CE()
+	{
+		return null;
+	}
+
+	public IEnumerator Init_Original()
+    {
 		if (AskedForUpdate == AnnounceState.Fetching)
 		{
 			yield return DestroyableSingleton<ServerManager>.Instance.WaitForServers();
@@ -99,6 +111,11 @@ public class AnnouncementPopUp : MonoBehaviour
 
 	public IEnumerator Show()
 	{
+		return Show_Original();
+	}
+
+	public IEnumerator Show_Original()
+    {
 		float timer = 0f;
 		while (AskedForUpdate == AnnounceState.Fetching && connection != null && timer < 5f)
 		{
@@ -136,6 +153,11 @@ public class AnnouncementPopUp : MonoBehaviour
 			yield return null;
 		}
 	}
+
+	public IEnumerator Show_CE()
+    {
+		return null;
+    }
 
 	public void Close()
 	{
