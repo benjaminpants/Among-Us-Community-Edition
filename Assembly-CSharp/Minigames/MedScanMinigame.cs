@@ -40,6 +40,7 @@ public class MedScanMinigame : Minigame
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
+		ScanDuration *= GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty];
 		medscan = ShipStatus.Instance.Systems[SystemTypes.MedBay] as MedScanSystem;
 		gauge.Value = 0f;
 		base.transform.position = new Vector3(100f, 0f, 0f);

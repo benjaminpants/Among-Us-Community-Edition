@@ -29,7 +29,7 @@ public class SurveillanceMinigame : Minigame
 			camera.transform.SetParent(base.transform);
 			camera.transform.position = shipRoom.transform.position + shipRoom.survCamera.Offset;
 			camera.orthographicSize = shipRoom.survCamera.CamSize;
-			RenderTexture temporary = RenderTexture.GetTemporary((int)(256f * shipRoom.survCamera.CamAspect), 256, 16, RenderTextureFormat.ARGB32);
+			RenderTexture temporary = RenderTexture.GetTemporary((int)(SaveManager.CameraRes * shipRoom.survCamera.CamAspect), SaveManager.CameraRes, 16, RenderTextureFormat.ARGB32);
 			textures[j] = temporary;
 			camera.targetTexture = temporary;
 			ViewPorts[j].material.SetTexture("_MainTex", temporary);

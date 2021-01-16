@@ -45,7 +45,7 @@ public class RefuelStage : MonoBehaviour
 		}
 		if (isDown && timer < 1f)
 		{
-			timer += Time.fixedDeltaTime / RefuelDuration;
+			timer += Time.fixedDeltaTime / (RefuelDuration * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty]);
 			MyNormTask.Data[0] = (byte)Mathf.Min(255f, timer * 255f);
 			if (timer >= 1f)
 			{

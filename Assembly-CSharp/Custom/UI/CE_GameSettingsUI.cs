@@ -135,6 +135,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 				gameOptions.NumShortTasks = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumShortTasks, 1f, 0f, 5f, "# Short Tasks", "", false, ReadOnly);
 				gameOptions.Visuals = CE_CommonUI.CreateBoolButton_GS(gameOptions.Visuals, "Visual Tasks", ReadOnly);
 				gameOptions.TaskBarUpdates = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.TaskBarUpdates, GameOptionsData.TaskBarUpStrings, 0, 2, "Taskbar Updates", ReadOnly);
+				gameOptions.TaskDifficulty = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.TaskDifficulty, GameOptionsData.TaskDifficultyNames, 0, 3, "Task Difficulty", ReadOnly);
 				gameOptions.GhostsDoTasks = CE_CommonUI.CreateBoolButton_GS(gameOptions.GhostsDoTasks, "Ghosts Do Tasks", ReadOnly);
 			}
 		}

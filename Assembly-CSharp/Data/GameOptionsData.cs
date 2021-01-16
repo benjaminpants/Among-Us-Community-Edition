@@ -68,7 +68,11 @@ public class GameOptionsData : IBytesSerializable
 
 	public static readonly float[] BodyDecayMul;
 
-	public static readonly string[] CanSeeGhostsStrings;
+    public static readonly string[] CanSeeGhostsStrings;
+
+    public static readonly string[] TaskDifficultyNames;
+
+	public static readonly float[] TaskDifficultyMult;
 
 	public byte CanSeeGhosts;
 
@@ -160,7 +164,8 @@ public class GameOptionsData : IBytesSerializable
 		BodyEffect = 0;
 		BodyDecayTime = 1;
 		ImpOnlyChat = false;
-		ShowOtherVision = false;
+        ShowOtherVision = false;
+		TaskDifficulty = 1;
 
 	}
 
@@ -201,6 +206,7 @@ public class GameOptionsData : IBytesSerializable
         writer.Write(BodyDecayTime);
 		writer.Write(ImpOnlyChat);
 		writer.Write(ShowOtherVision);
+		writer.Write(TaskDifficulty);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -242,7 +248,8 @@ public class GameOptionsData : IBytesSerializable
 				BodyEffect = reader.ReadByte(),
 				BodyDecayTime = reader.ReadByte(),
 				ImpOnlyChat = reader.ReadBoolean(),
-				ShowOtherVision = reader.ReadBoolean()
+				ShowOtherVision = reader.ReadBoolean(),
+				TaskDifficulty = reader.ReadByte()
 			};
 		}
 		catch
@@ -336,7 +343,8 @@ public class GameOptionsData : IBytesSerializable
             stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
         }
         stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
-		stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
+        stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
+		stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
 		return stringBuilder.ToString();
 	}
 
@@ -395,6 +403,7 @@ public class GameOptionsData : IBytesSerializable
 		CanSeeGhosts = 0;
 		BodyEffect = 0;
 		BodyDecayTime = 1;
+		TaskDifficulty = 1;
 		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
 			CE_GamemodeInfo value = gamemodeInfo.Value;
@@ -442,6 +451,24 @@ public class GameOptionsData : IBytesSerializable
             "Medium",
             "Long"
         };
+
+
+		TaskDifficultyNames = new string[]
+		{
+			"Easy",
+			"Normal",
+			"Hard",
+			"Insane"
+		};
+
+		TaskDifficultyMult = new float[]
+		{
+			0.5f,
+			1f,
+			2f,
+			4f
+		};
+
 
 		BodyDecayMul = new float[]
 		{

@@ -18,7 +18,8 @@ public class NavigationMinigame : Minigame
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
-		crossHair = Random.insideUnitCircle.normalized / 2f * 0.6f;
+        crossHair = Random.insideUnitCircle.normalized / 2f * 0.6f;
+		half = new Vector2(0.5f, 0.5f);
 		Vector3 localPosition = new Vector3(crossHair.x * TwoAxisImage.bounds.size.x, crossHair.y * TwoAxisImage.bounds.size.y, -2f);
 		CrossHairImage.transform.localPosition = localPosition;
 		TwoAxisImage.material.SetVector("_CrossHair", crossHair + half);

@@ -65,6 +65,7 @@ public class CourseMinigame : Minigame
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
+		NumPoints = (int)(NumPoints * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty]);
 		PathPoints = new Vector3[NumPoints];
 		Stars = new CourseStarBehaviour[NumPoints];
 		Dots = new SpriteRenderer[NumPoints];

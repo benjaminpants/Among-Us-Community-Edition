@@ -110,7 +110,7 @@ public class UploadDataGame : Minigame
 	{
 		while (running)
 		{
-			float num = (float)count / 5f * 0.7f + timer / 3f * 0.3f;
+			float num = (float)count / (5f * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty]) * 0.7f + timer / 3f * 0.3f;
 			if (num >= 1f)
 			{
 				running = false;
@@ -128,7 +128,7 @@ public class UploadDataGame : Minigame
 		int baselen = txt.Length;
 		int max = 604800;
 		count = 0;
-		while ((float)count < 5f)
+		while ((float)count < (5f * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty]))
 		{
 			txt.Length = baselen;
 			int num = IntRange.Next(max / 6, max);

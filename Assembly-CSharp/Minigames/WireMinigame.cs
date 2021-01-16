@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class WireMinigame : Minigame
 {
@@ -40,14 +42,25 @@ public class WireMinigame : Minigame
 		base.Begin(task);
 		CreateSprites();
 		IntRange.FillRandomRange(ExpectedWires);
+		List<Color> colorlist = colors.ToList();
+		colorlist.Shuffle();
+		Color[] colorz = colorlist.Take(4).ToArray();
+
 		for (int i = 0; i < LeftNodes.Length; i++)
 		{
 			ActualWires[i] = -1;
 			int num = ExpectedWires[i];
 			Wire wire = LeftNodes[i];
-			wire.SetColor(colors[num]);
+			wire.SetColor(colorz[num]);
 			wire.WireId = (sbyte)i;
-			RightNodes[i].SetColor(colors[i]);
+			if (!(PlayerControl.GameOptions.TaskDifficulty >= 2))
+			{
+				RightNodes[i].SetColor(colorz[i]);
+			}
+			else
+            {
+				RightNodes[i].SetColor(Color.gray);
+			}
 			RightNodes[i].WireId = (sbyte)i;
 			int num2 = ActualWires[i];
 			if (num2 > -1)
@@ -276,12 +289,18 @@ public class WireMinigame : Minigame
 
 	static WireMinigame()
 	{
-		colors = new Color[4]
+		colors = new Color[10]
 		{
 			Color.red,
 			Color.blue,
 			Color.yellow,
-			Color.magenta
+			Color.magenta,
+			Color.green,
+			Color.grey,
+			Color.cyan,
+			Color.white,
+			new Color(255 / 255,106 / 255,0),
+			new Color(72 / 255,0,1)
 		};
 	}
 }

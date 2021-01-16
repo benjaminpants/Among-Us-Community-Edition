@@ -27,6 +27,7 @@ public class SweepMinigame : Minigame
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
+		SpinRate = 45f * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty];
 		ResetGauges();
 		if (Constants.ShouldPlaySfx())
 		{

@@ -573,17 +573,36 @@ public static class SaveManager
     }
 
 	public static bool UseLegacyVoteIcons
+    {
+        get
+        {
+            LoadPlayerPrefs();
+            return useLegacyVoteIcons;
+        }
+        set
+        {
+            if (useLegacyVoteIcons != value)
+            {
+                useLegacyVoteIcons = value;
+                SavePlayerPrefs();
+            }
+        }
+    }
+
+
+	private static int CamRes = 256;
+	public static int CameraRes
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return useLegacyVoteIcons;
+			return CamRes;
 		}
 		set
 		{
-			if (useLegacyVoteIcons != value)
+			if (CamRes != value)
 			{
-				useLegacyVoteIcons = value;
+				CamRes = value;
 				SavePlayerPrefs();
 			}
 		}
@@ -744,6 +763,11 @@ public static class SaveManager
 			TryGetBool(array, 20, out hideIntro);
 			TryGetBool(array, 21, out enableVSync);
 			TryGetBool(array, 22, out useLegacyVoteIcons);
+			TryGetInt(array, 23, out CamRes);
+			if (CamRes == 0)
+            {
+				CamRes = 256;
+            }
 		}
 	}
 
@@ -774,6 +798,7 @@ public static class SaveManager
 		options.Add(hideIntro);
 		options.Add(enableVSync);
 		options.Add(useLegacyVoteIcons);
+		options.Add(CamRes);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 

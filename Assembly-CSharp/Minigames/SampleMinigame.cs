@@ -319,7 +319,7 @@ public class SampleMinigame : Minigame
 
 	private IEnumerator CoStartProcessing()
 	{
-		MyNormTask.TaskTimer = TimePerStep;
+		MyNormTask.TaskTimer = TimePerStep * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty];
 		MyNormTask.TimerStarted = NormalPlayerTask.TimerState.Started;
 		yield return DropLiquid();
 		LowerText.Text = ProcessingStrings.Random();

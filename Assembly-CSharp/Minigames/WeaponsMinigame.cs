@@ -80,7 +80,7 @@ public class WeaponsMinigame : Minigame
 			return;
 		}
 		Timer += Time.fixedDeltaTime;
-		if (Timer >= TimeToSpawn.Last)
+		if (Timer >= (TimeToSpawn.Last * GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty]))
 		{
 			Timer = 0f;
 			TimeToSpawn.Next();
