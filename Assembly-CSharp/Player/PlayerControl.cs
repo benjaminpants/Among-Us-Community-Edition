@@ -982,17 +982,6 @@ public class PlayerControl : InnerNetObject
 				}
 			}
 		}
-		if (base.AmOwner)
-		{
-			if (target != null)
-			{
-				StatsManager.Instance.BodiesReported++;
-			}
-			else
-			{
-				StatsManager.Instance.EmergenciesCalled++;
-			}
-		}
 		if ((bool)MapBehaviour.Instance)
 		{
 			MapBehaviour.Instance.Close();
