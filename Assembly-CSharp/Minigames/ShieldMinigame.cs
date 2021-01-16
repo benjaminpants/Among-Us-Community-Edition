@@ -57,7 +57,23 @@ public class ShieldMinigame : Minigame
 
 	public void FixedUpdate()
 	{
-		UpdateButtons();
+		if (PlayerControl.GameOptions.TaskDifficulty == 3)
+		{
+			int num = 0;
+			for (int i = 0; i < Shields.Length; i++)
+			{
+				bool flag = (shields & (1 << i)) == 0;
+				if (!flag)
+				{
+					num++;
+				}
+				Shields[i].color = Color.green;
+			}
+		}
+		else
+        {
+			UpdateButtons();
+		}
 	}
 
 	private void UpdateButtons()

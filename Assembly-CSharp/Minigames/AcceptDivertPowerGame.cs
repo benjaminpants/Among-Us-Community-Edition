@@ -126,7 +126,7 @@ public class AcceptDivertPowerGame : Minigame
                 }
                 StartCoroutine(CoStartClose());
             }
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(0.5f);
 			done = false;
 			CurrentColor = newcolor;
 		}

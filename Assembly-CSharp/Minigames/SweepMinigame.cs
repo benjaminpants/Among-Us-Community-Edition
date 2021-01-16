@@ -28,6 +28,10 @@ public class SweepMinigame : Minigame
 	{
 		base.Begin(task);
 		SpinRate *= GameOptionsData.TaskDifficultyMult[PlayerControl.GameOptions.TaskDifficulty];
+		if (PlayerControl.GameOptions.TaskDifficulty == 3)
+        {
+			SpinRate *= 0.5f;
+        }
 		ResetGauges();
 		if (Constants.ShouldPlaySfx())
 		{

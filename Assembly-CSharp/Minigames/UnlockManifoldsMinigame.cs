@@ -32,11 +32,11 @@ public class UnlockManifoldsMinigame : Minigame
 	{
         base.Begin(task);
 		TimesToDo = 1;
-		if (PlayerControl.GameOptions.TaskDifficulty == 2)
+		if (PlayerControl.GameOptions.TaskDifficulty == 3)
         {
 			TimesToDo = 4;
 		}
-		else if (PlayerControl.GameOptions.TaskDifficulty == 3)
+		else if (PlayerControl.GameOptions.TaskDifficulty == 2)
         {
 			TimesToDo = 2;
         }

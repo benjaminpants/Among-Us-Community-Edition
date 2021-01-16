@@ -59,7 +59,7 @@ public class MedScanMinigame : Minigame
 		stringBuilder.Append("C: ");
 		stringBuilder.Append(ColorNames[colorId].PadRight(17));
 		stringBuilder.Append("BT: ");
-		stringBuilder.Append(BloodTypes[playerId * 3 % BloodTypes.Length]);
+		stringBuilder.Append(BloodTypes[(data.PlayerName.GetHashCode() + colorId) * 3 % BloodTypes.Length]);
 		completeString = stringBuilder.ToString();
 		charStats.Text = string.Empty;
 		ShipStatus.Instance.RpcRepairSystem(SystemTypes.MedBay, playerId | 0x80);

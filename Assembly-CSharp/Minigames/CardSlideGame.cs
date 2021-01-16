@@ -41,6 +41,8 @@ public class CardSlideGame : Minigame
 
 	private bool moving;
 
+	private int SwipesRemaining;
+
 	public void Update()
 	{
 		if (MyNormTask.IsComplete)
@@ -100,18 +102,26 @@ public class CardSlideGame : Minigame
 				}
 				if (XRange.max - localPosition.x < 0.05f)
 				{
-					if (AcceptedTime.Contains(dragTime))
+					if (AcceptedTime.Contains(dragTime) || PlayerControl.GameOptions.TaskDifficulty == 0)
 					{
 						if (Constants.ShouldPlaySfx())
 						{
 							SoundManager.Instance.PlaySound(AcceptSound, loop: false);
 						}
-						State = TaskStages.After;
-						StatusText.Text = "Accepted. Thank you.";
-						StartCoroutine(PutCardBack());
-						if ((bool)MyNormTask)
+						SwipesRemaining--;
+						if (SwipesRemaining == 0)
 						{
-							MyNormTask.NextStep();
+							State = TaskStages.After;
+							StatusText.Text = "Accepted. Thank you.";
+							StartCoroutine(PutCardBack());
+							if ((bool)MyNormTask)
+							{
+								MyNormTask.NextStep();
+							}
+						}
+						else
+                        {
+							StatusText.Text = "Accepted. Swipe " + SwipesRemaining + " more times.";
 						}
 						redLight.color = gray;
 						greenLight.color = green;
@@ -120,11 +130,15 @@ public class CardSlideGame : Minigame
 					{
 						if (AcceptedTime.max < dragTime)
 						{
-							StatusText.Text = "Too slow. Try again";
+							StatusText.Text = "Too slow. Try again.";
 						}
 						else
 						{
 							StatusText.Text = "Too fast. Try again.";
+						}
+						if (PlayerControl.GameOptions.TaskDifficulty == 3)
+						{
+								SwipesRemaining = 4;
 						}
 						redLight.color = Color.red;
 						greenLight.color = gray;
@@ -132,6 +146,10 @@ public class CardSlideGame : Minigame
 				}
 				else
 				{
+					if (PlayerControl.GameOptions.TaskDifficulty == 3)
+					{
+						SwipesRemaining = 4;
+					}
 					StatusText.Text = "Bad read. Try again.";
 					redLight.color = Color.red;
 					greenLight.color = gray;
@@ -168,10 +186,18 @@ public class CardSlideGame : Minigame
 
 	private IEnumerator InsertCard()
 	{
-		if (Constants.ShouldPlaySfx())
+        if (Constants.ShouldPlaySfx())
+        {
+            SoundManager.Instance.PlaySound(WalletOut, loop: false);
+        }
+		if (PlayerControl.GameOptions.TaskDifficulty >= 2)
 		{
-			SoundManager.Instance.PlaySound(WalletOut, loop: false);
+			SwipesRemaining = 4;
 		}
+		else
+        {
+			SwipesRemaining = 1;
+        }
 		Vector3 pos = col.transform.localPosition;
 		Vector3 targ = new Vector3(XRange.min, 0.75f, pos.z);
 		float time = 0f;
