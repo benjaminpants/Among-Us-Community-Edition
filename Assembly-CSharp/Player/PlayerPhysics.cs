@@ -69,11 +69,11 @@ public class PlayerPhysics : InnerNetObject
 		{
 			DestroyableSingleton<Telemetry>.Instance.WritePosition(myPlayer.PlayerId, base.transform.position);
 			GameData.PlayerInfo data = myPlayer.Data;
-			if (data != null)
-			{
-				bool isDead = data.IsDead;
-				body.velocity = DestroyableSingleton<HudManager>.Instance.joystick.Delta * (isDead ? TrueGhostSpeed : TrueSpeed);
-			}
+            if (data != null)
+            {
+                bool isDead = data.IsDead;
+                body.velocity = DestroyableSingleton<HudManager>.Instance.joystick.Delta * (isDead ? TrueGhostSpeed : TrueSpeed);
+            }
 		}
 	}
 

@@ -108,6 +108,8 @@ public class GameOptionsData : IBytesSerializable
 
 	public byte BodyDecayTime;
 
+	public byte TaskDifficulty;
+
 	public void ToggleMapFilter(byte newId)
 	{
 		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
@@ -159,6 +161,7 @@ public class GameOptionsData : IBytesSerializable
 		BodyDecayTime = 1;
 		ImpOnlyChat = false;
 		ShowOtherVision = false;
+
 	}
 
 	public void Serialize(BinaryWriter writer)

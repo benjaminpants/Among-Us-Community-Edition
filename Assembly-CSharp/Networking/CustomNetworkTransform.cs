@@ -53,22 +53,38 @@ public class CustomNetworkTransform : InnerNetObject
 		SetDirtyBit(1u);
 	}
 
-	public void Halt()
+    public void Halt()
+    {
+		RpcHalt();
+    }
+
+	public void ClientHalt()
 	{
 		ushort minSid = (ushort)(lastSequenceId + 1);
+		targetSyncVelocity = new Vector2(0, 0);
 		SnapTo(base.transform.position, minSid);
 	}
 
 	public void RpcSnapTo(Vector2 position)
+    {
+        ushort minSid = (ushort)(lastSequenceId + 5);
+        if (AmongUsClient.Instance.AmClient)
+        {
+            SnapTo(position, minSid);
+        }
+        MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 0);
+        WriteVector2(position, messageWriter);
+        messageWriter.Write(lastSequenceId);
+        messageWriter.EndMessage();
+    }
+
+	public void RpcHalt()
 	{
-		ushort minSid = (ushort)(lastSequenceId + 5);
 		if (AmongUsClient.Instance.AmClient)
 		{
-			SnapTo(position, minSid);
+			ClientHalt();
 		}
-		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 0);
-		WriteVector2(position, messageWriter);
-		messageWriter.Write(lastSequenceId);
+		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 1);
 		messageWriter.EndMessage();
 	}
 
@@ -86,7 +102,8 @@ public class CustomNetworkTransform : InnerNetObject
 			Transform transform = base.transform;
 			Vector2 vector2 = (body.position = position);
 			transform.position = (targetSyncPosition = vector2);
-			vector2 = (targetSyncVelocity = (body.velocity = Vector2.zero));
+			body.velocity = Vector2.zero;
+			targetSyncVelocity = Vector2.zero;
 			prevPosSent = position;
 			prevVelSent = Vector2.zero;
 		}
@@ -145,11 +162,15 @@ public class CustomNetworkTransform : InnerNetObject
 
 	public override void HandleRpc(byte callId, MessageReader reader)
 	{
-		if (base.isActiveAndEnabled && callId == 0)
+        if (base.isActiveAndEnabled && callId == 0)
+        {
+            Vector2 position = ReadVector2(reader);
+            ushort minSid = reader.ReadUInt16();
+            SnapTo(position, minSid);
+        }
+		if (base.isActiveAndEnabled && callId == 1) //clientside halt
 		{
-			Vector2 position = ReadVector2(reader);
-			ushort minSid = reader.ReadUInt16();
-			SnapTo(position, minSid);
+			ClientHalt();
 		}
 	}
 

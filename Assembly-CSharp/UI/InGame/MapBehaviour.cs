@@ -74,7 +74,7 @@ public class MapBehaviour : MonoBehaviour
 		{
 			PlayerControl.LocalPlayer.SetPlayerMaterialColors(HerePoint);
 			GenericShow();
-			taskOverlay.Show();
+            taskOverlay.Show();
 			ColorControl.SetColor(new Color(0.05f, 0.2f, 1f, 1f));
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: false);
 		}

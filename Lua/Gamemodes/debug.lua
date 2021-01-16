@@ -31,7 +31,7 @@ function OnGameEnd()
 	
 end
 
-function OnChat(message, player)
+function OnChat(message, player, imponly)
 	local cmd = {}
 	for i in string.gmatch(message, "%S+") do
 		table.insert(cmd,i)

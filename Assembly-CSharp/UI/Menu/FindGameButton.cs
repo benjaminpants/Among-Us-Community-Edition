@@ -30,7 +30,7 @@ public class FindGameButton : MonoBehaviour, IConnectButton
 
 	private IEnumerator ConnectForFindGame()
 	{
-		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 25565);
+		/*AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 25565);
 		AmongUsClient.Instance.OnlineScene = "OnlineGame";
 		AmongUsClient.Instance.mode = MatchMakerModes.Client;
 		yield return AmongUsClient.Instance.CoConnect();
@@ -39,7 +39,8 @@ public class FindGameButton : MonoBehaviour, IConnectButton
 			DestroyableSingleton<MatchMaker>.Instance.NotConnecting();
 			yield break;
 		}
-		AmongUsClient.Instance.HostId = AmongUsClient.Instance.ClientId;
+		AmongUsClient.Instance.HostId = AmongUsClient.Instance.ClientId;*/
+		yield return true;
 		SceneManager.LoadScene("FindAGame");
 	}
 

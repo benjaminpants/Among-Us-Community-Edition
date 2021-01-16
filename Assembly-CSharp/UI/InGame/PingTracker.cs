@@ -12,7 +12,7 @@ public class PingTracker : MonoBehaviour
 			{
 				base.gameObject.SetActive(value: false);
 			}
-			text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms";
+			text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> CE Alpha <\n[FF0000FF]> DO NOT LEAK! <[]";
 		}
 	}
 }

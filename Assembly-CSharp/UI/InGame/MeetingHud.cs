@@ -167,7 +167,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 			if (AmongUsClient.Instance.GameMode == GameModes.OnlineGame)
 			{
 				float num = discussionTimer - resultsStartedAt;
-				float num2 = Mathf.Max(0f, 5f - num);
+				float num2 = Mathf.Max(0f, 10f - num);
 				TimerText.Text = $"Proceeding In: {Mathf.CeilToInt(num2)}s";
 				if (AmongUsClient.Instance.AmHost && num2 <= 0f)
 				{
@@ -567,7 +567,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 					spriteRenderer2.transform.SetParent(SkippedVoting.transform);
 					spriteRenderer2.transform.localPosition = CounterOrigin + new Vector3(CounterOffsets.x / 2f * (float)num, 0f, 0f);
 					spriteRenderer2.transform.localScale = Vector3.zero;
-					StartCoroutine(Effects.BloopHalf((float)num * 0.5f, spriteRenderer2.transform));
+					StartCoroutine(Effects.Bloop(num, spriteRenderer2.transform));
 					num++;
 				}
 			}
