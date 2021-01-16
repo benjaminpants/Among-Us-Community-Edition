@@ -22,6 +22,10 @@ public class DivertPowerMinigame : Minigame
 
 	private int sliderId;
 
+	private int sliders_slid;
+
+	private int sliders_min;
+
 	public FloatRange SliderY = new FloatRange(-1f, 1f);
 
 	private Controller myController = new Controller();
@@ -31,6 +35,16 @@ public class DivertPowerMinigame : Minigame
 		base.Begin(task);
 		DivertPowerTask powerTask = (DivertPowerTask)task;
 		sliderId = SliderOrder.IndexOf((SystemTypes t) => t == powerTask.TargetSystem);
+		sliders_slid = 0;
+		sliders_min = 1;
+        if (PlayerControl.GameOptions.TaskDifficulty == 2)
+        {
+            sliders_min = 2;
+        }
+		if (PlayerControl.GameOptions.TaskDifficulty == 3)
+		{
+			sliders_min = 5;
+		}
 		for (int i = 0; i < Sliders.Length; i++)
 		{
 			if (i != sliderId)
@@ -79,6 +93,14 @@ public class DivertPowerMinigame : Minigame
 		case DragState.Released:
 			if (SliderY.max - v.y < 0.05f)
 			{
+				sliders_slid++;
+				if (!(sliders_slid == sliders_min))
+				{
+					Sliders[sliderId].GetComponent<SpriteRenderer>().color = new Color(0.5f, 0f, 0f);
+					sliderId = Random.Range(0, 7);
+					Sliders[sliderId].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+					return;
+				}
 				MyNormTask.NextStep();
 				StartCoroutine(CoStartClose());
 				sliderId = -1;

@@ -16,9 +16,31 @@ public class UnlockManifoldsMinigame : Minigame
 
 	public AudioClip FailSound;
 
+    private int TimesToDo;
+
+	private int TimesToDoStart;
+
+	private static Color[] colors = new Color[4]
+	{
+			Color.green,
+			Color.yellow,
+			Color.red,
+			Color.black
+	};
+
 	public override void Begin(PlayerTask task)
 	{
-		base.Begin(task);
+        base.Begin(task);
+		TimesToDo = 1;
+		if (PlayerControl.GameOptions.TaskDifficulty == 2)
+        {
+			TimesToDo = 4;
+		}
+		else if (PlayerControl.GameOptions.TaskDifficulty == 3)
+        {
+			TimesToDo = 2;
+        }
+		TimesToDoStart = TimesToDo;
 		int num = 2;
 		int num2 = Buttons.Length / num;
 		float[] array = FloatRange.SpreadToEdges(-1.7f, 1.7f, num2).ToArray();
@@ -47,17 +69,69 @@ public class UnlockManifoldsMinigame : Minigame
 		}
 		if (idx == buttonCounter)
 		{
-			Buttons[idx].color = Color.green;
+			Buttons[idx].color = colors[TimesToDoStart - TimesToDo];
 			buttonCounter++;
-			if (buttonCounter == Buttons.Length)
+
+			bool condition = false;
+
+			if (PlayerControl.GameOptions.TaskDifficulty == 0)
+            {
+				condition = (buttonCounter == (Buttons.Length / 2));
+
+			}
+			else
+            {
+				condition = (buttonCounter == (Buttons.Length));
+			}
+			if (condition)
 			{
-				MyNormTask.NextStep();
-				StartCoroutine(CoStartClose());
+				TimesToDo--;
+				if (TimesToDo == 0)
+				{
+					MyNormTask.NextStep();
+					StartCoroutine(CoStartClose());
+				}
+				else
+                {
+					buttonCounter = 0;
+					int num = 2;
+					int num2 = Buttons.Length / num;
+					float[] array = FloatRange.SpreadToEdges(-1.7f, 1.7f, num2).ToArray();
+					float[] array2 = FloatRange.SpreadToEdges(-0.43f, 0.43f, num).ToArray();
+					SpriteRenderer[] array3 = Buttons.ToArray();
+					array3.Shuffle();
+					for (int i = 0; i < num2; i++)
+					{
+						for (int j = 0; j < num; j++)
+						{
+							int num3 = i + j * num2;
+							array3[num3].transform.localPosition = new Vector3(array[i], array2[j], 0f);
+						}
+					}
+				}
+			}
+			if (TimesToDo == 1 && TimesToDoStart == 4)
+            {
+				int num = 2;
+				int num2 = Buttons.Length / num;
+				float[] array = FloatRange.SpreadToEdges(-1.7f, 1.7f, num2).ToArray();
+				float[] array2 = FloatRange.SpreadToEdges(-0.43f, 0.43f, num).ToArray();
+				SpriteRenderer[] array3 = Buttons.ToArray();
+				array3.Shuffle();
+				for (int i = 0; i < num2; i++)
+				{
+					for (int j = 0; j < num; j++)
+					{
+						int num3 = i + j * num2;
+						array3[num3].transform.localPosition = new Vector3(array[i], array2[j], 0f);
+					}
+				}
 			}
 		}
 		else
 		{
 			buttonCounter = 0;
+			TimesToDo = 4;
 			StartCoroutine(ResetAll());
 		}
 	}

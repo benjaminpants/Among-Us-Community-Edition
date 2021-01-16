@@ -15,15 +15,61 @@ public class AcceptDivertPowerGame : Minigame
 
 	public AudioClip SwitchSound;
 
+	private bool DoNormalMinigame;
+
+	private int CurrentColor;
+
+	private int SelectedColor;
+
+	private int ColorsLeft;
+
 	private bool done;
+
+	private static Color[] colors = new Color[4]
+	{
+			Color.red,
+			Color.blue,
+			Color.yellow,
+			Color.magenta
+	};
 
 	public void Start()
 	{
 		LeftWires = LeftWireParent.GetComponentsInChildren<LineRenderer>();
 		RightWires = RightWireParent.GetComponentsInChildren<LineRenderer>();
-		for (int i = 0; i < LeftWires.Length; i++)
+		CurrentColor = Random.Range(0,3);
+		SelectedColor = Random.Range(0,3);
+        if (PlayerControl.GameOptions.TaskDifficulty == 2)
+        {
+            ColorsLeft = 2;
+        }
+		else if (PlayerControl.GameOptions.TaskDifficulty == 3)
 		{
-			LeftWires[i].material.SetColor("_Color", Color.yellow);
+			ColorsLeft = 5;
+		}
+		else
+        {
+			DoNormalMinigame = true;
+        }
+
+		if (DoNormalMinigame)
+		{
+			for (int i = 0; i < LeftWires.Length; i++)
+			{
+				LeftWires[i].material.SetColor("_Color", Color.yellow);
+			}
+		}
+		else
+        {
+            for (int i = 0; i < LeftWires.Length; i++)
+            {
+                LeftWires[i].material.SetColor("_Color", colors[CurrentColor]);
+            }
+			for (int i = 0; i < RightWires.Length; i++)
+			{
+				RightWires[i].enabled = true;
+				RightWires[i].material.SetColor("_Color", colors[SelectedColor]);
+			}
 		}
 	}
 
@@ -42,25 +88,73 @@ public class AcceptDivertPowerGame : Minigame
 
 	private IEnumerator CoDoSwitch()
 	{
-		yield return new WaitForLerp(0.25f, delegate(float t)
+		if (!DoNormalMinigame)
 		{
-			Switch.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 90f, t));
-		});
-		LeftWires[0].SetPosition(1, new Vector3(1.265f, 0f, 0f));
-		for (int i = 0; i < RightWires.Length; i++)
-		{
-			RightWires[i].enabled = true;
-			RightWires[i].material.SetColor("_Color", Color.yellow);
+			int newcolor = CurrentColor + 1;
+			if (newcolor == 4)
+            {
+				newcolor = 0;
+            }
+			for (int i = 0; i < RightWires.Length; i++)
+			{
+				RightWires[i].enabled = true;
+				RightWires[i].material.SetColor("_Color", colors[newcolor]);
+			}
+			if (CurrentColor == SelectedColor)
+			{
+				ColorsLeft--;
+				SelectedColor = Random.Range(0,3);
+				for (int j = 0; j < LeftWires.Length; j++)
+				{
+					LeftWires[j].material.SetColor("_Color", colors[SelectedColor]);
+				}
+			}
+            if (ColorsLeft == 0)
+            {
+				yield return new WaitForLerp(0.25f, delegate (float t)
+				{
+					Switch.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 90f, t));
+				});
+				LeftWires[0].SetPosition(1, new Vector3(1.265f, 0f, 0f));
+                yield return new WaitForLerp(0.25f, delegate (float t)
+                {
+                    Switch.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 90f, t));
+                });
+                if ((bool)MyNormTask)
+                {
+                    MyNormTask.NextStep();
+                }
+                StartCoroutine(CoStartClose());
+            }
+			yield return new WaitForSeconds(1f);
+			done = false;
+			CurrentColor = newcolor;
 		}
-		for (int j = 0; j < LeftWires.Length; j++)
-		{
-			LeftWires[j].material.SetColor("_Color", Color.yellow);
+		else
+        {
+			yield return new WaitForLerp(0.25f, delegate (float t)
+			{
+				Switch.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Lerp(0f, 90f, t));
+			});
+			LeftWires[0].SetPosition(1, new Vector3(1.265f, 0f, 0f));
+			for (int i = 0; i < RightWires.Length; i++)
+			{
+				RightWires[i].enabled = true;
+				RightWires[i].material.SetColor("_Color", Color.yellow);
+			}
+			for (int j = 0; j < LeftWires.Length; j++)
+			{
+				LeftWires[j].material.SetColor("_Color", Color.yellow);
+			}
 		}
-		if ((bool)MyNormTask)
+		if (DoNormalMinigame)
 		{
-			MyNormTask.NextStep();
+			if ((bool)MyNormTask)
+			{
+				MyNormTask.NextStep();
+			}
+			StartCoroutine(CoStartClose());
 		}
-		StartCoroutine(CoStartClose());
 	}
 
 	public void Update()

@@ -44,7 +44,7 @@ public class WireMinigame : Minigame
 		IntRange.FillRandomRange(ExpectedWires);
 		List<Color> colorlist = colors.ToList();
 		colorlist.Shuffle();
-		Color[] colorz = colorlist.Take(4).ToArray();
+		Color[] colorz = colorlist.ToArray();
 
 		for (int i = 0; i < LeftNodes.Length; i++)
 		{
@@ -289,7 +289,7 @@ public class WireMinigame : Minigame
 
 	static WireMinigame()
 	{
-		colors = new Color[10]
+		colors = new Color[8]
 		{
 			Color.red,
 			Color.blue,
@@ -298,9 +298,7 @@ public class WireMinigame : Minigame
 			Color.green,
 			Color.grey,
 			Color.cyan,
-			Color.white,
-			new Color(255 / 255,106 / 255,0),
-			new Color(72 / 255,0,1)
+			Color.white
 		};
 	}
 }
