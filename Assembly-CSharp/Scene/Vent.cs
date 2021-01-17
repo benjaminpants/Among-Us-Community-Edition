@@ -1,5 +1,7 @@
 using PowerTools;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class Vent : MonoBehaviour, IUsable
 {
@@ -23,24 +25,79 @@ public class Vent : MonoBehaviour, IUsable
 
 	public float PercentCool => 0f;
 
+	public Vent Up;
+
+	public Vent Down;
+
 	private void Start()
 	{
-		SetButtons(enabled: false);
+        SetButtons(enabled: false);
+		InitButtons();
 		myRend = GetComponent<SpriteRenderer>();
-		byte ventMode = PlayerControl.GameOptions.VentMode;
-		if (PlayerControl.GameOptions.Venting == 3)
-        {
+
+		int Venting = PlayerControl.GameOptions.Venting;
+		byte VentMode = PlayerControl.GameOptions.VentMode;
+		
+		if (Venting == 3)
+		{
 			myRend.enabled = false;
-        }
-		if (PlayerControl.GameOptions.Venting == 2 && (!GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).IsImpostor || CE_RoleManager.GetRoleFromID(GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).role).CanDo(CE_Specials.Vent)))
-		{
-			Left = null;
-			Right = null;
-			return;
 		}
-		switch (ventMode)
+		if (Venting == 2)
 		{
-		case 1:
+			//TODO: Failsafe Checking Need... Can Cause NullException
+			bool CanNotVent = (!GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).IsImpostor || CE_RoleManager.GetRoleFromID(GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).role).CanDo(CE_Specials.Vent));
+			if (CanNotVent)
+            {
+				Left = null;
+				Right = null;
+				Up = null;
+				Down = null;
+				return;
+			}
+		}
+		switch (VentMode)
+		{
+			case 0:
+				Init_Default();
+				break;
+			case 1: 
+				Init_Linked(); 
+				break;
+			case 2: 
+				Init_Pairs(); 
+				break;
+			case 3:
+				Init_Locked(); 
+				break;
+			case 4:
+				Init_Randomized();
+				break;
+			case 5:
+				Init_OneWayRandomized();
+				break;
+		}
+
+
+
+		void Init_Default()
+		{
+
+		}
+		void Init_LinkedProto()
+		{			
+			//Prototyping Only
+			Vent[] array = Object.FindObjectsOfType<Vent>();
+			int num = array.IndexOf(this);
+			int num2 = num + 1;
+			int num3 = num - 1;
+			Up = null;
+			Down = null;
+			if (num2 > array.Length) Up = null;
+			else Up = array[num2];
+			if (num3 == -1) Down = null;
+			else Down = array[num3];	
+		}
+		void Init_Linked()
 		{
 			Vent[] array = Object.FindObjectsOfType<Vent>();
 			int num = array.IndexOf(this);
@@ -48,50 +105,67 @@ public class Vent : MonoBehaviour, IUsable
 			int num3 = num - 1;
 			Left = null;
 			Right = null;
-			if (num2 > array.Length)
-			{
-				Left = null;
-			}
-			else
-			{
-				Left = array[num2];
-			}
-			if (num3 == -1)
-			{
-				Right = null;
-			}
-			else
-			{
-				Right = array[num3];
-			}
-			break;
+			Up = null;
+			Down = null;
+			if (num2 > array.Length) Left = null;
+			else Left = array[num2];
+			if (num3 == -1) Right = null;
+			else Right = array[num3];
 		}
-		case 2:
+		void Init_Pairs()
+		{
 			Left = null;
-			break;
-		case 3:
+			Up = null;
+			Down = null;
+		}
+		void Init_Locked()
+		{
 			Left = null;
 			Right = null;
-			break;
-        case 4:
+			Up = null;
+			Down = null;
+		}
+		void Init_Randomized()
+		{
 			Vent[] array2 = Object.FindObjectsOfType<Vent>();
-            Left = array2[UnityEngine.Random.Range(0, array2.Length)];
+			Left = array2[UnityEngine.Random.Range(0, array2.Length)];
 			Right = array2[UnityEngine.Random.Range(0, array2.Length)];
-			break;
-		case 5:
+			Up = array2[UnityEngine.Random.Range(0, array2.Length)];
+			Down = array2[UnityEngine.Random.Range(0, array2.Length)];
+
+		}
+		void Init_OneWayRandomized()
+		{
 			Vent[] array3 = Object.FindObjectsOfType<Vent>();
 			Left = array3[UnityEngine.Random.Range(0, array3.Length)];
 			Right = null;
-			break;
+			Up = null;
+			Down = null;
 		}
+	}
+
+	public void InitButtons()
+	{
+        var buttonList = Buttons.ToList();
+        var upButton = GameObject.Instantiate(Buttons[0].gameObject);
+		var downButton = GameObject.Instantiate(Buttons[0].gameObject);
+
+		upButton.transform.parent = Buttons[0].transform.parent;
+		downButton.transform.parent = Buttons[0].transform.parent;
+
+		buttonList.Add(upButton.GetComponent<ButtonBehavior>());
+        buttonList.Add(downButton.GetComponent<ButtonBehavior>());
+		Buttons = buttonList.ToArray();
 	}
 
 	public void SetButtons(bool enabled)
 	{
-		Vent[] array = new Vent[2]
+		Vent[] array = new Vent[4]
 		{
 			Right,
-			Left
+			Left,
+			Up,
+			Down
 		};
 		for (int i = 0; i < Buttons.Length; i++)
 		{
