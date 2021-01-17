@@ -47,7 +47,7 @@ public class Vent : MonoBehaviour, IUsable
 		if (Venting == 2)
 		{
 			//TODO: Failsafe Checking Need... Can Cause NullException
-			bool CanNotVent = (!GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).IsImpostor || CE_RoleManager.GetRoleFromID(GameData.Instance.GetPlayerById(PlayerControl.LocalPlayer.PlayerId).role).CanDo(CE_Specials.Vent));
+			bool CanNotVent = (!PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Vent));
 			if (CanNotVent)
             {
 				Left = null;
