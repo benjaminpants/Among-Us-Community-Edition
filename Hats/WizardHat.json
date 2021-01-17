@@ -4,7 +4,7 @@
   "StoreName": "WizardHat",
   "HatInFront": false,
   "NoHatBobbing": false,
-  "UsePointFilteringGlobally": true,
+  "UsePointFilteringGlobally": false,
   "RelatedSkin": null,
   "RelatedHat": null,
   "UsePercentageBasedPivot": true,

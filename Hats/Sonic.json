@@ -1,0 +1,55 @@
+{
+  "ID": "SonicSpines",
+  "Name": "Sonic Spines",
+  "StoreName": "Sonic Spines",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 69.0,
+        "y": 70.0
+      },
+      "Offset": {
+        "x": 0.6,
+        "y": 1.23
+      },
+      "Name": "Normal",
+      "SpritePath": "SonicSpines.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 50.0,
+        "y": 28.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "Ring.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

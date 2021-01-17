@@ -2,6 +2,7 @@
   "ID": "Astrohat-Multi",
   "Name": "Astrohat-Multi",
   "StoreName": "Astrohat-Multi",
+  "IsHidden": true,
   "HatInFront": true,
   "NoHatBobbing": false,
   "UsePointFilteringGlobally": false,

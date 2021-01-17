@@ -275,8 +275,11 @@ public class PlayerControl : InnerNetObject
 
 	public void DestroyLight()
     {
-		myLight.Material.SetFloat("_LightRadius", 0);
-		Destroy(myLight.transform.gameObject);
+		if (myLight == null)
+        {
+			myLight.Material.SetFloat("_LightRadius", 0);
+			Destroy(myLight.transform.gameObject);
+		}
     }
 
 	public override void OnDestroy()

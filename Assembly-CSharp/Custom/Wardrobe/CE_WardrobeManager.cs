@@ -228,6 +228,8 @@ public class CE_WardrobeManager
 						frame.Texture.filterMode = FilterMode.Point;
 					}
 
+					Debug.Log("Creating Sprites for:" + item2.ID);
+
 					switch (frame.Name)
 					{
 						case "Normal":
