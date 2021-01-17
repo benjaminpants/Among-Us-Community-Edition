@@ -105,7 +105,10 @@ public class Vent : MonoBehaviour, IUsable
 		}
 		void Init_Pairs()
 		{
-			Left = null;
+			if (Right != null) //fixed
+			{
+				Left = null;
+			}
 			Up = null;
 			Down = null;
 		}
