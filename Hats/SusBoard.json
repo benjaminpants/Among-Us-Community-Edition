@@ -1,0 +1,47 @@
+{
+  "ID": "SusBoard",
+  "Name": "SusBoard",
+  "StoreName": "SusBoard",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": true,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 68.0,
+        "y": 60.0
+      },
+      "Offset": {
+        "x": 0.86,
+        "y": 0.58
+      },
+      "Name": "Normal",
+      "SpritePath": "SusBoard.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 23.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "SusBoard_fall.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

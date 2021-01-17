@@ -1,0 +1,47 @@
+{
+  "ID": "Bens_Cake",
+  "Name": "Bens_Cake",
+  "StoreName": "Bens_Cake",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 53.0,
+        "y": 47.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Normal",
+      "SpritePath": "CakeBen.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 59.0,
+        "y": 50.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "CakeBen_spilled.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

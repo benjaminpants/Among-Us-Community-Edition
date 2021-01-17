@@ -1,0 +1,47 @@
+{
+  "ID": "Buster Sword",
+  "Name": "Buster Sword",
+  "StoreName": "Buster Sword",
+  "HatInFront": false,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 114.0,
+        "y": 127.0
+      },
+      "Offset": {
+        "x": 0.56,
+        "y": 0.85
+      },
+      "Name": "Normal",
+      "SpritePath": "BusterSword.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 112.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "BusterSwordPlant.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

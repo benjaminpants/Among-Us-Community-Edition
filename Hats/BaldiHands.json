@@ -1,0 +1,67 @@
+{
+  "ID": "BaldiRuler",
+  "Name": "BaldiRuler",
+  "StoreName": "BaldiRuler",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 120.0,
+        "y": 144.0
+      },
+      "Offset": {
+        "x": 0.36,
+        "y": 0.660
+      },
+      "Name": "NormalExt",
+      "SpritePath": "BaldiHands.png",
+      "UsePointFiltering": false,
+	  "UseColorFiltering": true
+    },
+	{
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 120.0,
+        "y": 144.0
+      },
+      "Offset": {
+        "x": 0.36,
+        "y": 0.660
+      },
+      "Name": "Normal",
+      "SpritePath": "BaldiRuler.png",
+      "UsePointFiltering": false,
+	  "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 152.0,
+        "y": 35.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "BaldiRuler_fall.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 {
   "ID": "TemplateA",
+  "IsHidden": true,
   "FrameList": [
     {
       "Name": "Main",

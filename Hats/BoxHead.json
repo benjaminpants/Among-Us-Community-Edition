@@ -1,0 +1,47 @@
+{
+  "ID": "BoxHead",
+  "Name": "BoxHead",
+  "StoreName": "BoxHead",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 85.0,
+        "y": 65.0
+      },
+      "Offset": {
+        "x": 0.38,
+        "y": 1.1
+      },
+      "Name": "Normal",
+      "SpritePath": "BoxHead.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 77.0,
+        "y": 64.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "BoxHead_crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

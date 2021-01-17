@@ -20,7 +20,28 @@ public class ShieldMinigame : Minigame
 	{
 		base.Begin(task);
 		shields = MyNormTask.Data[0];
-		UpdateButtons();
+		if (PlayerControl.GameOptions.TaskDifficulty != 3 && PlayerControl.GameOptions.TaskDifficulty != 2)
+        {
+			UpdateButtons();
+        }
+		else
+        {
+			GreenifyShields();
+		}
+	}
+
+	public void GreenifyShields()
+    {
+		int num = 0;
+		for (int i = 0; i < Shields.Length; i++)
+		{
+			bool flag = (shields & (1 << i)) == 0;
+			if (!flag)
+			{
+				num++;
+			}
+			Shields[i].color = Color.black;
+		}
 	}
 
 	public void ToggleShield(int i)
@@ -36,11 +57,21 @@ public class ShieldMinigame : Minigame
 		{
 			if (Constants.ShouldPlaySfx())
 			{
+				if (PlayerControl.GameOptions.TaskDifficulty == 3 || PlayerControl.GameOptions.TaskDifficulty == 2)
+				{
+					GreenifyShields();
+					Shields[i].color = Color.white;
+				}
 				SoundManager.Instance.PlaySound(ShieldOnSound, loop: false);
 			}
 		}
 		else if (Constants.ShouldPlaySfx())
 		{
+			if (PlayerControl.GameOptions.TaskDifficulty == 3 || PlayerControl.GameOptions.TaskDifficulty == 2)
+			{
+				GreenifyShields();
+				Shields[i].color = Color.red;
+			}
 			SoundManager.Instance.PlaySound(ShieldOffSound, loop: false);
 		}
 		if (shields == 127)
@@ -59,16 +90,7 @@ public class ShieldMinigame : Minigame
 	{
 		if (PlayerControl.GameOptions.TaskDifficulty == 3)
 		{
-			int num = 0;
-			for (int i = 0; i < Shields.Length; i++)
-			{
-				bool flag = (shields & (1 << i)) == 0;
-				if (!flag)
-				{
-					num++;
-				}
-				Shields[i].color = Color.green;
-			}
+			//do nothing
 		}
 		else
         {

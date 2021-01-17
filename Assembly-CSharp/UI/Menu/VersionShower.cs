@@ -6,7 +6,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Start()
 	{
-		text.Text = "v0.5.1 - New Settings + Fix Attempt 1";
+		text.Text = "v0.5.2 - The Shields and Bug-squashing Update";
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}

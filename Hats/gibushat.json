@@ -1,0 +1,47 @@
+{
+  "ID": "gibushat",
+  "Name": "gibushat",
+  "StoreName": "gibushat",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 68.0,
+        "y": 70.0
+      },
+      "Offset": {
+        "x": 0.36,
+        "y": 0.58
+      },
+      "Name": "Normal",
+      "SpritePath": "gibushat1.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 80.0,
+        "y": 72.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "gibushat_crumple1.png",
+      "UsePointFiltering": false
+    }
+  ]
+}
