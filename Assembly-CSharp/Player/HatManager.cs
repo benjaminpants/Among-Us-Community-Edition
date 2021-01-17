@@ -21,8 +21,11 @@ public class HatManager : DestroyableSingleton<HatManager>
 
 	public HatBehaviour[] GetUnlockedHats()
 	{
-		return (from o in AllHats
-			orderby o.IsCustom descending, o.name orderby o.Order descending
+		return (from o in AllHats 
+			where !o.IsHidden
+			orderby o.LimitedMonth ascending
+			orderby !o.IsCustom descending, 
+			o.name orderby o.Order descending
 				select o).ToArray();
 	}
 
@@ -34,7 +37,9 @@ public class HatManager : DestroyableSingleton<HatManager>
 	public SkinData[] GetUnlockedSkins()
 	{
 		return (from o in AllSkins
-			orderby o.Order descending, o.name
+			where !o.IsHidden
+			orderby !o.isCustom descending,
+			o.name orderby o.Order descending
 			select o).ToArray();
 	}
 
