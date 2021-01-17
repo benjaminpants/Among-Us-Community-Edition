@@ -127,11 +127,13 @@ public class Vent : MonoBehaviour, IUsable
 		}
 		void Init_Randomized()
 		{
-			Vent[] array2 = Object.FindObjectsOfType<Vent>();
-			Left = array2[UnityEngine.Random.Range(0, array2.Length)];
-			Right = array2[UnityEngine.Random.Range(0, array2.Length)];
-			Up = array2[UnityEngine.Random.Range(0, array2.Length)];
-			Down = array2[UnityEngine.Random.Range(0, array2.Length)];
+			List<Vent> VentList = Object.FindObjectsOfType<Vent>().ToList();
+			VentList.Shuffle();
+			Vent[] VentArray = VentList.Take(4).ToArray(); //this new method prevents multiple arrows being assigned the same vent.
+			Left = VentArray[0];
+			Right = VentArray[1];
+			Up = VentArray[2];
+			Down = VentArray[3];
 
 		}
 		void Init_OneWayRandomized()
@@ -217,7 +219,7 @@ public class Vent : MonoBehaviour, IUsable
 
 	public void ClickRight()
 	{
-		if ((bool)Right)
+		if (Right != null)
 		{
 			DoMove(Right.transform.position - CollOffset);
 			SetButtons(enabled: false);
@@ -227,7 +229,7 @@ public class Vent : MonoBehaviour, IUsable
 
 	public void ClickLeft()
 	{
-		if ((bool)Left)
+		if (Left != null)
 		{
 			DoMove(Left.transform.position - CollOffset);
 			SetButtons(enabled: false);
