@@ -29,6 +29,8 @@ public class Vent : MonoBehaviour, IUsable
 
 	public Vent Down;
 
+	private bool EnableExtraVents = false;
+
 	private void Start()
 	{
 		InitButtons();
@@ -126,9 +128,12 @@ public class Vent : MonoBehaviour, IUsable
 			Vent[] VentArray = VentList.Take(4).ToArray(); //this new method prevents multiple arrows being assigned the same vent.
 			Left = VentArray[0];
 			Right = VentArray[1];
-			Up = VentArray[2];
-			Down = VentArray[3];
-
+			
+			if (EnableExtraVents)
+            {
+				Up = VentArray[2];
+				Down = VentArray[3];
+			}
 		}
 		void Init_OneWayRandomized()
 		{
