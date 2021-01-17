@@ -31,8 +31,8 @@ public class Vent : MonoBehaviour, IUsable
 
 	private void Start()
 	{
-        SetButtons(enabled: false);
 		InitButtons();
+		SetButtons(enabled: false);
 		myRend = GetComponent<SpriteRenderer>();
 
 		int Venting = PlayerControl.GameOptions.Venting;
@@ -83,34 +83,25 @@ public class Vent : MonoBehaviour, IUsable
 		{
 
 		}
-		void Init_LinkedProto()
-		{			
-			//Prototyping Only
-			Vent[] array = Object.FindObjectsOfType<Vent>();
-			int num = array.IndexOf(this);
-			int num2 = num + 1;
-			int num3 = num - 1;
-			Up = null;
-			Down = null;
-			if (num2 > array.Length) Up = null;
-			else Up = array[num2];
-			if (num3 == -1) Down = null;
-			else Down = array[num3];	
-		}
 		void Init_Linked()
 		{
-			Vent[] array = Object.FindObjectsOfType<Vent>();
-			int num = array.IndexOf(this);
-			int num2 = num + 1;
-			int num3 = num - 1;
+			Vent[] AllVents = Object.FindObjectsOfType<Vent>();
+			int Index = AllVents.IndexOf(this);
+
+			int VentCount = AllVents.Length - 1;
+			int LeftVent = Index - 1;
+			int RightVent = Index + 1;
+
 			Left = null;
 			Right = null;
 			Up = null;
 			Down = null;
-			if (num2 > array.Length) Left = null;
-			else Left = array[num2];
-			if (num3 == -1) Right = null;
-			else Right = array[num3];
+
+			if (RightVent > VentCount) Right = AllVents[0];
+			else Right = AllVents[RightVent];
+
+			if (LeftVent < 0) Left = AllVents[VentCount];
+			else Left = AllVents[LeftVent];
 		}
 		void Init_Pairs()
 		{
