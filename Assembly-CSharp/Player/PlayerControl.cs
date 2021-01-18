@@ -275,7 +275,7 @@ public class PlayerControl : InnerNetObject
 
 	public void DestroyLight()
     {
-		if (myLight == null)
+		if (myLight != null)
         {
 			myLight.Material.SetFloat("_LightRadius", 0);
 			Destroy(myLight.transform.gameObject);

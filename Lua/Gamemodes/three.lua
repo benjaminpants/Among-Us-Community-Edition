@@ -2,9 +2,10 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("The Killer",{255,20,25},"Kill all crewmates with assistance from the\n[FF1919FF]Saboteur[] and the [FF1919FF]Venteer[].",{0},0,0,true,false)
-	Game_CreateRole("Saboteur",{255,20,25},"Sabotage and help [FF1919FF]The Killer[]",{1},0,0,true,false)
-	Game_CreateRole("Venteer",{255,20,25},"Open vents for both the [FF1919FF]Saboteur[] and [FF1919FF]The Killer[]",{2},0,0,true,false)
+	Game_CreateRole("Killer",{255,25,25},"Kill all crewmates with assistance from the\n[FF1919FF]Saboteur[] and the [FF1919FF]Troll[].",{0,2},0,4,true,false)
+	Game_CreateRole("Saboteur",{25,255,25},"Sabotage and help [FF1919FF]The Killer[]",{1,2},0,4,true,false)
+	Game_CreateRole("NoSab",{25,255,25},"How are you getting this message?",{},0,4,true,false)
+	Game_CreateRole("Troll",{25,25,255},"Distract the Crew from figuring out the\n [FF1919FF]Killer[].",{2},0,4,true,false)
 	return {"The Trio of Chaos",10} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
@@ -32,7 +33,9 @@ function OnChat(message, player)
 end
 
 function OnExile(exiled)
-	
+	if (exiled.role == Game_GetRoleIDFromUUID("three_Saboteur") and Net_AmHost()) then
+		Game_SetRoles({exiled},{"NoSab"})
+	end
 end
 
 function OnExileSkip()
@@ -40,7 +43,13 @@ function OnExileSkip()
 end
 
 function OnPlayerDC(playerinfo)
+end
 
+function ShouldSeeRole(rolename,player)
+	if (player.role == Game_GetRoleIDFromUUID("three_Saboteur") or player.role == Game_GetRoleIDFromUUID("three_Troll") or player.role == Game_GetRoleIDFromUUID("three_Killer")) then
+		return true
+	end
+	return false
 end
 
 function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
@@ -49,9 +58,32 @@ end
 
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
+	local amountleft = 0
+	local killeralive = false
+	for i=1, #crewmates do
+		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Saboteur")) then
+			amountleft = amountleft + 1
+		end
+		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Troll")) then
+			amountleft = amountleft + 1
+		end
+		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Killer")) then
+			amountleft = amountleft + 1
+			killeralive = true
+		end
+	end
 	if (not sab) then --If the check isn't due to a sabotage
-		if (#impostors >= #crewmates) then --crewmates can't win
-			return "impostors"
+		if (3 >= #crewmates) then --crewmates can't win
+			if (#crewmates == amountleft) then
+				return "impostors"
+			else
+				if (1 >= #crewmates) then
+					return "impostors"
+				end
+			end
+		end
+		if (not killeralive) then
+			return "crewmates"
 		end
 		if (taskscomplete) then --task win
 			return "crewmates"
@@ -63,10 +95,10 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 end
 
 function CanKill(userinfo,targetinfo)
-	if (targetinfo.role == Game_GetRoleIDFromUUID("three_Saboteur") or targetinfo.role == Game_GetRoleIDFromUUID("three_Venteer")) then --if the person doing the kill is an impostor and the victim
-		return true
+	if ((targetinfo.role == Game_GetRoleIDFromUUID("three_Saboteur") or targetinfo.role == Game_GetRoleIDFromUUID("three_Troll"))) then --if the person doing the kill is an impostor and the victim
+		return false
 	end
-	return false
+	return true
 end
 
 
@@ -79,15 +111,13 @@ function OnGameEnd()
 end
 
 function DecideRoles(playerinfos)
-	local RolesToGive = {"three_The Killer","three_Saboteur","three_Venteer"}
-	Debug_Log("Work please")
+	local RolesToGive = {"three_Killer","three_Saboteur","three_Troll"}
 	local Selected = {}
 	local SelectedRoles = {}
 	for i=1, #RolesToGive do
-		local impid = math.random(#playerinfos) --randomly set the impostor id
+		local impid = math.random(1,#playerinfos) --randomly set the impostor id
 		table.insert(Selected,playerinfos[impid]) --add it to the selected list
 		table.insert(SelectedRoles,RolesToGive[i])
-		table.remove(RolesToGive,i)
 		table.remove(playerinfos,impid) --remove the chosen item from the playerinfo list
 	end
 	return {Selected,SelectedRoles} -- sets the sheriff's role

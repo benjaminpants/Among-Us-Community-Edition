@@ -70,6 +70,7 @@ public class CE_PlayerInfoLua
 
 	public CE_PlayerInfoLua()
 	{
+		throw new System.Exception("Attempted to create a PlayerInfo without a reference!");
 	}
 
 	public CE_PlayerInfoLua(GameData.PlayerInfo plf)
