@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,0,false,false)
+	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,1,false,false)
 	return {"Joker",4} 
 end
 
@@ -26,8 +26,15 @@ function OnExile(exiled)
 	end
 end
 
+
 function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
 	return true
+end
+
+function OnPlayerDC(playerinfo)
+	if (playerinfo.role == Game_GetRoleIDFromUUID("joker_Joker")) then
+		Client_ShowMessage("The Joker disconnected...")
+	end
 end
 
 
@@ -50,7 +57,9 @@ end
 
 function CanKill(userinfo,targetinfo)
 	if (userinfo.IsImpostor and not targetinfo.IsImpostor) then --if the person doing the kill is an impostor and the victim
-		return true
+		if (not (targetinfo.role == Game_GetRoleIDFromUUID("joker_Joker"))) then
+			return true
+		end
 	end
 	return false
 end

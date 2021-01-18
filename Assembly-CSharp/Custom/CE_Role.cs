@@ -148,7 +148,6 @@ public class CE_Role
         {
             return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", RoleName,new CE_PlayerInfoLua(plf)).Boolean;
         }
-        Debug.LogError("Something went horribly wrong in determining whether or not a role can be seen!\n Defaulting to false...");
         return false;
     }
     public CE_Role(string Name, Color Color)

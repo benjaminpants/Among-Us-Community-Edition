@@ -23,6 +23,19 @@ function ShouldSeeRole(rolename,playerinfo)
 	return false
 end
 
+function OnPlayerDC(playerinfo)
+	if (playerinfo.role == Game_GetRoleIDFromName("Sheriff") and Net_AmHost()) then
+		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
+		for i=#players,1,-1 do
+			if (players[i].PlayerName == playerinfo.PlayerName or players[i].IsDead or players[i].IsImpostor) then
+				table.remove(players,i)
+			end
+		end
+		local selected = {players[math.random(1,#players)]}
+		Game_SetRoles(selected,{"Sheriff"})
+	end
+end
+
 function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
 	return true
 end

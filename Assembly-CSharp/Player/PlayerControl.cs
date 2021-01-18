@@ -718,6 +718,22 @@ public class PlayerControl : InnerNetObject
 		DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.SetActive(value: true);
 		GameData.PlayerInfo data = LocalPlayer.Data;
 		LocalPlayer.RemainingEmergencies = GameOptions.NumEmergencyMeetings;
+		GameData.PlayerInfo[] players = GameData.Instance.AllPlayers.ToArray();
+		for (int i = 0; i < players.Length; i++)
+		{
+			if (players[i].role != 0)
+			{
+				CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
+				if (playerrole.CanSee(LocalPlayer.Data))
+				{
+					players[i].Object.nameText.Color = playerrole.RoleColor;
+				}
+			}
+			else
+			{
+				players[i].Object.nameText.Color = Palette.White;
+			}
+		}
 		if (data.IsImpostor)
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);

@@ -76,7 +76,7 @@ public class VersionShower : MonoBehaviour
 			CombinedByteListString = CombinedByteListString + Bytes[i].ToString();
 		}
 		CombinedByteListString += Bytes.Length.ToString();
-		text.Text = "v0.5.2" + "\nBuild ID:" + CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString),7);
+		text.Text = "v0.5.3" + "\nBuild ID:" + CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString),7);
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}
