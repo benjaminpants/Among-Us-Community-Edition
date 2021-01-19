@@ -6,6 +6,8 @@ using System.Reflection;
 public class VersionShower : MonoBehaviour
 {
 
+	public static string BuildID;
+
 	private readonly string[] Characters = {
 			"A",
 			"B",
@@ -75,8 +77,9 @@ public class VersionShower : MonoBehaviour
         {
 			CombinedByteListString = CombinedByteListString + Bytes[i].ToString();
 		}
-		CombinedByteListString += Bytes.Length.ToString();
-		text.Text = "v0.5.3" + "\nBuild ID:" + CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString),7);
+        CombinedByteListString += Bytes.Length.ToString();
+		BuildID = CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString), 7);
+		text.Text = "v0.5.3" + "\nBuild ID:" + BuildID;
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}

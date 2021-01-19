@@ -1,0 +1,47 @@
+{
+  "ID": "ButterflyMask",
+  "Name": "ButterflyMask",
+  "StoreName": "ButterflyMask",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 89.0,
+        "y": 107.0
+      },
+      "Offset": {
+        "x": 0.38,
+        "y": 0.92
+      },
+      "Name": "Normal",
+      "SpritePath": "cannogabang.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 103.0,
+        "y": 78.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "cannogabang_dead.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

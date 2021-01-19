@@ -1,0 +1,47 @@
+{
+  "ID": "FishyMask",
+  "Name": "FishyMask",
+  "StoreName": "FishyMask",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 87.0,
+        "y": 81.0
+      },
+      "Offset": {
+        "x": 0.38,
+        "y": 0.92
+      },
+      "Name": "Normal",
+      "SpritePath": "wooyari.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 99.0,
+        "y": 59.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "wooyari_dead.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

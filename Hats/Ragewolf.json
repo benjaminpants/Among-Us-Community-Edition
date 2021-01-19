@@ -1,0 +1,47 @@
+{
+  "ID": "Ragewolf",
+  "Name": "Ragewolf",
+  "StoreName": "Ragewolf",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 82.0,
+        "y": 77.0
+      },
+      "Offset": {
+        "x": 0.38,
+        "y": 0.92
+      },
+      "Name": "Normal",
+      "SpritePath": "ragewolf.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 85.0,
+        "y": 56.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "ragewolf_dead.png",
+      "UsePointFiltering": false
+    }
+  ]
+}
