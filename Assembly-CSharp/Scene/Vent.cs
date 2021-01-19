@@ -199,7 +199,13 @@ public class Vent : MonoBehaviour, IUsable
 	{
 		float num = float.MaxValue;
 		PlayerControl @object = pc.Object;
-		couldUse = ((pc.IsImpostor || CE_RoleManager.GetRoleFromID(pc.role).CanDo(CE_Specials.Vent)) || PlayerControl.GameOptions.Venting != 0) && PlayerControl.GameOptions.Venting != 3 && !pc.IsDead && (@object.CanMove || @object.inVent);
+		couldUse = ((pc.IsImpostor || CE_RoleManager.GetRoleFromID(pc.role).CanDo(CE_Specials.Vent)) || PlayerControl.GameOptions.Venting != 0 && PlayerControl.GameOptions.Venting != 3);
+		if (CE_LuaLoader.CurrentGMLua)
+        {
+			couldUse &= CE_LuaLoader.GetGamemodeResult("CanVent",couldUse,new CE_PlayerInfoLua(pc)).Boolean;
+			couldUse &= !pc.IsDead && (@object.CanMove || @object.inVent);
+		}
+		
 		canUse = couldUse;
 		if (canUse)
 		{

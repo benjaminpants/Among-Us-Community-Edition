@@ -36,7 +36,7 @@ internal class ChatBubble : PoolableBehavior
 		TextArea.RightAligned = true;
 	}
 
-	public void SetName(string playerName, bool isDead, bool isImpostor, bool imponly = false)
+	public void SetName(string playerName, bool isDead, bool isImpostor, bool imponly = false, byte role = 0)
 	{
 		NameText.Text = playerName ?? "...";
 		if (PlayerControl.GameOptions.Gamemode == 1)
@@ -47,6 +47,14 @@ internal class ChatBubble : PoolableBehavior
 		{
 			NameText.Color = (isImpostor ? Palette.ImpostorRed : Color.white);
 		}
+		if (role != 0)
+        {
+			CE_Role roleob = CE_RoleManager.GetRoleFromID(role);
+			if (roleob.CanSee(PlayerControl.LocalPlayer.Data))
+            {
+				NameText.Color = roleob.RoleColor;
+			}
+        }
         NameText.RefreshMesh();
 		if (imponly)
 		{

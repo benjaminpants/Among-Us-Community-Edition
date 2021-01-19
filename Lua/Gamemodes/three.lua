@@ -2,10 +2,10 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("Killer",{255,25,25},"Kill all crewmates with assistance from the\n[FF1919FF]Saboteur[] and the [FF1919FF]Troll[].",{0,2},0,4,true,false)
+	Game_CreateRole("Killer",{255,25,25},"Kill all crewmates with assistance \nfrom the[FF1919FF]Saboteur[] and the [FF1919FF]Venteer[].",{0,2},0,4,true,false)
 	Game_CreateRole("Saboteur",{25,255,25},"Sabotage and help [FF1919FF]The Killer[]",{1,2},0,4,true,false)
 	Game_CreateRole("NoSab",{25,255,25},"How are you getting this message?",{},0,4,true,false)
-	Game_CreateRole("Troll",{25,25,255},"Distract the Crew from figuring out the\n [FF1919FF]Killer[].",{2},0,4,true,false)
+	Game_CreateRole("Venteer",{25,25,255},"Stay alive to keep vents open.",{2},0,4,true,false)
 	return {"The Trio of Chaos",10} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
@@ -29,7 +29,7 @@ function OnClientUpdate(timer,timesincelastround)
 	
 end
 
-function OnChat(message, player)
+function OnChat(message, player, imponly)
 end
 
 function OnExile(exiled)
@@ -42,11 +42,27 @@ function OnExileSkip()
 
 end
 
-function OnPlayerDC(playerinfo)
+local function GetRoleAmount(id)
+	local pl = Game_GetAllPlayers()
+	local idamount = 0
+	for i=1, #pl do
+		if (pl[i].role == id and not pl[i].IsDead) then
+		idamount = idamount + 1
+		end
+	end
+	return idamount
 end
 
+function CanVent(default,playerinfo)
+	if (not (GetRoleAmount(Game_GetRoleIDFromUUID("three_Venteer")) == 0)) then
+		return (default and true)
+	end
+	return false 
+end
+
+
 function ShouldSeeRole(rolename,player)
-	if (player.role == Game_GetRoleIDFromUUID("three_Saboteur") or player.role == Game_GetRoleIDFromUUID("three_Troll") or player.role == Game_GetRoleIDFromUUID("three_Killer")) then
+	if (player.role == Game_GetRoleIDFromUUID("three_Saboteur") or player.role == Game_GetRoleIDFromUUID("three_Venteer") or player.role == Game_GetRoleIDFromUUID("three_Killer")) then
 		return true
 	end
 	return false
@@ -64,7 +80,7 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Saboteur")) then
 			amountleft = amountleft + 1
 		end
-		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Troll")) then
+		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Venteer")) then
 			amountleft = amountleft + 1
 		end
 		if (crewmates[i].role == Game_GetRoleIDFromUUID("three_Killer")) then
@@ -95,7 +111,7 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 end
 
 function CanKill(userinfo,targetinfo)
-	if ((targetinfo.role == Game_GetRoleIDFromUUID("three_Saboteur") or targetinfo.role == Game_GetRoleIDFromUUID("three_Troll"))) then --if the person doing the kill is an impostor and the victim
+	if ((targetinfo.role == Game_GetRoleIDFromUUID("three_Saboteur") or targetinfo.role == Game_GetRoleIDFromUUID("three_Venteer"))) then --if the person doing the kill is an impostor and the victim
 		return false
 	end
 	return true
@@ -111,7 +127,7 @@ function OnGameEnd()
 end
 
 function DecideRoles(playerinfos)
-	local RolesToGive = {"three_Killer","three_Saboteur","three_Troll"}
+	local RolesToGive = {"three_Killer","three_Saboteur","three_Venteer"}
 	local Selected = {}
 	local SelectedRoles = {}
 	for i=1, #RolesToGive do
