@@ -124,6 +124,10 @@ public class CE_Role
 
     public bool CanSee(GameData.PlayerInfo plf) //UNOPTIMIZED
     {
+        if (plf.IsDead && PlayerControl.GameOptions.GhostsSeeRoles)
+        {
+            return true;
+        }
         if (RoleVisibility == CE_RoleVisibility.All)
         {
             return true;

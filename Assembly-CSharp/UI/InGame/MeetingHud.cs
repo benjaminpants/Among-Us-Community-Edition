@@ -643,7 +643,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
 		playerVoteArea.NameText.Text = playerInfo.PlayerName;
 		playerVoteArea.NameText.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
-		bool flag = PlayerControl.LocalPlayer.Data.IsImpostor && playerInfo.IsImpostor;
+		bool flag = ((PlayerControl.LocalPlayer.Data.IsImpostor && playerInfo.IsImpostor) || (PlayerControl.LocalPlayer.Data.IsDead && playerInfo.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles);
 		CE_Role playerrole = CE_RoleManager.GetRoleFromID(playerInfo.role);
 		if (PlayerControl.GameOptions.Gamemode == 1)
 		{

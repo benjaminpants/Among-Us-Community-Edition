@@ -656,8 +656,13 @@ public class PlayerControl : InnerNetObject
 		nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
 		if (base.AmOwner)
 		{
-			SaveManager.LastGameStart = DateTime.MinValue;
+            SaveManager.LastGameStart = DateTime.MinValue;
+			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(false);
 			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: true);
+			if (PlayerControl.GameOptions.GhostsSeeRoles)
+			{
+				RevealRoleColors();
+			}
 		}
 	}
 
@@ -1525,6 +1530,37 @@ public class PlayerControl : InnerNetObject
 			messageWriter.Write((byte)roles[i]);
 		}
 		messageWriter.EndMessage();
+	}
+
+
+	public void RevealRoleColors()
+    {
+		GameData.PlayerInfo[] players = GameData.Instance.AllPlayers.ToArray();
+		for (int i = 0; i < players.Length; i++)
+		{
+			if (players[i] != null)
+			{
+				if (players[i].role != 0)
+				{
+					CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
+					if (playerrole.CanSee(LocalPlayer.Data))
+					{
+						players[i].Object.nameText.Color = playerrole.RoleColor;
+					}
+				}
+				else
+				{
+					if (!players[i].IsImpostor)
+					{
+						players[i].Object.nameText.Color = Palette.White;
+					}
+					else
+					{
+						players[i].Object.nameText.Color = Palette.ImpostorRed;
+					}
+				}
+			}
+		}
 	}
 
 	public void SetRoles(GameData.PlayerInfo[] players, byte[] roles)

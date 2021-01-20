@@ -181,7 +181,8 @@ public class CE_GameSettingsUI : MonoBehaviour
                     gameOptions.BodyDecayTime = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.BodyDecayTime, GameOptionsData.BodyDecayTimes, 0, 2, "Body Decay Time", ReadOnly);
                 }
                 gameOptions.ImpOnlyChat = CE_CommonUI.CreateBoolButton_GS(gameOptions.ImpOnlyChat, "Allow Impostor Only Chat", ReadOnly);
-				gameOptions.ShowOtherVision = CE_CommonUI.CreateBoolButton_GS(gameOptions.ShowOtherVision, "Show All Vision", ReadOnly);
+                gameOptions.ShowOtherVision = CE_CommonUI.CreateBoolButton_GS(gameOptions.ShowOtherVision, "Show All Vision", ReadOnly);
+				gameOptions.GhostsSeeRoles = CE_CommonUI.CreateBoolButton_GS(gameOptions.GhostsSeeRoles, "Ghost See Roles", ReadOnly);
 			}
 		}
 	}

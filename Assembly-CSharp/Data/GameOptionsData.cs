@@ -114,6 +114,8 @@ public class GameOptionsData : IBytesSerializable
 
 	public byte TaskDifficulty;
 
+	public bool GhostsSeeRoles;
+
 	public void ToggleMapFilter(byte newId)
 	{
 		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
@@ -166,6 +168,7 @@ public class GameOptionsData : IBytesSerializable
 		ImpOnlyChat = false;
         ShowOtherVision = false;
 		TaskDifficulty = 1;
+		GhostsSeeRoles = false;
 
 	}
 
@@ -207,6 +210,7 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(ImpOnlyChat);
 		writer.Write(ShowOtherVision);
 		writer.Write(TaskDifficulty);
+		writer.Write(GhostsSeeRoles);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -249,7 +253,8 @@ public class GameOptionsData : IBytesSerializable
 				BodyDecayTime = reader.ReadByte(),
 				ImpOnlyChat = reader.ReadBoolean(),
 				ShowOtherVision = reader.ReadBoolean(),
-				TaskDifficulty = reader.ReadByte()
+				TaskDifficulty = reader.ReadByte(),
+				GhostsSeeRoles = reader.ReadBoolean()
 			};
 		}
 		catch
@@ -257,7 +262,6 @@ public class GameOptionsData : IBytesSerializable
 		}
 		return null;
 	}
-
 	public byte[] ToBytes()
 	{
 		using MemoryStream memoryStream = new MemoryStream();
@@ -345,6 +349,7 @@ public class GameOptionsData : IBytesSerializable
         stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
         stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
 		stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
+		stringBuilder.AppendLine("Ghosts See Roles:" + GhostsSeeRoles);
 		return stringBuilder.ToString();
 	}
 
@@ -404,6 +409,7 @@ public class GameOptionsData : IBytesSerializable
 		BodyEffect = 0;
 		BodyDecayTime = 1;
 		TaskDifficulty = 1;
+		GhostsSeeRoles = false;
 		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
 			CE_GamemodeInfo value = gamemodeInfo.Value;

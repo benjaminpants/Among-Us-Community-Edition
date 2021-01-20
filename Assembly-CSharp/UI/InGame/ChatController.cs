@@ -238,7 +238,7 @@ public class ChatController : MonoBehaviour
 				chatBubble2.SetLeft();
 			}
 			PlayerControl.SetPlayerMaterialColors(data2.ColorId, chatBubble2.ChatFace);
-			chatBubble2.SetName(data2.PlayerName, data2.IsDead, data.IsImpostor && data2.IsImpostor,impostoronly,data2.role);
+			chatBubble2.SetName(data2.PlayerName, data2.IsDead, ((data.IsImpostor && data2.IsImpostor) || (data.IsDead && data2.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles), impostoronly,data2.role);
 			chatBubble2.TextArea.Text = chatText;
 			chatBubble2.TextArea.RefreshMesh();
 			chatBubble2.Background.size = new Vector2(5.52f, 0.2f + chatBubble2.NameText.Height + chatBubble2.TextArea.Height);

@@ -122,10 +122,10 @@ public class PlayerVoteArea : MonoBehaviour
 			for (float t2 = 0f; t2 < scaleDuration2; t2 += Time.deltaTime)
 			{
 				float num = Mathf.Lerp(3f, 1f, t2 / scaleDuration2);
-				xMark.transform.localScale = new Vector3(num, num, num);
+				xMark.transform.localScale = new Vector3(num * 0.5f, num, num);
 				yield return null;
 			}
-			xMark.transform.localScale = Vector3.one;
+			xMark.transform.localScale = new Vector3(0.5f, 1f, 1f);
 		}
 		else if (didReport)
 		{
@@ -136,11 +136,11 @@ public class PlayerVoteArea : MonoBehaviour
 				float num3 = TriangleWave(num2 * 3f) * 2f - 1f;
 				Megaphone.transform.localEulerAngles = new Vector3(0f, 0f, num3 * 30f);
 				num3 = Mathf.Lerp(0.7f, 1.2f, TriangleWave(num2 * 2f));
-				Megaphone.transform.localScale = new Vector3(num3, num3, num3);
+				Megaphone.transform.localScale = new Vector3(num3 * 0.5f, num3, num3);
 				yield return null;
 			}
 			Megaphone.transform.localEulerAngles = Vector3.zero;
-			Megaphone.transform.localScale = Vector3.one;
+			Megaphone.transform.localScale = new Vector3(0.5f, 1f, 1f);
 		}
 	}
 
@@ -159,6 +159,7 @@ public class PlayerVoteArea : MonoBehaviour
 		didVote = true;
 		votedFor = suspectIdx;
 		Flag.enabled = true;
+		Flag.transform.localScale = new Vector3(0.5f,1f,1f);
 	}
 
 	public void UnsetVote()
@@ -213,7 +214,8 @@ public class PlayerVoteArea : MonoBehaviour
 		isDead = (b & 0x80) > 0;
 		didVote = (b & 0x40) > 0;
 		didReport = (b & 0x20) > 0;
-		Flag.enabled = didVote && !resultsShowing;
+        Flag.enabled = didVote && !resultsShowing;
+		Flag.transform.localScale = new Vector3(0.5f, 1f, 1f);
 		Overlay.gameObject.SetActive(isDead);
 		Megaphone.enabled = didReport;
 	}
