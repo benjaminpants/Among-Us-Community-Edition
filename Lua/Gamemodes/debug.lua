@@ -1,6 +1,10 @@
 --debug gamemode, the game is currently hardwired to allow this gamemode to have chat enabled midround
 
 function InitializeGamemode()
+	UI_AddLangEntry("Game_WasNotImp","{0} is {0}, not {1} Impostor.")
+	UI_AddLangEntry("Meeting_WhoIsImpostor","[FF00FFFF]Purple Text.[]")
+	UI_AddLangEntry("Game_ImpsRemain","{0} remains.")
+	UI_AddLangEntry("UI_CantCallMeeting","You thought you could call\n\rA meeting? You are wrong lol.")
 	return {"Debug",9} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 

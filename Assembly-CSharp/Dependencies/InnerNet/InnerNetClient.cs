@@ -448,6 +448,8 @@ namespace InnerNet
 			MessageWriter messageWriter = MessageWriter.Get(SendOption.Reliable);
 			messageWriter.StartMessage(1);
 			messageWriter.Write(GameId);
+            messageWriter.Write(CE_LuaLoader.TheOmegaHash);
+			messageWriter.Write(CE_WardrobeManager.HatHash);
 			messageWriter.EndMessage();
 			SendOrDisconnect(messageWriter);
 			messageWriter.Recycle();

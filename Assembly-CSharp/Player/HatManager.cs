@@ -69,7 +69,9 @@ public class HatManager : DestroyableSingleton<HatManager>
 	public void Start()
 	{
 		AllHats.AddRange(CE_WardrobeManager.LoadHats());
-		AllSkins.AddRange(CE_WardrobeManager.LoadSkins(CE_WardrobeManager.GetSkinRefrence()));
+        AllSkins.AddRange(CE_WardrobeManager.LoadSkins(CE_WardrobeManager.GetSkinRefrence()));
+		CE_WardrobeManager.HatHash = VersionShower.GetDeterministicHashCode(CE_WardrobeManager.HatString);
+		CE_WardrobeManager.HatString = "bob";
 		CE_WardrobeManager.LinkSkinsAndHats();
 	}
 

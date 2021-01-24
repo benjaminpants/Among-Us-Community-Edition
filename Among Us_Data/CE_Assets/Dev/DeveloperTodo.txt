@@ -1,6 +1,4 @@
 - Skin Implementations:
-    - Multi-Layer
-    - Color Filtering
     - Support for Skins to Go Behind the Player
     - Full Body Skin Disable / Actual Player Skining
 - QOL Changes:
@@ -11,6 +9,6 @@
 - Fix the Invalid Text in Some Cases with the Game Settings Menu
 - Controller Support
 - Arrow Key Support For Venting
-- Proper Linked Vents
 - Hats for Chat
 - Spawn In for Hats Not Rendered Acurately (needs testing)
+- Fix issues CanCallMeeting when plugins use it

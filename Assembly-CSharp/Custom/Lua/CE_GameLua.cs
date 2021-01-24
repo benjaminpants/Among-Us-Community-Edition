@@ -11,12 +11,18 @@ static class CE_GameLua
 {
     public static void ActivateWin()
     {
-        throw new NotImplementedException(); // TODO: implement this
+        throw new NotImplementedException(); // TODO: implement this, seriously please
     }
 
-    public static DeadBody bodpref; //unused
+    public static bool CheckIfInVent(CE_PlayerInfoLua plfo)
+    {
+        return plfo.refplayer.Object.inVent;
+    }
 
-
+    public static CE_PlayerInfoLua GetLocal()
+    {
+        return (CE_PlayerInfoLua)PlayerControl.LocalPlayer;
+    }
 
     public static bool SabSystem(string sysname, CE_PlayerInfoLua plfo, bool fix, int fixoverride = -1)
     {
@@ -181,12 +187,13 @@ static class CE_GameLua
         return true;
     }
 
+
     public static List<CE_PlayerInfoLua> GetAllPlayers()
     {
         List<CE_PlayerInfoLua> PlayFoLua = new List<CE_PlayerInfoLua>();
         foreach (GameData.PlayerInfo plrfo in GameData.Instance.AllPlayers)
         {
-            PlayFoLua.Add(new CE_PlayerInfoLua(plrfo));
+            PlayFoLua.Add((CE_PlayerInfoLua)plrfo);
         }
         return PlayFoLua;
     }

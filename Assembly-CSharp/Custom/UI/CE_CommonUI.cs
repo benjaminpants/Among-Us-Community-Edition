@@ -428,6 +428,10 @@ public class CE_CommonUI
 		var last_value = value;
 		using (new GUILayout.HorizontalScope(HorizontalScopeStyle_GS(readOnly)))
 		{
+			if (readOnly)
+            {
+				Title = Title + (value ? "					☑" : "					☐"); //This is a placeholder solution, CarJem please add a proper fix.
+			}
 			CE_CustomUIElements.Label(Title, UpDownSettingLabel(0f));
 			GUILayout.FlexibleSpace();
 

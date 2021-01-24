@@ -12,8 +12,8 @@ public class DeadBody : MonoBehaviour
 
 	public SpriteRenderer rend;
 
-	public float colmul;
-	public float coldec;
+	private float colmul;
+	private float coldec;
 	public Vector2 TruePosition => base.transform.position + (Vector3)myCollider.offset;
 
 	public void Start()

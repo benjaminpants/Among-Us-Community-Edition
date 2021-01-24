@@ -201,8 +201,22 @@ namespace InnerNet
 				Debug.Log("Server got join game");
 				if (reader.ReadInt32() == 32)
 				{
-					JoinGame(client);
-					break;
+					if (reader.ReadInt32() == CE_LuaLoader.TheOmegaHash && reader.ReadInt32() == CE_WardrobeManager.HatHash)
+					{
+						JoinGame(client);
+						break;
+					}
+					else
+					{
+						MessageWriter messageWriter5 = MessageWriter.Get(SendOption.Reliable);
+						messageWriter5.StartMessage(1);
+                        messageWriter5.Write(8);
+						messageWriter5.Write("Hash didn't match with Host's!\nThis could be because your Cosmetics and Lua are out of date or you have extra Cosmetics or Gamemodes installed.");
+						messageWriter5.EndMessage();
+						client.Connection.Send(messageWriter5);
+						messageWriter5.Recycle();
+						break;
+					}
 				}
 				MessageWriter messageWriter4 = MessageWriter.Get(SendOption.Reliable);
 				messageWriter4.StartMessage(1);

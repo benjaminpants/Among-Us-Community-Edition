@@ -504,16 +504,23 @@ public class ShipStatus : InnerNetObject
         {
 			return 0;
         }
-		if (player.IsDead)
-		{
-			if (islocal)
-			{
-				return MaxLightRadius;
-			}
-			else
+        if (player.IsDead)
+        {
+            if (islocal)
             {
-				return 0;
+                return MaxLightRadius;
             }
+            else
+            {
+                return 0;
+            }
+        }
+		if (player.Object.inVent)
+		{
+			if (!islocal || !PlayerControl.GameOptions.VisionInVents)
+			{
+				return 0;
+			}
 		}
 		SwitchSystem switchSystem = (SwitchSystem)Systems[SystemTypes.Electrical];
 		if ((player.IsImpostor || CE_RoleManager.GetRoleFromID(player.role).UseImpVision) && islocal)

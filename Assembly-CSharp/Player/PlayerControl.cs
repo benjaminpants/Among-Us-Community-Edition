@@ -386,7 +386,7 @@ public class PlayerControl : InnerNetObject
 					DeadBody component2 = collider2D.GetComponent<DeadBody>();
 					if (!PhysicsHelpers.AnythingBetween(truePosition, component2.TruePosition, Constants.ShipAndObjectsMask, useTriggers: false))
 					{
-						flag2 = true;
+						flag2 = !this.inVent;
 					}
 				}
 			}
@@ -435,7 +435,11 @@ public class PlayerControl : InnerNetObject
 
 	public void ReportClosest()
 	{
-		if (AmongUsClient.Instance.IsGameOver || LocalPlayer.Data.IsDead)
+        if (AmongUsClient.Instance.IsGameOver || LocalPlayer.Data.IsDead)
+        {
+            return;
+        }
+		if (LocalPlayer.inVent)
 		{
 			return;
 		}
@@ -1346,7 +1350,7 @@ public class PlayerControl : InnerNetObject
 		{
 			MurderPlayer(target);
 		}
-		MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 12, SendOption.Reliable);
+        MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 12, SendOption.Reliable);
 		messageWriter.WriteNetObject(target);
 		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
 	}
@@ -1538,28 +1542,35 @@ public class PlayerControl : InnerNetObject
 		GameData.PlayerInfo[] players = GameData.Instance.AllPlayers.ToArray();
 		for (int i = 0; i < players.Length; i++)
 		{
-			if (players[i] != null)
+			try
 			{
-				if (players[i].role != 0)
+				if (players[i] != null)
 				{
-					CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
-					if (playerrole.CanSee(LocalPlayer.Data))
+					if (players[i].role != 0)
 					{
-						players[i].Object.nameText.Color = playerrole.RoleColor;
-					}
-				}
-				else
-				{
-					if (!players[i].IsImpostor)
-					{
-						players[i].Object.nameText.Color = Palette.White;
+						CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
+						if (playerrole.CanSee(LocalPlayer.Data))
+						{
+							players[i].Object.nameText.Color = playerrole.RoleColor;
+						}
 					}
 					else
 					{
-						players[i].Object.nameText.Color = Palette.ImpostorRed;
+						if (!players[i].IsImpostor)
+						{
+							players[i].Object.nameText.Color = Palette.White;
+						}
+						else
+						{
+							players[i].Object.nameText.Color = Palette.ImpostorRed;
+						}
 					}
 				}
 			}
+			catch(Exception E)
+            {
+				Debug.LogError("Please Properly Fix This, Error Message:" + E.Message);
+            }
 		}
 	}
 

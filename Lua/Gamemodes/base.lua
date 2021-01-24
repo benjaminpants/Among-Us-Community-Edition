@@ -44,6 +44,10 @@ function CanVent(default,playerinfo)
 	return true
 end
 
+function CanCallMeeting(reporter,isbody)
+	return true
+end
+
 function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
 	return true
 end

@@ -9,7 +9,7 @@ public static class Constants
 
 	public const int AnnouncementPort = 22024;
 
-	public const int ServersPort = 22025;
+	public const int ServersPort = 25565;
 
 	public const string InfinitySymbol = "∞";
 
@@ -31,11 +31,11 @@ public static class Constants
 
 	public static readonly int[] CompatVersions;
 
-	public const int Year = 2019;
+	public const int Year = 4200;
 
-	public const int Month = 4;
+	public const int Month = 69;
 
-	public const int Day = 25;
+	public const int Day = 69;
 
 	public const int Revision = 0;
 
@@ -72,11 +72,9 @@ public static class Constants
 		Usables = ~LayerMask.GetMask("Ship", "UI");
 		PlayersOnlyMask = LayerMask.GetMask("Players", "Ghost");
 		ShadowMask = LayerMask.GetMask("Shadow", "Objects", "IlluminatedBlocking");
-		CompatVersions = new int[3]
+		CompatVersions = new int[1]
 		{
-			GetBroadcastVersion(),
-			GetVersion(2019, 4, 15, 0),
-			GetVersion(2019, 4, 24, 1)
+			GetBroadcastVersion()
 		};
 	}
 }

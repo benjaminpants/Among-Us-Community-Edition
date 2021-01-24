@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using InnerNet;
 using UnityEngine;
+using System;
 
 public class GameOptionsData : IBytesSerializable
 {
@@ -94,7 +95,9 @@ public class GameOptionsData : IBytesSerializable
 
 	public byte Gamemode;
 
-	public static string[] Gamemodes;
+    public static string[] Gamemodes;
+
+	public static string[] PluginNames;
 
 	public byte SabControl;
 
@@ -114,7 +117,11 @@ public class GameOptionsData : IBytesSerializable
 
 	public byte TaskDifficulty;
 
-	public bool GhostsSeeRoles;
+    public bool GhostsSeeRoles;
+
+	public bool VisionInVents;
+
+	public List<byte> Plugins;
 
 	public void ToggleMapFilter(byte newId)
 	{
@@ -129,6 +136,37 @@ public class GameOptionsData : IBytesSerializable
 	{
 		int num = 1 << (int)newId;
 		return (MapId & num) == num;
+	}
+
+    public void WriteByteList(BinaryWriter writer, List<byte> Lis)
+    {
+		if (Lis == null)
+        {
+			writer.Write((byte)0);
+			return;
+        }
+        writer.Write((byte)Lis.Count);
+		if (Lis.Count != 0)
+		{
+			byte[] ArrayVersion = Lis.ToArray();
+			for (int i = 0; i < ArrayVersion.Length; i++)
+			{
+				writer.Write(ArrayVersion[i]);
+			}
+		}
+    }
+	public static List<byte> ReadByteList(BinaryReader reader)
+	{
+		byte listlength = reader.ReadByte();
+        List<byte> ByteList = new List<byte>();
+		if (listlength != 0)
+		{
+			for (int i = 1; i < (listlength + 1); i++)
+			{
+				ByteList.Add(reader.ReadByte());
+			}
+		}
+		return ByteList;
 	}
 
 	public void SetRecommendations(int numPlayers, GameModes modes)
@@ -146,7 +184,7 @@ public class GameOptionsData : IBytesSerializable
 		{
 			NumImpostors = RecommendedImpostors[numPlayers];
 		}
-		KillDistance = 1;
+		KillDistance = 2;
 		DiscussionTime = 15;
 		VotingTime = 120;
 		isDefaults = true;
@@ -169,7 +207,8 @@ public class GameOptionsData : IBytesSerializable
         ShowOtherVision = false;
 		TaskDifficulty = 1;
 		GhostsSeeRoles = false;
-
+		VisionInVents = true;
+		Plugins = new List<byte>();
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -211,6 +250,8 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(ShowOtherVision);
 		writer.Write(TaskDifficulty);
 		writer.Write(GhostsSeeRoles);
+		writer.Write(VisionInVents);
+		WriteByteList(writer,Plugins);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -254,8 +295,10 @@ public class GameOptionsData : IBytesSerializable
 				ImpOnlyChat = reader.ReadBoolean(),
 				ShowOtherVision = reader.ReadBoolean(),
 				TaskDifficulty = reader.ReadByte(),
-				GhostsSeeRoles = reader.ReadBoolean()
-			};
+				GhostsSeeRoles = reader.ReadBoolean(),
+				VisionInVents = reader.ReadBoolean(),
+				Plugins = ReadByteList(reader)
+		};
 		}
 		catch
 		{
@@ -349,7 +392,29 @@ public class GameOptionsData : IBytesSerializable
         stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
         stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
 		stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
-		stringBuilder.AppendLine("Ghosts See Roles:" + GhostsSeeRoles);
+        stringBuilder.AppendLine("Ghosts See Roles: " + GhostsSeeRoles);
+        stringBuilder.AppendLine("Vision In Vents: " + VisionInVents);
+		string pluginlist = string.Empty;
+		foreach (byte b in Plugins)
+        {
+            string beg = string.Empty;
+			string end = string.Empty;
+			if (CE_LuaLoader.IsPluginAnOverride((byte)(b + 1)))
+			{
+				beg = "[00FF00FF]";
+				end = "[]";
+			}
+			pluginlist = pluginlist + beg + PluginNames[b] + end + ",";
+        }
+		if (Plugins.Count != 0)
+		{
+			pluginlist = pluginlist.Remove(pluginlist.Length - 1);
+		}
+		else
+        {
+			pluginlist = "[0000FFFF]None[]";
+        }
+		stringBuilder.AppendLine("Plugins: " + pluginlist);
 		return stringBuilder.ToString();
 	}
 
@@ -410,11 +475,17 @@ public class GameOptionsData : IBytesSerializable
 		BodyDecayTime = 1;
 		TaskDifficulty = 1;
 		GhostsSeeRoles = false;
-		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
+		VisionInVents = true;
+        foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
+        {
+            CE_GamemodeInfo value = gamemodeInfo.Value;
+            Gamemodes.SetValue(value.name, value.id - 1);
+            GamemodesAreLua.SetValue(true, value.id - 1);
+        }
+		foreach (KeyValuePair<byte, CE_PluginInfo> gamemodeInfo in CE_LuaLoader.PluginInfos)
 		{
-			CE_GamemodeInfo value = gamemodeInfo.Value;
-			Gamemodes.SetValue(value.name, value.id - 1);
-			GamemodesAreLua.SetValue(true, value.id - 1);
+			CE_PluginInfo value = gamemodeInfo.Value;
+			PluginNames.SetValue(value.name, value.id - 1);
 		}
 	}
 
@@ -498,10 +569,39 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-		Gamemodes = new string[25]
+        Gamemodes = new string[25]
+        {
+            "[FF0000FF]Invalid[]",
+            "Zombies",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]",
+            "[FF0000FF]Invalid[]"
+        };
+
+		PluginNames = new string[25]
 		{
 			"[FF0000FF]Invalid[]",
-			"Zombies",
+			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",

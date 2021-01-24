@@ -4,6 +4,10 @@ using MoonSharp.Interpreter;
 [MoonSharpUserData]
 public class CE_PlayerInfoLua
 {
+
+	public static explicit operator CE_PlayerInfoLua(GameData.PlayerInfo b) => new CE_PlayerInfoLua(b);
+
+	public static explicit operator CE_PlayerInfoLua(PlayerControl b) => new CE_PlayerInfoLua(b.Data);
 	[MoonSharpHidden]
 	public GameData.PlayerInfo refplayer;
 

@@ -278,6 +278,13 @@ public class CE_AnimationDebuger : MonoBehaviour
 		}
 		if (CE_Input.CE_GetKeyDown(KeyCode.F5) && SaveManager.EnableAnimationTestingMode)
 		{
+			if ((bool)AmongUsClient.Instance)
+			{
+				if (AmongUsClient.Instance.GameMode == GameModes.OnlineGame)
+				{
+					return;
+				}
+			}
 			if (IsShown)
 			{
 				IsShown = false;

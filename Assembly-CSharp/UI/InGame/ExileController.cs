@@ -63,7 +63,14 @@ public class ExileController : MonoBehaviour
 			}
 			if (PlayerControl.GameOptions.ConfirmEject)
 			{
-				completeString = exiled.PlayerName + " was " + text + text3 + text2;
+				if (exiled.IsImpostor)
+				{
+					completeString = exiled.PlayerName + " was " + text + text3 + text2;
+				}
+				else
+                {
+					completeString = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetFormatted("Game_WasNotImp", exiled.PlayerName, text3);
+				}
 			}
 			else
 			{
@@ -94,7 +101,9 @@ public class ExileController : MonoBehaviour
 			}
 			else
 			{
-				ImpostorText.Text = num + ((num != 1) ? " impostors remain" : " impostor remains");
+				string thing = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetFormatted("Game_ImpsRemain",num, ((num != 1) ? "s" : ""));
+				//ImpostorText.Text = num + ((num != 1) ? " impostors remain" : " impostor remains");
+				ImpostorText.Text = thing;
 			}
 		}
 		else

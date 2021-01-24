@@ -36,6 +36,7 @@ public class Vent : MonoBehaviour, IUsable
 		InitButtons();
 		SetButtons(enabled: false);
 		myRend = GetComponent<SpriteRenderer>();
+		myRend.material.SetInt("_Mask", Constants.ShadowMask);
 
 		int Venting = PlayerControl.GameOptions.Venting;
 		byte VentMode = PlayerControl.GameOptions.VentMode;
@@ -176,10 +177,10 @@ public class Vent : MonoBehaviour, IUsable
 				Vent vent = array[i];
 				if ((bool)vent)
 				{
-					buttonBehavior.gameObject.SetActive(value: true);
+                    buttonBehavior.gameObject.SetActive(value: true);
 					Vector3 localPosition = (vent.transform.position - base.transform.position).normalized * 0.7f;
 					localPosition.y -= 0.08f;
-					localPosition.z = -10f;
+					localPosition.z = -100f;
 					buttonBehavior.transform.localPosition = localPosition;
 					buttonBehavior.transform.LookAt2d(vent.transform);
 				}

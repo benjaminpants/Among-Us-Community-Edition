@@ -105,6 +105,7 @@ public class LightSource : MonoBehaviour
 
 	private void Start()
 	{
+		MinRays = 48;
 		filter.useTriggers = true;
 		filter.layerMask = Constants.ShadowMask;
 		filter.useLayerMask = true;

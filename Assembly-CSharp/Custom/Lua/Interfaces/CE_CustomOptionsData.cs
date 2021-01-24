@@ -32,6 +32,7 @@ static class CE_CustomOptionsDataManager
             {
                 writer.Write((byte)data.OptionType);
             }
+
             writer.Write((byte)255); //placeholder
         }
     }

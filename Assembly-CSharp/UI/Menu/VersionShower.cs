@@ -34,22 +34,12 @@ public class VersionShower : MonoBehaviour
 			"W",
 			"X",
 			"Y",
-			"Z",
-			"1",
-			"2",
-			"3",
-			"4",
-			"5",
-			"6",
-			"7",
-			"8",
-			"9",
-			"0"
+			"Z"
 
 		};
     public TextRenderer text;
 
-	static int GetDeterministicHashCode(string str)
+	public static int GetDeterministicHashCode(string str)
 	{
 		unchecked
 		{
@@ -79,7 +69,7 @@ public class VersionShower : MonoBehaviour
 		}
         CombinedByteListString += Bytes.Length.ToString();
 		BuildID = CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString), 7);
-		text.Text = "v0.5.3" + "\nBuild ID:" + BuildID;
+		text.Text = "v0.5.5 - The update so cool we skipped 5.4" + "\nBuild ID:" + BuildID;
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}

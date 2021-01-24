@@ -11,6 +11,8 @@ public class CE_WardrobeManager
 	#region Common Loader Functions
 
 	public static Dictionary<string, Texture2D> LoadedTextures = new Dictionary<string, Texture2D>();
+	public static string HatString;
+	public static int HatHash;
 	public static FileInfo[] GetJSONFiles(string Path)
 	{
 		return new DirectoryInfo(Path).GetFiles("*.json");
@@ -56,7 +58,9 @@ public class CE_WardrobeManager
 		DestroyableSingleton<HatManager>.Instance.AllSkins.RemoveAll((SkinData x) => x.isCustom);
 
 		DestroyableSingleton<HatManager>.Instance.AllHats.AddRange(LoadHats());
-		DestroyableSingleton<HatManager>.Instance.AllSkins.AddRange(LoadSkins(GetSkinRefrence()));
+        DestroyableSingleton<HatManager>.Instance.AllSkins.AddRange(LoadSkins(GetSkinRefrence()));
+		HatHash = VersionShower.GetDeterministicHashCode(HatString);
+		HatString = "bob";
 		PlayerControl.LocalPlayer.SetSkin(skinId);
 		PlayerControl.LocalPlayer.SetHat(hatId);
 		CE_WardrobeManager.AnimationEditor_Reset = true;
@@ -139,6 +143,7 @@ public class CE_WardrobeManager
 				}
 				num++;
 				DataList.Add(skinData);
+				HatString = HatString + item2.ID + item2.Name;
 			}
 			catch (Exception ex2)
 			{
@@ -295,6 +300,8 @@ public class CE_WardrobeManager
 					}
 				}
 				BehaviorsList.Add(hatBehaviour);
+                HatString = HatString + item2.ID;
+				HatString = HatString + item2.UsePercentageBasedPivot;
 			}
 			catch (Exception ex2)
 			{

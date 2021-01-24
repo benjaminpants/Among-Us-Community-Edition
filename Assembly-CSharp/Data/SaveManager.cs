@@ -542,17 +542,35 @@ public static class SaveManager
 	}
 
 	public static bool EnableAnimationTestingMode
+    {
+        get
+        {
+            LoadPlayerPrefs();
+            return animationTestingMode;
+        }
+        set
+        {
+            if (animationTestingMode != value)
+            {
+                animationTestingMode = value;
+                SavePlayerPrefs();
+            }
+        }
+    }
+
+	private static bool usehdshadows;
+	public static bool UseHDSHadows
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return animationTestingMode;
+			return usehdshadows;
 		}
 		set
 		{
-			if (animationTestingMode != value)
+			if (usehdshadows != value)
 			{
-				animationTestingMode = value;
+				usehdshadows = value;
 				SavePlayerPrefs();
 			}
 		}
@@ -764,6 +782,7 @@ public static class SaveManager
 			TryGetBool(array, 21, out enableVSync);
 			TryGetBool(array, 22, out useLegacyVoteIcons);
 			TryGetInt(array, 23, out CamRes);
+			TryGetBool(array, 24, out usehdshadows);
 			if (CamRes == 0)
             {
 				CamRes = 256;
@@ -799,6 +818,7 @@ public static class SaveManager
 		options.Add(enableVSync);
 		options.Add(useLegacyVoteIcons);
 		options.Add(CamRes);
+		options.Add(usehdshadows);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 

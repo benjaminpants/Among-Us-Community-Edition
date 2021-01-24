@@ -66,7 +66,8 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		SaveManager.EnableAnimationTestingMode = CE_CommonUI.CreateBoolButton(SaveManager.EnableAnimationTestingMode, "Sprite Debug Mode");
 		SaveManager.HideIntro = CE_CommonUI.CreateBoolButton(SaveManager.HideIntro, "Disable Extra Intros");
         SaveManager.UseLegacyVoteIcons = CE_CommonUI.CreateBoolButton(SaveManager.UseLegacyVoteIcons, "Use Legacy Vote Icons");
-		SaveManager.CameraRes = (int)CE_CommonUI.CreateValuePicker(SaveManager.CameraRes, 32f, 32f, 1024f, "Camera Resolution", "p");
+        SaveManager.CameraRes = (int)CE_CommonUI.CreateValuePicker(SaveManager.CameraRes, 32f, 32f, 1024f, "Camera Resolution", "p");
+		SaveManager.UseHDSHadows = CE_CommonUI.CreateBoolButton(SaveManager.UseHDSHadows, "Use HD Shadows");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
 		GUI.color = Color.black;

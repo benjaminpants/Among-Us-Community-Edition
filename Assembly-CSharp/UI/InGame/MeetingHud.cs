@@ -200,7 +200,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		}
 		temp.y = 0f;
 		base.transform.localPosition = temp;
-		TitleText.Text = "Who Is The Impostor?";
+		TitleText.Text = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetText("Meeting_WhoIsImpostor");
 		if (!PlayerControl.LocalPlayer.Data.IsDead)
 		{
 			yield return DestroyableSingleton<HudManager>.Instance.ShowEmblem(shhh: false);

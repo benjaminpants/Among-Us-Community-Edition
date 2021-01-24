@@ -29,12 +29,6 @@ public class GameData : InnerNetObject, IDisconnectHandler
 
 	public class PlayerInfo
 	{
-		public enum Role : byte
-		{
-			None,
-			Sheriff,
-			Joker
-		}
 
 		public readonly byte PlayerId;
 
@@ -414,11 +408,16 @@ public class GameData : InnerNetObject, IDisconnectHandler
 				break;
 			}
 			case DisconnectReasons.Kicked:
-			{
-				PlayerInfo data = AmongUsClient.Instance.GetHost().Character.Data;
+            {
+                PlayerInfo data = AmongUsClient.Instance.GetHost().Character.Data;
 				DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(playerName + " was kicked by " + data.PlayerName);
+            break;
+            }
+			case DisconnectReasons.Error:
+            {
+				DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(playerName + " left due to an error.");
 				break;
-			}
+            }
 			}
 		}
 	}

@@ -75,6 +75,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 		CE_VentControlsDropdown();
 		CE_MapControlsDropdown();
 		CE_MiscControlsDropdown();
+		CE_PluginsDropdown();
 	}
 
 	private void CE_CoreItems()
@@ -87,24 +88,51 @@ public class CE_GameSettingsUI : MonoBehaviour
 		}
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
 		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 1, "Map", ReadOnly);
-		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 25, "Gamemode", ReadOnly);
+		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 24, "Gamemode", ReadOnly);
 		CE_ListedItems();
 		GUILayout.EndScrollView();
 	}
 
-	private void CE_GeneralModifiersDropdown()
+    private void CE_GeneralModifiersDropdown()
     {
-		if (CE_CommonUI.CreateCollapsable_GS("General Modifiers", 0))
+        if (CE_CommonUI.CreateCollapsable_GS("General Modifiers", 0))
+        {
+            using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+            {
+                gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, ReadOnly);
+                gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, ReadOnly_Freeplay);
+                gameOptions.KillCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, ReadOnly);
+                gameOptions.KillDistance = CE_CommonUI.CreateStringPicker_GS(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", ReadOnly);
+                gameOptions.CrewLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.CrewLightMod, 0.25f, 0f, 5f, "Crewmate Vision", "x", decmialView: true, ReadOnly);
+                gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.ImpostorLightMod, 0.25f, 0f, 5f, "Impostor Vision", "x", decmialView: true, ReadOnly);
+                gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages", ReadOnly);
+            }
+        }
+    }
+
+	private void CE_PluginsDropdown()
+	{
+		if (CE_CommonUI.CreateCollapsable_GS("Plugins", 6))
 		{
 			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
 			{
-				gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, ReadOnly);
-				gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, ReadOnly_Freeplay);
-				gameOptions.KillCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, ReadOnly);
-				gameOptions.KillDistance = CE_CommonUI.CreateStringPicker_GS(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", ReadOnly);
-				gameOptions.CrewLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.CrewLightMod, 0.25f, 0f, 5f, "Crewmate Vision", "x", decmialView: true, ReadOnly);
-				gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.ImpostorLightMod, 0.25f, 0f, 5f, "Impostor Vision", "x", decmialView: true, ReadOnly);
-				gameOptions.SabControl = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.SabControl, GameOptionsData.SabControlStrings, 0, 4, "Sabotages", ReadOnly);
+				int attemptedvar = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.Plugins.Count, 1f, 0f, 12f, "Plugin Amount", "", false, ReadOnly);
+				if (!ReadOnly)
+                {
+                    if (gameOptions.Plugins.Count < attemptedvar)
+                    {
+                        gameOptions.Plugins.Add(0);
+                    }
+					if (gameOptions.Plugins.Count > attemptedvar)
+					{
+						gameOptions.Plugins.RemoveAt(gameOptions.Plugins.Count - 1);
+					}
+				}
+				for (int i=0; i < gameOptions.Plugins.Count; i++)
+                {
+					gameOptions.Plugins[i] = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Plugins[i],GameOptionsData.PluginNames, 0, 24, "Plugin " + i, ReadOnly);
+
+				}
 			}
 		}
 	}
@@ -149,6 +177,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 			{
 				gameOptions.Venting = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Venting, GameOptionsData.VentModeStrings, 0, 3, "Vents", ReadOnly);
 				gameOptions.VentMode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.VentMode, GameOptionsData.VentMode2Strings, 0, 5, "Vent Movement", ReadOnly);
+				gameOptions.VisionInVents = CE_CommonUI.CreateBoolButton_GS(gameOptions.VisionInVents, "Vision In Vents", ReadOnly);
 			}
 
 		}

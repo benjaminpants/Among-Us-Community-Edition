@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using MoonSharp.Interpreter;
 
 public class EmergencyMinigame : Minigame
 {
@@ -47,6 +48,19 @@ public class EmergencyMinigame : Minigame
 			if (state != 1)
 			{
 				state = 1;
+				if (CE_LuaLoader.CurrentGMLua)
+				{
+					DynValue dyn = CE_LuaLoader.GetGamemodeResult("CanCallMeeting", (CE_PlayerInfoLua)PlayerControl.LocalPlayer, false);
+					if (!dyn.Boolean)
+					{
+						ButtonActive = false;
+						StatusText.Text = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetText("UI_CantCallMeeting");
+						NumberText.Text = "";
+						ClosedLid.gameObject.SetActive(value: true);
+						OpenLid.gameObject.SetActive(value: false);
+						return;
+					}
+				}
 				int remainingEmergencies = PlayerControl.LocalPlayer.RemainingEmergencies;
 				StatusText.Text = $"CREWMEMBER {PlayerControl.LocalPlayer.Data.PlayerName} HAS\r\n\r\nEMERGENCY MEETINGS LEFT";
 				NumberText.Text = remainingEmergencies.ToString();

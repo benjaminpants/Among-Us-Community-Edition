@@ -49,6 +49,10 @@ function BeforeKill(killer,victim)
 end
 
 
+function CanCallMeeting(reporter,isbody)
+	return false
+end
+
 
 function OnHostRecieveSimple(id)
 	if (id == 0) then

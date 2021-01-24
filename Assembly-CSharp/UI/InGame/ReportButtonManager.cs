@@ -1,4 +1,5 @@
 using UnityEngine;
+using MoonSharp.Interpreter;
 
 public class ReportButtonManager : MonoBehaviour
 {
@@ -24,6 +25,14 @@ public class ReportButtonManager : MonoBehaviour
 	{
 		if ((KeybindClick || !SaveManager.EnableProHUDMode) && base.isActiveAndEnabled)
 		{
+            if (CE_LuaLoader.CurrentGMLua)
+            {
+                DynValue dyn = CE_LuaLoader.GetGamemodeResult("CanCallMeeting", (CE_PlayerInfoLua)PlayerControl.LocalPlayer, true);
+                if (!dyn.Boolean)
+                {
+                    return;
+                }
+            }
 			PlayerControl.LocalPlayer.ReportClosest();
 		}
 	}
