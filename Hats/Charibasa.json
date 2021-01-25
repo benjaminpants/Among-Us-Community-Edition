@@ -1,7 +1,7 @@
 {
-  "ID": "ButterflyMask",
-  "Name": "ButterflyMask",
-  "StoreName": "ButterflyMask",
+  "ID": "Charibasa",
+  "Name": "Charibasa",
+  "StoreName": "Charibasa",
   "HatInFront": true,
   "NoHatBobbing": false,
   "UsePointFilteringGlobally": false,
@@ -15,15 +15,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 89.0,
-        "y": 107.0
+        "x": 105.0,
+        "y": 110.0
       },
       "Offset": {
-        "x": 0.48,
-        "y": 0.68
+        "x": 0.44,
+        "y": 0.61
       },
       "Name": "Normal",
-      "SpritePath": "cannogabang.png",
+      "SpritePath": "charibasa.png",
       "UsePointFiltering": false
     },
     {
@@ -32,15 +32,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 103.0,
-        "y": 78.0
+        "x": 121.0,
+        "y": 74.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "cannogabang_dead.png",
+      "SpritePath": "charibasa_dead.png",
       "UsePointFiltering": false
     }
   ]

@@ -3,6 +3,5 @@ function InitializePlugin()
 end
 
 function CanCallMeeting(reporter,isbody)
-	Debug_Log("is body:" .. isbody)
-	return (not isbody)
+	return not isbody
 end

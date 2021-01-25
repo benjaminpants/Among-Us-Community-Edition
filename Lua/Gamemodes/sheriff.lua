@@ -80,7 +80,7 @@ function CanKill(userinfo,targetinfo)
 end
 
 function BeforeKill(killer,victim)
-	if (killer.role == Game_GetRoleIDFromName("Sheriff")) then
+	if (killer.role == Game_GetRoleIDFromUUID("sheriff_Sheriff")) then
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if (players[i].PlayerName == victim.PlayerName or players[i].IsDead or players[i].IsImpostor or players[i].PlayerName == killer.PlayerName) then
@@ -88,10 +88,10 @@ function BeforeKill(killer,victim)
 			end
 		end
 		local selected = {players[math.random(1,#players)],killer}
-		Game_SetRoles(selected,{"Sheriff","None"})
+		Game_SetRoles(selected,{"sheriff_Sheriff","None"})
 	end
 	
-	if (victim.role == Game_GetRoleIDFromName("Sheriff")) then
+	if (victim.role == Game_GetRoleIDFromUUID("sheriff_Sheriff")) then
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if (players[i].PlayerName == victim.PlayerName or players[i].IsDead or players[i].IsImpostor or players[i].PlayerName == killer.PlayerName) then
@@ -99,7 +99,7 @@ function BeforeKill(killer,victim)
 			end
 		end
 		local selected = {players[math.random(1,#players)],victim}
-		Game_SetRoles(selected,{"Sheriff","None"})
+		Game_SetRoles(selected,{"sheriff_Sheriff","None"})
 	end
 	return true
 end

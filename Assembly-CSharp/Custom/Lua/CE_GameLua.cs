@@ -138,7 +138,7 @@ static class CE_GameLua
             List<byte> role = new List<byte>();
             foreach (DynValue ply in roles.Values)
             {
-                byte infolua = CE_RoleManager.GetRoleFromName(ply.String);
+                byte infolua = CE_RoleManager.GetRoleFromUUID(ply.String);
                 role.Add(infolua);
             }
             PlayerControl.LocalPlayer.RpcSetRole(playerinfos.ToArray(), role.ToArray());

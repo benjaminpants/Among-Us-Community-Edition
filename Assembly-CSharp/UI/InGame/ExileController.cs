@@ -177,11 +177,11 @@ public class ExileController : MonoBehaviour
 		}
 		if (exiled != null)
 		{
-			CE_LuaLoader.GetGamemodeResult("OnExile", new CE_PlayerInfoLua(exiled));
+			CE_LuaLoader.GetGamemodeResult("OnExile", (CE_PlayerInfoLua)exiled);
 		}
 		else
         {
-			CE_LuaLoader.GetGamemodeResult("OnExileSkip");
+			CE_LuaLoader.GetGamemodeResult("OnExileSkip", null);
 		}
 		ShipStatus.Instance.TimeSinceLastRound = 0f;
 		IsDebugging = false;

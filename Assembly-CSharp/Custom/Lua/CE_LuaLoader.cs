@@ -210,7 +210,10 @@ public static class CE_LuaLoader
                 {
 					try
                     {
-						return plgf.script.Call(plgf.script.Globals[fn], obj);
+						if (plgf.script.Globals[fn] != null)
+						{
+							return plgf.script.Call(plgf.script.Globals[fn], obj);
+						}
 					}
 					catch
 					{
