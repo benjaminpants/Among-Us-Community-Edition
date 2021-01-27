@@ -1,0 +1,74 @@
+{
+  "ID": "30792b4b-3da4-4de0-948a-c2beb035198a",
+  "Name": "Rideablepumpkin",
+  "StoreName": "Rideablepumpkin",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 180.0
+      },
+      "Offset": {
+        "x": 0.451,
+        "y": 0.9000002
+      },
+      "Name": "NormalExt",
+      "SpritePath": "legsssss.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 180.0
+      },
+      "Offset": {
+        "x": 0.451,
+        "y": 0.9000002
+      },
+      "Name": "Normal",
+      "SpritePath": "pumpkinride.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 111.0,
+        "y": 72.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "pumpkinsad.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

@@ -5,6 +5,7 @@ function InitializeGamemode()
 	UI_AddLangEntry("Meeting_WhoIsImpostor","[FF00FFFF]Purple Text.[]")
 	UI_AddLangEntry("Game_ImpsRemain","{0} remains.")
 	UI_AddLangEntry("UI_CantCallMeeting","You thought you could call\n\rA meeting? You are wrong lol.")
+	Settings_CreateBool("Allow Self Suicide",true) -- 0
 	return {"Debug",9} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
@@ -43,10 +44,6 @@ function OnChat(message, player, imponly)
 	if (cmd[1] == "tele") then
 		Player_SnapPosTo(tonumber(cmd[2]),tonumber(cmd[3]),player)
 	end
-	if (cmd[1] == "deadbody") then
-		local bodd = Game_StartObjectInit("DeadBody")
-		Game_SendObjectToServer(bodd)
-	end
 	if (cmd[1] == "sab") then
 		Game_SabSystem(cmd[2],player,false,tonumber(cmd[3]))
 	end
@@ -55,6 +52,9 @@ function OnChat(message, player, imponly)
 	end
 	if (cmd[1] == "broadcast") then
 		Client_ShowMessage(cmd[2])
+	end
+	if (cmd[1] == "killme" and Net_AmHost() and Settings_GetBool(0)) then
+		Game_KillPlayer(player,false)
 	end
 end
 

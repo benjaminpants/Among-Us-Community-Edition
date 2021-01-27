@@ -33,7 +33,7 @@ public class DeadBody : MonoBehaviour
 		{
 			Reported = true;
 			GameData.PlayerInfo target = PlayerControl.LocalPlayer.Data;
-			if (PlayerControl.GameOptions.Gamemode != 1 && PlayerControl.GameOptions.BodyEffect != 1 && PlayerControl.GameOptions.BodyEffect != 2)
+			if (PlayerControl.GameOptions.BodyEffect != 1 && PlayerControl.GameOptions.BodyEffect != 2)
 			{
 				target = GameData.Instance.GetPlayerById(ParentId);
 			}

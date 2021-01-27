@@ -43,9 +43,9 @@ public class KillOverlay : MonoBehaviour
 		}
 	}
 
-	public void ShowOne(PlayerControl killer, GameData.PlayerInfo victim)
+	public void ShowOne(PlayerControl killer, GameData.PlayerInfo victim, bool hasowner = true)
 	{
-		queue.Enqueue(() => CoShowOne(KillAnims.Random(), killer, victim));
+		queue.Enqueue(() => CoShowOne(KillAnims.Random(), killer, victim,hasowner));
 		if (showAll == null)
 		{
 			showAll = StartCoroutine(ShowAll());
@@ -74,10 +74,10 @@ public class KillOverlay : MonoBehaviour
 		showAll = null;
 	}
 
-	private IEnumerator CoShowOne(OverlayKillAnimation killAnimPrefab, PlayerControl killer, GameData.PlayerInfo victim)
+	private IEnumerator CoShowOne(OverlayKillAnimation killAnimPrefab, PlayerControl killer, GameData.PlayerInfo victim, bool hasowner = true)
 	{
 		OverlayKillAnimation overlayKillAnimation = UnityEngine.Object.Instantiate(killAnimPrefab, base.transform);
-		overlayKillAnimation.Begin(killer, victim);
+		overlayKillAnimation.Begin(killer, victim, hasowner);
 		overlayKillAnimation.gameObject.SetActive(value: false);
 		yield return CoShowOne(overlayKillAnimation);
 	}

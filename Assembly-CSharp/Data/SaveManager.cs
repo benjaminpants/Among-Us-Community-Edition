@@ -698,7 +698,8 @@ public static class SaveManager
 			using (FileStream input = File.OpenRead(path))
 			{
 				using BinaryReader reader = new BinaryReader(input);
-				return GameOptionsData.Deserialize(reader) ?? new GameOptionsData();
+				GameOptionsData gamdat = GameOptionsData.Deserialize(reader) ?? new GameOptionsData();
+				return gamdat;
 			}
 		}
 		return new GameOptionsData();

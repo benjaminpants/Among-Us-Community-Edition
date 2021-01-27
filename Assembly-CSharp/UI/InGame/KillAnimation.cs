@@ -10,26 +10,38 @@ public class KillAnimation : MonoBehaviour
 
 	public Vector3 BodyOffset;
 
-	public IEnumerator CoPerformKill(PlayerControl source, PlayerControl target)
+	public IEnumerator CoPerformKill(PlayerControl source, PlayerControl target, bool hasowner = true)
 	{
-		bool isParticipant = PlayerControl.LocalPlayer == source || PlayerControl.LocalPlayer == target;
+		bool isParticipant = (PlayerControl.LocalPlayer == source && hasowner) || PlayerControl.LocalPlayer == target;
 		PlayerPhysics sourcePhys = source.GetComponent<PlayerPhysics>();
-		SetMovement(source, canMove: false);
+		if (hasowner)
+		{
+			SetMovement(source, canMove: false);
+		}
 		SetMovement(target, canMove: false);
 		if (isParticipant)
 		{
 			Camera.main.GetComponent<FollowerCamera>().Locked = true;
 		}
-		bool iszomb = PlayerControl.GameOptions.Gamemode == 1;
+		bool iszomb = false;
 		if (!iszomb)
 		{
 			target.Die(DeathReason.Kill);
 		}
-		SpriteAnim sourceAnim = source.GetComponent<SpriteAnim>();
-		yield return new WaitForAnimationFinish(sourceAnim, BlurAnim);
-		source.NetTransform.SnapTo(target.transform.position);
-		sourceAnim.Play(sourcePhys.IdleAnim);
-		SetMovement(source, canMove: true);
+        SpriteAnim sourceAnim = source.GetComponent<SpriteAnim>();
+		if (hasowner)
+		{
+			yield return new WaitForAnimationFinish(sourceAnim, BlurAnim);
+		}
+        source.NetTransform.SnapTo(target.transform.position);
+        if (hasowner)
+        {
+            sourceAnim.Play(sourcePhys.IdleAnim);
+        }
+		if (hasowner)
+		{
+			SetMovement(source, canMove: true);
+		}
 		DeadBody deadBody = Object.Instantiate(bodyPrefab);
 		Vector3 position = target.transform.position + BodyOffset;
 		position.z = position.y / 1000f;

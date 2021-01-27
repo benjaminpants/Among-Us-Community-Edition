@@ -68,7 +68,12 @@ public class CE_Language
 
     public bool AddEntry(string key, string text)
     {
-        if (LanguageIndex.TryAdd(key,new CE_LanguageEntry(text)))
+        if (LanguageIndex.TryAdd(key, new CE_LanguageEntry(text)))
+        {
+            return true;
+        }
+        LanguageIndex.Remove(key);
+        if (LanguageIndex.TryAdd(key, new CE_LanguageEntry(text)))
         {
             return true;
         }

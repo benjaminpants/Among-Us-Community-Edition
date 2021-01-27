@@ -87,18 +87,7 @@ public class IntroCutscene : MonoBehaviour
 		{
 			if (PlayerControl.GameOptions.NumImpostors == 1)
 			{
-				if (PlayerControl.GameOptions.Gamemode == 1)
-				{
-					ImpostorText.Text = $"There is [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
-				}
-				else
-				{
-					ImpostorText.Text = $"There is [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostor[] among us";
-				}
-			}
-			else if (PlayerControl.GameOptions.Gamemode == 1)
-			{
-				ImpostorText.Text = $"There are [62A74AFF]{PlayerControl.GameOptions.NumImpostors} Infected[] among us";
+				ImpostorText.Text = $"There is [FF1919FF]{PlayerControl.GameOptions.NumImpostors} Impostor[] among us";
 			}
 			else
 			{
@@ -158,17 +147,8 @@ public class IntroCutscene : MonoBehaviour
 	{
         ImpostorText.gameObject.SetActive(false);
 		CE_Role UserRole = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
-		if (PlayerControl.GameOptions.Gamemode == 1)
-		{
-			Title.Text = "Infected";
-			BackgroundBar.material.SetColor("_Color", Palette.InfectedGreen);
-			Title.Color = Palette.InfectedGreen;
-		}
-		else
-		{
-			Title.Text = "Impostor";
-			Title.Color = Palette.ImpostorRed;
-		}
+		Title.Text = "Impostor";
+		Title.Color = Palette.ImpostorRed;
 		string ImpostorMessage = (PlayerControl.GameOptions.NumImpostors == 1) ? "[]You are also the [FF1919FF]Impostor[]." : "[]You are also an [FF1919FF]Impostor[].";
 		if (PlayerControl.LocalPlayer.Data.role != 0)
         {

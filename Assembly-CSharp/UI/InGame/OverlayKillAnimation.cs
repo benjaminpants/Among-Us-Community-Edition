@@ -34,7 +34,7 @@ public class OverlayKillAnimation : MonoBehaviour
     {
 		InitCustomHatLayers();
 	}
-	public void Begin(PlayerControl killer, GameData.PlayerInfo victim)
+	public void Begin(PlayerControl killer, GameData.PlayerInfo victim, bool hasowner = true)
 	{
 		if (killerParts != null)
 		{
@@ -42,34 +42,41 @@ public class OverlayKillAnimation : MonoBehaviour
 			for (int i = 0; i < killerParts.Length; i++)
 			{
 				Renderer renderer = killerParts[i];
-				PlayerControl.SetPlayerMaterialColors(data.ColorId, renderer);
-				if (SetHatKiller(ref renderer, data.HatId, (int)data.ColorId)) continue;
-				else if (renderer.name.StartsWith("Skin"))
+				if (!hasowner)
 				{
-					switch (KillType)
+					renderer.enabled = false;
+				}
+				else
+				{
+					PlayerControl.SetPlayerMaterialColors(data.ColorId, renderer);
+					if (SetHatKiller(ref renderer, data.HatId, (int)data.ColorId)) continue;
+					else if (renderer.name.StartsWith("Skin"))
 					{
-						case KillAnimType.Stab:
-							{
-								PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
-								break;
-							}
-						case KillAnimType.Neck:
-							{
-								PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
-								break;
-							}
-						case KillAnimType.Tongue:
-							{
-								SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-								renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, 1f);
-								break;
-							}
-						case KillAnimType.Shoot:
-							{
-								SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-								renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, 1f);
-								break;
-							}
+						switch (KillType)
+						{
+							case KillAnimType.Stab:
+								{
+									PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+									break;
+								}
+							case KillAnimType.Neck:
+								{
+									PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+									break;
+								}
+							case KillAnimType.Tongue:
+								{
+									SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
+									renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, 1f);
+									break;
+								}
+							case KillAnimType.Shoot:
+								{
+									SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
+									renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, 1f);
+									break;
+								}
+						}
 					}
 				}
 			}

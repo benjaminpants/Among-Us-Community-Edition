@@ -1,8 +1,11 @@
 --This is a recreation of the Among Us Classic Gamemode.
 
+local invent_timer = 15
+local timedif = 0
 
 function InitializeGamemode()
-	return {"Classic",1} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	Game_CreateRole("Poisoned",{255,255,255},"you shouldn't see this",{},1,0,false,true)
+	return {"Witch",11} 
 end
 
 
@@ -17,46 +20,28 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on
 	return false --this isn't used
 end
 
-function OnHostUpdate(timer,timesincelastround)
-
+function OnExile(exiled)
 end
 
 function OnClientUpdate(timer,timesincelastround)
-	
-end
-
-function OnChat(message, player)
-end
-
-function OnExile(exiled)
-	
-end
-
-function OnDeath(dead)
-
-end
-
-function OnExileSkip()
-
-end
-
-function OnPlayerDC(playerinfo)
-
-end
-
-function CanVent(default,playerinfo)
-	return true
-end
-
-function CanCallMeeting(reporter,isbody)
-	return true
+	if (Client_GetLocalPlayer().role == Game_GetRoleIDFromUUID("witch_Poisoned")) then
+		invent_timer = invent_timer - (timer - timedif)
+		if (not (math.ceil(timer) == math.ceil(timedif))) then
+		end
+		if (invent_timer < 0) then
+			Game_KillPlayer(Client_GetLocalPlayer(),false)
+		end
+	else
+		invent_timer = 15
+	end
+	timedif = timer
 end
 
 function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, this function is a placeholder for proper task assignment control
 	return true
 end
 
-function OnGameStart()
+function OnPlayerDC(playerinfo)
 
 end
 
@@ -80,22 +65,21 @@ end
 
 function CanKill(userinfo,targetinfo)
 	if (userinfo.IsImpostor and not targetinfo.IsImpostor) then --if the person doing the kill is an impostor and the victim
-		return true
+		if (not (targetinfo.role == Game_GetRoleIDFromUUID("witch_Poisoned"))) then
+			return true
+		end
 	end
 	return false
 end
 
-
 function BeforeKill(killer,victim)
-	return true
+	Game_SetRoles({victim},{"witch_Poisoned"})
+	return false
 end
 
-function OnGameEnd()
-
-end
 
 function DecideRoles(playerinfos)
-	return {{},{}} -- no roles, also don't question
+	return {{},{}}
 end
 
 

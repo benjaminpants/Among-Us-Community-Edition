@@ -1,0 +1,54 @@
+{
+  "ID": "AngelWings",
+  "Name": "AngelWings",
+  "StoreName": "AngelWings",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 112.0,
+        "y": 70.0
+      },
+      "Offset": {
+        "x": 0.49,
+        "y": 1.45999968
+      },
+      "Name": "Normal",
+      "SpritePath": "angelwings.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 120.0,
+        "y": 23.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "angelwings_dead.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

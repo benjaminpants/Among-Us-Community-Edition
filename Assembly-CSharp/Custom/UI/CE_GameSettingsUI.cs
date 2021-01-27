@@ -76,6 +76,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 		CE_MapControlsDropdown();
 		CE_MiscControlsDropdown();
 		CE_PluginsDropdown();
+		CE_GamemodeSettingsDropDown();
 	}
 
 	private void CE_CoreItems()
@@ -110,28 +111,61 @@ public class CE_GameSettingsUI : MonoBehaviour
         }
     }
 
-	private void CE_PluginsDropdown()
-	{
-		if (CE_CommonUI.CreateCollapsable_GS("Plugins", 6))
-		{
-			using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
-			{
-				int attemptedvar = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.Plugins.Count, 1f, 0f, 12f, "Plugin Amount", "", false, ReadOnly);
-				if (!ReadOnly)
+    private void CE_PluginsDropdown()
+    {
+        if (CE_CommonUI.CreateCollapsable_GS("Plugins", 6))
+        {
+            using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+            {
+                int attemptedvar = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.Plugins.Count, 1f, 0f, 12f, "Plugin Amount", "", false, ReadOnly);
+                if (!ReadOnly)
                 {
                     if (gameOptions.Plugins.Count < attemptedvar)
                     {
                         gameOptions.Plugins.Add(0);
                     }
-					if (gameOptions.Plugins.Count > attemptedvar)
-					{
-						gameOptions.Plugins.RemoveAt(gameOptions.Plugins.Count - 1);
-					}
-				}
-				for (int i=0; i < gameOptions.Plugins.Count; i++)
+                    if (gameOptions.Plugins.Count > attemptedvar)
+                    {
+                        gameOptions.Plugins.RemoveAt(gameOptions.Plugins.Count - 1);
+                    }
+                }
+                for (int i = 0; i < gameOptions.Plugins.Count; i++)
                 {
-					gameOptions.Plugins[i] = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Plugins[i],GameOptionsData.PluginNames, 0, 24, "Plugin " + i, ReadOnly);
+                    gameOptions.Plugins[i] = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Plugins[i], GameOptionsData.PluginNames, 0, 24, "Plugin " + i, ReadOnly);
 
+                }
+            }
+        }
+    }
+
+	private void CE_GamemodeSettingsDropDown()
+	{
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			if (CE_CommonUI.CreateCollapsable_GS("Gamemode Settings", 7))
+			{
+				using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
+				{
+					for (int i = 0; i < CE_LuaLoader.CurrentSettings.Count; i++)
+					{
+						CE_CustomLuaSetting setting = CE_LuaLoader.CurrentSettings[i];
+						if (setting.DataType == CE_OptDataTypes.String)
+						{
+
+						}
+						else
+						{
+							if (setting.DataType != CE_OptDataTypes.Toggle)
+							{
+								CE_LuaLoader.CurrentSettings[i].NumValue = CE_CommonUI.CreateValuePicker_GS(setting.NumValue, setting.Increment, setting.Min, setting.Max, setting.Name, "", setting.DataType == CE_OptDataTypes.FloatRange,ReadOnly);
+							}
+							else
+                            {
+								CE_LuaLoader.CurrentSettings[i].NumValue = CE_ConversionHelpers.BoolToFloat(CE_CommonUI.CreateBoolButton_GS(CE_ConversionHelpers.FloatToBool(setting.NumValue), setting.Name,ReadOnly));
+							}
+						}
+
+					}
 				}
 			}
 		}
@@ -212,6 +246,7 @@ public class CE_GameSettingsUI : MonoBehaviour
                 gameOptions.ImpOnlyChat = CE_CommonUI.CreateBoolButton_GS(gameOptions.ImpOnlyChat, "Allow Impostor Only Chat", ReadOnly);
                 gameOptions.ShowOtherVision = CE_CommonUI.CreateBoolButton_GS(gameOptions.ShowOtherVision, "Show All Vision", ReadOnly);
 				gameOptions.GhostsSeeRoles = CE_CommonUI.CreateBoolButton_GS(gameOptions.GhostsSeeRoles, "Ghost See Roles", ReadOnly);
+				gameOptions.Brightness = (byte)CE_CommonUI.CreateValuePicker_GS((float)gameOptions.Brightness,5f,0f,255f,"Brightness","");
 			}
 		}
 	}

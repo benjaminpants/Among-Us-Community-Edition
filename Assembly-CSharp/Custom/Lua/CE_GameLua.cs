@@ -73,7 +73,7 @@ static class CE_GameLua
     public static bool UpdatePlayerInfo(DynValue dynval)
     {
         CE_PlayerInfoLua influa = (CE_PlayerInfoLua)dynval.UserData.Object;
-        Debug.Log("Attempting Data Change for:" + influa.PlayerName);
+        //Debug.Log("Attempting Data Change for:" + influa.PlayerName);
         influa.refplayer.Object.RpcSetColor(influa.ColorId);
         if (influa.refplayer.SkinId != influa.SkinId)
         {
@@ -82,6 +82,18 @@ static class CE_GameLua
         if (influa.refplayer.HatId != influa.HatId)
         {
             influa.refplayer.Object.RpcSetHat(influa.HatId);
+        }
+        if (influa.refplayer.luavalue1 != influa.luavalue1)
+        {
+            influa.refplayer.Object.RpcSetLuaValue(influa.luavalue1, 1);
+        }
+        if (influa.refplayer.luavalue1 != influa.luavalue2)
+        {
+            influa.refplayer.Object.RpcSetLuaValue(influa.luavalue2, 2);
+        }
+        if (influa.refplayer.luavalue1 != influa.luavalue3)
+        {
+            influa.refplayer.Object.RpcSetLuaValue(influa.luavalue3, 3);
         }
         influa.refplayer.Object.RpcSetName(influa.PlayerName);
         return true;
@@ -149,6 +161,38 @@ static class CE_GameLua
             Debug.LogError(e);
             return false;
         }
+    }
+
+    public static float GetNumber(byte id)
+    {
+        if (CE_LuaLoader.CurrentSettings[id] == null)
+        {
+            return 0f;
+        }
+        if (CE_LuaLoader.CurrentSettings[id].IsNumber)
+        {
+            return CE_LuaLoader.CurrentSettings[id].NumValue;
+        }
+        return 0f;
+    }
+
+    public static bool GetBool(byte id)
+    {
+        if (CE_LuaLoader.CurrentSettings[id] == null)
+        {
+            return false;
+        }
+        if (CE_LuaLoader.CurrentSettings[id].DataType == CE_OptDataTypes.Toggle)
+        {
+            return CE_ConversionHelpers.FloatToBool(CE_LuaLoader.CurrentSettings[id].NumValue);
+        }
+        return false;
+    }
+
+    public static bool KillPlayer(CE_PlayerInfoLua pl,bool showplayer)
+    {
+        PlayerControl.LocalPlayer.RpcMurderPlayer(pl.refplayer.Object,showplayer);
+        return true;
     }
 
     public static bool AmHost()

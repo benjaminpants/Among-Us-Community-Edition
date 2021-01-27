@@ -6,6 +6,7 @@ function InitializeGamemode()
 	Game_CreateRole("Saboteur",{25,255,25},"Sabotage and help [FF1919FF]The Killer[]",{1,2},0,4,true,false)
 	Game_CreateRole("NoSab",{25,255,25},"How are you getting this message?",{},0,4,true,false)
 	Game_CreateRole("Venteer",{25,25,255},"Stay alive to keep vents open.",{2},0,4,true,false)
+	UI_AddLangEntry("Game_WasNotImp","{0} was not a Chaos Member.")
 	return {"The Trio of Chaos",10} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 

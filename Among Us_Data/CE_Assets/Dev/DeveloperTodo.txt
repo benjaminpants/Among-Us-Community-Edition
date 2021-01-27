@@ -11,4 +11,6 @@
 - Arrow Key Support For Venting
 - Hats for Chat
 - Spawn In for Hats Not Rendered Acurately (needs testing)
-- Fix issues CanCallMeeting when plugins use it
+- Add Logging and Fix File Copying Crashing in Installer
+- Fix colored hats refusing to update outside of the lobby and sometimes not updating at all
+

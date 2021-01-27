@@ -6,6 +6,10 @@ using System.Reflection;
 public class VersionShower : MonoBehaviour
 {
 
+	private int lastlua;
+	private int lasthat;
+	private string LuaID;
+	private string HatID;
 	public static string BuildID;
 
 	private readonly string[] Characters = {
@@ -87,6 +91,17 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
+		text.Text = "v0.5.5 - The update so cool we skipped 5.4" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		if (CE_LuaLoader.TheOmegaHash != lastlua)
+        {
+			lastlua = CE_LuaLoader.TheOmegaHash;
+            LuaID = CreateIDFromInt(CE_LuaLoader.TheOmegaHash, 7);
+		}
+		if (CE_WardrobeManager.HatHash != lasthat)
+		{
+			lasthat = CE_WardrobeManager.HatHash;
+			HatID = CreateIDFromInt(CE_WardrobeManager.HatHash, 7);
+		}
 		CE_Extensions.UpdateWindowTitle();
 	}
 

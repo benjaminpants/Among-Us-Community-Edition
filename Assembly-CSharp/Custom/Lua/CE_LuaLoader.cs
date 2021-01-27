@@ -9,7 +9,9 @@ public static class CE_LuaLoader
 {
 	public static Dictionary<byte, CE_GamemodeInfo> GamemodeInfos;
 
-	public static Dictionary<byte, CE_PluginInfo> PluginInfos = new Dictionary<byte, CE_PluginInfo>();
+    public static Dictionary<byte, CE_PluginInfo> PluginInfos = new Dictionary<byte, CE_PluginInfo>();
+
+	public static Dictionary<byte, List<CE_CustomLuaSetting>> CustomGMSettings = new Dictionary<byte, List<CE_CustomLuaSetting>>();
 
 	public static string TheOmegaString;
 
@@ -17,15 +19,50 @@ public static class CE_LuaLoader
 
 	public static string CurrentGMName;
 
+	private static List<CE_CustomLuaSetting> TempSetting = new List<CE_CustomLuaSetting>();
+
 	private static CE_Language TempLang;
 
 	public static int TheOmegaHash;
-	public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists));
+
+    public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists));
+
+	public static List<CE_CustomLuaSetting> CurrentSettings => CustomGMSettings.GetValueOrDefault((byte)(PlayerControl.GameOptions.Gamemode + 1));
 
 
 	private static bool AddLangEntry(string key, string text)
+    {
+        return TempLang.AddEntry(key, text);
+    }
+
+    private static bool TempAddCustomByteSetting(string name, byte min, byte max, byte def, byte inc = 1)
+    {
+        TempSetting.Add(new CE_CustomLuaSetting(min, max, def, name, inc));
+        return true;
+    }
+
+    private static bool TempAddCustomIntSetting(string name, int min, int max, int def, int inc = 1)
+    {
+        TempSetting.Add(new CE_CustomLuaSetting(min, max, def, name, inc));
+        return true;
+    }
+
+    private static bool TempAddCustomFloatSetting(string name, float min, float max, float def, float inc = 1)
+    {
+        TempSetting.Add(new CE_CustomLuaSetting(min, max, def, name, inc));
+        return true;
+    }
+
+    private static bool TempAddCustomStringSetting(string name, string def)
+    {
+        TempSetting.Add(new CE_CustomLuaSetting(def, name));
+        return true;
+    }
+
+	private static bool TempAddCustomBoolSetting(string name, bool def)
 	{
-		return TempLang.AddEntry(key, text);
+		TempSetting.Add(new CE_CustomLuaSetting(name,def));
+		return true;
 	}
 
 	private static void GiveAPICalls(Script script)
@@ -52,7 +89,14 @@ public static class CE_LuaLoader
 		script.Globals["Debug_Error"] = (Func<string, bool>)CE_GameLua.DebugErrorLua;
 		script.Globals["UI_AddLangEntry"] = (Func<string, string, bool>)AddLangEntry;
         script.Globals["Game_CheckPlayerInVent"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.CheckIfInVent;
-		script.Globals["Client_GetLocalPlayer"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetLocal;
+        script.Globals["Client_GetLocalPlayer"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetLocal;
+        script.Globals["Game_KillPlayer"] = (Func<CE_PlayerInfoLua, bool, bool>)CE_GameLua.KillPlayer;
+		script.Globals["Settings_CreateByte"] = (Func<string, byte, byte, byte, byte, bool>)TempAddCustomByteSetting;
+        script.Globals["Settings_CreateInt"] = (Func<string, int, int, int, int, bool>)TempAddCustomIntSetting;
+        script.Globals["Settings_CreateFloat"] = (Func<string, float, float, float, float, bool>)TempAddCustomFloatSetting;
+		script.Globals["Settings_CreateBool"] = (Func<string, bool, bool>)TempAddCustomBoolSetting;
+		script.Globals["Settings_GetByte"] = (Func<byte, float>)CE_GameLua.GetNumber;
+		script.Globals["Settings_GetBool"] = (Func<byte, bool>)CE_GameLua.GetBool;
 	}
 	public static void LoadLua()
 	{
@@ -69,6 +113,7 @@ public static class CE_LuaLoader
 				CurrentGMName = files[i].Name.Remove(files[i].Name.Length - 4);
 				Script script = new Script();
 				TempLang = new CE_Language(true);
+				TempSetting = new List<CE_CustomLuaSetting>();
 				GiveAPICalls(script);
 				script.DoString(code);
 				Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
@@ -81,6 +126,7 @@ public static class CE_LuaLoader
 				).ToArray()); //Removes non letter or number characters from Gamemode name
 				Debug.Log("Loaded Gamemode: " + gamemodename);
 				CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b);
+				CustomGMSettings.Add(b,TempSetting);
 				GamemodeInfos.Add(b, value);
 			}
 			catch (Exception E)
@@ -176,7 +222,10 @@ public static class CE_LuaLoader
 			}
 			catch(Exception E)
             {
-				//Debug.LogWarning(E.Message + "\nUnable to find function:" + fn + "\nAttempting to call function in base lua...");
+				if (script.Globals[fn] != null)
+				{
+					Debug.LogWarning(E.Message + "\nUnable to find valid function:" + fn + "\nAttempting to call function in base lua...");
+				}
                 if (GamemodeInfos.TryGetValue(1, out var value2))
                 {
 					try

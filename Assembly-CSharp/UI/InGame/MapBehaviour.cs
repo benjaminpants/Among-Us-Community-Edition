@@ -51,14 +51,7 @@ public class MapBehaviour : MonoBehaviour
 			PlayerControl.LocalPlayer.SetPlayerMaterialColors(HerePoint);
 			GenericShow();
 			infectedOverlay.gameObject.SetActive(value: true);
-			if (PlayerControl.GameOptions.Gamemode == 1)
-			{
-				ColorControl.SetColor(Palette.InfectedGreen);
-			}
-			else
-			{
-				ColorControl.SetColor(PlayerControl.LocalPlayer.Data.IsImpostor ? Palette.ImpostorRed : CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).RoleColor);
-			}
+			ColorControl.SetColor(PlayerControl.LocalPlayer.Data.IsImpostor ? Palette.ImpostorRed : CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).RoleColor);
 			taskOverlay.Hide();
 			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: false);
 		}

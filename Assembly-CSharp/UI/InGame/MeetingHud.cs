@@ -645,14 +645,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		playerVoteArea.NameText.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
 		bool flag = ((PlayerControl.LocalPlayer.Data.IsImpostor && playerInfo.IsImpostor) || (PlayerControl.LocalPlayer.Data.IsDead && playerInfo.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles);
 		CE_Role playerrole = CE_RoleManager.GetRoleFromID(playerInfo.role);
-		if (PlayerControl.GameOptions.Gamemode == 1)
-		{
-			playerVoteArea.NameText.Color = (flag ? Palette.InfectedGreen : Color.white);
-		}
-		else
-		{
-			playerVoteArea.NameText.Color = (flag ? Palette.ImpostorRed : Color.white);
-		}
+		playerVoteArea.NameText.Color = (flag ? Palette.ImpostorRed : Color.white);
 		if ((playerrole.CanSee(PlayerControl.LocalPlayer.Data) || playerInfo == PlayerControl.LocalPlayer.Data) && playerInfo.role != 0 && !flag)
 		{
 			playerVoteArea.NameText.Color = playerrole.RoleColor;

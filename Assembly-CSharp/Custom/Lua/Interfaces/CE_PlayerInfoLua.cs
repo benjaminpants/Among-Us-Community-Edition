@@ -72,6 +72,12 @@ public class CE_PlayerInfoLua
 		private set;
 	}
 
+    public byte luavalue1;
+
+    public byte luavalue2;
+
+	public byte luavalue3;
+
 	public CE_PlayerInfoLua()
 	{
 		throw new System.Exception("Attempted to create a PlayerInfo without a reference!");
@@ -89,6 +95,9 @@ public class CE_PlayerInfoLua
 		IsDead = plf.IsDead;
 		IsImpostor = plf.IsImpostor;
 		role = plf.role;
+        luavalue1 = plf.luavalue1;
+        luavalue2 = plf.luavalue2;
+		luavalue3 = plf.luavalue3;
 		refplayer = plf;
 	}
 }

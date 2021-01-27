@@ -52,6 +52,12 @@ public class GameData : InnerNetObject, IDisconnectHandler
 
 		public byte role;
 
+        public byte luavalue1;
+
+        public byte luavalue2;
+
+		public byte luavalue3;
+
 		public PlayerControl Object
 		{
 			get
@@ -82,6 +88,9 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			writer.WritePacked(HatId);
 			writer.WritePacked(SkinId);
 			writer.Write((byte)role);
+            writer.Write(luavalue1);
+            writer.Write(luavalue2);
+			writer.Write(luavalue3);
 			byte b = 0;
 			if (Disconnected)
 			{
@@ -118,6 +127,9 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			HatId = reader.ReadPackedUInt32();
 			SkinId = reader.ReadPackedUInt32();
 			role = reader.ReadByte();
+            luavalue1 = reader.ReadByte();
+            luavalue2 = reader.ReadByte();
+			luavalue3 = reader.ReadByte();
 			byte b = reader.ReadByte();
 			Disconnected = (b & 1) > 0;
 			IsImpostor = (b & 2) > 0;
@@ -242,6 +254,30 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		if (playerById != null)
 		{
 			playerById.HatId = hat;
+		}
+	}
+
+	public void UpdateLuaValue(byte playerId, byte num, byte id)
+	{
+		PlayerInfo playerById = GetPlayerById(playerId);
+		if (playerById != null)
+		{
+			switch (id)
+            {
+				case 1:
+					playerById.luavalue1 = num;
+					break;
+				case 2:
+					playerById.luavalue2 = num;
+                    break;
+				case 3:
+					playerById.luavalue3 = num;
+					break;
+				default:
+					Debug.Log("Invalid ID:" + id);
+					break;
+			}
+			
 		}
 	}
 

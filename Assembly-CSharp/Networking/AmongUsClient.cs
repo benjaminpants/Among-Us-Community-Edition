@@ -224,6 +224,7 @@ public class AmongUsClient : InnerNetClient
 			ShipStatus.Instance.transform.eulerAngles = new Vector3(0f, 0f, PlayerControl.GameOptions.MapRot);
 		}
 		Spawn(ShipStatus.Instance);
+		CE_LuaLoader.GetGamemodeResult("OnGameStart");
 		ShipStatus.Instance.SelectInfected();
 		ShipStatus.Instance.Begin();
 		for (int k = 0; k < GameData.Instance.PlayerCount; k++)

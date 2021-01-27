@@ -1,0 +1,134 @@
+{
+  "ID": "8f177712-2743-4e68-bc5c-6082d8810723",
+  "Name": "CustomCorvette",
+  "StoreName": "CustomCorvette",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 100.0
+      },
+      "Offset": {
+        "x": 0.49,
+        "y": 1.19999993
+      },
+      "Name": "NormalExt",
+      "SpritePath": "CorvetteCFilter.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 100.0
+      },
+      "Offset": {
+        "x": 0.49,
+        "y": 1.19999993
+      },
+      "Name": "NormalExt2",
+      "SpritePath": "CorvetteLights.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 100.0
+      },
+      "Offset": {
+        "x": 0.49,
+        "y": 1.2
+      },
+      "Name": "Normal",
+      "SpritePath": "CorvetteWindow.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 100.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "FloorExt",
+      "SpritePath": "CorvetteCFilter.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 100.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "FloorExt2",
+      "SpritePath": "CorvetteLights.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 100.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "CorvetteWindow.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

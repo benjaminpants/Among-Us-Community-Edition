@@ -53,7 +53,7 @@ public class ExileController : MonoBehaviour
 			GameData.PlayerInfo playerById = GameData.Instance.GetPlayerById(exiled.PlayerId);
 			int num2 = GameData.Instance.AllPlayers.Count((GameData.PlayerInfo p) => p.IsImpostor);
 			string text = (exiled.IsImpostor ? string.Empty : "not ");
-			string text2 = ((PlayerControl.GameOptions.Gamemode == 1) ? " Infected" : " Impostor");
+			string text2 = " Impostor";
 			string text3 = ((num2 > 1) ? "An" : "The");
 			if (exiled.role != 0) 
 			{
@@ -63,7 +63,7 @@ public class ExileController : MonoBehaviour
 			}
 			if (PlayerControl.GameOptions.ConfirmEject)
 			{
-				if (exiled.IsImpostor)
+				if (exiled.IsImpostor || exiled.role != 0)
 				{
 					completeString = exiled.PlayerName + " was " + text + text3 + text2;
 				}
@@ -95,16 +95,9 @@ public class ExileController : MonoBehaviour
 		}
 		if (PlayerControl.GameOptions.ConfirmEject)
 		{
-			if (PlayerControl.GameOptions.Gamemode == 1)
-			{
-				ImpostorText.Text = num + " infected remain.";
-			}
-			else
-			{
-				string thing = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetFormatted("Game_ImpsRemain",num, ((num != 1) ? "s" : ""));
-				//ImpostorText.Text = num + ((num != 1) ? " impostors remain" : " impostor remains");
-				ImpostorText.Text = thing;
-			}
+			string thing = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetFormatted("Game_ImpsRemain",num, ((num != 1) ? "s" : ""));
+			//ImpostorText.Text = num + ((num != 1) ? " impostors remain" : " impostor remains");
+			ImpostorText.Text = thing;
 		}
 		else
 		{

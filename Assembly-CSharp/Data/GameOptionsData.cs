@@ -123,6 +123,10 @@ public class GameOptionsData : IBytesSerializable
 
 	public List<byte> Plugins;
 
+	public List<CE_InterpretedSetting> CustomSettingsRep = new List<CE_InterpretedSetting>();
+
+	public byte Brightness;
+
 	public void ToggleMapFilter(byte newId)
 	{
 		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
@@ -169,6 +173,124 @@ public class GameOptionsData : IBytesSerializable
 		return ByteList;
 	}
 
+	public void WriteCustomSettings(BinaryWriter writer, List<CE_CustomLuaSetting> settings)
+    {
+		if (!CE_LuaLoader.CurrentGMLua)
+		{
+			writer.Write((byte)0);
+			writer.Write(Gamemode);
+			return;
+		}
+		writer.Write((byte)settings.Count);
+		writer.Write(Gamemode);
+		foreach (CE_CustomLuaSetting setting in settings)
+		{
+			writer.Write((byte)setting.DataType);
+			switch (setting.DataType)
+            {
+				case CE_OptDataTypes.String:
+                    {
+                        writer.Write(setting.StringValue);
+                        break;
+                    }
+				case CE_OptDataTypes.Toggle:
+					{
+						writer.Write(CE_ConversionHelpers.FloatToBool(setting.NumValue));
+						break;
+					}
+				case CE_OptDataTypes.ByteRange:
+                    {
+                        writer.Write((byte)setting.NumValue);
+                        break;
+                    }
+				case CE_OptDataTypes.FloatRange:
+                    {
+                        writer.Write((float)setting.NumValue);
+                        break;
+                    }
+				case CE_OptDataTypes.IntRange:
+					{
+						writer.Write((int)setting.NumValue);
+						break;
+					}
+			}
+		}
+	}
+
+	public static List<CE_InterpretedSetting> ReadCustomSettings(BinaryReader reader)
+    {
+		List<CE_InterpretedSetting> set = new List<CE_InterpretedSetting>();
+		byte length = reader.ReadByte();
+        if (length == (byte)0)
+        {
+            return set;
+        }
+		reader.ReadByte();
+		for (byte i=0; i < length; i++)
+		{
+			CE_OptDataTypes type = (CE_OptDataTypes)reader.ReadByte();
+			CE_InterpretedSetting curset = new CE_InterpretedSetting();
+            curset.DataType = type;
+			switch (type)
+			{
+				case CE_OptDataTypes.String:
+					{
+						curset.StringValue = reader.ReadString();
+						break;
+					}
+				case CE_OptDataTypes.ByteRange:
+                    {
+                        curset.NumValue = reader.ReadByte();
+                        break;
+                    }
+				case CE_OptDataTypes.Toggle:
+					{
+						curset.NumValue = CE_ConversionHelpers.BoolToFloat(reader.ReadBoolean());
+						break;
+					}
+				case CE_OptDataTypes.FloatRange:
+					{
+						curset.NumValue = reader.ReadSingle();
+						break;
+					}
+				case CE_OptDataTypes.IntRange:
+					{
+						curset.NumValue = reader.ReadInt32();
+						break;
+					}
+			}
+			set.Add(curset);
+		}
+		return set;
+	}
+
+	public List<CE_CustomLuaSetting> InterpretSettings()
+    {
+        if (CustomSettingsRep.Count == 0)
+        {
+			return new List<CE_CustomLuaSetting>();
+        }
+		for (byte i = 0; i < CustomSettingsRep.Count; i++)
+		{
+			try
+			{
+				if (CustomSettingsRep[i].DataType == CE_OptDataTypes.String)
+				{
+					CE_LuaLoader.CurrentSettings[i].StringValue = CustomSettingsRep[i].StringValue;
+				}
+				else
+				{
+					CE_LuaLoader.CurrentSettings[i].NumValue = CustomSettingsRep[i].NumValue;
+				}
+			}
+			catch(Exception E)
+            {
+				Debug.LogError("Error caught!\n " + E.Message);
+            }
+		}
+		return CE_LuaLoader.CurrentSettings;
+	}
+
 	public void SetRecommendations(int numPlayers, GameModes modes)
 	{
 		numPlayers = Mathf.Clamp(numPlayers, 4, 20);
@@ -209,6 +331,7 @@ public class GameOptionsData : IBytesSerializable
 		GhostsSeeRoles = false;
 		VisionInVents = true;
 		Plugins = new List<byte>();
+		Brightness = 70;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -252,6 +375,8 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(GhostsSeeRoles);
 		writer.Write(VisionInVents);
 		WriteByteList(writer,Plugins);
+		writer.Write(Brightness);
+		WriteCustomSettings(writer,CE_LuaLoader.CurrentSettings);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -259,7 +384,7 @@ public class GameOptionsData : IBytesSerializable
 		try
 		{
 			reader.ReadByte();
-			return new GameOptionsData
+			GameOptionsData gamedat = new GameOptionsData
 			{
 				MaxPlayers = reader.ReadByte(),
 				Keywords = (GameKeywords)reader.ReadUInt32(),
@@ -297,11 +422,16 @@ public class GameOptionsData : IBytesSerializable
 				TaskDifficulty = reader.ReadByte(),
 				GhostsSeeRoles = reader.ReadBoolean(),
 				VisionInVents = reader.ReadBoolean(),
-				Plugins = ReadByteList(reader)
-		};
+				Plugins = ReadByteList(reader),
+				Brightness = reader.ReadByte(),
+				CustomSettingsRep = ReadCustomSettings(reader)
+			};
+			gamedat.InterpretSettings();
+			return gamedat;
 		}
-		catch
+		catch(Exception E)
 		{
+			Debug.LogError(E.Message);
 		}
 		return null;
 	}
@@ -319,7 +449,8 @@ public class GameOptionsData : IBytesSerializable
 	{
 		using MemoryStream input = new MemoryStream(bytes);
 		using BinaryReader reader = new BinaryReader(input);
-		return Deserialize(reader) ?? new GameOptionsData();
+		GameOptionsData gamdat = Deserialize(reader) ?? new GameOptionsData();
+		return gamdat;
 	}
 
 	public override string ToString()
@@ -329,93 +460,123 @@ public class GameOptionsData : IBytesSerializable
 
 	public string ToHudString(int numPlayers)
 	{
-		StringBuilder stringBuilder = new StringBuilder(256);
-		stringBuilder.AppendLine(isDefaults ? "Recommended Settings" : "Custom Settings");
-		int num = MaxImpostors[numPlayers];
-		stringBuilder.AppendLine("Map: " + MapNames[MapId]);
-		stringBuilder.Append($"Impostors: {NumImpostors}");
-		if (NumImpostors > num)
+		try
 		{
-			stringBuilder.Append($" (Limit: {num})");
-		}
-		stringBuilder.AppendLine();
-		stringBuilder.AppendLine("Emergency Meetings: " + NumEmergencyMeetings);
-		stringBuilder.AppendLine($"Discussion Time: {DiscussionTime}s");
-		if (VotingTime > 0)
-		{
-			stringBuilder.AppendLine($"Voting Time: {VotingTime}s");
-		}
-		else
-		{
-			stringBuilder.AppendLine("Voting Time: ∞s");
-		}
-		stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
-        if (CrewLightMod == 0f)
-        {
-			stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
-		}
-        else
-        {
-			stringBuilder.AppendLine($"Crewmate Vision: {CrewLightMod}x");
-		}
-		if (ImpostorLightMod == 0f)
-		{
-			stringBuilder.AppendLine($"Impostor Vision: {Constants.InfinitySymbol}x");
-		}
-		else
-		{
-			stringBuilder.AppendLine($"Impostor Vision: {ImpostorLightMod}x");
-		}
-		stringBuilder.AppendLine($"Kill Cooldown: {KillCooldown}s");
-		stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
-		stringBuilder.AppendLine("Common Tasks: " + NumCommonTasks);
-		stringBuilder.AppendLine("Long Tasks: " + NumLongTasks);
-		stringBuilder.AppendLine("Short Tasks: " + NumShortTasks);
-		stringBuilder.AppendLine("Vents: " + VentModeStrings[Venting]);
-		stringBuilder.AppendLine("Vent Movement: " + VentMode2Strings[VentMode]);
-		stringBuilder.AppendLine("Anonymous Votes: " + AnonVotes);
-		stringBuilder.AppendLine("Confirm Ejects: " + ConfirmEject);
-		stringBuilder.AppendLine("Visual Tasks: " + Visuals);
-		stringBuilder.AppendLine("Gamemode: " + Gamemodes[Gamemode]);
-        stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
-		stringBuilder.AppendLine("Map X Scale: " + MapScaleX);
-		stringBuilder.AppendLine("Map Y Scale: " + MapScaleY);
-        stringBuilder.AppendLine("Map Rotation: " + MapRot);
-        stringBuilder.AppendLine("Taskbar Updates: " + TaskBarUpStrings[TaskBarUpdates]);
-        stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
-        stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
-        stringBuilder.AppendLine("Body Effect: " + BodySett[BodyEffect]);
-        if (BodyEffect == 1)
-        {
-            stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
-        }
-        stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
-        stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
-		stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
-        stringBuilder.AppendLine("Ghosts See Roles: " + GhostsSeeRoles);
-        stringBuilder.AppendLine("Vision In Vents: " + VisionInVents);
-		string pluginlist = string.Empty;
-		foreach (byte b in Plugins)
-        {
-            string beg = string.Empty;
-			string end = string.Empty;
-			if (CE_LuaLoader.IsPluginAnOverride((byte)(b + 1)))
+			StringBuilder stringBuilder = new StringBuilder(256);
+			stringBuilder.AppendLine(isDefaults ? "Recommended Settings" : "Custom Settings");
+			int num = MaxImpostors[numPlayers];
+			stringBuilder.AppendLine("Map: " + MapNames[MapId]);
+			stringBuilder.Append($"Impostors: {NumImpostors}");
+			if (NumImpostors > num)
 			{
-				beg = "[00FF00FF]";
-				end = "[]";
+				stringBuilder.Append($" (Limit: {num})");
 			}
-			pluginlist = pluginlist + beg + PluginNames[b] + end + ",";
-        }
-		if (Plugins.Count != 0)
-		{
-			pluginlist = pluginlist.Remove(pluginlist.Length - 1);
+			stringBuilder.AppendLine();
+			stringBuilder.AppendLine("Emergency Meetings: " + NumEmergencyMeetings);
+			stringBuilder.AppendLine($"Discussion Time: {DiscussionTime}s");
+			if (VotingTime > 0)
+			{
+				stringBuilder.AppendLine($"Voting Time: {VotingTime}s");
+			}
+			else
+			{
+				stringBuilder.AppendLine("Voting Time: ∞s");
+			}
+			stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
+			if (CrewLightMod == 0f)
+			{
+				stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
+			}
+			else
+			{
+				stringBuilder.AppendLine($"Crewmate Vision: {CrewLightMod}x");
+			}
+			if (ImpostorLightMod == 0f)
+			{
+				stringBuilder.AppendLine($"Impostor Vision: {Constants.InfinitySymbol}x");
+			}
+			else
+			{
+				stringBuilder.AppendLine($"Impostor Vision: {ImpostorLightMod}x");
+			}
+			stringBuilder.AppendLine($"Kill Cooldown: {KillCooldown}s");
+			stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
+			stringBuilder.AppendLine("Common Tasks: " + NumCommonTasks);
+			stringBuilder.AppendLine("Long Tasks: " + NumLongTasks);
+			stringBuilder.AppendLine("Short Tasks: " + NumShortTasks);
+			stringBuilder.AppendLine("Vents: " + VentModeStrings[Venting]);
+			stringBuilder.AppendLine("Vent Movement: " + VentMode2Strings[VentMode]);
+			stringBuilder.AppendLine("Anonymous Votes: " + AnonVotes);
+			stringBuilder.AppendLine("Confirm Ejects: " + ConfirmEject);
+			stringBuilder.AppendLine("Visual Tasks: " + Visuals);
+			stringBuilder.AppendLine("Gamemode: " + Gamemodes[Gamemode]);
+			stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
+			stringBuilder.AppendLine("Map X Scale: " + MapScaleX);
+			stringBuilder.AppendLine("Map Y Scale: " + MapScaleY);
+			stringBuilder.AppendLine("Map Rotation: " + MapRot);
+			stringBuilder.AppendLine("Taskbar Updates: " + TaskBarUpStrings[TaskBarUpdates]);
+			stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
+			stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
+			stringBuilder.AppendLine("Body Effect: " + BodySett[BodyEffect]);
+			if (BodyEffect == 1)
+			{
+				stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
+			}
+			stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
+			stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
+			stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
+			stringBuilder.AppendLine("Ghosts See Roles: " + GhostsSeeRoles);
+			stringBuilder.AppendLine("Vision In Vents: " + VisionInVents);
+			string pluginlist = string.Empty;
+			foreach (byte b in Plugins)
+			{
+				string beg = string.Empty;
+				string end = string.Empty;
+				if (CE_LuaLoader.IsPluginAnOverride((byte)(b + 1)))
+				{
+					beg = "[00FF00FF]";
+					end = "[]";
+				}
+				pluginlist = pluginlist + beg + PluginNames[b] + end + ",";
+			}
+			if (Plugins.Count != 0)
+			{
+				pluginlist = pluginlist.Remove(pluginlist.Length - 1);
+			}
+			else
+			{
+				pluginlist = "[0000FFFF]None[]";
+			}
+			stringBuilder.AppendLine("Plugins: " + pluginlist);
+			stringBuilder.AppendLine("Brightness: " + Brightness);
+			string settingstring = string.Empty;
+			if (CE_LuaLoader.CurrentGMLua)
+			{
+				foreach (CE_CustomLuaSetting setting in CE_LuaLoader.CurrentSettings)
+				{
+					if (setting.DataType == CE_OptDataTypes.String)
+					{
+						settingstring += setting.Name + ": " + setting.StringValue;
+					}
+					else if (setting.DataType == CE_OptDataTypes.FloatRange || setting.DataType == CE_OptDataTypes.ByteRange || setting.DataType == CE_OptDataTypes.IntRange)
+					{
+						settingstring += setting.Name + ": " + setting.NumValue;
+					}
+					else if (setting.DataType == CE_OptDataTypes.Toggle)
+                    {
+						settingstring += setting.Name + ": " + CE_ConversionHelpers.FloatToBool(setting.NumValue);
+					}
+					settingstring += "\n";
+				}
+			}
+			stringBuilder.AppendLine(settingstring);
+			return stringBuilder.ToString();
 		}
-		else
+		catch(Exception E)
         {
-			pluginlist = "[0000FFFF]None[]";
-        }
-		stringBuilder.AppendLine("Plugins: " + pluginlist);
-		return stringBuilder.ToString();
+			Debug.LogError("Error caught!\n " + E.Message);
+		}
+		return "error";
 	}
 
 	public bool Validate(int numPlayers)
@@ -476,17 +637,18 @@ public class GameOptionsData : IBytesSerializable
 		TaskDifficulty = 1;
 		GhostsSeeRoles = false;
 		VisionInVents = true;
-        foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
-        {
-            CE_GamemodeInfo value = gamemodeInfo.Value;
-            Gamemodes.SetValue(value.name, value.id - 1);
-            GamemodesAreLua.SetValue(true, value.id - 1);
-        }
-		foreach (KeyValuePair<byte, CE_PluginInfo> gamemodeInfo in CE_LuaLoader.PluginInfos)
+		Brightness = 70;
+		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
 		{
-			CE_PluginInfo value = gamemodeInfo.Value;
-			PluginNames.SetValue(value.name, value.id - 1);
+			CE_GamemodeInfo value = gamemodeInfo.Value;
+			Gamemodes.SetValue(value.name, value.id - 1);
+			GamemodesAreLua.SetValue(true, value.id - 1);
 		}
+        foreach (KeyValuePair<byte, CE_PluginInfo> gamemodeInfo in CE_LuaLoader.PluginInfos)
+        {
+            CE_PluginInfo value = gamemodeInfo.Value;
+            PluginNames.SetValue(value.name, value.id - 1);
+        }
 	}
 
 	static GameOptionsData()
@@ -572,7 +734,7 @@ public class GameOptionsData : IBytesSerializable
         Gamemodes = new string[25]
         {
             "[FF0000FF]Invalid[]",
-            "Zombies",
+			"[FF0000FF]Invalid[]",
             "[FF0000FF]Invalid[]",
             "[FF0000FF]Invalid[]",
             "[FF0000FF]Invalid[]",
