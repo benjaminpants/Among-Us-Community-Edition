@@ -86,7 +86,7 @@ public class HostGameButton : MonoBehaviour, IConnectButton
 				AmongUsClient.Instance.MainMenuScene = "MatchMaking";
 				break;
 			case GameModes.OnlineGame:
-				AmongUsClient.Instance.SetEndpoint("24.181.130.52", 25565);
+				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, Constants.ServersPort);
 				AmongUsClient.Instance.MainMenuScene = "MMOnline";
 				break;
 			case GameModes.FreePlay:

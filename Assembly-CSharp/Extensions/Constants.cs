@@ -31,6 +31,9 @@ public static class Constants
 
 	public static readonly int[] CompatVersions;
 
+    //public static readonly string IP = "24.181.130.52";
+	public static readonly int Port = 25565;
+
 	public const int Year = 4200;
 
 	public const int Month = 69;

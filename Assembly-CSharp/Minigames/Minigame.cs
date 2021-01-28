@@ -79,6 +79,7 @@ public abstract class Minigame : MonoBehaviour
 
 	public virtual void Close()
 	{
+		PlayerControl.LocalPlayer.moveable = true;
 		if (amClosing != CloseState.Closing)
 		{
 			if ((bool)CloseSound && Constants.ShouldPlaySfx())

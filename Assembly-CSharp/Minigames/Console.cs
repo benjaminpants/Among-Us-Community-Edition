@@ -68,6 +68,8 @@ public class Console : MonoBehaviour, IUsable
 		{
 			PlayerControl localPlayer = PlayerControl.LocalPlayer;
 			PlayerTask playerTask = FindTask(localPlayer);
+			localPlayer.moveable = false;
+			localPlayer.NetTransform.Halt();
 			if ((bool)playerTask.MinigamePrefab)
 			{
 				Minigame minigame = UnityEngine.Object.Instantiate(playerTask.MinigamePrefab);

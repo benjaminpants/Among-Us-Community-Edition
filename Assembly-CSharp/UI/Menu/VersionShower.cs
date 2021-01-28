@@ -73,7 +73,7 @@ public class VersionShower : MonoBehaviour
 		}
         CombinedByteListString += Bytes.Length.ToString();
 		BuildID = CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString), 7);
-		text.Text = "v0.5.5 - The update so cool we skipped 5.4" + "\nBuild ID:" + BuildID;
+		text.Text = "v0.5.6 - Deserves to be 0.6.0" + "\nBuild ID:" + BuildID;
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}

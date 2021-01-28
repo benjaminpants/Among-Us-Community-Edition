@@ -13,4 +13,5 @@
 - Spawn In for Hats Not Rendered Acurately (needs testing)
 - Add Logging and Fix File Copying Crashing in Installer
 - Fix colored hats refusing to update outside of the lobby and sometimes not updating at all
+- Fix Reactor Minigame and various other sabotage minigames from not properly stopping the player or the kill cooldown.
 

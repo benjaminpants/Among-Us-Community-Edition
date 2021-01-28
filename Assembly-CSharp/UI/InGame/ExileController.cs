@@ -161,19 +161,19 @@ public class ExileController : MonoBehaviour
 				@object.Exiled();
 			}
 		}
-		if (DestroyableSingleton<TutorialManager>.InstanceExists || !ShipStatus.Instance.IsGameOverDueToDeath())
-		{
-			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.CoFadeFullScreen(Color.black, Color.clear));
-			PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
-			Camera.main.GetComponent<FollowerCamera>().Locked = false;
-			DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: true);
-		}
+        if (DestroyableSingleton<TutorialManager>.InstanceExists || !ShipStatus.Instance.IsGameOverDueToDeath())
+        {
+            DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.CoFadeFullScreen(Color.black, Color.clear));
+            PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
+            Camera.main.GetComponent<FollowerCamera>().Locked = false;
+            DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: true);
+        }
 		if (exiled != null)
 		{
 			CE_LuaLoader.GetGamemodeResult("OnExile", (CE_PlayerInfoLua)exiled);
 		}
 		else
-        {
+		{
 			CE_LuaLoader.GetGamemodeResult("OnExileSkip", null);
 		}
 		ShipStatus.Instance.TimeSinceLastRound = 0f;
@@ -191,6 +191,7 @@ public class ExileController : MonoBehaviour
 			CE_WardrobeManager.MatchBaseHatRender(PlayerHatExt4, PlayerHat);
 		}
 	}
+
 
 	private void LateUpdate()
 	{

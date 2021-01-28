@@ -755,14 +755,16 @@ public class PlayerControl : InnerNetObject
 		{
 			List<PlayerControl> yourTeam = ((!data.IsImpostor) ? (from pcd in GameData.Instance.AllPlayers
 				where !pcd.Disconnected
+				where ((CE_RoleManager.GetRoleFromID(pcd.role).Layer == CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role).Layer) || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).Layer == 0)
 				select pcd.Object into pc
 				orderby (!(pc == LocalPlayer)) ? 1 : 0
+
 				select pc).ToList() : (from pcd in GameData.Instance.AllPlayers
 				where !pcd.Disconnected
 				where pcd.IsImpostor
 				select pcd.Object into pc
 				orderby (!(pc == LocalPlayer)) ? 1 : 0
-				select pc).ToList());
+				select pc).ToList());;
 			StopAllCoroutines();
 			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.CoShowIntro(yourTeam));
 		}

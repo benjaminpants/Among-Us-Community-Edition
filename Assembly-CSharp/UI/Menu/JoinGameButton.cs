@@ -23,6 +23,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 
 	public string netAddress;
 
+
 	public void OnClick()
 	{
 		if (string.IsNullOrWhiteSpace(netAddress) || NameTextBehaviour.Instance.ShakeIfInvalid())
@@ -43,7 +44,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 			AmongUsClient.Instance.GameMode = GameMode;
 			if (GameMode == GameModes.OnlineGame)
 			{
-				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 25565);
+				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, Constants.ServersPort);
 				AmongUsClient.Instance.MainMenuScene = "MMOnline";
 				int num = InnerNetClient.GameNameToInt(GameIdText.text);
 				if (num == -1)

@@ -32,14 +32,8 @@ public class KillAnimation : MonoBehaviour
 		if (hasowner)
 		{
 			yield return new WaitForAnimationFinish(sourceAnim, BlurAnim);
-		}
-        source.NetTransform.SnapTo(target.transform.position);
-        if (hasowner)
-        {
+			source.NetTransform.SnapTo(target.transform.position);
             sourceAnim.Play(sourcePhys.IdleAnim);
-        }
-		if (hasowner)
-		{
 			SetMovement(source, canMove: true);
 		}
 		DeadBody deadBody = Object.Instantiate(bodyPrefab);

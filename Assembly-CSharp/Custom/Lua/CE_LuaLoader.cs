@@ -65,13 +65,16 @@ public static class CE_LuaLoader
 		return true;
 	}
 
-	private static void GiveAPICalls(Script script)
+	private static void GiveAPICalls(Script script,bool isgm = true)
 	{
 		script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
 		script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
 		script.Globals["Game_GetAllPlayersComplex"] = (Func<bool, bool, List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayersComplex;
-		script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
-		script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, bool>)CE_GameLua.CreateRoleComplex;
+		if (isgm)
+		{
+			script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
+			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, byte, bool>)CE_GameLua.CreateRoleComplex;
+		}
 		script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
 		script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
 		script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
@@ -86,16 +89,22 @@ public static class CE_LuaLoader
 		script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
 		script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
 		script.Globals["Debug_Log"] = (Func<string, bool>)CE_GameLua.DebugLogLua;
-		script.Globals["Debug_Error"] = (Func<string, bool>)CE_GameLua.DebugErrorLua;
-		script.Globals["UI_AddLangEntry"] = (Func<string, string, bool>)AddLangEntry;
+        script.Globals["Debug_Error"] = (Func<string, bool>)CE_GameLua.DebugErrorLua;
+		if (isgm)
+		{
+			script.Globals["UI_AddLangEntry"] = (Func<string, string, bool>)AddLangEntry;
+		}
         script.Globals["Game_CheckPlayerInVent"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.CheckIfInVent;
         script.Globals["Client_GetLocalPlayer"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetLocal;
         script.Globals["Game_KillPlayer"] = (Func<CE_PlayerInfoLua, bool, bool>)CE_GameLua.KillPlayer;
-		script.Globals["Settings_CreateByte"] = (Func<string, byte, byte, byte, byte, bool>)TempAddCustomByteSetting;
-        script.Globals["Settings_CreateInt"] = (Func<string, int, int, int, int, bool>)TempAddCustomIntSetting;
-        script.Globals["Settings_CreateFloat"] = (Func<string, float, float, float, float, bool>)TempAddCustomFloatSetting;
-		script.Globals["Settings_CreateBool"] = (Func<string, bool, bool>)TempAddCustomBoolSetting;
-		script.Globals["Settings_GetByte"] = (Func<byte, float>)CE_GameLua.GetNumber;
+		if (isgm)
+		{
+			script.Globals["Settings_CreateByte"] = (Func<string, byte, byte, byte, byte, bool>)TempAddCustomByteSetting;
+			script.Globals["Settings_CreateInt"] = (Func<string, int, int, int, int, bool>)TempAddCustomIntSetting;
+			script.Globals["Settings_CreateFloat"] = (Func<string, float, float, float, float, bool>)TempAddCustomFloatSetting;
+			script.Globals["Settings_CreateBool"] = (Func<string, bool, bool>)TempAddCustomBoolSetting;
+		}
+		script.Globals["Settings_GetNumber"] = (Func<byte, float>)CE_GameLua.GetNumber;
 		script.Globals["Settings_GetBool"] = (Func<byte, bool>)CE_GameLua.GetBool;
 	}
 	public static void LoadLua()
@@ -114,7 +123,7 @@ public static class CE_LuaLoader
 				Script script = new Script();
 				TempLang = new CE_Language(true);
 				TempSetting = new List<CE_CustomLuaSetting>();
-				GiveAPICalls(script);
+				GiveAPICalls(script,true);
 				script.DoString(code);
 				Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
 				byte b = (byte)table.Get(2).Number;
@@ -145,7 +154,7 @@ public static class CE_LuaLoader
 				CurrentGMName = plfiles[i].Name.Remove(plfiles[i].Name.Length - 4);
 				Script script = new Script();
 				TempLang = new CE_Language(false);
-				GiveAPICalls(script);
+				GiveAPICalls(script,false);
 				script.DoString(code);
 				Table table = script.Call(script.Globals["InitializePlugin"]).Table;
 				byte b = (byte)table.Get(2).Number;

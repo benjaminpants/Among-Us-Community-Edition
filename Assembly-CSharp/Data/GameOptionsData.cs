@@ -220,53 +220,62 @@ public class GameOptionsData : IBytesSerializable
 	public static List<CE_InterpretedSetting> ReadCustomSettings(BinaryReader reader)
     {
 		List<CE_InterpretedSetting> set = new List<CE_InterpretedSetting>();
-		byte length = reader.ReadByte();
-        if (length == (byte)0)
-        {
-            return set;
-        }
-		reader.ReadByte();
-		for (byte i=0; i < length; i++)
+		try
 		{
-			CE_OptDataTypes type = (CE_OptDataTypes)reader.ReadByte();
-			CE_InterpretedSetting curset = new CE_InterpretedSetting();
-            curset.DataType = type;
-			switch (type)
+			byte length = reader.ReadByte();
+			if (length == (byte)0)
 			{
-				case CE_OptDataTypes.String:
-					{
-						curset.StringValue = reader.ReadString();
-						break;
-					}
-				case CE_OptDataTypes.ByteRange:
-                    {
-                        curset.NumValue = reader.ReadByte();
-                        break;
-                    }
-				case CE_OptDataTypes.Toggle:
-					{
-						curset.NumValue = CE_ConversionHelpers.BoolToFloat(reader.ReadBoolean());
-						break;
-					}
-				case CE_OptDataTypes.FloatRange:
-					{
-						curset.NumValue = reader.ReadSingle();
-						break;
-					}
-				case CE_OptDataTypes.IntRange:
-					{
-						curset.NumValue = reader.ReadInt32();
-						break;
-					}
+				return set;
 			}
-			set.Add(curset);
+			reader.ReadByte();
+			for (byte i = 0; i < length; i++)
+			{
+				CE_OptDataTypes type = (CE_OptDataTypes)reader.ReadByte();
+				CE_InterpretedSetting curset = new CE_InterpretedSetting();
+				curset.DataType = type;
+				switch (type)
+				{
+					case CE_OptDataTypes.String:
+						{
+							curset.StringValue = reader.ReadString();
+							break;
+						}
+					case CE_OptDataTypes.ByteRange:
+						{
+							curset.NumValue = reader.ReadByte();
+							break;
+						}
+					case CE_OptDataTypes.Toggle:
+						{
+							curset.NumValue = CE_ConversionHelpers.BoolToFloat(reader.ReadBoolean());
+							break;
+						}
+					case CE_OptDataTypes.FloatRange:
+						{
+							curset.NumValue = reader.ReadSingle();
+							break;
+						}
+					case CE_OptDataTypes.IntRange:
+						{
+							curset.NumValue = reader.ReadInt32();
+							break;
+						}
+				}
+				set.Add(curset);
+			}
 		}
+		catch
+        {
+
+        }
 		return set;
 	}
 
 	public List<CE_CustomLuaSetting> InterpretSettings()
     {
-        if (CustomSettingsRep.Count == 0)
+		List<CE_CustomLuaSetting> setto = CE_LuaLoader.CustomGMSettings[(byte)(Gamemode + 1)];
+
+		if (CustomSettingsRep.Count == 0)
         {
 			return new List<CE_CustomLuaSetting>();
         }
@@ -274,14 +283,14 @@ public class GameOptionsData : IBytesSerializable
 		{
 			try
 			{
-				if (CustomSettingsRep[i].DataType == CE_OptDataTypes.String)
-				{
-					CE_LuaLoader.CurrentSettings[i].StringValue = CustomSettingsRep[i].StringValue;
-				}
-				else
-				{
-					CE_LuaLoader.CurrentSettings[i].NumValue = CustomSettingsRep[i].NumValue;
-				}
+                if (CustomSettingsRep[i].DataType == CE_OptDataTypes.String)
+                {
+					setto[i].StringValue = CustomSettingsRep[i].StringValue;
+                }
+                else
+                {
+					setto[i].NumValue = CustomSettingsRep[i].NumValue;
+                }
 			}
 			catch(Exception E)
             {
@@ -426,7 +435,8 @@ public class GameOptionsData : IBytesSerializable
 				Brightness = reader.ReadByte(),
 				CustomSettingsRep = ReadCustomSettings(reader)
 			};
-			gamedat.InterpretSettings();
+            gamedat.InterpretSettings();
+			
 			return gamedat;
 		}
 		catch(Exception E)

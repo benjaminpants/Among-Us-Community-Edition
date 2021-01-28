@@ -168,7 +168,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		}
 		AmongUsClient.Instance.GameMode = GameModes.OnlineGame;
 		AmongUsClient.Instance.GameId = InnerNetClient.GameNameToInt(joinSecret.Substring(4));
-		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, 25565);
+		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, Constants.ServersPort);
 		AmongUsClient.Instance.MainMenuScene = "MMOnline";
 		AmongUsClient.Instance.OnlineScene = "OnlineGame";
 		DestroyableSingleton<DiscordManager>.Instance.StopAllCoroutines();
