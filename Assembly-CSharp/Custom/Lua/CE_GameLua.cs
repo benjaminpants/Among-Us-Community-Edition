@@ -24,6 +24,11 @@ static class CE_GameLua
         return (CE_PlayerInfoLua)PlayerControl.LocalPlayer;
     }
 
+    public static CE_PlayerInfoLua GetHost()
+    {
+        return (CE_PlayerInfoLua)GameData.Instance.GetHost();
+    }
+
     public static bool SabSystem(string sysname, CE_PlayerInfoLua plfo, bool fix, int fixoverride = -1)
     {
         byte sab;
@@ -68,6 +73,12 @@ static class CE_GameLua
     public static bool ShowCLMessage(string msg)
     {
         DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(msg);
+        return true;
+    }
+
+    public static bool ClearCLMessage()
+    {
+        DestroyableSingleton<HudManager>.Instance.Notifier.ClearText();
         return true;
     }
     public static bool UpdatePlayerInfo(DynValue dynval)
@@ -274,9 +285,9 @@ static class CE_GameLua
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
         return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText));
     }
-    public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis, bool dotask = true, byte layer = 0)
+    public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis, bool dotask = true, byte layer = 0, bool canseeimp = false)
     {
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
-        return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis,dotask,layer));
+        return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis,dotask,layer,canseeimp));
     }
 }

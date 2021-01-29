@@ -3,6 +3,10 @@
 local invent_timer = 15
 local timedif = 0
 
+local poslength = 8
+local sni = 9
+local dkp = 10
+
 
 function InitializeGamemode()
 	Game_CreateRole("Sheriff",{255,216,0},"Find and Kill the [FF1919FF]Impostor[].",{0},1,0,false,true,255)
@@ -12,6 +16,7 @@ function InitializeGamemode()
 	Game_CreateRole("Witch",{170, 102, 173},"Poison everyone, including [FF1919FF]Impostors[].",{0},2,0,true,false,255)
 	Game_CreateRole("Clown",{243, 222, 255},"If you get ejected, \n\ryou kill someone else randomly.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true)
 	Game_CreateRole("Doctor",{25, 255, 25},"Cure [8CFFFFFF]Crewmates[] poisoned by a [AA66ADFF]Witch[].",{0},1,3,false,true,1)
+	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true)
 	--roles you aren't supposed to see
 	Game_CreateRole("Broken",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
 	--counts
@@ -22,9 +27,10 @@ function InitializeGamemode()
 	Settings_CreateByte("Witch Count",0,3,0) -- 4
 	Settings_CreateByte("Clown Count",0,4,0) -- 5
 	Settings_CreateByte("Doctor Count",0,3,0) -- 6
-	Settings_CreateByte("Poison Length",5,120,15,5) -- 7
-	Settings_CreateBool("Shields Kill Impostors",false) -- 8
-	Settings_CreateBool("Doctors Know Poisoned",false) -- 9
+	Settings_CreateByte("Griefer Count",0,4,0) -- 7
+	Settings_CreateByte("Poison Length",5,120,15,5) -- 8
+	Settings_CreateBool("Shields Kill Impostors",false) -- 9
+	Settings_CreateBool("Doctors Know Poisoned",false) -- 10
 	
 	return {"Roles",2}
 end
@@ -57,7 +63,7 @@ end
 
 
 function OnGameStart()
-	invent_timer = Settings_GetNumber(7)
+	invent_timer = Settings_GetNumber(poslength)
 	timedif = 0
 end
 
@@ -78,7 +84,7 @@ function OnClientUpdate(timer,timesincelastround)
 			Game_KillPlayer(Client_GetLocalPlayer(),false)
 		end
 	else
-		invent_timer = Settings_GetNumber(7)
+		invent_timer = Settings_GetNumber(poslength)
 	end
 	timedif = timer
 end
@@ -172,7 +178,7 @@ end
 
 function CanKill(userinfo,targetinfo)
 	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Doctor")) then
-		if (Settings_GetBool(9)) then
+		if (Settings_GetBool(dkp)) then
 			return (targetinfo.luavalue1 == 255)
 		else
 			return true
@@ -180,6 +186,14 @@ function CanKill(userinfo,targetinfo)
 	end
 	
 	if (userinfo.IsImpostor) then
+		if (targetinfo.IsImpostor) then
+			return false
+		else
+			return not (targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") or targetinfo.luavalue1 == 255)
+		end
+	end
+	
+	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Griefer")) then
 		if (targetinfo.IsImpostor) then
 			return false
 		else
@@ -210,9 +224,7 @@ function OnDeath(victim)
 	if (victim.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
-			Debug_Log("role:" .. players[i].role)
 			if ((players[i].PlayerName == victim.PlayerName or players[i].IsDead or players[i].IsImpostor) or players[i].role > 0) then
-				Debug_Log("yeetus!")
 				table.remove(players,i)
 			end
 		end
@@ -232,12 +244,17 @@ function BeforeKill(killer,victim)
 		return false
 	end
 	if (victim.role == Game_GetRoleIDFromUUID("roles_Shielded")) then
-		if (Settings_GetBool(8)) then
+		if (Settings_GetBool(sni)) then
 			Game_KillPlayer(killer,false)
 		else
 			Client_ShowMessage("You broke their shield.")
 		end
 		Game_SetRoles({victim},{"roles_Broken"})
+		return false
+	end
+	if (killer.role == Game_GetRoleIDFromUUID("roles_Griefer")) then
+		Player_SnapPosTo(killer.PosX,killer.PosY,victim)
+		Game_KillPlayer(killer,false)
 		return false
 	end
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Witch")) then
@@ -283,6 +300,9 @@ function DecideRolesFunction(playerinfos)
 	end
 	for i=1, Settings_GetNumber(6) do
 		table.insert(RolesToGive,"roles_Doctor")
+	end
+	for i=1, Settings_GetNumber(7) do
+		table.insert(RolesToGive,"roles_Griefer")
 	end
 	local Selected = {}
 	local SelectedRoles = {}

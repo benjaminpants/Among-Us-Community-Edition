@@ -320,6 +320,7 @@ public class HudManager : DestroyableSingleton<HudManager>
 		});
 	}
 
+
 	public void Update()
 	{
 		try

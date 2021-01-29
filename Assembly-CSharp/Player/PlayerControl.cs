@@ -743,7 +743,7 @@ public class PlayerControl : InnerNetObject
 				players[i].Object.nameText.Color = Palette.White;
 			}
 		}
-		if (data.IsImpostor)
+		if (data.IsImpostor || CE_RoleManager.GetRoleFromID(data.role).CanSeeImps)
 		{
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
 			for (int k = 0; k < infected.Length; k++)
@@ -1481,7 +1481,7 @@ public class PlayerControl : InnerNetObject
 		}
 		DestroyableSingleton<HudManager>.Instance.MapButton.gameObject.SetActive(value: true);
 		DestroyableSingleton<HudManager>.Instance.ReportButton.gameObject.SetActive(value: true);
-		if (!LocalPlayer.Data.IsImpostor)
+		if (!LocalPlayer.Data.IsImpostor || !CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role).CanSeeImps)
 		{
 			return;
 		}

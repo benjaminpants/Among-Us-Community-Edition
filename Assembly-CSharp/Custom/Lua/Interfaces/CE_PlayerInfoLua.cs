@@ -78,6 +78,17 @@ public class CE_PlayerInfoLua
 
 	public byte luavalue3;
 
+	public float PosX
+	{
+		get;
+		private set;
+	}
+	public float PosY
+	{
+		get;
+		private set;
+	}
+
 	public CE_PlayerInfoLua()
 	{
 		throw new System.Exception("Attempted to create a PlayerInfo without a reference!");
@@ -98,6 +109,8 @@ public class CE_PlayerInfoLua
         luavalue1 = plf.luavalue1;
         luavalue2 = plf.luavalue2;
 		luavalue3 = plf.luavalue3;
+        PosX = plf.Object.transform.position.x;
+		PosY = plf.Object.transform.position.y;
 		refplayer = plf;
 	}
 }

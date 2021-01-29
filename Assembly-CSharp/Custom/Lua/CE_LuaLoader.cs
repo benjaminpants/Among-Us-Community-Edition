@@ -73,19 +73,19 @@ public static class CE_LuaLoader
 		if (isgm)
 		{
 			script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
-			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, byte, bool>)CE_GameLua.CreateRoleComplex;
+			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, byte, bool, bool>)CE_GameLua.CreateRoleComplex;
 		}
 		script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
 		script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
 		script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
 		script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
 		script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
-		script.Globals["Game_StartObjectInit"] = (Func<string, CE_LuaSpawnableObject>)CE_GameLua.CreateObject;
-		script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
+        script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
+		script.Globals["Client_ClearMessages"] = (Func<bool>)CE_GameLua.ClearCLMessage;
 		script.Globals["Game_SabSystem"] = (Func<string, CE_PlayerInfoLua, bool, int, bool>)CE_GameLua.SabSystem;
-		script.Globals["Game_SendObjectToServer"] = (Func<CE_LuaSpawnableObject, bool>)CE_GameLua.SendObject;
 		script.Globals["Player_SnapPosTo"] = (Func<float, float, CE_PlayerInfoLua, bool>)CE_GameLua.SnapPlayerToPos;
-		script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
+        script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
+		script.Globals["Net_GetHost"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetHost;
 		script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
 		script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
 		script.Globals["Debug_Log"] = (Func<string, bool>)CE_GameLua.DebugLogLua;

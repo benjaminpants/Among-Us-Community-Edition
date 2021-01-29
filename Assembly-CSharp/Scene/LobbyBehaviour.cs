@@ -44,8 +44,10 @@ public class LobbyBehaviour : InnerNetObject
 			if (PlayerControl.GameOptions != null)
 			{
                 int numPlayers = (GameData.Instance ? GameData.Instance.PlayerCount : 20);
-				DestroyableSingleton<HudManager>.Instance.GameSettings.scale = 0.45f;
-				DestroyableSingleton<HudManager>.Instance.GameSettings.Text = PlayerControl.GameOptions.ToHudString(numPlayers);
+                DestroyableSingleton<HudManager>.Instance.GameSettings.Text = PlayerControl.GameOptions.ToHudString(numPlayers);
+				int numlines = DestroyableSingleton<HudManager>.Instance.GameSettings.Text.Split('\n').Length;
+				Debug.Log(numlines);
+				DestroyableSingleton<HudManager>.Instance.GameSettings.scale = 0.45f - (0.01f * (numlines - 41));
 				DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(value: true);
 			}
 		}

@@ -565,9 +565,9 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 						PlayerControl.SetPlayerMaterialColors(playerById.ColorId, spriteRenderer2);
 					}
 					spriteRenderer2.transform.SetParent(SkippedVoting.transform);
-					spriteRenderer2.transform.localPosition = CounterOrigin + new Vector3(CounterOffsets.x / 2f * (float)num, 0f, 0f);
+					spriteRenderer2.transform.localPosition = CounterOrigin + new Vector3((CounterOffsets.x / 2) * (float)num, 0f, 0f);
 					spriteRenderer2.transform.localScale = Vector3.zero;
-					StartCoroutine(Effects.Bloop(num, spriteRenderer2.transform));
+					StartCoroutine(Effects.BloopEntireHalf(num / 2f, spriteRenderer2.transform));
 					num++;
 				}
 			}
@@ -643,7 +643,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		playerVoteArea.PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
 		playerVoteArea.NameText.Text = playerInfo.PlayerName;
 		playerVoteArea.NameText.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
-		bool flag = ((PlayerControl.LocalPlayer.Data.IsImpostor && playerInfo.IsImpostor) || (PlayerControl.LocalPlayer.Data.IsDead && playerInfo.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles);
+		bool flag = (((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanSeeImps) && playerInfo.IsImpostor) || (PlayerControl.LocalPlayer.Data.IsDead && playerInfo.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles);
 		CE_Role playerrole = CE_RoleManager.GetRoleFromID(playerInfo.role);
 		playerVoteArea.NameText.Color = (flag ? Palette.ImpostorRed : Color.white);
 		if ((playerrole.CanSee(PlayerControl.LocalPlayer.Data) || playerInfo == PlayerControl.LocalPlayer.Data) && playerInfo.role != 0 && !flag)
