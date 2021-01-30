@@ -9,7 +9,7 @@ public static class Constants
 
 	public const int AnnouncementPort = 22024;
 
-	public const int ServersPort = 25565;
+	public const int ServersPort = 27485;
 
 	public const string InfinitySymbol = "∞";
 

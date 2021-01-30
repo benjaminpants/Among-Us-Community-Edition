@@ -162,6 +162,7 @@ public class UnlockManifoldsMinigame : Minigame
 		{
 			Buttons[l].color = Color.white;
 		}
+		TimesToDo = TimesToDoStart;
 		animating = false;
 	}
 }

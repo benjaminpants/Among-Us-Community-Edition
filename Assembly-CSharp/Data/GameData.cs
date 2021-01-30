@@ -242,10 +242,12 @@ public class GameData : InnerNetObject, IDisconnectHandler
 	public void UpdateColor(byte playerId, byte color)
 	{
 		PlayerInfo playerById = GetPlayerById(playerId);
-		if (playerById != null)
-		{
-			playerById.ColorId = color;
-		}
+        if (playerById != null)
+        {
+            playerById.ColorId = color;
+        }
+		uint hatId = playerById.HatId;
+		playerById.Object.UpdateHat(hatId);
 	}
 
 	public void UpdateHat(byte playerId, uint hat)

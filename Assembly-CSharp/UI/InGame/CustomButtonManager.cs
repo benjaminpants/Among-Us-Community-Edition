@@ -71,10 +71,4 @@ public class CustomButtonManager : MonoBehaviour
 		}
 	}
 
-	public void PerformKeybindKill()
-	{
-		isKeyPressKill = true;
-		PerformKill();
-		isKeyPressKill = false;
-	}
 }

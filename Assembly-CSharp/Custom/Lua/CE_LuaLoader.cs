@@ -233,7 +233,7 @@ public static class CE_LuaLoader
             {
 				if (script.Globals[fn] != null)
 				{
-					Debug.LogWarning(E.Message + "\nUnable to find valid function:" + fn + "\nAttempting to call function in base lua...");
+					Debug.LogWarning(E.Message + "\nStack trace:" + E.StackTrace + "\nUnable to find valid function:" + fn + "\nAttempting to call function in base lua...");
 				}
                 if (GamemodeInfos.TryGetValue(1, out var value2))
                 {

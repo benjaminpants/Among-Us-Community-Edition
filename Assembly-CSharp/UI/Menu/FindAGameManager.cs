@@ -55,32 +55,27 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 			}
 		}
 		AmongUsClient.Instance.GameListHandlers.Add(this);
-		HandleList(1, new List<GameListing>
-		{
-			new GameListing
+		List<GameListing> GameLists = new List<GameListing>();
+		for (int i=0; i < ServerManager.Instance.availableServers.Length; i++)
+        {
+			ServerInfo fo = ServerManager.Instance.availableServers[i];
+			GameLists.Add(new GameListing
 			{
-				GameId = 0,
-				HostName = "\n\nPublic Lobbies are not supported.\n[FFFF00FF]The game is funner with friends anyway![]",
+				GameId = i,
+				HostName = fo.Name + "\n" + fo.Ip + ":" + fo.Port,
 				ImpostorCount = 0,
-				MaxPlayers = 10,
+				MaxPlayers = 0,
 				PlayerCount = 0,
-				Age = 69
-			}
-		});
+				Age = i,
+				ListingID = i,
+				Icon = fo.Icon
+			}); ;
+		}
+		HandleList(GameLists.Count, GameLists);
 	}
 
 	public void Update()
 	{
-		timer += Time.deltaTime;
-		GameOptionsData gameSearchOptions = SaveManager.GameSearchOptions;
-		if ((timer < 0f || timer > 5f) && gameSearchOptions.MapId != 0)
-		{
-			RefreshSpinner.Appear();
-		}
-		else
-		{
-			RefreshSpinner.Disappear();
-		}
 		if (CE_Input.CE_GetKeyUp(KeyCode.Escape))
 		{
 			ExitGame();

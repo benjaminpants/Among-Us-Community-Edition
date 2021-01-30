@@ -1,6 +1,8 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
+using System;
 
 public class ServerManager : DestroyableSingleton<ServerManager>
 {
@@ -11,7 +13,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		Success
 	}
 
-	public const string DefaultOnlineServer = "24.181.130.52";
+	public const string DefaultOnlineServer = "172.98.89.233";
 
 	public static readonly ServerInfo DefaultServer;
 
@@ -23,16 +25,52 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 
 	private UpdateState state;
 
-	public string OnlineNetAddress => LastServer.Ip;
+    public string OnlineNetAddress => LastServer.Ip;
+	public int LastPort => LastServer.Port;
 
 	public void Start()
 	{
 		serverInfoFile = Path.Combine(Application.persistentDataPath, "serverInfo.dat");
-		LastServer = DefaultServer;
-		availableServers = new ServerInfo[1]
+        LastServer = DefaultServer;
+        /*ServerInfo localfo = new ServerInfo
 		{
-			LastServer
-		};
+			Name = "Playtesters Only",
+			Ip = "24.181.130.52",
+			Port = 25565,
+			Default = false
+		};*/
+        try
+        {
+            if (!File.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")))
+            {
+                availableServers = new ServerInfo[1]
+                {
+                LastServer
+                };
+            }
+            else
+            {
+                availableServers = JsonConvert.DeserializeObject<ServerInfo[]>(File.ReadAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")));
+            }
+        }
+        catch (Exception E)
+        {
+            Debug.LogError(E.Message);
+            state = UpdateState.Failed;
+            return;
+        }
+		try
+		{
+			FileStream json = File.Create(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"));
+			json.Close();
+			File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"), JsonConvert.SerializeObject(availableServers, Formatting.Indented));
+		}
+		catch (Exception E)
+		{
+			Debug.LogError(E.Message);
+			state = UpdateState.Failed;
+			return;
+		}
 		state = UpdateState.Success;
 	}
 
@@ -49,8 +87,10 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		DefaultServer = new ServerInfo
 		{
 			Name = "Primary",
-			Ip = "24.181.130.52",
-			Default = true
+			Ip = "172.98.89.233",
+			Port = 27485,
+			Default = true,
+			Icon = "globe.png"
 		};
 	}
 }

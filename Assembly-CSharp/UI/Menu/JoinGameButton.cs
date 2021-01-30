@@ -44,7 +44,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 			AmongUsClient.Instance.GameMode = GameMode;
 			if (GameMode == GameModes.OnlineGame)
 			{
-				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, Constants.ServersPort);
+				AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, (ushort)DestroyableSingleton<ServerManager>.Instance.LastPort);
 				AmongUsClient.Instance.MainMenuScene = "MMOnline";
 				int num = InnerNetClient.GameNameToInt(GameIdText.text);
 				if (num == -1)

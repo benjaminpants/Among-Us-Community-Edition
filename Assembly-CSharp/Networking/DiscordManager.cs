@@ -121,27 +121,12 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		string text = InnerNetClient.IntToGameName(gameId);
 		presence.state = "In Lobby";
 		presence.details = "Hosting a game";
-		presence.partySize = numPlayers;
-		presence.partyMax = 20;
 		presence.smallImageKey = "icon_lobby";
-		presence.largeImageText = "Ask to play!";
-		presence.joinSecret = "join" + text;
-		presence.matchSecret = "match" + text;
-		presence.partyId = text;
 		DiscordRpc.UpdatePresence(presence);
 	}
 
 	private void HandleAutoJoin(ref DiscordRpc.DiscordUser requestUser)
 	{
-		Debug.Log("Discord: request from " + requestUser.username);
-		if (AmongUsClient.Instance.IsGameStarted)
-		{
-			RequestRespondNo();
-		}
-		else
-		{
-			RequestRespondYes();
-		}
 	}
 
 	private void HandleJoinRequest(string joinSecret)
@@ -168,7 +153,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		}
 		AmongUsClient.Instance.GameMode = GameModes.OnlineGame;
 		AmongUsClient.Instance.GameId = InnerNetClient.GameNameToInt(joinSecret.Substring(4));
-		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, Constants.ServersPort);
+		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, (ushort)DestroyableSingleton<ServerManager>.Instance.LastPort);
 		AmongUsClient.Instance.MainMenuScene = "MMOnline";
 		AmongUsClient.Instance.OnlineScene = "OnlineGame";
 		DestroyableSingleton<DiscordManager>.Instance.StopAllCoroutines();

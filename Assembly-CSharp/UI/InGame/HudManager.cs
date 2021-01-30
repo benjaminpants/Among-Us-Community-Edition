@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+// DONT ADD ANY NEW VARIABLES TO THIS CLASS, IT RESULTS IN AN INSTANT CRASH.
 public class HudManager : DestroyableSingleton<HudManager>
 {
 	public MeetingHud MeetingPrefab;

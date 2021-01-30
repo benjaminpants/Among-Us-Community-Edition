@@ -670,23 +670,6 @@ namespace InnerNet
 				}
 				break;
 			}
-			case 9:
-			{
-				int totalGames = reader.ReadPackedInt32();
-				List<GameListing> output = new List<GameListing>();
-				while (reader.Position < reader.Length)
-				{
-					output.Add(new GameListing(reader.ReadInt32(), reader.ReadByte(), reader.ReadByte(), reader.ReadByte(), reader.ReadPackedInt32(), reader.ReadString()));
-				}
-				lock (DispatchQueue)
-				{
-					DispatchQueue.Add(delegate
-					{
-						OnGetGameList(totalGames, output);
-					});
-				}
-				break;
-			}
 			case 10:
 			{
 				int num3 = reader.ReadInt32();

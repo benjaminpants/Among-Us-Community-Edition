@@ -9,7 +9,11 @@ namespace InnerNet
 
 		public byte PlayerCount;
 
-		public byte ImpostorCount;
+		public int ListingID;
+
+		public string Icon;
+
+		public int ImpostorCount;
 
 		public byte MaxPlayers;
 
@@ -17,7 +21,7 @@ namespace InnerNet
 
 		public string HostName;
 
-		public GameListing(int id, byte numImpostors, byte playerCount, byte maxPlayers, int age, string host)
+		public GameListing(int id, int numImpostors, byte playerCount, byte maxPlayers, int age, string host, int listid, string iconname = "skeld.png")
 		{
 			GameId = id;
 			ImpostorCount = numImpostors;
@@ -25,6 +29,8 @@ namespace InnerNet
 			MaxPlayers = maxPlayers;
 			Age = age;
 			HostName = host;
+			ListingID = listid;
+			Icon = iconname;
 		}
 	}
 }

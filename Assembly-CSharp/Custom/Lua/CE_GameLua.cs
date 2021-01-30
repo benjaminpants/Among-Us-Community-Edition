@@ -248,7 +248,10 @@ static class CE_GameLua
         List<CE_PlayerInfoLua> PlayFoLua = new List<CE_PlayerInfoLua>();
         foreach (GameData.PlayerInfo plrfo in GameData.Instance.AllPlayers)
         {
-            PlayFoLua.Add((CE_PlayerInfoLua)plrfo);
+            if (!plrfo.Disconnected)
+            {
+                PlayFoLua.Add((CE_PlayerInfoLua)plrfo);
+            }
         }
         return PlayFoLua;
     }

@@ -907,18 +907,23 @@ public class PlayerControl : InnerNetObject
 		MyPhysics.SetSkin(skinId);
 	}
 
-	public void SetHat(uint hatId)
-	{
-		if ((bool)GameData.Instance)
-		{
-			GameData.Instance.UpdateHat(PlayerId, hatId);
-		}
+	public void UpdateHat(uint hatId)
+    {
 		if (HatRenderer != null && Data != null) SetHatImage(hatId, HatRenderer, 0, Data.ColorId);
 		if (HatRendererExt != null && Data != null) SetHatImage(hatId, HatRendererExt, 1, Data.ColorId);
 		if (HatRendererExt2 != null && Data != null) SetHatImage(hatId, HatRendererExt2, 2, Data.ColorId);
 		if (HatRendererExt3 != null && Data != null) SetHatImage(hatId, HatRendererExt3, 3, Data.ColorId);
 		if (HatRendererExt4 != null && Data != null) SetHatImage(hatId, HatRendererExt4, 4, Data.ColorId);
 		if (nameText != null) nameText.transform.localPosition = new Vector3(0f, (hatId == 0) ? 0.7f : 1.05f, -0.5f);
+	}
+
+	public void SetHat(uint hatId)
+	{
+		if ((bool)GameData.Instance)
+		{
+			GameData.Instance.UpdateHat(PlayerId, hatId);
+		}
+		UpdateHat(hatId);
 	}
 	public static void SetSkinImage(uint skinId, SpriteRenderer target)
 	{

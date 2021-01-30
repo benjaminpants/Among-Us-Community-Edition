@@ -584,9 +584,8 @@ public class GameOptionsData : IBytesSerializable
 		}
 		catch(Exception E)
         {
-			Debug.LogError("Error caught!\n " + E.Message);
+			return "[FF0000FF]Error caught!\n " + E.Message;
 		}
-		return "error";
 	}
 
 	public bool Validate(int numPlayers)
