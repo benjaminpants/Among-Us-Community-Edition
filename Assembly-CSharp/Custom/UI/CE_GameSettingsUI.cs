@@ -88,8 +88,8 @@ public class CE_GameSettingsUI : MonoBehaviour
 			gameOptions.SetRecommendations(GameData.Instance.PlayerCount, AmongUsClient.Instance.GameMode);
 		}
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
-		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 1, "Map", ReadOnly);
-		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 24, "Gamemode", ReadOnly);
+		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 0, "Map", ReadOnly); //skeld only
+		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, CE_LuaLoader.GamemodeInfos.Count - 1, "Gamemode", ReadOnly);
 		CE_ListedItems();
 		GUILayout.EndScrollView();
 	}
@@ -131,7 +131,7 @@ public class CE_GameSettingsUI : MonoBehaviour
                 }
                 for (int i = 0; i < gameOptions.Plugins.Count; i++)
                 {
-                    gameOptions.Plugins[i] = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Plugins[i], GameOptionsData.PluginNames, 0, 24, "Plugin " + i, ReadOnly);
+                    gameOptions.Plugins[i] = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Plugins[i], GameOptionsData.PluginNames, 0, CE_LuaLoader.PluginInfos.Count - 1, "Plugin " + i, ReadOnly);
 
                 }
             }
@@ -142,6 +142,10 @@ public class CE_GameSettingsUI : MonoBehaviour
 	{
 		if (CE_LuaLoader.CurrentGMLua)
 		{
+			if (CE_LuaLoader.CurrentSettings.Count == 0)
+            {
+				return; //no gamemode settings, why display the dropdown?
+            }
 			if (CE_CommonUI.CreateCollapsable_GS("Gamemode Settings", 7))
 			{
 				using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))

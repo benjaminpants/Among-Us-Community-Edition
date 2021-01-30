@@ -31,6 +31,7 @@ function OnClientUpdate(timer,timesincelastround)
 end
 
 function OnChat(message, player, imponly)
+	return true
 end
 
 function OnExile(exiled)

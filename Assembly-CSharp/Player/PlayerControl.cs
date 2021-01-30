@@ -569,7 +569,14 @@ public class PlayerControl : InnerNetObject
 				StatsManager.Instance.CrewmateStreak = 0u;
 				ImportantTextTask importantTextTask = new GameObject("_Player").AddComponent<ImportantTextTask>();
 				importantTextTask.transform.SetParent(base.transform, worldPositionStays: false);
-				importantTextTask.Text = "[FFFFFFFF]Fake Tasks:";
+				if (CE_RoleManager.GetRoleFromID(Data.role).FakeTaskString != "")
+				{
+					importantTextTask.Text = CE_RoleManager.GetRoleFromID(Data.role).FakeTaskString + "\n\r[FFFFFFFF]Fake Tasks:[]";
+				}
+				else
+                {
+					importantTextTask.Text = "[FFFFFFFF]Fake Tasks:[]";
+				}
 				myTasks.Add(importantTextTask);
 			}
 			else

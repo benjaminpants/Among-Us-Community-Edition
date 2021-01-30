@@ -69,7 +69,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 				Age = i,
 				ListingID = i,
 				Icon = fo.Icon
-			}); ;
+			});
 		}
 		HandleList(GameLists.Count, GameLists);
 	}

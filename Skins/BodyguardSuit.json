@@ -1,7 +1,7 @@
 {
-  "ID": "TemplatetestBak",
-  "Name": "CustomSkin",
-  "StoreName": "",
+  "ID": "87633eb7-215d-4ce6-bbf7-689eb15a45a4",
+  "Name": "BodyguardSuit",
+  "StoreName": "Bodyguard Suit",
   "HatInFrontGlobally": false,
   "NoHatBobbingGlobally": false,
   "UsePointFilteringGlobally": false,
@@ -24,7 +24,7 @@
         "y": 129.28
       },
       "Name": "Main",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -44,7 +44,7 @@
         "y": 128.0
       },
       "Name": "Display",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -64,7 +64,7 @@
         "y": 128.0
       },
       "Name": "ejected",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -84,7 +84,7 @@
         "y": 130.56
       },
       "Name": "walk0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -104,7 +104,7 @@
         "y": 129.28
       },
       "Name": "walk0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -124,7 +124,7 @@
         "y": 131.84
       },
       "Name": "walk0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -144,7 +144,7 @@
         "y": 133.12
       },
       "Name": "walk0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -164,7 +164,7 @@
         "y": 138.24
       },
       "Name": "walk0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -184,7 +184,7 @@
         "y": 138.24
       },
       "Name": "walk0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -204,7 +204,7 @@
         "y": 129.28
       },
       "Name": "walk0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -224,7 +224,7 @@
         "y": 127.232
       },
       "Name": "walk0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -244,7 +244,7 @@
         "y": 128.0
       },
       "Name": "walk0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -264,7 +264,7 @@
         "y": 133.12
       },
       "Name": "walk0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -284,7 +284,7 @@
         "y": 139.52
       },
       "Name": "walk0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -304,7 +304,7 @@
         "y": 139.52
       },
       "Name": "walk0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -324,7 +324,7 @@
         "y": 128.0
       },
       "Name": "spawn0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -344,7 +344,7 @@
         "y": 128.0
       },
       "Name": "spawn0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -364,7 +364,7 @@
         "y": 128.0
       },
       "Name": "spawn0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -384,7 +384,7 @@
         "y": 128.0
       },
       "Name": "spawn0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -404,7 +404,7 @@
         "y": 128.0
       },
       "Name": "spawn0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -424,7 +424,7 @@
         "y": 128.0
       },
       "Name": "spawn0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -444,7 +444,7 @@
         "y": 128.0
       },
       "Name": "spawn0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -464,7 +464,7 @@
         "y": 128.0
       },
       "Name": "spawn0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -484,7 +484,7 @@
         "y": 128.0
       },
       "Name": "spawn0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -504,7 +504,7 @@
         "y": 128.0
       },
       "Name": "spawn0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -524,7 +524,7 @@
         "y": 128.0
       },
       "Name": "spawn0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -544,7 +544,7 @@
         "y": 128.0
       },
       "Name": "spawn0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -564,7 +564,7 @@
         "y": 128.0
       },
       "Name": "spawn0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -584,7 +584,7 @@
         "y": 128.0
       },
       "Name": "spawn0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -604,7 +604,7 @@
         "y": 128.0
       },
       "Name": "spawn0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -624,7 +624,7 @@
         "y": 128.0
       },
       "Name": "spawn0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -644,7 +644,7 @@
         "y": 128.0
       },
       "Name": "spawn0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -664,7 +664,7 @@
         "y": 128.0
       },
       "Name": "spawn0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -684,7 +684,7 @@
         "y": 128.0
       },
       "Name": "spawn0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -704,7 +704,7 @@
         "y": 128.0
       },
       "Name": "spawn0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -724,7 +724,7 @@
         "y": 128.0
       },
       "Name": "spawn0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -744,7 +744,7 @@
         "y": 125.44
       },
       "Name": "spawn0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -764,7 +764,7 @@
         "y": 118.44
       },
       "Name": "spawn0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -784,7 +784,7 @@
         "y": 118.44
       },
       "Name": "spawn0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -804,7 +804,7 @@
         "y": 118.44
       },
       "Name": "spawn0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -824,7 +824,7 @@
         "y": 118.44
       },
       "Name": "spawn0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -844,7 +844,7 @@
         "y": 118.44
       },
       "Name": "spawn0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -864,7 +864,7 @@
         "y": 118.44
       },
       "Name": "spawn0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -884,7 +884,7 @@
         "y": 118.44
       },
       "Name": "spawn0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -904,7 +904,7 @@
         "y": 118.44
       },
       "Name": "spawn0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -924,7 +924,7 @@
         "y": 118.44
       },
       "Name": "spawn0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -944,7 +944,7 @@
         "y": 118.44
       },
       "Name": "spawn0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -964,7 +964,7 @@
         "y": 125.44
       },
       "Name": "spawn0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -984,7 +984,7 @@
         "y": 124.44
       },
       "Name": "spawn0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1004,7 +1004,7 @@
         "y": 123.44
       },
       "Name": "spawn0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1024,7 +1024,7 @@
         "y": 117.76
       },
       "Name": "spawn0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1044,7 +1044,7 @@
         "y": 117.76
       },
       "Name": "spawn0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1064,7 +1064,7 @@
         "y": 117.76
       },
       "Name": "spawn0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1084,7 +1084,7 @@
         "y": 119.04
       },
       "Name": "spawn0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1104,7 +1104,7 @@
         "y": 119.04
       },
       "Name": "spawn0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1124,7 +1124,7 @@
         "y": 130.56
       },
       "Name": "spawn0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1144,7 +1144,7 @@
         "y": 130.56
       },
       "Name": "spawn0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1164,7 +1164,7 @@
         "y": 90.88
       },
       "Name": "spawn0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1184,7 +1184,7 @@
         "y": 90.88
       },
       "Name": "spawn0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1204,7 +1204,7 @@
         "y": 90.88
       },
       "Name": "spawn0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1224,7 +1224,7 @@
         "y": 99.84
       },
       "Name": "spawn0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1244,7 +1244,7 @@
         "y": 99.84
       },
       "Name": "spawn0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1264,7 +1264,7 @@
         "y": 101.12
       },
       "Name": "spawn0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1284,7 +1284,7 @@
         "y": 107.52
       },
       "Name": "spawn0049",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1304,7 +1304,7 @@
         "y": 163.84
       },
       "Name": "spawn0050",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1324,7 +1324,7 @@
         "y": 151.04
       },
       "Name": "spawn0051",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1344,7 +1344,7 @@
         "y": 151.04
       },
       "Name": "spawn0052",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1364,7 +1364,7 @@
         "y": 120.32
       },
       "Name": "vent0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1384,7 +1384,7 @@
         "y": 98.56
       },
       "Name": "vent0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1404,7 +1404,7 @@
         "y": 98.816
       },
       "Name": "vent0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1424,7 +1424,7 @@
         "y": 98.816
       },
       "Name": "vent0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1444,7 +1444,7 @@
         "y": 102.4
       },
       "Name": "vent0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1464,7 +1464,7 @@
         "y": 136.96
       },
       "Name": "vent0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1484,7 +1484,7 @@
         "y": 174.08
       },
       "Name": "vent0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1504,7 +1504,7 @@
         "y": 157.0
       },
       "Name": "killedneck0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1524,7 +1524,7 @@
         "y": 157.0
       },
       "Name": "killedneck0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1544,7 +1544,7 @@
         "y": 157.0
       },
       "Name": "killedneck0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1564,7 +1564,7 @@
         "y": 157.0
       },
       "Name": "killedneck0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1584,7 +1584,7 @@
         "y": 157.0
       },
       "Name": "killedneck0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1604,7 +1604,7 @@
         "y": 157.0
       },
       "Name": "killedneck0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1624,7 +1624,7 @@
         "y": 157.0
       },
       "Name": "killedneck0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1644,7 +1644,7 @@
         "y": 157.0
       },
       "Name": "killedneck0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1664,7 +1664,7 @@
         "y": 157.0
       },
       "Name": "killedneck0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1684,7 +1684,7 @@
         "y": 157.0
       },
       "Name": "killedneck0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1704,7 +1704,7 @@
         "y": 157.0
       },
       "Name": "killedneck0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1724,7 +1724,7 @@
         "y": 157.0
       },
       "Name": "killedneck0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1744,7 +1744,7 @@
         "y": 157.0
       },
       "Name": "killedneck0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1764,7 +1764,7 @@
         "y": 157.0
       },
       "Name": "killedneck0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1784,7 +1784,7 @@
         "y": 157.0
       },
       "Name": "killedneck0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1804,7 +1804,7 @@
         "y": 157.0
       },
       "Name": "killedneck0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1824,7 +1824,7 @@
         "y": 157.0
       },
       "Name": "killedneck0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1844,7 +1844,7 @@
         "y": 157.0
       },
       "Name": "killedneck0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1864,7 +1864,7 @@
         "y": 155.0
       },
       "Name": "killedneck0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1884,7 +1884,7 @@
         "y": 155.0
       },
       "Name": "killedneck0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1904,7 +1904,7 @@
         "y": 155.0
       },
       "Name": "killedneck0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1924,7 +1924,7 @@
         "y": 155.0
       },
       "Name": "killedneck0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1944,7 +1944,7 @@
         "y": 155.0
       },
       "Name": "killedneck0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1964,7 +1964,7 @@
         "y": 155.0
       },
       "Name": "killedneck0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -1984,7 +1984,7 @@
         "y": 155.0
       },
       "Name": "killedneck0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2004,7 +2004,7 @@
         "y": 155.0
       },
       "Name": "killedneck0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2024,7 +2024,7 @@
         "y": 155.0
       },
       "Name": "killedneck0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2044,7 +2044,7 @@
         "y": 155.0
       },
       "Name": "killedneck0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2064,7 +2064,7 @@
         "y": 155.0
       },
       "Name": "killedneck0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2084,7 +2084,7 @@
         "y": 155.0
       },
       "Name": "killedneck0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2104,7 +2104,7 @@
         "y": 161.0
       },
       "Name": "killedneck0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2124,7 +2124,7 @@
         "y": 181.0
       },
       "Name": "killedneck0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2144,7 +2144,7 @@
         "y": 181.0
       },
       "Name": "killedneck0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2164,7 +2164,7 @@
         "y": 181.0
       },
       "Name": "killedneck0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2184,7 +2184,7 @@
         "y": 181.0
       },
       "Name": "killedneck0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2204,7 +2204,7 @@
         "y": 181.0
       },
       "Name": "killedneck0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2224,7 +2224,7 @@
         "y": 181.0
       },
       "Name": "killedneck0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2244,7 +2244,7 @@
         "y": 181.0
       },
       "Name": "killedneck0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2264,7 +2264,7 @@
         "y": 181.0
       },
       "Name": "killedneck0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2284,7 +2284,7 @@
         "y": 181.0
       },
       "Name": "killedneck0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2304,7 +2304,7 @@
         "y": 181.0
       },
       "Name": "killedneck0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2324,7 +2324,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2344,7 +2344,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2364,7 +2364,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2384,7 +2384,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2404,7 +2404,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2424,7 +2424,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2444,7 +2444,7 @@
         "y": 181.4621
       },
       "Name": "killedneck0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2464,7 +2464,7 @@
         "y": 144.0
       },
       "Name": "killedgun0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2484,7 +2484,7 @@
         "y": 144.0
       },
       "Name": "killedgun0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2504,7 +2504,7 @@
         "y": 144.0
       },
       "Name": "killedgun0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2524,7 +2524,7 @@
         "y": 144.0
       },
       "Name": "killedgun0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2544,7 +2544,7 @@
         "y": 144.0
       },
       "Name": "killedgun0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2564,7 +2564,7 @@
         "y": 144.0
       },
       "Name": "killedgun0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2584,7 +2584,7 @@
         "y": 144.0
       },
       "Name": "killedgun0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2604,7 +2604,7 @@
         "y": 139.0
       },
       "Name": "killedgun0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2624,7 +2624,7 @@
         "y": 147.0
       },
       "Name": "killedgun0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2644,7 +2644,7 @@
         "y": 147.0
       },
       "Name": "killedgun0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2664,7 +2664,7 @@
         "y": 165.0
       },
       "Name": "killedgun0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2684,7 +2684,7 @@
         "y": 159.0
       },
       "Name": "killedgun0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2704,7 +2704,7 @@
         "y": 159.0
       },
       "Name": "killedgun0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2724,7 +2724,7 @@
         "y": 160.0
       },
       "Name": "killedgun0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2744,7 +2744,7 @@
         "y": 162.0
       },
       "Name": "killedgun0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2764,7 +2764,7 @@
         "y": 162.0
       },
       "Name": "killedgun0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2784,7 +2784,7 @@
         "y": 162.0
       },
       "Name": "killedgun0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2804,7 +2804,7 @@
         "y": 162.0
       },
       "Name": "killedgun0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2824,7 +2824,7 @@
         "y": 162.0
       },
       "Name": "killedgun0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2844,7 +2844,7 @@
         "y": 162.0
       },
       "Name": "killedgun0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2864,7 +2864,7 @@
         "y": 162.0
       },
       "Name": "killedgun0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2884,7 +2884,7 @@
         "y": 162.0
       },
       "Name": "killedgun0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2904,7 +2904,7 @@
         "y": 162.0
       },
       "Name": "killedgun0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2924,7 +2924,7 @@
         "y": 151.0
       },
       "Name": "killedgun0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2944,7 +2944,7 @@
         "y": 151.0
       },
       "Name": "killedgun0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2964,7 +2964,7 @@
         "y": 149.0
       },
       "Name": "killedgun0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -2984,7 +2984,7 @@
         "y": 149.0
       },
       "Name": "killedgun0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3004,7 +3004,7 @@
         "y": 151.0
       },
       "Name": "killedgun0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3024,7 +3024,7 @@
         "y": 151.0
       },
       "Name": "killedgun0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3044,7 +3044,7 @@
         "y": 150.0
       },
       "Name": "killedgun0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3064,7 +3064,7 @@
         "y": 150.0
       },
       "Name": "killedgun0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3084,7 +3084,7 @@
         "y": 141.0
       },
       "Name": "killedgun0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3104,7 +3104,7 @@
         "y": 141.0
       },
       "Name": "killedgun0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3124,7 +3124,7 @@
         "y": 143.0
       },
       "Name": "killedgun0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3144,7 +3144,7 @@
         "y": 143.0
       },
       "Name": "killedgun0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3164,7 +3164,7 @@
         "y": 144.0
       },
       "Name": "killedgun0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3184,7 +3184,7 @@
         "y": 144.0
       },
       "Name": "killedgun0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3204,7 +3204,7 @@
         "y": 144.0
       },
       "Name": "killedgun0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3224,7 +3224,7 @@
         "y": 144.0
       },
       "Name": "killedgun0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3244,7 +3244,7 @@
         "y": 168.0
       },
       "Name": "killedgun0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3264,7 +3264,7 @@
         "y": 168.0
       },
       "Name": "killedgun0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3284,7 +3284,7 @@
         "y": 168.0
       },
       "Name": "killedgun0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3304,7 +3304,7 @@
         "y": 168.0
       },
       "Name": "killedgun0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3324,7 +3324,7 @@
         "y": 168.0
       },
       "Name": "killedgun0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3344,7 +3344,7 @@
         "y": 168.0
       },
       "Name": "killedgun0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3364,7 +3364,7 @@
         "y": 168.0
       },
       "Name": "killedgun0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3384,7 +3384,7 @@
         "y": 168.0
       },
       "Name": "killedgun0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3404,7 +3404,7 @@
         "y": 168.0
       },
       "Name": "killedgun0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3424,7 +3424,7 @@
         "y": 134.0
       },
       "Name": "killedalien0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3444,7 +3444,7 @@
         "y": 134.0
       },
       "Name": "killedalien0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3464,7 +3464,7 @@
         "y": 134.0
       },
       "Name": "killedalien0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3484,7 +3484,7 @@
         "y": 134.0
       },
       "Name": "killedalien0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3504,7 +3504,7 @@
         "y": 134.0
       },
       "Name": "killedalien0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3524,7 +3524,7 @@
         "y": 134.0
       },
       "Name": "killedalien0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3544,7 +3544,7 @@
         "y": 134.0
       },
       "Name": "killedalien0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3564,7 +3564,7 @@
         "y": 134.0
       },
       "Name": "killedalien0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3584,7 +3584,7 @@
         "y": 134.0
       },
       "Name": "killedalien0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3604,7 +3604,7 @@
         "y": 134.0
       },
       "Name": "killedalien0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3624,7 +3624,7 @@
         "y": 123.0
       },
       "Name": "killedalien0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3644,7 +3644,7 @@
         "y": 117.0
       },
       "Name": "killedalien0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3664,7 +3664,7 @@
         "y": 117.0
       },
       "Name": "killedalien0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3684,7 +3684,7 @@
         "y": 128.0
       },
       "Name": "killedalien0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3704,7 +3704,7 @@
         "y": 128.0
       },
       "Name": "killedalien0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3724,7 +3724,7 @@
         "y": 127.0
       },
       "Name": "killedalien0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3744,7 +3744,7 @@
         "y": 127.0
       },
       "Name": "killedalien0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3764,7 +3764,7 @@
         "y": 127.0
       },
       "Name": "killedalien0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3784,7 +3784,7 @@
         "y": 127.0
       },
       "Name": "killedalien0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3804,7 +3804,7 @@
         "y": 127.0
       },
       "Name": "killedalien0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3824,7 +3824,7 @@
         "y": 126.0
       },
       "Name": "killedalien0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3844,7 +3844,7 @@
         "y": 126.0
       },
       "Name": "killedalien0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3864,7 +3864,7 @@
         "y": 136.0
       },
       "Name": "killedalien0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3884,7 +3884,7 @@
         "y": 136.0
       },
       "Name": "killedalien0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3904,7 +3904,7 @@
         "y": 158.0
       },
       "Name": "killedalien0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3924,7 +3924,7 @@
         "y": 158.0
       },
       "Name": "killedalien0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3944,7 +3944,7 @@
         "y": 158.0
       },
       "Name": "killedalien0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3964,7 +3964,7 @@
         "y": 158.0
       },
       "Name": "killedalien0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -3984,7 +3984,7 @@
         "y": 159.0
       },
       "Name": "killedalien0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4004,7 +4004,7 @@
         "y": 159.0
       },
       "Name": "killedalien0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4024,7 +4024,7 @@
         "y": 159.0
       },
       "Name": "killedalien0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4044,7 +4044,7 @@
         "y": 159.0
       },
       "Name": "killedalien0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4064,7 +4064,7 @@
         "y": 159.0
       },
       "Name": "killedalien0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4084,7 +4084,7 @@
         "y": 159.0
       },
       "Name": "killedalien0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4104,7 +4104,7 @@
         "y": 159.0
       },
       "Name": "killedalien0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4124,7 +4124,7 @@
         "y": 159.0
       },
       "Name": "killedalien0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4144,7 +4144,7 @@
         "y": 159.0
       },
       "Name": "killedalien0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4164,7 +4164,7 @@
         "y": 159.0
       },
       "Name": "killedalien0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4184,7 +4184,7 @@
         "y": 159.0
       },
       "Name": "killedalien0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4204,7 +4204,7 @@
         "y": 159.0
       },
       "Name": "killedalien0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4224,7 +4224,7 @@
         "y": 159.0
       },
       "Name": "killedalien0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4244,7 +4244,7 @@
         "y": 159.0
       },
       "Name": "killedalien0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4264,7 +4264,7 @@
         "y": 159.0
       },
       "Name": "killedalien0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4284,7 +4284,7 @@
         "y": 159.0
       },
       "Name": "killedalien0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4304,7 +4304,7 @@
         "y": 159.0
       },
       "Name": "killedalien0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4324,7 +4324,7 @@
         "y": 159.0
       },
       "Name": "killedalien0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4344,7 +4344,7 @@
         "y": 159.0
       },
       "Name": "killedalien0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4364,7 +4364,7 @@
         "y": 159.0
       },
       "Name": "killedalien0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4384,7 +4384,7 @@
         "y": 147.0
       },
       "Name": "killedstab0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4404,7 +4404,7 @@
         "y": 147.0
       },
       "Name": "killedstab0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4424,7 +4424,7 @@
         "y": 147.0
       },
       "Name": "killedstab0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4444,7 +4444,7 @@
         "y": 147.0
       },
       "Name": "killedstab0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4464,7 +4464,7 @@
         "y": 147.0
       },
       "Name": "killedstab0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4484,7 +4484,7 @@
         "y": 147.0
       },
       "Name": "killedstab0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4504,7 +4504,7 @@
         "y": 147.0
       },
       "Name": "killedstab0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4524,7 +4524,7 @@
         "y": 147.0
       },
       "Name": "killedstab0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4544,7 +4544,7 @@
         "y": 147.0
       },
       "Name": "killedstab0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4564,7 +4564,7 @@
         "y": 147.0
       },
       "Name": "killedstab0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4584,7 +4584,7 @@
         "y": 154.0
       },
       "Name": "killedstab0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4604,7 +4604,7 @@
         "y": 154.0
       },
       "Name": "killedstab0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4624,7 +4624,7 @@
         "y": 154.0
       },
       "Name": "killedstab0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4644,7 +4644,7 @@
         "y": 154.0
       },
       "Name": "killedstab0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4664,7 +4664,7 @@
         "y": 154.0
       },
       "Name": "killedstab0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4684,7 +4684,7 @@
         "y": 153.0
       },
       "Name": "killedstab0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4704,7 +4704,7 @@
         "y": 153.0
       },
       "Name": "killedstab0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4724,7 +4724,7 @@
         "y": 153.0
       },
       "Name": "killedstab0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4744,7 +4744,7 @@
         "y": 153.0
       },
       "Name": "killedstab0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4764,7 +4764,7 @@
         "y": 153.0
       },
       "Name": "killedstab0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4784,7 +4784,7 @@
         "y": 155.0
       },
       "Name": "killedstab0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4804,7 +4804,7 @@
         "y": 155.0
       },
       "Name": "killedstab0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4824,7 +4824,7 @@
         "y": 155.0
       },
       "Name": "killedstab0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4844,7 +4844,7 @@
         "y": 155.0
       },
       "Name": "killedstab0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4864,7 +4864,7 @@
         "y": 155.0
       },
       "Name": "killedstab0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4884,7 +4884,7 @@
         "y": 155.0
       },
       "Name": "killedstab0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4904,7 +4904,7 @@
         "y": 155.0
       },
       "Name": "killedstab0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4924,7 +4924,7 @@
         "y": 155.0
       },
       "Name": "killedstab0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4944,7 +4944,7 @@
         "y": 155.0
       },
       "Name": "killedstab0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4964,7 +4964,7 @@
         "y": 155.0
       },
       "Name": "killedstab0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -4984,7 +4984,7 @@
         "y": 148.0
       },
       "Name": "killedstab0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5004,7 +5004,7 @@
         "y": 144.0
       },
       "Name": "killedstab0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5024,7 +5024,7 @@
         "y": 141.0
       },
       "Name": "killedstab0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5044,7 +5044,7 @@
         "y": 141.0
       },
       "Name": "killedstab0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5064,7 +5064,7 @@
         "y": 141.0
       },
       "Name": "killedstab0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5084,7 +5084,7 @@
         "y": 141.0
       },
       "Name": "killedstab0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5104,7 +5104,7 @@
         "y": 141.0
       },
       "Name": "killedstab0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5124,7 +5124,7 @@
         "y": 141.0
       },
       "Name": "killedstab0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5144,7 +5144,7 @@
         "y": 149.0
       },
       "Name": "killedstab0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5164,7 +5164,7 @@
         "y": 156.0
       },
       "Name": "killedstab0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5184,7 +5184,7 @@
         "y": 156.0
       },
       "Name": "killedstab0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5204,7 +5204,7 @@
         "y": 156.0
       },
       "Name": "killedstab0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5224,7 +5224,7 @@
         "y": 156.0
       },
       "Name": "killedstab0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5244,7 +5244,7 @@
         "y": 156.0
       },
       "Name": "killedstab0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5264,7 +5264,7 @@
         "y": 156.0
       },
       "Name": "killedstab0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5284,7 +5284,7 @@
         "y": 156.0
       },
       "Name": "killedstab0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5304,7 +5304,7 @@
         "y": 156.0
       },
       "Name": "killedstab0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5324,7 +5324,7 @@
         "y": 156.0
       },
       "Name": "killedstab0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5344,7 +5344,7 @@
         "y": 134.0
       },
       "Name": "killalien0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5364,7 +5364,7 @@
         "y": 134.0
       },
       "Name": "killalien0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5384,7 +5384,7 @@
         "y": 134.0
       },
       "Name": "killalien0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5404,7 +5404,7 @@
         "y": 134.0
       },
       "Name": "killalien0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5424,7 +5424,7 @@
         "y": 137.0
       },
       "Name": "killalien0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5444,7 +5444,7 @@
         "y": 137.0
       },
       "Name": "killalien0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5464,7 +5464,7 @@
         "y": 133.0
       },
       "Name": "killalien0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5484,7 +5484,7 @@
         "y": 133.0
       },
       "Name": "killalien0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5504,7 +5504,7 @@
         "y": 133.0
       },
       "Name": "killalien0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5524,7 +5524,7 @@
         "y": 133.0
       },
       "Name": "killalien0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5544,7 +5544,7 @@
         "y": 133.0
       },
       "Name": "killalien0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5564,7 +5564,7 @@
         "y": 133.0
       },
       "Name": "killalien0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5584,7 +5584,7 @@
         "y": 133.0
       },
       "Name": "killalien0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5604,7 +5604,7 @@
         "y": 133.0
       },
       "Name": "killalien0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5624,7 +5624,7 @@
         "y": 133.0
       },
       "Name": "killalien0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5644,7 +5644,7 @@
         "y": 133.0
       },
       "Name": "killalien0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5664,7 +5664,7 @@
         "y": 133.0
       },
       "Name": "killalien0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5684,7 +5684,7 @@
         "y": 133.0
       },
       "Name": "killalien0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5704,7 +5704,7 @@
         "y": 133.0
       },
       "Name": "killalien0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5724,7 +5724,7 @@
         "y": 133.0
       },
       "Name": "killalien0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5744,7 +5744,7 @@
         "y": 133.0
       },
       "Name": "killalien0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5764,7 +5764,7 @@
         "y": 135.0
       },
       "Name": "killalien0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5784,7 +5784,7 @@
         "y": 132.0
       },
       "Name": "killalien0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5804,7 +5804,7 @@
         "y": 134.0
       },
       "Name": "killalien0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5824,7 +5824,7 @@
         "y": 133.0
       },
       "Name": "killalien0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5844,7 +5844,7 @@
         "y": 133.0
       },
       "Name": "killalien0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5864,7 +5864,7 @@
         "y": 135.0
       },
       "Name": "killalien0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5884,7 +5884,7 @@
         "y": 135.0
       },
       "Name": "killalien0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5904,7 +5904,7 @@
         "y": 141.0
       },
       "Name": "killalien0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5924,7 +5924,7 @@
         "y": 141.0
       },
       "Name": "killalien0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5944,7 +5944,7 @@
         "y": 136.0
       },
       "Name": "killalien0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5964,7 +5964,7 @@
         "y": 135.0
       },
       "Name": "killalien0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -5984,7 +5984,7 @@
         "y": 135.0
       },
       "Name": "killalien0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6004,7 +6004,7 @@
         "y": 135.0
       },
       "Name": "killalien0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6024,7 +6024,7 @@
         "y": 135.0
       },
       "Name": "killalien0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6044,7 +6044,7 @@
         "y": 135.0
       },
       "Name": "killalien0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6064,7 +6064,7 @@
         "y": 135.0
       },
       "Name": "killalien0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6084,7 +6084,7 @@
         "y": 135.0
       },
       "Name": "killalien0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6104,7 +6104,7 @@
         "y": 135.0
       },
       "Name": "killalien0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6124,7 +6124,7 @@
         "y": 135.0
       },
       "Name": "killalien0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6144,7 +6144,7 @@
         "y": 135.0
       },
       "Name": "killalien0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6164,7 +6164,7 @@
         "y": 135.0
       },
       "Name": "killalien0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6184,7 +6184,7 @@
         "y": 135.0
       },
       "Name": "killalien0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6204,7 +6204,7 @@
         "y": 135.0
       },
       "Name": "killalien0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6224,7 +6224,7 @@
         "y": 135.0
       },
       "Name": "killalien0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6244,7 +6244,7 @@
         "y": 135.0
       },
       "Name": "killalien0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6264,7 +6264,7 @@
         "y": 135.0
       },
       "Name": "killalien0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6284,7 +6284,7 @@
         "y": 135.0
       },
       "Name": "killalien0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6304,7 +6304,7 @@
         "y": 146.28
       },
       "Name": "killgun0001",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6324,7 +6324,7 @@
         "y": 146.28
       },
       "Name": "killgun0002",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6344,7 +6344,7 @@
         "y": 146.28
       },
       "Name": "killgun0003",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6364,7 +6364,7 @@
         "y": 146.0
       },
       "Name": "killgun0004",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6384,7 +6384,7 @@
         "y": 146.0
       },
       "Name": "killgun0005",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6404,7 +6404,7 @@
         "y": 146.0
       },
       "Name": "killgun0006",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6424,7 +6424,7 @@
         "y": 146.0
       },
       "Name": "killgun0007",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6444,7 +6444,7 @@
         "y": 140.0
       },
       "Name": "killgun0008",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6464,7 +6464,7 @@
         "y": 141.0
       },
       "Name": "killgun0009",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6484,7 +6484,7 @@
         "y": 141.0
       },
       "Name": "killgun0010",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6504,7 +6504,7 @@
         "y": 141.0
       },
       "Name": "killgun0011",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6524,7 +6524,7 @@
         "y": 141.0
       },
       "Name": "killgun0012",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6544,7 +6544,7 @@
         "y": 146.28
       },
       "Name": "killgun0013",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6564,7 +6564,7 @@
         "y": 145.0
       },
       "Name": "killgun0014",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6584,7 +6584,7 @@
         "y": 135.0
       },
       "Name": "killgun0015",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6604,7 +6604,7 @@
         "y": 135.0
       },
       "Name": "killgun0016",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6624,7 +6624,7 @@
         "y": 135.0
       },
       "Name": "killgun0017",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6644,7 +6644,7 @@
         "y": 145.0
       },
       "Name": "killgun0018",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6664,7 +6664,7 @@
         "y": 145.0
       },
       "Name": "killgun0019",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6684,7 +6684,7 @@
         "y": 146.0
       },
       "Name": "killgun0020",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6704,7 +6704,7 @@
         "y": 140.0
       },
       "Name": "killgun0021",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6724,7 +6724,7 @@
         "y": 140.0
       },
       "Name": "killgun0022",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6744,7 +6744,7 @@
         "y": 140.0
       },
       "Name": "killgun0023",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6764,7 +6764,7 @@
         "y": 140.0
       },
       "Name": "killgun0024",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6784,7 +6784,7 @@
         "y": 140.0
       },
       "Name": "killgun0025",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6804,7 +6804,7 @@
         "y": 145.0
       },
       "Name": "killgun0026",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6824,7 +6824,7 @@
         "y": 145.0
       },
       "Name": "killgun0027",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6844,7 +6844,7 @@
         "y": 145.0
       },
       "Name": "killgun0028",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6864,7 +6864,7 @@
         "y": 145.0
       },
       "Name": "killgun0029",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6884,7 +6884,7 @@
         "y": 145.0
       },
       "Name": "killgun0030",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6904,7 +6904,7 @@
         "y": 145.0
       },
       "Name": "killgun0031",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6924,7 +6924,7 @@
         "y": 145.0
       },
       "Name": "killgun0032",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6944,7 +6944,7 @@
         "y": 145.0
       },
       "Name": "killgun0033",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6964,7 +6964,7 @@
         "y": 143.0
       },
       "Name": "killgun0034",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -6984,7 +6984,7 @@
         "y": 143.0
       },
       "Name": "killgun0035",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7004,7 +7004,7 @@
         "y": 143.0
       },
       "Name": "killgun0036",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7024,7 +7024,7 @@
         "y": 146.0
       },
       "Name": "killgun0037",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7044,7 +7044,7 @@
         "y": 146.0
       },
       "Name": "killgun0038",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7064,7 +7064,7 @@
         "y": 146.0
       },
       "Name": "killgun0039",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7084,7 +7084,7 @@
         "y": 146.0
       },
       "Name": "killgun0040",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7104,7 +7104,7 @@
         "y": 146.0
       },
       "Name": "killgun0041",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7124,7 +7124,7 @@
         "y": 146.0
       },
       "Name": "killgun0042",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7144,7 +7144,7 @@
         "y": 146.0
       },
       "Name": "killgun0043",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7164,7 +7164,7 @@
         "y": 140.0
       },
       "Name": "killgun0044",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7184,7 +7184,7 @@
         "y": 146.0
       },
       "Name": "killgun0045",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7204,7 +7204,7 @@
         "y": 145.0
       },
       "Name": "killgun0046",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7224,7 +7224,7 @@
         "y": 145.0
       },
       "Name": "killgun0047",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
@@ -7244,7 +7244,7 @@
         "y": 145.0
       },
       "Name": "killgun0048",
-      "SpritePath": "TemplatetestBak.png",
+      "SpritePath": "BodyguardSuit.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,

@@ -26,9 +26,9 @@ public class NotificationPopper : MonoBehaviour
             float num = Camera.main.orthographicSize * Camera.main.aspect;
             if (!DestroyableSingleton<HudManager>.Instance.TaskText.isActiveAndEnabled)
             {
-                float height = DestroyableSingleton<HudManager>.Instance.GameSettings.Height;
+                float height = 1f;
                 Transform transform = DestroyableSingleton<HudManager>.Instance.GameSettings.transform;
-                base.transform.localPosition = new Vector3(0f - num + 0.1f, transform.localPosition.y - height, zPos);
+                base.transform.localPosition = new Vector3(num * 0.15f, transform.localPosition.y - height, zPos);
             }
             else
             {

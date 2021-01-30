@@ -7,11 +7,11 @@ using System;
 
 public static class CE_LuaLoader
 {
-	public static Dictionary<byte, CE_GamemodeInfo> GamemodeInfos;
+	public static List<CE_GamemodeInfo> GamemodeInfos = new List<CE_GamemodeInfo>();
 
-    public static Dictionary<byte, CE_PluginInfo> PluginInfos = new Dictionary<byte, CE_PluginInfo>();
+    public static List<CE_PluginInfo> PluginInfos = new List<CE_PluginInfo>();
 
-	public static Dictionary<byte, List<CE_CustomLuaSetting>> CustomGMSettings = new Dictionary<byte, List<CE_CustomLuaSetting>>();
+	public static Dictionary<CE_GamemodeInfo, List<CE_CustomLuaSetting>> CustomGMSettings = new Dictionary<CE_GamemodeInfo, List<CE_CustomLuaSetting>>();
 
 	public static string TheOmegaString;
 
@@ -27,7 +27,7 @@ public static class CE_LuaLoader
 
     public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists));
 
-	public static List<CE_CustomLuaSetting> CurrentSettings => CustomGMSettings.GetValueOrDefault((byte)(PlayerControl.GameOptions.Gamemode + 1));
+	public static List<CE_CustomLuaSetting> CurrentSettings => CustomGMSettings.GetValueOrDefault(GamemodeInfos[PlayerControl.GameOptions.Gamemode]);
 
 
 	private static bool AddLangEntry(string key, string text)
@@ -73,7 +73,7 @@ public static class CE_LuaLoader
 		if (isgm)
 		{
 			script.Globals["Game_CreateRoleSimple"] = (Func<string, Table, string, bool>)CE_GameLua.CreateRoleSimple;
-			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, byte, bool, bool>)CE_GameLua.CreateRoleComplex;
+			script.Globals["Game_CreateRole"] = (Func<string, Table, string, List<CE_Specials>, CE_WinWith, CE_RoleVisibility, bool, bool, byte, bool, string, bool>)CE_GameLua.CreateRoleComplex;
 		}
 		script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
 		script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
@@ -104,7 +104,8 @@ public static class CE_LuaLoader
 			script.Globals["Settings_CreateFloat"] = (Func<string, float, float, float, float, bool>)TempAddCustomFloatSetting;
 			script.Globals["Settings_CreateBool"] = (Func<string, bool, bool>)TempAddCustomBoolSetting;
 		}
-		script.Globals["Settings_GetNumber"] = (Func<byte, float>)CE_GameLua.GetNumber;
+        script.Globals["Settings_GetNumber"] = (Func<byte, float>)CE_GameLua.GetNumber;
+		script.Globals["Game_GetRoleNameFromID"] = (Func<byte, string>)CE_GameLua.GetRoleNameFromId;
 		script.Globals["Settings_GetBool"] = (Func<byte, bool>)CE_GameLua.GetBool;
 	}
 	public static void LoadLua()
@@ -116,7 +117,7 @@ public static class CE_LuaLoader
 		{
 			using StreamReader streamReader = files[i].OpenText();
 			string code = streamReader.ReadToEnd();
-			TheOmegaString += code; //nothing is done with this atm
+			TheOmegaString += code;
 			try
 			{
 				CurrentGMName = files[i].Name.Remove(files[i].Name.Length - 4);
@@ -135,60 +136,56 @@ public static class CE_LuaLoader
 				).ToArray()); //Removes non letter or number characters from Gamemode name
 				Debug.Log("Loaded Gamemode: " + gamemodename);
 				CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b);
-				CustomGMSettings.Add(b,TempSetting);
-				GamemodeInfos.Add(b, value);
+				CustomGMSettings.Add(value,TempSetting);
+				GamemodeInfos.Add(value);
 			}
 			catch (Exception E)
 			{
 				Debug.LogError("Error encountered when trying to load gamemode with filename:" + files[i].Name + "\nException Message:" + E.Message);
 			}
 		}
+		GamemodeInfos = GamemodeInfos.OrderBy(o => o.id).ToList();
 		FileInfo[] plfiles = new DirectoryInfo(Path.Combine(Path.Combine(CE_Extensions.GetGameDirectory(), "Lua"), "Plugins")).GetFiles("*.lua");
-		for (int i = 0; i < plfiles.Length; i++)
-		{
-			using StreamReader streamReader = plfiles[i].OpenText();
-			string code = streamReader.ReadToEnd();
-			TheOmegaString += code; //nothing is done with this atm
-			try
-			{
-				CurrentGMName = plfiles[i].Name.Remove(plfiles[i].Name.Length - 4);
-				Script script = new Script();
-				TempLang = new CE_Language(false);
-				GiveAPICalls(script,false);
-				script.DoString(code);
-				Table table = script.Call(script.Globals["InitializePlugin"]).Table;
-				byte b = (byte)table.Get(2).Number;
-				string gamemodename = table.Get(1).String;
-				bool isprior = table.Get(3).Boolean;
-				gamemodename = new string((from c in gamemodename
-										   where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
-										   select c
-				).ToArray()); //Removes non letter or number characters from Gamemode name
-				Debug.Log("Loaded Plugin: " + gamemodename);
-				CE_PluginInfo value = new CE_PluginInfo(gamemodename, script, b, isprior);
-				PluginInfos.Add(b, value);
-			}
-			catch (Exception E)
-			{
-				Debug.LogError("Error encountered when trying to load plugin with filename:" + plfiles[i].Name + "\nException Message:" + E.Message);
-			}
-		}
+        for (int i = 0; i < plfiles.Length; i++)
+        {
+            using StreamReader streamReader = plfiles[i].OpenText();
+            string code = streamReader.ReadToEnd();
+            TheOmegaString += code; //nothing is done with this atm
+            try
+            {
+                CurrentGMName = plfiles[i].Name.Remove(plfiles[i].Name.Length - 4);
+                Script script = new Script();
+                TempLang = new CE_Language(false);
+                GiveAPICalls(script, false);
+                script.DoString(code);
+                Table table = script.Call(script.Globals["InitializePlugin"]).Table;
+                byte b = (byte)table.Get(2).Number;
+                string gamemodename = table.Get(1).String;
+                bool isprior = table.Get(3).Boolean;
+                gamemodename = new string((from c in gamemodename
+                                           where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
+                                           select c
+                ).ToArray()); //Removes non letter or number characters from Gamemode name
+                Debug.Log("Loaded Plugin: " + gamemodename);
+                CE_PluginInfo value = new CE_PluginInfo(gamemodename, script, b, isprior);
+                PluginInfos.Add(value);
+            }
+            catch (Exception E)
+            {
+                Debug.LogError("Error encountered when trying to load plugin with filename:" + plfiles[i].Name + "\nException Message:" + E.Message);
+            }
+        }
+		PluginInfos = PluginInfos.OrderBy(o => o.id).ToList();
 		CurrentGMName = null;
 		IsInitializing = false;
 		TheOmegaHash = VersionShower.GetDeterministicHashCode(TheOmegaString);
 	}
 
-	static CE_LuaLoader()
-	{
-		GamemodeInfos = new Dictionary<byte, CE_GamemodeInfo>();
-	}
-
 	public static bool IsPluginAnOverride(byte id)
 	{
-		CE_PluginInfo pgf;
-		if (PluginInfos.TryGetValue(id, out pgf))
+		if (PluginInfos[id] != null)
 		{
-			return pgf.highprior;
+			return PluginInfos[id].highprior;
 		}
 		else
 		{
@@ -199,10 +196,9 @@ public static class CE_LuaLoader
 	public static List<CE_PluginInfo> GetEnabledPlugins()
     {
 		List<CE_PluginInfo> PlugFoList = new List<CE_PluginInfo>();
-		for (int i=0; i < PlayerControl.GameOptions.Plugins.Count; i++)
+		for (int i=0; i < PlayerControl.GameOptions.Plugins.Count - 1; i++)
         {
-			CE_PluginInfo fo;
-			PluginInfos.TryGetValue((byte)(PlayerControl.GameOptions.Plugins[i] + 1), out fo);
+			CE_PluginInfo fo = PluginInfos[PlayerControl.GameOptions.Plugins[i]];
 			PlugFoList.Add(fo);
         }
 		return PlugFoList;
@@ -210,8 +206,9 @@ public static class CE_LuaLoader
 
 	public static DynValue GetGamemodeResult(string fn, params object[] obj)
 	{
-		if (GamemodeInfos.TryGetValue((byte)(PlayerControl.GameOptions.Gamemode + 1), out var value))
+		if (GamemodeInfos[PlayerControl.GameOptions.Gamemode] != null)
 		{
+			CE_GamemodeInfo value = GamemodeInfos[PlayerControl.GameOptions.Gamemode];
 			Script script = value.script;
 			DynValue dumbvalue = new DynValue();
 			bool ExecOG = true;
@@ -235,11 +232,11 @@ public static class CE_LuaLoader
 				{
 					Debug.LogWarning(E.Message + "\nStack trace:" + E.StackTrace + "\nUnable to find valid function:" + fn + "\nAttempting to call function in base lua...");
 				}
-                if (GamemodeInfos.TryGetValue(1, out var value2))
+                if (GamemodeInfos[0] != null)
                 {
 					try
 					{
-						dumbvalue = value2.script.Call(value2.script.Globals[fn], obj);
+						dumbvalue = GamemodeInfos[0].script.Call(GamemodeInfos[0].script.Globals[fn], obj);
 					}
 					catch(Exception E2)
                     {

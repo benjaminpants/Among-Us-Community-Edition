@@ -168,13 +168,16 @@ public class ExileController : MonoBehaviour
             Camera.main.GetComponent<FollowerCamera>().Locked = false;
             DestroyableSingleton<HudManager>.Instance.SetHudActive(isActive: true);
         }
-		if (exiled != null)
+		if (CE_LuaLoader.CurrentGMLua)
 		{
-			CE_LuaLoader.GetGamemodeResult("OnExile", (CE_PlayerInfoLua)exiled);
-		}
-		else
-		{
-			CE_LuaLoader.GetGamemodeResult("OnExileSkip", null);
+			if (exiled != null)
+			{
+				CE_LuaLoader.GetGamemodeResult("OnExile", (CE_PlayerInfoLua)exiled);
+			}
+			else
+			{
+				CE_LuaLoader.GetGamemodeResult("OnExileSkip", null);
+			}
 		}
 		ShipStatus.Instance.TimeSinceLastRound = 0f;
 		IsDebugging = false;

@@ -273,7 +273,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public List<CE_CustomLuaSetting> InterpretSettings()
     {
-		List<CE_CustomLuaSetting> setto = CE_LuaLoader.CustomGMSettings[(byte)(Gamemode + 1)];
+		List<CE_CustomLuaSetting> setto = CE_LuaLoader.CustomGMSettings[CE_LuaLoader.GamemodeInfos[Gamemode]];
 
 		if (CustomSettingsRep.Count == 0)
         {
@@ -542,7 +542,7 @@ public class GameOptionsData : IBytesSerializable
 			{
 				string beg = string.Empty;
 				string end = string.Empty;
-				if (CE_LuaLoader.IsPluginAnOverride((byte)(b + 1)))
+				if (CE_LuaLoader.IsPluginAnOverride((byte)(b)))
 				{
 					beg = "[00FF00FF]";
 					end = "[]";
@@ -647,17 +647,15 @@ public class GameOptionsData : IBytesSerializable
 		GhostsSeeRoles = false;
 		VisionInVents = true;
 		Brightness = 70;
-		foreach (KeyValuePair<byte, CE_GamemodeInfo> gamemodeInfo in CE_LuaLoader.GamemodeInfos)
-		{
-			CE_GamemodeInfo value = gamemodeInfo.Value;
-			Gamemodes.SetValue(value.name, value.id - 1);
-			GamemodesAreLua.SetValue(true, value.id - 1);
-		}
-        foreach (KeyValuePair<byte, CE_PluginInfo> gamemodeInfo in CE_LuaLoader.PluginInfos)
+        for (int i = 0; i < CE_LuaLoader.GamemodeInfos.Count; i++)
         {
-            CE_PluginInfo value = gamemodeInfo.Value;
-            PluginNames.SetValue(value.name, value.id - 1);
+            Gamemodes.SetValue(CE_LuaLoader.GamemodeInfos[i].name, i);
+            GamemodesAreLua.SetValue(true, i);
         }
+		for (int i = 0; i < CE_LuaLoader.PluginInfos.Count; i++)
+		{
+			PluginNames.SetValue(CE_LuaLoader.PluginInfos[i].name,i);
+		}
 	}
 
 	static GameOptionsData()

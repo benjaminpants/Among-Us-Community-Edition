@@ -27,8 +27,7 @@ public class ProgressTracker : MonoBehaviour
 		GameData instance = GameData.Instance;
 		if ((bool)instance && instance.TotalTasks > 0)
 		{
-			int num = (DestroyableSingleton<TutorialManager>.InstanceExists ? 1 : (instance.AllPlayers.Count - PlayerControl.GameOptions.NumImpostors));
-			num -= instance.AllPlayers.Count((GameData.PlayerInfo p) => p.Disconnected);
+			int num = (DestroyableSingleton<TutorialManager>.InstanceExists ? 1 : instance.GetAllTaskDoingPlayersCount());
 			float b = (float)instance.CompletedTasks / (float)instance.TotalTasks * (float)num;
 			if ((bool)MeetingHud.Instance || !(PlayerControl.GameOptions.TaskBarUpdates == 1))
 			{

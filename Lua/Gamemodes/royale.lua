@@ -29,18 +29,6 @@ function BeforeKill(killer,victim)
 	return true
 end
 
-function OnGameEnd()
-
-end
-
-function OnExile(exiled)
-	
-end
-
-function OnExileSkip()
-
-end
-
 function CanKill(userinfo,targetinfo)
 	return true --the API already prevents the slaying of dead people so make this always return true
 end

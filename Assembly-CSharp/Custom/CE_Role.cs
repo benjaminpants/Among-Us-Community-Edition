@@ -180,7 +180,7 @@ public class CE_Role
         UUID = CE_LuaLoader.CurrentGMName + "_" + Name;
     }
 
-    public CE_Role(string Name, Color Color, string RoleTxt, List<CE_Specials> Specials, CE_WinWith WinWith = CE_WinWith.Neither, CE_RoleVisibility Visibility = CE_RoleVisibility.None, bool ImpVision = false, bool dotask = true, byte layer = 0, bool canseeimp = false)
+    public CE_Role(string Name, Color Color, string RoleTxt, List<CE_Specials> Specials, CE_WinWith WinWith = CE_WinWith.Neither, CE_RoleVisibility Visibility = CE_RoleVisibility.None, bool ImpVision = false, bool dotask = true, byte layer = 0, bool canseeimp = false, string fakestring = "")
     {
         RoleName = Name;
         RoleColor = Color;
@@ -193,6 +193,7 @@ public class CE_Role
         UUID = CE_LuaLoader.CurrentGMName + "_" + Name;
         Layer = layer;
         CanSeeImps = canseeimp;
+        FakeTaskString = fakestring;
     }
     public string RoleName;
 
@@ -211,6 +212,8 @@ public class CE_Role
 	public CE_WinWith RoleWinWith;
 
     public string RoleText;
+
+    public string FakeTaskString = "";
 
 	public bool UseImpVision;
 

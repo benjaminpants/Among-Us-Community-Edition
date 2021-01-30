@@ -1,4 +1,5 @@
 using UnityEngine;
+using MoonSharp.Interpreter;
 
 public class DeadBody : MonoBehaviour
 {
@@ -33,9 +34,17 @@ public class DeadBody : MonoBehaviour
 		{
 			Reported = true;
 			GameData.PlayerInfo target = PlayerControl.LocalPlayer.Data;
-			if (PlayerControl.GameOptions.BodyEffect != 1 && PlayerControl.GameOptions.BodyEffect != 2)
+            if (PlayerControl.GameOptions.BodyEffect != 1 && PlayerControl.GameOptions.BodyEffect != 2)
+            {
+                target = GameData.Instance.GetPlayerById(ParentId);
+            }
+			if (CE_LuaLoader.CurrentGMLua)
 			{
-				target = GameData.Instance.GetPlayerById(ParentId);
+				DynValue dyn = CE_LuaLoader.GetGamemodeResult("CanCallMeeting", (CE_PlayerInfoLua)PlayerControl.LocalPlayer, true);
+				if (!dyn.Boolean)
+				{
+					return;
+				}
 			}
 			PlayerControl.LocalPlayer.CmdReportDeadBody(target);
 		}

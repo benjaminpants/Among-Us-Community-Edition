@@ -56,6 +56,7 @@ function OnChat(message, player, imponly)
 	if (cmd[1] == "killme" and Net_AmHost() and Settings_GetBool(0)) then
 		Game_KillPlayer(player,false)
 	end
+	return true
 end
 
 function OnHostUpdate(timer,timesincelastround)

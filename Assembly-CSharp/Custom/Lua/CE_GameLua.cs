@@ -187,6 +187,11 @@ static class CE_GameLua
         return 0f;
     }
 
+    public static string GetRoleNameFromId(byte id)
+    {
+        return CE_RoleManager.GetRoleFromID(id).RoleName;
+    }
+
     public static bool GetBool(byte id)
     {
         if (CE_LuaLoader.CurrentSettings[id] == null)
@@ -288,9 +293,9 @@ static class CE_GameLua
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
         return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText));
     }
-    public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis, bool dotask = true, byte layer = 0, bool canseeimp = false)
+    public static bool CreateRoleComplex(string Name, Table Color, string RoleText, List<CE_Specials> Specials, CE_WinWith Win, CE_RoleVisibility Vis, bool ImpVis, bool dotask = true, byte layer = 0, bool canseeimp = false, string faketask = "")
     {
         Color rolcolr = new Color((float)Color.Get(1).Number / 255f, (float)Color.Get(2).Number / 255f, (float)Color.Get(3).Number / 255f);
-        return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis,dotask,layer,canseeimp));
+        return CE_RoleManager.AddRole(new CE_Role(Name, rolcolr, RoleText,Specials,Win,Vis,ImpVis,dotask,layer,canseeimp,faketask));
     }
 }

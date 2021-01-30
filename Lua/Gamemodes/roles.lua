@@ -3,22 +3,24 @@
 local invent_timer = 15
 local timedif = 0
 
-local poslength = 8
-local sni = 9
-local dkp = 10
+local poslength = 9
+local sni = 10
+local dkp = 11
+local sii = 12
 
 
 function InitializeGamemode()
 	Game_CreateRole("Sheriff",{255,216,0},"Find and Kill the [FF1919FF]Impostor[].",{0},1,0,false,true,255)
-	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,1,false,false,255)
+	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,1,false,false,255,false,"[81298BFF]Get Ejected.[]")
 	Game_CreateRole("Hawk-Eyed",{120, 86, 60},"Use your increased sight\n\r to find the [FF1919FF]Impostor[].",{},1,0,true,true)
 	Game_CreateRole("Shielded",{107, 107, 107},"Be able to avoid being killed one time.",{},1,0,false,true)
-	Game_CreateRole("Witch",{170, 102, 173},"Poison everyone, including [FF1919FF]Impostors[].",{0},2,0,true,false,255)
+	Game_CreateRole("Witch",{170, 102, 173},"Poison everyone, including [FF1919FF]Impostors[].",{0},2,0,true,false,255,false,"[AA66ADFF]Poison everyone.[]")
 	Game_CreateRole("Clown",{243, 222, 255},"If you get ejected, \n\ryou kill someone else randomly.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true)
 	Game_CreateRole("Doctor",{25, 255, 25},"Cure [8CFFFFFF]Crewmates[] poisoned by a [AA66ADFF]Witch[].",{0},1,3,false,true,1)
-	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true)
+	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[57552AFF]Frame someone for a kill.[]")
+	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of 1 person.",{0},1,0,false,true)
 	--roles you aren't supposed to see
-	Game_CreateRole("Broken",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
+	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
 	--counts
 	Settings_CreateByte("Sheriff Count",0,2,0) -- 0
 	Settings_CreateByte("Joker Count",0,3,0) -- 1
@@ -28,9 +30,11 @@ function InitializeGamemode()
 	Settings_CreateByte("Clown Count",0,4,0) -- 5
 	Settings_CreateByte("Doctor Count",0,3,0) -- 6
 	Settings_CreateByte("Griefer Count",0,4,0) -- 7
-	Settings_CreateByte("Poison Length",5,120,15,5) -- 8
-	Settings_CreateBool("Shields Kill Impostors",false) -- 9
-	Settings_CreateBool("Doctors Know Poisoned",false) -- 10
+	Settings_CreateByte("Seer Count",0,2,0) -- 8
+	Settings_CreateByte("Poison Length",5,120,15,5) -- 9
+	Settings_CreateBool("Shields Kill Impostors",false) -- 10
+	Settings_CreateBool("Doctors Know Poisoned",false) -- 11
+	Settings_CreateBool("Seers can identify Impostors",false) -- 12
 	
 	return {"Roles",2}
 end
@@ -177,6 +181,10 @@ end
 
 
 function CanKill(userinfo,targetinfo)
+	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Seer")) then
+		return true
+	end
+	
 	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Doctor")) then
 		if (Settings_GetBool(dkp)) then
 			return (targetinfo.luavalue1 == 255)
@@ -238,6 +246,28 @@ end
 
 
 function BeforeKill(killer,victim)
+	if (killer.role == Game_GetRoleIDFromUUID("roles_Seer")) then
+		Game_SetRoles({killer},{"None"})
+		local RoleName = Game_GetRoleNameFromID(victim.role)
+		if (victim.role == 0) then
+			if (Settings_GetBool(sii)) then
+				if (victim.IsImpostor) then
+					Client_ShowMessage(victim.PlayerName .. " is an Impostor.")
+				else
+					Client_ShowMessage(victim.PlayerName .. " is a Crewmate.")
+				end
+			else
+				Client_ShowMessage(victim.PlayerName .. " has no special roles.")
+			end
+		else
+			local conjoin = " the "
+			if (not GetRoleAmount(victim.role) == 1) then
+				cjoin = " a "
+			end
+			Client_ShowMessage(victim.PlayerName .. " is" .. conjoin .. RoleName .. ".")
+		end
+		return false
+	end
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Doctor")) then
 		victim.luavalue1 = 0
 		Game_UpdatePlayerInfo(victim)
@@ -249,7 +279,7 @@ function BeforeKill(killer,victim)
 		else
 			Client_ShowMessage("You broke their shield.")
 		end
-		Game_SetRoles({victim},{"roles_Broken"})
+		Game_SetRoles({victim},{"roles_Shielded(Broken)"})
 		return false
 	end
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Griefer")) then
@@ -303,6 +333,9 @@ function DecideRolesFunction(playerinfos)
 	end
 	for i=1, Settings_GetNumber(7) do
 		table.insert(RolesToGive,"roles_Griefer")
+	end
+	for i=1, Settings_GetNumber(8) do
+		table.insert(RolesToGive,"roles_Seer")
 	end
 	local Selected = {}
 	local SelectedRoles = {}

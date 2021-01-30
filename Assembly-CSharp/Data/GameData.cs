@@ -27,6 +27,19 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		}
 	}
 
+	public int GetAllTaskDoingPlayersCount() //lazily reused function
+	{
+		int valid = 0;
+		foreach (GameData.PlayerInfo plrfo in AllPlayers)
+		{
+			if (CE_RoleManager.GetRoleFromID(plrfo.role).HasTasks && !plrfo.Disconnected && !plrfo.IsImpostor)
+			{
+				valid++;
+			}
+		}
+		return valid;
+	}
+
 	public class PlayerInfo
 	{
 
@@ -245,9 +258,9 @@ public class GameData : InnerNetObject, IDisconnectHandler
         if (playerById != null)
         {
             playerById.ColorId = color;
-        }
-		uint hatId = playerById.HatId;
-		playerById.Object.UpdateHat(hatId);
+			uint hatId = playerById.HatId;
+			playerById.Object.UpdateHat(hatId);
+		}
 	}
 
 	public void UpdateHat(byte playerId, uint hat)

@@ -201,13 +201,17 @@ public class ChatController : MonoBehaviour
 		}
 	}
 
-	public void AddChat(PlayerControl sourcePlayer, string chatText, bool impostoronly = false)
+	public void AddChat(PlayerControl sourcePlayer, string chatText, bool impostoronly = false, CE_FakePlayer fakeplayer = null)
 	{
 		if (CE_LuaLoader.CurrentGMLua)
 		{
-            CE_LuaLoader.GetGamemodeResult("OnChat", chatText, new CE_PlayerInfoLua(sourcePlayer.Data),impostoronly);
+            bool doanything = CE_LuaLoader.GetGamemodeResult("OnChat", chatText, new CE_PlayerInfoLua(sourcePlayer.Data),impostoronly).Boolean;
+			if (!doanything)
+            {
+				return;
+            }
 		}
-		if (!sourcePlayer)
+		if (!sourcePlayer && fakeplayer == null)
 		{
 			return;
 		}
