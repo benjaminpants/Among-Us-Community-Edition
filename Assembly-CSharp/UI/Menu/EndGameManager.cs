@@ -60,9 +60,17 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 	private void SetEverythingUp()
 	{
 		Debug.Log(TempData.EndReason);
-		if (TempData.EndReason == GameOverReason.ImpostorDisconnect)
+        if (TempData.EndReason == GameOverReason.ImpostorDisconnect)
+        {
+            WinText.Text = "Impostor\r\nDisconnected";
+            SoundManager.Instance.PlaySound(DisconnectStinger, loop: false);
+            return;
+        }
+		if (TempData.EndReason == GameOverReason.Stalemate)
 		{
-			WinText.Text = "Impostor\r\nDisconnected";
+			WinText.Text = "Stalemate";
+			BackgroundBar.material.SetColor("_Color", Palette.Orange);
+			WinText.Color = Palette.Orange;
 			SoundManager.Instance.PlaySound(DisconnectStinger, loop: false);
 			return;
 		}

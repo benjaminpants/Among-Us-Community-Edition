@@ -673,15 +673,20 @@ public class ShipStatus : InnerNetObject
 			if (output.Type == DataType.String)
 			{
 				string winnerstring = output.String;
-				if (winnerstring == "impostors")
+                if (winnerstring == "impostors")
+                {
+                    base.enabled = false;
+                    RpcEndGame(GameOverReason.ImpostorByVote, !SaveManager.BoughtNoAds);
+                }
+                else if (winnerstring == "crewmates")
+                {
+                    base.enabled = false;
+                    RpcEndGame(GameOverReason.HumansByVote, !SaveManager.BoughtNoAds);
+                }
+				else if (winnerstring == "stalemate")
 				{
 					base.enabled = false;
-					RpcEndGame(GameOverReason.ImpostorByVote, !SaveManager.BoughtNoAds);
-				}
-				else if (winnerstring == "crewmates")
-				{
-					base.enabled = false;
-					RpcEndGame(GameOverReason.HumansByVote, !SaveManager.BoughtNoAds);
+					RpcEndGame(GameOverReason.Stalemate, !SaveManager.BoughtNoAds);
 				}
 			}
 			else if (output.Type == DataType.Table) //itsa custom win condition!!!

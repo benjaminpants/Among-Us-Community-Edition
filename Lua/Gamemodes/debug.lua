@@ -19,7 +19,7 @@ end
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (sab) then
-		return "impostors"
+		return "stalemate"
 	end
 	return "none"
 end

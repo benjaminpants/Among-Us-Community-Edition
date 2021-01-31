@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.CoreScripts;
 using Hazel;
@@ -84,6 +85,8 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 	private bool amDead;
 
 	private float resultsStartedAt;
+
+	public List<byte> ExtraVotes;
 
 	private void Awake()
 	{
@@ -412,19 +415,28 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 	private byte[] CalculateVotes()
 	{
 		byte[] array = new byte[21];
-		for (int i = 0; i < playerStates.Length; i++)
+        for (int i = 0; i < playerStates.Length; i++)
+        {
+            PlayerVoteArea playerVoteArea = playerStates[i];
+            if (playerVoteArea.didVote)
+            {
+                int num = playerVoteArea.votedFor + 1;
+                if (num >= 0 && num < array.Length)
+                {
+                    int num2 = num;
+                    array[num2]++;
+                }
+            }
+        }
+		/*for (int i = 0; i < ExtraVotes.Count; i++)
 		{
-			PlayerVoteArea playerVoteArea = playerStates[i];
-			if (playerVoteArea.didVote)
+			int num = ExtraVotes[i] + 1;
+			if (num >= 0 && num < array.Length)
 			{
-				int num = playerVoteArea.votedFor + 1;
-				if (num >= 0 && num < array.Length)
-				{
-					int num2 = num;
-					array[num2]++;
-				}
+				int num2 = num;
+				array[num2]++;
 			}
-		}
+		}*/
 		return array;
 	}
 

@@ -70,9 +70,10 @@ public class Console : MonoBehaviour, IUsable
 			PlayerTask playerTask = FindTask(localPlayer);
 			localPlayer.moveable = false;
 			localPlayer.NetTransform.Halt();
-			if ((bool)playerTask.MinigamePrefab)
+            Minigame prefab = playerTask.MinigamePrefab;
+			if ((bool)prefab)
 			{
-				Minigame minigame = UnityEngine.Object.Instantiate(playerTask.MinigamePrefab);
+				Minigame minigame = UnityEngine.Object.Instantiate(prefab);
 				minigame.transform.SetParent(Camera.main.transform, worldPositionStays: false);
 				minigame.transform.localPosition = new Vector3(0f, 0f, -50f);
 				minigame.Console = this;

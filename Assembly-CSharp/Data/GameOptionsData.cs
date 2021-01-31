@@ -738,64 +738,10 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-        Gamemodes = new string[25]
-        {
-            "[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]",
-            "[FF0000FF]Invalid[]"
-        };
+		Gamemodes = new string[255];
+		PluginNames = new string[255];
+		GamemodesAreLua = new bool[255];
 
-		PluginNames = new string[25]
-		{
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]"
-		};
-		GamemodesAreLua = new bool[25];
 		VentModeStrings = new string[4]
 		{
 			"Impostors Only",

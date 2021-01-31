@@ -73,7 +73,13 @@ public class SweepMinigame : Minigame
 		return Mathf.Min(360 - num, num);
 	}
 
-	public void HitButton(int i)
+    public override void Close()
+    {
+		SoundManager.Instance.StopSound(SpinningSound);
+		base.Close();
+    }
+
+    public void HitButton(int i)
 	{
 		if (i != spinnerIdx)
 		{

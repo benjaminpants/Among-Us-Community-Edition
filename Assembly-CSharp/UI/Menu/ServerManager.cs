@@ -13,7 +13,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		Success
 	}
 
-	public const string DefaultOnlineServer = "172.98.89.233";
+	public const string DefaultOnlineServer = "no";
 
 	public static readonly ServerInfo DefaultServer;
 
@@ -32,20 +32,22 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 	{
 		serverInfoFile = Path.Combine(Application.persistentDataPath, "serverInfo.dat");
         LastServer = DefaultServer;
-        /*ServerInfo localfo = new ServerInfo
+        ServerInfo localfo = new ServerInfo
 		{
-			Name = "Playtesters Only",
-			Ip = "24.181.130.52",
+			Name = "Local Host",
+			Ip = "127.0.0.1",
 			Port = 25565,
-			Default = false
-		};*/
+			Default = false,
+			Icon = "single_crewmate.png"
+		};
         try
         {
             if (!File.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")))
             {
-                availableServers = new ServerInfo[1]
+                availableServers = new ServerInfo[2]
                 {
-                LastServer
+                LastServer,
+				localfo
                 };
             }
             else
@@ -86,9 +88,9 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 	{
 		DefaultServer = new ServerInfo
 		{
-			Name = "Primary",
-			Ip = "172.98.89.233",
-			Port = 27485,
+			Name = "Primary [FFFF00FF](Canada)[]",
+			Ip = "172.98.89.207",
+			Port = 41746,
 			Default = true,
 			Icon = "globe.png"
 		};
