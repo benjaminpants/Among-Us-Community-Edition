@@ -463,15 +463,18 @@ public class ShipStatus : InnerNetObject
         }
 		if (TimeUntilRandomSab2 <= 0f && AmongUsClient.Instance.AmHost)
 		{
-			TimeUntilRandomSab2 = UnityEngine.Random.Range(60f,120f);
-			string[] Names = new string[]
+			if (!(bool)MeetingHud.Instance) //dont want to be calling a sab during a meeting now do we?
 			{
+				TimeUntilRandomSab2 = UnityEngine.Random.Range(60f, 120f);
+				string[] Names = new string[]
+				{
 				"Reactor",
 				"Oxy",
 				"Comms",
 				"Lights"
-			};
-			CE_GameLua.SabSystem(Names[UnityEngine.Random.Range(0,Names.Length)],(CE_PlayerInfoLua)PlayerControl.LocalPlayer,false);
+				};
+				CE_GameLua.SabSystem(Names[UnityEngine.Random.Range(0, Names.Length)], (CE_PlayerInfoLua)PlayerControl.LocalPlayer, false);
+			}
 		}
 
 		if (CE_LuaLoader.CurrentGMLua)
