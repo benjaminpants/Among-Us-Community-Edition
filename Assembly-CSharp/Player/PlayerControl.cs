@@ -664,7 +664,11 @@ public class PlayerControl : InnerNetObject
 		GameData.Instance.LastDeathReason = reason;
 		Data.IsDead = true;
 		base.gameObject.layer = LayerMask.NameToLayer("Ghost");
-		nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
+        nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 0);
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			CE_LuaLoader.GetGamemodeResult("OnDeath", (CE_PlayerInfoLua)this,reason);
+		}
 		if (base.AmOwner)
 		{
             SaveManager.LastGameStart = DateTime.MinValue;
@@ -685,9 +689,29 @@ public class PlayerControl : InnerNetObject
 		nameText.GetComponent<MeshRenderer>().material.SetInt("_Mask", 4);
 		if (base.AmOwner)
 		{
+			myTasks.RemoveAt(0);
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill));
 			DestroyableSingleton<HudManager>.Instance.Chat.ForceClosed();
-			DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: false);
+            DestroyableSingleton<HudManager>.Instance.Chat.SetVisible(visible: false);
+			GameData.PlayerInfo[] players = GameData.Instance.AllPlayers.ToArray();
+			for (int i = 0; i < players.Length; i++)
+			{
+				if (players[i].role != 0)
+				{
+					CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
+					if (playerrole.CanSee(LocalPlayer.Data))
+					{
+						players[i].Object.nameText.Color = playerrole.RoleColor;
+					}
+				}
+				else
+				{
+					if (!players[i].IsImpostor)
+					{
+						players[i].Object.nameText.Color = Palette.White;
+					}
+				}
+			}
 		}
 	}
 
@@ -1031,10 +1055,6 @@ public class PlayerControl : InnerNetObject
 
 	public void MurderPlayer(PlayerControl target,bool hasowner = true)
 	{
-		if (CE_LuaLoader.CurrentGMLua)
-        {
-			CE_LuaLoader.GetGamemodeResult("OnDeath",(CE_PlayerInfoLua)target);
-        }
 		if (!target || AmongUsClient.Instance.IsGameOver)
 		{
 			return;
@@ -1475,6 +1495,15 @@ public class PlayerControl : InnerNetObject
 			SetRoles(array, array2);
 			break;
 		}
+		case 19:
+        {
+			PlayerControl pc = GameData.Instance.GetPlayerById(reader.ReadByte()).Object;
+			if (pc != null)
+			{
+				pc.Revive();
+			}
+			break;
+        }
 		}
 	}
 
@@ -1517,6 +1546,17 @@ public class PlayerControl : InnerNetObject
 			messageWriter.Write(infected[i].PlayerId);
 		}
 		messageWriter.EndMessage();
+	}
+
+	public void RpcRevive(GameData.PlayerInfo pf)
+    {
+		if (AmongUsClient.Instance.AmClient)
+		{
+			pf.Object.Revive();
+		}
+		MessageWriter writer = AmongUsClient.Instance.StartRpc(NetId,18);
+		writer.Write(pf.PlayerId);
+		writer.EndMessage();
 	}
 
 	public void RpcSetRole(GameData.PlayerInfo[] persons, byte[] roles)
@@ -1582,6 +1622,10 @@ public class PlayerControl : InnerNetObject
 			if (players[i].role != 0)
 			{
 				CE_Role playerrole = CE_RoleManager.GetRoleFromID(players[i].role);
+				if (CE_LuaLoader.CurrentGMLua)
+				{
+					CE_LuaLoader.GetGamemodeResult("OnRecieveRole", playerrole.RoleName, (CE_PlayerInfoLua)players[i]);
+				}
 				if (playerrole.CanSee(LocalPlayer.Data))
 				{
 					players[i].Object.nameText.Color = playerrole.RoleColor;

@@ -2,6 +2,7 @@
 
 
 function InitializeGamemode()
+	UI_AddLangEntry("UI_CantCallMeeting","WE GOT SOME KILLIN TO DO!\n\rNO TIME FOR FRIENDLY DISCUSSION!")
 	return {"Battle Royale",5} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
@@ -15,6 +16,9 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player)
 end
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
+	if (#impostors == 0) then
+		return "stalemate"
+	end
 	if (#impostors == 1) then
 		return {{impostors[1]},"battleroyale_win"} --victory array, victory sound(minus the .wav)
 	end
@@ -33,6 +37,9 @@ function CanKill(userinfo,targetinfo)
 	return true --the API already prevents the slaying of dead people so make this always return true
 end
 
+function CanCallMeeting(reporter,isbody)
+	return false
+end
 
 function DecideImpostors(impostorcount,playerinfos)
 	return playerinfos --everyones impostor!!!

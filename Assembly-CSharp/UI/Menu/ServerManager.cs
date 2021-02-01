@@ -47,9 +47,12 @@ public class ServerManager : DestroyableSingleton<ServerManager>
                 availableServers = new ServerInfo[2]
                 {
                 LastServer,
-				localfo
+                localfo
                 };
-            }
+				FileStream json = File.Create(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"));
+				json.Close();
+				File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"), JsonConvert.SerializeObject(availableServers, Formatting.Indented));
+			}
             else
             {
                 availableServers = JsonConvert.DeserializeObject<ServerInfo[]>(File.ReadAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")));
@@ -61,18 +64,6 @@ public class ServerManager : DestroyableSingleton<ServerManager>
             state = UpdateState.Failed;
             return;
         }
-		try
-		{
-			FileStream json = File.Create(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"));
-			json.Close();
-			File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"), JsonConvert.SerializeObject(availableServers, Formatting.Indented));
-		}
-		catch (Exception E)
-		{
-			Debug.LogError(E.Message);
-			state = UpdateState.Failed;
-			return;
-		}
 		state = UpdateState.Success;
 	}
 
@@ -89,7 +80,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		DefaultServer = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](Canada)[]",
-			Ip = "172.98.89.207",
+			Ip = "208.78.42.193",
 			Port = 41746,
 			Default = true,
 			Icon = "globe.png"

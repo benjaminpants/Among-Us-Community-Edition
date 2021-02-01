@@ -77,11 +77,12 @@ public static class CE_LuaLoader
 		}
 		script.Globals["Game_GetRoleIDFromName"] = (Func<string, byte>)CE_RoleManager.GetRoleFromName;
 		script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
-		script.Globals["Game_UpdatePlayerInfo"] = (Func<DynValue, bool>)CE_GameLua.UpdatePlayerInfo;
+		script.Globals["Game_UpdatePlayerInfo"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.UpdatePlayerInfo;
 		script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
 		script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
         script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
-		script.Globals["Client_ClearMessages"] = (Func<bool>)CE_GameLua.ClearCLMessage;
+        script.Globals["Client_ClearMessages"] = (Func<bool>)CE_GameLua.ClearCLMessage;
+		script.Globals["Game_CallMeeting"] = (Func<CE_PlayerInfoLua, CE_PlayerInfoLua, bool>)CE_GameLua.CallMeeting;
 		script.Globals["Game_SabSystem"] = (Func<string, CE_PlayerInfoLua, bool, int, bool>)CE_GameLua.SabSystem;
 		script.Globals["Player_SnapPosTo"] = (Func<float, float, CE_PlayerInfoLua, bool>)CE_GameLua.SnapPlayerToPos;
         script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
@@ -97,6 +98,8 @@ public static class CE_LuaLoader
         script.Globals["Game_CheckPlayerInVent"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.CheckIfInVent;
         script.Globals["Client_GetLocalPlayer"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetLocal;
         script.Globals["Game_KillPlayer"] = (Func<CE_PlayerInfoLua, bool, bool>)CE_GameLua.KillPlayer;
+		script.Globals["Game_SabDoors"] = (Func<byte, bool>)CE_GameLua.SabDoor;
+		//script.Globals["Game_RevivePlayer"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.Revive;
 		if (isgm)
 		{
 			script.Globals["Settings_CreateByte"] = (Func<string, byte, byte, byte, byte, bool>)TempAddCustomByteSetting;
@@ -196,7 +199,7 @@ public static class CE_LuaLoader
 	public static List<CE_PluginInfo> GetEnabledPlugins()
     {
 		List<CE_PluginInfo> PlugFoList = new List<CE_PluginInfo>();
-		for (int i=0; i < PlayerControl.GameOptions.Plugins.Count - 1; i++)
+		for (int i=0; i <= PlayerControl.GameOptions.Plugins.Count - 1; i++)
         {
 			CE_PluginInfo fo = PluginInfos[PlayerControl.GameOptions.Plugins[i]];
 			PlugFoList.Add(fo);

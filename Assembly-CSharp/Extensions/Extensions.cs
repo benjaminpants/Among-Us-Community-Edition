@@ -33,6 +33,18 @@ public static class Extensions
 		}
 	}
 
+	public static SystemTypes[] RoomsToSab = new SystemTypes[]
+	{
+		SystemTypes.Storage,
+		SystemTypes.Security,
+		SystemTypes.Electrical,
+		SystemTypes.UpperEngine,
+		SystemTypes.LowerEngine,
+		SystemTypes.Cafeteria,
+		SystemTypes.MedBay
+	};
+
+
 	public static string ToTextColor(this Color c)
 	{
 		return "[" + ByteHex[(byte)(c.r * 255f)] + ByteHex[(byte)(c.g * 255f)] + ByteHex[(byte)(c.b * 255f)] + ByteHex[(byte)(c.a * 255f)] + "]";

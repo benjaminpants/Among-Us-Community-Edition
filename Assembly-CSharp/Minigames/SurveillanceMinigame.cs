@@ -16,11 +16,21 @@ public class SurveillanceMinigame : Minigame
 
 	public MeshRenderer FillQuad;
 
+	public bool StartedDead;
+
 	public override void Begin(PlayerTask task)
 	{
 		base.Begin(task);
 		FilteredRooms = ShipStatus.Instance.AllRooms.Where((ShipRoom i) => i.survCamera).ToArray();
-		ShipStatus.Instance.RpcRepairSystem(SystemTypes.Security, 1);
+		StartedDead = false;
+		if (!PlayerControl.LocalPlayer.Data.IsDead)
+		{
+			ShipStatus.Instance.RpcRepairSystem(SystemTypes.Security, 1);
+		}
+		else
+        {
+			StartedDead = true;
+        }
 		textures = new RenderTexture[FilteredRooms.Length];
 		for (int j = 0; j < FilteredRooms.Length; j++)
 		{
@@ -103,7 +113,10 @@ public class SurveillanceMinigame : Minigame
 
 	public void OnDestroy()
 	{
-		ShipStatus.Instance.RpcRepairSystem(SystemTypes.Security, 2);
+		if (!StartedDead)
+		{
+			ShipStatus.Instance.RpcRepairSystem(SystemTypes.Security, 2);
+		}
 		for (int i = 0; i < textures.Length; i++)
 		{
 			textures[i].Release();

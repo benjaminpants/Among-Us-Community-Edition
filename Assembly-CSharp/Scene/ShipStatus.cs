@@ -95,6 +95,10 @@ public class ShipStatus : InnerNetObject
 
 	public float TimeSinceLastRound;
 
+	public float TimeUntilRandomSab;
+
+	public float TimeUntilRandomSab2;
+
 	private RaycastHit2D[] volumeBuffer = new RaycastHit2D[5];
 
 	public ShipRoom[] AllRooms
@@ -159,6 +163,8 @@ public class ShipStatus : InnerNetObject
 		AllVents = GetComponentsInChildren<Vent>();
 		AssignTaskIndexes();
 		Instance = this;
+        TimeUntilRandomSab = UnityEngine.Random.Range(5f, 60f);
+		TimeUntilRandomSab2 = UnityEngine.Random.Range(60f, 120f);
 	}
 
 	public void Start()
@@ -441,10 +447,32 @@ public class ShipStatus : InnerNetObject
 		}
 		Timer += Time.fixedDeltaTime;
 		TimeSinceLastRound += Time.fixedDeltaTime;
-        if (CE_LuaLoader.CurrentGMLua && AmongUsClient.Instance.AmHost)
+		if (AmongUsClient.Instance.AmHost && PlayerControl.GameOptions.SabControl == 3)
+        {
+			TimeUntilRandomSab -= Time.fixedDeltaTime;
+			TimeUntilRandomSab2 -= Time.fixedDeltaTime;
+		}
+		if (CE_LuaLoader.CurrentGMLua && AmongUsClient.Instance.AmHost)
         {
             CE_LuaLoader.GetGamemodeResult("OnHostUpdate", Timer, TimeSinceLastRound);
         }
+        if (TimeUntilRandomSab <= 0f && AmongUsClient.Instance.AmHost)
+        {
+            TimeUntilRandomSab = UnityEngine.Random.Range(5f, 60f);
+            ShipStatus.Instance.RpcCloseDoorsOfType(Extensions.RoomsToSab[UnityEngine.Random.Range(0, Extensions.RoomsToSab.Length - 1)]);
+        }
+		if (TimeUntilRandomSab2 <= 0f && AmongUsClient.Instance.AmHost)
+		{
+			TimeUntilRandomSab2 = UnityEngine.Random.Range(60f,120f);
+			string[] Names = new string[]
+			{
+				"Reactor",
+				"Oxy",
+				"Comms",
+				"Lights"
+			};
+			CE_GameLua.SabSystem(Names[UnityEngine.Random.Range(0,Names.Length)],(CE_PlayerInfoLua)PlayerControl.LocalPlayer,false);
+		}
 
 		if (CE_LuaLoader.CurrentGMLua)
 		{

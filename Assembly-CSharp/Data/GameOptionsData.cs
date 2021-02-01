@@ -763,7 +763,7 @@ public class GameOptionsData : IBytesSerializable
 			"Normal",
 			"Systems Only",
 			"Doors Only",
-			"Random(Unimplemented)", //seriously we need to implement this
+			"Random",
 			"None"
 		};
 		RecommendedKillCooldown = new int[22]

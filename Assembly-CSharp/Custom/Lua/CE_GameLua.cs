@@ -81,9 +81,8 @@ static class CE_GameLua
         DestroyableSingleton<HudManager>.Instance.Notifier.ClearText();
         return true;
     }
-    public static bool UpdatePlayerInfo(DynValue dynval)
+    public static bool UpdatePlayerInfo(CE_PlayerInfoLua influa)
     {
-        CE_PlayerInfoLua influa = (CE_PlayerInfoLua)dynval.UserData.Object;
         //Debug.Log("Attempting Data Change for:" + influa.PlayerName);
         influa.refplayer.Object.RpcSetColor(influa.ColorId);
         if (influa.refplayer.SkinId != influa.SkinId)
@@ -192,6 +191,18 @@ static class CE_GameLua
         return CE_RoleManager.GetRoleFromID(id).RoleName;
     }
 
+    public static bool CallMeeting(CE_PlayerInfoLua caller, CE_PlayerInfoLua target = null)
+    {
+        caller.refplayer.Object.CmdReportDeadBody(target.refplayer);
+        return true;
+    }
+
+    public static bool Revive(CE_PlayerInfoLua player)
+    {
+        PlayerControl.LocalPlayer.RpcRevive(player.refplayer);
+        return true;
+    }
+
     public static bool GetBool(byte id)
     {
         if (CE_LuaLoader.CurrentSettings[id] == null)
@@ -208,6 +219,12 @@ static class CE_GameLua
     public static bool KillPlayer(CE_PlayerInfoLua pl,bool showplayer)
     {
         PlayerControl.LocalPlayer.RpcMurderPlayer(pl.refplayer.Object,showplayer);
+        return true;
+    }
+
+    public static bool SabDoor(byte system)
+    {
+        ShipStatus.Instance.RpcCloseDoorsOfType((SystemTypes)system);
         return true;
     }
 
