@@ -32,7 +32,7 @@ local function GetColorAmount(id)
 	local pl = Game_GetAllPlayers()
 	local idamount = 0
 	for i=1, #pl do
-		if (pl[i].ColorId == id) then
+		if (pl[i].ColorId == id and not pl[i].IsDead) then
 		idamount = idamount + 1
 		end
 	end

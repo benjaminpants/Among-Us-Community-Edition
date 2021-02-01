@@ -30,7 +30,7 @@ local function GetColorAmount(id)
 	local pl = Game_GetAllPlayers()
 	local idamount = 0
 	for i=1, #pl do
-		if (pl[i].ColorId == id) then
+		if (pl[i].ColorId == id and not pl[i].IsDead) then
 		idamount = idamount + 1
 		end
 	end
@@ -59,16 +59,18 @@ function OnHostRecieveSimple(id)
 		for i=1, #plys do
 			if (GetColorAmount(plys[i].ColorId) == #plys) then
 				table.insert(winners,plys[i])
-				Debug_Log("I got here!")
 				Game_ActivateCustomWin(Game_GetAllPlayers(),"splatoon_win")
 			end
-			Debug_Log("playercount:" .. #plys)
 		end
 	end
 end
 
 function OnGameEnd()
 	
+end
+
+function CanCallMeeting(reporter,isbody)
+	return false
 end
 
 function DecideRoles(playerinfos)

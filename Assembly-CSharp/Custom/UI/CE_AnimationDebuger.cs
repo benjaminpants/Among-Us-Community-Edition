@@ -272,10 +272,11 @@ public class CE_AnimationDebuger : MonoBehaviour
 				CE_WardrobeManager.NudgeCurrentFramePivot(1, 0);
 			}
 		}
-		if (CE_Input.CE_GetKeyDown(KeyCode.F3))
+		/*if (CE_Input.CE_GetKeyDown(KeyCode.F3))
 		{
 			DestroyableSingleton<HatManager>.Instance.ReloadCustomHatsAndSkins();
-		}
+		}*/
+		//disabled the above keybind for technical reasons.
 		if (CE_Input.CE_GetKeyDown(KeyCode.F5) && SaveManager.EnableAnimationTestingMode)
 		{
 			if ((bool)AmongUsClient.Instance)

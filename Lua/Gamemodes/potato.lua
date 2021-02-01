@@ -6,6 +6,7 @@ local timedif = 0
 function InitializeGamemode()
 	Game_CreateRole("Potatoed",{102,72,49},"That potato looks pretty hot...",{0,2},0,5,false,true)
 	UI_AddLangEntry("UI_CantCallMeeting","No time for meetings.")
+	Settings_CreateByte("Time Until Death",0,60,15,5) -- 0
 	return {"Hot Potato",12} 
 end
 
@@ -26,6 +27,7 @@ function OnClientUpdate(timer,timesincelastround)
 		invent_timer = invent_timer - (timer - timedif)
 		if (not (math.ceil(timer) == math.ceil(timedif))) then
 			if (math.ceil(invent_timer) > -1 and (math.ceil(invent_timer) % 5 == 0 or math.ceil(invent_timer) < 6)) then
+			Client_ClearMessages()
 			Client_ShowMessage(math.ceil(invent_timer) .. " Seconds left!")
 			end
 		end
@@ -33,7 +35,7 @@ function OnClientUpdate(timer,timesincelastround)
 			Game_KillPlayer(Client_GetLocalPlayer(),false)
 		end
 	else
-		invent_timer = 10
+		invent_timer = Settings_GetNumber(0)
 	end
 	timedif = timer
 end
@@ -43,13 +45,10 @@ function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, thi
 end
 
 function OnPlayerDC(playerinfo)
-	if (not GetRoleAmount(Game_GetRoleIDFromUUID("potato_Potatoed")) == 0) then
-		return
-	end
 	if (playerinfo.role == Game_GetRoleIDFromUUID("potato_Potatoed") and Net_AmHost()) then
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
-			if (players[i].PlayerName == playerinfo.PlayerName or players[i].IsDead or players[i].IsImpostor) then
+			if (players[i].PlayerName == playerinfo.PlayerName or players[i].IsDead) then
 				table.remove(players,i)
 			end
 		end

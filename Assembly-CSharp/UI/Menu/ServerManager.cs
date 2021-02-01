@@ -21,8 +21,6 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 
 	public ServerInfo LastServer = DefaultServer;
 
-	private string serverInfoFile;
-
 	private UpdateState state;
 
     public string OnlineNetAddress => LastServer.Ip;
@@ -30,7 +28,6 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 
 	public void Start()
 	{
-		serverInfoFile = Path.Combine(Application.persistentDataPath, "serverInfo.dat");
         LastServer = DefaultServer;
         ServerInfo localfo = new ServerInfo
 		{
@@ -56,6 +53,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
             else
             {
                 availableServers = JsonConvert.DeserializeObject<ServerInfo[]>(File.ReadAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")));
+				LastServer = Array.Find<ServerInfo>(availableServers,IsDefault);
             }
         }
         catch (Exception E)
@@ -67,6 +65,11 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		state = UpdateState.Success;
 	}
 
+
+	public static bool IsDefault(ServerInfo si)
+	{
+		return si.Default;
+	}
 	public IEnumerator WaitForServers()
 	{
 		while (state == UpdateState.Connecting)
@@ -80,7 +83,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		DefaultServer = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](Canada)[]",
-			Ip = "208.78.42.193",
+			Ip = "208.78.42.189",
 			Port = 41746,
 			Default = true,
 			Icon = "globe.png"
