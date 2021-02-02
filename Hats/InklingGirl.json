@@ -1,0 +1,54 @@
+{
+  "ID": "9c75aed2-8a4b-485e-a66f-014ff89dc810",
+  "Name": "Inkling Girl Hat",
+  "StoreName": "Inkling Girl Hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 61.0,
+        "y": 73.0
+      },
+      "Offset": {
+        "x": 0.55,
+        "y": 1.15
+      },
+      "Name": "Normal",
+      "SpritePath": "InklingGirl.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 61.0,
+        "y": 50.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "InklingGirl_Fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

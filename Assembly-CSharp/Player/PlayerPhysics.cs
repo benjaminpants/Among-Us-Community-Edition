@@ -210,7 +210,7 @@ public class PlayerPhysics : InnerNetObject
 			myPlayer.nameText.gameObject.SetActive(value: false);
 			myPlayer.Collider.enabled = false;
 			KillAnimation.SetMovement(myPlayer, canMove: false);
-			bool amFlipped = (myPlayer.PlayerId % 11) > 4;
+			bool amFlipped = (myPlayer.PlayerId % 10) > 4;
 			myPlayer.GetComponent<SpriteRenderer>().flipX = amFlipped;
 			myPlayer.transform.position = spawnPos;
 			SoundManager.Instance.PlaySound(lobby.SpawnSound, loop: false).volume = 0.8f;

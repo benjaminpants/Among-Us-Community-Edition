@@ -1,0 +1,54 @@
+{
+  "ID": "205f504e-cc41-45c1-89e8-ca941cc75f3f",
+  "Name": "Phoenix Wright Hat",
+  "StoreName": "Phoenix Wright Hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 60.0,
+        "y": 41.0
+      },
+      "Offset": {
+        "x": 0.55,
+        "y": 1.19999981
+      },
+      "Name": "Normal",
+      "SpritePath": "PhoenixWright.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 60.0,
+        "y": 41.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "PhoenixWright_Fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

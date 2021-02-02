@@ -1,0 +1,74 @@
+{
+  "ID": "c7a21bc8-3d22-48d1-8c54-62495efb9aea",
+  "Name": "Plague Mask",
+  "StoreName": "Plaguebearer Mask (includes skin!)",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 103.0,
+        "y": 94.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.8000001
+      },
+      "Name": "NormalExt",
+      "SpritePath": "PlaguebearerMask.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 103.0,
+        "y": 94.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.8000001
+      },
+      "Name": "Normal",
+      "SpritePath": "PlaguebearerHat.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 93.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "PlaguebearerMaskdead.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

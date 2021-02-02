@@ -1,0 +1,54 @@
+{
+  "ID": "bf056ba3-602b-4249-99f1-6bcf1e5ee5d0",
+  "Name": "Inkling Boy Hat",
+  "StoreName": "Inkling Boy Hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 63.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.48,
+        "y": 0.99999994
+      },
+      "Name": "Normal",
+      "SpritePath": "InklingBoy.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 63.0,
+        "y": 49.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "InklingBoy_Fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}
