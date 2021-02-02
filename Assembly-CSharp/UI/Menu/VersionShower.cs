@@ -44,21 +44,40 @@ public class VersionShower : MonoBehaviour
 		};
     public TextRenderer text;
 
-	public static int GetDeterministicHashCode(string str)
+    public static int GetDeterministicHashCode(string str)
+    {
+        unchecked
+        {
+            int hash1 = (5381 << 16) + 5381;
+            int hash2 = hash1;
+
+            for (int i = 0; i < str.Length; i += 2)
+            {
+                hash1 = ((hash1 << 5) + hash1) ^ str[i];
+                if (i == str.Length - 1)
+                    break;
+                hash2 = ((hash2 << 5) + hash2) ^ str[i + 1];
+            }
+
+            return hash1 + (hash2 * 1566083941);
+        }
+    }
+
+	public static int GetDeterministicHashCodeBytes(byte[] bytes)
 	{
 		unchecked
 		{
 			int hash1 = (5381 << 16) + 5381;
 			int hash2 = hash1;
 
-			for (int i = 0; i < str.Length; i += 2)
+			for (int i = 0; i < bytes.Length - 1; i += 2)
 			{
-				hash1 = ((hash1 << 5) + hash1) ^ str[i];
-				if (i == str.Length - 1)
+				hash1 = ((hash1 << 5) + hash1) ^ bytes[i];
+				if (i == bytes.Length - 1)
 					break;
-				hash2 = ((hash2 << 5) + hash2) ^ str[i + 1];
+				hash2 = ((hash2 << 5) + hash2) ^ bytes[i + 1];
 			}
-			
+
 			return hash1 + (hash2 * 1566083941);
 		}
 	}
@@ -67,14 +86,8 @@ public class VersionShower : MonoBehaviour
 	public void Start()
 	{
 		byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
-		string CombinedByteListString = "";
-		for (int i = 1; i != 600; i++)
-        {
-			CombinedByteListString = CombinedByteListString + Bytes[i].ToString();
-		}
-        CombinedByteListString += Bytes.Length.ToString();
-		buildhash = GetDeterministicHashCode(CombinedByteListString);
-		BuildID = CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString), 7);
+		buildhash = GetDeterministicHashCodeBytes(Bytes);
+		BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
 		text.Text = "v0.5.6 - Deserves to be 0.6.0" + "\nBuild ID:" + BuildID;
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
@@ -93,7 +106,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.5.8b - Attempted Fix" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		text.Text = "v0.5.8c - Minor Improvements" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

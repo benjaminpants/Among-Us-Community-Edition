@@ -62,9 +62,11 @@ public class BanMenu : MonoBehaviour
 						if (!string.IsNullOrWhiteSpace(data.PlayerName))
 						{
 							BanButton banButton = Object.Instantiate(BanButtonPrefab, ContentParent.transform);
-							banButton.transform.localPosition = new Vector3(-0.2f, -0.15f - 0.4f * (float)num, -1f);
+							banButton.transform.localPosition = new Vector3(-0.2f, (-0.15f - 0.4f * (float)num) / 2f, -1f);
 							banButton.Parent = this;
-							banButton.NameText.Text = data.PlayerName;
+							banButton.gameObject.transform.localScale *= new Vector2(1f,0.5f);
+                            banButton.NameText.Text = data.PlayerName;
+							banButton.NameText.gameObject.transform.localScale *= new Vector2(0.5f, 1f);
 							banButton.TargetClientId = clientData.Id;
 							banButton.Unselect();
 							allButtons.Add(banButton);
@@ -74,13 +76,13 @@ public class BanMenu : MonoBehaviour
 				}
 			}
 		}
-		BanLeftText.transform.localPosition = new Vector3(-0.78f, 0.049999997f, -1f);
-		KickButton.transform.localPosition = new Vector3(-0.8f, -0.15f - 0.4f * (float)num - 0.1f, -1f);
-		BanButton.transform.localPosition = new Vector3(0.3f, -0.15f - 0.4f * (float)num - 0.1f, -1f);
+		BanLeftText.transform.localPosition = new Vector3(-0.78f, (0.049999997f) / 2f, -1f);
+		KickButton.transform.localPosition = new Vector3(-0.8f, (-0.15f - 0.4f * (float)num - 0.1f) / 2f, -1f);
+		BanButton.transform.localPosition = new Vector3(0.3f, (-0.15f - 0.4f * (float)num - 0.1f) / 2f, -1f);
 		float num2 = 0.3f + (float)(num + 1) * 0.4f;
-		Background.size = new Vector2(3f, num2);
-		Background.GetComponent<BoxCollider2D>().size = new Vector2(3f, num2);
-		Background.transform.localPosition = new Vector3(0f, (0f - num2) / 2f + 0.15f, 0.1f);
+		Background.size = new Vector2(3f, (num2 / 2f));
+		Background.GetComponent<BoxCollider2D>().size = new Vector2(3f, (num2 / 2f));
+		Background.transform.localPosition = new Vector3(0f, ((0f - num2) / 2f + 0.15f) / 2f, 0.1f);
 	}
 
 	public void Hide()

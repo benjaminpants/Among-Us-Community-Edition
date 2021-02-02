@@ -55,24 +55,27 @@ public class ShieldMinigame : Minigame
 		MyNormTask.Data[0] = shields;
 		if ((shields & b) != 0)
 		{
-			if (Constants.ShouldPlaySfx())
+            if (Constants.ShouldPlaySfx())
+            {
+                SoundManager.Instance.PlaySound(ShieldOnSound, loop: false);
+            }
+			if (PlayerControl.GameOptions.TaskDifficulty == 3 || PlayerControl.GameOptions.TaskDifficulty == 2)
 			{
-				if (PlayerControl.GameOptions.TaskDifficulty == 3 || PlayerControl.GameOptions.TaskDifficulty == 2)
-				{
-					GreenifyShields();
-					Shields[i].color = Color.white;
-				}
-				SoundManager.Instance.PlaySound(ShieldOnSound, loop: false);
+				GreenifyShields();
+				Shields[i].color = Color.white;
 			}
 		}
-		else if (Constants.ShouldPlaySfx())
+		else
 		{
+            if (Constants.ShouldPlaySfx())
+            {
+                SoundManager.Instance.PlaySound(ShieldOffSound, loop: false);
+            }
 			if (PlayerControl.GameOptions.TaskDifficulty == 3 || PlayerControl.GameOptions.TaskDifficulty == 2)
 			{
 				GreenifyShields();
 				Shields[i].color = Color.red;
 			}
-			SoundManager.Instance.PlaySound(ShieldOffSound, loop: false);
 		}
 		if (shields == 127)
 		{
