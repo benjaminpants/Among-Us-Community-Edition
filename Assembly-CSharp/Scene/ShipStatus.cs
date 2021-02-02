@@ -694,7 +694,7 @@ public class ShipStatus : InnerNetObject
 		}
 		if (currentGMLua)
 		{
-			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
+			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks && !CE_CustomMap.MapTestingActive)
 			{
 				flag2 = true;
 			}
@@ -764,7 +764,7 @@ public class ShipStatus : InnerNetObject
 					RpcEndGame(GameOverReason.HumansByTask, !SaveManager.BoughtNoAds);
 				}
 			}
-			else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete))
+			else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete) && !CE_CustomMap.MapTestingActive)
 			{
 				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because the task bar is full. For free play, we issue new tasks instead.");
 				Begin();

@@ -8,11 +8,10 @@ using InnerNet;
 
 public class CE_CustomMap
 {
-    private static bool MapTestingActive = false;
+    public static bool MapTestingActive = false;
     private static void ClearMapCollision(ShipStatus map)
     {
-        Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
-        foreach (Collider2D col in colids)
+        foreach (Transform col in map.transform)
         {
             UnityEngine.Object.Destroy(col.gameObject);
         }
@@ -38,9 +37,10 @@ public class CE_CustomMap
 
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         GameObject go = new GameObject("Test");
-        go.layer = LayerMask.NameToLayer("Ship");
+        go.layer = 9;
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         var position = renderer.transform.position;
+        renderer.material = new Material(Shader.Find("Unlit/MaskShader"));
         position.x = 0.5f * x;
         position.y = 0.5f * y;
         position.z = (position.y / 1000f) + 0.5f;
@@ -50,6 +50,7 @@ public class CE_CustomMap
         if (Solid)
         {
             BoxCollider2D boxCollider = go.AddComponent<BoxCollider2D>();
+            go.layer = Constants.ShadowMask; //cry emote
             boxCollider.transform.position = renderer.transform.position;
             boxCollider.size = new Vector3(0.5f, 0.5f);
         }
@@ -58,13 +59,25 @@ public class CE_CustomMap
     public static void MapTest(ShipStatus map)
     {
         if (!MapTestingActive) return;
+        foreach (NormalPlayerTask mp in map.CommonTasks)
+        {
+            UnityEngine.GameObject.Destroy(mp.gameObject);
+        }
+        foreach (NormalPlayerTask mp in map.NormalTasks)
+        {
+            UnityEngine.GameObject.Destroy(mp.gameObject);
+        }
+        foreach (NormalPlayerTask mp in map.LongTasks)
+        {
+            UnityEngine.GameObject.Destroy(mp.gameObject);
+        }
         ClearMapCollision(map);
         for (int x = -25; x < 25; x++)
         {
             for (int y = -25; y < 25; y++)
             {
                 bool isSolid = (x == -25 || y == -25 || y == 24 || x == 24);
-                SpawnSprite(x, y, isSolid);
+                SpawnSprite(x, y, BoolRange.Next());
             }
         }
     }
