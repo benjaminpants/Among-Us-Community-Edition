@@ -203,7 +203,20 @@ namespace InnerNet
 				{
 					if (reader.ReadInt32() == CE_LuaLoader.TheOmegaHash && reader.ReadInt32() == CE_WardrobeManager.HatHash)
 					{
-						JoinGame(client);
+						if (reader.ReadInt32() == VersionShower.buildhash)
+						{
+							JoinGame(client);
+						}
+						else
+                        {
+								MessageWriter messageWriter5 = MessageWriter.Get(SendOption.Reliable);
+								messageWriter5.StartMessage(1);
+								messageWriter5.Write(8);
+								messageWriter5.Write("Your version doesn't match with the hosts! Please update your game(or downgrade it) to join!");
+								messageWriter5.EndMessage();
+								client.Connection.Send(messageWriter5);
+								messageWriter5.Recycle();
+						}
 						break;
 					}
 					else
@@ -211,7 +224,7 @@ namespace InnerNet
 						MessageWriter messageWriter5 = MessageWriter.Get(SendOption.Reliable);
 						messageWriter5.StartMessage(1);
                         messageWriter5.Write(8);
-						messageWriter5.Write("Hash didn't match with Host's!\nThis could be because your Cosmetics and Lua are out of date or you have extra Cosmetics or Gamemodes installed.");
+						messageWriter5.Write("Hash didn't match with Host's!\nThis could be because your Cosmetics and Lua are out of date or you have extra Cosmetics and Gamemodes installed.");
 						messageWriter5.EndMessage();
 						client.Connection.Send(messageWriter5);
 						messageWriter5.Recycle();

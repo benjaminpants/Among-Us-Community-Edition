@@ -298,8 +298,6 @@ public class ShipStatus : InnerNetObject
 				Roles.Add(CE_RoleManager.GetRoleFromUUID(value.String));
 			}
 			PlayerControl.LocalPlayer.RpcSetRole(list3role.ToArray(),Roles.ToArray());
-
-
 			List<GameData.PlayerInfo> list = (from pcd in GameData.Instance.AllPlayers
 				where !pcd.Disconnected
 				select pcd into pc

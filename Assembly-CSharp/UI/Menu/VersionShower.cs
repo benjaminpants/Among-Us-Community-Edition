@@ -10,6 +10,7 @@ public class VersionShower : MonoBehaviour
 	private int lasthat;
 	private string LuaID;
 	private string HatID;
+	public static int buildhash;
 	public static string BuildID;
 
 	private readonly string[] Characters = {
@@ -57,7 +58,7 @@ public class VersionShower : MonoBehaviour
 					break;
 				hash2 = ((hash2 << 5) + hash2) ^ str[i + 1];
 			}
-
+			
 			return hash1 + (hash2 * 1566083941);
 		}
 	}
@@ -72,6 +73,7 @@ public class VersionShower : MonoBehaviour
 			CombinedByteListString = CombinedByteListString + Bytes[i].ToString();
 		}
         CombinedByteListString += Bytes.Length.ToString();
+		buildhash = GetDeterministicHashCode(CombinedByteListString);
 		BuildID = CreateIDFromInt(GetDeterministicHashCode(CombinedByteListString), 7);
 		text.Text = "v0.5.6 - Deserves to be 0.6.0" + "\nBuild ID:" + BuildID;
 		Screen.sleepTimeout = -1;
@@ -91,7 +93,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.5.7 - Close to release..." + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		text.Text = "v0.5.8b - Attempted Fix" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

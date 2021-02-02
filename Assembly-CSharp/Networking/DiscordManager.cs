@@ -69,60 +69,96 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 
 	public void SetPlayingGame()
 	{
-		if (!StartTime.HasValue)
+		try
 		{
-			StartTime = DateTime.UtcNow;
+			if (!StartTime.HasValue)
+			{
+				StartTime = DateTime.UtcNow;
+			}
+			presence.state = "In Game";
+			presence.details = "Playing " + GameOptionsData.Gamemodes[PlayerControl.GameOptions.Gamemode];
+			presence.largeImageKey = "icon";
+			presence.startTimestamp = ToUnixTime(StartTime.Value);
+			DiscordRpc.UpdatePresence(presence);
 		}
-		presence.state = "In Game";
-		presence.details = "Playing " + GameOptionsData.Gamemodes[PlayerControl.GameOptions.Gamemode];
-		presence.largeImageKey = "icon";
-		presence.startTimestamp = ToUnixTime(StartTime.Value);
-		DiscordRpc.UpdatePresence(presence);
+		catch(Exception E)
+        {
+			Debug.LogError(E.Message + E.StackTrace);
+        }
 	}
 
 	public void SetHowToPlay()
 	{
-		ClearPresence();
-		presence.state = "In Freeplay";
-		presence.largeImageKey = "icon_freeplay";
-		DiscordRpc.UpdatePresence(presence);
+		try
+		{
+			ClearPresence();
+			presence.state = "In Freeplay";
+			presence.largeImageKey = "icon_freeplay";
+			DiscordRpc.UpdatePresence(presence);
+		}
+		catch (Exception E)
+		{
+			Debug.LogError(E.Message + E.StackTrace);
+		}
 	}
 
 	public void SetInLobbyClient()
 	{
-		if (!StartTime.HasValue)
+		try
 		{
-			StartTime = DateTime.UtcNow;
+			if (!StartTime.HasValue)
+			{
+				StartTime = DateTime.UtcNow;
+			}
+			ClearPresence();
+			presence.state = "In Lobby";
+			presence.largeImageKey = "icon_lobby";
+			presence.startTimestamp = ToUnixTime(StartTime.Value);
+			DiscordRpc.UpdatePresence(presence);
 		}
-		ClearPresence();
-		presence.state = "In Lobby";
-		presence.largeImageKey = "icon_lobby";
-		presence.startTimestamp = ToUnixTime(StartTime.Value);
-		DiscordRpc.UpdatePresence(presence);
+		catch (Exception E)
+		{
+			Debug.LogError(E.Message + E.StackTrace);
+		}
+
 	}
 
 	private void ClearPresence()
 	{
-		presence.startTimestamp = 0L;
-		presence.details = null;
-		presence.partyId = null;
-		presence.matchSecret = null;
-		presence.joinSecret = null;
-		presence.partySize = 0;
-		presence.partyMax = 0;
+		try
+		{
+			presence.startTimestamp = 0L;
+			presence.details = null;
+			presence.partyId = null;
+			presence.matchSecret = null;
+			presence.joinSecret = null;
+			presence.partySize = 0;
+			presence.partyMax = 0;
+		}
+		catch (Exception E)
+		{
+			Debug.LogError(E.Message + E.StackTrace);
+		}
 	}
 
 	public void SetInLobbyHost(int numPlayers, int gameId)
 	{
-		if (!StartTime.HasValue)
+		try
 		{
-			StartTime = DateTime.UtcNow;
+			if (!StartTime.HasValue)
+			{
+				StartTime = DateTime.UtcNow;
+			}
+			string text = InnerNetClient.IntToGameName(gameId);
+			presence.state = "In Lobby";
+			presence.details = "Hosting a game";
+			presence.smallImageKey = "icon_lobby";
+			DiscordRpc.UpdatePresence(presence);
 		}
-		string text = InnerNetClient.IntToGameName(gameId);
-		presence.state = "In Lobby";
-		presence.details = "Hosting a game";
-		presence.smallImageKey = "icon_lobby";
-		DiscordRpc.UpdatePresence(presence);
+		catch (Exception E)
+		{
+			Debug.LogError(E.Message + E.StackTrace);
+		}
 	}
 
 	private void HandleAutoJoin(ref DiscordRpc.DiscordUser requestUser)
@@ -131,59 +167,9 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 
 	private void HandleJoinRequest(string joinSecret)
 	{
-		if (!joinSecret.StartsWith("join"))
-		{
-			Debug.LogWarning("Invalid join secret: " + joinSecret);
-			return;
-		}
-		if (!AmongUsClient.Instance)
-		{
-			Debug.LogWarning("Missing AmongUsClient");
-			return;
-		}
-		if (!DestroyableSingleton<DiscordManager>.InstanceExists)
-		{
-			Debug.LogWarning("Missing DiscordManager");
-			return;
-		}
-		if (AmongUsClient.Instance.mode != 0)
-		{
-			Debug.LogWarning("Already connected");
-			return;
-		}
-		AmongUsClient.Instance.GameMode = GameModes.OnlineGame;
-		AmongUsClient.Instance.GameId = InnerNetClient.GameNameToInt(joinSecret.Substring(4));
-		AmongUsClient.Instance.SetEndpoint(DestroyableSingleton<ServerManager>.Instance.OnlineNetAddress, (ushort)DestroyableSingleton<ServerManager>.Instance.LastPort);
-		AmongUsClient.Instance.MainMenuScene = "MMOnline";
-		AmongUsClient.Instance.OnlineScene = "OnlineGame";
-		DestroyableSingleton<DiscordManager>.Instance.StopAllCoroutines();
-		DestroyableSingleton<DiscordManager>.Instance.StartCoroutine(DestroyableSingleton<DiscordManager>.Instance.CoJoinGame());
+		//no.
 	}
 
-	public IEnumerator CoJoinGame()
-	{
-		while ((bool)DataCollectScreen.Instance && DataCollectScreen.Instance.isActiveAndEnabled)
-		{
-			yield return null;
-		}
-		AmongUsClient.Instance.Connect(MatchMakerModes.Client);
-		yield return AmongUsClient.Instance.WaitForConnectionOrFail();
-		if (AmongUsClient.Instance.ClientId < 0)
-		{
-			SceneManager.LoadScene("MMOnline");
-		}
-	}
-
-	public void RequestRespondYes()
-	{
-		DiscordRpc.Respond(joinRequest.userId, DiscordRpc.Reply.Yes);
-	}
-
-	public void RequestRespondNo()
-	{
-		Debug.Log("Discord: responding no to Ask to Join request");
-		DiscordRpc.Respond(joinRequest.userId, DiscordRpc.Reply.No);
-	}
 
 	public override void OnDestroy()
 	{

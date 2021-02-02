@@ -97,11 +97,11 @@ static class CE_GameLua
         {
             influa.refplayer.Object.RpcSetLuaValue(influa.luavalue1, 1);
         }
-        if (influa.refplayer.luavalue1 != influa.luavalue2)
+        if (influa.refplayer.luavalue2 != influa.luavalue2)
         {
             influa.refplayer.Object.RpcSetLuaValue(influa.luavalue2, 2);
         }
-        if (influa.refplayer.luavalue1 != influa.luavalue3)
+        if (influa.refplayer.luavalue3 != influa.luavalue3)
         {
             influa.refplayer.Object.RpcSetLuaValue(influa.luavalue3, 3);
         }

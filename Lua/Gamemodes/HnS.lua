@@ -79,6 +79,9 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (taskscomplete) then --task win
 		return "crewmates"
 	end
+	if (sab) then
+		return "impostors"
+	end
 	return "none" --no win conditions have been met.
 end
 
