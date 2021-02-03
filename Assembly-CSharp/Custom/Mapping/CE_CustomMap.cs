@@ -113,21 +113,24 @@ public class CE_CustomMap
         texture.filterMode = FilterMode.Point;
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         if (!MapTestingActive) return;
+        Debug.Log("Clearing Tasks...");
+        Debug.Log(map.CommonTasks.Length);
         foreach (NormalPlayerTask mp in map.CommonTasks)
         {
-            UnityEngine.GameObject.Destroy(mp.gameObject);
+            UnityEngine.GameObject.Destroy(mp);
         }
         map.CommonTasks = new NormalPlayerTask[1];
         foreach (NormalPlayerTask mp in map.NormalTasks)
         {
-            UnityEngine.GameObject.Destroy(mp.gameObject);
+            UnityEngine.GameObject.Destroy(mp);
         }
         map.NormalTasks = new NormalPlayerTask[3];
         foreach (NormalPlayerTask mp in map.LongTasks)
         {
-            UnityEngine.GameObject.Destroy(mp.gameObject);
+            UnityEngine.GameObject.Destroy(mp);
         }
         map.LongTasks = new NormalPlayerTask[1];
+        Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
         NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Weapons,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
         CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Weapons);
         NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Cafeteria, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
@@ -143,7 +146,9 @@ public class CE_CustomMap
         map.NormalTasks[0] = npt2;
         map.NormalTasks[1] = npt3;
         map.NormalTasks[2] = npt4;
+        Debug.Log("Clearing collision...");
         ClearMapCollision(map);
+        Debug.Log("Spawning Map...");
         for (int x = -5; x < 5; x++)
         {
             for (int y = -5; y < 5; y++)
