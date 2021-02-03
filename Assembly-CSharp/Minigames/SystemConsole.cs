@@ -4,7 +4,11 @@ public class SystemConsole : MonoBehaviour, IUsable
 {
 	public float usableDistance = 1f;
 
+	public bool IsCustom;
+
 	public bool FreeplayOnly;
+
+	public NormalPlayerTask TaskOverride;
 
 	public SpriteRenderer Image;
 
@@ -53,9 +57,21 @@ public class SystemConsole : MonoBehaviour, IUsable
 		{
 			PlayerControl.LocalPlayer.NetTransform.Halt();
 			Minigame minigame = Object.Instantiate(MinigamePrefab);
+			/*if (IsCustom)
+            {
+                minigame.ChangeNormTask(TaskOverride);
+				minigame.ChangeTask(TaskOverride);
+			}*/
 			minigame.transform.SetParent(Camera.main.transform, worldPositionStays: false);
 			minigame.transform.localPosition = new Vector3(0f, 0f, -50f);
-			minigame.Begin(null);
+			if (!IsCustom)
+			{
+				minigame.Begin(null);
+			}
+			else
+            {
+				minigame.Begin(TaskOverride);
+            }
 		}
 	}
 }

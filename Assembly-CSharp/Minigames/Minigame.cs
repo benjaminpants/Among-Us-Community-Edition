@@ -33,6 +33,16 @@ public abstract class Minigame : MonoBehaviour
 		set;
 	}
 
+    public void ChangeTask(PlayerTask playertask)
+    {
+        MyTask = playertask;
+    }
+
+	public void ChangeNormTask(NormalPlayerTask playernormaltask)
+	{
+		MyTask = playernormaltask;
+	}
+
 	protected int ConsoleId
 	{
 		get

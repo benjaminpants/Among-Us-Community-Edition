@@ -102,7 +102,7 @@ public class CE_DevTool : MonoBehaviour
 			GUILayout.BeginHorizontal();
 			try
 			{
-				RoleLister(go.name + "\n" + go.layer, go.GetComponent<Collider2D>().bounds.ToString());
+				RoleLister(go.name + "\n" + go.layer, go.GetComponent<SpriteRenderer>().material.shader.name);
 				if (CE_CommonUI.CreateSimpleBoolSwitch(false))
 				{
 					PlayerControl.LocalPlayer.NetTransform.SnapTo(new Vector2(go.transform.position.x, go.transform.position.y));

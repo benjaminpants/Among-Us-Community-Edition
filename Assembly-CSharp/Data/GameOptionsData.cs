@@ -660,10 +660,12 @@ public class GameOptionsData : IBytesSerializable
 
 	static GameOptionsData()
 	{
-		MapNames = new string[2]
+		MapNames = new string[4]
 		{
 			"The Skeld",
-			"Mira HQ(Alpha)"
+			"Clue",
+			"The Forest",
+			"Martian Complex"
 		};
 		KillDistances = new float[6]
 		{

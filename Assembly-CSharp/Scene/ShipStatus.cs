@@ -157,7 +157,10 @@ public class ShipStatus : InnerNetObject
 
 	private void Awake()
 	{
-		CE_CustomMap.MapTest(this);
+		if (this != null)
+		{
+			CE_CustomMap.MapTest(this);
+		}
 		AllRooms = GetComponentsInChildren<ShipRoom>();
 		AllConsoles = GetComponentsInChildren<Console>();
 		AllVents = GetComponentsInChildren<Vent>();

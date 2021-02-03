@@ -83,7 +83,7 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 		{
 			arg = "[00FF00FF]";
 		}
-		if (LastPlayerCount == MinPlayers)
+		else if (LastPlayerCount >= 4)
 		{
 			arg = "[FFFF00FF]";
 		}

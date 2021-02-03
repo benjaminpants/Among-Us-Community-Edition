@@ -18,3 +18,21 @@ public static class CE_ConversionHelpers
     }
 }
 
+public static class CE_PrefabHelpers
+{
+	public static UnityEngine.Object FindPrefab(string name,Type type)
+	{
+		var resources = UnityEngine.Resources.FindObjectsOfTypeAll(type);
+		if (resources != null)
+		{
+			foreach (var item in resources)
+			{
+				if (item.name == name)
+				{
+					return item; 
+				}
+			}
+		}
+		return null;
+	}
+}

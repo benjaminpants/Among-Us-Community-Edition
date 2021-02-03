@@ -69,7 +69,7 @@ public class LightSource : MonoBehaviour
 	[HideInInspector]
 	private Mesh myMesh;
 
-	public int MinRays = 24;
+	public int MinRays = 48;
 
 	public float LightRadius = 3f;
 
