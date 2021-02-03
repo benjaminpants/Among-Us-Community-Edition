@@ -234,9 +234,9 @@ public class PlayerPhysics : InnerNetObject
 		ResetAnim();
 		myPlayer.moveable = true;
 		Vent[] allVents = ShipStatus.Instance.AllVents;
-		for (int i = 0; i < allVents.Length; i++)
+		foreach (Vent V in allVents)
 		{
-			allVents[i].SetButtons(enabled: false);
+			V.SetButtons(enabled: false);
 		}
 	}
 

@@ -196,6 +196,8 @@ public class CE_CustomMap
         map.NormalTasks[1] = npt3;
         map.NormalTasks[2] = npt4;
 
+        map.SpawnCenter = GameObject.Instantiate(new GameObject()).transform;
+
         //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");
         ClearMapCollision(map);

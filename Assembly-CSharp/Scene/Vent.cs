@@ -169,30 +169,37 @@ public class Vent : MonoBehaviour, IUsable
 			Up,
 			Down
 		};
-		for (int i = 0; i < Buttons.Length; i++)
+		for (int i = 0; i < Buttons.Length - 1; i++)
 		{
-			ButtonBehavior buttonBehavior = Buttons[i];
-			if (enabled)
+			try //TODO: ACTUALLY FIX THIS
 			{
-				Vent vent = array[i];
-				if ((bool)vent)
+				ButtonBehavior buttonBehavior = Buttons[i];
+				if (enabled)
 				{
-                    buttonBehavior.gameObject.SetActive(value: true);
-					Vector3 localPosition = (vent.transform.position - base.transform.position).normalized * 0.7f;
-					localPosition.y -= 0.08f;
-					localPosition.z = -100f;
-					buttonBehavior.transform.localPosition = localPosition;
-					buttonBehavior.transform.LookAt2d(vent.transform);
+					Vent vent = array[i];
+					if ((bool)vent)
+					{
+						buttonBehavior.gameObject.SetActive(value: true);
+						Vector3 localPosition = (vent.transform.position - base.transform.position).normalized * 0.7f;
+						localPosition.y -= 0.08f;
+						localPosition.z = -100f;
+						buttonBehavior.transform.localPosition = localPosition;
+						buttonBehavior.transform.LookAt2d(vent.transform);
+					}
+					else
+					{
+						buttonBehavior.gameObject.SetActive(value: false);
+					}
 				}
 				else
 				{
 					buttonBehavior.gameObject.SetActive(value: false);
 				}
 			}
-			else
-			{
-				buttonBehavior.gameObject.SetActive(value: false);
-			}
+			catch
+            {
+
+            }
 		}
 	}
 
