@@ -8,34 +8,49 @@ using InnerNet;
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = false;
+    public static bool MapTestingActive = true;
 
 
-    public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep)
+    public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep, TaskTypes taskty, Type minigametype, string name)
     {
         GameObject task = UnityEngine.GameObject.Instantiate(new GameObject());
         NormalPlayerTask datatask = task.AddComponent(tasktype) as NormalPlayerTask;
+        datatask.TaskType = taskty;
         datatask.StartAt = systype;
         datatask.MaxStep = maxstep;
+        Minigame uploaddat = CE_PrefabHelpers.FindPrefab(name, minigametype) as Minigame;
+        datatask.MinigamePrefab = uploaddat;
         return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
     }
 
-    public static SystemConsole CreateTaskConsole(Type minigametype, Vector3 transf, string name, Sprite sprite, NormalPlayerTask task)
+    public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, NormalPlayerTask task, IntRange range, SystemTypes room)
     {
         GameObject ins = GameObject.Instantiate(new GameObject());
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one;
         col2d.isTrigger = true;
-        SystemConsole console = ins.AddComponent<SystemConsole>();
+        Console console = ins.AddComponent<Console>();
         SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
         img.sprite = sprite;
         img.material.shader = Shader.Find("Sprites/Outline");
         console.Image = img;
+        console.Room = room;
+        TaskSet ts = new TaskSet();
+        ts.taskStep = range;
+        ts.taskType = task.TaskType;
+        console.ValidTasks = new TaskSet[] { 
+            ts
+        };
+        console.TaskTypes = new TaskTypes[]
+        {
+            task.TaskType
+        };
+
         ins.transform.position = transf;
-        Minigame uploaddat = CE_PrefabHelpers.FindPrefab(name, minigametype) as Minigame;
+        /*Minigame uploaddat = CE_PrefabHelpers.FindPrefab(name, minigametype) as Minigame;
         console.MinigamePrefab = uploaddat;
         console.IsCustom = true;
-        console.TaskOverride = task;
+        console.TaskOverride = task;*/
         return console;
     }
     private static void ClearMapCollision(ShipStatus map)
@@ -107,17 +122,27 @@ public class CE_CustomMap
         {
             UnityEngine.GameObject.Destroy(mp.gameObject);
         }
-        map.NormalTasks = new NormalPlayerTask[1];
+        map.NormalTasks = new NormalPlayerTask[3];
         foreach (NormalPlayerTask mp in map.LongTasks)
         {
             UnityEngine.GameObject.Destroy(mp.gameObject);
         }
         map.LongTasks = new NormalPlayerTask[1];
-        NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Weapons,69);
-        CreateTaskConsole(typeof(WeaponsMinigame),new Vector3(3f,3f, (3f / 1000f) + 0.5f),"WeaponsMinigame",sprite,uptask);
+        NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Weapons,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
+        CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Weapons);
+        NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Cafeteria, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Cafeteria);
+        NormalPlayerTask npt2 = CreateTask(typeof(UploadDataTask), SystemTypes.Weapons, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Weapons);
+        NormalPlayerTask npt3 = CreateTask(typeof(UploadDataTask), SystemTypes.Security, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Security);
+        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Shields, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Shields);
         map.CommonTasks[0] = uptask;
-        map.LongTasks[0] = CreateTask(typeof(UploadDataTask), SystemTypes.Cafeteria, 2);
-        map.NormalTasks[0] = CreateTask(typeof(UploadDataTask), SystemTypes.Electrical, 2);
+        map.LongTasks[0] = npt;
+        map.NormalTasks[0] = npt2;
+        map.NormalTasks[1] = npt3;
+        map.NormalTasks[2] = npt4;
         ClearMapCollision(map);
         for (int x = -5; x < 5; x++)
         {

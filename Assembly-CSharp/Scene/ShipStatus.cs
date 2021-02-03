@@ -767,7 +767,7 @@ public class ShipStatus : InnerNetObject
 					RpcEndGame(GameOverReason.HumansByTask, !SaveManager.BoughtNoAds);
 				}
 			}
-			else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete) && !CE_CustomMap.MapTestingActive)
+			else if (PlayerControl.LocalPlayer.myTasks.All((PlayerTask t) => t.IsComplete))
 			{
 				DestroyableSingleton<HudManager>.Instance.ShowPopUp("Normally The Crew would have just won because the task bar is full. For free play, we issue new tasks instead.");
 				Begin();
