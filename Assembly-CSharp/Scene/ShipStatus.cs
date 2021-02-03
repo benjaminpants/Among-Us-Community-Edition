@@ -163,7 +163,26 @@ public class ShipStatus : InnerNetObject
 		}
 		AllRooms = GetComponentsInChildren<ShipRoom>();
 		AllConsoles = GetComponentsInChildren<Console>();
-		AllVents = GetComponentsInChildren<Vent>();
+		if (CE_CustomMap.MapTestingActive)
+		{
+			Vent[] TempVent = GameObject.FindObjectsOfType<Vent>();
+			foreach (Vent V in TempVent)
+            {
+				if (V.name.StartsWith("(Custom)"))
+				{
+					V.transform.parent = this.transform;
+				}
+				else
+                {
+					GameObject.Destroy(V);
+                }
+            }
+			AllVents = TempVent;
+		}
+		else
+		{
+			AllVents = GetComponentsInChildren<Vent>();
+		}
 		AssignTaskIndexes();
 		Instance = this;
         TimeUntilRandomSab = UnityEngine.Random.Range(5f, 60f);

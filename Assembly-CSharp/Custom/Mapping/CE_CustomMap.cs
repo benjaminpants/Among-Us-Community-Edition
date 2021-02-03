@@ -10,6 +10,9 @@ public class CE_CustomMap
 {
     public static bool MapTestingActive = true;
 
+    public static Vent ReferenceVent;
+
+    public static ShipStatus stat;
 
     public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep, TaskTypes taskty, Type minigametype, string name)
     {
@@ -38,7 +41,7 @@ public class CE_CustomMap
         TaskSet ts = new TaskSet();
         ts.taskStep = range;
         ts.taskType = task.TaskType;
-        console.ValidTasks = new TaskSet[] { 
+        console.ValidTasks = new TaskSet[] {
             ts
         };
         console.TaskTypes = new TaskTypes[]
@@ -53,14 +56,41 @@ public class CE_CustomMap
         console.TaskOverride = task;*/
         return console;
     }
+
+    public static SystemConsole CreateSystemConsole(Type minigametype, Vector3 transf, string name, Sprite sprite)
+    {
+        GameObject ins = GameObject.Instantiate(new GameObject());
+        BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
+        col2d.size = Vector2.one;
+        col2d.isTrigger = true;
+        SystemConsole console = ins.AddComponent<SystemConsole>();
+        SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
+        img.sprite = sprite;
+        img.material.shader = Shader.Find("Sprites/Outline");
+        console.Image = img;
+        ins.transform.position = transf;
+        Minigame uploaddat = CE_PrefabHelpers.FindPrefab(name, minigametype) as Minigame;
+        console.MinigamePrefab = uploaddat;
+        return console;
+    }
+
+    public static Vent CreateVent(string VentName, Vector2 Pos, Vent Left = null, Vent Right = null)
+    {
+        Vent V = GameObject.Instantiate(ReferenceVent);
+        V.transform.name = "(Custom)" + VentName;
+        V.Left = Left;
+        V.Right = Right;
+        V.gameObject.transform.position = new Vector3(Pos.x,Pos.y,V.gameObject.transform.position.z); //preserve Z
+        V.gameObject.SetActive(true);
+        V.Id = VersionShower.GetDeterministicHashCode(VentName);
+        return V;
+    }
+
     private static void ClearMapCollision(ShipStatus map)
     {
         foreach (Transform col in map.transform)
         {
-            if (true)
-            {
-                UnityEngine.Object.Destroy(col.gameObject);
-            }
+           UnityEngine.Object.Destroy(col.gameObject);
         }
     }
 
@@ -107,12 +137,28 @@ public class CE_CustomMap
 
     public static void MapTest(ShipStatus map)
     {
+        if (!MapTestingActive) return;
+        stat = map;
         Texture2D texture;
         string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Mapping"), "TileTest.png");
         texture = CE_TextureNSpriteExtensions.LoadPNG(path);
         texture.filterMode = FilterMode.Point;
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
-        if (!MapTestingActive) return;
+
+
+
+
+        ReferenceVent = map.GetComponentInChildren<Vent>();
+        ReferenceVent.transform.parent = null;
+        ReferenceVent.Left = null;
+        ReferenceVent.Right = null;
+        ReferenceVent.gameObject.SetActive(false);
+
+        Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
+        v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);
+
+
+
         Debug.Log("Clearing Tasks...");
         Debug.Log(map.CommonTasks.Length);
         foreach (NormalPlayerTask mp in map.CommonTasks)
@@ -130,6 +176,9 @@ public class CE_CustomMap
             UnityEngine.GameObject.Destroy(mp);
         }
         map.LongTasks = new NormalPlayerTask[1];
+
+
+
         Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
         NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Weapons,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
         CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Weapons);
@@ -146,6 +195,8 @@ public class CE_CustomMap
         map.NormalTasks[0] = npt2;
         map.NormalTasks[1] = npt3;
         map.NormalTasks[2] = npt4;
+
+        //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");
         ClearMapCollision(map);
         Debug.Log("Spawning Map...");
@@ -157,5 +208,7 @@ public class CE_CustomMap
                 SpawnSprite(x, y, BoolRange.Next(0.1f));
             }
         }
+        GameObject.Destroy(ReferenceVent);
+        ReferenceVent = null;
     }
 }

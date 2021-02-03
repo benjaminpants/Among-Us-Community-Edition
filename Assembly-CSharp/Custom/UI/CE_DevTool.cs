@@ -96,13 +96,14 @@ public class CE_DevTool : MonoBehaviour
 	private void ElementsListerTabPage()
     {
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
-		GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
-		foreach (GameObject go in allObjects)
+		Vent[] allObjects = UnityEngine.Object.FindObjectsOfType<Vent>();
+		foreach (Vent go2 in allObjects)
         {
+			GameObject go = go2.gameObject;
 			GUILayout.BeginHorizontal();
 			try
 			{
-				RoleLister(go.name + "\n" + go.layer, go.GetComponent<SpriteRenderer>().material.shader.name);
+				RoleLister(go.name + "\n" + go.layer, "e.");
 				if (CE_CommonUI.CreateSimpleBoolSwitch(false))
 				{
 					PlayerControl.LocalPlayer.NetTransform.SnapTo(new Vector2(go.transform.position.x, go.transform.position.y));
