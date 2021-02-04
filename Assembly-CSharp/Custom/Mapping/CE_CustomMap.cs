@@ -13,6 +13,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
+        MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
         MapInfos.Add(new CE_MapInfo("Test Map",new string[12]{
             "Happy Place",
             "Sad Place",
