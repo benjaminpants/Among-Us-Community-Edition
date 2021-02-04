@@ -13,7 +13,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
+        //MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
         MapInfos.Add(new CE_MapInfo("Test Map",new string[12]{
             "Happy Place",
             "Sad Place",
@@ -22,8 +22,8 @@ public static class CE_CustomMapManager
             "Good Place",
             "Evil Place",
             "Holy Place",
-            "Happy Place",
-            "Happy Place",
+            "Sans Undertale",
+            "Lovely Day Outside",
             "Happy Place",
             "Happy Place",
             "Happy Place"
@@ -47,6 +47,26 @@ public class CE_CustomMap
     public static SoundGroup[] SoundGroups;
 
     public static AudioClip[] AmbienceSounds;
+
+    public enum FootstepSounds
+    {
+        Tile,
+        Metal,
+        Carpet
+    }
+
+    public enum Ambience
+    {
+        Medbay,
+        Security,
+        Comms,
+        Engine,
+        Reactor,
+        Electrical,
+        Shield,
+        O2,
+        Weapons
+    }
 
     public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep, TaskTypes taskty, Type minigametype, string name)
     {
