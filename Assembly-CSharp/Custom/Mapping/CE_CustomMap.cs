@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using System.IO;
 using InnerNet;
 
 public class CE_CustomMap
@@ -13,6 +14,10 @@ public class CE_CustomMap
     public static Vent ReferenceVent;
 
     public static ShipStatus stat;
+
+    public static SoundGroup[] SoundGroups;
+
+    public static AudioClip[] AmbienceSounds;
 
     public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep, TaskTypes taskty, Type minigametype, string name)
     {
@@ -30,7 +35,7 @@ public class CE_CustomMap
     {
         GameObject ins = GameObject.Instantiate(new GameObject());
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
-        col2d.size = Vector2.one;
+        col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
         Console console = ins.AddComponent<Console>();
         SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
@@ -50,18 +55,32 @@ public class CE_CustomMap
         };
 
         ins.transform.position = transf;
-        /*Minigame uploaddat = CE_PrefabHelpers.FindPrefab(name, minigametype) as Minigame;
-        console.MinigamePrefab = uploaddat;
-        console.IsCustom = true;
-        console.TaskOverride = task;*/
         return console;
+    }
+    
+    public static ShipRoom CreateShipRoom(SystemTypes room, AudioClip ambience, SoundGroup footsteps, Vector2 position, Vector2 scale)
+    {
+        GameObject ins = GameObject.Instantiate(new GameObject());
+        BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
+        col2d.size = Vector2.one / 2f;
+        col2d.isTrigger = true;
+        ins.transform.position = position;
+        ins.transform.localScale = scale;
+        ins.transform.name = "(Custom)" + room;
+        ins.layer = 9;
+        ShipRoom rom = ins.AddComponent<ShipRoom>();
+        rom.roomArea = col2d;
+        rom.RoomId = room;
+        rom.FootStepSounds = footsteps;
+        rom.AmbientSound = ambience;
+        return rom;
     }
 
     public static SystemConsole CreateSystemConsole(Type minigametype, Vector3 transf, string name, Sprite sprite)
     {
         GameObject ins = GameObject.Instantiate(new GameObject());
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
-        col2d.size = Vector2.one;
+        col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
         SystemConsole console = ins.AddComponent<SystemConsole>();
         SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
@@ -117,7 +136,10 @@ public class CE_CustomMap
         go.layer = 9;
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         var position = renderer.transform.position;
-        renderer.material = new Material(Shader.Find("Unlit/MaskShader"));
+        if (!Solid)
+        {
+            renderer.material = new Material(Shader.Find("Unlit/MaskShader"));
+        }
         position.x = 0.5f * x;
         position.y = 0.5f * y;
         position.z = (position.y / 1000f) + 0.5f;
@@ -135,14 +157,41 @@ public class CE_CustomMap
         return go;
     }
 
+    public static void LoadDefaultSounds()
+    {
+        ShipRoom[] TempRoom = GameObject.FindObjectsOfType<ShipRoom>();
+        List<SoundGroup> SoundGroupz = new List<SoundGroup>();
+        List<AudioClip> AudioClipz = new List<AudioClip>();
+        List<string> SoundNames = new List<string>();
+        foreach (ShipRoom V in TempRoom)
+        {
+            if (!V.name.StartsWith("(Custom)"))
+            {
+                if (!SoundNames.Contains(V.FootStepSounds.Clips[0].name))
+                {
+                    SoundGroupz.Add(V.FootStepSounds);
+                    SoundNames.Add(V.FootStepSounds.Clips[0].name);
+                    Debug.Log("New sound detected! \nAdding sound: " + V.FootStepSounds.Clips[0].name);
+                }
+                if ((bool)V.AmbientSound)
+                {
+                    AudioClipz.Add(V.AmbientSound);
+                    SoundNames.Add(V.AmbientSound.name);
+                    Debug.Log("New sound detected! \nAdding sound: " + V.AmbientSound);
+                }
+            }
+        }
+        SoundGroups = SoundGroupz.ToArray();
+        AmbienceSounds = AudioClipz.ToArray();
+    }
+
     public static void MapTest(ShipStatus map)
     {
         if (!MapTestingActive) return;
         stat = map;
         Texture2D texture;
-        string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Mapping"), "TileTest.png");
+        string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Mapping"), "tasktest.png");
         texture = CE_TextureNSpriteExtensions.LoadPNG(path);
-        texture.filterMode = FilterMode.Point;
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
 
 
@@ -177,7 +226,8 @@ public class CE_CustomMap
         }
         map.LongTasks = new NormalPlayerTask[1];
 
-
+        LoadDefaultSounds();
+   
 
         Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
         NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Weapons,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
@@ -197,6 +247,16 @@ public class CE_CustomMap
         map.NormalTasks[2] = npt4;
 
         map.SpawnCenter = GameObject.Instantiate(new GameObject()).transform;
+
+        AudioClip ambience = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "test.wav"));
+        SoundGroup sg = ScriptableObject.CreateInstance(typeof(SoundGroup)) as SoundGroup;
+        sg.Clips = new AudioClip[]
+        {
+            CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "bloop.wav")),
+            CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "e.wav")),
+            CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "blip.wav"))
+        };
+        CreateShipRoom(SystemTypes.Electrical,AmbienceSounds[0],SoundGroups[0],new Vector2(5f,5f),new Vector2(5f,5f));
 
         //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");

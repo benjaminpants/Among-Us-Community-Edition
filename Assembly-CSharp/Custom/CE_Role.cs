@@ -122,35 +122,26 @@ public class CE_Role
         return !HasTasks;
     }
 
-    public bool CanSee(GameData.PlayerInfo plf) //UNOPTIMIZED
+    public bool CanSee(GameData.PlayerInfo plf) //is optimized bruh
     {
         if (plf.IsDead && PlayerControl.GameOptions.GhostsSeeRoles)
         {
             return true;
         }
-        if (RoleVisibility == CE_RoleVisibility.All)
+        switch (RoleVisibility)
         {
-            return true;
-        }
-        if (RoleVisibility == CE_RoleVisibility.None)
-        {
-            return false;
-        }
-        if (RoleVisibility == CE_RoleVisibility.Crewmates && !plf.IsImpostor)
-        {
-            return true;
-        }
-        if (RoleVisibility == CE_RoleVisibility.Impostors && plf.IsImpostor)
-        {
-            return true;
-        }
-        if (RoleVisibility == CE_RoleVisibility.RolesOfSameType && plf.role == CE_RoleManager.GetRoleFromName(RoleName))
-        {
-            return true;
-        }
-        if (RoleVisibility == CE_RoleVisibility.Lua)
-        {
-            return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", RoleName,new CE_PlayerInfoLua(plf)).Boolean;
+            case CE_RoleVisibility.All:
+                return true;
+            case CE_RoleVisibility.None:
+                return false;
+            case CE_RoleVisibility.Crewmates:
+                return !plf.IsImpostor;
+            case CE_RoleVisibility.Impostors:
+                return plf.IsImpostor;
+            case CE_RoleVisibility.RolesOfSameType:
+                return plf.role == CE_RoleManager.GetRoleFromName(RoleName);
+            case CE_RoleVisibility.Lua:
+                return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", RoleName, new CE_PlayerInfoLua(plf)).Boolean;
         }
         return false;
     }

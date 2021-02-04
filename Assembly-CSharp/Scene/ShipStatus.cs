@@ -157,27 +157,51 @@ public class ShipStatus : InnerNetObject
 
 	private void Awake()
 	{
-		if (this != null)
+        if (this != null)
+        {
+            CE_CustomMap.MapTest(this);
+        }
+		if (CE_CustomMap.MapTestingActive)
 		{
-			CE_CustomMap.MapTest(this);
+			ShipRoom[] TempRoom = GameObject.FindObjectsOfType<ShipRoom>();
+			List<ShipRoom> Rooms = new List<ShipRoom>();
+			Debug.Log(TempRoom.Length);
+			foreach (ShipRoom V in TempRoom)
+			{
+				if (V.name.StartsWith("(Custom)"))
+				{
+					Rooms.Add(V);
+					V.transform.parent = this.transform;
+				}
+				else
+				{
+					GameObject.Destroy(V);
+				}
+			}
+			AllRooms = Rooms.ToArray();
 		}
-		AllRooms = GetComponentsInChildren<ShipRoom>();
+		else
+		{
+			AllRooms = GetComponentsInChildren<ShipRoom>();
+		}
 		AllConsoles = GetComponentsInChildren<Console>();
 		if (CE_CustomMap.MapTestingActive)
 		{
-			Vent[] TempVent = GameObject.FindObjectsOfType<Vent>();
+            Vent[] TempVent = GameObject.FindObjectsOfType<Vent>();
+			List<Vent> Vents = new List<Vent>();
 			foreach (Vent V in TempVent)
             {
 				if (V.name.StartsWith("(Custom)"))
 				{
 					V.transform.parent = this.transform;
+					Vents.Add(V);
 				}
 				else
                 {
 					GameObject.Destroy(V);
                 }
             }
-			AllVents = TempVent;
+			AllVents = Vents.ToArray();
 		}
 		else
 		{

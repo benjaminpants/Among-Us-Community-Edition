@@ -96,8 +96,8 @@ public class CE_DevTool : MonoBehaviour
 	private void ElementsListerTabPage()
     {
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
-		Vent[] allObjects = UnityEngine.Object.FindObjectsOfType<Vent>();
-		foreach (Vent go2 in allObjects)
+		ShipRoom[] allObjects = UnityEngine.Object.FindObjectsOfType<ShipRoom>();
+		foreach (ShipRoom go2 in allObjects)
         {
 			GameObject go = go2.gameObject;
 			GUILayout.BeginHorizontal();
