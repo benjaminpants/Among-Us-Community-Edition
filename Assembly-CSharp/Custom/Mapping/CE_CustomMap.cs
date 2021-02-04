@@ -7,6 +7,34 @@ using UnityEngine;
 using System.IO;
 using InnerNet;
 
+public static class CE_CustomMapManager
+{
+    public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
+
+    public static void Initialize()
+    {
+        MapInfos.Add(new CE_MapInfo("Test Map",new string[12]{
+            "Happy Place",
+            "Sad Place",
+            "Mad Place",
+            "Bad Place",
+            "Good Place",
+            "Evil Place",
+            "Holy Place",
+            "Happy Place",
+            "Happy Place",
+            "Happy Place",
+            "Happy Place",
+            "Happy Place"
+        }));
+    }
+
+    public static CE_MapInfo GetCurrentMap()
+    {
+        return MapInfos[PlayerControl.GameOptions.MapId];
+    }
+}
+
 public class CE_CustomMap
 {
     public static bool MapTestingActive = true;
@@ -230,16 +258,16 @@ public class CE_CustomMap
    
 
         Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
-        NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Weapons,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
-        CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Weapons);
-        NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Cafeteria, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Cafeteria);
-        NormalPlayerTask npt2 = CreateTask(typeof(UploadDataTask), SystemTypes.Weapons, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Weapons);
-        NormalPlayerTask npt3 = CreateTask(typeof(UploadDataTask), SystemTypes.Security, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Security);
-        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Shields, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Shields);
+        NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Custom1,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
+        CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Custom1);
+        NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Custom2, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Custom2);
+        NormalPlayerTask npt2 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom3, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Custom3);
+        NormalPlayerTask npt3 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom4, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Custom4);
+        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom5, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Custom5);
         map.CommonTasks[0] = uptask;
         map.LongTasks[0] = npt;
         map.NormalTasks[0] = npt2;
@@ -256,7 +284,7 @@ public class CE_CustomMap
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "e.wav")),
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "blip.wav"))
         };
-        CreateShipRoom(SystemTypes.Electrical,AmbienceSounds[0],SoundGroups[0],new Vector2(5f,5f),new Vector2(5f,5f));
+        CreateShipRoom(SystemTypes.Custom6,AmbienceSounds[4],SoundGroups[2],new Vector2(5f,5f),new Vector2(5f,5f));
 
         //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");

@@ -84,7 +84,7 @@ public class RoomTracker : MonoBehaviour
 				}
 				if (shipRoom.RoomId != 0)
 				{
-					slideInRoutine = StartCoroutine(CoSlideIn(SystemTypeHelpers.StringNames[(uint)shipRoom.RoomId]));
+					slideInRoutine = StartCoroutine(CoSlideIn(SystemTypeHelpers.GetName(shipRoom.RoomId)));
 				}
 				else
 				{

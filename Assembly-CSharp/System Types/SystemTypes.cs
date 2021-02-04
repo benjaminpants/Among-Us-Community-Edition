@@ -24,5 +24,17 @@ public enum SystemTypes : byte
 	Laboratory,
 	Balcony,
 	Office,
-	Greenhouse
+	Greenhouse,
+	Custom1,
+	Custom2,
+	Custom3,
+	Custom4,
+	Custom5,
+	Custom6,
+	Custom7,
+	Custom8,
+	Custom9,
+	Custom10,
+	Custom11,
+	Custom12
 }

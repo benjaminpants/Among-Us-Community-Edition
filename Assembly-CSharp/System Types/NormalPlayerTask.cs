@@ -239,7 +239,7 @@ public class NormalPlayerTask : PlayerTask
 				sb.Append("[FFFF00FF]");
 			}
 		}
-		sb.Append(SystemTypeHelpers.StringNames[(uint)StartAt]);
+		sb.Append(SystemTypeHelpers.GetName(StartAt));
 		sb.Append(": ");
 		sb.Append(TaskTypesHelpers.StringNames[(byte)TaskType]);
 		if (ShowTaskTimer && TimerStarted == TimerState.Started)

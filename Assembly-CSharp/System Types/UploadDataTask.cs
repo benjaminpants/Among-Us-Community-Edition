@@ -29,7 +29,7 @@ public class UploadDataTask : NormalPlayerTask
 				sb.Append("[FFFF00FF]");
 			}
 		}
-		sb.Append(SystemTypeHelpers.StringNames[(uint)((taskStep == 0) ? StartAt : SystemTypes.Admin)]);
+		sb.Append(SystemTypeHelpers.GetName(((taskStep == 0) ? StartAt : SystemTypes.Admin)));
 		sb.Append(": ");
 		sb.Append((taskStep == 0) ? "Download" : "Upload");
 		sb.Append(" Data (");

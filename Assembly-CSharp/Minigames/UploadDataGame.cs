@@ -51,7 +51,7 @@ public class UploadDataGame : Minigame
 		{
 			Button.sprite = DownloadImage;
 			Tower.SetActive(value: false);
-			SourceText.Text = MyTask.StartAt.ToString();
+			SourceText.Text = SystemTypeHelpers.GetName(MyTask.StartAt);
 			TargetText.Text = "My Tablet";
 		}
 		else

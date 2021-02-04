@@ -9,6 +9,16 @@ public static class SystemTypeHelpers
 
 	public static string[] StringNames;
 
+
+	public static string GetName(SystemTypes syst)
+    {
+		CE_MapInfo mfo = CE_CustomMapManager.GetCurrentMap();
+		if ((int)syst > 24)
+        {
+			return mfo.CustomLocationNames[(int)syst - 25];
+        }
+		return StringNames[(int)syst];
+    }
 	static SystemTypeHelpers()
 	{
 		AllTypes = Enum.GetValues(typeof(SystemTypes)).Cast<SystemTypes>().ToArray();

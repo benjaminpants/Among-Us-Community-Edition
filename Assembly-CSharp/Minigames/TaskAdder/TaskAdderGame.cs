@@ -66,7 +66,7 @@ public class TaskAdderGame : Minigame
 				}
 				else
 				{
-					value.FolderName = SystemTypeHelpers.StringNames[(uint)systemTypes];
+					value.FolderName = SystemTypeHelpers.GetName(systemTypes);
 				}
 				rootFolder.SubFolders.Add(value);
 			}
@@ -130,7 +130,7 @@ public class TaskAdderGame : Minigame
 			taskAddButton.MyTask = list[l];
 			if (taskAddButton.MyTask.TaskType == TaskTypes.DivertPower && (((DivertPowerTask)taskAddButton.MyTask).TargetSystem == SystemTypes.LowerEngine || ((DivertPowerTask)taskAddButton.MyTask).TargetSystem == SystemTypes.UpperEngine))
 			{
-				taskAddButton.Text.Text = TaskTypesHelpers.StringNames[(byte)taskAddButton.MyTask.TaskType] + " (" + SystemTypeHelpers.StringNames[(uint)((DivertPowerTask)taskAddButton.MyTask).TargetSystem] + ")";
+				taskAddButton.Text.Text = TaskTypesHelpers.StringNames[(byte)taskAddButton.MyTask.TaskType] + " (" + SystemTypeHelpers.GetName(((DivertPowerTask)taskAddButton.MyTask).TargetSystem) + ")";
 			}
 			else
 			{

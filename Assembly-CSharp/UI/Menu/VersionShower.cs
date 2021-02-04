@@ -90,7 +90,8 @@ public class VersionShower : MonoBehaviour
 		BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
 		text.Text = "v0.5.6 - Deserves to be 0.6.0" + "\nBuild ID:" + BuildID;
 		Screen.sleepTimeout = -1;
-        CE_Extensions.OnStartup();
+		CE_CustomMapManager.Initialize();
+		CE_Extensions.OnStartup();
 	}
 
 	public string CreateIDFromInt(int ID,byte length)
