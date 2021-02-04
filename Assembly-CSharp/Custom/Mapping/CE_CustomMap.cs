@@ -70,7 +70,7 @@ public class CE_CustomMap
 
     public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep, TaskTypes taskty, Type minigametype, string name)
     {
-        GameObject task = UnityEngine.GameObject.Instantiate(new GameObject());
+        GameObject task = new GameObject();
         NormalPlayerTask datatask = task.AddComponent(tasktype) as NormalPlayerTask;
         datatask.TaskType = taskty;
         datatask.StartAt = systype;
@@ -82,7 +82,7 @@ public class CE_CustomMap
 
     public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, NormalPlayerTask task, IntRange range, SystemTypes room)
     {
-        GameObject ins = GameObject.Instantiate(new GameObject());
+        GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
@@ -109,7 +109,7 @@ public class CE_CustomMap
     
     public static ShipRoom CreateShipRoom(SystemTypes room, AudioClip ambience, SoundGroup footsteps, Vector2 position, Vector2 scale)
     {
-        GameObject ins = GameObject.Instantiate(new GameObject());
+        GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
@@ -127,7 +127,7 @@ public class CE_CustomMap
 
     public static SystemConsole CreateSystemConsole(Type minigametype, Vector3 transf, string name, Sprite sprite)
     {
-        GameObject ins = GameObject.Instantiate(new GameObject());
+        GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
@@ -295,7 +295,7 @@ public class CE_CustomMap
         map.NormalTasks[1] = npt3;
         map.NormalTasks[2] = npt4;
 
-        map.SpawnCenter = GameObject.Instantiate(new GameObject()).transform;
+        map.SpawnCenter = new GameObject().transform;
 
         AudioClip ambience = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "test.wav"));
         SoundGroup sg = ScriptableObject.CreateInstance(typeof(SoundGroup)) as SoundGroup;
