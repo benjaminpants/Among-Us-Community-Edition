@@ -1,33 +1,32 @@
 {
-  "ID": "petals",
-  "Name": "petals",
-  "StoreName": "petals",
-  "HatInFront": true,
-  "NoHatBobbing": true,
+  "ID": "Dino",
+  "Name": "Dino",
+  "StoreName": "Dino",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
   "UsePointFilteringGlobally": false,
   "UseColorFilteringGlobally": true,
   "RelatedSkin": "",
   "RelatedHat": "",
   "UsePercentageBasedPivot": true,
-  "IsHidden": false,
   "FrameList": [
     {
       "Position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": 7.0,
+        "y": 10.0
       },
       "Size": {
-        "x": 74.0,
-        "y": 116.0
+        "x": 87.0,
+        "y": 88.0
       },
       "Offset": {
-        "x": 0.4,
-        "y": 0.875
+        "x": 0.43,
+        "y": 0.9000001
       },
       "Name": "Normal",
-      "SpritePath": "petals.png",
+      "SpritePath": "dino.png",
       "Hat_NoBobbing": false,
-      "InFront": false,
+      "InFront": true,
       "UsePointFiltering": false,
       "UseColorFiltering": true
     },
@@ -37,19 +36,19 @@
         "y": 0.0
       },
       "Size": {
-        "x": 89.0,
-        "y": 88.0
+        "x": 96.0,
+        "y": 90.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "petalsfall.png",
+      "SpritePath": "dino_floor.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
-      "UseColorFiltering": true
+      "UseColorFiltering": false
     }
   ]
 }

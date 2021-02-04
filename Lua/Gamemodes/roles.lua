@@ -3,11 +3,11 @@
 local invent_timer = 15
 local timedif = 0
 
-local poslength = 10
-local sni = 11
-local dkp = 12
-local sii = 13
-local sic = 14
+local poslength = 11
+local sni = 12
+local dkp = 13
+local sii = 14
+local sic = 15
 
 
 function InitializeGamemode()
@@ -21,7 +21,7 @@ function InitializeGamemode()
 	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[57552AFF]Frame someone for a kill.[]")
 	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of 1 person.",{0},1,0,false,true)
 	Game_CreateRole("Yeller",{109, 107, 232},"Report the body of anyone nearby\nEven if they are alive.",{0},1,0,false,true)
-	--Game_CreateRole("Twin",{109, 107, 232},"If your twin dies, you die. You win by yourself.",{0},1,0,false,true)
+	Game_CreateRole("Twin",{118, 133, 163},"Stay alive with your twin.\n\rIf you die, your twin dies as well.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	--roles you aren't supposed to see
 	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
 	--counts
@@ -35,11 +35,12 @@ function InitializeGamemode()
 	Settings_CreateByte("Griefer Count",0,4,0) -- 7
 	Settings_CreateByte("Seer Count",0,2,0) -- 8
 	Settings_CreateByte("Yeller Count",0,3,0) -- 9
-	Settings_CreateByte("Poison Length",5,120,15,5) -- 10
-	Settings_CreateBool("Shields Kill Impostors",false) -- 11
-	Settings_CreateBool("Doctors Know Poisoned",false) -- 12
-	Settings_CreateBool("Seers can identify Impostors",false) -- 13
-	Settings_CreateByte("Seer Inspect Count",0,4,1) -- 14
+	Settings_CreateBool("Enable Twins Role",false) -- 10
+	Settings_CreateByte("Poison Length",5,120,15,5) -- 11
+	Settings_CreateBool("Shields Kill Impostors",false) -- 12
+	Settings_CreateBool("Doctors Know Poisoned",false) -- 13
+	Settings_CreateBool("Seers can identify Impostors",false) -- 14
+	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 15
 	
 	return {"Roles",2}
 end
@@ -62,6 +63,30 @@ local function GetRoleAmount(id)
 	end
 	return idamount
 end
+
+local function GetPlayersWithRole(id)
+	local pl = Game_GetAllPlayers()
+	local pls = {}
+	for i=1, #pl do
+		if (pl[i].role == id and not pl[i].IsDead) then
+		table.insert(pls,pl[i])
+		end
+	end
+	return pls
+end
+
+local function GetCrewWithoutBadRoles(og)
+	local pl = og
+	local count = 0
+	for i=1, #pl do
+		local bool = (pl[i].role == Game_GetRoleIDFromUUID("roles_Griefer") or pl[i].role == Game_GetRoleIDFromUUID("roles_Joker"))
+		if ((not bool) and not pl[i].IsDead) then
+		count = count + 1
+		end
+	end
+	return count
+end
+
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player) --use this to cancel tasks
 	if (not player.IsImpostor) then
@@ -170,6 +195,13 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (#crewmates == 0 and #impostors == 0) then
 		return "stalemate" --just incase
 	end
+	if (Settings_GetBool(10)) then
+		if (#crewmates - GetRoleAmount(Game_GetRoleIDFromUUID("roles_Joker")) == GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin"))) then
+			if (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin")) == 2) then
+				return {GetPlayersWithRole(Game_GetRoleIDFromUUID("roles_Twin")),"twin_win"}
+			end
+		end
+	end
 	if (not sab) then --If the check isn't due to a sabotage
 		if (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Witch")) == 0) then
 			if (#impostors >= #crewmates) then --crewmates can't win
@@ -259,6 +291,13 @@ function OnDeath(victim,reason)
 		local selected = {players[math.random(1,#players)],victim}
 		Game_SetRoles(selected,{"roles_Sheriff","None"})
 	end
+	if (victim.role == Game_GetRoleIDFromUUID("roles_Twin") and Net_AmHost()) then
+		if (#GetPlayersWithRole(Game_GetRoleIDFromUUID("roles_Twin")) == 0) then
+			Debug_Log("How did this happen? Disconnect perhaps?")
+		else
+			Game_KillPlayer(GetPlayersWithRole(Game_GetRoleIDFromUUID("roles_Twin"))[1],false)
+		end
+	end
 end
 
 
@@ -268,7 +307,7 @@ function BeforeKill(killer,victim)
 			killer.luavalue2 = killer.luavalue2 - 1
 			Game_UpdatePlayerInfo(killer)
 		end
-		if (killer.luavalue2 == 1) then
+		if (killer.luavalue2 <= 1) then
 			Game_SetRoles({killer},{"None"})
 		end
 		local RoleName = Game_GetRoleNameFromID(victim.role)
@@ -368,6 +407,11 @@ function DecideRolesFunction(playerinfos)
 	end
 	for i=1, Settings_GetNumber(9) do
 		table.insert(RolesToGive,"roles_Yeller")
+	end
+	if (Settings_GetBool(10)) then
+		for i=1, 2 do
+		table.insert(RolesToGive,"roles_Twin")
+		end
 	end
 	local Selected = {}
 	local SelectedRoles = {}
