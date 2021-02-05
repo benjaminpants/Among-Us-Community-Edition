@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System.IO;
 using InnerNet;
+using Newtonsoft.Json;
 
 public static class CE_CustomMapManager
 {
@@ -38,7 +39,7 @@ public static class CE_CustomMapManager
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = false;
+    public static bool MapTestingActive = true;
 
     public static Vent ReferenceVent;
 
@@ -280,15 +281,15 @@ public class CE_CustomMap
 
         Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
         NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Custom1,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
-        CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Custom1);
+        //CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Custom1);
         NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Custom2, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Custom2);
+        //CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Custom2);
         NormalPlayerTask npt2 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom3, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Custom3);
+        //CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Custom3);
         NormalPlayerTask npt3 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom4, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Custom4);
+        //CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Custom4);
         NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom5, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Custom5);
+        //CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Custom5);
         map.CommonTasks[0] = uptask;
         map.LongTasks[0] = npt;
         map.NormalTasks[0] = npt2;
@@ -311,15 +312,45 @@ public class CE_CustomMap
         Debug.Log("Clearing collision...");
         ClearMapCollision(map);
         Debug.Log("Spawning Map...");
-        for (int x = -5; x < 5; x++)
+        //TODO: once the binary version of the map format gets implemented, avoid using the CEM classes.
+        string jsontodeparse = File.ReadAllText("D:\\Junk\\map.json");
+        CEM_Map maptospawn = JsonConvert.DeserializeObject<CEM_Map>(jsontodeparse);
+        foreach (CEM_Sprite SPR in maptospawn.Sprites)
         {
-            for (int y = -5; y < 5; y++)
+            if (File.Exists(SPR.ImageLocal))
             {
-                bool isSolid = (x == -5 || y == -5 || y == 4 || x == 4);
-                SpawnSprite(x, y, BoolRange.Next(0.1f));
+                byte[] data = File.ReadAllBytes(SPR.ImageLocal);
+                Texture2D texture2D = new Texture2D(2, 2);
+                texture2D.LoadImage(data);
+                GameObject to = new GameObject();
+                to.name = "Sprite" + SPR.ImageLocal.GetHashCode();
+                SpriteRenderer spir = to.AddComponent<SpriteRenderer>();
+                spir.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
+                spir.material = new Material(Shader.Find("Unlit/MaskShader"));
+                to.layer = 9;
+                to.transform.position = new Vector3(SPR.Position.Values[0], SPR.Position.Values[1], SPR.Position.Values[2]);
             }
         }
-        GameObject.Destroy(ReferenceVent);
+        foreach (CEM_WallLine Wall in maptospawn.Walls)
+        {
+            GameObject EdgeWall = new GameObject();
+            EdgeCollider2D WallCol = EdgeWall.AddComponent<EdgeCollider2D>();
+            List<Vector2> Pt = new List<Vector2>();
+            foreach (CEM_Point Point in Wall.Points)
+            {
+                Pt.Add(new Vector2(Point.Values[0], Point.Values[1]));
+            }
+            WallCol.points = Pt.ToArray();
+        }
+            /*for (int x = -5; x < 5; x++)
+            {
+                for (int y = -5; y < 5; y++)
+                {
+                    bool isSolid = (x == -5 || y == -5 || y == 4 || x == 4);
+                    SpawnSprite(x, y, BoolRange.Next(0.1f));
+                }
+            }*/
+            GameObject.Destroy(ReferenceVent);
         ReferenceVent = null;
     }
 }
