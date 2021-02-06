@@ -4,7 +4,6 @@ using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
 
-//direct copy and paste from the level editor code.
 public class CEM_Point
 {
     public CEM_Point()
@@ -44,10 +43,11 @@ public class CEM_Sprite
     {
 
     }
-    public CEM_Sprite(Vector3 position, string ImageLocation)
+    public CEM_Sprite(Vector3 position, string ImageLocation, bool IsFull)
     {
         Position = new CEM_Point(position);
         ImageLocal = ImageLocation;
+        Fullbright = IsFull;
     }
 }
 
@@ -57,4 +57,5 @@ public class CEM_Map
     public byte Version = 0;
     public List<CEM_WallLine> Walls = new List<CEM_WallLine>();
     public List<CEM_Sprite> Sprites = new List<CEM_Sprite>();
+    public CEM_Point SpawnLocation;
 }

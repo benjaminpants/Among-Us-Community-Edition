@@ -295,9 +295,6 @@ public class CE_CustomMap
         map.NormalTasks[0] = npt2;
         map.NormalTasks[1] = npt3;
         map.NormalTasks[2] = npt4;
-
-        map.SpawnCenter = new GameObject().transform;
-
         AudioClip ambience = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "test.wav"));
         SoundGroup sg = ScriptableObject.CreateInstance(typeof(SoundGroup)) as SoundGroup;
         sg.Clips = new AudioClip[]
@@ -326,7 +323,11 @@ public class CE_CustomMap
                 to.name = "Sprite" + SPR.ImageLocal.GetHashCode();
                 SpriteRenderer spir = to.AddComponent<SpriteRenderer>();
                 spir.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
-                spir.material = new Material(Shader.Find("Unlit/MaskShader"));
+                Debug.Log(spir.transform);
+                if (!SPR.Fullbright)
+                {
+                    spir.material = new Material(Shader.Find("Unlit/MaskShader"));
+                }
                 to.layer = 9;
                 to.transform.position = new Vector3(SPR.Position.Values[0], SPR.Position.Values[1], SPR.Position.Values[2]);
             }
@@ -342,15 +343,18 @@ public class CE_CustomMap
             }
             WallCol.points = Pt.ToArray();
         }
-            /*for (int x = -5; x < 5; x++)
+        GameObject newgam = new GameObject();
+        newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
+        map.SpawnCenter = newgam.transform;
+        /*for (int x = -5; x < 5; x++)
+        {
+            for (int y = -5; y < 5; y++)
             {
-                for (int y = -5; y < 5; y++)
-                {
-                    bool isSolid = (x == -5 || y == -5 || y == 4 || x == 4);
-                    SpawnSprite(x, y, BoolRange.Next(0.1f));
-                }
-            }*/
-            GameObject.Destroy(ReferenceVent);
+                bool isSolid = (x == -5 || y == -5 || y == 4 || x == 4);
+                SpawnSprite(x, y, BoolRange.Next(0.1f));
+            }
+        }*/
+        GameObject.Destroy(ReferenceVent);
         ReferenceVent = null;
     }
 }
