@@ -253,8 +253,8 @@ public class CE_CustomMap
         ReferenceVent.Right = null;
         ReferenceVent.gameObject.SetActive(false);
 
-        Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
-        v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);
+        /*Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
+        v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);*/
 
 
 
@@ -343,6 +343,31 @@ public class CE_CustomMap
             }
             WallCol.points = Pt.ToArray();
         }
+        Dictionary<Vent, CEM_Vent> CV = new Dictionary<Vent, CEM_Vent>();
+        foreach (CEM_Vent V in maptospawn.Vents)
+        {
+            CV.Add(CreateVent(V.Name, new Vector2(V.Position.Values[0], V.Position.Values[1])),V);
+        }
+        GameObject.Destroy(ReferenceVent);
+        ReferenceVent = null;
+        foreach (Vent V in GameObject.FindObjectsOfType<Vent>())
+        {
+            if (V.name.StartsWith("(Custom)"))
+            {
+                CEM_Vent cv;
+                if (CV.TryGetValue(V,out cv))
+                {
+                    if (cv.LeftName != "")
+                    {
+                        V.Left = GameObject.Find("(Custom)" + cv.LeftName).GetComponent<Vent>();
+                    }
+                    if (cv.RightName != "")
+                    {
+                        V.Right = GameObject.Find("(Custom)" + cv.RightName).GetComponent<Vent>();
+                    }
+                }
+            }
+        }
         GameObject newgam = new GameObject();
         newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
         map.SpawnCenter = newgam.transform;
@@ -354,7 +379,5 @@ public class CE_CustomMap
                 SpawnSprite(x, y, BoolRange.Next(0.1f));
             }
         }*/
-        GameObject.Destroy(ReferenceVent);
-        ReferenceVent = null;
     }
 }

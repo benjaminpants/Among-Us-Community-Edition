@@ -51,11 +51,27 @@ public class CEM_Sprite
     }
 }
 
+public class CEM_Vent
+{
+    public string Name;
+    public string LeftName;
+    public string RightName;
+    public CEM_Point Position;
+    public CEM_Vent(string n, string l, string r, Vector3 v)
+    {
+        Name = n;
+        LeftName = l;
+        RightName = r;
+        Position = new CEM_Point(v);
+    }
+}
+
 public class CEM_Map
 {
     public string Name = "Undefined";
     public byte Version = 0;
     public List<CEM_WallLine> Walls = new List<CEM_WallLine>();
     public List<CEM_Sprite> Sprites = new List<CEM_Sprite>();
+    public List<CEM_Vent> Vents = new List<CEM_Vent>();
     public CEM_Point SpawnLocation;
 }
