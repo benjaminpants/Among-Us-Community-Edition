@@ -61,6 +61,8 @@ public class HudManager : DestroyableSingleton<HudManager>
 
 	private StringBuilder tasksString = new StringBuilder();
 
+	private CustomButtonManager CustomButton;
+
 	public Coroutine ReactorFlash
 	{
 		get;
@@ -73,8 +75,21 @@ public class HudManager : DestroyableSingleton<HudManager>
 		set;
 	}
 
+
+
+
 	public void Start()
 	{
+		/*if (!(bool)CustomButton)
+        {
+			GameObject kill = GameObject.Instantiate<GameObject>(KillButton.gameObject);
+			KillButtonManager kbm = kill.GetComponent<KillButtonManager>();
+			kbm.enabled = false;
+			CustomButton = kill.AddComponent<CustomButtonManager>();
+			CustomButton.renderer = kbm.renderer;
+			kill.SetActive(true);
+			kill.transform.position += new Vector3(0.5f,0f);
+        }*/
 		SetTouchType(SaveManager.TouchConfig);
 	}
 

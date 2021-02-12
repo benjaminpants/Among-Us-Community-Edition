@@ -1,8 +1,8 @@
 {
-  "ID": "UNDYEOUTFIT",
-  "Name": "UNDYEOUTFIT",
-  "StoreName": "UNDYEOUTFIT",
-  "HatInFrontGlobally": false,
+  "ID": "PEW PEW THING",
+  "Name": "gun",
+  "StoreName": "Glock_17_Weapon",
+  "HatInFrontGlobally": true,
   "NoHatBobbingGlobally": false,
   "UsePointFilteringGlobally": false,
   "UseColorFilteringGlobally": false,
@@ -16,35 +16,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 60.0,
-        "y": 68.0
+        "x": 65.0,
+        "y": 32.0
       },
       "Offset": {
-        "x": 0.31,
-        "y": 0.9100001
-      },
-      "Name": "NormalExt",
-      "SpritePath": "UNDYNEDEATHHAT.png",
-      "Hat_NoBobbing": false,
-      "InFront": true,
-      "UsePointFiltering": false,
-      "UseColorFiltering": false
-    },
-    {
-      "Position": {
-        "x": 0.0,
-        "y": 0.0
-      },
-      "Size": {
-        "x": 120.0,
-        "y": 144.0
-      },
-      "Offset": {
-        "x": 0.31,
-        "y": 0.9600001
+        "x": -0.29,
+        "y": 2.5099988
       },
       "Name": "Normal",
-      "SpritePath": "UNDYNEDEATHHOLD.png",
+      "SpritePath": "Gun.png",
       "Hat_NoBobbing": false,
       "InFront": true,
       "UsePointFiltering": false,
@@ -56,19 +36,19 @@
         "y": 0.0
       },
       "Size": {
-        "x": 60.0,
-        "y": 68.0
+        "x": 65.0,
+        "y": 32.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "UNDYNEDEATHHAT.png",
+      "SpritePath": "GunF.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
-      "UseColorFiltering": false
+      "UseColorFiltering": true
     }
   ]
 }

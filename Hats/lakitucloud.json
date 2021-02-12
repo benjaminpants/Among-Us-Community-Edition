@@ -1,14 +1,15 @@
 {
-  "ID": "UNDYEOUTFIT",
-  "Name": "UNDYEOUTFIT",
-  "StoreName": "UNDYEOUTFIT",
-  "HatInFrontGlobally": false,
-  "NoHatBobbingGlobally": false,
+  "ID": "lakitucloud",
+  "Name": "lakitucloud",
+  "StoreName": "lakitucloud",
+  "HatInFront": true,
+  "NoHatBobbing": true,
   "UsePointFilteringGlobally": false,
   "UseColorFilteringGlobally": false,
   "RelatedSkin": "",
   "RelatedHat": "",
   "UsePercentageBasedPivot": true,
+  "IsHidden": false,
   "FrameList": [
     {
       "Position": {
@@ -16,17 +17,17 @@
         "y": 0.0
       },
       "Size": {
-        "x": 60.0,
-        "y": 68.0
+        "x": 83.0,
+        "y": 79.0
       },
       "Offset": {
-        "x": 0.31,
-        "y": 0.9100001
+        "x": 0.4170,
+        "y": 1.65
       },
       "Name": "NormalExt",
-      "SpritePath": "UNDYNEDEATHHAT.png",
-      "Hat_NoBobbing": false,
-      "InFront": true,
+      "SpritePath": "lakitucloud.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
       "UsePointFiltering": false,
       "UseColorFiltering": false
     },
@@ -36,17 +37,17 @@
         "y": 0.0
       },
       "Size": {
-        "x": 120.0,
-        "y": 144.0
+        "x": 83.0,
+        "y": 79.0
       },
       "Offset": {
-        "x": 0.31,
-        "y": 0.9600001
+        "x": 0.4170,
+        "y": 1.65
       },
       "Name": "Normal",
-      "SpritePath": "UNDYNEDEATHHOLD.png",
-      "Hat_NoBobbing": false,
-      "InFront": true,
+      "SpritePath": "lakitucloud_hands.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
       "UsePointFiltering": false,
       "UseColorFiltering": true
     },
@@ -56,19 +57,19 @@
         "y": 0.0
       },
       "Size": {
-        "x": 60.0,
-        "y": 68.0
+        "x": 83.0,
+        "y": 79.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "UNDYNEDEATHHAT.png",
+      "SpritePath": "lakitucloud_floor.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
-      "UseColorFiltering": false
+      "UseColorFiltering": true
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "ID": "UNDYEOUTFIT",
-  "Name": "UNDYEOUTFIT",
-  "StoreName": "UNDYEOUTFIT",
+  "ID": "morshu_hat",
+  "Name": "morshu_hat",
+  "StoreName": "morshu_hat",
   "HatInFrontGlobally": false,
   "NoHatBobbingGlobally": false,
   "UsePointFilteringGlobally": false,
@@ -16,35 +16,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 60.0,
-        "y": 68.0
+        "x": 63.0,
+        "y": 89.0
       },
       "Offset": {
-        "x": 0.31,
-        "y": 0.9100001
+        "x": 0.665,
+        "y": 1.033
       },
       "Name": "NormalExt",
-      "SpritePath": "UNDYNEDEATHHAT.png",
-      "Hat_NoBobbing": false,
-      "InFront": true,
-      "UsePointFiltering": false,
-      "UseColorFiltering": false
-    },
-    {
-      "Position": {
-        "x": 0.0,
-        "y": 0.0
-      },
-      "Size": {
-        "x": 120.0,
-        "y": 144.0
-      },
-      "Offset": {
-        "x": 0.31,
-        "y": 0.9600001
-      },
-      "Name": "Normal",
-      "SpritePath": "UNDYNEDEATHHOLD.png",
+      "SpritePath": "morshu_hand.png",
       "Hat_NoBobbing": false,
       "InFront": true,
       "UsePointFiltering": false,
@@ -56,15 +36,35 @@
         "y": 0.0
       },
       "Size": {
-        "x": 60.0,
-        "y": 68.0
+        "x": 63.0,
+        "y": 89.0
+      },
+      "Offset": {
+        "x": 0.665,
+        "y": 1.033
+      },
+      "Name": "Normal",
+      "SpritePath": "morshu_hat.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 52.0,
+        "y": 28.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "UNDYNEDEATHHAT.png",
+      "SpritePath": "morshuhat_floor.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,

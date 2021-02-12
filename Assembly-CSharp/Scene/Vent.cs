@@ -207,7 +207,7 @@ public class Vent : MonoBehaviour, IUsable
 	{
 		float num = float.MaxValue;
 		PlayerControl @object = pc.Object;
-		couldUse = true; //((pc.IsImpostor || CE_RoleManager.GetRoleFromID(pc.role).CanDo(CE_Specials.Vent)) || PlayerControl.GameOptions.Venting != 0);
+		couldUse = ((pc.IsImpostor || CE_RoleManager.GetRoleFromID(pc.role).CanDo(CE_Specials.Vent)) || PlayerControl.GameOptions.Venting != 0);
         if (CE_LuaLoader.CurrentGMLua)
         {
             couldUse &= CE_LuaLoader.GetGamemodeResult("CanVent", couldUse, new CE_PlayerInfoLua(pc)).Boolean;

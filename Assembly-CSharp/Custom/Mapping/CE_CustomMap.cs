@@ -143,13 +143,14 @@ public class CE_CustomMap
         return console;
     }
 
-    public static Vent CreateVent(string VentName, Vector2 Pos, Vent Left = null, Vent Right = null)
+    public static Vent CreateVent(string VentName, Vector3 Pos, Vent Left = null, Vent Right = null)
     {
         Vent V = GameObject.Instantiate(ReferenceVent);
         V.transform.name = "(Custom)" + VentName;
         V.Left = Left;
         V.Right = Right;
-        V.gameObject.transform.position = new Vector3(Pos.x,Pos.y,V.gameObject.transform.position.z); //preserve Z
+        Debug.Log(V.gameObject.transform.position.z);
+        V.gameObject.transform.position = new Vector3(Pos.x,Pos.y,Pos.z);
         V.gameObject.SetActive(true);
         V.Id = VersionShower.GetDeterministicHashCode(VentName);
         return V;
@@ -346,7 +347,7 @@ public class CE_CustomMap
         Dictionary<Vent, CEM_Vent> CV = new Dictionary<Vent, CEM_Vent>();
         foreach (CEM_Vent V in maptospawn.Vents)
         {
-            CV.Add(CreateVent(V.Name, new Vector2(V.Position.Values[0], V.Position.Values[1])),V);
+            CV.Add(CreateVent(V.Name, new Vector3(V.Position.Values[0], V.Position.Values[1], V.Position.Values[2])),V);
         }
         GameObject.Destroy(ReferenceVent);
         ReferenceVent = null;

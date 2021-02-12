@@ -1,11 +1,11 @@
 {
-  "ID": "goldblock",
-  "Name": "goldblock",
-  "StoreName": "goldblock",
+  "ID": "buzzybeetleshellmet",
+  "Name": "buzzybeetleshellmet",
+  "StoreName": "buzzybeetleshellmet",
   "HatInFront": true,
-  "NoHatBobbing": true,
+  "NoHatBobbing": false,
   "UsePointFilteringGlobally": false,
-  "UseColorFilteringGlobally": true,
+  "UseColorFilteringGlobally": false,
   "RelatedSkin": "",
   "RelatedHat": "",
   "UsePercentageBasedPivot": true,
@@ -17,17 +17,17 @@
         "y": 0.0
       },
       "Size": {
-        "x": 80.0,
-        "y": 64.0
+        "x": 75.0,
+        "y": 59.0
       },
       "Offset": {
-        "x": 0.3231,
-        "y": 1.08
+        "x": 0.4,
+        "y": 0.95
       },
       "Name": "Normal",
-      "SpritePath": "goldblock.png",
-      "Hat_NoBobbing": true,
-      "InFront": true,
+      "SpritePath": "buzzybeetleshellmet.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
       "UsePointFiltering": false,
       "UseColorFiltering": false
     },
@@ -37,15 +37,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 80.0,
-        "y": 64.0
+        "x": 88.0,
+        "y": 59.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "goldblock_fall.png",
+      "SpritePath": "buzzybeetleshellmet_fall.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,

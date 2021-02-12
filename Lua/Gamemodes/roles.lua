@@ -8,6 +8,7 @@ local sni = 12
 local dkp = 13
 local sii = 14
 local sic = 15
+local csb = 16
 
 
 function InitializeGamemode()
@@ -37,10 +38,11 @@ function InitializeGamemode()
 	Settings_CreateByte("Yeller Count",0,3,0) -- 9
 	Settings_CreateBool("Enable Twins Role",false) -- 10
 	Settings_CreateByte("Poison Length",5,120,15,5) -- 11
-	Settings_CreateBool("Shields Kill Impostors",false) -- 12
+	Settings_CreateBool("Shields Kill Attackers",false) -- 12
 	Settings_CreateBool("Doctors Know Poisoned",false) -- 13
 	Settings_CreateBool("Seers can identify Impostors",false) -- 14
 	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 15
+	Settings_CreateBool("Classic Sheriff Behavior",false) -- 16
 	
 	return {"Roles",2}
 end
@@ -130,6 +132,9 @@ end
 
 function OnPlayerDC(playerinfo)
 	if (playerinfo.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
+		if (Settings_GetBool(csb)) then
+			return
+		end
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if (players[i].PlayerName == playerinfo.PlayerName or players[i].IsDead or players[i].IsImpostor or (players[i].role > 0)) then
@@ -161,6 +166,9 @@ end
 
 function OnExile(exiled)
 	if (exiled.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
+		if (Settings_GetBool(csb)) then
+			return
+		end
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if (players[i].PlayerName == exiled.PlayerName or players[i].IsDead or players[i].IsImpostor or (players[i].role > 0)) then
@@ -279,6 +287,9 @@ end
 
 function OnDeath(victim,reason)
 	if (victim.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
+		if (Settings_GetBool(csb)) then
+			return
+		end
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if ((players[i].PlayerName == victim.PlayerName or players[i].IsDead or players[i].IsImpostor) or players[i].role > 0) then
@@ -303,11 +314,9 @@ end
 
 function BeforeKill(killer,victim)
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Seer")) then
-		if (not killer.luavalue2 == 0) then
-			killer.luavalue2 = killer.luavalue2 - 1
-			Game_UpdatePlayerInfo(killer)
-		end
-		if (killer.luavalue2 <= 1) then
+		killer.luavalue2 = killer.luavalue2 - 1
+		Game_UpdatePlayerInfo(killer)
+		if (killer.luavalue2 == 0) then
 			Game_SetRoles({killer},{"None"})
 		end
 		local RoleName = Game_GetRoleNameFromID(victim.role)
@@ -361,6 +370,14 @@ function BeforeKill(killer,victim)
 		return false
 	end
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Sheriff")) then
+		if (Settings_GetBool(csb)) then
+			if (victim.role == Game_GetRoleIDFromUUID("roles_Joker") or victim.role == Game_GetRoleIDFromUUID("roles_Witch") or victim.role == Game_GetRoleIDFromUUID("roles_Griefer") or victim.role == Game_GetRoleIDFromUUID("roles_Twin") or victim.IsImpostor) then
+				
+			else
+				Game_KillPlayer(killer,false)
+			end
+			return true
+		end
 		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
 		for i=#players,1,-1 do
 			if (players[i].PlayerName == victim.PlayerName or players[i].IsDead or players[i].IsImpostor or players[i].PlayerName == killer.PlayerName or (players[i].role > 0)) then

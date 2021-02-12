@@ -1,7 +1,7 @@
 {
-  "ID": "goldblock",
-  "Name": "goldblock",
-  "StoreName": "goldblock",
+  "ID": "dryboneshell",
+  "Name": "dryboneshell",
+  "StoreName": "dryboneshell",
   "HatInFront": true,
   "NoHatBobbing": true,
   "UsePointFilteringGlobally": false,
@@ -17,19 +17,19 @@
         "y": 0.0
       },
       "Size": {
-        "x": 80.0,
-        "y": 64.0
+        "x": 77.0,
+        "y": 71.0
       },
       "Offset": {
-        "x": 0.3231,
-        "y": 1.08
+        "x": 0.4170,
+        "y": 1.85
       },
       "Name": "Normal",
-      "SpritePath": "goldblock.png",
+      "SpritePath": "dryboneshell.png",
       "Hat_NoBobbing": true,
-      "InFront": true,
+      "InFront": false,
       "UsePointFiltering": false,
-      "UseColorFiltering": false
+      "UseColorFiltering": true
     },
     {
       "Position": {
@@ -37,19 +37,19 @@
         "y": 0.0
       },
       "Size": {
-        "x": 80.0,
-        "y": 64.0
+        "x": 77.0,
+        "y": 71.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "goldblock_fall.png",
+      "SpritePath": "dryboneshell_fall.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,
-      "UseColorFiltering": false
+      "UseColorFiltering": true
     }
   ]
 }
