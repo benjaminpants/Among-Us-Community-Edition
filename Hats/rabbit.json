@@ -1,0 +1,55 @@
+{
+  "ID": "rabbit",
+  "Name": "rabbit",
+  "StoreName": "rabbit",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 71.0,
+        "y": 79.0
+      },
+      "Offset": {
+        "x": 0.425,
+        "y": 0.55
+      },
+      "Name": "Normal",
+      "SpritePath": "rabbit.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 71.0,
+        "y": 76.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "rabbit_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

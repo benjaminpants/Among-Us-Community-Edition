@@ -39,7 +39,7 @@ internal class ChatBubble : PoolableBehavior
 	public void SetName(string playerName, bool isDead, bool isImpostor, bool imponly = false, byte role = 0)
 	{
 		NameText.Text = playerName ?? "...";
-		NameText.Color = (isImpostor ? Palette.ImpostorRed : Color.white);
+		NameText.Color = ((isImpostor && PlayerControl.GameOptions.CanSeeOtherImps) ? Palette.ImpostorRed : Color.white);
 		if (role != 0)
         {
 			CE_Role roleob = CE_RoleManager.GetRoleFromID(role);

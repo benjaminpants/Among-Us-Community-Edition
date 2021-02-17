@@ -127,6 +127,8 @@ public class GameOptionsData : IBytesSerializable
 
 	public byte Brightness;
 
+	public bool CanSeeOtherImps;
+
 	public void ToggleMapFilter(byte newId)
 	{
 		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
@@ -341,6 +343,7 @@ public class GameOptionsData : IBytesSerializable
 		VisionInVents = true;
 		Plugins = new List<byte>();
 		Brightness = 70;
+		CanSeeOtherImps = true;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -386,6 +389,7 @@ public class GameOptionsData : IBytesSerializable
 		WriteByteList(writer,Plugins);
 		writer.Write(Brightness);
 		WriteCustomSettings(writer,CE_LuaLoader.CurrentSettings);
+		writer.Write(CanSeeOtherImps);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
@@ -433,7 +437,8 @@ public class GameOptionsData : IBytesSerializable
 				VisionInVents = reader.ReadBoolean(),
 				Plugins = ReadByteList(reader),
 				Brightness = reader.ReadByte(),
-				CustomSettingsRep = ReadCustomSettings(reader)
+				CustomSettingsRep = ReadCustomSettings(reader),
+				CanSeeOtherImps = reader.ReadBoolean()
 			};
             gamedat.InterpretSettings();
 			
@@ -580,6 +585,7 @@ public class GameOptionsData : IBytesSerializable
 				}
 			}
 			stringBuilder.AppendLine(settingstring);
+			stringBuilder.Append("Impostors Know Eachother: " + CanSeeOtherImps);
 			return stringBuilder.ToString();
 		}
 		catch(Exception E)
@@ -596,7 +602,7 @@ public class GameOptionsData : IBytesSerializable
 			NumShortTasks = 1;
 			result = true;
 		}
-		int num = MaxImpostors[numPlayers];
+		int num = 4;
 		if (NumImpostors > num)
 		{
 			NumImpostors = num;
@@ -652,10 +658,11 @@ public class GameOptionsData : IBytesSerializable
             Gamemodes.SetValue(CE_LuaLoader.GamemodeInfos[i].name, i);
             GamemodesAreLua.SetValue(true, i);
         }
-		for (int i = 0; i < CE_LuaLoader.PluginInfos.Count; i++)
-		{
-			PluginNames.SetValue(CE_LuaLoader.PluginInfos[i].name,i);
-		}
+        for (int i = 0; i < CE_LuaLoader.PluginInfos.Count; i++)
+        {
+            PluginNames.SetValue(CE_LuaLoader.PluginInfos[i].name, i);
+        }
+		CanSeeOtherImps = true;
 	}
 
 	static GameOptionsData()

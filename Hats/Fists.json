@@ -1,0 +1,54 @@
+{
+  "ID": "Fists",
+  "Name": "Fists",
+  "StoreName": "Fists",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 78.0,
+        "y": 73.0
+      },
+      "Offset": {
+        "x": 0.21,
+        "y": 1.60999954
+      },
+      "Name": "NormalExt",
+      "SpritePath": "Fists.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 78.0,
+        "y": 45.0
+      },
+      "Offset": {
+        "x": 0.410000026,
+        "y": 0.810000062
+      },
+      "Name": "Floor",
+      "SpritePath": "Fists.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

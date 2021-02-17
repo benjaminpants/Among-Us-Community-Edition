@@ -94,7 +94,7 @@ public class CE_PlayerInfoLua
 		throw new System.Exception("Attempted to create a PlayerInfo without a reference!");
 	}
 
-	public CE_PlayerInfoLua(GameData.PlayerInfo plf)
+	public CE_PlayerInfoLua(GameData.PlayerInfo plf, bool revealimp = true)
 	{
 		PlayerId = plf.PlayerId;
 		PlayerName = plf.PlayerName;
@@ -104,7 +104,7 @@ public class CE_PlayerInfoLua
 		Disconnected = plf.Disconnected;
 		Tasks = plf.Tasks;
 		IsDead = plf.IsDead;
-		IsImpostor = plf.IsImpostor;
+		IsImpostor = plf.IsImpostor && revealimp;
 		role = plf.role;
         luavalue1 = plf.luavalue1;
         luavalue2 = plf.luavalue2;

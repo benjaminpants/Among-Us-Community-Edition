@@ -9,9 +9,27 @@ using Hazel;
 
 static class CE_GameLua
 {
-    public static void ActivateWin()
+    public static bool ActivateWin(string winnerstring) //FINALLY IMPLEMENTED LETS GO
     {
-        throw new NotImplementedException(); // TODO: implement this, seriously please
+        if (winnerstring == "impostors")
+        {
+            ShipStatus.Instance.DisableBase();
+            ShipStatus.RpcEndGame(GameOverReason.ImpostorByVote, !SaveManager.BoughtNoAds);
+            return true;
+        }
+        else if (winnerstring == "crewmates")
+        {
+            ShipStatus.Instance.DisableBase();
+            ShipStatus.RpcEndGame(GameOverReason.HumansByVote, !SaveManager.BoughtNoAds);
+            return true;
+        }
+        else if (winnerstring == "stalemate")
+        {
+            ShipStatus.Instance.DisableBase();
+            ShipStatus.RpcEndGame(GameOverReason.Stalemate, !SaveManager.BoughtNoAds);
+            return true;
+        }
+        return false;
     }
 
     public static bool CheckIfInVent(CE_PlayerInfoLua plfo)

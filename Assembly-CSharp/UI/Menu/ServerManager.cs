@@ -30,20 +30,29 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 	{
         LastServer = DefaultServer;
         ServerInfo localfo = new ServerInfo
+        {
+            Name = "Local Host",
+            Ip = "127.0.0.1",
+            Port = 25565,
+            Default = false,
+            Icon = "single_crewmate.png"
+        };
+		ServerInfo eurofo = new ServerInfo
 		{
-			Name = "Local Host",
-			Ip = "127.0.0.1",
-			Port = 25565,
+			Name = "Primary [FFFF00FF](France)[]",
+			Ip = "185.142.55.87",
+			Port = 22023,
 			Default = false,
-			Icon = "single_crewmate.png"
+			Icon = "globe.png"
 		};
-        try
+		try
         {
             if (!File.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")))
             {
-                availableServers = new ServerInfo[2]
+                availableServers = new ServerInfo[3]
                 {
                 LastServer,
+				eurofo,
                 localfo
                 };
 				FileStream json = File.Create(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"));
@@ -83,7 +92,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		DefaultServer = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](Canada)[]",
-			Ip = "208.78.42.20",
+			Ip = "162.216.47.58",
 			Port = 48051,
 			Default = true,
 			Icon = "globe.png"

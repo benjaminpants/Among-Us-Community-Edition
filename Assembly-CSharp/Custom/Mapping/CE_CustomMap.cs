@@ -39,7 +39,7 @@ public static class CE_CustomMapManager
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = true;
+    public static bool MapTestingActive = false;
 
     public static Vent ReferenceVent;
 

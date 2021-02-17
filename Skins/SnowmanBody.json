@@ -1,0 +1,7254 @@
+{
+  "ID": "4fjkhergurhguohuohxifohwofwo",
+  "Name": "SnowmanBody",
+  "StoreName": "Snowman Body",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.28,
+        "y": 129.28
+      },
+      "Name": "Main",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 128.0
+      },
+      "Name": "Display",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 128.0
+      },
+      "Name": "ejected",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 130.56
+      },
+      "Name": "walk0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 129.28
+      },
+      "Name": "walk0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 131.84
+      },
+      "Name": "walk0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 133.12
+      },
+      "Name": "walk0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 138.24
+      },
+      "Name": "walk0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 138.24
+      },
+      "Name": "walk0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.28,
+        "y": 129.28
+      },
+      "Name": "walk0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.536,
+        "y": 127.232
+      },
+      "Name": "walk0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 129.536,
+        "y": 128.0
+      },
+      "Name": "walk0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 133.12
+      },
+      "Name": "walk0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 139.52
+      },
+      "Name": "walk0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.56,
+        "y": 139.52
+      },
+      "Name": "walk0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 153.6,
+        "y": 128.0
+      },
+      "Name": "spawn0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 125.44
+      },
+      "Name": "spawn0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 256.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.28,
+        "y": 118.44
+      },
+      "Name": "spawn0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 159.28,
+        "y": 125.44
+      },
+      "Name": "spawn0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.28,
+        "y": 124.44
+      },
+      "Name": "spawn0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 161.28,
+        "y": 123.44
+      },
+      "Name": "spawn0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 156.16,
+        "y": 117.76
+      },
+      "Name": "spawn0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 117.76
+      },
+      "Name": "spawn0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 117.76
+      },
+      "Name": "spawn0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 165.12,
+        "y": 119.04
+      },
+      "Name": "spawn0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 165.12,
+        "y": 119.04
+      },
+      "Name": "spawn0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 130.56
+      },
+      "Name": "spawn0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 160.0,
+        "y": 130.56
+      },
+      "Name": "spawn0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.76,
+        "y": 90.88
+      },
+      "Name": "spawn0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 512.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.76,
+        "y": 90.88
+      },
+      "Name": "spawn0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.76,
+        "y": 90.88
+      },
+      "Name": "spawn0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.96,
+        "y": 99.84
+      },
+      "Name": "spawn0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.96,
+        "y": 99.84
+      },
+      "Name": "spawn0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 98.56,
+        "y": 101.12
+      },
+      "Name": "spawn0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 97.792,
+        "y": 107.52
+      },
+      "Name": "spawn0049",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 87.04,
+        "y": 163.84
+      },
+      "Name": "spawn0050",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.16,
+        "y": 151.04
+      },
+      "Name": "spawn0051",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.16,
+        "y": 151.04
+      },
+      "Name": "spawn0052",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 120.32
+      },
+      "Name": "vent0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 98.56
+      },
+      "Name": "vent0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 98.816
+      },
+      "Name": "vent0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 98.816
+      },
+      "Name": "vent0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 102.4
+      },
+      "Name": "vent0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 136.96
+      },
+      "Name": "vent0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 174.08
+      },
+      "Name": "vent0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 768.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 122.4,
+        "y": 157.0
+      },
+      "Name": "killedneck0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 1024.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.4,
+        "y": 155.0
+      },
+      "Name": "killedneck0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 96.4,
+        "y": 161.0
+      },
+      "Name": "killedneck0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 89.4,
+        "y": 181.0
+      },
+      "Name": "killedneck0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 1280.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 86.0,
+        "y": 181.4621
+      },
+      "Name": "killedneck0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 176.0,
+        "y": 139.0
+      },
+      "Name": "killedgun0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 125.0,
+        "y": 147.0
+      },
+      "Name": "killedgun0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 125.0,
+        "y": 147.0
+      },
+      "Name": "killedgun0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 114.0,
+        "y": 165.0
+      },
+      "Name": "killedgun0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 111.0,
+        "y": 159.0
+      },
+      "Name": "killedgun0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 107.0,
+        "y": 159.0
+      },
+      "Name": "killedgun0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 101.0,
+        "y": 160.0
+      },
+      "Name": "killedgun0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 1536.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 162.0
+      },
+      "Name": "killedgun0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 79.0,
+        "y": 151.0
+      },
+      "Name": "killedgun0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 77.0,
+        "y": 151.0
+      },
+      "Name": "killedgun0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 76.0,
+        "y": 149.0
+      },
+      "Name": "killedgun0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 76.0,
+        "y": 149.0
+      },
+      "Name": "killedgun0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 71.0,
+        "y": 151.0
+      },
+      "Name": "killedgun0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 71.0,
+        "y": 151.0
+      },
+      "Name": "killedgun0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 75.0,
+        "y": 150.0
+      },
+      "Name": "killedgun0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 75.0,
+        "y": 150.0
+      },
+      "Name": "killedgun0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 69.0,
+        "y": 141.0
+      },
+      "Name": "killedgun0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 69.0,
+        "y": 141.0
+      },
+      "Name": "killedgun0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 58.0,
+        "y": 143.0
+      },
+      "Name": "killedgun0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 58.0,
+        "y": 143.0
+      },
+      "Name": "killedgun0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 50.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 1792.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 50.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 47.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 47.0,
+        "y": 144.0
+      },
+      "Name": "killedgun0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 92.0,
+        "y": 168.0
+      },
+      "Name": "killedgun0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 2048.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 117.0,
+        "y": 134.0
+      },
+      "Name": "killedalien0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 52.0,
+        "y": 123.0
+      },
+      "Name": "killedalien0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 68.0,
+        "y": 117.0
+      },
+      "Name": "killedalien0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 68.0,
+        "y": 117.0
+      },
+      "Name": "killedalien0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 78.0,
+        "y": 128.0
+      },
+      "Name": "killedalien0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 78.0,
+        "y": 128.0
+      },
+      "Name": "killedalien0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      },
+      "Name": "killedalien0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      },
+      "Name": "killedalien0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      },
+      "Name": "killedalien0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      },
+      "Name": "killedalien0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 80.0,
+        "y": 127.0
+      },
+      "Name": "killedalien0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 91.0,
+        "y": 126.0
+      },
+      "Name": "killedalien0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 91.0,
+        "y": 126.0
+      },
+      "Name": "killedalien0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 136.0
+      },
+      "Name": "killedalien0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 104.0,
+        "y": 136.0
+      },
+      "Name": "killedalien0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 158.0
+      },
+      "Name": "killedalien0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 158.0
+      },
+      "Name": "killedalien0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 123.0,
+        "y": 158.0
+      },
+      "Name": "killedalien0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 123.0,
+        "y": 158.0
+      },
+      "Name": "killedalien0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 2304.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 121.0,
+        "y": 159.0
+      },
+      "Name": "killedalien0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 2560.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 175.0,
+        "y": 147.0
+      },
+      "Name": "killedstab0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      },
+      "Name": "killedstab0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      },
+      "Name": "killedstab0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      },
+      "Name": "killedstab0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      },
+      "Name": "killedstab0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 154.0
+      },
+      "Name": "killedstab0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      },
+      "Name": "killedstab0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      },
+      "Name": "killedstab0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      },
+      "Name": "killedstab0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      },
+      "Name": "killedstab0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 157.0,
+        "y": 153.0
+      },
+      "Name": "killedstab0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 2816.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 155.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 158.0,
+        "y": 155.0
+      },
+      "Name": "killedstab0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 130.0,
+        "y": 148.0
+      },
+      "Name": "killedstab0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 118.0,
+        "y": 144.0
+      },
+      "Name": "killedstab0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      },
+      "Name": "killedstab0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      },
+      "Name": "killedstab0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      },
+      "Name": "killedstab0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      },
+      "Name": "killedstab0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      },
+      "Name": "killedstab0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 108.0,
+        "y": 141.0
+      },
+      "Name": "killedstab0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 98.0,
+        "y": 149.0
+      },
+      "Name": "killedstab0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 3072.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 102.0,
+        "y": 156.0
+      },
+      "Name": "killedstab0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      },
+      "Name": "killalien0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      },
+      "Name": "killalien0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      },
+      "Name": "killalien0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 134.0
+      },
+      "Name": "killalien0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 200.0,
+        "y": 137.0
+      },
+      "Name": "killalien0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 200.0,
+        "y": 137.0
+      },
+      "Name": "killalien0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      },
+      "Name": "killalien0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      },
+      "Name": "killalien0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      },
+      "Name": "killalien0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      },
+      "Name": "killalien0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 128.0,
+        "y": 133.0
+      },
+      "Name": "killalien0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 3328.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 140.0,
+        "y": 133.0
+      },
+      "Name": "killalien0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 182.0,
+        "y": 135.0
+      },
+      "Name": "killalien0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 132.0
+      },
+      "Name": "killalien0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 199.0,
+        "y": 134.0
+      },
+      "Name": "killalien0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      },
+      "Name": "killalien0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 197.0,
+        "y": 133.0
+      },
+      "Name": "killalien0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 135.0
+      },
+      "Name": "killalien0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 193.0,
+        "y": 135.0
+      },
+      "Name": "killalien0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 189.0,
+        "y": 141.0
+      },
+      "Name": "killalien0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 189.0,
+        "y": 141.0
+      },
+      "Name": "killalien0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 189.0,
+        "y": 136.0
+      },
+      "Name": "killalien0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 3584.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 188.0,
+        "y": 135.0
+      },
+      "Name": "killalien0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      },
+      "Name": "killgun0001",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      },
+      "Name": "killgun0002",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      },
+      "Name": "killgun0003",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 276.0,
+        "y": 146.0
+      },
+      "Name": "killgun0004",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 3840.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 282.0,
+        "y": 146.0
+      },
+      "Name": "killgun0005",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 282.0,
+        "y": 146.0
+      },
+      "Name": "killgun0006",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 282.0,
+        "y": 146.0
+      },
+      "Name": "killgun0007",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 244.0,
+        "y": 140.0
+      },
+      "Name": "killgun0008",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      },
+      "Name": "killgun0009",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      },
+      "Name": "killgun0010",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      },
+      "Name": "killgun0011",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 245.0,
+        "y": 141.0
+      },
+      "Name": "killgun0012",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 146.28
+      },
+      "Name": "killgun0013",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 250.0,
+        "y": 145.0
+      },
+      "Name": "killgun0014",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 135.0
+      },
+      "Name": "killgun0015",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 135.0
+      },
+      "Name": "killgun0016",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 135.0
+      },
+      "Name": "killgun0017",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 243.0,
+        "y": 145.0
+      },
+      "Name": "killgun0018",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 243.0,
+        "y": 145.0
+      },
+      "Name": "killgun0019",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 239.0,
+        "y": 146.0
+      },
+      "Name": "killgun0020",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      },
+      "Name": "killgun0021",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      },
+      "Name": "killgun0022",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      },
+      "Name": "killgun0023",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 240.0,
+        "y": 140.0
+      },
+      "Name": "killgun0024",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 4096.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 236.0,
+        "y": 140.0
+      },
+      "Name": "killgun0025",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 231.0,
+        "y": 145.0
+      },
+      "Name": "killgun0026",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 231.0,
+        "y": 145.0
+      },
+      "Name": "killgun0027",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      },
+      "Name": "killgun0028",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 768.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      },
+      "Name": "killgun0029",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1024.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      },
+      "Name": "killgun0030",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1280.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 230.0,
+        "y": 145.0
+      },
+      "Name": "killgun0031",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1536.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 237.0,
+        "y": 145.0
+      },
+      "Name": "killgun0032",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 1792.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 237.0,
+        "y": 145.0
+      },
+      "Name": "killgun0033",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2048.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 247.0,
+        "y": 143.0
+      },
+      "Name": "killgun0034",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2304.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 247.0,
+        "y": 143.0
+      },
+      "Name": "killgun0035",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2560.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 247.0,
+        "y": 143.0
+      },
+      "Name": "killgun0036",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 2816.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      },
+      "Name": "killgun0037",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3072.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      },
+      "Name": "killgun0038",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3328.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      },
+      "Name": "killgun0039",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3584.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      },
+      "Name": "killgun0040",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 3840.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      },
+      "Name": "killgun0041",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4096.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 242.0,
+        "y": 146.0
+      },
+      "Name": "killgun0042",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4352.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 243.0,
+        "y": 146.0
+      },
+      "Name": "killgun0043",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4608.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 256.0,
+        "y": 140.0
+      },
+      "Name": "killgun0044",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 4864.0,
+        "y": 4352.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 263.0,
+        "y": 146.0
+      },
+      "Name": "killgun0045",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 4608.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 145.0
+      },
+      "Name": "killgun0046",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 256.0,
+        "y": 4608.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 145.0
+      },
+      "Name": "killgun0047",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 512.0,
+        "y": 4608.0
+      },
+      "Size": {
+        "x": 256.0,
+        "y": 256.0
+      },
+      "Offset": {
+        "x": 268.0,
+        "y": 145.0
+      },
+      "Name": "killgun0048",
+      "SpritePath": "SnowmanBody.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

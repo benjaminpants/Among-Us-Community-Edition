@@ -1,0 +1,55 @@
+{
+  "ID": "batcap",
+  "Name": "batcap",
+  "StoreName": "batcap",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 105.0,
+        "y": 69.0
+      },
+      "Offset": {
+        "x": 0.525,
+        "y": 0.7
+      },
+      "Name": "Normal",
+      "SpritePath": "batcap.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 105.0,
+        "y": 69.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "batcap_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

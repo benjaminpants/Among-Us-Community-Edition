@@ -668,6 +668,10 @@ public class ShipStatus : InnerNetObject
 		}
 	}
 
+	public void DisableBase()
+    {
+		base.enabled = false;
+    }
 	private void CheckEndCriteria()
 	{
 		if (!GameData.Instance)
@@ -709,7 +713,8 @@ public class ShipStatus : InnerNetObject
 		int num2 = 0;
 		int num3 = 0;
         List<CE_PlayerInfoLua> imps = new List<CE_PlayerInfoLua>();
-        List<CE_PlayerInfoLua> crew = new List<CE_PlayerInfoLua>();
+		List<CE_PlayerInfoLua> allimps = new List<CE_PlayerInfoLua>();
+		List<CE_PlayerInfoLua> crew = new List<CE_PlayerInfoLua>();
 		List<CE_PlayerInfoLua> all = new List<CE_PlayerInfoLua>();
 		for (int i = 0; i < GameData.Instance.PlayerCount; i++)
 		{
@@ -727,7 +732,23 @@ public class ShipStatus : InnerNetObject
 				if (playerInfo.IsImpostor)
 				{
 					num2++;
-                    imps.Add(new CE_PlayerInfoLua(playerInfo));
+					if (PlayerControl.GameOptions.CanSeeOtherImps)
+					{
+						imps.Add(new CE_PlayerInfoLua(playerInfo));
+					}
+					else
+					{
+						if (imps.Count == 0)
+						{
+                            imps.Add(new CE_PlayerInfoLua(playerInfo));
+							allimps.Add(new CE_PlayerInfoLua(playerInfo));
+						}
+						else
+                        {
+							crew.Add(new CE_PlayerInfoLua(playerInfo));
+							allimps.Add(new CE_PlayerInfoLua(playerInfo));
+						}
+					}
 					all.Add(new CE_PlayerInfoLua(playerInfo));
 				}
 				else
@@ -750,8 +771,21 @@ public class ShipStatus : InnerNetObject
 				string winnerstring = output.String;
                 if (winnerstring == "impostors")
                 {
-                    base.enabled = false;
-                    RpcEndGame(GameOverReason.ImpostorByVote, !SaveManager.BoughtNoAds);
+					if (PlayerControl.GameOptions.CanSeeOtherImps)
+					{
+						base.enabled = false;
+						RpcEndGame(GameOverReason.ImpostorByVote, !SaveManager.BoughtNoAds);
+					}
+					else
+                    {
+						List<GameData.PlayerInfo> winnerinfo = new List<GameData.PlayerInfo>();
+						foreach (CE_PlayerInfoLua dyn in allimps)
+						{
+							winnerinfo.Add(dyn.refplayer);
+						}
+						RpcCustomEndGame(winnerinfo.ToArray(), "default_impostor");
+
+					}
                 }
                 else if (winnerstring == "crewmates")
                 {
@@ -766,20 +800,15 @@ public class ShipStatus : InnerNetObject
 			}
 			else if (output.Type == DataType.Table) //itsa custom win condition!!!
             {
-				Debug.Log("wintable");
                 Table winnertable = output.Table;
-				Debug.Log("actualwintable");
                 Table actualwinnertable = winnertable.Get(1).Table;
-				Debug.Log("get winnerinfo");
 				List<GameData.PlayerInfo> winnerinfo = new List<GameData.PlayerInfo>();
                 foreach (DynValue dyn in actualwinnertable.Values)
                 {
                     CE_PlayerInfoLua plyinfo = (CE_PlayerInfoLua)dyn.UserData.Object;
                     winnerinfo.Add(plyinfo.refplayer);
                 }
-				Debug.Log("send");
                 RpcCustomEndGame(winnerinfo.ToArray(), winnertable.Get(2).String);
-				Debug.Log("complete");
 
 			}
 			else

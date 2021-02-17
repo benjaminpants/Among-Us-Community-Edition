@@ -779,7 +779,10 @@ public class PlayerControl : InnerNetObject
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
 			for (int k = 0; k < infected.Length; k++)
 			{
-				infected[k].Object.nameText.Color = Palette.ImpostorRed;
+				if (PlayerControl.GameOptions.CanSeeOtherImps || infected[k] == PlayerControl.LocalPlayer.Data)
+				{
+					infected[k].Object.nameText.Color = Palette.ImpostorRed;
+				}
 			}
 		}
 		if (!DestroyableSingleton<TutorialManager>.InstanceExists)
@@ -1529,7 +1532,10 @@ public class PlayerControl : InnerNetObject
 		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
 		for (int k = 0; k < infected.Length; k++)
 		{
-			infected[k].Object.nameText.Color = Palette.ImpostorRed;
+			if (PlayerControl.GameOptions.CanSeeOtherImps || infected[k] == PlayerControl.LocalPlayer.Data)
+			{
+				infected[k].Object.nameText.Color = Palette.ImpostorRed;
+			}
 		}
 	}
 
@@ -1596,7 +1602,7 @@ public class PlayerControl : InnerNetObject
 					}
 					else
 					{
-						if (!players[i].IsImpostor)
+						if (!players[i].IsImpostor && (PlayerControl.GameOptions.CanSeeOtherImps || players[i] == PlayerControl.LocalPlayer.Data))
 						{
 							players[i].Object.nameText.Color = Palette.White;
 						}
@@ -1658,7 +1664,7 @@ public class PlayerControl : InnerNetObject
 	{
 		if (CE_LuaLoader.CurrentGMLua)
 		{
-			return CE_LuaLoader.GetGamemodeResult("CanKill", new CE_PlayerInfoLua(Data), new CE_PlayerInfoLua(playerinfo)).Boolean;
+			return CE_LuaLoader.GetGamemodeResult("CanKill", new CE_PlayerInfoLua(Data), new CE_PlayerInfoLua(playerinfo, PlayerControl.GameOptions.CanSeeOtherImps)).Boolean;
 		}
 		return !playerinfo.IsImpostor;
 	}

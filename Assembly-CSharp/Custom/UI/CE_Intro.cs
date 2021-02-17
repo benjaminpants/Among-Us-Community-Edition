@@ -10,6 +10,8 @@ public class CE_Intro : MonoBehaviour
 
 	private Texture2D MTMLogo;
 
+	private Texture2D FramesLogo;
+
 	private static bool inPause = false;
 
 	private bool SkipActive;
@@ -87,11 +89,15 @@ public class CE_Intro : MonoBehaviour
 	{
 		if (!CarJemLogo)
 		{
-			CarJemLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "CJLogo.png"));
+			CarJemLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "CJLogo.png"),false);
 		}
-		if (!MTMLogo)
+        if (!MTMLogo)
+        {
+            MTMLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "MTMLogo.png"), false);
+        }
+		if (!FramesLogo)
 		{
-			MTMLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "MTMLogo.png"));
+			MTMLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "framlogo.png"), false);
 		}
 	}
 	private void LateUpdate()

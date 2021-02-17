@@ -33,7 +33,7 @@ public class IntroCutscene : MonoBehaviour
 		{
 			PlayerControl.LocalPlayer.moveable = false;
 		}
-		if (CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).Layer == 255)
+		if (CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).Layer == 255 || !PlayerControl.GameOptions.CanSeeOtherImps)
         {
 			yourTeam = new List<PlayerControl>();
 			yourTeam.Add(PlayerControl.LocalPlayer);

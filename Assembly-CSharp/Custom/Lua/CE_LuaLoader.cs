@@ -91,6 +91,7 @@ public static class CE_LuaLoader
 		script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
 		script.Globals["Debug_Log"] = (Func<string, bool>)CE_GameLua.DebugLogLua;
         script.Globals["Debug_Error"] = (Func<string, bool>)CE_GameLua.DebugErrorLua;
+		script.Globals["Game_ActivateWin"] = (Func<string,bool>)CE_GameLua.ActivateWin;
 		if (isgm)
 		{
 			script.Globals["UI_AddLangEntry"] = (Func<string, string, bool>)AddLangEntry;

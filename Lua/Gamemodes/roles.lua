@@ -23,6 +23,7 @@ function InitializeGamemode()
 	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of 1 person.",{0},1,0,false,true)
 	Game_CreateRole("Yeller",{109, 107, 232},"Report the body of anyone nearby\nEven if they are alive.",{0},1,0,false,true)
 	Game_CreateRole("Twin",{118, 133, 163},"Stay alive with your twin.\n\rIf you die, your twin dies as well.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
+	--Game_CreateRole("Snatcher",{255, 255, 255},"Steal someone's identity and survive for 4 meetings.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	--roles you aren't supposed to see
 	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
 	--counts

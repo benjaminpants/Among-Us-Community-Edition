@@ -8,7 +8,7 @@ public class CE_TextureNSpriteExtensions
 	public static Dictionary<string, Texture2D> GlobalLoadedTextures = new Dictionary<string, Texture2D>();
 
 
-	public static Texture2D LoadPNG(string filePath)
+	public static Texture2D LoadPNG(string filePath,bool store = true)
 	{
 		if (CE_TextureNSpriteExtensions.GlobalLoadedTextures.ContainsKey(filePath)) return CE_TextureNSpriteExtensions.GlobalLoadedTextures[filePath];
 		else
@@ -20,7 +20,10 @@ public class CE_TextureNSpriteExtensions
 				texture2D = new Texture2D(2, 2);
 				texture2D.LoadImage(data);
 			}
-			CE_TextureNSpriteExtensions.GlobalLoadedTextures.Add(filePath, texture2D);
+			if (store)
+			{
+				CE_TextureNSpriteExtensions.GlobalLoadedTextures.Add(filePath, texture2D);
+			}
 			return texture2D;
 		}
 	}
