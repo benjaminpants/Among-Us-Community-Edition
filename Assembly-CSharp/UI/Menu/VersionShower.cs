@@ -107,7 +107,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.5.9 - First Community Made Gamemode added!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		text.Text = "v0.5.10 - The Update that broke the naming scheme" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

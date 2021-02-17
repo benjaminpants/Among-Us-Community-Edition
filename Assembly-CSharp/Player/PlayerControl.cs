@@ -1602,13 +1602,20 @@ public class PlayerControl : InnerNetObject
 					}
 					else
 					{
-						if (!players[i].IsImpostor && (PlayerControl.GameOptions.CanSeeOtherImps || players[i] == PlayerControl.LocalPlayer.Data))
+						if (!players[i].IsImpostor)
 						{
 							players[i].Object.nameText.Color = Palette.White;
 						}
 						else
 						{
-							players[i].Object.nameText.Color = Palette.ImpostorRed;
+							if (PlayerControl.GameOptions.CanSeeOtherImps || players[i] == PlayerControl.LocalPlayer.Data)
+							{
+								players[i].Object.nameText.Color = Palette.ImpostorRed;
+							}
+							else
+                            {
+								players[i].Object.nameText.Color = Palette.White;
+							}
 						}
 					}
 				}

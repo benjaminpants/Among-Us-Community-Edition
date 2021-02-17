@@ -602,7 +602,7 @@ public class GameOptionsData : IBytesSerializable
 			NumShortTasks = 1;
 			result = true;
 		}
-		int num = 4;
+		int num = MaxImpostors[numPlayers];
 		if (NumImpostors > num)
 		{
 			NumImpostors = num;
