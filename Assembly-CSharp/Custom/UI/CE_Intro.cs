@@ -97,7 +97,7 @@ public class CE_Intro : MonoBehaviour
         }
 		if (!FramesLogo)
 		{
-			MTMLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "framlogo.png"), false);
+			FramesLogo = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "framlogo.png"), false);
 		}
 	}
 	private void LateUpdate()
