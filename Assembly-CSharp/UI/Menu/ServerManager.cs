@@ -92,7 +92,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		DefaultServer = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](Canada)[]",
-			Ip = "162.216.47.58",
+			Ip = "208.78.42.37",
 			Port = 48051,
 			Default = true,
 			Icon = "globe.png"
