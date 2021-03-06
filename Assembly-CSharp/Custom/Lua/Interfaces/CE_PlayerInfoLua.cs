@@ -89,11 +89,6 @@ public class CE_PlayerInfoLua
 		private set;
 	}
 
-	public CE_PlayerInfoLua()
-	{
-		throw new System.Exception("Attempted to create a PlayerInfo without a reference!");
-	}
-
 	public CE_PlayerInfoLua(GameData.PlayerInfo plf, bool revealimp = true)
 	{
 		PlayerId = plf.PlayerId;

@@ -82,6 +82,8 @@ public class CE_CustomMap
 
     public static Vent ReferenceVent;
 
+    public DivertPowerMetagame DivertMeta;
+
     public static ShipStatus stat;
 
     public static SoundGroup[] SoundGroups;
@@ -160,10 +162,9 @@ public class CE_CustomMap
     {
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
-        col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
-        ins.transform.position = position;
         ins.transform.localScale = scale;
+        ins.transform.position = position;
         ins.transform.name = "(Custom)" + room;
         ins.layer = 9;
         ShipRoom rom = ins.AddComponent<ShipRoom>();
@@ -366,7 +367,6 @@ public class CE_CustomMap
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "e.wav")),
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "blip.wav"))
         };
-        CreateShipRoom(SystemTypes.Custom6,AmbienceSounds[4],SoundGroups[2],new Vector2(5f,5f),new Vector2(5f,5f));
 
         //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");
@@ -404,6 +404,11 @@ public class CE_CustomMap
                 CreateTaskConsole(new Vector3(C.Position.Values[0],C.Position.Values[1],C.Position.Values[2]), Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0)),(TaskTypes)C.TaskType,new IntRange(C.MinStep,C.MaxStep),(SystemTypes)C.Room);
                 
             }
+        }
+
+        foreach (CEM_Room R in maptospawn.Rooms)
+        {
+            CreateShipRoom((SystemTypes)R.RoomType, AmbienceSounds[R.Ambience], SoundGroups[R.Footsteps], new Vector3(R.Position.Values[0], R.Position.Values[1], R.Position.Values[2]), new Vector3(R.Scale.Values[0], R.Scale.Values[1], R.Scale.Values[2]));
         }
         foreach (CEM_Sprite SPR in maptospawn.Sprites)
         {
@@ -461,6 +466,7 @@ public class CE_CustomMap
                 }
             }
         }
+
         GameObject newgam = new GameObject();
         newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
         map.SpawnCenter = newgam.transform;

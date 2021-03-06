@@ -102,6 +102,30 @@ public class CEM_Vent
     }
 }
 
+public class CEM_Room
+{
+    public CEM_Point Position;
+    public CEM_Point Scale;
+    public int RoomType;
+    public int Ambience;
+    public int Footsteps;
+    public bool CustomAmbience;
+    public bool CustomFootsteps;
+    public string AmbienceLocal;
+    public List<string> AudioLocals;
+
+    public CEM_Room(Vector3 Pos, Vector3 Sca, int Amb, int Foot, int rt)
+    {
+        Ambience = Amb;
+        Footsteps = Foot;
+        CustomAmbience = false;
+        CustomFootsteps = false;
+        Position = new CEM_Point(Pos);
+        Scale = new CEM_Point(Sca);
+        RoomType = rt;
+    }
+}
+
 public class CEM_Map
 {
     public string Name = "Undefined";
@@ -113,5 +137,6 @@ public class CEM_Map
     public List<CEM_Task> LongTasks = new List<CEM_Task>();
     public List<CEM_Task> CommonTasks = new List<CEM_Task>();
     public List<CEM_Console> Consoles = new List<CEM_Console>();
+    public List<CEM_Room> Rooms = new List<CEM_Room>();
     public CEM_Point SpawnLocation;
 }
