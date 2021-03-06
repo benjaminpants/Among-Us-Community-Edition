@@ -51,6 +51,42 @@ public class CEM_Sprite
     }
 }
 
+public class CEM_Console
+{
+    public CEM_Point Position;
+    public string ImageLocal = "???";
+    public int TaskType;
+    public int Room;
+    public int MinStep;
+    public int MaxStep;
+
+    public CEM_Console(Vector3 position, string ImageLocation, int tt, int r, int mis, int mas)
+    {
+        Position = new CEM_Point(position);
+        ImageLocal = ImageLocation;
+        TaskType = tt;
+        Room = r;
+        MaxStep = mis;
+        MaxStep = mas;
+    }
+}
+
+public class CEM_Task
+{
+    public int Room;
+    public int TaskType;
+    public int MaxStep;
+    public string Name;
+
+    public CEM_Task(int r, int tt, int ms, string name)
+    {
+        Room = r;
+        TaskType = tt;
+        MaxStep = ms;
+        Name = name;
+    }
+}
+
 public class CEM_Vent
 {
     public string Name;
@@ -73,5 +109,9 @@ public class CEM_Map
     public List<CEM_WallLine> Walls = new List<CEM_WallLine>();
     public List<CEM_Sprite> Sprites = new List<CEM_Sprite>();
     public List<CEM_Vent> Vents = new List<CEM_Vent>();
+    public List<CEM_Task> ShortTasks = new List<CEM_Task>();
+    public List<CEM_Task> LongTasks = new List<CEM_Task>();
+    public List<CEM_Task> CommonTasks = new List<CEM_Task>();
+    public List<CEM_Console> Consoles = new List<CEM_Console>();
     public CEM_Point SpawnLocation;
 }

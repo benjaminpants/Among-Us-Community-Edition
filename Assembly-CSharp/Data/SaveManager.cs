@@ -880,7 +880,7 @@ public static class SaveManager
 	static SaveManager()
 	{
 		lobbyShake = true;
-		enableProHUDMode = true;
+		enableProHUDMode = false;
 		sfxVolume = byte.MaxValue;
 		musicVolume = byte.MaxValue;
 		showMinPlayerWarning = true;

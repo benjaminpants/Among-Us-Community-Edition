@@ -8,14 +8,35 @@ using System.IO;
 using InnerNet;
 using Newtonsoft.Json;
 
+public class CEM_TaskData
+{
+    public Type minigametype;
+    public Type tasktype = typeof(NormalPlayerTask);
+    public string MinigameName = "Invalid";
+
+    public CEM_TaskData(Type mgt, Type tt, string mn)
+    {
+        minigametype = mgt;
+        tasktype = tt;
+        MinigameName = mn;
+    }
+    public CEM_TaskData(Type mgt, string mn)
+    {
+        minigametype = mgt;
+        MinigameName = mn;
+    }
+}
+
+
 public static class CE_CustomMapManager
 {
     public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
+    public static Dictionary<TaskTypes,CEM_TaskData> TypeToTaskName= new Dictionary<TaskTypes, CEM_TaskData>();
 
     public static void Initialize()
     {
         //MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
-        MapInfos.Add(new CE_MapInfo("Test Map",new string[12]{
+        MapInfos.Add(new CE_MapInfo("Test Map", new string[12]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -29,7 +50,25 @@ public static class CE_CustomMapManager
             "Happy Place",
             "Happy Place"
         }));
+
+        TypeToTaskName.Add(TaskTypes.UploadData, new CEM_TaskData(typeof(UploadDataGame), typeof(UploadDataTask), "UploadMinigame"));
+        TypeToTaskName.Add(TaskTypes.ClearAsteroids, new CEM_TaskData(typeof(WeaponsMinigame), "WeaponsMinigame"));
+        TypeToTaskName.Add(TaskTypes.AlignEngineOutput, new CEM_TaskData(typeof(AlignGame), "AlignMinigame"));
+        TypeToTaskName.Add(TaskTypes.CalibrateDistributor, new CEM_TaskData(typeof(SweepMinigame), "SweepMinigame"));
+        TypeToTaskName.Add(TaskTypes.ChartCourse, new CEM_TaskData(typeof(CourseMinigame), "CourseMinigame"));
+        TypeToTaskName.Add(TaskTypes.SubmitScan, new CEM_TaskData(typeof(MedScanMinigame), "MedScanMinigame"));
+        TypeToTaskName.Add(TaskTypes.PrimeShields, new CEM_TaskData(typeof(ShieldMinigame), "ShieldsMinigame"));
+        TypeToTaskName.Add(TaskTypes.UnlockManifolds, new CEM_TaskData(typeof(UnlockManifoldsMinigame), "UnlockManifoldsMinigame"));
+        TypeToTaskName.Add(TaskTypes.CleanO2Filter, new CEM_TaskData(typeof(LeafMinigame), "LeafMinigame"));
+        TypeToTaskName.Add(TaskTypes.EmptyGarbage, new CEM_TaskData(typeof(EmptyGarbageMinigame), "EmptyGarbageMinigame"));
+        TypeToTaskName.Add(TaskTypes.DivertPower, new CEM_TaskData(typeof(DivertPowerMinigame), "EmptyGarbageMinigame")); //use different system for divert power as its a bit weird
+        TypeToTaskName.Add(TaskTypes.SwipeCard, new CEM_TaskData(typeof(CardSlideGame), "CardMinigame"));
+        TypeToTaskName.Add(TaskTypes.FuelEngines, new CEM_TaskData(typeof(RefuelMinigame), "RefuelMinigame"));
+        TypeToTaskName.Add(TaskTypes.InspectSample, new CEM_TaskData(typeof(SampleMinigame), "SampleMinigame"));
+        TypeToTaskName.Add(TaskTypes.StartReactor, new CEM_TaskData(typeof(SimonSaysGame), "SimonSaysGame"));
+        TypeToTaskName.Add(TaskTypes.EmptyChute, new CEM_TaskData(typeof(EmptyGarbageMinigame), "EmptyGarbageMinigame"));
     }
+
 
     public static CE_MapInfo GetCurrentMap()
     {
@@ -39,7 +78,7 @@ public static class CE_CustomMapManager
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = false;
+    public static bool MapTestingActive = true;
 
     public static Vent ReferenceVent;
 
@@ -78,10 +117,19 @@ public class CE_CustomMap
         datatask.MaxStep = maxstep;
         Minigame uploaddat = CE_PrefabHelpers.FindPrefab(name, minigametype) as Minigame;
         datatask.MinigamePrefab = uploaddat;
+        if (maxstep == 0 || maxstep == 1)
+        {
+            datatask.ShowTaskStep = false;
+        }
+        if (taskty == TaskTypes.InspectSample)
+        {
+            datatask.ShowTaskStep = false;
+            datatask.ShowTaskTimer = true;
+        }
         return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
     }
 
-    public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, NormalPlayerTask task, IntRange range, SystemTypes room)
+    public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room)
     {
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
@@ -95,13 +143,13 @@ public class CE_CustomMap
         console.Room = room;
         TaskSet ts = new TaskSet();
         ts.taskStep = range;
-        ts.taskType = task.TaskType;
+        ts.taskType = tt;
         console.ValidTasks = new TaskSet[] {
             ts
         };
         console.TaskTypes = new TaskTypes[]
         {
-            task.TaskType
+            tt
         };
 
         ins.transform.position = transf;
@@ -236,6 +284,25 @@ public class CE_CustomMap
         AmbienceSounds = AudioClipz.ToArray();
     }
 
+    public static NormalPlayerTask ProcessCEMTask(CEM_Task ct)
+    {
+        TaskTypes tt = (TaskTypes)ct.TaskType;
+        if (tt != TaskTypes.DivertPower || true) // TODO: PROPERLY IMPLEMENT DIVERT POWER
+        {
+            if (!CE_CustomMapManager.TypeToTaskName.TryGetValue(tt, out CEM_TaskData td))
+            {
+                throw new Exception("Unknown Task Type:" + tt.ToString());
+            }
+            return CreateTask(td.tasktype, (SystemTypes)ct.Room, ct.MaxStep, tt, td.minigametype, td.MinigameName);
+        }
+        else
+        {
+            
+        }
+        throw new Exception("Somehow reached end of ProcessCEMTask! Something has went horribly wrong!");
+    }
+
+
     public static void MapTest(ShipStatus map)
     {
         if (!MapTestingActive) return;
@@ -260,28 +327,23 @@ public class CE_CustomMap
 
 
         Debug.Log("Clearing Tasks...");
-        Debug.Log(map.CommonTasks.Length);
         foreach (NormalPlayerTask mp in map.CommonTasks)
         {
             UnityEngine.GameObject.Destroy(mp);
         }
-        map.CommonTasks = new NormalPlayerTask[1];
         foreach (NormalPlayerTask mp in map.NormalTasks)
         {
             UnityEngine.GameObject.Destroy(mp);
         }
-        map.NormalTasks = new NormalPlayerTask[3];
         foreach (NormalPlayerTask mp in map.LongTasks)
         {
             UnityEngine.GameObject.Destroy(mp);
         }
-        map.LongTasks = new NormalPlayerTask[1];
-
         LoadDefaultSounds();
    
 
         Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
-        NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Custom1,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
+        /*NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Custom1,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
         //CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Custom1);
         NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Custom2, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
         //CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Custom2);
@@ -289,13 +351,13 @@ public class CE_CustomMap
         //CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Custom3);
         NormalPlayerTask npt3 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom4, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
         //CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Custom4);
-        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom5, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom5, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");*/
         //CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Custom5);
-        map.CommonTasks[0] = uptask;
+        /*map.CommonTasks[0] = uptask;
         map.LongTasks[0] = npt;
         map.NormalTasks[0] = npt2;
         map.NormalTasks[1] = npt3;
-        map.NormalTasks[2] = npt4;
+        map.NormalTasks[2] = npt4;*/
         AudioClip ambience = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "test.wav"));
         SoundGroup sg = ScriptableObject.CreateInstance(typeof(SoundGroup)) as SoundGroup;
         sg.Clips = new AudioClip[]
@@ -313,6 +375,36 @@ public class CE_CustomMap
         //TODO: once the binary version of the map format gets implemented, avoid using the CEM classes.
         string jsontodeparse = File.ReadAllText("D:\\Junk\\map.json");
         CEM_Map maptospawn = JsonConvert.DeserializeObject<CEM_Map>(jsontodeparse);
+        map.CommonTasks = new NormalPlayerTask[maptospawn.CommonTasks.Count];
+        map.NormalTasks = new NormalPlayerTask[maptospawn.ShortTasks.Count];
+        map.LongTasks = new NormalPlayerTask[maptospawn.LongTasks.Count];
+        if (maptospawn.CommonTasks.Count == 0 || maptospawn.ShortTasks.Count == 0 || maptospawn.LongTasks.Count == 0)
+        {
+            throw new Exception("Not Enough Tasks included in loaded map!");
+        }
+        for (int i = 0; i < maptospawn.CommonTasks.Count; i++)
+        {
+            map.CommonTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.CommonTasks[i]);
+        }
+        for (int i = 0; i < maptospawn.LongTasks.Count; i++)
+        {
+            map.LongTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.LongTasks[i]);
+        }
+        for (int i = 0; i < maptospawn.ShortTasks.Count; i++)
+        {
+            map.NormalTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.ShortTasks[i]);
+        }
+        foreach (CEM_Console C in maptospawn.Consoles)
+        {
+            if (File.Exists(C.ImageLocal))
+            {
+                byte[] data = File.ReadAllBytes(C.ImageLocal);
+                Texture2D texture2D = new Texture2D(2, 2);
+                texture2D.LoadImage(data);
+                CreateTaskConsole(new Vector3(C.Position.Values[0],C.Position.Values[1],C.Position.Values[2]), Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0)),(TaskTypes)C.TaskType,new IntRange(C.MinStep,C.MaxStep),(SystemTypes)C.Room);
+                
+            }
+        }
         foreach (CEM_Sprite SPR in maptospawn.Sprites)
         {
             if (File.Exists(SPR.ImageLocal))
