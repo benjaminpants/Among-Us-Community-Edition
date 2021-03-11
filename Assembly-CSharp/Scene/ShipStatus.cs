@@ -161,7 +161,7 @@ public class ShipStatus : InnerNetObject
         {
             CE_CustomMap.MapTest(this);
         }
-		if (CE_CustomMap.MapTestingActive)
+		if (CE_CustomMapManager.GetCurrentMap().IsCustom)
 		{
 			ShipRoom[] TempRoom = GameObject.FindObjectsOfType<ShipRoom>();
 			List<ShipRoom> Rooms = new List<ShipRoom>();
@@ -185,7 +185,7 @@ public class ShipStatus : InnerNetObject
 			AllRooms = GetComponentsInChildren<ShipRoom>();
 		}
 		AllConsoles = GetComponentsInChildren<Console>();
-		if (CE_CustomMap.MapTestingActive)
+		if (CE_CustomMapManager.GetCurrentMap().IsCustom)
 		{
             Vent[] TempVent = GameObject.FindObjectsOfType<Vent>();
 			List<Vent> Vents = new List<Vent>();
@@ -761,7 +761,7 @@ public class ShipStatus : InnerNetObject
 		}
 		if (currentGMLua)
 		{
-			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks && !CE_CustomMap.MapTestingActive)
+			if (GameData.Instance.TotalTasks <= GameData.Instance.CompletedTasks)
 			{
 				flag2 = true;
 			}

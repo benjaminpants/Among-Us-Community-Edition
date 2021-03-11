@@ -9,7 +9,7 @@ public class GameOptionsData : IBytesSerializable
 {
 	private const byte GameDataVersion = 1;
 
-	public static readonly string[] MapNames;
+	public static string[] MapNames;
 
 	public static readonly float[] KillDistances;
 
@@ -344,6 +344,7 @@ public class GameOptionsData : IBytesSerializable
 		Plugins = new List<byte>();
 		Brightness = 70;
 		CanSeeOtherImps = true;
+		MapId = 0;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -662,18 +663,17 @@ public class GameOptionsData : IBytesSerializable
         {
             PluginNames.SetValue(CE_LuaLoader.PluginInfos[i].name, i);
         }
+		List<string> names = new List<string>();
+		for (int i = 0; i < CE_CustomMapManager.MapInfos.Count; i++)
+		{
+			names.Add(CE_CustomMapManager.MapInfos[i].MapName);
+		}
+		MapNames = names.ToArray();
 		CanSeeOtherImps = true;
 	}
 
 	static GameOptionsData()
 	{
-		MapNames = new string[4]
-		{
-			"The Skeld",
-			"Clue",
-			"The Forest",
-			"Martian Complex"
-		};
 		KillDistances = new float[6]
 		{
 			0.5f,

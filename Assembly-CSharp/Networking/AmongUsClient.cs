@@ -218,7 +218,7 @@ public class AmongUsClient : InnerNetClient
 		}
 		if (!ShipStatus.Instance)
 		{
-			ShipStatus.Instance = UnityEngine.Object.Instantiate(ShipPrefabs[gameOptions.MapId]);
+			ShipStatus.Instance = UnityEngine.Object.Instantiate(ShipPrefabs[0]);
 			ShipStatus.Instance.transform.localScale = new Vector3(ShipStatus.Instance.transform.localScale.x * PlayerControl.GameOptions.MapScaleX, ShipStatus.Instance.transform.localScale.y * PlayerControl.GameOptions.MapScaleY, 1f);
 
 			ShipStatus.Instance.transform.eulerAngles = new Vector3(0f, 0f, PlayerControl.GameOptions.MapRot);
@@ -415,7 +415,7 @@ public class AmongUsClient : InnerNetClient
 		{
 			GameData.Instance = UnityEngine.Object.Instantiate(GameDataPrefab);
 			Spawn(GameData.Instance);
-			ShipStatus netObjParent = ((!TempData.IsDo2Enabled) ? UnityEngine.Object.Instantiate(ShipPrefabs[0]) : UnityEngine.Object.Instantiate(ShipPrefabs[1]));
+			ShipStatus netObjParent = UnityEngine.Object.Instantiate(ShipPrefabs[0]);
 			Spawn(netObjParent);
 			CreatePlayer(client);
 		}

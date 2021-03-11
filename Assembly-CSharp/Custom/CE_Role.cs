@@ -110,6 +110,7 @@ public class CE_Role
         RoleText = "Undefined";
         HasTasks = true;
         UUID = "undefined_undefined";
+        Layer = 0;
     }
 
     public bool CanDo(CE_Specials special)

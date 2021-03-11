@@ -35,21 +35,22 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        //MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
-        MapInfos.Add(new CE_MapInfo("Test Map", new string[12]{
-            "Happy Place",
-            "Sad Place",
-            "Mad Place",
-            "Bad Place",
-            "Good Place",
-            "Evil Place",
-            "Holy Place",
-            "Sans Undertale",
-            "Lovely Day Outside",
-            "Happy Place",
-            "Happy Place",
-            "Happy Place"
-        }));
+        MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
+        if (!Directory.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")))
+        {
+            Debug.Log("Release build, disabling CM logic!");
+            return;
+        }
+        FileInfo[] files = new DirectoryInfo(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")).GetFiles("*.json");
+        foreach (FileInfo fo in files)
+        {
+            using StreamReader streamReader = File.OpenText(fo.FullName);
+            string json = streamReader.ReadToEnd();
+            CEM_Map maptoload = JsonConvert.DeserializeObject<CEM_Map>(json);
+            MapInfos.Add(new CE_MapInfo(maptoload.Name,maptoload, Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5))));
+            Debug.Log(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5)));
+        }
+        
 
         TypeToTaskName.Add(TaskTypes.UploadData, new CEM_TaskData(typeof(UploadDataGame), typeof(UploadDataTask), "UploadMinigame"));
         TypeToTaskName.Add(TaskTypes.ClearAsteroids, new CEM_TaskData(typeof(WeaponsMinigame), "WeaponsMinigame"));
@@ -67,18 +68,24 @@ public static class CE_CustomMapManager
         TypeToTaskName.Add(TaskTypes.InspectSample, new CEM_TaskData(typeof(SampleMinigame), "SampleMinigame"));
         TypeToTaskName.Add(TaskTypes.StartReactor, new CEM_TaskData(typeof(SimonSaysGame), "SimonSaysGame"));
         TypeToTaskName.Add(TaskTypes.EmptyChute, new CEM_TaskData(typeof(EmptyGarbageMinigame), "EmptyGarbageMinigame"));
+        TypeToTaskName.Add(TaskTypes.FixWiring, new CEM_TaskData(typeof(WireMinigame), "WireMingame"));
     }
 
 
     public static CE_MapInfo GetCurrentMap()
     {
+        Debug.Log(PlayerControl.GameOptions.MapId);
+        if (DestroyableSingleton<TutorialManager>.InstanceExists)
+        {
+            return MapInfos[0];
+        }
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
 }
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = true;
+    public static bool MapTestingActive = false;
 
     public static Vent ReferenceVent;
 
@@ -137,6 +144,7 @@ public class CE_CustomMap
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
         col2d.isTrigger = true;
+        ins.transform.position = transf;
         Console console = ins.AddComponent<Console>();
         SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
         img.sprite = sprite;
@@ -153,8 +161,6 @@ public class CE_CustomMap
         {
             tt
         };
-
-        ins.transform.position = transf;
         return console;
     }
     
@@ -306,13 +312,8 @@ public class CE_CustomMap
 
     public static void MapTest(ShipStatus map)
     {
-        if (!MapTestingActive) return;
+        if (!CE_CustomMapManager.GetCurrentMap().IsCustom) return;
         stat = map;
-        Texture2D texture;
-        string path = System.IO.Path.Combine(CE_Extensions.GetTexturesDirectory("Mapping"), "tasktest.png");
-        texture = CE_TextureNSpriteExtensions.LoadPNG(path);
-        var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
-
 
 
 
@@ -359,49 +360,49 @@ public class CE_CustomMap
         map.NormalTasks[0] = npt2;
         map.NormalTasks[1] = npt3;
         map.NormalTasks[2] = npt4;*/
-        AudioClip ambience = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "test.wav"));
+        /*AudioClip ambience = CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "test.wav"));
         SoundGroup sg = ScriptableObject.CreateInstance(typeof(SoundGroup)) as SoundGroup;
         sg.Clips = new AudioClip[]
         {
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "bloop.wav")),
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "e.wav")),
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "blip.wav"))
-        };
+        };*/
 
         //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");
         ClearMapCollision(map);
         Debug.Log("Spawning Map...");
         //TODO: once the binary version of the map format gets implemented, avoid using the CEM classes.
-        string jsontodeparse = File.ReadAllText("D:\\Junk\\map.json");
-        CEM_Map maptospawn = JsonConvert.DeserializeObject<CEM_Map>(jsontodeparse);
-        map.CommonTasks = new NormalPlayerTask[maptospawn.CommonTasks.Count];
-        map.NormalTasks = new NormalPlayerTask[maptospawn.ShortTasks.Count];
-        map.LongTasks = new NormalPlayerTask[maptospawn.LongTasks.Count];
-        if (maptospawn.CommonTasks.Count == 0 || maptospawn.ShortTasks.Count == 0 || maptospawn.LongTasks.Count == 0)
+        CEM_Map maptospawn = CE_CustomMapManager.GetCurrentMap().Map;
+        string contentlocal = CE_CustomMapManager.GetCurrentMap().ContentFolder;
+        map.CommonTasks = new NormalPlayerTask[maptospawn.TaskList.CommonTasks.Count];
+        map.NormalTasks = new NormalPlayerTask[maptospawn.TaskList.ShortTasks.Count];
+        map.LongTasks = new NormalPlayerTask[maptospawn.TaskList.LongTasks.Count];
+        if (maptospawn.TaskList.CommonTasks.Count == 0 || maptospawn.TaskList.ShortTasks.Count == 0 || maptospawn.TaskList.LongTasks.Count == 0)
         {
             throw new Exception("Not Enough Tasks included in loaded map!");
         }
-        for (int i = 0; i < maptospawn.CommonTasks.Count; i++)
+        for (int i = 0; i < maptospawn.TaskList.CommonTasks.Count; i++)
         {
-            map.CommonTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.CommonTasks[i]);
+            map.CommonTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.CommonTasks[i]);
         }
-        for (int i = 0; i < maptospawn.LongTasks.Count; i++)
+        for (int i = 0; i < maptospawn.TaskList.LongTasks.Count; i++)
         {
-            map.LongTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.LongTasks[i]);
+            map.LongTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.LongTasks[i]);
         }
-        for (int i = 0; i < maptospawn.ShortTasks.Count; i++)
+        for (int i = 0; i < maptospawn.TaskList.ShortTasks.Count; i++)
         {
-            map.NormalTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.ShortTasks[i]);
+            map.NormalTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.ShortTasks[i]);
         }
         foreach (CEM_Console C in maptospawn.Consoles)
         {
-            if (File.Exists(C.ImageLocal))
+            if (File.Exists(Path.Combine(contentlocal, C.ImageLocal)))
             {
-                byte[] data = File.ReadAllBytes(C.ImageLocal);
+                byte[] data = File.ReadAllBytes(Path.Combine(contentlocal, C.ImageLocal));
                 Texture2D texture2D = new Texture2D(2, 2);
                 texture2D.LoadImage(data);
-                CreateTaskConsole(new Vector3(C.Position.Values[0],C.Position.Values[1],C.Position.Values[2]), Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0)),(TaskTypes)C.TaskType,new IntRange(C.MinStep,C.MaxStep),(SystemTypes)C.Room);
+                CreateTaskConsole(new Vector3(C.Position.Values[0],C.Position.Values[1],C.Position.Values[2]), Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f)),(TaskTypes)C.TaskType,new IntRange(C.MinStep,C.MaxStep),(SystemTypes)C.Room);
                 
             }
         }
@@ -412,9 +413,9 @@ public class CE_CustomMap
         }
         foreach (CEM_Sprite SPR in maptospawn.Sprites)
         {
-            if (File.Exists(SPR.ImageLocal))
+            if (File.Exists(Path.Combine(contentlocal, SPR.ImageLocal)))
             {
-                byte[] data = File.ReadAllBytes(SPR.ImageLocal);
+                byte[] data = File.ReadAllBytes(Path.Combine(contentlocal, SPR.ImageLocal));
                 Texture2D texture2D = new Texture2D(2, 2);
                 texture2D.LoadImage(data);
                 GameObject to = new GameObject();
@@ -440,6 +441,10 @@ public class CE_CustomMap
                 Pt.Add(new Vector2(Point.Values[0], Point.Values[1]));
             }
             WallCol.points = Pt.ToArray();
+            if (Wall.ObscureVision)
+            {
+                EdgeWall.layer = LayerMask.NameToLayer("IlluminatedBlocking");
+            }
         }
         Dictionary<Vent, CEM_Vent> CV = new Dictionary<Vent, CEM_Vent>();
         foreach (CEM_Vent V in maptospawn.Vents)

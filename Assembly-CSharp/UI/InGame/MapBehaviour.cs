@@ -42,6 +42,10 @@ public class MapBehaviour : MonoBehaviour
 
 	public void ShowInfectedMap()
 	{
+		if (CE_CustomMapManager.GetCurrentMap().IsCustom)
+		{
+			return;
+		}
 		if (IsOpen)
 		{
 			Close();
@@ -59,6 +63,10 @@ public class MapBehaviour : MonoBehaviour
 
 	public void ShowNormalMap()
 	{
+		if (CE_CustomMapManager.GetCurrentMap().IsCustom)
+        {
+			return;
+        }
 		if (IsOpen)
 		{
 			Close();
