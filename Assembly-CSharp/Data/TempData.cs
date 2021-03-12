@@ -25,7 +25,7 @@ public static class TempData
 
 	static TempData()
 	{
-		EndReason = GameOverReason.HumansByTask;
+		EndReason = GameOverReason.Stalemate;
 		winners = new List<WinningPlayerData>
 		{
 			new WinningPlayerData

@@ -66,17 +66,28 @@ public class HatManager : DestroyableSingleton<HatManager>
 		}
 	}
 
+    public void AddHats(string path)
+    {
+        AllHats.AddRange(CE_WardrobeManager.LoadHats(path));
+		CE_WardrobeManager.LinkSkinsAndHats();
+	}
+	public void AddSkins(string path)
+	{
+        AllSkins.AddRange(CE_WardrobeManager.LoadSkins(CE_WardrobeManager.GetSkinRefrence(), path));
+		CE_WardrobeManager.LinkSkinsAndHats();
+	}
+
 	public void Start()
 	{
-		AllHats.AddRange(CE_WardrobeManager.LoadHats());
-        AllSkins.AddRange(CE_WardrobeManager.LoadSkins(CE_WardrobeManager.GetSkinRefrence()));
+		//AllHats.AddRange(CE_WardrobeManager.LoadHats());
+        //AllSkins.AddRange(CE_WardrobeManager.LoadSkins(CE_WardrobeManager.GetSkinRefrence()));
 		CE_WardrobeManager.HatHash = VersionShower.GetDeterministicHashCode(CE_WardrobeManager.HatString);
 		CE_WardrobeManager.HatString = "bob";
-		CE_WardrobeManager.LinkSkinsAndHats();
 	}
 
 	public void ReloadCustomHatsAndSkins()
 	{
-		CE_WardrobeManager.Reload();
+		Debug.Log("Reloading has been temporarily disabled!");
+		//CE_WardrobeManager.Reload();
 	}
 }

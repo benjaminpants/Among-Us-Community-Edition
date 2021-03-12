@@ -88,10 +88,11 @@ public class VersionShower : MonoBehaviour
 		byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
 		buildhash = GetDeterministicHashCodeBytes(Bytes);
 		BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
-		text.Text = "v0.5.6 - Deserves to be 0.6.0" + "\nBuild ID:" + BuildID;
+		text.Text = "when the impostor is sus!!";
 		Screen.sleepTimeout = -1;
 		CE_CustomMapManager.Initialize();
-		CE_Extensions.OnStartup();
+        CE_Extensions.OnStartup();
+		
 	}
 
 	public string CreateIDFromInt(int ID,byte length)
@@ -107,7 +108,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.6.0 - MAPS AND PAIN" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		text.Text = "v0.5.11(I) - The I stands for incomplete!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

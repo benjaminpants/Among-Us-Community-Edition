@@ -609,6 +609,26 @@ public static class SaveManager
 
 
 	private static int CamRes = 256;
+
+	private static bool LSkins = true;
+
+	public static bool LoadSkins
+	{
+		get
+		{
+			LoadPlayerPrefs();
+			return LSkins;
+		}
+		set
+		{
+			if (LSkins != value)
+			{
+				LSkins = value;
+				SavePlayerPrefs();
+			}
+		}
+	}
+
 	public static int CameraRes
 	{
 		get
@@ -743,6 +763,11 @@ public static class SaveManager
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "announcement_ce"), string.Join("\0", lastAnnounce.Id, lastAnnounce.AnnounceText, lastAnnounce.DateFetched));
 	}
 
+	public static void ForcePrefLoad()
+    {
+		LoadPlayerPrefs();
+    }
+
 	private static void LoadPlayerPrefs()
 	{
 		if (loaded)
@@ -783,7 +808,8 @@ public static class SaveManager
 			TryGetBool(array, 21, out enableVSync);
 			TryGetBool(array, 22, out useLegacyVoteIcons);
 			TryGetInt(array, 23, out CamRes);
-			TryGetBool(array, 24, out usehdshadows);
+            TryGetBool(array, 24, out usehdshadows);
+			TryGetBool(array, 25, out LSkins);
 			if (CamRes == 0)
             {
 				CamRes = 256;
@@ -820,6 +846,7 @@ public static class SaveManager
 		options.Add(useLegacyVoteIcons);
 		options.Add(CamRes);
 		options.Add(usehdshadows);
+		options.Add(LSkins);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 

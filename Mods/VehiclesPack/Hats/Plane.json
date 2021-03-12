@@ -1,0 +1,54 @@
+{
+  "ID": "ebdfa5ab-2eaf-4ffe-8eef-49a9a4195011",
+  "Name": "Plane",
+  "StoreName": "Airplane",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 186.0,
+        "y": 84.0
+      },
+      "Offset": {
+        "x": 0.44,
+        "y": 1.55
+      },
+      "Name": "Normal",
+      "SpritePath": "plane.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 186.0,
+        "y": 84.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "plane.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

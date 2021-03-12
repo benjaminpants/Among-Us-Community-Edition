@@ -86,7 +86,7 @@ public class CE_DevTool : MonoBehaviour
 			CE_CommonUI.CreateSeperator();
 			foreach (var entry in CE_RoleManager.Roles)
 			{
-				RoleLister(entry.Value.UUID, entry.Value.RoleName);
+				RoleLister(entry.Key.ToString(), entry.Value.RoleName);
 			}
 		}
 

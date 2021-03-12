@@ -57,8 +57,8 @@ public class CE_WardrobeManager
 		DestroyableSingleton<HatManager>.Instance.AllHats.RemoveAll((HatBehaviour x) => x.IsCustom);
 		DestroyableSingleton<HatManager>.Instance.AllSkins.RemoveAll((SkinData x) => x.isCustom);
 
-		DestroyableSingleton<HatManager>.Instance.AllHats.AddRange(LoadHats());
-        DestroyableSingleton<HatManager>.Instance.AllSkins.AddRange(LoadSkins(GetSkinRefrence()));
+		//DestroyableSingleton<HatManager>.Instance.AllHats.AddRange(LoadHats("no"));
+        //DestroyableSingleton<HatManager>.Instance.AllSkins.AddRange(LoadSkins(GetSkinRefrence(),"no"));
 		HatHash = VersionShower.GetDeterministicHashCode(HatString);
 		HatString = "bob";
 		PlayerControl.LocalPlayer.SetSkin(skinId);
@@ -120,27 +120,43 @@ public class CE_WardrobeManager
 				skinData.KillTongueVictim = BaseSkin.KillTongueVictim;
 				skinData.RelatedHatName = item2.RelatedHat;
 				skinData.IsHidden = item2.IsHidden;
-				foreach (CE_SpriteFrame frame in item2.FrameList)
+				SaveManager.ForcePrefLoad();
+				if ((SystemInfo.systemMemorySize / 1000) < 4 && SaveManager.PlayerName == "Enter Name")
+                {
+					SaveManager.LoadSkins = false;
+					AmongUsClient.Instance.LastDisconnectReason = InnerNet.DisconnectReasons.Custom;
+					AmongUsClient.Instance.LastCustomDisconnect = "This machine has been detected to have less then 4GB of memory available. \nDue to this, [FF0000FF]Custom skins have been disabled.[FFFFFFFF] \nYou can re-enable them in settings however that requires a restart.";
+					DestroyableSingleton<DisconnectPopup>.Instance.Show();
+                }
+				if (SaveManager.LoadSkins)
 				{
-					frame.Texture = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, frame.SpritePath));
-					skinData.FrameList.Add(frame.Name, frame);
-				}
-				if (skinData.FrameList.ContainsKey("Display"))
-				{
-					CE_SpriteFrame customSkinFrame = skinData.FrameList["Display"];
-					float x = customSkinFrame.Position.x;
-					float y = customSkinFrame.Position.y;
-					float width = customSkinFrame.Size.x;
-					float height = customSkinFrame.Size.y;
-					float offset_x = customSkinFrame.Offset.x;
-					float offset_y = customSkinFrame.Offset.y;
-					Texture2D texture = customSkinFrame.Texture;
+					foreach (CE_SpriteFrame frame in item2.FrameList)
+					{
+						frame.Texture = CE_TextureNSpriteExtensions.LoadPNG_HatManager(Path.Combine(RootPath, frame.SpritePath));
+						skinData.FrameList.Add(frame.Name, frame);
+					}
+					if (skinData.FrameList.ContainsKey("Display"))
+					{
+						CE_SpriteFrame customSkinFrame = skinData.FrameList["Display"];
+						float x = customSkinFrame.Position.x;
+						float y = customSkinFrame.Position.y;
+						float width = customSkinFrame.Size.x;
+						float height = customSkinFrame.Size.y;
+						float offset_x = customSkinFrame.Offset.x;
+						float offset_y = customSkinFrame.Offset.y;
+						Texture2D texture = customSkinFrame.Texture;
 
-					var offset = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
-					var pivot = new Vector2(offset.x, offset.y);
+						var offset = GetPrecentagePivot(width, height, new Vector2(offset_x, offset_y));
+						var pivot = new Vector2(offset.x, offset.y);
 
-					skinData.IdleFrame = Sprite.Create(texture, GetSpriteRect(texture, x, y, width, height), GetSpritePivot(pivot));
+						skinData.IdleFrame = Sprite.Create(texture, GetSpriteRect(texture, x, y, width, height), GetSpritePivot(pivot));
+					}
 				}
+				else
+                {
+					skinData.isCustom = false;
+					skinData.IsHidden = true;
+                }
 				num++;
 				DataList.Add(skinData);
 				HatString = HatString + item2.ID + item2.Name;
@@ -152,9 +168,8 @@ public class CE_WardrobeManager
 		}
 		return DataList;
 	}
-	public static List<SkinData> LoadSkins(SkinData BaseSkin)
+	public static List<SkinData> LoadSkins(SkinData BaseSkin, string Directory)
 	{
-		string Directory = System.IO.Path.Combine(CE_Extensions.GetGameDirectory(), "Skins");
 		FileInfo[] SkinFiles = GetJSONFiles(Directory);
 		List<CE_FrameSet> DefinitionsList = GetSkinDefinitions(SkinFiles);
 		return GetSkinData(DefinitionsList, Directory, BaseSkin);
@@ -310,9 +325,8 @@ public class CE_WardrobeManager
 		}
 		return BehaviorsList;
 	}
-	public static List<HatBehaviour> LoadHats()
+	public static List<HatBehaviour> LoadHats(string Directory)
 	{
-		string Directory = System.IO.Path.Combine(CE_Extensions.GetGameDirectory(), "Hats");
 		FileInfo[] HatFiles = GetJSONFiles(Directory);
 		List<CE_FrameSet> DefinitionsList = GetHatDefinitions(HatFiles);
 		return GetHatBehaviours(DefinitionsList, Directory);

@@ -8,16 +8,12 @@ set /p WARNING1=WARNING: MAKE SURE THAT YOU HAVE BUILT THE CE INSTALLER BEFORE P
 RMDIR /S /Q "%SOLUTION_DIR%\Publish"
 MKDIR "%SOLUTION_DIR%\Publish"
 MKDIR "%SOLUTION_DIR%\Publish\Mod"
-MKDIR "%SOLUTION_DIR%\Publish\Mod\Hats"
-MKDIR "%SOLUTION_DIR%\Publish\Mod\Skins"
-MKDIR "%SOLUTION_DIR%\Publish\Mod\Lua"
+MKDIR "%SOLUTION_DIR%\Publish\Mod\Mods"
 MKDIR "%SOLUTION_DIR%\Publish\Mod\Among Us_Data\Managed"
 
 :: Copy All Needed Folder
 ROBOCOPY "%SOLUTION_DIR%\Among Us_Data" "%SOLUTION_DIR%\Publish\Mod\Among Us_Data" /E
-ROBOCOPY "%SOLUTION_DIR%\Hats" "%SOLUTION_DIR%\Publish\Mod\Hats" /E
-ROBOCOPY "%SOLUTION_DIR%\Skins" "%SOLUTION_DIR%\Publish\Mod\Skins" /E 
-ROBOCOPY "%SOLUTION_DIR%\Lua" "%SOLUTION_DIR%\Publish\Mod\Lua" /E
+ROBOCOPY "%SOLUTION_DIR%\Mods" "%SOLUTION_DIR%\Publish\Mod\Mods" /E
 ROBOCOPY "%SOLUTION_DIR%\AmongUs_CE_Installer\bin\Release" "%SOLUTION_DIR%\Publish" 
 
 

@@ -49,9 +49,8 @@ public class ServerManager : DestroyableSingleton<ServerManager>
         {
             if (!File.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")))
             {
-                availableServers = new ServerInfo[3]
+                availableServers = new ServerInfo[2]
                 {
-                LastServer,
 				eurofo,
                 localfo
                 };

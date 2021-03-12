@@ -282,6 +282,18 @@ static class CE_GameLua
         return true;
     }
 
+    public static CE_PlayerInfoLua GetPlayerFromID(byte id)
+    {
+        try
+        {
+            return (CE_PlayerInfoLua)GameData.Instance.GetPlayerById(id);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
 
     public static List<CE_PlayerInfoLua> GetAllPlayers()
     {

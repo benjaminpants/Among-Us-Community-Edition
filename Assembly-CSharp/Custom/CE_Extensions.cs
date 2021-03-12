@@ -53,12 +53,14 @@ public class CE_Extensions
 
 	public static void OnStartup()
 	{
+		Debug.Log("OnStartup");
 		CE_UIHelpers.LoadDebugConsole();
 		if (!hasPlayed)
         {
 			ResolutionManager.SetVSync(SaveManager.EnableVSync);
 			CE_RoleManager.AddRole(new CE_Role());
-			CE_LuaLoader.LoadLua();
+			//CE_LuaLoader.LoadLua();
+			CE_ModLoader.LoadMods();
 			PlayIntro();
 			hasPlayed = true;
 		}

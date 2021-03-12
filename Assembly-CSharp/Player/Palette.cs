@@ -37,6 +37,7 @@ public static class Palette
 	public static readonly Color32 VisorColor;
 
     public static readonly Color32 VisorColorRed;
+
 	public static readonly Color32 VisorColorBlack;
 
 	public static readonly Color32 VisorColorGreen;
