@@ -39,7 +39,9 @@ public class CE_CommonUI
 
 	private static Texture2D GameMenuDropdownOpenSelectedTexture;
 
-	private static Texture2D CloseButtonTexture;
+    private static Texture2D CloseButtonTexture;
+
+	public static Texture2D ModsButton;
 
 	private static void LoadAssets()
     {
@@ -103,9 +105,13 @@ public class CE_CommonUI
 		{
 			CloseButtonTexture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "UI", "CloseButton.png"));
 		}
-		if (!TXT_Texture)
+        if (!TXT_Texture)
         {
-			TXT_Texture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "TXTBackground.png"));
+            TXT_Texture = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "TXTBackground.png"));
+        }
+		if (!ModsButton)
+		{
+			ModsButton = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "mods_texture.png"));
 		}
 	}
 
@@ -667,39 +673,41 @@ public class CE_CommonUI
 	{
 		return new GUIStyle();
 	}
-	public static GUIStyle UpDownSettingButtons()
-	{
-		float scale = GetScale(Screen.width, Screen.height);
-		var style = new GUIStyle(GUI.skin.button)
-		{
-			fixedWidth = (50f + TextHeightUpscale) * scale,
-			fixedHeight = (50f + TextHeightUpscale) * scale,
-			fontSize = (int)((45 + TextUpscale) * scale),
-			normal =
-			{
-				textColor = Color.white,
-				background = ButtonTexture
-			},
-			focused =
-			{
-				textColor = Color.white,
-				background = ButtonTexture
-			},
-			active =
-			{
-				textColor = Color.white,
-				background = ButtonTexture
-			},
-			hover =
-			{
-				textColor = Color.white,
-				background = ButtonSelected
-			}
-		};
-		style.border = new RectOffset(15, 15, 15, 15);
-		style.onNormal.background = ButtonTexture;
-		return style;
-	}
+    public static GUIStyle UpDownSettingButtons()
+    {
+        float scale = GetScale(Screen.width, Screen.height);
+        var style = new GUIStyle(GUI.skin.button)
+        {
+            fixedWidth = (50f + TextHeightUpscale) * scale,
+            fixedHeight = (50f + TextHeightUpscale) * scale,
+            fontSize = (int)((45 + TextUpscale) * scale),
+            normal =
+            {
+                textColor = Color.white,
+                background = ButtonTexture
+            },
+            focused =
+            {
+                textColor = Color.white,
+                background = ButtonTexture
+            },
+            active =
+            {
+                textColor = Color.white,
+                background = ButtonTexture
+            },
+            hover =
+            {
+                textColor = Color.white,
+                background = ButtonSelected
+            }
+        };
+        style.border = new RectOffset(15, 15, 15, 15);
+        style.onNormal.background = ButtonTexture;
+        return style;
+    }
+
+
 	public static GUIStyle UpDownSettingLabel(float width = 250f)
 	{
 		float scale = GetScale(Screen.width, Screen.height);
@@ -829,6 +837,7 @@ public class CE_CommonUI
 			return value;
 		}
 	}
+
 	public static float CreateValuePicker(float value, float incrementAmount, float min, float max, string title, string subString, bool decmialView = false)
 	{
 		float last_value = value;

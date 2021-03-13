@@ -91,9 +91,31 @@ public class VersionShower : MonoBehaviour
 		text.Text = "when the impostor is sus!!";
 		Screen.sleepTimeout = -1;
 		CE_CustomMapManager.Initialize();
+		AddNewButtons();
         CE_Extensions.OnStartup();
 		
 	}
+
+
+
+	public void AddNewButtons()
+    {
+		GameObject newbutton = GameObject.Instantiate(GameObject.Find("FreePlayButton"));
+		newbutton.transform.localPosition = new Vector3(0f,0f,0f);
+		newbutton.transform.name = "ModButton";
+		PassiveButton pasbut = newbutton.GetComponent<PassiveButton>();
+		Destroy(newbutton.GetComponent<HostGameButton>());
+		newbutton.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_CommonUI.ModsButton,new Vector2(0.5f,0.5f));
+		pasbut.OnClick.RemoveAllListeners();
+		pasbut.OnClick.AddListener(OpenModsMenu); //learned how to properly relink passive buttons??? maybe we could stop using unity ui??? pog???
+    }
+
+	public void OpenModsMenu()
+    {
+		CE_ModUI.IsShown = true;
+    }
+
+
 
 	public string CreateIDFromInt(int ID,byte length)
     {

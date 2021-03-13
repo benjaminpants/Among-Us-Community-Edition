@@ -8,9 +8,9 @@ public class CE_UIHelpers
 
 	public static AudioClip ClickSound;
 
-	public static bool IsActive()
+	public static bool IsActive() //this code is dumb, fix it.
 	{
-		if (!CE_Intro.IsShown && !CE_DevMinigame.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown)
+		if (!CE_Intro.IsShown && !CE_DevMinigame.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown && !CE_ModUI.IsShown)
 		{
 			return CE_AnimationDebuger.IsShown;
 		}
@@ -25,6 +25,7 @@ public class CE_UIHelpers
 		CE_ControlsUI.IsShown = false;
 		CE_DevTool.IsShown = false;
 		CE_DevMinigame.IsShown = false;
+		CE_ModUI.IsShown = false;
 	}
 
 	static CE_UIHelpers()

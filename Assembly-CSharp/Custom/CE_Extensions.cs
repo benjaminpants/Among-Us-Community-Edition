@@ -59,6 +59,7 @@ public class CE_Extensions
         {
 			ResolutionManager.SetVSync(SaveManager.EnableVSync);
 			CE_RoleManager.AddRole(new CE_Role());
+			new GameObject().AddComponent<CE_ModUI>().name = "ModUI";
 			//CE_LuaLoader.LoadLua();
 			CE_ModLoader.LoadMods();
 			PlayIntro();
