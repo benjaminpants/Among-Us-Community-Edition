@@ -42,7 +42,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 			Name = "Primary [FFFF00FF](France)[]",
 			Ip = "185.142.55.87",
 			Port = 22023,
-			Default = false,
+			Default = true,
 			Icon = "globe.png"
 		};
 		try

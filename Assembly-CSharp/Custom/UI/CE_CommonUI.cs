@@ -576,7 +576,7 @@ public class CE_CommonUI
 		GUILayout.Box(GUIContent.none, gUIStyle);
 		GUI.color = color2;
 	}
-	public static void CreateHeaderLabel(string text)
+	public static void CreateHeaderLabel(string text, FontStyle style = FontStyle.Bold)
 	{
 		float scale = GetScale(Screen.width, Screen.height);
 
@@ -584,7 +584,7 @@ public class CE_CommonUI
 		{
 			fixedHeight = (60f + TextHeightUpscale) * scale,
 			fontSize = (int)((50 + TextUpscale) * scale),
-			fontStyle = FontStyle.Bold
+			fontStyle = style
 		});
 	}
 
@@ -707,6 +707,40 @@ public class CE_CommonUI
         return style;
     }
 
+	public static GUIStyle ScreenLengthButton()
+	{
+		float scale = GetScale(Screen.width, Screen.height);
+		var style = new GUIStyle(GUI.skin.button)
+		{
+			fixedWidth =  360f * scale,
+			fixedHeight = (50f + TextHeightUpscale) * scale,
+			fontSize = (int)((45 + TextUpscale) * scale),
+			normal =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			focused =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			active =
+			{
+				textColor = Color.white,
+				background = ButtonTexture
+			},
+			hover =
+			{
+				textColor = Color.white,
+				background = ButtonSelected
+			}
+		};
+		style.border = new RectOffset(15, 15, 15, 15);
+		style.onNormal.background = ButtonTexture;
+		return style;
+	}
+
 
 	public static GUIStyle UpDownSettingLabel(float width = 250f)
 	{
@@ -818,17 +852,36 @@ public class CE_CommonUI
 			return value;
 		}
 	}
-	public static bool CreateBoolButton(bool value, string Title)
+    public static bool CreateBoolButton(bool value, string Title)
+    {
+        var last_value = value;
+        using (new GUILayout.HorizontalScope(HorizontalScopeStyle()))
+        {
+            CE_CustomUIElements.Label(Title, UpDownSettingLabel(0f));
+            GUILayout.FlexibleSpace();
+
+            string checkbox_style_A = value ? "✓" : " ";
+
+            if (CE_CustomUIElements.Button(checkbox_style_A, UpDownSettingButtons()))
+            {
+                ClickSoundTrigger();
+                value = !value;
+            }
+            HoverSoundTrigger();
+            return value;
+        }
+    }
+
+	public static bool CreateBoolButtonNoCheck(bool value, string check, string uncheck)
 	{
 		var last_value = value;
 		using (new GUILayout.HorizontalScope(HorizontalScopeStyle()))
 		{
-			CE_CustomUIElements.Label(Title, UpDownSettingLabel(0f));
 			GUILayout.FlexibleSpace();
 
-			string checkbox_style_A = value ? "✓" : " ";
+			string checkbox_style_A = value ? check : uncheck;
 
-			if (CE_CustomUIElements.Button(checkbox_style_A, UpDownSettingButtons()))
+			if (CE_CustomUIElements.Button(checkbox_style_A, ScreenLengthButton()))
 			{
 				ClickSoundTrigger();
 				value = !value;

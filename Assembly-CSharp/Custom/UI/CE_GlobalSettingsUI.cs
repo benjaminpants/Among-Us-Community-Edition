@@ -67,7 +67,8 @@ public class CE_GlobalSettingsUI : MonoBehaviour
 		SaveManager.HideIntro = CE_CommonUI.CreateBoolButton(SaveManager.HideIntro, "Disable Extra Intros");
         SaveManager.UseLegacyVoteIcons = CE_CommonUI.CreateBoolButton(SaveManager.UseLegacyVoteIcons, "Use Legacy Vote Icons");
         SaveManager.CameraRes = (int)CE_CommonUI.CreateValuePicker(SaveManager.CameraRes, 32f, 32f, 1024f, "Camera Resolution", "p");
-		SaveManager.LoadSkins = CE_CommonUI.CreateBoolButton(SaveManager.LoadSkins, "Load Custom Skins");
+        SaveManager.LoadSkins = CE_CommonUI.CreateBoolButton(SaveManager.LoadSkins, "Load Custom Skins");
+		SaveManager.FastKillAnims = CE_CommonUI.CreateBoolButton(SaveManager.FastKillAnims, "Fast Kill Animations");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
 		GUI.color = Color.black;

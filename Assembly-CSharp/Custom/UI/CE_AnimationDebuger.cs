@@ -154,7 +154,7 @@ public class CE_AnimationDebuger : MonoBehaviour
 
 
 		GUILayout.Space(15);
-		/*if (GUILayout.Button("Stab (As Killer)"))
+		if (GUILayout.Button("Stab (As Killer)"))
 		{
 			PlayerControl playerControl = PlayerControl.AllPlayerControls.Where((PlayerControl x) => x != PlayerControl.LocalPlayer).FirstOrDefault();
 			var animation = DestroyableSingleton<HudManager>.Instance.KillOverlay.KillAnims[0];
@@ -201,7 +201,7 @@ public class CE_AnimationDebuger : MonoBehaviour
 			PlayerControl killer = PlayerControl.AllPlayerControls.Where((PlayerControl x) => x != PlayerControl.LocalPlayer).FirstOrDefault();
 			var animation = DestroyableSingleton<HudManager>.Instance.KillOverlay.KillAnims[3];
 			DestroyableSingleton<HudManager>.Instance.KillOverlay.ShowOne(animation, killer, PlayerControl.LocalPlayer.Data);
-		}*/
+		}
 		if (GUILayout.Button("Impostor Intro Cutscene"))
 		{
 			DestroyableSingleton<HudManager>.Instance.StartCoroutine(DestroyableSingleton<HudManager>.Instance.ForceShowIntro(PlayerControl.AllPlayerControls, true));

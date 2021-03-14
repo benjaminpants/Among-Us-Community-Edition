@@ -38,5 +38,21 @@ public class PlayerParticle : PoolableBehavior
 		localPosition += (Vector3)(velocity * Time.deltaTime);
 		base.transform.localPosition = localPosition;
 		base.transform.Rotate(0f, 0f, Time.deltaTime * angularVelocity);
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            velocity += new Vector2(0f, 0.1f);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            velocity += new Vector2(0f, -0.1f);
+        }
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			velocity += new Vector2(0.1f, 0f);
+		}
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			velocity += new Vector2(-0.1f, 0f);
+		}
 	}
 }

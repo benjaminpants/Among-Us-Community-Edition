@@ -21,7 +21,29 @@ public class CE_ModUI : MonoBehaviour
     {
         CE_UIHelpers.LoadCommonAssets();
         scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
-        //CE_CommonUI.CreateModButton(false, CE_ModLoader.LMods[0]); put UI stuff here please
+        CE_CommonUI.CreateHeaderLabel("Enabling/Disabling any mods here requires a restart!");
+        foreach (CE_Mod mod in CE_ModLoader.LMods)
+        {
+            CE_CommonUI.CreateSeperator();
+            CE_CommonUI.CreateHeaderLabel(mod.ModName);
+            CE_CommonUI.CreateHeaderLabel(mod.ModDesc + "\n ", FontStyle.Normal);
+            mod.Enabled = CE_CommonUI.CreateBoolButtonNoCheck(mod.Enabled, "Enabled", "Disabled");
+        }
+        CE_CommonUI.CreateSeperator();
+        if (CE_CommonUI.CreateBoolButtonNoCheck(false, "Enable All Mods", "Enable All Mods"))
+        {
+            foreach (CE_Mod mod in CE_ModLoader.LMods)
+            {
+                mod.Enabled = true;
+            }
+        }
+        if (CE_CommonUI.CreateBoolButtonNoCheck(false, "Disable All Mods", "Disable All Mods"))
+        {
+            foreach (CE_Mod mod in CE_ModLoader.LMods)
+            {
+                mod.Enabled = false;
+            }
+        }
         GUILayout.FlexibleSpace();
         GUILayout.EndScrollView();
         GUI.color = Color.black;
@@ -36,8 +58,10 @@ public class CE_ModUI : MonoBehaviour
             if (CE_CommonUI.CreateCloseButton(CE_CommonUI.StockSettingsRect()))
             {
                 IsShown = false;
+                CE_ModLoader.UpdateDisabledMods();
+
+
             }
-            
         }
     }
 }

@@ -101,7 +101,7 @@ public class VersionShower : MonoBehaviour
 	public void AddNewButtons()
     {
 		GameObject newbutton = GameObject.Instantiate(GameObject.Find("FreePlayButton"));
-		newbutton.transform.localPosition = new Vector3(0f,0f,0f);
+		newbutton.transform.localPosition = new Vector3(0f,-0.25f,0f);
 		newbutton.transform.name = "ModButton";
 		PassiveButton pasbut = newbutton.GetComponent<PassiveButton>();
 		Destroy(newbutton.GetComponent<HostGameButton>());
@@ -130,7 +130,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.5.11(I) - The I stands for incomplete!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		text.Text = "v0.5.11 - Hey guys the 0.6.0 release date is NaN!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

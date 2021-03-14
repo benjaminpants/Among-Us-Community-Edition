@@ -54,12 +54,12 @@ public class CE_Extensions
 	public static void OnStartup()
 	{
 		Debug.Log("OnStartup");
-		CE_UIHelpers.LoadDebugConsole();
+        CE_UIHelpers.LoadDebugConsole();
+		new GameObject().AddComponent<CE_ModUI>().name = "ModUI";
 		if (!hasPlayed)
         {
 			ResolutionManager.SetVSync(SaveManager.EnableVSync);
 			CE_RoleManager.AddRole(new CE_Role());
-			new GameObject().AddComponent<CE_ModUI>().name = "ModUI";
 			//CE_LuaLoader.LoadLua();
 			CE_ModLoader.LoadMods();
 			PlayIntro();

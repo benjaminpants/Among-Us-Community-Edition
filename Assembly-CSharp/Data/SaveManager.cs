@@ -560,17 +560,35 @@ public static class SaveManager
 
 	private static bool usehdshadows;
 	public static bool UseHDSHadows
+    {
+        get
+        {
+            LoadPlayerPrefs();
+            return usehdshadows;
+        }
+        set
+        {
+            if (usehdshadows != value)
+            {
+                usehdshadows = value;
+                SavePlayerPrefs();
+            }
+        }
+    }
+
+	private static bool fastanims;
+	public static bool FastKillAnims
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return usehdshadows;
+			return fastanims;
 		}
 		set
 		{
-			if (usehdshadows != value)
+			if (fastanims != value)
 			{
-				usehdshadows = value;
+				fastanims = value;
 				SavePlayerPrefs();
 			}
 		}
@@ -808,8 +826,9 @@ public static class SaveManager
 			TryGetBool(array, 21, out enableVSync);
 			TryGetBool(array, 22, out useLegacyVoteIcons);
 			TryGetInt(array, 23, out CamRes);
-            TryGetBool(array, 24, out usehdshadows);
-			TryGetBool(array, 25, out LSkins);
+            TryGetBool(array, 24, out usehdshadows,true);
+			TryGetBool(array, 25, out LSkins,true);
+			TryGetBool(array, 26, out fastanims, false);
 			if (CamRes == 0)
             {
 				CamRes = 256;
@@ -847,12 +866,13 @@ public static class SaveManager
 		options.Add(CamRes);
 		options.Add(usehdshadows);
 		options.Add(LSkins);
+		options.Add(fastanims);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 
-	private static void TryGetBool(string[] parts, int index, out bool value)
+	private static void TryGetBool(string[] parts, int index, out bool value, bool def = false)
 	{
-		value = false;
+		value = def;
 		if (parts.Length > index)
 		{
 			bool.TryParse(parts[index], out value);

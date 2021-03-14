@@ -10,6 +10,21 @@ public static class CE_ModLoader
 {
     public static List<CE_Mod> LMods = new List<CE_Mod>();
 
+    public static void UpdateDisabledMods()
+    {
+        string disablednames = "";
+        foreach (CE_Mod mod in LMods)
+        {
+            if (!mod.Enabled)
+            {
+                disablednames += (mod.ModName + "\n");
+            }
+        }
+        File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "disabledmods.txt"), disablednames);
+
+    }
+
+
     public static void LoadMods()
     {
         string AttemptedDir = Path.Combine(CE_Extensions.GetGameDirectory(), "Mods");

@@ -36,6 +36,7 @@ public class OverlayKillAnimation : MonoBehaviour
 	}
 	public void Begin(PlayerControl killer, GameData.PlayerInfo victim, bool hasowner = true)
 	{
+		float killanimspeed = SaveManager.FastKillAnims ? 2f : 1f;
 		if (killerParts != null)
 		{
 			GameData.PlayerInfo data = killer.Data;
@@ -67,13 +68,13 @@ public class OverlayKillAnimation : MonoBehaviour
 							case KillAnimType.Tongue:
 								{
 									SkinData skinById2 = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-									renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, 1f);
+									renderer.GetComponent<SpriteAnim>().Play(skinById2.KillTongueImpostor, killanimspeed);
 									break;
 								}
 							case KillAnimType.Shoot:
 								{
 									SkinData skinById = DestroyableSingleton<HatManager>.Instance.GetSkinById(data.SkinId);
-									renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, 1f);
+									renderer.GetComponent<SpriteAnim>().Play(skinById.KillShootImpostor, killanimspeed);
 									break;
 								}
 						}
@@ -98,16 +99,16 @@ public class OverlayKillAnimation : MonoBehaviour
 				switch (KillType)
 				{
 					case KillAnimType.Stab:
-						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillStabVictim, 1f);
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillStabVictim, killanimspeed);
 						break;
 					case KillAnimType.Tongue:
-						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillTongueVictim, 1f);
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillTongueVictim, killanimspeed);
 						break;
 					case KillAnimType.Shoot:
-						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillShootVictim, 1f);
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillShootVictim, killanimspeed);
 						break;
 					case KillAnimType.Neck:
-						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillNeckVictim, 1f);
+						renderer2.GetComponent<SpriteAnim>().Play(skinById3.KillNeckVictim, killanimspeed);
 						break;
 				}
 			}
@@ -150,7 +151,7 @@ public class OverlayKillAnimation : MonoBehaviour
 	public IEnumerator WaitForFinish()
 	{
 		SpriteAnim[] anims = GetComponentsInChildren<SpriteAnim>();
-		if (anims.Length == 0)
+		if (anims.Length == 0 || SaveManager.FastKillAnims)
 		{
 			yield return new WaitForSeconds(1f);
 			yield break;
