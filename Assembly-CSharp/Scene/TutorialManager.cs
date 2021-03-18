@@ -43,11 +43,12 @@ public class TutorialManager : DestroyableSingleton<TutorialManager>
 		};
 		PlayerControl.LocalPlayer.RpcSetInfected(new GameData.PlayerInfo[0]);
 		int CurrentPlayer = 1;
-		while (CurrentPlayer < 20)
+		int DummyCount = Mathf.Clamp(Palette.PLColors.Count - 1,0,20);
+		while (CurrentPlayer < DummyCount)
         {
 			for (int i = 0; i < DummyLocations.Length; i++)
 			{
-				if (CurrentPlayer < 20)
+				if (CurrentPlayer < DummyCount)
                 {
 					PlayerControl playerControl = Object.Instantiate(PlayerPrefab);
 					playerControl.PlayerId = (byte)GameData.Instance.GetAvailableId();

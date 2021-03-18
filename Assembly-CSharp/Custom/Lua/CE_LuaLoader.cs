@@ -25,7 +25,7 @@ public static class CE_LuaLoader
 
 	public static int TheOmegaHash;
 
-    public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists));
+    public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists)); //this should always be true outside of freeplay if it isn't i will ask how the fuck because there are legit 0 non-lua gamemodes now
 
 	public static List<CE_CustomLuaSetting> CurrentSettings => CustomGMSettings.GetValueOrDefault(GamemodeInfos[PlayerControl.GameOptions.Gamemode]);
 

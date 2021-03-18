@@ -16,15 +16,16 @@ public class PlayerParticles : MonoBehaviour
 
 	private int CurrentColor;
 
-	private int MaxColors = Palette.PlayerColors.Length;
+	private int MaxColors = Palette.PLColors.Count;
 
 	private RandomFill<PlayerParticleInfo> fill;
 
 	public void Start()
 	{
+		MaxColors = Palette.PLColors.Count;
 		fill = new RandomFill<PlayerParticleInfo>();
 		fill.Set(Sprites);
-		CurrentColor = Random.Range(0, Palette.PlayerColors.Length - 1);
+		CurrentColor = Random.Range(0, Palette.PLColors.Count - 1);
 		while (pool.NotInUse > 0)
 		{
 			PlayerParticle playerParticle = pool.Get<PlayerParticle>();

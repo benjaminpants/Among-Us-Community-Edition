@@ -804,7 +804,7 @@ public static class SaveManager
 			}
 			if (array.Length <= 2 || !uint.TryParse(array[2], out colorConfig))
 			{
-				colorConfig = (uint)((byte)(Palette.PlayerColors.RandomIdx() << 16) | (byte)(Palette.PlayerColors.RandomIdx() << 8) | (byte)Palette.PlayerColors.RandomIdx());
+				colorConfig = (uint)((byte)(Palette.PLColors.RandomIdx() << 16) | (byte)(Palette.PLColors.RandomIdx() << 8) | (byte)Palette.PLColors.RandomIdx());
 			}
 			TryGetBool(array, 4, out sendName);
 			TryGetBool(array, 5, out sendTelemetry);

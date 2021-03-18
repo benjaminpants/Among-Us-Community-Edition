@@ -11,8 +11,6 @@ public class MedScanMinigame : Minigame
 		WalkingToOffset
 	}
 
-	private static readonly string[] ColorNames;
-
 	private static readonly string[] BloodTypes;
 
 	public TextRenderer text;
@@ -49,7 +47,7 @@ public class MedScanMinigame : Minigame
 		int colorId = data.ColorId;
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.Append("ID: ");
-		stringBuilder.Append(ColorNames[colorId].Substring(0, 3).ToUpperInvariant());
+		stringBuilder.Append(Palette.PLColors[colorId].Name.Substring(0, 3).ToUpperInvariant());
 		stringBuilder.Append("P" + playerId);
 		stringBuilder.Append(new string(' ', 8));
 		stringBuilder.Append("HT: 3' 6\"");
@@ -57,7 +55,7 @@ public class MedScanMinigame : Minigame
 		stringBuilder.Append("WT: 92lb");
 		stringBuilder.AppendLine();
 		stringBuilder.Append("C: ");
-		stringBuilder.Append(ColorNames[colorId].PadRight(17));
+		stringBuilder.Append(Palette.PLColors[colorId].Name.PadRight(17));
 		stringBuilder.Append("BT: ");
 		stringBuilder.Append(BloodTypes[(playerId) * 3 % BloodTypes.Length]);
 		completeString = stringBuilder.ToString();
@@ -170,37 +168,6 @@ public class MedScanMinigame : Minigame
 
 	static MedScanMinigame()
 	{
-		ColorNames = new string[]
-		{
-			"Red",
-			"Blue",
-			"Green",
-			"Pink",
-			"Orange",
-			"Yellow",
-			"Black",
-			"White",
-			"Purple",
-			"Brown",
-			"Cyan",
-			"Lime",
-			"Flesh",
-			"Baby Red",
-			"Blurple",
-			"Kiwi",
-			"Bronze",
-			"Maroon",
-			"Navy",
-			"Light Purple",
-			"Gold",
-			"Impostor",
-			"Shaderless",
-			"Jed",
-			"Tan",
-			"Doodle",
-			"Jlue",
-			"Jreen"
-		};
 		BloodTypes = new string[8]
 		{
 			"O-",

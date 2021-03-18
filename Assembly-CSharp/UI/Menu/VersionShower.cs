@@ -12,8 +12,9 @@ public class VersionShower : MonoBehaviour
 	private string HatID;
 	public static int buildhash;
 	public static string BuildID;
+	public static string ColorID;
 
-	private readonly string[] Characters = {
+	private static readonly string[] Characters = {
 			"A",
 			"B",
 			"C",
@@ -93,7 +94,7 @@ public class VersionShower : MonoBehaviour
 		CE_CustomMapManager.Initialize();
 		AddNewButtons();
         CE_Extensions.OnStartup();
-		
+		//File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(),"colors.json"),Newtonsoft.Json.JsonConvert.SerializeObject(Palette.PLColors,Newtonsoft.Json.Formatting.Indented));
 	}
 
 
@@ -117,7 +118,7 @@ public class VersionShower : MonoBehaviour
 
 
 
-	public string CreateIDFromInt(int ID,byte length)
+	public static string CreateIDFromInt(int ID,byte length)
     {
 		System.Random RNG = new System.Random(ID);
 		string StringID = "";
@@ -130,7 +131,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.5.11 - Hey guys the 0.6.0 release date is NaN!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID;
+		text.Text = "v0.5.11 - Hey guys the 0.6.0 release date is NaN!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID + "\nColors ID:" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

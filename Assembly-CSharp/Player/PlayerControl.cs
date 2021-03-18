@@ -902,7 +902,7 @@ public class PlayerControl : InnerNetObject
 		int num = 0;
 		while (allPlayers.Any((GameData.PlayerInfo p) => !p.Disconnected && p.PlayerId != PlayerId && p.ColorId == bodyColor) && num++ < 100)
 		{
-			bodyColor = (byte)((bodyColor + 1) % Palette.PlayerColors.Length);
+			bodyColor = (byte)((bodyColor + 1) % Palette.PLColors.Count);
 		}
 		RpcSetColor(bodyColor);
 	}
@@ -1130,31 +1130,42 @@ public class PlayerControl : InnerNetObject
 
 	public static void SetPlayerMaterialColors(int colorId, Renderer rend)
 	{
-		rend.material.SetColor("_BackColor", Palette.ShadowColors[colorId]);
-		rend.material.SetColor("_BodyColor", Palette.PlayerColors[colorId]);
-		switch (colorId)
+		try
 		{
-		case 21:
-			rend.material.SetColor("_VisorColor", Palette.VisorColorRed);
-			break;
-		case 22:
-			rend.material.SetColor("_VisorColor", Palette.VisorColorGreen);
-			break;
-		case 23:
-			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
-            break;
-		case 25:
-			rend.material.SetColor("_VisorColor", Palette.VisorColorBlack);
-            break;
-		case 26:
-			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
-			break;
-		case 27:
-			rend.material.SetColor("_VisorColor", Palette.VisorColorCarJemGenerations);
-			break;
-			default:
-		rend.material.SetColor("_VisorColor", Palette.VisorColor);
-		break;
+			CE_PlayerColor PC = Palette.PLColors[colorId];
+			if (PC.IsFunnyRainbowColor)
+			{
+				rend.material.SetColor("_VisorColor", Palette.VisorColor);
+				rend.material.SetColor("_BodyColor", Color.HSVToRGB(Mathf.Repeat(Time.time / 10, 1f), 1f, 1f)); //to prevent a noticable jump
+				rend.material.SetColor("_BackColor", Color.HSVToRGB(Mathf.Repeat(Time.time / 10, 1f), 1f, 1f) * Color.gray); //to prevent a noticable jump
+				CE_RainbowColorLol lol = rend.gameObject.GetComponent<CE_RainbowColorLol>();
+				if (!lol)
+				{
+					rend.gameObject.AddComponent<CE_RainbowColorLol>();
+				}
+				return;
+			}
+			CE_RainbowColorLol lol2 = rend.gameObject.GetComponent<CE_RainbowColorLol>();
+			if (lol2)
+			{
+				lol2.Cease();
+			}
+			if (PC.IsSpecial)
+			{
+				rend.material.SetColor("_VisorColor", PC.Visor);
+			}
+			else
+			{
+				rend.material.SetColor("_VisorColor", Palette.VisorColor);
+			}
+			rend.material.SetColor("_BackColor", PC.Shadow);
+			rend.material.SetColor("_BodyColor", PC.Base);
+		}
+		catch
+        {
+			rend.material.SetColor("_BackColor", Color.black);
+			rend.material.SetColor("_BodyColor", Color.black);
+			rend.material.SetColor("_VisorColor", Color.black);
 		}
 	}
 

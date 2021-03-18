@@ -452,7 +452,7 @@ public class AmongUsClient : InnerNetClient
 	private void SpawnTester()
 	{
 		sbyte availableId = GameData.Instance.GetAvailableId();
-		Vector2 v = Vector2.up.Rotate((float)availableId * (360f / (float)Palette.PlayerColors.Length)) * SpawnRadius;
+		Vector2 v = Vector2.up.Rotate((float)availableId * (360f / (float)Palette.PLColors.Count)) * SpawnRadius;
 		PlayerControl playerControl = UnityEngine.Object.Instantiate(PlayerPrefab, v, Quaternion.identity);
 		playerControl.PlayerId = (byte)availableId;
 		GameData.Instance.AddPlayer(playerControl);
@@ -483,7 +483,7 @@ public class AmongUsClient : InnerNetClient
 		Vector2 v = Vector2.zero;
 		if ((bool)ShipStatus.Instance)
 		{
-			v = ShipStatus.Instance.GetSpawnLocation(availableId, Palette.PlayerColors.Length);
+			v = ShipStatus.Instance.GetSpawnLocation(availableId, Palette.PLColors.Count);
 		}
 		else if (DestroyableSingleton<TutorialManager>.InstanceExists)
 		{

@@ -30,8 +30,8 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		Animator = GetComponent<SpriteAnim>();
 		rend = GetComponent<SpriteRenderer>();
-		rend.material.SetColor("_BackColor", Palette.ShadowColors[0]);
-		rend.material.SetColor("_BodyColor", Palette.PlayerColors[0]);
+		rend.material.SetColor("_BackColor", Palette.PLColors[0].Shadow);
+		rend.material.SetColor("_BodyColor", Palette.PLColors[0].Base);
 		rend.material.SetColor("_VisorColor", Palette.VisorColor);
 	}
 
