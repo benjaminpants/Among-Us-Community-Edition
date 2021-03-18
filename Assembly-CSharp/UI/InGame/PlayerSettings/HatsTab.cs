@@ -119,11 +119,11 @@ public class HatsTab : MonoBehaviour
 
 	public void SetHatImage(uint hatId)
 	{
-		PlayerControl.SetHatImage(hatId, HatImage, 0, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(hatId, HatImageExt, 1, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(hatId, HatImageExt2, 2, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(hatId, HatImageExt3, 3, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(hatId, HatImageExt4, 4, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImage, 0, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt, 1, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt2, 2, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt3, 3, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(hatId, HatImageExt4, 4, (int)PlayerControl.LocalPlayer.Data.ColorId);
 
 		CE_WardrobeManager.MatchBaseHatRender(HatImageExt, HatImage);
 		CE_WardrobeManager.MatchBaseHatRender(HatImageExt2, HatImage);
@@ -133,11 +133,11 @@ public class HatsTab : MonoBehaviour
 
 	public void SetHat()
 	{
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImage, 0, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt, 1, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt2, 2, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt3, 3, PlayerControl.LocalPlayer.Data.ColorId);
-		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt4, 4, PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImage, 0, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt, 1, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt2, 2, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt3, 3, (int)PlayerControl.LocalPlayer.Data.ColorId);
+		PlayerControl.SetHatImage(SaveManager.LastHat, HatImageExt4, 4, (int)PlayerControl.LocalPlayer.Data.ColorId);
 
 		CE_WardrobeManager.MatchBaseHatRender(HatImageExt, HatImage);
 		CE_WardrobeManager.MatchBaseHatRender(HatImageExt2, HatImage);

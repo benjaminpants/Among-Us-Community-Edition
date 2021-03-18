@@ -44,10 +44,10 @@ public class MedScanMinigame : Minigame
 		base.transform.position = new Vector3(100f, 0f, 0f);
 		GameData.PlayerInfo data = PlayerControl.LocalPlayer.Data;
 		int playerId = data.PlayerId;
-		int colorId = data.ColorId;
+		uint colorId = data.ColorId;
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.Append("ID: ");
-		stringBuilder.Append(Palette.PLColors[colorId].Name.Substring(0, 3).ToUpperInvariant());
+		stringBuilder.Append(Palette.PLColors[(int)colorId].Name.Substring(0, 3).ToUpperInvariant());
 		stringBuilder.Append("P" + playerId);
 		stringBuilder.Append(new string(' ', 8));
 		stringBuilder.Append("HT: 3' 6\"");
@@ -55,7 +55,7 @@ public class MedScanMinigame : Minigame
 		stringBuilder.Append("WT: 92lb");
 		stringBuilder.AppendLine();
 		stringBuilder.Append("C: ");
-		stringBuilder.Append(Palette.PLColors[colorId].Name.PadRight(17));
+		stringBuilder.Append(Palette.PLColors[(int)colorId].Name.PadRight(17));
 		stringBuilder.Append("BT: ");
 		stringBuilder.Append(BloodTypes[(playerId) * 3 % BloodTypes.Length]);
 		completeString = stringBuilder.ToString();

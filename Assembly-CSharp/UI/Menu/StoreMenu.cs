@@ -368,10 +368,10 @@ public class StoreMenu : MonoBehaviour, IStoreListener
 
 	public void SetHatImage(HatBehaviour hatId)
 	{
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlot, 0, SaveManager.BodyColor);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt, 1, SaveManager.BodyColor);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt2, 2, SaveManager.BodyColor);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt3, 3, SaveManager.BodyColor);
-		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt4, 4, SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlot, 0, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt, 1, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt2, 2, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt3, 3, (int)SaveManager.BodyColor);
+		CE_WardrobeManager.SetExtHatImage(hatId, HatSlotExt4, 4, (int)SaveManager.BodyColor);
 	}
 }

@@ -4,7 +4,7 @@ public class WinningPlayerData
 
 	public bool IsDead;
 
-	public int ColorId;
+	public uint ColorId;
 
 	public uint SkinId;
 

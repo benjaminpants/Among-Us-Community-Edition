@@ -896,7 +896,7 @@ public class PlayerControl : InnerNetObject
 		nameText.Text = name;
 	}
 
-	public void CheckColor(byte bodyColor)
+	public void CheckColor(uint bodyColor)
 	{
 		List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
 		int num = 0;
@@ -919,7 +919,7 @@ public class PlayerControl : InnerNetObject
 		CE_WardrobeManager.CE_SetHatAlpha(ref HatRendererExt4, a);
 	}
 
-	public void SetColor(byte bodyColor)
+	public void SetColor(uint bodyColor)
 	{
 		if ((bool)GameData.Instance)
 		{
@@ -943,11 +943,11 @@ public class PlayerControl : InnerNetObject
 
 	public void UpdateHat(uint hatId)
     {
-		if (HatRenderer != null && Data != null) SetHatImage(hatId, HatRenderer, 0, Data.ColorId);
-		if (HatRendererExt != null && Data != null) SetHatImage(hatId, HatRendererExt, 1, Data.ColorId);
-		if (HatRendererExt2 != null && Data != null) SetHatImage(hatId, HatRendererExt2, 2, Data.ColorId);
-		if (HatRendererExt3 != null && Data != null) SetHatImage(hatId, HatRendererExt3, 3, Data.ColorId);
-		if (HatRendererExt4 != null && Data != null) SetHatImage(hatId, HatRendererExt4, 4, Data.ColorId);
+		if (HatRenderer != null && Data != null) SetHatImage(hatId, HatRenderer, 0, (int)Data.ColorId);
+		if (HatRendererExt != null && Data != null) SetHatImage(hatId, HatRendererExt, 1, (int)Data.ColorId);
+		if (HatRendererExt2 != null && Data != null) SetHatImage(hatId, HatRendererExt2, 2, (int)Data.ColorId);
+		if (HatRendererExt3 != null && Data != null) SetHatImage(hatId, HatRendererExt3, 3, (int)Data.ColorId);
+		if (HatRendererExt4 != null && Data != null) SetHatImage(hatId, HatRendererExt4, 4, (int)Data.ColorId);
 		if (nameText != null) nameText.transform.localPosition = new Vector3(0f, (hatId == 0) ? 0.7f : 1.05f, -0.5f);
 	}
 
@@ -1128,11 +1128,11 @@ public class PlayerControl : InnerNetObject
 		SetPlayerMaterialColors(GameData.Instance.GetPlayerById(PlayerId)?.ColorId ?? 0, rend);
 	}
 
-	public static void SetPlayerMaterialColors(int colorId, Renderer rend)
+	public static void SetPlayerMaterialColors(uint colorId, Renderer rend)
 	{
 		try
 		{
-			CE_PlayerColor PC = Palette.PLColors[colorId];
+			CE_PlayerColor PC = Palette.PLColors[(int)colorId];
 			if (PC.IsFunnyRainbowColor)
 			{
 				rend.material.SetColor("_VisorColor", Palette.VisorColor);
@@ -1309,7 +1309,7 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void CmdCheckColor(byte bodyColor)
+	public void CmdCheckColor(uint bodyColor)
 	{
 		if (AmongUsClient.Instance.AmHost)
 		{
@@ -1317,18 +1317,18 @@ public class PlayerControl : InnerNetObject
 			return;
 		}
 		MessageWriter messageWriter = AmongUsClient.Instance.StartRpcImmediately(NetId, 7, SendOption.Reliable, AmongUsClient.Instance.HostId);
-		messageWriter.Write(bodyColor);
+		messageWriter.WritePacked(bodyColor);
 		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
 	}
 
-	public void RpcSetColor(byte bodyColor)
+	public void RpcSetColor(uint bodyColor)
 	{
 		if (AmongUsClient.Instance.AmClient)
 		{
 			SetColor(bodyColor);
 		}
 		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 8);
-		messageWriter.Write(bodyColor);
+		messageWriter.WritePacked(bodyColor);
 		messageWriter.EndMessage();
 	}
 
@@ -1442,10 +1442,10 @@ public class PlayerControl : InnerNetObject
 			SetName(reader.ReadString());
 			break;
 		case 7:
-			CheckColor(reader.ReadByte());
+			CheckColor(reader.ReadPackedUInt32());
 			break;
 		case 8:
-			SetColor(reader.ReadByte());
+			SetColor(reader.ReadPackedUInt32());
                 break;
 		case 253:
 			SetLuaValue(reader.ReadByte(), reader.ReadByte());

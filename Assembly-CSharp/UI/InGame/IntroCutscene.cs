@@ -143,7 +143,7 @@ public class IntroCutscene : MonoBehaviour
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, data.SkinId);
-				HatBegin(ref spriteRenderer, data.HatId, data.ColorId);
+				HatBegin(ref spriteRenderer, data.HatId, (int)data.ColorId);
 			}
 		}
 	}
@@ -198,7 +198,7 @@ public class IntroCutscene : MonoBehaviour
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
 				DestroyableSingleton<HatManager>.Instance.SetSkin(component, data.SkinId);
-				HatBegin(ref spriteRenderer, data.HatId, data.ColorId);
+				HatBegin(ref spriteRenderer, data.HatId, (int)data.ColorId);
 			}
 		}
 	}

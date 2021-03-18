@@ -90,7 +90,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			WinningPlayerData winningPlayerData = TempData.winners.FirstOrDefault((WinningPlayerData h) => h.IsYou);
 			if (winningPlayerData != null)
 			{
-				DestroyableSingleton<Telemetry>.Instance.WonGame(winningPlayerData.ColorId, winningPlayerData.HatId);
+				DestroyableSingleton<Telemetry>.Instance.WonGame((int)winningPlayerData.ColorId, winningPlayerData.HatId);
 			}
 		}
 		else
@@ -307,7 +307,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 				localPosition.x = 0f - localPosition.x;
 			}
 			component2.transform.localPosition = localPosition;
-			PlayerControl.SetHatImage(HatId, component2, 0, winningPlayerData2.ColorId);
+			PlayerControl.SetHatImage(HatId, component2, 0, (int)winningPlayerData2.ColorId);
 			
 
 			for (int i = 0; i < 4; i++)
@@ -331,7 +331,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 					localPosition2.x = 0f - localPosition2.x;
 				}
 				component3.transform.localPosition = localPosition2;
-				PlayerControl.SetHatImage(HatId, component3, index, winningPlayerData2.ColorId);
+				PlayerControl.SetHatImage(HatId, component3, index, (int)winningPlayerData2.ColorId);
 			}
 		}
 		catch(System.Exception E)

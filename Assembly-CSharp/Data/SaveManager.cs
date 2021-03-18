@@ -423,12 +423,12 @@ public static class SaveManager
 		}
 	}
 
-	public static byte BodyColor
+	public static uint BodyColor
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return (byte)(colorConfig & 0xFFu);
+			return (uint)(colorConfig & 0xFFu);
 		}
 		set
 		{

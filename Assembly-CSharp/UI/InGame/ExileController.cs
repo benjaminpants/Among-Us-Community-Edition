@@ -81,7 +81,7 @@ public class ExileController : MonoBehaviour
 				});
 			}
 			PlayerControl.SetPlayerMaterialColors(playerById.ColorId, Player);
-			SetPlayerHat(exiled.HatId, exiled.ColorId);
+			SetPlayerHat(exiled.HatId, (int)exiled.ColorId);
 			PlayerSkin.sprite = DestroyableSingleton<HatManager>.Instance.GetSkinById(playerById.SkinId).EjectFrame;
 			if (exiled.IsImpostor)
 			{

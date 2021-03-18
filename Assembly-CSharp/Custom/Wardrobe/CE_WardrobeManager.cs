@@ -881,7 +881,7 @@ public class CE_WardrobeManager
 			if (useShader)
             {
 				spriteRenderer.material = HatShaderMaterial;
-				PlayerControl.SetPlayerMaterialColors(colorId, spriteRenderer);
+				PlayerControl.SetPlayerMaterialColors((uint)colorId, spriteRenderer);
 			}
 			else
             {
