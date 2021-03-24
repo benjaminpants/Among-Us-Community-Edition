@@ -77,7 +77,7 @@ public static class CE_CustomMapManager
         Debug.Log(PlayerControl.GameOptions.MapId);
         if (DestroyableSingleton<TutorialManager>.InstanceExists)
         {
-            return MapInfos[0];
+            return MapInfos[1];
         }
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
@@ -138,7 +138,7 @@ public class CE_CustomMap
         return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
     }
 
-    public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room)
+    public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
@@ -161,6 +161,7 @@ public class CE_CustomMap
         {
             tt
         };
+        console.ConsoleId = consoleid;
         return console;
     }
     
@@ -402,7 +403,7 @@ public class CE_CustomMap
                 byte[] data = File.ReadAllBytes(Path.Combine(contentlocal, C.ImageLocal));
                 Texture2D texture2D = new Texture2D(2, 2);
                 texture2D.LoadImage(data);
-                CreateTaskConsole(new Vector3(C.Position.Values[0],C.Position.Values[1],C.Position.Values[2]), Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f)),(TaskTypes)C.TaskType,new IntRange(C.MinStep,C.MaxStep),(SystemTypes)C.Room);
+                CreateTaskConsole(new Vector3(C.Position.Values[0],C.Position.Values[1],C.Position.Values[2]), Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f)),(TaskTypes)C.TaskType,new IntRange(C.MinStep,C.MaxStep),(SystemTypes)C.Room,C.ConsoleID);
                 
             }
         }

@@ -249,7 +249,7 @@ public class PlayerVoteArea : MonoBehaviour
 				PlayerControl.SetHatImage(hatID, PlayerHatExt2, 2, (int)playerControl.Data.ColorId);
 				PlayerControl.SetHatImage(hatID, PlayerHatExt3, 3, (int)playerControl.Data.ColorId);
 				PlayerControl.SetHatImage(hatID, PlayerHatExt4, 4, (int)playerControl.Data.ColorId);
-				PlayerControl.SetSkinImage(playerControl.Data.SkinId, PlayerSkin);
+				PlayerControl.SetSkinImage(playerControl.Data.SkinId, PlayerSkin, (int)playerControl.Data.ColorId);
 				IconsLoaded = true;
 			}
 

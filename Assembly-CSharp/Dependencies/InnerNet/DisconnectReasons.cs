@@ -19,6 +19,6 @@ namespace InnerNet
 		FocusLostBackground = 207,
 		FocusLost = 209,
 		NewConnection = 210,
-		InvalidHash = 211
+		ScrewOffPirates = 211
 	}
 }

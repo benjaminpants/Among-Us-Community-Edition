@@ -1,17 +1,14 @@
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class StatsManager
 {
 	public static StatsManager Instance;
 
-	private const byte StatsVersion = 1;
+	private const byte StatsVersion = 0;
 
 	private bool loadedStats;
-
-	private uint bodiesReported;
-
-	private uint emergenciesCalls;
 
 	private uint tasksCompleted;
 
@@ -19,67 +16,169 @@ public class StatsManager
 
 	private uint sabsFixed;
 
-	private uint impostorKills;
-
 	private uint timesMurdered;
-
-	private uint timesEjected;
-
-	private uint crewmateStreak;
-
-	private uint timesImpostor;
-
-	private uint timesCrewmate;
-
-	private uint gamesStarted;
 
 	private uint gamesFinished;
 
-	private uint[] WinReasons;
+	private uint stalemates;
 
-	private uint[] LoseReasons;
+    private Dictionary<string, uint> rolewins = new Dictionary<string, uint>();
 
-	public uint BodiesReported
+    private Dictionary<string, uint> roleloses = new Dictionary<string, uint>();
+
+    private Dictionary<string, uint> gamemodestarts = new Dictionary<string, uint>();
+
+    private Dictionary<string, uint> roleejects = new Dictionary<string, uint>();
+
+
+	public void AddGameStart(string gamemodename)
 	{
-		get
+		if (gamemodestarts.ContainsKey(gamemodename))
 		{
-			LoadStats();
-			return bodiesReported;
+			gamemodestarts[gamemodename]++;
 		}
-		set
+		else
 		{
-			LoadStats();
-			bodiesReported = value;
-			SaveStats();
+			gamemodestarts.Add(gamemodename, 1);
 		}
+		SaveStats();
 	}
 
-	public uint EmergenciesCalled
+
+    public void AddWin(string rolename)
+    {
+        if (rolewins.ContainsKey(rolename))
+        {
+            rolewins[rolename]++;
+        }
+        else
+        {
+            rolewins.Add(rolename, 1);
+        }
+        if (!roleloses.ContainsKey(rolename))
+        {
+            roleloses.Add(rolename, 0);
+        }
+        SaveStats();
+    }
+
+	public void AddEject(string rolename)
 	{
-		get
+		if (roleejects.ContainsKey(rolename))
 		{
-			LoadStats();
-			return emergenciesCalls;
+			roleejects[rolename]++;
 		}
-		set
+		else
 		{
-			LoadStats();
-			emergenciesCalls = value;
-			SaveStats();
+			roleejects.Add(rolename, 1);
 		}
+		SaveStats();
 	}
+
+	public void AddLose(string rolename)
+	{
+		if (roleloses.ContainsKey(rolename))
+		{
+			roleloses[rolename]++;
+		}
+		else
+		{
+			roleloses.Add(rolename, 1);
+		}
+        if (!rolewins.ContainsKey(rolename))
+        {
+            rolewins.Add(rolename, 0);
+        }
+		SaveStats();
+	}
+
+
 
 	public uint TasksCompleted
+    {
+        get
+        {
+            LoadStats();
+            return tasksCompleted;
+        }
+        set
+        {
+            LoadStats();
+            tasksCompleted = value;
+            SaveStats();
+        }
+    }
+	public uint Stalemates
 	{
 		get
 		{
 			LoadStats();
-			return tasksCompleted;
+			return stalemates;
 		}
 		set
 		{
 			LoadStats();
-			tasksCompleted = value;
+			stalemates = value;
+			SaveStats();
+		}
+	}
+
+	public Dictionary<string, uint> RoleWins
+    {
+        get
+        {
+            LoadStats();
+            return rolewins;
+        }
+        set
+        {
+            LoadStats();
+            rolewins = value;
+            SaveStats();
+        }
+    }
+
+	public Dictionary<string, uint> RoleEjects
+	{
+		get
+		{
+			LoadStats();
+			return roleejects;
+		}
+		set
+		{
+			LoadStats();
+			roleejects = value;
+			SaveStats();
+		}
+	}
+
+	public Dictionary<string, uint> GameStarts
+	{
+		get
+		{
+			LoadStats();
+			return gamemodestarts;
+		}
+		set
+		{
+			LoadStats();
+			rolewins = gamemodestarts;
+			SaveStats();
+		}
+	}
+
+	public Dictionary<string, uint> RoleLoses
+	{
+		get
+		{
+			LoadStats();
+			return roleloses;
+		}
+		set
+		{
+			LoadStats();
+			roleloses = value;
 			SaveStats();
 		}
 	}
@@ -114,21 +213,6 @@ public class StatsManager
 		}
 	}
 
-	public uint ImpostorKills
-	{
-		get
-		{
-			LoadStats();
-			return impostorKills;
-		}
-		set
-		{
-			LoadStats();
-			impostorKills = value;
-			SaveStats();
-		}
-	}
-
 	public uint TimesMurdered
 	{
 		get
@@ -144,80 +228,6 @@ public class StatsManager
 		}
 	}
 
-	public uint TimesEjected
-	{
-		get
-		{
-			LoadStats();
-			return timesEjected;
-		}
-		set
-		{
-			LoadStats();
-			timesEjected = value;
-			SaveStats();
-		}
-	}
-
-	public uint CrewmateStreak
-	{
-		get
-		{
-			LoadStats();
-			return crewmateStreak;
-		}
-		set
-		{
-			LoadStats();
-			crewmateStreak = value;
-			SaveStats();
-		}
-	}
-
-	public uint TimesImpostor
-	{
-		get
-		{
-			LoadStats();
-			return timesImpostor;
-		}
-		set
-		{
-			LoadStats();
-			timesImpostor = value;
-			SaveStats();
-		}
-	}
-
-	public uint TimesCrewmate
-	{
-		get
-		{
-			LoadStats();
-			return timesCrewmate;
-		}
-		set
-		{
-			LoadStats();
-			timesCrewmate = value;
-			SaveStats();
-		}
-	}
-
-	public uint GamesStarted
-	{
-		get
-		{
-			LoadStats();
-			return gamesStarted;
-		}
-		set
-		{
-			LoadStats();
-			gamesStarted = value;
-			SaveStats();
-		}
-	}
 
 	public uint GamesFinished
 	{
@@ -234,31 +244,6 @@ public class StatsManager
 		}
 	}
 
-	public void AddWinReason(GameOverReason reason)
-	{
-		LoadStats();
-		WinReasons[(int)reason]++;
-		SaveStats();
-	}
-
-	public uint GetWinReason(GameOverReason reason)
-	{
-		LoadStats();
-		return WinReasons[(int)reason];
-	}
-
-	public void AddLoseReason(GameOverReason reason)
-	{
-		LoadStats();
-		LoseReasons[(int)reason]++;
-		SaveStats();
-	}
-
-	public uint GetLoseReason(GameOverReason reason)
-	{
-		LoadStats();
-		return LoseReasons[(int)reason];
-	}
 
 	protected virtual void LoadStats()
 	{
@@ -275,28 +260,21 @@ public class StatsManager
 		try
 		{
 			using BinaryReader binaryReader = new BinaryReader(File.OpenRead(path));
-			binaryReader.ReadByte();
-			bodiesReported = binaryReader.ReadUInt32();
-			emergenciesCalls = binaryReader.ReadUInt32();
+			if (binaryReader.ReadByte() != StatsVersion)
+            {
+				File.Delete(path);
+				return;
+            }
 			tasksCompleted = binaryReader.ReadUInt32();
 			completedAllTasks = binaryReader.ReadUInt32();
 			sabsFixed = binaryReader.ReadUInt32();
-			impostorKills = binaryReader.ReadUInt32();
 			timesMurdered = binaryReader.ReadUInt32();
-			timesEjected = binaryReader.ReadUInt32();
-			crewmateStreak = binaryReader.ReadUInt32();
-			timesImpostor = binaryReader.ReadUInt32();
-			timesCrewmate = binaryReader.ReadUInt32();
-			gamesStarted = binaryReader.ReadUInt32();
-			gamesFinished = binaryReader.ReadUInt32();
-			for (int i = 0; i < WinReasons.Length; i++)
-			{
-				WinReasons[i] = binaryReader.ReadUInt32();
-			}
-			for (int j = 0; j < LoseReasons.Length; j++)
-			{
-				LoseReasons[j] = binaryReader.ReadUInt32();
-			}
+            gamesFinished = binaryReader.ReadUInt32();
+			stalemates = binaryReader.ReadUInt32();
+			rolewins = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
+			roleloses = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
+			gamemodestarts = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
+			roleejects = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 		}
 		catch
 		{
@@ -309,29 +287,19 @@ public class StatsManager
 	{
 		try
 		{
+			File.Delete(Path.Combine(Application.persistentDataPath, "playerStats2_ce"));
 			using BinaryWriter binaryWriter = new BinaryWriter(File.OpenWrite(Path.Combine(Application.persistentDataPath, "playerStats2_ce")));
-			binaryWriter.Write(1);
-			binaryWriter.Write(bodiesReported);
-			binaryWriter.Write(emergenciesCalls);
+			binaryWriter.Write(StatsVersion);
 			binaryWriter.Write(tasksCompleted);
 			binaryWriter.Write(completedAllTasks);
 			binaryWriter.Write(sabsFixed);
-			binaryWriter.Write(impostorKills);
 			binaryWriter.Write(timesMurdered);
-			binaryWriter.Write(timesEjected);
-			binaryWriter.Write(crewmateStreak);
-			binaryWriter.Write(timesImpostor);
-			binaryWriter.Write(timesCrewmate);
-			binaryWriter.Write(gamesStarted);
 			binaryWriter.Write(gamesFinished);
-			for (int i = 0; i < WinReasons.Length; i++)
-			{
-				binaryWriter.Write(WinReasons[i]);
-			}
-			for (int j = 0; j < LoseReasons.Length; j++)
-			{
-				binaryWriter.Write(LoseReasons[j]);
-			}
+			binaryWriter.Write(stalemates);
+			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,rolewins);
+			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,roleloses);
+			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,gamemodestarts);
+			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,roleejects);
 		}
 		catch
 		{
@@ -341,8 +309,6 @@ public class StatsManager
 
 	public StatsManager()
 	{
-		WinReasons = new uint[8];
-		LoseReasons = new uint[8];
 	}
 
 	static StatsManager()

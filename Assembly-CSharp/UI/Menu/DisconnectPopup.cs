@@ -33,6 +33,9 @@ public class DisconnectPopup : DestroyableSingleton<DisconnectPopup>
 		string str = ((text != null) ? (" of " + text) : "");
 		switch (AmongUsClient.Instance.LastDisconnectReason)
 		{
+		case DisconnectReasons.ScrewOffPirates:
+			TextArea.Text = "Invalid Task Hash:" + UnityEngine.Random.Range(-10f, 10f).GetHashCode();
+			break;
 		case DisconnectReasons.ServerFull:
 			TextArea.Text = "The Among Us servers are overloaded.\r\n\r\nSorry! Please try again later!";
 			break;

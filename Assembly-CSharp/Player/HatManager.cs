@@ -57,12 +57,13 @@ public class HatManager : DestroyableSingleton<HatManager>
 		return AllSkins[(int)skinId];
 	}
 
-	internal void SetSkin(SpriteRenderer skinRend, uint skinId)
+	internal void SetSkin(SpriteRenderer skinRend, uint skinId, int colorid)
 	{
 		SkinData skinById = GetSkinById(skinId);
 		if ((bool)skinById)
 		{
 			skinRend.sprite = skinById.IdleFrame;
+			CE_WardrobeManager.SetHatRenderColors(skinRend, colorid, skinById.IsPlayerOverride);
 		}
 	}
 

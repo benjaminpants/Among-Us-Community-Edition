@@ -1,12 +1,17 @@
 using System.IO;
 using FaDe.Unity.Core;
 using UnityEngine;
+using Microsoft.Win32;
+using Steam_acf_File_Reader;
+using System.Collections.Generic;
 
 public class CE_UIHelpers
 {
 	public static AudioClip HoverSound;
 
 	public static AudioClip ClickSound;
+
+	public static bool SuccesfullyLoadedCache;
 
 	public static bool IsActive() //this code is dumb, fix it.
 	{
@@ -15,6 +20,95 @@ public class CE_UIHelpers
 			return CE_AnimationDebuger.IsShown;
 		}
 		return true;
+	}
+	public static void VerifyGamemodeGUICache(bool ignorecase)
+    {
+		SuccesfullyLoadedCache = true;
+		return; //disable anti-piracy protection for now
+		bool y = VGGUIC();
+		if (!y)
+        {
+			Debug.LogWarning("Cache was unable to load!");
+        }
+		SuccesfullyLoadedCache = y;
+    }
+	private static bool VGGUIC() //haha actually the anti-piracy method
+	{
+		string Reg32 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Valve\\Steam", "InstallPath", null) as string;
+		string Reg64 = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Valve\\Steam", "InstallPath", null) as string;
+
+		if (Reg32 == null && Reg64 == null)
+		{
+			return false;
+		}
+
+		string DirToUse = Reg64 == null ? Reg32 : Reg64;
+
+		if (Directory.Exists(Path.Combine(DirToUse, "steamapps")))
+		{
+			foreach (FileInfo fo in new DirectoryInfo(Path.Combine(DirToUse, "steamapps")).GetFiles("appmanifest_*.acf"))
+			{
+				string text = File.ReadAllText(fo.FullName);
+				text = text.ToLowerInvariant();
+				if (text.Contains("\"appid\"		\"945360\"".ToLowerInvariant()))
+				{
+					return true;
+				}
+			}
+			FileInfo folderthing = null;
+			try
+			{
+				folderthing = new DirectoryInfo(Path.Combine(DirToUse, "steamapps")).GetFiles("libraryfolders.vdf")[0];
+				AcfReader read = new AcfReader(folderthing.FullName);
+				ACF_Struct stru = read.ACFFileToStruct();
+				bool foundallocals = false;
+				int maxvalue = 0;
+				List<string> strings = new List<string>();
+
+				while (!foundallocals)
+				{
+					maxvalue++;
+					if (stru.SubItems.TryGetValue(maxvalue.ToString(), out string dir))
+					{
+						strings.Add(dir);
+					}
+					else
+					{
+						foundallocals = true;
+					}
+				}
+
+				if (maxvalue == 0)
+				{
+					return false;
+				}
+
+				foreach (string str in strings)
+				{
+					foreach (FileInfo fo in new DirectoryInfo(Path.Combine(str, "steamapps")).GetFiles("appmanifest_*.acf"))
+					{
+						string text = File.ReadAllText(fo.FullName);
+						text = text.ToLowerInvariant();
+						if (text.Contains("\"appid\"		\"945360\"".ToLowerInvariant()))
+						{
+							return true;
+						}
+					}
+				}
+
+				return false;
+
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		else
+        {
+
+        }
+		return false;
 	}
 
 	public static void CollapseAll()

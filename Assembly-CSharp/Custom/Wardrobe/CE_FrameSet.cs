@@ -24,6 +24,7 @@ public class CE_FrameSet
 	public string RelatedHat { get; set; }
 	public bool UsePercentageBasedPivot { get; set; }
 	public bool IsHidden { get; set; }
+	public bool IsPlayerOverride { get; set; }
 	public List<CE_SpriteFrame> FrameList
 	{
 		get;

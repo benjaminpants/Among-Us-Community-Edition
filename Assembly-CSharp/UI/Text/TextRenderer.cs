@@ -29,6 +29,62 @@ public class TextRenderer : MonoBehaviour
 
 	private string lastText;
 
+    private Color[] topcolors = new Color[]
+    {
+        Color.yellow,
+		Color.white,
+		Color.white,
+		Color.white,
+		Color.blue,
+		Color.white,
+		Color.red,
+		Color.black,
+		Color.red,
+		Color.cyan
+	};
+
+    private Color[] bottomcolors = new Color[]
+    {
+        Color.red,
+		Color.yellow,
+		Color.red,
+		Color.gray,
+		Color.blue,
+		Color.white,
+		Color.black,
+		Color.black,
+		Color.blue,
+		Color.green
+	};
+
+    private Color[] righttopcolors = new Color[]
+    {
+        Color.green,
+		Color.white,
+		Color.white,
+		Color.gray,
+		Color.red,
+		Color.white,
+		Color.red,
+		Color.black,
+		Color.white,
+		Color.blue
+	};
+
+	private Color[] rightbotcolors = new Color[]
+	{
+		Color.blue,
+		Color.yellow,
+		Color.red,
+		Color.black,
+		Color.red,
+		Color.magenta,
+		Color.black,
+		Color.magenta,
+		Color.blue,
+		Color.green
+	};
+
 	public Color Color = Color.white;
 
 	private Color lastColor = Color.white;
@@ -129,37 +185,49 @@ public class TextRenderer : MonoBehaviour
 		int[] array = new int[lastText.Length * 6];
 		Width = 0f;
 		cursorLocation.x = (cursorLocation.y = 0f);
-		int num = -1;
+		char previous_char = '\0';
 		Vector2 from = default(Vector2);
 		string text = null;
 		int lineStart = 0;
 		int num2 = 0;
-		Color item = Color;
+        Color item = Color;
+        Color item_2 = Color;
+        Color item_3 = Color;
+		Color item_4 = Color;
 		int? num3 = null;
 		for (int i = 0; i < lastText.Length; i++)
 		{
-			int num4 = lastText[i];
-			if (num4 == 91)
+			char current_char = lastText[i];
+			if (current_char == '[')
 			{
 				num3 = 0;
-				num = num4;
+				previous_char = current_char;
 				continue;
 			}
 			if (num3.HasValue)
 			{
-				switch (num4)
+				switch (current_char)
 				{
-				case 93:
-					if (num != 91)
+				case ']':
+					if (previous_char != '[')
 					{
 						item = new Color32((byte)((num3 >> 24) & 0xFF).Value, (byte)((num3 >> 16) & 0xFF).Value, (byte)((num3 >> 8) & 0xFF).Value, (byte)(num3 & 0xFF).Value);
-						item.a *= Color.a;
+                        item.a *= Color.a;
+						item_2 = new Color32((byte)((num3 >> 24) & 0xFF).Value, (byte)((num3 >> 16) & 0xFF).Value, (byte)((num3 >> 8) & 0xFF).Value, (byte)(num3 & 0xFF).Value);
+                        item_2.a *= Color.a;
+						item_3 = new Color32((byte)((num3 >> 24) & 0xFF).Value, (byte)((num3 >> 16) & 0xFF).Value, (byte)((num3 >> 8) & 0xFF).Value, (byte)(num3 & 0xFF).Value);
+						item_3.a *= Color.a;
+						item_4 = new Color32((byte)((num3 >> 24) & 0xFF).Value, (byte)((num3 >> 16) & 0xFF).Value, (byte)((num3 >> 8) & 0xFF).Value, (byte)(num3 & 0xFF).Value);
+						item_4.a *= Color.a;
 					}
 					else
 					{
-						item = Color;
+                        item = Color;
+                        item_2 = Color;
+                        item_3 = Color;
+						item_4 = Color;
 					}
-					num = -1;
+					previous_char = '\0';
 					num3 = null;
 					if (text != null)
 					{
@@ -170,27 +238,48 @@ public class TextRenderer : MonoBehaviour
 						text = null;
 					}
 					break;
-				case 104:
+				case 'h':
 				{
 					int num5 = lastText.IndexOf(']', i);
 					text = lastText.Substring(i, num5 - i);
 					from = list[list.Count - 2];
-					item = new Color(0.5f, 0.5f, 1f);
-					num = -1;
+                    item = new Color(0.5f, 0.5f, 1f);
+                    item_2 = new Color(0.5f, 0.5f, 1f);
+                    item_3 = new Color(0.5f, 0.5f, 1f);
+					item_4 = new Color(0.5f, 0.5f, 1f);
+					previous_char = '\0';
 					num3 = null;
+					i = num5; //skips to the next bracket
+					break;
+				}
+				case 'r': //attempt at custom text thing
+				{
+                    int num5 = lastText.IndexOf(']', i);
+					int id = int.Parse(lastText[i + 1].ToString());
+					item = bottomcolors[id];
+					item.a *= Color.a;
+					item_2 = topcolors[id];
+					item_2.a *= Color.a;
+					item_3 = righttopcolors[id];
+					item_3.a *= Color.a;
+					item_4 = rightbotcolors[id];
+					item_4.a *= Color.a;
+					previous_char = '\0';
+					num3 = null;
+					//Debug.Log("found and processed custom text thing!");
 					i = num5;
 					break;
 				}
 				default:
-					num3 = (num3 << 4) | CharToInt(num4);
+					num3 = (num3 << 4) | CharToInt(current_char);
 					break;
 				}
-				num = num4;
+				previous_char = current_char;
 				continue;
 			}
-			switch (num4)
+			switch (current_char)
 			{
-			case 10:
+			case '\n':
 				if (Centered)
 				{
 					CenterVerts(list, cursorLocation.x, lineStart);
@@ -203,26 +292,26 @@ public class TextRenderer : MonoBehaviour
 				cursorLocation.y -= fontData.LineHeight;
 				lineStart = list.Count;
 				continue;
-			case 9:
+			case '	': //possiblty a tab character?
 			{
 				float num6 = cursorLocation.x / 100f;
 				num6 = Mathf.Ceil(num6 / TabWidth) * TabWidth;
 				cursorLocation.x = num6 * 100f;
 				continue;
 			}
-			case 13:
+			case (char)13: //cant figure out this character
 				continue;
 			}
-			if (!fontData.charMap.TryGetValue(num4, out var value))
+			if (!fontData.charMap.TryGetValue(current_char, out var value))
 			{
-				Debug.Log("Missing char :" + num4);
-				num4 = -1;
+				Debug.Log("Missing char :" + current_char);
+				current_char = '\0'; //please tell me this doesn't break anything
 				value = fontData.charMap[-1];
 			}
 			Vector4 vector = fontData.bounds[value];
 			Vector2 textureSize = fontData.TextureSize;
 			Vector3 vector2 = fontData.offsets[value];
-			float kerning = fontData.GetKerning(num, num4);
+			float kerning = fontData.GetKerning(previous_char, current_char);
 			float num7 = cursorLocation.x + vector2.x + kerning;
 			float num8 = cursorLocation.y - vector2.y;
 			list.Add(new Vector3(num7, num8 - vector.w) / 100f * scale);
@@ -230,9 +319,9 @@ public class TextRenderer : MonoBehaviour
 			list.Add(new Vector3(num7 + vector.z, num8) / 100f * scale);
 			list.Add(new Vector3(num7 + vector.z, num8 - vector.w) / 100f * scale);
 			list4.Add(item);
-			list4.Add(item);
-			list4.Add(item);
-			list4.Add(item);
+			list4.Add(item_2);
+			list4.Add(item_3);
+			list4.Add(item_4);
 			list2.Add(new Vector2(vector.x / textureSize.x, 1f - (vector.y + vector.w) / textureSize.y));
 			list2.Add(new Vector2(vector.x / textureSize.x, 1f - vector.y / textureSize.y));
 			list2.Add(new Vector2((vector.x + vector.z) / textureSize.x, 1f - vector.y / textureSize.y));
@@ -254,7 +343,7 @@ public class TextRenderer : MonoBehaviour
 			{
 				Width = num9;
 			}
-			num = num4;
+			previous_char = current_char;
 			num2++;
 		}
 		if (Centered)

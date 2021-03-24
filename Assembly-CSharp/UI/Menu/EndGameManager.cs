@@ -72,6 +72,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			BackgroundBar.material.SetColor("_Color", Palette.Orange);
 			WinText.Color = Palette.Orange;
 			SoundManager.Instance.PlaySound(DisconnectStinger, loop: false);
+			StatsManager.Instance.Stalemates++;
 			return;
 		}
 		if (TempData.EndReason == GameOverReason.HumansDisconnect)
@@ -83,30 +84,45 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 		StatsManager.Instance.GamesFinished++;
 		if (TempData.winners.Any((WinningPlayerData h) => h.IsYou))
 		{
-			//StatsManager.Instance.AddWinReason(TempData.EndReason);
-			//stats manager temporarily disabled, planning to rework it entirely to support custom gamemodes
 			WinText.Text = "Victory";
 			BackgroundBar.material.SetColor("_Color", Palette.CrewmateBlue);
-			WinningPlayerData winningPlayerData = TempData.winners.FirstOrDefault((WinningPlayerData h) => h.IsYou);
-			if (winningPlayerData != null)
+			if (TempData.you != null)
 			{
-				DestroyableSingleton<Telemetry>.Instance.WonGame((int)winningPlayerData.ColorId, winningPlayerData.HatId);
+				string uuid = "";
+				CE_Role role = CE_RoleManager.GetRoleFromID(TempData.you.RoleID);
+				if (role != CE_RoleManager.Roles[0] && TempData.you.RoleID != 0)
+                {
+					uuid = role.UUID;
+					StatsManager.Instance.AddWin(uuid);
+				}
+				else
+                {
+					StatsManager.Instance.AddWin(TempData.you.IsImp ? "Impostor" : "Crewmate");
+				}
 			}
 		}
 		else
 		{
-			//StatsManager.Instance.AddLoseReason(TempData.EndReason);
-			//no
 			WinText.Text = "Defeat";
-			WinText.Color = Color.red;
+            WinText.Color = Color.red;
+			if (TempData.you != null)
+			{
+				string uuid = "";
+				CE_Role role = CE_RoleManager.GetRoleFromID(TempData.you.RoleID);
+				if (role != CE_RoleManager.Roles[0] && TempData.you.RoleID != 0)
+				{
+					uuid = role.UUID;
+					StatsManager.Instance.AddLose(uuid);
+				}
+				else
+                {
+					StatsManager.Instance.AddLose(TempData.you.IsImp ? "Impostor" : "Crewmate");
+                }
+			}
 		}
 		if (TempData.DidHumansWin(TempData.EndReason))
 		{
 			SoundManager.Instance.PlayDynamicSound("Stinger", CrewStinger, loop: false, GetStingerVol);
-		}
-		else if (TempData.DidJokerWin(TempData.EndReason))
-		{
-			SoundManager.Instance.PlayDynamicSound("Stinger", DisconnectStinger, loop: false, GetStingerVol);
 		}
 		else if (TempData.EndReason == GameOverReason.Custom)
 		{
@@ -166,7 +182,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			{
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
 				component.flipX = !spriteRenderer.flipX;
-				DestroyableSingleton<HatManager>.Instance.SetSkin(component, winningPlayerData2.SkinId);
+				DestroyableSingleton<HatManager>.Instance.SetSkin(component, winningPlayerData2.SkinId, (int)winningPlayerData2.ColorId);
 			}
 			HatBegin(ref spriteRenderer, winningPlayerData2.HatId, winningPlayerData2);
 		}

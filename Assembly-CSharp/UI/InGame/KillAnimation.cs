@@ -26,6 +26,7 @@ public class KillAnimation : MonoBehaviour
 		bool iszomb = false;
 		if (!iszomb)
 		{
+			StatsManager.Instance.TimesMurdered++;
 			target.Die(DeathReason.Kill);
 		}
         SpriteAnim sourceAnim = source.GetComponent<SpriteAnim>();

@@ -97,9 +97,10 @@ public class SkinLayer : MonoBehaviour
 		}
 	}
 
-	internal void SetSkin(uint skinId)
+	internal void SetSkin(uint skinId,int colorid)
 	{
 		skin = DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId);
+		CE_WardrobeManager.SetHatRenderColors(layer,colorid,skin.IsPlayerOverride);
 		SetIdle();
 		Update();
 	}
@@ -122,6 +123,7 @@ public class SkinLayer : MonoBehaviour
             {
 				var sprite = CE_WardrobeManager.GetSkin(layer.sprite.name, skin);
 				if (sprite) layer.sprite = sprite;
+				
 			}
 		}
 	}

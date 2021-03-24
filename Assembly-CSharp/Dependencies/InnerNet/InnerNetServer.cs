@@ -201,7 +201,7 @@ namespace InnerNet
 				Debug.Log("Server got join game");
 				if (reader.ReadInt32() == 32)
 				{
-					if (reader.ReadInt32() == CE_LuaLoader.TheOmegaHash && reader.ReadInt32() == CE_WardrobeManager.HatHash)
+					if ((reader.ReadInt32() == CE_LuaLoader.TheOmegaHash && reader.ReadInt32() == CE_WardrobeManager.HatHash) && CE_ModLoader.ColorHash == reader.ReadInt32())
 					{
 						if (reader.ReadInt32() == VersionShower.buildhash)
 						{

@@ -40,7 +40,7 @@ public class SkinsTab : MonoBehaviour
 	{
 		PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.ColorId, DemoImage);
 		SetHat();
-		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage);
+		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage, (int)PlayerControl.LocalPlayer.Data.ColorId);
 		SkinData[] unlockedSkins = DestroyableSingleton<HatManager>.Instance.GetUnlockedSkins();
 		for (int i = 0; i < unlockedSkins.Length; i++)
 		{
@@ -86,7 +86,7 @@ public class SkinsTab : MonoBehaviour
 	private void SelectHat(SkinData skin)
 	{
 		uint skinId = (SaveManager.LastSkin = DestroyableSingleton<HatManager>.Instance.GetIdFromSkin(skin));
-		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage);
+		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage, (int)PlayerControl.LocalPlayer.Data.ColorId);
 		if ((bool)PlayerControl.LocalPlayer)
 		{
 			PlayerControl.LocalPlayer.RpcSetSkin(skinId);

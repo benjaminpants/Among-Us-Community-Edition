@@ -450,6 +450,7 @@ namespace InnerNet
 			messageWriter.Write(GameId);
             messageWriter.Write(CE_LuaLoader.TheOmegaHash);
 			messageWriter.Write(CE_WardrobeManager.HatHash);
+			messageWriter.Write(CE_ModLoader.ColorHash);
 			messageWriter.Write(VersionShower.buildhash);
 			messageWriter.EndMessage();
 			SendOrDisconnect(messageWriter);

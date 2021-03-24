@@ -109,6 +109,7 @@ public class AmongUsClient : InnerNetClient
 	protected override void OnStartGame()
 	{
 		Debug.Log("Received game start");
+		StatsManager.Instance.AddGameStart(CE_LuaLoader.GamemodeInfos[(int)PlayerControl.GameOptions.Gamemode].name);
 		StartCoroutine(CoStartGame());
 	}
 
@@ -282,6 +283,7 @@ public class AmongUsClient : InnerNetClient
         TempData.showAd = showAd;
         bool flag = TempData.DidHumansWin(gameOverReason);
         TempData.winners = new List<WinningPlayerData>();
+		TempData.you = new WinningPlayerData(PlayerControl.LocalPlayer.Data);
         for (int j = 0; j < GameData.Instance.PlayerCount; j++) //removed joker specific code
         {
 			GameData.PlayerInfo playerInfo2 = GameData.Instance.AllPlayers[j];
@@ -312,8 +314,9 @@ public class AmongUsClient : InnerNetClient
         TempData.EndReason = GameOverReason.Custom;
 		TempData.CustomStinger = victorysong;
 		TempData.showAd = false;
-		TempData.winners = new List<WinningPlayerData>();
-        foreach (GameData.PlayerInfo plf in plyrs)
+        TempData.winners = new List<WinningPlayerData>();
+		TempData.you = new WinningPlayerData(PlayerControl.LocalPlayer.Data);
+		foreach (GameData.PlayerInfo plf in plyrs)
         {
             TempData.winners.Add(new WinningPlayerData(plf));
         }

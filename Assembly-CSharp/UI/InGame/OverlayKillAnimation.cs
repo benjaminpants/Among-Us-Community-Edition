@@ -57,12 +57,12 @@ public class OverlayKillAnimation : MonoBehaviour
 						{
 							case KillAnimType.Stab:
 								{
-									PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+									PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer,(int)data.ColorId);
 									break;
 								}
 							case KillAnimType.Neck:
 								{
-									PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer);
+									PlayerControl.SetSkinImage(data.SkinId, (SpriteRenderer)renderer, (int)data.ColorId);
 									break;
 								}
 							case KillAnimType.Tongue:

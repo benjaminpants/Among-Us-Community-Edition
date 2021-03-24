@@ -10,7 +10,11 @@ public class WinningPlayerData
 
 	public uint HatId;
 
+	public byte RoleID;
+
 	public bool IsYou;
+
+	public bool IsImp;
 
 	public WinningPlayerData()
 	{
@@ -24,5 +28,7 @@ public class WinningPlayerData
 		ColorId = player.ColorId;
 		SkinId = player.SkinId;
 		HatId = player.HatId;
+		RoleID = player.role;
+		IsImp = player.IsImpostor;
 	}
 }

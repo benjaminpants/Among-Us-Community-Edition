@@ -40,7 +40,7 @@ public class HatsTab : MonoBehaviour
 	{
 		PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.ColorId, DemoImage);
 		SetHat();
-		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage);
+		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage, (int)PlayerControl.LocalPlayer.Data.ColorId);
 		HatBehaviour[] unlockedHats = DestroyableSingleton<HatManager>.Instance.GetUnlockedHats();
 		for (int i = 0; i < unlockedHats.Length; i++)
 		{

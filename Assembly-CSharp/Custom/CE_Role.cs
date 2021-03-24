@@ -58,6 +58,7 @@ public static class CE_RoleManager
         }
         return 0; //return the null role, AKA assign no role.
     }
+
     public static byte GetRoleFromUUID(string Name)
     {
         foreach (KeyValuePair<byte, CE_Role> kvp in Roles)
@@ -70,15 +71,25 @@ public static class CE_RoleManager
         return 0; //return the null role, AKA assign no role.
     }
 
+    public static CE_Role GetActualRoleFromUUID(string Name)
+    {
+        foreach (KeyValuePair<byte, CE_Role> kvp in Roles)
+        {
+            if (kvp.Value.UUID == Name)
+            {
+                return kvp.Value;
+            }
+        }
+        return null; //return the null role, AKA assign no role.
+    }
+
     public static CE_Role GetRoleFromID(byte id)
     {
-        CE_Role returnvalue;
-        if (Roles.TryGetValue(id,out returnvalue))
+        if (Roles.TryGetValue(id,out CE_Role returnvalue))
         {
             return returnvalue;
         }
-        Debug.LogError("Could not find role with ID: " + id + "!\n Returning New Role...");
-        return new CE_Role();
+        return Roles[0];
     }
 
     public static int GetRoleCount(byte id)

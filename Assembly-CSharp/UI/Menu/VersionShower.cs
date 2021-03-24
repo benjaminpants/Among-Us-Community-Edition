@@ -2,6 +2,9 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Reflection;
+using Microsoft.Win32;
+using Steam_acf_File_Reader;
+using System.Collections.Generic;
 
 public class VersionShower : MonoBehaviour
 {
@@ -13,6 +16,10 @@ public class VersionShower : MonoBehaviour
 	public static int buildhash;
 	public static string BuildID;
 	public static string ColorID;
+
+	private GameObject FreeplayButton;
+
+	private GameObject ModsButton;
 
 	private static readonly string[] Characters = {
 			"A",
@@ -84,6 +91,7 @@ public class VersionShower : MonoBehaviour
 	}
 
 
+
 	public void Start()
 	{
 		byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
@@ -91,17 +99,18 @@ public class VersionShower : MonoBehaviour
 		BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
 		text.Text = "when the impostor is sus!!";
 		Screen.sleepTimeout = -1;
-		CE_CustomMapManager.Initialize();
-		AddNewButtons();
         CE_Extensions.OnStartup();
+		AddNewButtons();
 		//File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(),"colors.json"),Newtonsoft.Json.JsonConvert.SerializeObject(Palette.PLColors,Newtonsoft.Json.Formatting.Indented));
+		//CE_UIHelpers.VerifyGamemodeGUICache(true);
 	}
 
 
 
 	public void AddNewButtons()
     {
-		GameObject newbutton = GameObject.Instantiate(GameObject.Find("FreePlayButton"));
+		FreeplayButton = GameObject.Find("FreePlayButton");
+		GameObject newbutton = GameObject.Instantiate(FreeplayButton);
 		newbutton.transform.localPosition = new Vector3(0f,-0.25f,0f);
 		newbutton.transform.name = "ModButton";
 		PassiveButton pasbut = newbutton.GetComponent<PassiveButton>();
@@ -109,6 +118,7 @@ public class VersionShower : MonoBehaviour
 		newbutton.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_CommonUI.ModsButton,new Vector2(0.5f,0.5f));
 		pasbut.OnClick.RemoveAllListeners();
 		pasbut.OnClick.AddListener(OpenModsMenu); //learned how to properly relink passive buttons??? maybe we could stop using unity ui??? pog???
+		ModsButton = newbutton;
     }
 
 	public void OpenModsMenu()
@@ -131,7 +141,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		text.Text = "v0.5.11 - Hey guys the 0.6.0 release date is NaN!" + "\nBuild ID:" + BuildID + "\nLua ID:" + LuaID + "\nHats ID:" + HatID + "\nColors ID:" + ColorID;
+		text.Text = "v0.6.0 - [r0]Rainbow Text![]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r2]" + LuaID + "[]\nHats ID:[r3]" + HatID + "[]\nColors ID:[r8]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
@@ -141,6 +151,10 @@ public class VersionShower : MonoBehaviour
 		{
 			lasthat = CE_WardrobeManager.HatHash;
 			HatID = CreateIDFromInt(CE_WardrobeManager.HatHash, 7);
+		}
+		if ((bool)FreeplayButton && (bool)ModsButton)
+		{
+			ModsButton.SetActive(FreeplayButton.activeSelf);
 		}
 		CE_Extensions.UpdateWindowTitle();
 	}

@@ -133,7 +133,7 @@ public class PlayerTab : MonoBehaviour
 	{
 		PlayerControl.SetPlayerMaterialColors(PlayerControl.LocalPlayer.Data.ColorId, DemoImage);
 		SetHat();
-		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage);
+		PlayerControl.SetSkinImage(SaveManager.LastSkin, SkinImage, (int)PlayerControl.LocalPlayer.Data.ColorId);
 	}
 
 	public void Update()

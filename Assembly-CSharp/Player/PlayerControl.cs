@@ -186,12 +186,19 @@ public class PlayerControl : InnerNetObject
 	{
 		set
 		{
-			myRend.enabled = value;
+			myRend.enabled = value ? ((!CurrentSkinIsOverride) || Data.IsDead) : false;
 			MyPhysics.Skin.Visible = value;
 			HatRenderer.enabled = value;
 			nameText.gameObject.SetActive(value);
 		}
+		get
+        {
+			return !CurrentSkinIsOverride ? myRend.enabled : MyPhysics.Skin.layer.enabled;
+
+		}
 	}
+
+	public bool CurrentSkinIsOverride = true;
 
 	public void SetKillTimer(float time)
 	{
@@ -235,7 +242,6 @@ public class PlayerControl : InnerNetObject
 			CmdCheckColor(SaveManager.BodyColor);
 			RpcSetHat(SaveManager.LastHat);
 			RpcSetSkin(SaveManager.LastSkin);
-			RpcSetTimesImpostor(StatsManager.Instance.CrewmateStreak);
 		}
 		else
 		{
@@ -553,11 +559,8 @@ public class PlayerControl : InnerNetObject
 		if (base.AmOwner)
 		{
 			DestroyableSingleton<HudManager>.Instance.TaskStuff.SetActive(value: true);
-			StatsManager.Instance.GamesStarted++;
 			if (Data.IsImpostor)
 			{
-				StatsManager.Instance.TimesImpostor++;
-				StatsManager.Instance.CrewmateStreak = 0u;
 				ImportantTextTask importantTextTask = new GameObject("_Player").AddComponent<ImportantTextTask>();
 				importantTextTask.transform.SetParent(base.transform, worldPositionStays: false);
 				importantTextTask.Text = "Sabotage and kill everyone\r\n[FFFFFFFF]Fake Tasks:";
@@ -565,8 +568,6 @@ public class PlayerControl : InnerNetObject
 			}
 			else if (CE_RoleManager.GetRoleFromID(Data.role).DoesNotDoTasks())
             {
-				StatsManager.Instance.TimesImpostor++;
-				StatsManager.Instance.CrewmateStreak = 0u;
 				ImportantTextTask importantTextTask = new GameObject("_Player").AddComponent<ImportantTextTask>();
 				importantTextTask.transform.SetParent(base.transform, worldPositionStays: false);
 				if (CE_RoleManager.GetRoleFromID(Data.role).FakeTaskString != "")
@@ -581,14 +582,11 @@ public class PlayerControl : InnerNetObject
 			}
 			else
 			{
-				StatsManager.Instance.TimesCrewmate++;
-				StatsManager.Instance.CrewmateStreak++;
 				if (!CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill))
 				{
 					DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
 				}
 			}
-			DestroyableSingleton<Telemetry>.Instance.StartGame(SaveManager.SendName, AmongUsClient.Instance.AmHost, GameData.Instance.PlayerCount, GameOptions.NumImpostors, AmongUsClient.Instance.GameMode, StatsManager.Instance.TimesImpostor, StatsManager.Instance.GamesStarted);
 		}
 		foreach (byte idx in tasks)
 		{
@@ -683,6 +681,7 @@ public class PlayerControl : InnerNetObject
 
 	public void Revive()
 	{
+		return; //dont want hackers abusing this
 		Data.IsDead = false;
 		base.gameObject.layer = LayerMask.NameToLayer("Players");
 		MyPhysics.ResetAnim();
@@ -807,11 +806,11 @@ public class PlayerControl : InnerNetObject
 	public void Exiled()
 	{
 		Die(DeathReason.Exile);
+		StatsManager.Instance.AddEject(Data.role != 0 ? CE_RoleManager.GetRoleFromID(Data.role).UUID : (Data.IsImpostor ? "Impostor" : "Crewmate"));
 		if (!base.AmOwner)
 		{
 			return;
 		}
-		StatsManager.Instance.TimesEjected++;
 		DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(value: false);
 		if (!GameOptions.GhostsDoTasks)
 		{
@@ -900,7 +899,11 @@ public class PlayerControl : InnerNetObject
 	{
 		List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
 		int num = 0;
-		while (allPlayers.Any((GameData.PlayerInfo p) => !p.Disconnected && p.PlayerId != PlayerId && p.ColorId == bodyColor) && num++ < 100)
+		if (bodyColor >= Palette.PLColors.Count)
+        {
+			bodyColor = 0;
+        }
+		while (allPlayers.Any((GameData.PlayerInfo p) => !p.Disconnected && p.PlayerId != PlayerId && p.ColorId == bodyColor) && num++ < (Palette.PLColors.Count * 20))
 		{
 			bodyColor = (byte)((bodyColor + 1) % Palette.PLColors.Count);
 		}
@@ -930,6 +933,7 @@ public class PlayerControl : InnerNetObject
 			GetComponent<SpriteRenderer>();
 		}
 		SetPlayerMaterialColors(bodyColor, myRend);
+		CE_WardrobeManager.SetHatRenderColors(MyPhysics.Skin.layer, (int)Data.ColorId, CurrentSkinIsOverride);
 	}
 
 	public void SetSkin(uint skinId)
@@ -938,7 +942,10 @@ public class PlayerControl : InnerNetObject
 		{
 			GameData.Instance.UpdateSkin(PlayerId, skinId);
 		}
-		MyPhysics.SetSkin(skinId);
+		SkinData skindat = DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId);
+		CurrentSkinIsOverride = skindat.IsPlayerOverride;
+		myRend.enabled = !skindat.IsPlayerOverride;
+		MyPhysics.SetSkin(skinId,(int)Data.ColorId);
 	}
 
 	public void UpdateHat(uint hatId)
@@ -959,11 +966,12 @@ public class PlayerControl : InnerNetObject
 		}
 		UpdateHat(hatId);
 	}
-	public static void SetSkinImage(uint skinId, SpriteRenderer target)
+	public static void SetSkinImage(uint skinId, SpriteRenderer target, int colorid)
 	{
 		if (DestroyableSingleton<HatManager>.InstanceExists)
 		{
 			SetSkinImage(DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId), target);
+			CE_WardrobeManager.SetHatRenderColors(target, colorid, DestroyableSingleton<HatManager>.Instance.GetSkinById(skinId).IsPlayerOverride);
 		}
 	}
 	public static void SetSkinImage(SkinData skin, SpriteRenderer target)
@@ -1069,7 +1077,6 @@ public class PlayerControl : InnerNetObject
 		}
 		if (base.AmOwner && hasowner)
 		{
-			StatsManager.Instance.ImpostorKills++;
 			if (Constants.ShouldPlaySfx())
 			{
 				SoundManager.Instance.PlaySound(LocalPlayer.KillSfx, loop: false, 0.8f);
@@ -1081,7 +1088,6 @@ public class PlayerControl : InnerNetObject
 		}
 		if (target.AmOwner)
 		{
-			StatsManager.Instance.TimesMurdered++;
 			if ((bool)Minigame.Instance)
 			{
 				Minigame.Instance.Close();

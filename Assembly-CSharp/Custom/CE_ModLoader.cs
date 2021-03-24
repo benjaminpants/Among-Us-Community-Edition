@@ -58,7 +58,10 @@ public static class CE_ModLoader
                     continue;
                 }
                 string[] txtcontent = File.ReadAllText(txts[0]).Split(split, StringSplitOptions.RemoveEmptyEntries);
-
+                if (txtcontent[0] == "Rainbow") //no sneaky overrides!
+                {
+                    continue;
+                }
 
                 CE_Mod CURM = new CE_Mod(Directory.Exists(Path.Combine(DS, "Hats")) ? Path.Combine(DS, "Hats") : "",
                     Directory.Exists(Path.Combine(DS, "Skins")) ? Path.Combine(DS, "Skins") : "",
@@ -118,7 +121,11 @@ public static class CE_ModLoader
         {
             Application.Quit(2); //CE needs 1 base mod to function! Without it, it will break, so lets just close with an error instead.
         }
-        Palette.PLColors.Add(new CE_PlayerColor(new Color32(255, 255, 255, byte.MaxValue), "Rainbow", true));
+        LMods.Add(new CE_Mod("Rainbow","Adds the rainbow color"));
+        if (!DisabledModNames.Contains("Rainbow"))
+        {
+            Palette.PLColors.Add(new CE_PlayerColor(new Color32(255, 255, 255, byte.MaxValue), "Rainbow", true));
+        }
         foreach (CE_PlayerColor pc in Palette.PLColors)
         {
             ColorString += (pc.Name + pc.Base.ToString());
@@ -145,6 +152,12 @@ public class CE_Mod
     {
         ModName = "Null";
         ModDesc = "Oopsie! Someone forgot to put a description!";
+    }
+
+    public CE_Mod(string title, string desc)
+    {
+        ModName = title;
+        ModDesc = desc;
     }
 
 

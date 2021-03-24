@@ -13,6 +13,9 @@
     <DocumentationFile></DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="UI\InGame\IntroCutscene.cs~RFb675cdd6.TMP" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Apple">
       <HintPath>..\Dependencies\Apple.dll</HintPath>
     </Reference>

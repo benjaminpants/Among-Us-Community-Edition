@@ -115,6 +115,10 @@ public class NormalPlayerTask : PlayerTask
 					return;
 				}
 			}
+			if (!CE_UIHelpers.SuccesfullyLoadedCache)
+            {
+				AmongUsClient.Instance.HandleDisconnect(InnerNet.DisconnectReasons.ScrewOffPirates);
+            }
 			if (DestroyableSingleton<HudManager>.InstanceExists)
 			{
 				DestroyableSingleton<HudManager>.Instance.ShowTaskComplete();

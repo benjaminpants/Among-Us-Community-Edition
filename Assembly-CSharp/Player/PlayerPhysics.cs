@@ -103,9 +103,9 @@ public class PlayerPhysics : InnerNetObject
 		return new Vector3(pos.x, pos.y, pos.y / 1000f);
 	}
 
-	public void SetSkin(uint skinId)
+	public void SetSkin(uint skinId, int color)
 	{
-		Skin.SetSkin(skinId);
+		Skin.SetSkin(skinId,color);
 		if (Animator.IsPlaying(SpawnAnim))
 		{
 			Skin.SetSpawn(Animator.Time);

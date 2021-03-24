@@ -58,7 +58,7 @@ public class ExileController : MonoBehaviour
 			if (exiled.role != 0) 
 			{
 				text2 = " " + CE_RoleManager.GetRoleFromID(exiled.role).RoleName;
-				text3 = ((CE_RoleManager.GetRoleCount(exiled.role) > 1) ? "An" : "The");
+				text3 = ((CE_RoleManager.GetRoleCount(exiled.role) > 1) ? CE_RoleManager.GetRoleFromID(exiled.role).RoleName.AOrAn(true) : "The");
 				text = string.Empty;
 			}
 			if (PlayerControl.GameOptions.ConfirmEject)
@@ -83,6 +83,7 @@ public class ExileController : MonoBehaviour
 			PlayerControl.SetPlayerMaterialColors(playerById.ColorId, Player);
 			SetPlayerHat(exiled.HatId, (int)exiled.ColorId);
 			PlayerSkin.sprite = DestroyableSingleton<HatManager>.Instance.GetSkinById(playerById.SkinId).EjectFrame;
+			CE_WardrobeManager.SetHatRenderColors(PlayerSkin,(int)playerById.ColorId, DestroyableSingleton<HatManager>.Instance.GetSkinById(playerById.SkinId).IsPlayerOverride);
 			if (exiled.IsImpostor)
 			{
 				num--;

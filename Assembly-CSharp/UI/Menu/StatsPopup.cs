@@ -1,31 +1,86 @@
 using System.Text;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StatsPopup : MonoBehaviour
 {
 	public TextRenderer StatsText;
 
-	private void OnEnable()
+    public int Page;
+
+    private const int LinesPerPage = 17;
+
+    private void OnEnable()
+    {
+        Page = 0;
+    }
+
+	private void Update()
 	{
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.AppendLine($"Bodies Reported:\t{StatsManager.Instance.BodiesReported}");
-		stringBuilder.AppendLine($"Emergencies Called:\t{StatsManager.Instance.EmergenciesCalled}");
-		stringBuilder.AppendLine($"Tasks Completed:\t{StatsManager.Instance.TasksCompleted}");
-		stringBuilder.AppendLine($"All Tasks Completed:\t{StatsManager.Instance.CompletedAllTasks}");
-		stringBuilder.AppendLine($"Sabotages Fixed:\t{StatsManager.Instance.SabsFixed}");
-		stringBuilder.AppendLine($"Impostor Kills:    \t{StatsManager.Instance.ImpostorKills}");
-		stringBuilder.AppendLine($"Times Murdered:\t{StatsManager.Instance.TimesMurdered}");
-		stringBuilder.AppendLine($"Times Ejected:    \t{StatsManager.Instance.TimesEjected}");
-		stringBuilder.AppendLine($"Crewmate Streak:\t{StatsManager.Instance.CrewmateStreak}");
-		stringBuilder.AppendLine($"Games Impostor:\t{StatsManager.Instance.TimesImpostor}");
-		stringBuilder.AppendLine($"Games Crewmate:\t{StatsManager.Instance.TimesCrewmate}");
-		stringBuilder.AppendLine($"Games Started:  \t{StatsManager.Instance.GamesStarted}");
-		stringBuilder.AppendLine($"Games Finished:\t{StatsManager.Instance.GamesFinished}");
-		stringBuilder.AppendLine($"Impostor Vote Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.ImpostorByVote)}");
-		stringBuilder.AppendLine($"Impostor Kill Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.ImpostorByKill)}");
-		stringBuilder.AppendLine($"Impostor Sabotage Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.ImpostorBySabotage)}");
-		stringBuilder.AppendLine($"Crewmate Vote Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.HumansByVote)}");
-		stringBuilder.AppendLine($"Crewmate Task Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.HumansByTask)}");
-		StatsText.Text = stringBuilder.ToString();
+        StringBuilder stringBuilder = new StringBuilder();
+        List<string> Strings = new List<string>();
+        Strings.Add($"Tasks Completed:\t{StatsManager.Instance.TasksCompleted}");
+        Strings.Add($"All Tasks Completed:\t{StatsManager.Instance.CompletedAllTasks}");
+        Strings.Add($"Sabotages Fixed:\t{StatsManager.Instance.SabsFixed}");
+        Strings.Add($"Games Finished:\t{StatsManager.Instance.GamesFinished}");
+        Strings.Add($"Stalemates: \t\t{StatsManager.Instance.Stalemates}");
+        Strings.Add($"Deaths: \t\t{StatsManager.Instance.TimesMurdered}");
+        foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.GameStarts)
+        {
+            Strings.Add(kvp.Key + " Games: \t\t" + kvp.Value);
+        }
+        foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.RoleWins)
+        {
+            if (kvp.Key == "Crewmate" || kvp.Key == "Impostor") //not proper UUIDs
+            {
+                Strings.Add(kvp.Key + " W/L Ratio: \t[00FF00FF]" + kvp.Value + "[]/[FF0000FF]" + kvp.Value + "[]");
+                continue;
+            }
+            CE_Role role = CE_RoleManager.GetActualRoleFromUUID(kvp.Key);
+            if (role == null)
+            {
+                continue;
+            }
+            Strings.Add(role.RoleName + " W/L Ratio: \t[00FF00FF]" + kvp.Value + "[]/[FF0000FF]" + kvp.Value + "[]");
+        }
+
+        foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.RoleEjects)
+        {
+            if (kvp.Key == "Crewmate" || kvp.Key == "Impostor") //not proper UUIDs
+            {
+                Strings.Add("Times ejected as " + kvp.Key.AOrAn(false) + " " + kvp.Key + ": \t" + kvp.Value);
+                continue;
+            }
+            CE_Role role = CE_RoleManager.GetActualRoleFromUUID(kvp.Key);
+            if (role == null)
+            {
+                continue;
+            }
+            Strings.Add("Times ejected as " + role.RoleName.AOrAn(false) + role.RoleName + ": \t" + kvp.Value);
+        }
+        
+
+
+
+        //actually create the string builder
+        stringBuilder.AppendLine("[0000FFFF]Use the arrow keys to scroll.[] (" + (Page + 1) + "/" + (Mathf.CeilToInt(Strings.Count / LinesPerPage) + 1) + ")");
+        for (int i=(Page * LinesPerPage); (i - (Page * LinesPerPage)) < Mathf.Clamp(Strings.Count,0, LinesPerPage); i++)
+        {
+            if (!(i > (Strings.Count - 1)))
+            {
+                stringBuilder.AppendLine(Strings[i]);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Page--;
+            Page = Mathf.Clamp(Page, 0, Mathf.CeilToInt(Strings.Count / LinesPerPage));
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Page++;
+            Page = Mathf.Clamp(Page, 0, Mathf.CeilToInt(Strings.Count / LinesPerPage));
+        }
+        StatsText.Text = stringBuilder.ToString();
 	}
 }

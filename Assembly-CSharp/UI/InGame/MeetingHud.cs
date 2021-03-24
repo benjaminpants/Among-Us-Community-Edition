@@ -530,6 +530,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		}
 	}
 
+
 	private void PopulateResults(byte[] states)
 	{
 		DestroyableSingleton<Telemetry>.Instance.WriteMeetingEnded(states, discussionTimer);
@@ -553,7 +554,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 					SpriteRenderer spriteRenderer = Object.Instantiate(PlayerVotePrefab);
 					if (PlayerControl.GameOptions.AnonVotes)
 					{
-						PlayerControl.SetPlayerMaterialColors(6, spriteRenderer);
+						PlayerControl.SetPlayerMaterialColors((uint)Palette.PLColors.FindIndex(c => c.Name == "Black"), spriteRenderer);
 					}
 					else
 					{
@@ -570,7 +571,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 					SpriteRenderer spriteRenderer2 = Object.Instantiate(PlayerVotePrefab);
 					if (PlayerControl.GameOptions.AnonVotes)
 					{
-						PlayerControl.SetPlayerMaterialColors(6, spriteRenderer2);
+						PlayerControl.SetPlayerMaterialColors((uint)Palette.PLColors.FindIndex(c => c.Name == "Black"), spriteRenderer2);
 					}
 					else
 					{

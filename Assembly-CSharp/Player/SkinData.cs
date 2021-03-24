@@ -48,5 +48,7 @@ public class SkinData : ScriptableObject, IBuyable
 
 	public bool IsHidden;
 
+	public bool IsPlayerOverride;
+
 	public string ProdId => (RelatedHat != null ? RelatedHat.ProductId : ID);
 }

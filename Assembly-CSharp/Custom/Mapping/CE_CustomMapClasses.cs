@@ -59,6 +59,7 @@ public class CEM_Console
     public int Room;
     public int MinStep;
     public int MaxStep;
+    public int ConsoleID;
 
     public CEM_Console()
     {
@@ -66,7 +67,7 @@ public class CEM_Console
     }
 
 
-    public CEM_Console(Vector3 position, string ImageLocation, int tt, int r, int mis, int mas)
+    public CEM_Console(Vector3 position, string ImageLocation, int tt, int r, int mis, int mas, int ci)
     {
         Position = new CEM_Point(position);
         ImageLocal = ImageLocation;
@@ -74,6 +75,7 @@ public class CEM_Console
         Room = r;
         MaxStep = mis;
         MaxStep = mas;
+        ConsoleID = ci;
     }
 }
 

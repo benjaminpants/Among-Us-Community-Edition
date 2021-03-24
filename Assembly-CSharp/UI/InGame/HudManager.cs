@@ -61,7 +61,9 @@ public class HudManager : DestroyableSingleton<HudManager>
 
 	private StringBuilder tasksString = new StringBuilder();
 
-	private CustomButtonManager CustomButton;
+	private bool custombuttontestingon = false;
+
+	private CustomButtonManager[] CustomButtons = new CustomButtonManager[3];
 
 	public Coroutine ReactorFlash
 	{
@@ -80,16 +82,22 @@ public class HudManager : DestroyableSingleton<HudManager>
 
 	public void Start()
 	{
-		/*if (!(bool)CustomButton)
-        {
-			GameObject kill = GameObject.Instantiate<GameObject>(KillButton.gameObject);
-			KillButtonManager kbm = kill.GetComponent<KillButtonManager>();
-			kbm.enabled = false;
-			CustomButton = kill.AddComponent<CustomButtonManager>();
-			CustomButton.renderer = kbm.renderer;
-			kill.SetActive(true);
-			kill.transform.position += new Vector3(0.5f,0f);
-        }*/
+		if (custombuttontestingon)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				GameObject kill = GameObject.Instantiate<GameObject>(KillButton.gameObject);
+				kill.transform.parent = KillButton.transform.parent;
+				KillButtonManager kbm = kill.GetComponent<KillButtonManager>();
+				Destroy(kbm);
+				CustomButtons[i] = kill.AddComponent<CustomButtonManager>();
+				CustomButtons[i].renderer = CustomButtons[i].GetComponent<SpriteRenderer>();
+				CustomButtons[i].TimerText = CustomButtons[i].GetComponentInChildren<TextRenderer>();
+				kill.SetActive(true);
+				kill.transform.position = new Vector3(-4.7f + (((i - (i == 0 || i == 1 ? 1 : 0) + 1) % 3) * 1.1f), ((i + 1) % 3 == 0 ? 1.1f : 0) + -2.3f, -29.0f);
+			}
+		}
+        
 		SetTouchType(SaveManager.TouchConfig);
 	}
 
@@ -168,6 +176,14 @@ public class HudManager : DestroyableSingleton<HudManager>
 
 	public void FixedUpdate()
 	{
+		if (custombuttontestingon)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				CustomButtons[i].SetCoolDown(i + 1, i + 1);
+				CustomButtons[i].SetActivateState(true);
+			}
+		}
 		taskDirtyTimer += Time.fixedDeltaTime;
 		if (!(taskDirtyTimer > 0.25f))
 		{

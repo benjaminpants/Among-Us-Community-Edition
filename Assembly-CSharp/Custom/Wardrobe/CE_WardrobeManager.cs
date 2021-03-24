@@ -120,6 +120,7 @@ public class CE_WardrobeManager
 				skinData.KillTongueVictim = BaseSkin.KillTongueVictim;
 				skinData.RelatedHatName = item2.RelatedHat;
 				skinData.IsHidden = item2.IsHidden;
+				skinData.IsPlayerOverride = item2.IsPlayerOverride;
 				SaveManager.ForcePrefLoad();
 				if ((SystemInfo.systemMemorySize / 1000) < 4 && SaveManager.PlayerName == "Enter Name")
                 {

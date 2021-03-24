@@ -136,7 +136,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		public void Deserialize(MessageReader reader)
 		{
 			PlayerName = reader.ReadString();
-			ColorId = reader.ReadByte();
+			ColorId = reader.ReadPackedUInt32();
 			HatId = reader.ReadPackedUInt32();
 			SkinId = reader.ReadPackedUInt32();
 			role = reader.ReadByte();

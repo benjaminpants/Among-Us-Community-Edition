@@ -12,6 +12,8 @@ public static class TempData
 
 	public static List<WinningPlayerData> winners;
 
+	public static WinningPlayerData you;
+
 	public static bool IsDo2Enabled => SaveManager.PlayerName == "do2";
 
 	public static bool DidHumansWin(GameOverReason reason)

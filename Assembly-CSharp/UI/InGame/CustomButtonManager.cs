@@ -52,6 +52,12 @@ public class CustomButtonManager : MonoBehaviour
 		}
 	}
 
+	public void SetActivateState(bool active)
+    {
+		renderer.color = active ? Palette.EnabledColor : Palette.DisabledColor;
+		renderer.material.SetFloat("_Desat", active ? 0f : 1f);
+	}
+
 	public void SetCoolDown(float timer, float maxTimer)
 	{
 		float num = Mathf.Clamp(timer / maxTimer, 0f, 1f);

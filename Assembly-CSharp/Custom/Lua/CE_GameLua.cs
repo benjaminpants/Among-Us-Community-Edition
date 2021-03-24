@@ -295,6 +295,18 @@ static class CE_GameLua
     }
 
 
+    public static uint GetColorFromName(string name)
+    {
+        for (int i = 0; i > Palette.PLColors.Count; i++)
+        {
+            if (Palette.PLColors[i].Name == name)
+            {
+                return (uint)i;
+            }
+        }
+        return 0;
+    }
+
     public static List<CE_PlayerInfoLua> GetAllPlayers()
     {
         List<CE_PlayerInfoLua> PlayFoLua = new List<CE_PlayerInfoLua>();
