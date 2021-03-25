@@ -365,9 +365,6 @@ public class CE_CustomMap
         //TODO: once the binary version of the map format gets implemented, avoid using the CEM classes.
         CEM_Map maptospawn = CE_CustomMapManager.GetCurrentMap().Map;
         string contentlocal = CE_CustomMapManager.GetCurrentMap().ContentFolder;
-        map.CommonTasks = new NormalPlayerTask[maptospawn.TaskList.CommonTasks.Count];
-        map.NormalTasks = new NormalPlayerTask[maptospawn.TaskList.ShortTasks.Count];
-        map.LongTasks = new NormalPlayerTask[maptospawn.TaskList.LongTasks.Count];
         if (maptospawn.TaskList.CommonTasks.Count == 0 || maptospawn.TaskList.ShortTasks.Count == 0 || maptospawn.TaskList.LongTasks.Count == 0)
         {
             Debug.LogWarning("Not Enough Tasks included in loaded map!\nUsing default skeld tasks...");
@@ -375,6 +372,9 @@ public class CE_CustomMap
         }
         else
         {
+            map.CommonTasks = new NormalPlayerTask[maptospawn.TaskList.CommonTasks.Count];
+            map.NormalTasks = new NormalPlayerTask[maptospawn.TaskList.ShortTasks.Count];
+            map.LongTasks = new NormalPlayerTask[maptospawn.TaskList.LongTasks.Count];
             foreach (NormalPlayerTask mp in map.CommonTasks)
             {
                 UnityEngine.GameObject.Destroy(mp);
