@@ -102,7 +102,7 @@ public class VersionShower : MonoBehaviour
         CE_Extensions.OnStartup();
 		AddNewButtons();
 		//File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(),"colors.json"),Newtonsoft.Json.JsonConvert.SerializeObject(Palette.PLColors,Newtonsoft.Json.Formatting.Indented));
-		//CE_UIHelpers.VerifyGamemodeGUICache(true);
+		CE_UIHelpers.VerifyGamemodeGUICache(true);
 	}
 
 
