@@ -330,18 +330,6 @@ public class CE_CustomMap
 
 
         Debug.Log("Clearing Tasks...");
-        foreach (NormalPlayerTask mp in map.CommonTasks)
-        {
-            UnityEngine.GameObject.Destroy(mp);
-        }
-        foreach (NormalPlayerTask mp in map.NormalTasks)
-        {
-            UnityEngine.GameObject.Destroy(mp);
-        }
-        foreach (NormalPlayerTask mp in map.LongTasks)
-        {
-            UnityEngine.GameObject.Destroy(mp);
-        }
         LoadDefaultSounds();
    
 
@@ -382,19 +370,35 @@ public class CE_CustomMap
         map.LongTasks = new NormalPlayerTask[maptospawn.TaskList.LongTasks.Count];
         if (maptospawn.TaskList.CommonTasks.Count == 0 || maptospawn.TaskList.ShortTasks.Count == 0 || maptospawn.TaskList.LongTasks.Count == 0)
         {
-            throw new Exception("Not Enough Tasks included in loaded map!");
+            Debug.LogWarning("Not Enough Tasks included in loaded map!\nUsing default skeld tasks...");
+
         }
-        for (int i = 0; i < maptospawn.TaskList.CommonTasks.Count; i++)
+        else
         {
-            map.CommonTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.CommonTasks[i]);
-        }
-        for (int i = 0; i < maptospawn.TaskList.LongTasks.Count; i++)
-        {
-            map.LongTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.LongTasks[i]);
-        }
-        for (int i = 0; i < maptospawn.TaskList.ShortTasks.Count; i++)
-        {
-            map.NormalTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.ShortTasks[i]);
+            foreach (NormalPlayerTask mp in map.CommonTasks)
+            {
+                UnityEngine.GameObject.Destroy(mp);
+            }
+            foreach (NormalPlayerTask mp in map.NormalTasks)
+            {
+                UnityEngine.GameObject.Destroy(mp);
+            }
+            foreach (NormalPlayerTask mp in map.LongTasks)
+            {
+                UnityEngine.GameObject.Destroy(mp);
+            }
+            for (int i = 0; i < maptospawn.TaskList.CommonTasks.Count; i++)
+            {
+                map.CommonTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.CommonTasks[i]);
+            }
+            for (int i = 0; i < maptospawn.TaskList.LongTasks.Count; i++)
+            {
+                map.LongTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.LongTasks[i]);
+            }
+            for (int i = 0; i < maptospawn.TaskList.ShortTasks.Count; i++)
+            {
+                map.NormalTasks[i] = CE_CustomMap.ProcessCEMTask(maptospawn.TaskList.ShortTasks[i]);
+            }
         }
         foreach (CEM_Console C in maptospawn.Consoles)
         {
