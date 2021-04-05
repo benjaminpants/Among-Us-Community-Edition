@@ -28,9 +28,16 @@ public class MatchMakerGameButton : PoolableBehavior, IConnectButton
 
 	public void Start()
     {
-		GameObject icon = NameText.transform.parent.gameObject.transform.Find("mapJourney_icon").gameObject;
-		Texture2D tex = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "Icons", myListing.Icon));
-		icon.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(tex, new Vector2(0.5f, 0.5f));
+		try
+		{
+			GameObject icon = NameText.transform.parent.gameObject.transform.Find("mapJourney_icon").gameObject;
+			Texture2D tex = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "Icons", myListing.Icon));
+			icon.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(tex, new Vector2(0.5f, 0.5f));
+		}
+		catch(System.Exception E)
+        {
+			Debug.LogError(E.Message + "\n" + E.StackTrace);
+        }
 	}
 
 	private IEnumerator ConnectForFindGame()
@@ -49,7 +56,7 @@ public class MatchMakerGameButton : PoolableBehavior, IConnectButton
 		connectIcon.GetComponent<SpriteRenderer>().sprite = null;
 	}
 
-	public void SetGame(GameListing gameListing)
+	public void SetGame(GameListing gameListing, bool isserver = true)
 	{
 		myListing = gameListing;
 		NameText.Text = myListing.HostName;

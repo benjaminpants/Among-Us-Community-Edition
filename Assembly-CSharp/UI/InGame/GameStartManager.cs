@@ -54,8 +54,8 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 		{
 			LobbyBehaviour.Instance = Object.Instantiate(LobbyPrefab);
 			AmongUsClient.Instance.Spawn(LobbyBehaviour.Instance);
+			MakePublicButton.gameObject.SetActive(AmongUsClient.Instance.GameMode == GameModes.OnlineGame); //no
 		}
-		MakePublicButton.gameObject.SetActive(false); //no
 	}
 
 	public void MakePublic()

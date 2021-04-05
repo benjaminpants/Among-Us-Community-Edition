@@ -100,7 +100,10 @@ public class VersionShower : MonoBehaviour
 		text.Text = "when the impostor is sus!!";
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
-		AddNewButtons();
+		if (GameObject.Find("FreePlayButton") != null)
+		{
+			AddNewButtons();
+		}
 		//File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(),"colors.json"),Newtonsoft.Json.JsonConvert.SerializeObject(Palette.PLColors,Newtonsoft.Json.Formatting.Indented));
 		CE_UIHelpers.VerifyGamemodeGUICache(true);
 	}
@@ -141,6 +144,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
+		//Debug.Log(ServerManager.Instance.availableServers.Length);
 		text.Text = "v0.6.0 - [r0]Rainbow Text![]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r2]" + LuaID + "[]\nHats ID:[r3]" + HatID + "[]\nColors ID:[r8]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {

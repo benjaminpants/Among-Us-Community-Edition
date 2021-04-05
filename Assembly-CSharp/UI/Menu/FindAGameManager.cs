@@ -36,6 +36,8 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 
 	public const bool showPrivate = false;
 
+	public byte Page;
+
 	public void ResetTimer()
 	{
 		timer = 5f;
@@ -45,6 +47,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 
 	public void Start()
 	{
+		Page = 0;
 		if (!AmongUsClient.Instance)
 		{
 			AmongUsClient.Instance = Object.FindObjectOfType<AmongUsClient>();
@@ -58,6 +61,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 		List<GameListing> GameLists = new List<GameListing>();
 		for (int i=0; i < ServerManager.Instance.availableServers.Length; i++)
         {
+			Debug.Log("adding server");
 			ServerInfo fo = ServerManager.Instance.availableServers[i];
 			GameLists.Add(new GameListing
 			{
@@ -73,6 +77,11 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 		}
 		HandleList(GameLists.Count, GameLists);
 	}
+
+	public void SetPage(byte page)
+    {
+		Page = page;
+    }
 
 	public void Update()
 	{
@@ -98,6 +107,7 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 
 	public void HandleList(int totalGames, List<GameListing> availableGames)
 	{
+		Debug.Log("handling list");
 		Debug.Log($"TotalGames: {totalGames}\tAvailable: {availableGames.Count}");
 		RefreshSpinner.Disappear();
 		timer = float.MinValue;
