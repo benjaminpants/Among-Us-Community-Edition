@@ -70,17 +70,6 @@ public static class CE_ModLoader
                     Directory.Exists(Path.Combine(DS, "Lua")) ? Path.Combine(DS, "Lua") : "",
                     txtcontent[0], txtcontent[1] + "\n" + txtcontent[2], Directory.Exists(Path.Combine(DS, "SFC")) ? Path.Combine(DS, "SFC") : "");
 
-                if (Directory.Exists(Path.Combine(DS, "Resources")))
-                {
-                    FileInfo[] files = new DirectoryInfo(Path.Combine(DS, "Resources")).GetFiles();
-                    for (int i = 0; i < files.Length; i++)
-                    {
-                        if (!ModResources.TryAdd(files[i].Name,files[i].FullName))
-                        {
-                            Debug.LogWarning("Duplicate add file, some data might be lost!");
-                        }
-                    }
-                }
 
                 LMods.Add(CURM);
                 if (DisabledModNames.Any(CURM.ModName.Contains))
@@ -91,6 +80,17 @@ public static class CE_ModLoader
                 {
                     Debug.Log("Mod " + CURM.ModName + " found in disabled list, not loading.");
                     continue;
+                }
+                if (Directory.Exists(Path.Combine(DS, "Resources")))
+                {
+                    FileInfo[] files = new DirectoryInfo(Path.Combine(DS, "Resources")).GetFiles();
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (!ModResources.TryAdd(files[i].Name, files[i].FullName))
+                        {
+                            Debug.LogWarning("Duplicate add file, some data might be lost!");
+                        }
+                    }
                 }
                 if (CURM.LuaDirectory != "")
                 {
