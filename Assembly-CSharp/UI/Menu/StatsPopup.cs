@@ -56,7 +56,7 @@ public class StatsPopup : MonoBehaviour
             {
                 continue;
             }
-            Strings.Add("Times ejected as " + role.RoleName.AOrAn(false) + role.RoleName + ": \t" + kvp.Value);
+            Strings.Add("Times ejected as " + role.RoleName.AOrAn(false) + " " + role.RoleName + ": \t" + kvp.Value);
         }
         
 
