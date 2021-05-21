@@ -678,64 +678,71 @@ public class CE_WardrobeManager
 	}
 	public static void UpdateActiveHatRender(PlayerControl player, string name, ref SpriteRenderer spriteRenderer, int hatSlot)
     {
-		if (player == null || spriteRenderer == null) return;
-		if (!DestroyableSingleton<HatManager>.InstanceExists) return;
-
-		var hat = DestroyableSingleton<HatManager>.Instance.GetHatById(player.Data.HatId);
-		if (hat == null) return;
-		bool noBobbing;
-		switch (hatSlot)
+		try
 		{
-			case 0:
-				noBobbing = hat.NoBobbing;
-				break;
-			case 1:
-				noBobbing = hat.NoBobbingExt;
-				break;
-			case 2:
-				noBobbing = hat.NoBobbingExt2;
-				break;
-			case 3:
-				noBobbing = hat.NoBobbingExt3;
-				break;
-			case 4:
-				noBobbing = hat.NoBobbingExt4;
-				break;
-			default:
-				noBobbing = hat.NoBobbing;
-				break;
-		}
+			if (player == null || spriteRenderer == null) return;
+			if (!DestroyableSingleton<HatManager>.InstanceExists) return;
 
-		if (noBobbing)
-		{
-			var position = spriteRenderer.transform.localPosition;
-
-			float x = position.x;
-			float y = position.y;
-			float z = position.z;
-
-			if (player.MyPhysics.IsWalking())
+			var hat = DestroyableSingleton<HatManager>.Instance.GetHatById(player.Data.HatId);
+			if (hat == null) return;
+			bool noBobbing;
+			switch (hatSlot)
 			{
-				float num = 0.65f;
-				if (name == "walkcolor0001") num += 0.019f;
-				if (name == "walkcolor0002") num += 0.05f;
-				if (name == "walkcolor0003") num += 0.02f;
-				if (name == "walkcolor0004") num += -0.04f;
-				if (name == "walkcolor0005") num += -0.09f;
-				if (name == "walkcolor0006") num += -0.09f;
-				if (name == "walkcolor0007") num += 0.059f;
-				if (name == "walkcolor0008") num += 0.089f;
-				if (name == "walkcolor0009") num += 0.06f;
-				if (name == "walkcolor0010") num += 0f;
-				if (name == "walkcolor0011") num += -0.12f;
-				if (name == "walkcolor0012") num += -0.129f;
-				spriteRenderer.transform.localPosition = new Vector3(x, num, z);
+				case 0:
+					noBobbing = hat.NoBobbing;
+					break;
+				case 1:
+					noBobbing = hat.NoBobbingExt;
+					break;
+				case 2:
+					noBobbing = hat.NoBobbingExt2;
+					break;
+				case 3:
+					noBobbing = hat.NoBobbingExt3;
+					break;
+				case 4:
+					noBobbing = hat.NoBobbingExt4;
+					break;
+				default:
+					noBobbing = hat.NoBobbing;
+					break;
 			}
-			else
+
+			if (noBobbing)
 			{
-				spriteRenderer.transform.localPosition = new Vector3(x, y, z);
+				var position = spriteRenderer.transform.localPosition;
+
+				float x = position.x;
+				float y = position.y;
+				float z = position.z;
+
+				if (player.MyPhysics.IsWalking())
+				{
+					float num = 0.65f;
+					if (name == "walkcolor0001") num += 0.019f;
+					if (name == "walkcolor0002") num += 0.05f;
+					if (name == "walkcolor0003") num += 0.02f;
+					if (name == "walkcolor0004") num += -0.04f;
+					if (name == "walkcolor0005") num += -0.09f;
+					if (name == "walkcolor0006") num += -0.09f;
+					if (name == "walkcolor0007") num += 0.059f;
+					if (name == "walkcolor0008") num += 0.089f;
+					if (name == "walkcolor0009") num += 0.06f;
+					if (name == "walkcolor0010") num += 0f;
+					if (name == "walkcolor0011") num += -0.12f;
+					if (name == "walkcolor0012") num += -0.129f;
+					spriteRenderer.transform.localPosition = new Vector3(x, num, z);
+				}
+				else
+				{
+					spriteRenderer.transform.localPosition = new Vector3(x, y, z);
+				}
 			}
 		}
+		catch(Exception E)
+        {
+			Debug.LogWarning("Fix you shit:" + E.Message + "\n" + E.Source);
+        }
 	}
 	public static void MatchBaseHatRender(SpriteRenderer ExtraHatRenderer, SpriteRenderer HatRenderer)
 	{
