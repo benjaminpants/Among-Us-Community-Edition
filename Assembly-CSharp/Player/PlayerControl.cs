@@ -806,11 +806,11 @@ public class PlayerControl : InnerNetObject
 	public void Exiled()
 	{
 		Die(DeathReason.Exile);
+        if (!base.AmOwner)
+        {
+            return;
+        }
 		StatsManager.Instance.AddEject(Data.role != 0 ? CE_RoleManager.GetRoleFromID(Data.role).UUID : (Data.IsImpostor ? "Impostor" : "Crewmate"));
-		if (!base.AmOwner)
-		{
-			return;
-		}
 		DestroyableSingleton<HudManager>.Instance.ShadowQuad.gameObject.SetActive(value: false);
 		if (!GameOptions.GhostsDoTasks)
 		{
