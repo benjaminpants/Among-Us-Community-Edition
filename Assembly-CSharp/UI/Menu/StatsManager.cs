@@ -6,7 +6,7 @@ public class StatsManager
 {
 	public static StatsManager Instance;
 
-	private const byte StatsVersion = 0;
+	private const byte StatsVersion = 255; //make this count backwards for every version, ik its weird but idc
 
 	private bool loadedStats;
 

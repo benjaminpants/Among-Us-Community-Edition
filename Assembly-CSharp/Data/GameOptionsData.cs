@@ -564,7 +564,8 @@ public class GameOptionsData : IBytesSerializable
 				pluginlist = "[0000FFFF]None[]";
 			}
 			stringBuilder.AppendLine("Plugins: " + pluginlist);
-			stringBuilder.AppendLine("Brightness: " + Brightness);
+            stringBuilder.AppendLine("Brightness: " + Brightness);
+			stringBuilder.AppendLine("Impostors Know Eachother: " + CanSeeOtherImps);
 			string settingstring = string.Empty;
 			if (CE_LuaLoader.CurrentGMLua)
 			{
@@ -586,12 +587,11 @@ public class GameOptionsData : IBytesSerializable
 				}
 			}
 			stringBuilder.AppendLine(settingstring);
-			stringBuilder.Append("Impostors Know Eachother: " + CanSeeOtherImps);
 			return stringBuilder.ToString();
 		}
 		catch(Exception E)
         {
-			return "[FF0000FF]Error caught!\n " + E.Message;
+			return "[FF0000FF]Error caught!\n " + E.Message + "\n " + E.StackTrace;
 		}
 	}
 

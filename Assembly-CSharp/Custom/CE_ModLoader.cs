@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 
 public static class CE_ModLoader
 {
+
+    public static Dictionary<string,string> ModResources = new Dictionary<string, string>();
     public static List<CE_Mod> LMods = new List<CE_Mod>();
     public static string ColorString;
     public static int ColorHash;
@@ -68,6 +70,17 @@ public static class CE_ModLoader
                     Directory.Exists(Path.Combine(DS, "Lua")) ? Path.Combine(DS, "Lua") : "",
                     txtcontent[0], txtcontent[1] + "\n" + txtcontent[2], Directory.Exists(Path.Combine(DS, "SFC")) ? Path.Combine(DS, "SFC") : "");
 
+                if (Directory.Exists(Path.Combine(DS, "Resources")))
+                {
+                    FileInfo[] files = new DirectoryInfo(Path.Combine(DS, "Resources")).GetFiles();
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (!ModResources.TryAdd(files[i].Name,files[i].FullName))
+                        {
+                            Debug.LogWarning("Duplicate add file, some data might be lost!");
+                        }
+                    }
+                }
 
                 LMods.Add(CURM);
                 if (DisabledModNames.Any(CURM.ModName.Contains))

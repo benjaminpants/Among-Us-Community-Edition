@@ -107,7 +107,7 @@ public class VersionShower : MonoBehaviour
 		byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
 		buildhash = GetDeterministicHashCodeBytes(Bytes);
 		BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
-		text.Text = "when the impostor is sus!!";
+		text.Text = "when imp sus";
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 		if (GameObject.Find("FreePlayButton") != null)
@@ -155,7 +155,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.5.12 - [r0]It's about time![]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		text.Text = "v0.5.12b - [r0]It's about time![]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

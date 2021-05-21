@@ -51,7 +51,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
             {
                 availableServers = new ServerInfo[2]
                 {
-				eurofo,
+				DefaultServer,
                 localfo
                 };
 				FileStream json = File.Create(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json"));
@@ -91,8 +91,8 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		DefaultServer = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](Canada)[]",
-			Ip = "208.78.42.37",
-			Port = 48051,
+			Ip = "172.98.89.36",
+			Port = 24434,
 			Default = true,
 			Icon = "globe.png"
 		};

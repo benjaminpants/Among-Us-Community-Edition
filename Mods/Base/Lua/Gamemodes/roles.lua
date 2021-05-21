@@ -32,14 +32,14 @@ function InitializeGamemode()
 	--counts
 	Settings_CreateByte("Sheriff Count",0,2,0) -- 0
 	Settings_CreateByte("Joker Count",0,3,0) -- 1
-	Settings_CreateByte("Hawk-Eyed Count",0,1,0) -- 2
+	Settings_CreateByte("Hawk-Eyed Count",0,2,0) -- 2
 	Settings_CreateByte("Shielded Count",0,2,0) -- 3
 	Settings_CreateByte("Witch Count",0,3,0) -- 4
 	Settings_CreateByte("Clown Count",0,4,0) -- 5
 	Settings_CreateByte("Doctor Count",0,3,0) -- 6
 	Settings_CreateByte("Griefer Count",0,4,0) -- 7
-	Settings_CreateByte("Seer Count",0,2,0) -- 8
-	Settings_CreateByte("Yeller Count",0,3,0) -- 9
+	Settings_CreateByte("Seer Count",0,4,0) -- 8
+	Settings_CreateByte("Yeller Count",0,4,0) -- 9
 	Settings_CreateBool("Enable Twins Role",false) -- 10
 	Settings_CreateByte("Assassin Count",0,3,0) -- 11
 	Settings_CreateByte("Poison Length",5,120,15,5) -- 12

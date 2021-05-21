@@ -11,9 +11,8 @@ public class CE_WavUtility
 	{
 		if (!filePath.StartsWith(Application.persistentDataPath) && !filePath.StartsWith(Application.dataPath))
 		{
-			Debug.LogWarning(filePath);
-			Debug.LogWarning("This only supports files that are stored using Unity's Application data path. \nTo load bundled resources use 'Resources.Load(\"filename\") typeof(AudioClip)' method. \nhttps://docs.unity3d.com/ScriptReference/Resources.Load.html");
-			return null;
+			Debug.LogWarning("uh no fuck you and your \"THIS ONLY SUPPORTS UNITY RESOURCES\" shit");
+			Debug.LogWarning("so yeah converting to audioclip anyway");
 		}
 		return ToAudioClip(File.ReadAllBytes(filePath));
 	}

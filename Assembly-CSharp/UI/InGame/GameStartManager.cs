@@ -38,7 +38,7 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 		string text = InnerNetClient.IntToGameName(AmongUsClient.Instance.GameId);
 		if (text != null)
 		{
-			GameRoomName.Text = "Room\r\n" + text;
+			GameRoomName.Text = "Room\r\n[r0]" + text + "[]";
 		}
 		else
 		{
@@ -46,6 +46,7 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 			PlayerCounter.transform.localPosition = new Vector3(0f, -0.8f, 0f);
 		}
 		AmongUsClient.Instance.DisconnectHandlers.AddUnique(this);
+		MakePublicButton.gameObject.SetActive(false);
 		if (!AmongUsClient.Instance.AmHost)
 		{
 			StartButton.gameObject.SetActive(value: false);
@@ -54,7 +55,7 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 		{
 			LobbyBehaviour.Instance = Object.Instantiate(LobbyPrefab);
 			AmongUsClient.Instance.Spawn(LobbyBehaviour.Instance);
-			MakePublicButton.gameObject.SetActive(AmongUsClient.Instance.GameMode == GameModes.OnlineGame); //no
+			MakePublicButton.gameObject.SetActive(false); //no
 		}
 	}
 

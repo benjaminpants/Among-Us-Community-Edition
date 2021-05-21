@@ -140,7 +140,7 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			}
 			else
             {
-				SoundManager.Instance.PlayDynamicSound("Stinger", CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Victories", TempData.CustomStinger + ".wav")), loop: false, GetStingerVol);
+				SoundManager.Instance.PlayDynamicSound("Stinger", CE_WavUtility.ToAudioClip(CE_ModLoader.ModResources[TempData.CustomStinger + ".wav"]), loop: false, GetStingerVol);
 			}
 		}
 		else

@@ -77,7 +77,7 @@ public static class CE_CustomMapManager
         Debug.Log(PlayerControl.GameOptions.MapId);
         if (DestroyableSingleton<TutorialManager>.InstanceExists)
         {
-            return MapInfos[1];
+            return MapInfos[0];
         }
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
