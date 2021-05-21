@@ -371,6 +371,13 @@ public class OverlayKillAnimation : MonoBehaviour
 					var sprite = CE_WardrobeManager.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Killer);
 					if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
 				}
+/*				else
+                {
+					if (LastSkinData_Killer.IsPlayerOverride)
+					{
+						renderer.enabled = false;
+					}
+				}*/
 			}
 		}
 		if (LastSkinData_Victim.isCustom)
@@ -378,12 +385,19 @@ public class OverlayKillAnimation : MonoBehaviour
 			for (int j = 0; j < victimParts.Length; j++)
 			{
 				Renderer renderer = victimParts[j];
-				if (renderer.name.StartsWith("Skin"))
+                if (renderer.name.StartsWith("Skin"))
+                {
+                    CE_WardrobeManager.LogPivot(renderer);
+                    var sprite = CE_WardrobeManager.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Victim);
+                    if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
+                }
+				/*else
 				{
-					CE_WardrobeManager.LogPivot(renderer);
-					var sprite = CE_WardrobeManager.GetSkin(renderer.GetComponent<SpriteRenderer>().sprite.name, LastSkinData_Victim);
-					if (sprite) renderer.GetComponent<SpriteRenderer>().sprite = sprite;
-				}
+					if (LastSkinData_Victim.IsPlayerOverride)
+					{
+						renderer.enabled = false;
+					}
+				}*/
 			}
 
 		}

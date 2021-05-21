@@ -47,7 +47,17 @@ public class VersionShower : MonoBehaviour
 			"W",
 			"X",
 			"Y",
-			"Z"
+			"Z",
+			"1",
+			"2",
+			"3",
+			"4",
+			"5",
+			"6",
+			"7",
+			"8",
+			"9",
+			"0"
 
 		};
     public TextRenderer text;
@@ -145,7 +155,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.6.0 - [r0]Rainbow Text![]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r2]" + LuaID + "[]\nHats ID:[r3]" + HatID + "[]\nColors ID:[r8]" + ColorID;
+		text.Text = "v0.5.12 - [r0]It's about time![]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;

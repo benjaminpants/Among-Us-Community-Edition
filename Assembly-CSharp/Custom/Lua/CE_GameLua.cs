@@ -333,7 +333,7 @@ static class CE_GameLua
     }
 
 
-    public static List<CE_PlayerInfoLua> GetAllPlayersComplex(bool alive, bool canbeimp)
+    public static List<CE_PlayerInfoLua> GetAllPlayersComplex(bool alive, bool canbeimp) //this has been broken for so fucking long
     {
         List<CE_PlayerInfoLua> PlayFoLua = new List<CE_PlayerInfoLua>();
         foreach (GameData.PlayerInfo plrfo in GameData.Instance.AllPlayers)

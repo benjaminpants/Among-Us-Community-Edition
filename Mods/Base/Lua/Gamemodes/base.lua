@@ -17,6 +17,15 @@ function OnTaskCompletionHost(totaltasks,completedtasks,player) --this is ran on
 	return false --this isn't used
 end
 
+
+function OnVote(voter,voteid,isskip)
+	--voter is a player
+	--vote id is a vote id
+	--isskip is self explanitory
+	--returning -1 results in a skip
+	return voteid
+end
+
 function OnHostUpdate(timer,timesincelastround)
 
 end

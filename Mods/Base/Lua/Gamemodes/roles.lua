@@ -3,26 +3,29 @@
 local invent_timer = 15
 local timedif = 0
 
-local poslength = 11
-local sni = 12
-local dkp = 13
-local sii = 14
-local sic = 15
-local csb = 16
+local poslength = 12
+local sni = 13
+local dkp = 14
+local sii = 15
+local sic = 16
+local csb = 17
+local isj = 18
+local amc = 19
 
 
 function InitializeGamemode()
 	Game_CreateRole("Sheriff",{255,216,0},"Find and Kill the [FF1919FF]Impostor[].",{0},1,0,false,true,255)
-	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,1,false,false,255,false,"[81298BFF]Get Ejected.[]")
+	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,4,false,false,255,false,"[81298BFF]Get Ejected.[]")
 	Game_CreateRole("Hawk-Eyed",{120, 86, 60},"Use your increased sight\n\r to find the [FF1919FF]Impostor[].",{},1,0,true,true)
 	Game_CreateRole("Shielded",{107, 107, 107},"Be able to avoid being killed one time.",{},1,0,false,true)
 	Game_CreateRole("Witch",{170, 102, 173},"Poison everyone, including [FF1919FF]Impostors[].",{0},2,0,true,false,255,false,"[AA66ADFF]Poison everyone.[]")
 	Game_CreateRole("Clown",{243, 222, 255},"If you get ejected, \n\ryou kill someone else randomly.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true)
 	Game_CreateRole("Doctor",{25, 255, 25},"Cure [8CFFFFFF]Crewmates[] poisoned by a [AA66ADFF]Witch[].",{0},1,3,false,true,1)
 	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[57552AFF]Frame someone for a kill.[]")
-	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of 1 person.",{0},1,0,false,true)
+	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of the crew.",{0},1,0,false,true)
 	Game_CreateRole("Yeller",{109, 107, 232},"Report the body of anyone nearby\nEven if they are alive.",{0},1,0,false,true)
 	Game_CreateRole("Twin",{118, 133, 163},"Stay alive with your twin.\n\rIf you die, your twin dies as well.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
+	Game_CreateRole("Assassin",{110,22,22},"Whoever you vote for dies. Limited uses.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true,255)
 	--Game_CreateRole("Snatcher",{255, 255, 255},"Steal someone's identity and survive for 4 meetings.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	--roles you aren't supposed to see
 	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
@@ -38,12 +41,15 @@ function InitializeGamemode()
 	Settings_CreateByte("Seer Count",0,2,0) -- 8
 	Settings_CreateByte("Yeller Count",0,3,0) -- 9
 	Settings_CreateBool("Enable Twins Role",false) -- 10
-	Settings_CreateByte("Poison Length",5,120,15,5) -- 11
-	Settings_CreateBool("Shields Kill Attackers",false) -- 12
-	Settings_CreateBool("Doctors Know Poisoned",false) -- 13
-	Settings_CreateBool("Seers can identify Impostors",false) -- 14
-	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 15
-	Settings_CreateBool("Classic Sheriff Behavior",false) -- 16
+	Settings_CreateByte("Assassin Count",0,3,0) -- 11
+	Settings_CreateByte("Poison Length",5,120,15,5) -- 12
+	Settings_CreateBool("Shields Kill Attackers",false) -- 13
+	Settings_CreateBool("Doctors Know Poisoned",false) -- 14
+	Settings_CreateBool("Seers can identify Impostors",false) -- 15
+	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 16
+	Settings_CreateBool("Classic Sheriff Behavior",false) -- 17
+	Settings_CreateBool("Impostors See Jokers",true) -- 18
+	Settings_CreateByte("Assassin Kill Count",1,4,1) -- 19
 	
 	return {"Roles",2}
 end
@@ -51,6 +57,10 @@ end
 function OnRecieveRole(rolename,player)
 	if (rolename == "Seer") then
 		player.luavalue2 = Settings_GetNumber(sic)
+		Game_UpdatePlayerInfo(player)
+	end
+	if (rolename == "Assassin") then
+		player.luavalue2 = Settings_GetNumber(amc)
 		Game_UpdatePlayerInfo(player)
 	end
 end
@@ -112,6 +122,9 @@ end
 
 
 function ShouldSeeRole(rolename,playerinfo)
+	if (rolename == "Joker" and Settings_GetBool(isj) and playerinfo.IsImpostor) then
+		return true
+	end
 	return false
 end
 
@@ -255,7 +268,7 @@ function CanKill(userinfo,targetinfo)
 		if (targetinfo.IsImpostor) then
 			return false
 		else
-			return not (targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") or targetinfo.luavalue1 == 255)
+			return not ((targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") and Settings_GetBool(isj)) or targetinfo.luavalue1 == 255)
 		end
 	end
 	
@@ -263,7 +276,7 @@ function CanKill(userinfo,targetinfo)
 		if (targetinfo.IsImpostor) then
 			return false
 		else
-			return not (targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") or targetinfo.luavalue1 == 255)
+			return not ((targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") and Settings_GetBool(isj)) or targetinfo.luavalue1 == 255)
 		end
 	end
 	
@@ -284,6 +297,24 @@ function CanKill(userinfo,targetinfo)
 	end
 	
 	return false
+end
+
+
+function OnVote(voter,voteid,isskip)
+	if (isskip) then
+		return -1 --skipping should skip
+	end
+	if (voter.role == Game_GetRoleIDFromUUID("roles_Assassin")) then
+		voter.luavalue2 = voter.luavalue2 - 1
+		Game_UpdatePlayerInfo(voter)
+		if (voter.luavalue2 == 0) then
+			Game_SetRoles({voter},{"None"})
+		end
+		OnExile(Game_GetPlayerFromID(voteid)) --call the exile logic on the person killed
+		Game_KillPlayer(Game_GetPlayerFromID(voteid),false)
+		return -1
+	end
+	return voteid
 end
 
 function OnDeath(victim,reason)
@@ -430,6 +461,9 @@ function DecideRolesFunction(playerinfos)
 		for i=1, 2 do
 		table.insert(RolesToGive,"roles_Twin")
 		end
+	end
+	for i=1, Settings_GetNumber(11) do
+		table.insert(RolesToGive,"roles_Assassin")
 	end
 	local Selected = {}
 	local SelectedRoles = {}

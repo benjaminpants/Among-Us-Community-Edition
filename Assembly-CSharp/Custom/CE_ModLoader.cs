@@ -128,7 +128,7 @@ public static class CE_ModLoader
         }
         foreach (CE_PlayerColor pc in Palette.PLColors)
         {
-            ColorString += (pc.Name + pc.Base.ToString());
+            ColorString += (pc.Name + pc.Base.ToString() + pc.Shadow.ToString());
         }
         ColorHash = VersionShower.GetDeterministicHashCode(ColorString);
         VersionShower.ColorID = VersionShower.CreateIDFromInt(ColorHash,7);

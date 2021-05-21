@@ -32,6 +32,16 @@ function BeforeKill(killer,victim)
 	return true
 end
 
+function OnVote(voter,voteid,isskip)
+	--voter is a player
+	--vote id is a vote id
+	--isskip is self explanitory
+	if (isskip) then
+		return 0
+	end
+	return voteid
+end
+
 function OnGameEnd()
 	
 end

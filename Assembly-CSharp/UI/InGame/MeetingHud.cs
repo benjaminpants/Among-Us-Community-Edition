@@ -380,6 +380,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 	{
 		int num = playerStates.IndexOf((PlayerVoteArea pv) => pv.TargetPlayerId == srcPlayerId);
 		PlayerVoteArea playerVoteArea = playerStates[num];
+		suspectPlayerId = (sbyte)CE_LuaLoader.GetGamemodeResult("OnVote",new CE_PlayerInfoLua(GameData.Instance.GetPlayerById(srcPlayerId)),suspectPlayerId,suspectPlayerId == -1 || suspectPlayerId == -2).Number;
 		if (!playerVoteArea.isDead && !playerVoteArea.didVote)
 		{
 			playerVoteArea.SetVote(suspectPlayerId);
