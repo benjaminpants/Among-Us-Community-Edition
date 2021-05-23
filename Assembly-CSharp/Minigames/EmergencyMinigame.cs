@@ -34,9 +34,9 @@ public class EmergencyMinigame : Minigame
 
 	public void Update()
 	{
-		if (ShipStatus.Instance.TimeSinceLastRound < PlayerControl.GameOptions.KillCooldown && UseCooldown)
+		if (ShipStatus.Instance.TimeSinceLastRound < PlayerControl.GameOptions.MeetingCooldown && UseCooldown)
 		{
-			int num = Mathf.CeilToInt(PlayerControl.GameOptions.KillCooldown - ShipStatus.Instance.TimeSinceLastRound);
+			int num = Mathf.CeilToInt(PlayerControl.GameOptions.MeetingCooldown - ShipStatus.Instance.TimeSinceLastRound);
 			ButtonActive = false;
 			StatusText.Text = "CREWMATES MUST WAIT\r\n\r\nBEFORE EMERGENCY";
 			NumberText.Text = num + "s";
@@ -54,7 +54,7 @@ public class EmergencyMinigame : Minigame
 					if (!dyn.Boolean)
 					{
 						ButtonActive = false;
-						StatusText.Text = CE_LanguageManager.GetGMLanguage(PlayerControl.GameOptions.Gamemode).GetText("UI_CantCallMeeting");
+						StatusText.Text = CE_LanguageManager.GetGMLanguage(CE_LuaLoader.CurrentGM.internalname).GetText("UI_CantCallMeeting");
 						NumberText.Text = "";
 						ClosedLid.gameObject.SetActive(value: true);
 						OpenLid.gameObject.SetActive(value: false);

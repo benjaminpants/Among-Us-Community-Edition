@@ -57,7 +57,7 @@ public class JoinGameButton : MonoBehaviour, IConnectButton
 			}
 			else
 			{
-				AmongUsClient.Instance.SetEndpoint(netAddress, 22023);
+				AmongUsClient.Instance.SetEndpoint(ServerManager.LanGameIP == "DEFAULT" ? netAddress : ServerManager.LanGameIP, (ushort)ServerManager.LanGamePort);
 				AmongUsClient.Instance.GameId = 32;
 				AmongUsClient.Instance.GameMode = GameModes.LocalGame;
 				AmongUsClient.Instance.MainMenuScene = "MatchMaking";

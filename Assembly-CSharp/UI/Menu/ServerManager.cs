@@ -15,6 +15,10 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 
 	public const string DefaultOnlineServer = "no";
 
+    public static int LanGamePort = 22023;
+
+	public static string LanGameIP = "DEFAULT";
+
 	public static readonly ServerInfo DefaultServer;
 
 	public ServerInfo[] availableServers;
@@ -45,6 +49,32 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 			Default = true,
 			Icon = "globe.png"
 		};
+		/*if (!File.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "landata.txt")))
+        {
+			try
+			{
+				File.Create(Path.Combine(CE_Extensions.GetGameDirectory(), "landata.txt")).Close();
+				File.WriteAllText(Path.Combine(CE_Extensions.GetGameDirectory(), "landata.txt"), LanGameIP + "\n" + LanGamePort);
+			}
+			catch
+            {
+				Debug.LogError("Failed to create landata.txt!");
+            }
+		}
+		else
+        {
+			string[] lines = File.ReadAllLines(Path.Combine(CE_Extensions.GetGameDirectory(), "landata.txt"));
+			try
+            {
+                LanGamePort = Int32.Parse(lines[1]);
+				LanGameIP = lines[0];
+
+			}
+			catch
+            {
+				
+            }
+        }*/
 		try
         {
             if (!File.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "servers.json")))

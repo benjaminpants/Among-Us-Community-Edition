@@ -53,6 +53,8 @@ public class GameOptionsData : IBytesSerializable
 
 	public bool ShowOtherVision;
 
+	public float MeetingCooldown;
+
 	private static readonly int[] RecommendedKillCooldown;
 
 	private static readonly int[] RecommendedImpostors;
@@ -345,11 +347,12 @@ public class GameOptionsData : IBytesSerializable
 		Brightness = 70;
 		CanSeeOtherImps = true;
 		MapId = 0;
+		MeetingCooldown = RecommendedKillCooldown[numPlayers];
 	}
 
 	public void Serialize(BinaryWriter writer)
 	{
-		byte value = 1;
+		byte value = 2;
 		writer.Write(value);
 		writer.Write((byte)MaxPlayers);
 		writer.Write((uint)Keywords);
@@ -388,16 +391,20 @@ public class GameOptionsData : IBytesSerializable
 		writer.Write(GhostsSeeRoles);
 		writer.Write(VisionInVents);
 		WriteByteList(writer,Plugins);
-		writer.Write(Brightness);
-		WriteCustomSettings(writer,CE_LuaLoader.CurrentSettings);
+        writer.Write(Brightness);
 		writer.Write(CanSeeOtherImps);
+		writer.Write(MeetingCooldown);
+		WriteCustomSettings(writer,CE_LuaLoader.CurrentSettings);
 	}
 
 	public static GameOptionsData Deserialize(BinaryReader reader)
 	{
 		try
 		{
-			reader.ReadByte();
+			if (reader.ReadByte() != 2)
+            {
+				return new GameOptionsData();
+            }
 			GameOptionsData gamedat = new GameOptionsData
 			{
 				MaxPlayers = reader.ReadByte(),
@@ -438,8 +445,9 @@ public class GameOptionsData : IBytesSerializable
 				VisionInVents = reader.ReadBoolean(),
 				Plugins = ReadByteList(reader),
 				Brightness = reader.ReadByte(),
-				CustomSettingsRep = ReadCustomSettings(reader),
-				CanSeeOtherImps = reader.ReadBoolean()
+				CanSeeOtherImps = reader.ReadBoolean(),
+				MeetingCooldown = reader.ReadSingle(),
+				CustomSettingsRep = ReadCustomSettings(reader)
 			};
             gamedat.InterpretSettings();
 			
@@ -566,6 +574,7 @@ public class GameOptionsData : IBytesSerializable
 			stringBuilder.AppendLine("Plugins: " + pluginlist);
             stringBuilder.AppendLine("Brightness: " + Brightness);
 			stringBuilder.AppendLine("Impostors Know Eachother: " + CanSeeOtherImps);
+			stringBuilder.AppendLine("Meeting Cooldown: " + MeetingCooldown);
 			string settingstring = string.Empty;
 			if (CE_LuaLoader.CurrentGMLua)
 			{
@@ -670,6 +679,7 @@ public class GameOptionsData : IBytesSerializable
 		}
 		MapNames = names.ToArray();
 		CanSeeOtherImps = true;
+		MeetingCooldown = 15f;
 	}
 
 	static GameOptionsData()

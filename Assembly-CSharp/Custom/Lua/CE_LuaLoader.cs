@@ -27,6 +27,7 @@ public static class CE_LuaLoader
 
     public static bool CurrentGMLua => (GameOptionsData.GamemodesAreLua[PlayerControl.GameOptions.Gamemode] && (!DestroyableSingleton<TutorialManager>.InstanceExists)); //this should always be true outside of freeplay if it isn't i will ask how the fuck because there are legit 0 non-lua gamemodes now
 
+	public static CE_GamemodeInfo CurrentGM => GamemodeInfos[PlayerControl.GameOptions.Gamemode];
 	public static List<CE_CustomLuaSetting> CurrentSettings => CustomGMSettings.GetValueOrDefault(GamemodeInfos[PlayerControl.GameOptions.Gamemode]);
 
 
@@ -134,14 +135,14 @@ public static class CE_LuaLoader
 				script.DoString(code);
 				Table table = script.Call(script.Globals["InitializeGamemode"]).Table;
 				byte b = (byte)table.Get(2).Number;
-				CE_LanguageManager.AddGMLanguage((byte)(b - 1), TempLang);
+				CE_LanguageManager.AddGMLanguage(CurrentGMName, TempLang);
 				string gamemodename = table.Get(1).String;
 				gamemodename = new string((from c in gamemodename
 										   where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
 										   select c
 				).ToArray()); //Removes non letter or number characters from Gamemode name
 				Debug.Log("Loaded Gamemode: " + gamemodename);
-				CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b);
+				CE_GamemodeInfo value = new CE_GamemodeInfo(gamemodename, script, b,CurrentGMName);
 				CustomGMSettings.Add(value, TempSetting);
 				GamemodeInfos.Add(value);
 			}

@@ -19,6 +19,10 @@ internal class FollowerCamera : MonoBehaviour
 		if ((bool)Target && !Locked)
 		{
 			base.transform.position = Vector3.Lerp(base.transform.position, Target.transform.position + (Vector3)Offset, 5f * Time.deltaTime);
+			if (LobbyBehaviour.Instance == null)
+            {
+				return;
+            }
 			if (shakeAmount > 0f)
 			{
 				float num = Mathf.PerlinNoise(0.5f, Time.time * shakePeriod) * 2f - 1f;

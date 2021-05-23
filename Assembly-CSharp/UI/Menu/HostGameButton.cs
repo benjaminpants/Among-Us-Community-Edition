@@ -82,7 +82,7 @@ public class HostGameButton : MonoBehaviour, IConnectButton
 			{
 			case GameModes.LocalGame:
 				DestroyableSingleton<InnerNetServer>.Instance.StartAsServer();
-				AmongUsClient.Instance.SetEndpoint("127.0.0.1", 22023);
+				AmongUsClient.Instance.SetEndpoint("127.0.0.1", (ushort)ServerManager.LanGamePort);
 				AmongUsClient.Instance.MainMenuScene = "MatchMaking";
 				break;
 			case GameModes.OnlineGame:

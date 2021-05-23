@@ -17,6 +17,13 @@ public static class ResolutionManager
 		QualitySettings.vSyncCount = (SaveManager.EnableVSync ? 1 : 0);
 	}
 
+
+
+	public static void SetFPSCap(int CAP)
+    {
+		Application.targetFrameRate = CAP > 300 ? int.MaxValue : CAP;
+	}
+
 	public static void ToggleFullscreen()
 	{
 		bool flag = !Screen.fullScreen;

@@ -4,6 +4,8 @@ public class CE_GamemodeInfo
 {
     public string name;
 
+    public string internalname;
+
     public Script script;
 
     public byte id;
@@ -15,11 +17,12 @@ public class CE_GamemodeInfo
         id = 0;
     }
 
-    public CE_GamemodeInfo(string nme, Script scr, byte id)
+    public CE_GamemodeInfo(string nme, Script scr, byte id, string intr)
     {
         name = nme;
         script = scr;
         this.id = id;
+        internalname = intr;
     }
 }
 

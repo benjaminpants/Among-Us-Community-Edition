@@ -159,7 +159,8 @@ public class PlayerVoteArea : MonoBehaviour
 		didVote = true;
 		votedFor = suspectIdx;
 		Flag.enabled = true;
-		Flag.transform.localScale = new Vector3(0.5f,1f,1f);
+		Flag.transform.localScale = new Vector3(0f,0f,0f);
+		StartCoroutine(Effects.BloopHalf(0f, Flag.transform, 2f));
 	}
 
 	public void UnsetVote()

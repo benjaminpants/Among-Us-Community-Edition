@@ -186,6 +186,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 				gameOptions.NumEmergencyMeetings = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumEmergencyMeetings, 1f, 0f, float.MaxValue, "# Emergency Meetings", "", false, ReadOnly);
 				gameOptions.AnonVotes = CE_CommonUI.CreateBoolButton_GS(gameOptions.AnonVotes, "Anonymous Votes", ReadOnly);
 				gameOptions.ConfirmEject = CE_CommonUI.CreateBoolButton_GS(gameOptions.ConfirmEject, "Confirm Ejects", ReadOnly);
+				gameOptions.MeetingCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.MeetingCooldown, 1.25f, 0f, 120f, "Meeting Cooldown", "s", decmialView: true, ReadOnly);
 			}
 		}
 	}

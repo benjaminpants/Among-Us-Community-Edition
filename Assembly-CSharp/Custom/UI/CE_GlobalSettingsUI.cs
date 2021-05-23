@@ -68,7 +68,8 @@ public class CE_GlobalSettingsUI : MonoBehaviour
         SaveManager.UseLegacyVoteIcons = CE_CommonUI.CreateBoolButton(SaveManager.UseLegacyVoteIcons, "Use Legacy Vote Icons");
         SaveManager.CameraRes = (int)CE_CommonUI.CreateValuePicker(SaveManager.CameraRes, 32f, 32f, 1024f, "Camera Resolution", "p");
         SaveManager.LoadSkins = CE_CommonUI.CreateBoolButton(SaveManager.LoadSkins, "Load Custom Skins");
-		SaveManager.FastKillAnims = CE_CommonUI.CreateBoolButton(SaveManager.FastKillAnims, "Fast Kill Animations");
+        SaveManager.FastKillAnims = CE_CommonUI.CreateBoolButton(SaveManager.FastKillAnims, "Fast Kill Animations");
+		SaveManager.FpsCap = (int)CE_CommonUI.CreateValuePicker(SaveManager.FpsCap, 10f, 10f, 310f, "FPS Cap","");
 		GUILayout.FlexibleSpace();
 		GUILayout.EndScrollView();
 		GUI.color = Color.black;

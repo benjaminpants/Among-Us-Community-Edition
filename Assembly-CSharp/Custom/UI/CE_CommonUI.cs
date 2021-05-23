@@ -908,7 +908,7 @@ public class CE_CommonUI
 				else value = min;
 			}
 			HoverSoundTrigger();
-			CE_CustomUIElements.Label((decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
+			CE_CustomUIElements.Label(title == "FPS Cap" ? value == max ? "Uncapped" : (decmialView ? $"{value:0.##}" : value.ToString()) : (decmialView ? $"{value:0.##}" : value.ToString()) + subString, UpDownSettingLabel());
 			if (CE_CustomUIElements.Button("+", UpDownSettingButtons()))
 			{
 				ClickSoundTrigger();

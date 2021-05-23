@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 static class CE_LanguageManager
 {
     private static Dictionary<string, CE_Language> BaseLanguages = new Dictionary<string, CE_Language>();
-    private static Dictionary<byte, CE_Language> GMLanguages = new Dictionary<byte, CE_Language>();
-    public static bool AddGMLanguage(byte key, CE_Language lang)
+    private static Dictionary<string, CE_Language> GMLanguages = new Dictionary<string, CE_Language>();
+    public static bool AddGMLanguage(string key, CE_Language lang)
     {
         return GMLanguages.TryAdd(key, lang);
     }
 
-    public static CE_Language GetGMLanguage(byte key)
+    public static CE_Language GetGMLanguage(string key)
     {
         CE_Language lang;
         if (GMLanguages.TryGetValue(key, out lang))

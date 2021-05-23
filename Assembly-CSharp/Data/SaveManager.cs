@@ -578,17 +578,37 @@ public static class SaveManager
 
 	private static bool fastanims;
 	public static bool FastKillAnims
+    {
+        get
+        {
+            LoadPlayerPrefs();
+            return fastanims;
+        }
+        set
+        {
+            if (fastanims != value)
+            {
+                fastanims = value;
+                SavePlayerPrefs();
+            }
+        }
+    }
+
+
+	private static int FPSCAP;
+	public static int FpsCap
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return fastanims;
+			return FPSCAP;
 		}
 		set
 		{
-			if (fastanims != value)
+			if (FPSCAP != value)
 			{
-				fastanims = value;
+				ResolutionManager.SetFPSCap(FPSCAP);
+				FPSCAP = value;
 				SavePlayerPrefs();
 			}
 		}
@@ -829,10 +849,12 @@ public static class SaveManager
             TryGetBool(array, 24, out usehdshadows,true);
 			TryGetBool(array, 25, out LSkins,true);
 			TryGetBool(array, 26, out fastanims, false);
-			if (CamRes == 0)
+			TryGetInt(array,27,out FPSCAP,30);
+            if (CamRes == 0)
             {
-				CamRes = 256;
+                CamRes = 256;
             }
+			ResolutionManager.SetFPSCap(FPSCAP);
 		}
 	}
 
@@ -867,6 +889,7 @@ public static class SaveManager
 		options.Add(usehdshadows);
 		options.Add(LSkins);
 		options.Add(fastanims);
+		options.Add(FPSCAP);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 
@@ -897,9 +920,9 @@ public static class SaveManager
 		}
 	}
 
-	private static void TryGetInt(string[] parts, int index, out int value)
+	private static void TryGetInt(string[] parts, int index, out int value, int def = 0)
 	{
-		value = 0;
+		value = def;
 		if (parts.Length > index)
 		{
 			int.TryParse(parts[index], out value);

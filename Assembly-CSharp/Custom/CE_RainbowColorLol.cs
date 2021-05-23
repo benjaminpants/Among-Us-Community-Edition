@@ -8,6 +8,8 @@ public class CE_RainbowColorLol : MonoBehaviour
 {
     public Renderer MyRend;
 
+    public float colmul;
+
     void Start()
     {
         MyRend = transform.gameObject.GetComponent<Renderer>();
@@ -21,8 +23,8 @@ public class CE_RainbowColorLol : MonoBehaviour
 
     void Update()
     {
-        MyRend.material.SetColor("_BodyColor", Color.HSVToRGB(Mathf.Repeat(Time.time / 10, 1f), 1f, 1f));
-        MyRend.material.SetColor("_BackColor", Color.HSVToRGB(Mathf.Repeat(Time.time / 10, 1f), 1f, 1f) * Color.gray);
+        MyRend.material.SetColor("_BodyColor", Color.Lerp(Color.HSVToRGB(Mathf.Repeat(Time.time / 10, 1f), 1f, 1f),Palette.Brown,colmul));
+        MyRend.material.SetColor("_BackColor", Color.Lerp(Color.HSVToRGB(Mathf.Repeat(Time.time / 10, 1f), 1f, 1f) * Color.gray,Palette.Brown,colmul));
     }
 
 }

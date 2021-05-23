@@ -10,9 +10,13 @@ public class PingTracker : MonoBehaviour
 		{
 			if (AmongUsClient.Instance.GameMode == GameModes.FreePlay)
 			{
-				base.gameObject.SetActive(value: false);
+				text.Text = "> Among Us: CE <\n> " + VersionShower.BuildID + " <\n[FFFF00FF]> Alpha Build <[]";
+				//text.Text = ((int)(1.0f / Time.smoothDeltaTime)).ToString();
 			}
-			text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> " + VersionShower.BuildID + " <\n[FFFF00FF]> Alpha Build <[]";
+			else
+			{
+				text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> " + VersionShower.BuildID + " <\n[FFFF00FF]> Alpha Build <[]";
+			}
 		}
 	}
 }
