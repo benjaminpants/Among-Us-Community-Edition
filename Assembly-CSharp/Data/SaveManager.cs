@@ -597,18 +597,37 @@ public static class SaveManager
 
 	private static int FPSCAP;
 	public static int FpsCap
+    {
+        get
+        {
+            LoadPlayerPrefs();
+            return FPSCAP;
+        }
+        set
+        {
+            if (FPSCAP != value)
+            {
+                ResolutionManager.SetFPSCap(FPSCAP);
+                FPSCAP = value;
+                SavePlayerPrefs();
+            }
+        }
+    }
+
+	private static int MaxMSG;
+	public static int MaxMessages
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return FPSCAP;
+			return MaxMSG;
 		}
 		set
 		{
-			if (FPSCAP != value)
+			if (MaxMSG != value)
 			{
-				ResolutionManager.SetFPSCap(FPSCAP);
-				FPSCAP = value;
+				//ChatController.ActualMaxChat = MaxMSG;
+				MaxMSG = value;
 				SavePlayerPrefs();
 			}
 		}
@@ -849,8 +868,9 @@ public static class SaveManager
             TryGetBool(array, 24, out usehdshadows,true);
 			TryGetBool(array, 25, out LSkins,true);
 			TryGetBool(array, 26, out fastanims, false);
-			TryGetInt(array,27,out FPSCAP,30);
-            if (CamRes == 0)
+            TryGetInt(array, 27, out FPSCAP, 30);
+			TryGetInt(array, 28, out MaxMSG, 15);
+			if (CamRes == 0)
             {
                 CamRes = 256;
             }
@@ -890,6 +910,7 @@ public static class SaveManager
 		options.Add(LSkins);
 		options.Add(fastanims);
 		options.Add(FPSCAP);
+		options.Add(MaxMSG);
 		File.WriteAllText(Path.Combine(Application.persistentDataPath, "playerPrefs_ce"), string.Join(",", options));
 	}
 

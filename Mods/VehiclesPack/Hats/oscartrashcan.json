@@ -1,14 +1,15 @@
 {
-  "ID": "Dondewhat",
-  "Name": "Dondewhat",
-  "StoreName": "Dondewhat",
-  "HatInFrontGlobally": false,
-  "NoHatBobbingGlobally": false,
-  "UsePointFilteringGlobally": true,
-  "UseColorFilteringGlobally": false,
+  "ID": "oscartrashcan",
+  "Name": "oscartrashcan",
+  "StoreName": "oscartrashcan",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": true,
   "RelatedSkin": "",
   "RelatedHat": "",
   "UsePercentageBasedPivot": true,
+  "IsHidden": false,
   "FrameList": [
     {
       "Position": {
@@ -16,18 +17,18 @@
         "y": 0.0
       },
       "Size": {
-        "x": 22.0,
-        "y": 60.0
+        "x": 200.0,
+        "y": 200.0
       },
       "Offset": {
-        "x": 0.249999985,
-        "y": 0.349999964
+        "x": 0.460,
+        "y": 0.82575
       },
       "Name": "Normal",
-      "SpritePath": "Dondewhat.png",
+      "SpritePath": "oscartrashcan.png",
       "Hat_NoBobbing": false,
-      "InFront": true,
-      "UsePointFiltering": true,
+      "InFront": false,
+      "UsePointFiltering": false,
       "UseColorFiltering": false
     },
     {
@@ -36,18 +37,18 @@
         "y": 0.0
       },
       "Size": {
-        "x": 85.0,
-        "y": 36.0
+        "x": 118.0,
+        "y": 134.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "Dondewhat_broken.png",
+      "SpritePath": "oscartrashcan_floor.png",
       "Hat_NoBobbing": false,
       "InFront": false,
-      "UsePointFiltering": true,
+      "UsePointFiltering": false,
       "UseColorFiltering": false
     }
   ]

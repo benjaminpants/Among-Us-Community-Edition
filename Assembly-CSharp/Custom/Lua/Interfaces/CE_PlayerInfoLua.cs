@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using MoonSharp.Interpreter;
 
 [MoonSharpUserData]
@@ -10,6 +11,9 @@ public class CE_PlayerInfoLua
 	public static explicit operator CE_PlayerInfoLua(PlayerControl b) => new CE_PlayerInfoLua(b.Data);
 	[MoonSharpHidden]
 	public GameData.PlayerInfo refplayer;
+
+	[MoonSharpHidden]
+	public static GameData.PlayerInfo ShitHolder = new GameData.PlayerInfo(0);
 
 	public byte PlayerId
 	{
@@ -91,6 +95,27 @@ public class CE_PlayerInfoLua
 
 	public CE_PlayerInfoLua(GameData.PlayerInfo plf, bool revealimp = true)
 	{
+		if (plf == null)
+        {
+			PlayerId = 0;
+			PlayerName = "NULL";
+			ColorId = 0;
+			HatId = 0;
+			SkinId = 0;
+			Disconnected = false;
+			Tasks = new List<GameData.TaskInfo>();
+			IsDead = true;
+			IsImpostor = false;
+			role = 0;
+			luavalue1 = 0;
+			luavalue2 = 0;
+			luavalue3 = 0;
+			PosX = 0f;
+			PosY = 0f;
+			refplayer = ShitHolder;
+			Debug.LogWarning("PL is null! Using Placeholder refplayer... hope shitholder doesn't actually get edited...");
+			return;
+        }
 		PlayerId = plf.PlayerId;
 		PlayerName = plf.PlayerName;
 		ColorId = plf.ColorId;

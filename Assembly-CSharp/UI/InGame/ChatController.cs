@@ -47,6 +47,7 @@ public class ChatController : MonoBehaviour
 
 	public bool IsOpen => Content.activeInHierarchy;
 
+
 	public void Toggle()
 	{
 		if (!animating)
@@ -221,7 +222,7 @@ public class ChatController : MonoBehaviour
 		{
 			return;
 		}
-		if (bubbles.Count == MaxChat)
+		if (bubbles.Count == SaveManager.MaxMessages)
 		{
 			ChatBubble chatBubble = bubbles[0];
 			bubbles.RemoveAt(0);

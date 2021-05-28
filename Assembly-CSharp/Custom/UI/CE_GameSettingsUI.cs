@@ -100,7 +100,7 @@ public class CE_GameSettingsUI : MonoBehaviour
         {
             using (new GUILayout.VerticalScope(CE_CommonUI.GameDropDownBGStyle()))
             {
-                gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumImpostors, 1f, 1f, 4f, "# Impostors", "", false, ReadOnly);
+                gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumImpostors, 1f, 0f, 4f, "# Impostors", "", false, ReadOnly);
                 gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, ReadOnly_Freeplay);
                 gameOptions.KillCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, ReadOnly);
                 gameOptions.KillDistance = CE_CommonUI.CreateStringPicker_GS(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", ReadOnly);
