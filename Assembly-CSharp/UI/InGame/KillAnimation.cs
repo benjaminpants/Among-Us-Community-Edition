@@ -37,14 +37,17 @@ public class KillAnimation : MonoBehaviour
             sourceAnim.Play(sourcePhys.IdleAnim);
 			SetMovement(source, canMove: true);
 		}
-		DeadBody deadBody = Object.Instantiate(bodyPrefab);
-		Vector3 position = target.transform.position + BodyOffset;
-		position.z = position.y / 1000f;
-		deadBody.transform.position = position;
-		deadBody.ParentId = target.PlayerId;
-		if (!iszomb)
+		if (!(bool)MeetingHud.Instance)
 		{
-			target.SetPlayerMaterialColors(deadBody.GetComponent<Renderer>());
+			DeadBody deadBody = Object.Instantiate(bodyPrefab);
+			Vector3 position = target.transform.position + BodyOffset;
+			position.z = position.y / 1000f;
+			deadBody.transform.position = position;
+			deadBody.ParentId = target.PlayerId;
+			if (!iszomb)
+			{
+				target.SetPlayerMaterialColors(deadBody.GetComponent<Renderer>());
+			}
 		}
 		SetMovement(target, canMove: true);
 		if (isParticipant)

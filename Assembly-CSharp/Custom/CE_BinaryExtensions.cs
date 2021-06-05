@@ -22,15 +22,30 @@ public static class CE_BinaryExtensions
 
     public static Dictionary<string, uint> ReadStringUIntDictionary(BinaryReader reader)
     {
-        int count = reader.ReadInt32();
+        int count = 0;
+        try
+        {
+            count = reader.ReadInt32();
+        }
+        catch
+        {
+            return new Dictionary<string, uint>();
+        }
 
         Dictionary<string, uint> dict = new Dictionary<string, uint>();
 
         for (int i = 0; i < count; i++)
         {
-            if (!dict.TryAdd(reader.ReadString(), reader.ReadUInt32()))
+            try
             {
-                UnityEngine.Debug.LogWarning("Failed to add value, possibly duplicate or broken!");
+                if (!dict.TryAdd(reader.ReadString(), reader.ReadUInt32()))
+                {
+                    UnityEngine.Debug.LogWarning("Failed to add value, possibly duplicate or broken!");
+                }
+            }
+            catch
+            {
+                UnityEngine.Debug.LogWarning("Reading failed!");
             }
         }
 

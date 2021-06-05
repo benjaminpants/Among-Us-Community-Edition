@@ -158,13 +158,19 @@ public class PlayerPhysics : InnerNetObject
 			}
 			if (!data.IsDead)
 			{
+				if (currentAnimation != RunAnim)
+				{
+					Skin.animator.Speed = 1f;
+				}
 				if (velocity.sqrMagnitude >= 0.05f)
 				{
-					if (currentAnimation != RunAnim)
-					{
-						Animator.Play(RunAnim, PlayerControl.GameOptions.PlayerSpeedMod);
+                    if (currentAnimation != RunAnim)
+                    {
+                        Animator.Play(RunAnim, 1f);
 						Skin.SetRun();
 					}
+					Animator.Speed = (PlayerControl.GameOptions.PlayerSpeedMod * (body.velocity.magnitude / TrueSpeed));
+					Skin.animator.Speed = Animator.Speed;
 					if (velocity.x < -0.01f)
 					{
 						rend.flipX = true;

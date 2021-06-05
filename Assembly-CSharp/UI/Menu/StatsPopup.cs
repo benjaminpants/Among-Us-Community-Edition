@@ -58,7 +58,37 @@ public class StatsPopup : MonoBehaviour
             }
             Strings.Add("Times ejected as " + role.RoleName.AOrAn(false) + " " + role.RoleName + ": \t" + kvp.Value);
         }
-        
+
+        foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.RoleKills)
+        {
+            if (kvp.Key == "Crewmate" || kvp.Key == "Impostor") //not proper UUIDs
+            {
+                Strings.Add(kvp.Key + " Kills: \t" + kvp.Value);
+                continue;
+            }
+            CE_Role role = CE_RoleManager.GetActualRoleFromUUID(kvp.Key);
+            if (role == null)
+            {
+                continue;
+            }
+            Strings.Add(role.RoleName + " Kills: \t" + kvp.Value);
+        }
+
+        foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.AbilityUses)
+        {
+            if (kvp.Key == "Crewmate" || kvp.Key == "Impostor") //not proper UUIDs
+            {
+                Strings.Add(kvp.Key + " Ability Uses: \t" + kvp.Value);
+                continue;
+            }
+            CE_Role role = CE_RoleManager.GetActualRoleFromUUID(kvp.Key);
+            if (role == null)
+            {
+                continue;
+            }
+            Strings.Add(role.RoleName + " Ability Uses: \t" + kvp.Value);
+        }
+
 
 
 

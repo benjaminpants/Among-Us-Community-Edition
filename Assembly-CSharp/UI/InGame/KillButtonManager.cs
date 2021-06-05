@@ -32,19 +32,42 @@ public class KillButtonManager : MonoBehaviour
 		{
 			return;
 		}
-		if (CE_LuaLoader.CurrentGMLua)
-		{
-			DynValue dyn = CE_LuaLoader.GetGamemodeResult("BeforeKill", new CE_PlayerInfoLua(PlayerControl.LocalPlayer.Data), new CE_PlayerInfoLua(CurrentTarget.Data));
-			if (dyn.Boolean)
-			{
-				PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
-			}
-			PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
-		}
-		else
+        if (CE_LuaLoader.CurrentGMLua)
         {
-			PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
-		}
+            DynValue dyn = CE_LuaLoader.GetGamemodeResult("BeforeKill", new CE_PlayerInfoLua(PlayerControl.LocalPlayer.Data), new CE_PlayerInfoLua(CurrentTarget.Data));
+            if (dyn.Boolean)
+            {
+                PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
+                CE_Role role = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
+                if (role != CE_RoleManager.Roles[0] && PlayerControl.LocalPlayer.Data.role != 0)
+                {
+
+                    StatsManager.Instance.AddKill(role.UUID);
+                }
+                else
+                {
+                    StatsManager.Instance.AddKill(PlayerControl.LocalPlayer.Data.IsImpostor ? "Impostor" : "Crewmate");
+                }
+            }
+            else
+            {
+                CE_Role role = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
+                if (role != CE_RoleManager.Roles[0] && PlayerControl.LocalPlayer.Data.role != 0)
+                {
+
+                    StatsManager.Instance.AddAbilityUse(role.UUID);
+                }
+                else
+                {
+                    StatsManager.Instance.AddAbilityUse(PlayerControl.LocalPlayer.Data.IsImpostor ? "Impostor" : "Crewmate");
+                }
+            }
+        }
+        else
+        {
+            PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
+        }
+		PlayerControl.LocalPlayer.SetKillTimer(PlayerControl.GameOptions.KillCooldown);
 		SetTarget(null);
 	}
 

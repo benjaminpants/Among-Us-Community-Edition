@@ -68,9 +68,26 @@ public class PlayerVoteArea : MonoBehaviour
 		this.isDead = isDead;
 		this.didReport = didReport;
 		Megaphone.enabled = didReport;
-		Overlay.gameObject.SetActive(value: false);
+		Overlay.gameObject.SetActive(value: isDead);
 		Overlay.transform.GetChild(0).gameObject.SetActive(isDead);
+
+		if (MeetingHud.Instance.DidIntro)
+		{
+			StartCoroutine(CoAnimateOverlay());
+		}
 	}
+
+	public void UpdateNameColor()
+    {
+		GameData.PlayerInfo playerInfo = GameData.Instance.GetPlayerById((byte)TargetPlayerId);
+		bool flag = (((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanSeeImps) && playerInfo.IsImpostor) || (PlayerControl.LocalPlayer.Data.IsDead && playerInfo.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles);
+		CE_Role playerrole = CE_RoleManager.GetRoleFromID(playerInfo.role);
+		NameText.Color = ((flag && (PlayerControl.GameOptions.CanSeeOtherImps || playerInfo == PlayerControl.LocalPlayer.Data)) ? Palette.ImpostorRed : Color.white);
+		if ((playerrole.CanSee(PlayerControl.LocalPlayer.Data) || playerInfo == PlayerControl.LocalPlayer.Data) && playerInfo.role != 0 && !flag)
+		{
+			NameText.Color = playerrole.RoleColor;
+		}
+    }
 
 	public void SetDisabled()
 	{
@@ -217,8 +234,7 @@ public class PlayerVoteArea : MonoBehaviour
 		didReport = (b & 0x20) > 0;
         Flag.enabled = didVote && !resultsShowing;
 		Flag.transform.localScale = new Vector3(0.5f, 1f, 1f);
-		Overlay.gameObject.SetActive(isDead);
-		Megaphone.enabled = didReport;
+		SetDead(false, didReport, isDead);
 	}
 
 	public byte GetState()
@@ -231,10 +247,14 @@ public class PlayerVoteArea : MonoBehaviour
 		if (PlayerIcon != null)
         {
 			PlayerControl playerControl = PlayerControl.AllPlayerControls.FirstOrDefault((PlayerControl p) => p.PlayerId == TargetPlayerId);
-			if (playerControl == null) return;
+			if (playerControl == null)
+			{
+				PlayerIcon.transform.localScale = new Vector3(0.5f, 1f, 1f);
+				return;
+			}
 			var hatID = playerControl.Data.HatId;
 			HatBehaviour Hat = DestroyableSingleton<HatManager>.Instance.GetHatById(playerControl.Data.HatId);
-
+			
 			if (!IconsLoaded)
             {
 				PlayerHat = CreateNewSprite(PlayerIcon);

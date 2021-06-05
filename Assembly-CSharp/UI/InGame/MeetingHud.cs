@@ -88,6 +88,8 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 
 	public List<byte> ExtraVotes;
 
+	public bool DidIntro = false;
+
 	private void Awake()
 	{
 		if (!Instance)
@@ -212,6 +214,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		{
 			StartCoroutine(playerStates[i].CoAnimateOverlay());
 		}
+		DidIntro = true;
 	}
 
 	public void OnEnable()
@@ -607,6 +610,10 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		if (PlayerControl.LocalPlayer.Data.IsDead && !amDead)
 		{
 			SetForegroundForDead();
+			foreach (PlayerVoteArea voteareas in playerStates)
+            {
+				voteareas.UpdateNameColor();
+            }
 		}
 		CE_UpdateButtons();
 		if (!AmongUsClient.Instance.AmHost)

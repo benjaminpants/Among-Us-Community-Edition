@@ -48,13 +48,14 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 		}
 		if ((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanDo(CE_Specials.Kill)) && CE_Input.CE_GetKeyDown(KeyCode.Q))
 		{
-			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKeybindKill();
+			DestroyableSingleton<HudManager>.Instance.KillButton.PerformKeybindKill(); //THIS IS DUMB BUT APPARENTLY ITS NECESSARY????
 		}
 		if (CE_Input.CE_GetKeyDown(KeyCode.Escape))
 		{
 			CE_Input.EscapeFunctionality();
 		}
 		del.Normalize();
+		del *= (Input.GetKey(KeyCode.LeftShift) ? 0.5f : 1f);
 	}
 
 }

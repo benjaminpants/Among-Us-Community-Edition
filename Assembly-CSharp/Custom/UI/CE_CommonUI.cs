@@ -501,6 +501,7 @@ public class CE_CommonUI
 			if (!(localPlayer == null))
 			{
 				localPlayer.RpcSyncSettings(PlayerControl.GameOptions);
+				GameSettingsChanged = false; //reset this
 			}
 		}
 	}

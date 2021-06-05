@@ -30,6 +30,37 @@ public class StatsManager
 
     private Dictionary<string, uint> roleejects = new Dictionary<string, uint>();
 
+    private Dictionary<string, uint> rolekills = new Dictionary<string, uint>();
+
+	private Dictionary<string, uint> roleabilities = new Dictionary<string, uint>();
+
+
+
+    public void AddKill(string rolename)
+    {
+        if (rolekills.ContainsKey(rolename))
+        {
+            rolekills[rolename]++;
+        }
+        else
+        {
+            rolekills.Add(rolename, 1);
+        }
+        SaveStats();
+    }
+
+	public void AddAbilityUse(string rolename)
+	{
+		if (roleabilities.ContainsKey(rolename))
+		{
+			roleabilities[rolename]++;
+		}
+		else
+		{
+			roleabilities.Add(rolename, 1);
+		}
+		SaveStats();
+	}
 
 	public void AddGameStart(string gamemodename)
 	{
@@ -137,6 +168,36 @@ public class StatsManager
             SaveStats();
         }
     }
+
+	public Dictionary<string, uint> AbilityUses
+    {
+        get
+        {
+            LoadStats();
+            return roleabilities;
+        }
+        set
+        {
+            LoadStats();
+            roleabilities = value;
+            SaveStats();
+        }
+    }
+
+	public Dictionary<string, uint> RoleKills
+	{
+		get
+		{
+			LoadStats();
+			return rolekills;
+		}
+		set
+		{
+			LoadStats();
+			rolekills = value;
+			SaveStats();
+		}
+	}
 
 	public Dictionary<string, uint> RoleEjects
 	{
@@ -275,11 +336,20 @@ public class StatsManager
 			roleloses = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 			gamemodestarts = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 			roleejects = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
+			rolekills = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
+			roleabilities = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 		}
 		catch
 		{
 			Debug.LogError("Deleting corrupted stats file");
-			File.Delete(path);
+			try
+			{
+				File.Delete(path);
+			}
+			catch
+            {
+				Debug.LogWarning("Deletion failed, most likely this is a debug session.");
+            }
 		}
 	}
 
@@ -299,7 +369,9 @@ public class StatsManager
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,rolewins);
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,roleloses);
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,gamemodestarts);
-			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,roleejects);
+            CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleejects);
+            CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, rolekills);
+			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleabilities);
 		}
 		catch
 		{

@@ -25,16 +25,20 @@ public class SkinLayer : MonoBehaviour
 		}
 	}
 
-	public void SetRun()
+	public void SetRun(float time = -1f,float speed = -1f)
 	{
 		if (!skin || !animator)
 		{
 			SetGhost();
 			return;
 		}
-		if (!animator.IsPlaying(skin.RunAnim))
+        if (!animator.IsPlaying(skin.RunAnim))
+        {
+            animator.Play(skin.RunAnim, (PlayerControl.GameOptions.PlayerSpeedMod));
+        }
+		if (time != -1f)
 		{
-			animator.Play(skin.RunAnim, PlayerControl.GameOptions.PlayerSpeedMod);
+			animator.Time = time;
 		}
 		Update();
 	}

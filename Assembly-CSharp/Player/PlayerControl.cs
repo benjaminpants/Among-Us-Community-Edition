@@ -653,7 +653,7 @@ public class PlayerControl : InnerNetObject
 			playerById.Object.nameText.Color = Color.white;
 			playerById.IsImpostor = false;
 			myTasks.RemoveAt(0);
-			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
+            DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: false);
 		}
 	}
 
@@ -731,6 +731,8 @@ public class PlayerControl : InnerNetObject
 		}
 	}
 
+	
+
 	public void CompleteTask(uint idx)
 	{
 		PlayerTask playerTask = myTasks.Find((PlayerTask p) => p.Id == idx);
@@ -775,7 +777,11 @@ public class PlayerControl : InnerNetObject
 		}
 		if (data.IsImpostor || CE_RoleManager.GetRoleFromID(data.role).CanSeeImps)
 		{
-			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
+			if (data.IsImpostor)
+			{
+				DestroyableSingleton<HudManager>.Instance.UpdateKillButton(CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role).UUID);
+				DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
+			}
 			for (int k = 0; k < infected.Length; k++)
 			{
 				if (PlayerControl.GameOptions.CanSeeOtherImps || infected[k] == PlayerControl.LocalPlayer.Data)
@@ -1546,6 +1552,7 @@ public class PlayerControl : InnerNetObject
 		{
 			return;
 		}
+		DestroyableSingleton<HudManager>.Instance.UpdateKillButton(CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role).UUID);
 		DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
 		for (int k = 0; k < infected.Length; k++)
 		{
@@ -1672,6 +1679,7 @@ public class PlayerControl : InnerNetObject
 		CE_Role selfrole = CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role);
 		if (selfrole.CanDo(CE_Specials.Kill) || LocalPlayer.Data.IsImpostor)
 		{
+			DestroyableSingleton<HudManager>.Instance.UpdateKillButton(CE_RoleManager.GetRoleFromID(LocalPlayer.Data.role).UUID);
 			DestroyableSingleton<HudManager>.Instance.KillButton.gameObject.SetActive(value: true);
 		}
 		else

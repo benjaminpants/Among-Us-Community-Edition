@@ -65,6 +65,10 @@ public class HudManager : DestroyableSingleton<HudManager>
 
 	private CustomButtonManager[] CustomButtons = new CustomButtonManager[3];
 
+	private Sprite DefaultKill;
+
+	private List<Sprite> KillSprites = new List<Sprite>();
+
 	public Coroutine ReactorFlash
 	{
 		get;
@@ -82,6 +86,7 @@ public class HudManager : DestroyableSingleton<HudManager>
 
 	public void Start()
 	{
+		DefaultKill = KillButton.renderer.sprite;
 		if (custombuttontestingon)
 		{
 			for (int i = 0; i < 3; i++)
@@ -162,6 +167,33 @@ public class HudManager : DestroyableSingleton<HudManager>
 			MapBehaviour.Instance.gameObject.SetActive(value: false);
 		}
 		mapAction(MapBehaviour.Instance);
+	}
+
+	public void UpdateKillButton(string role)
+	{
+		if (role == "undefined_undefined")
+		{
+			if (DefaultKill == null)
+            {
+				return; //hasn't been defined yet so it should be default
+            }
+			KillButton.renderer.sprite = DefaultKill;
+		}
+		else
+		{
+			if (CE_ModLoader.ModResources.TryGetValue("kill_override_" + role + ".png", out string path))
+			{
+				KillButton.renderer.sprite = CE_TextureNSpriteExtensions.ConvertToSpriteAutoPivot(CE_TextureNSpriteExtensions.LoadPNG(path, true));
+			}
+			else
+            {
+				if (DefaultKill == null)
+				{
+					return; //hasn't been defined yet so it should be default
+				}
+				KillButton.renderer.sprite = DefaultKill;
+			}
+		}
 	}
 
 	public void SetHudActive(bool isActive)
