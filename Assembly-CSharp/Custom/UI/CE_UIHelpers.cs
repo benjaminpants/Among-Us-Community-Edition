@@ -15,7 +15,7 @@ public class CE_UIHelpers
 
 	public static bool IsActive() //this code is dumb, fix it.
 	{
-		if (!CE_Intro.IsShown && !CE_DevMinigame.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown && !CE_ModUI.IsShown)
+		if (!CE_Intro.IsShown && !CE_DevMinigame.IsShown && !CE_DevTool.IsShown && !CE_GameSettingsUI.IsShown && !CE_GlobalSettingsUI.IsShown && !CE_ControlsUI.IsShown && !CE_ModUI.IsShown && !CE_ModErrorUI.IsShown)
 		{
 			return CE_AnimationDebuger.IsShown;
 		}
@@ -120,6 +120,7 @@ public class CE_UIHelpers
 		CE_DevTool.IsShown = false;
 		CE_DevMinigame.IsShown = false;
 		CE_ModUI.IsShown = false;
+		CE_ModErrorUI.IsShown = false;
 	}
 
 	static CE_UIHelpers()

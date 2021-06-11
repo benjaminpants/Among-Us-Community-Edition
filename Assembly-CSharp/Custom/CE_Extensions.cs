@@ -62,8 +62,9 @@ public class CE_Extensions
 	{
 		Debug.Log("OnStartup");
         CE_UIHelpers.LoadDebugConsole();
-		new GameObject().AddComponent<CE_ModUI>().name = "ModUI";
-		if (!hasPlayed)
+        new GameObject().AddComponent<CE_ModUI>().name = "ModUI";
+        new GameObject().AddComponent<CE_ModErrorUI>().name = "ModErrorUI";
+        if (!hasPlayed)
         {
 			ResolutionManager.SetVSync(SaveManager.EnableVSync);
 			CE_RoleManager.AddRole(new CE_Role());

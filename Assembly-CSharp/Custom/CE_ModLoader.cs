@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
 
 public static class CE_ModLoader
 {
@@ -14,6 +15,7 @@ public static class CE_ModLoader
     public static List<CE_Mod> LMods = new List<CE_Mod>();
     public static string ColorString;
     public static int ColorHash;
+    public const int FileVersion = 1;
     public static void UpdateDisabledMods()
     {
         string disablednames = "";
@@ -54,21 +56,48 @@ public static class CE_ModLoader
         {
             foreach (string DS in Directory.GetDirectories(AttemptedDir))
             {
-                string[] txts = Directory.GetFiles(DS, "modinfo.txt");
+                string[] txtz = Directory.GetFiles(DS, "modinfo.txt");
+                if (txtz.Length == 1)
+                {
+
+                    string[] txtcontent = File.ReadAllText(txtz[0]).Split(split, StringSplitOptions.RemoveEmptyEntries);
+                    if (txtcontent[0] == "Rainbow") //no sneaky overrides!
+                    {
+                        continue;
+                    }
+
+
+                    CE_Mod CURMZ = new CE_Mod(Directory.Exists(Path.Combine(DS, "Hats")) ? Path.Combine(DS, "Hats") : "",
+                        Directory.Exists(Path.Combine(DS, "Skins")) ? Path.Combine(DS, "Skins") : "",
+                        Directory.Exists(Path.Combine(DS, "Lua")) ? Path.Combine(DS, "Lua") : "",
+                        txtcontent[0], txtcontent[1] + "\n" + txtcontent[2], Directory.Exists(Path.Combine(DS, "SFC")) ? Path.Combine(DS, "SFC") : "");
+
+                    CURMZ.FileVersion = FileVersion;
+                    FileStream json = File.Create(Path.Combine(DS, "modinfo.json"));
+                    json.Close();
+                    File.WriteAllText(Path.Combine(DS, "modinfo.json"), JsonConvert.SerializeObject(CURMZ, Formatting.Indented));
+                    File.Delete(txtz[0]);
+
+                }
+                string[] txts = Directory.GetFiles(DS, "modinfo.json");
                 if (txts.Length != 1)
                 {
                     continue;
                 }
-                string[] txtcontent = File.ReadAllText(txts[0]).Split(split, StringSplitOptions.RemoveEmptyEntries);
-                if (txtcontent[0] == "Rainbow") //no sneaky overrides!
+
+                CE_Mod CURM = JsonConvert.DeserializeObject<CE_Mod>(File.ReadAllText(Path.Combine(DS, "modinfo.json")));
+                CURM.HatsDirectory = Directory.Exists(Path.Combine(DS, "Hats")) ? Path.Combine(DS, "Hats") : "";
+                CURM.SkinsDirectory = Directory.Exists(Path.Combine(DS, "Skins")) ? Path.Combine(DS, "Skins") : "";
+                CURM.LuaDirectory = Directory.Exists(Path.Combine(DS, "Lua")) ? Path.Combine(DS, "Lua") : "";
+                CURM.SFCDirectory = Directory.Exists(Path.Combine(DS, "SFC")) ? Path.Combine(DS, "SFC") : "";
+
+                if (CURM.FileVersion != FileVersion)
                 {
-                    continue;
+                    CURM.FileVersion = FileVersion;
+                    File.WriteAllText(Path.Combine(DS, "modinfo.json"), JsonConvert.SerializeObject(CURM, Formatting.Indented));
                 }
 
-                CE_Mod CURM = new CE_Mod(Directory.Exists(Path.Combine(DS, "Hats")) ? Path.Combine(DS, "Hats") : "",
-                    Directory.Exists(Path.Combine(DS, "Skins")) ? Path.Combine(DS, "Skins") : "",
-                    Directory.Exists(Path.Combine(DS, "Lua")) ? Path.Combine(DS, "Lua") : "",
-                    txtcontent[0], txtcontent[1] + "\n" + txtcontent[2], Directory.Exists(Path.Combine(DS, "SFC")) ? Path.Combine(DS, "SFC") : "");
+
 
 
                 LMods.Add(CURM);
@@ -89,6 +118,7 @@ public static class CE_ModLoader
                         if (!ModResources.TryAdd(files[i].Name, files[i].FullName))
                         {
                             Debug.LogWarning("Duplicate add file, some data might be lost!");
+                            CE_ModErrorUI.AddError(new CE_Error("Duplicate add file: " + files[i].Name + ", some data might be lost!","",ErrorTypes.Warning));
                         }
                     }
                 }
@@ -146,6 +176,7 @@ public static class CE_ModLoader
         ColorHash = VersionShower.GetDeterministicHashCode(ColorString);
         VersionShower.ColorID = VersionShower.CreateIDFromInt(ColorHash,7);
         ColorString = "";
+        CE_ModErrorUI.RequestOpen();
     }
 
 }
@@ -153,12 +184,23 @@ public static class CE_ModLoader
 
 public class CE_Mod
 {
+    [JsonIgnore]
     public string HatsDirectory;
+    [JsonIgnore]
     public string SkinsDirectory;
+    [JsonIgnore]
     public string LuaDirectory;
+    [JsonIgnore]
     public string SFCDirectory;
+    [JsonProperty("Name")]
     public string ModName;
+    [JsonProperty("Description")]
     public string ModDesc;
+    [JsonProperty("File Version")]
+    public int FileVersion = -1;
+    [JsonProperty("Dependencies")]
+    public string[] Dependencies = new string[0];
+    [JsonIgnore]
     public bool Enabled = true;
 
     public CE_Mod()

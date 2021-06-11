@@ -150,7 +150,8 @@ public static class CE_LuaLoader
 			}
 			catch (Exception E)
 			{
-				Debug.LogError("Error encountered when trying to load gamemode with filename:" + files[i].Name + "\nException Message:" + E.Message);
+                Debug.LogError("Error encountered when trying to load gamemode with filename:" + files[i].Name + "\nException Message:" + E.Message);
+				CE_ModErrorUI.AddError(new CE_Error("Error encountered when trying to load gamemode with filename: " + files[i].Name + "\nException Message:" + E.Message, "The gamemode will not be enabled.", ErrorTypes.Error));
 			}
 		}
 		GamemodeInfos = GamemodeInfos.OrderBy(o => o.id).ToList();
@@ -186,6 +187,7 @@ public static class CE_LuaLoader
 			catch (Exception E)
 			{
 				Debug.LogError("Error encountered when trying to load plugin with filename:" + plfiles[i].Name + "\nException Message:" + E.Message);
+				CE_ModErrorUI.AddError(new CE_Error("Error encountered when trying to load plugin with filename: " + plfiles[i].Name + "\nException Message:" + E.Message, "The plugin will not be enabled.", ErrorTypes.Error));
 			}
 		}
 		PluginInfos = PluginInfos.OrderBy(o => o.id).ToList();

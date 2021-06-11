@@ -1,3 +1,0 @@
-Skeld.net Gamemode Ports
-Ports gamemodes from Skeld.net to Among Us: CE!
-Makes a few adjustments to them as well.

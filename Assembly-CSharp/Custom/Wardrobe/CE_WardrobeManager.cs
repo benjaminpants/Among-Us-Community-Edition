@@ -165,6 +165,7 @@ public class CE_WardrobeManager
 			catch (Exception ex2)
 			{
 				Debug.Log(ex2.Message);
+				CE_ModErrorUI.AddError(new CE_Error("Error while trying to load skin:" + ex2.Message, "This skin will not load.", ErrorTypes.Error));
 			}
 		}
 		return DataList;
@@ -198,6 +199,7 @@ public class CE_WardrobeManager
 			catch (Exception ex)
 			{
 				Debug.Log(ex.Message);
+				CE_ModErrorUI.AddError(new CE_Error("Invalid Hat:" + files[i].Name, "", ErrorTypes.Error));
 			}
 
 		}
@@ -321,7 +323,8 @@ public class CE_WardrobeManager
 			}
 			catch (Exception ex2)
 			{
-				Debug.Log(ex2.Message);
+                Debug.Log(ex2.Message);
+				CE_ModErrorUI.AddError(new CE_Error("Error while trying to load hat:" + ex2.Message, "This hat will not load.", ErrorTypes.Error));
 			}
 		}
 		return BehaviorsList;
