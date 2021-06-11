@@ -225,24 +225,24 @@ public class AmongUsClient : InnerNetClient
 			ShipStatus.Instance.transform.eulerAngles = new Vector3(0f, 0f, PlayerControl.GameOptions.MapRot);
 		}
 		Spawn(ShipStatus.Instance);
-		CE_LuaLoader.GetGamemodeResult("OnGameStart");
 		ShipStatus.Instance.SelectInfected();
 		ShipStatus.Instance.Begin();
-		for (int k = 0; k < GameData.Instance.PlayerCount; k++)
-		{
-			PlayerControl object2 = GameData.Instance.AllPlayers[k].Object;
-			if ((bool)object2)
-			{
-				object2.moveable = true;
-				object2.NetTransform.enabled = true;
-				object2.MyPhysics.enabled = true;
-				object2.MyPhysics.Awake();
-				object2.MyPhysics.ResetAnim();
-				object2.Collider.enabled = true;
-				Vector2 spawnLocation2 = ShipStatus.Instance.GetSpawnLocation(k, GameData.Instance.PlayerCount);
-				object2.NetTransform.SnapTo(spawnLocation2);
-			}
-		}
+        for (int k = 0; k < GameData.Instance.PlayerCount; k++)
+        {
+            PlayerControl object2 = GameData.Instance.AllPlayers[k].Object;
+            if ((bool)object2)
+            {
+                object2.moveable = true;
+                object2.NetTransform.enabled = true;
+                object2.MyPhysics.enabled = true;
+                object2.MyPhysics.Awake();
+                object2.MyPhysics.ResetAnim();
+                object2.Collider.enabled = true;
+                Vector2 spawnLocation2 = ShipStatus.Instance.GetSpawnLocation(k, GameData.Instance.PlayerCount);
+                object2.NetTransform.SnapTo(spawnLocation2);
+            }
+        }
+		CE_LuaLoader.GetGamemodeResult("OnGameStart");
 		SaveManager.LastGameStart = DateTime.UtcNow;
 	}
 

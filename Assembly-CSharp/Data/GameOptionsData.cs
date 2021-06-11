@@ -491,21 +491,24 @@ public class GameOptionsData : IBytesSerializable
 			int num = MaxImpostors[numPlayers];
 			stringBuilder.AppendLine("Map: " + MapNames[MapId]);
 			stringBuilder.Append($"Impostors: {NumImpostors}");
-			if (NumImpostors > num)
-			{
-				stringBuilder.Append($" (Limit: {num})");
-			}
+            if (NumImpostors > num)
+            {
+                stringBuilder.Append($" (Limit: {num})");
+            }
 			stringBuilder.AppendLine();
-			stringBuilder.AppendLine("Emergency Meetings: " + NumEmergencyMeetings);
+			stringBuilder.AppendLine("Confirm Ejects: " + ConfirmEject);
+            stringBuilder.AppendLine("Emergency Meetings: " + NumEmergencyMeetings);
+			stringBuilder.AppendLine("Anonymous Votes: " + AnonVotes);
+			stringBuilder.AppendLine("Meeting Cooldown: " + MeetingCooldown);
 			stringBuilder.AppendLine($"Discussion Time: {DiscussionTime}s");
-			if (VotingTime > 0)
-			{
-				stringBuilder.AppendLine($"Voting Time: {VotingTime}s");
-			}
-			else
-			{
-				stringBuilder.AppendLine("Voting Time: ∞s");
-			}
+            if (VotingTime > 0)
+            {
+                stringBuilder.AppendLine($"Voting Time: {VotingTime}s");
+            }
+            else
+            {
+                stringBuilder.AppendLine("Voting Time: ∞s");
+            }
 			stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
 			if (CrewLightMod == 0f)
 			{
@@ -524,33 +527,16 @@ public class GameOptionsData : IBytesSerializable
 				stringBuilder.AppendLine($"Impostor Vision: {ImpostorLightMod}x");
 			}
 			stringBuilder.AppendLine($"Kill Cooldown: {KillCooldown}s");
-			stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
+            stringBuilder.AppendLine("Kill Distance: " + KillDistanceStrings[KillDistance]);
+			stringBuilder.AppendLine("Taskbar Updates: " + TaskBarUpStrings[TaskBarUpdates]);
+			stringBuilder.AppendLine("Visual Tasks: " + Visuals);
 			stringBuilder.AppendLine("Common Tasks: " + NumCommonTasks);
 			stringBuilder.AppendLine("Long Tasks: " + NumLongTasks);
 			stringBuilder.AppendLine("Short Tasks: " + NumShortTasks);
 			stringBuilder.AppendLine("Vents: " + VentModeStrings[Venting]);
-			stringBuilder.AppendLine("Vent Movement: " + VentMode2Strings[VentMode]);
-			stringBuilder.AppendLine("Anonymous Votes: " + AnonVotes);
-			stringBuilder.AppendLine("Confirm Ejects: " + ConfirmEject);
-			stringBuilder.AppendLine("Visual Tasks: " + Visuals);
-			stringBuilder.AppendLine("Gamemode: " + Gamemodes[Gamemode]);
-			stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
-			stringBuilder.AppendLine("Map X Scale: " + MapScaleX);
-			stringBuilder.AppendLine("Map Y Scale: " + MapScaleY);
-			stringBuilder.AppendLine("Map Rotation: " + MapRot);
-			stringBuilder.AppendLine("Taskbar Updates: " + TaskBarUpStrings[TaskBarUpdates]);
-			stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
-			stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
-			stringBuilder.AppendLine("Body Effect: " + BodySett[BodyEffect]);
-			if (BodyEffect == 1)
-			{
-				stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
-			}
-			stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
-			stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
-			stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
-			stringBuilder.AppendLine("Ghosts See Roles: " + GhostsSeeRoles);
+            stringBuilder.AppendLine("Vent Movement: " + VentMode2Strings[VentMode]);
 			stringBuilder.AppendLine("Vision In Vents: " + VisionInVents);
+            stringBuilder.AppendLine("Gamemode: " + Gamemodes[Gamemode]);
 			string pluginlist = string.Empty;
 			foreach (byte b in Plugins)
 			{
@@ -572,9 +558,23 @@ public class GameOptionsData : IBytesSerializable
 				pluginlist = "[0000FFFF]None[]";
 			}
 			stringBuilder.AppendLine("Plugins: " + pluginlist);
-            stringBuilder.AppendLine("Brightness: " + Brightness);
+			stringBuilder.AppendLine("Map X Scale: " + MapScaleX);
+			stringBuilder.AppendLine("Map Y Scale: " + MapScaleY);
+            stringBuilder.AppendLine("Map Rotation: " + MapRot);
+			stringBuilder.AppendLine("Sabotages: " + SabControlStrings[SabControl]);
+			stringBuilder.AppendLine("Ghosts Do Tasks: " + GhostsDoTasks);
+			stringBuilder.AppendLine("Ghost Visibility: " + CanSeeGhostsStrings[CanSeeGhosts]);
+			stringBuilder.AppendLine("Body Effect: " + BodySett[BodyEffect]);
+			if (BodyEffect == 1)
+			{
+				stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
+			}
+            stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
 			stringBuilder.AppendLine("Impostors Know Eachother: " + CanSeeOtherImps);
-			stringBuilder.AppendLine("Meeting Cooldown: " + MeetingCooldown);
+			stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
+			stringBuilder.AppendLine("Task Difficulty: " + TaskDifficultyNames[TaskDifficulty]);
+			stringBuilder.AppendLine("Ghosts See Roles: " + GhostsSeeRoles);
+            stringBuilder.AppendLine("Brightness: " + Brightness);
 			string settingstring = string.Empty;
 			if (CE_LuaLoader.CurrentGMLua)
 			{

@@ -49,7 +49,13 @@ public static class Palette
 		new CE_PlayerColor(new Color32(113, 73, 30, byte.MaxValue),new Color32(94, 38, 21, byte.MaxValue),"Brown"),
 		new CE_PlayerColor(new Color32(56, byte.MaxValue, 221, byte.MaxValue),new Color32(36, 169, 191, byte.MaxValue),"Cyan"),
 		new CE_PlayerColor(new Color32(80, 240, 57, byte.MaxValue),new Color32(21, 168, 66, byte.MaxValue),"Lime"),
-		
+		new CE_PlayerColor(new Color32(236, 117, 120, byte.MaxValue),new Color32(180, 67, 98, byte.MaxValue),"Coral"),
+		new CE_PlayerColor(new Color32(236, 192, 211, byte.MaxValue),new Color32(211, 146, 179, byte.MaxValue),"Rose"),
+		new CE_PlayerColor(new Color32(112, 132, 151, byte.MaxValue),new Color32(68, 83, 102, byte.MaxValue),"Gray"),
+		new CE_PlayerColor(new Color32(146, 135, 118, byte.MaxValue),new Color32(82, 67, 63, byte.MaxValue),"Tan"),
+		new CE_PlayerColor(new Color32(115, 27, 19, byte.MaxValue),new Color32(91, 19, 27, byte.MaxValue),"Maroon"),
+		new CE_PlayerColor(new Color32(255, 253, 190, byte.MaxValue),new Color32(209, 188, 137, byte.MaxValue),"Banana")
+
 	};
 
 	static Palette()

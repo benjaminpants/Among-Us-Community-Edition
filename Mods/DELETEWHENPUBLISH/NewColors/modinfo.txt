@@ -1,0 +1,3 @@
+New Colors
+The currently announced colors for Among Us.
+Will be merged into the game's code once all colors are announced.

@@ -1,6 +1,7 @@
 using Hazel;
 using InnerNet;
 using UnityEngine;
+using System.IO;
 
 public class LobbyBehaviour : InnerNetObject
 {
@@ -22,6 +23,7 @@ public class LobbyBehaviour : InnerNetObject
 	{
 		Instance = this;
 		SoundManager.Instance.StopAllSound();
+		//SoundManager.Instance.PlaySound(CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "LobbyJazz", "A Night Alone.wav")), loop: true).pitch = 1f;
 		SoundManager.Instance.PlaySound(DropShipSound, loop: true).pitch = 1.2f;
 		Camera main = Camera.main;
 		if ((bool)main)
@@ -46,7 +48,7 @@ public class LobbyBehaviour : InnerNetObject
                 int numPlayers = (GameData.Instance ? GameData.Instance.PlayerCount : 20);
                 DestroyableSingleton<HudManager>.Instance.GameSettings.Text = PlayerControl.GameOptions.ToHudString(numPlayers);
 				int numlines = DestroyableSingleton<HudManager>.Instance.GameSettings.Text.Split('\n').Length;
-				DestroyableSingleton<HudManager>.Instance.GameSettings.scale = 0.45f - (0.01f * (numlines - 41));
+				DestroyableSingleton<HudManager>.Instance.GameSettings.scale = 0.45f - (0.01f * (numlines - 43));
 				DestroyableSingleton<HudManager>.Instance.GameSettings.gameObject.SetActive(value: true);
 			}
 		}

@@ -68,7 +68,8 @@ public static class CE_LuaLoader
 
 	private static void GiveAPICalls(Script script,bool isgm = true)
 	{
-		script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
+        script.Globals["Game_ActivateCustomWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateCustomWin;
+		script.Globals["Game_ActivateCustomRolesWin"] = (Func<Table, string, bool>)CE_GameLua.ActivateWinForRoles;
 		script.Globals["Game_GetAllPlayers"] = (Func<List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayers; //TODO: Automate the adding of functions
 		script.Globals["Game_GetAllPlayersComplex"] = (Func<bool, bool, List<CE_PlayerInfoLua>>)CE_GameLua.GetAllPlayersComplex;
 		if (isgm)
@@ -83,7 +84,8 @@ public static class CE_LuaLoader
 		script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
         script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
         script.Globals["Client_ClearMessages"] = (Func<bool>)CE_GameLua.ClearCLMessage;
-		script.Globals["Game_CallMeeting"] = (Func<CE_PlayerInfoLua, CE_PlayerInfoLua, bool>)CE_GameLua.CallMeeting;
+        script.Globals["Game_CallMeeting"] = (Func<CE_PlayerInfoLua, CE_PlayerInfoLua, bool>)CE_GameLua.CallMeeting;
+		script.Globals["Game_GetGlobalNum"] = (Func<string,int>)CE_GameLua.GetGlobalValue;
 		script.Globals["Game_SabSystem"] = (Func<string, CE_PlayerInfoLua, bool, int, bool>)CE_GameLua.SabSystem;
 		script.Globals["Player_SnapPosTo"] = (Func<float, float, CE_PlayerInfoLua, bool>)CE_GameLua.SnapPlayerToPos;
         script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;

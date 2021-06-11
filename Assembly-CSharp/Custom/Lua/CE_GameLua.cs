@@ -270,9 +270,42 @@ static class CE_GameLua
         return true;
     }
 
+    public static bool ActivateWinForRoles(Table roles, string song)
+    {
+        try
+        {
+            List<string> roleslist = new List<string>();
+            List<GameData.PlayerInfo> playerinfos = new List<GameData.PlayerInfo>();
+            foreach (DynValue rol in roles.Values)
+            {
+                roleslist.Add(rol.String);
+            }
+            foreach (GameData.PlayerInfo player in GameData.Instance.AllPlayers)
+            {
+                for (int i=0;i < roleslist.Count;i++)
+                {
+                    if (player.role == CE_RoleManager.GetRoleFromUUID(roleslist[i]))
+                    {
+                        if (!playerinfos.Contains(player))
+                        {
+                            playerinfos.Add(player);
+                        }
+                    }
+                }
+            }
+            ShipStatus.RpcCustomEndGamePublic(playerinfos.ToArray(), song);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return false;
+        }
+        return true;
+    }
+
     public static bool SnapPlayerToPos(float x, float y, CE_PlayerInfoLua pllua)
     {
-        pllua.refplayer.Object.NetTransform.RpcSnapTo(new Vector2(x,y));
+        pllua.refplayer.Object.NetTransform.RpcSnapTo(new Vector2(x, y));
         return true;
     }
 
@@ -280,6 +313,23 @@ static class CE_GameLua
     {
         ShipStatus.WriteRPCObjectPublic(obj);
         return true;
+    }
+
+    public static int GetGlobalValue(string val)
+    {
+        if (val == "colors_max")
+        {
+            return Palette.PLColors.Count;
+        }
+        if (val == "hats_max")
+        {
+            return HatManager.Instance.AllHats.Count;
+        }
+        if (val == "skins_max")
+        {
+            return HatManager.Instance.AllSkins.Count;
+        }
+        return 0;
     }
 
     public static CE_PlayerInfoLua GetPlayerFromID(byte id)

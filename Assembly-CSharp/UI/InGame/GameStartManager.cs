@@ -27,6 +27,8 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 
 	public bool starting;
 
+	public Gradient PlayerCountGradient = new Gradient();
+
 	public void Start()
 	{
 		MinPlayers = 2;
@@ -57,6 +59,18 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 			AmongUsClient.Instance.Spawn(LobbyBehaviour.Instance);
 			MakePublicButton.gameObject.SetActive(false); //no
 		}
+        GradientColorKey[] colorkey = new GradientColorKey[3];
+		GradientAlphaKey[] alphakeys = new GradientAlphaKey[1];
+		colorkey[0].color = Color.red;
+        colorkey[0].time = 0.0f;
+		colorkey[1].color = new Color(1.0f,1.0f,0f,1f);
+        colorkey[1].time = 0.5f;
+		colorkey[2].color = Color.green;
+		colorkey[2].time = 1f;
+		alphakeys[0].alpha = 1.0f;
+		alphakeys[0].time = 0.0f;
+		PlayerCountGradient.colorKeys = colorkey;
+		PlayerCountGradient.alphaKeys = alphakeys;
 	}
 
 	public void MakePublic()
@@ -74,20 +88,13 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 			return;
 		}
 		MakePublicButton.sprite = (AmongUsClient.Instance.IsGamePublic ? PublicGameImage : PrivateGameImage);
-		if (GameData.Instance.PlayerCount == LastPlayerCount)
+		if (GameData.Instance.PlayerCount == LastPlayerCount) 
 		{
 			return;
 		}
 		LastPlayerCount = GameData.Instance.PlayerCount;
-		string arg = "[FF0000FF]";
-		if (LastPlayerCount > MinPlayers)
-		{
-			arg = "[00FF00FF]";
-		}
-		else if (LastPlayerCount >= 4)
-		{
-			arg = "[FFFF00FF]";
-		}
+		Color color = PlayerCountGradient.Evaluate((float)LastPlayerCount / (float)PlayerControl.GameOptions.MaxPlayers); //despite what VS says those float conversions are necessary do not remove them
+		string arg = "[" + ColorUtility.ToHtmlStringRGBA(color) + "]";
 		PlayerCounter.Text = $"{arg}{LastPlayerCount}/{PlayerControl.GameOptions.MaxPlayers}";
 		StartButton.color = ((LastPlayerCount >= MinPlayers) ? Palette.EnabledColor : Palette.DisabledColor);
 		if (DestroyableSingleton<DiscordManager>.InstanceExists)
@@ -105,9 +112,17 @@ public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconn
 
 	public void BeginGame()
 	{
-		if (SaveManager.ShowMinPlayerWarning && GameData.Instance.PlayerCount == MinPlayers)
+		if (SaveManager.ShowMinPlayerWarning && GameData.Instance.PlayerCount == MinPlayers || GameData.Instance.PlayerCount == 3 || (GameData.Instance.PlayerCount == 4))
 		{
 			GameSizePopup.SetActive(value: true);
+			if (GameData.Instance.PlayerCount == 2 || (GameData.Instance.PlayerCount == 3))
+			{
+				GameSizePopup.transform.Find("Text").GetComponent<TextRenderer>().Text = "Among Us: CE allows you to play with just\n" + (GameData.Instance.PlayerCount) + " players, however the majority of \ngamemodes require 4-5 players.\nWith 5 players being recommended.\nAre you sure you want to start?";
+			}
+			else if (GameData.Instance.PlayerCount == 4)
+			{
+				GameSizePopup.transform.Find("Text").GetComponent<TextRenderer>().Text = "Among Us: CE allows you to play with just\n4 players.\n\n5+ players however is recommended.\nAre you sure you want to start?";
+			}
 		}
 		else if (GameData.Instance.PlayerCount < MinPlayers)
 		{
