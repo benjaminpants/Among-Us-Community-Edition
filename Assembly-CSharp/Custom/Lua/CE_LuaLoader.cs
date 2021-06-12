@@ -81,8 +81,9 @@ public static class CE_LuaLoader
 		script.Globals["Game_GetRoleIDFromUUID"] = (Func<string, byte>)CE_RoleManager.GetRoleFromUUID;
 		script.Globals["Game_UpdatePlayerInfo"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.UpdatePlayerInfo;
 		script.Globals["Game_SetRoles"] = (Func<Table, Table, bool>)CE_GameLua.SetRoles;
-		script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
-        script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
+        script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
+		script.Globals["Game_GetSkinIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetSkinIDFromProductID;
+		script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
         script.Globals["Client_ClearMessages"] = (Func<bool>)CE_GameLua.ClearCLMessage;
         script.Globals["Game_CallMeeting"] = (Func<CE_PlayerInfoLua, CE_PlayerInfoLua, bool>)CE_GameLua.CallMeeting;
 		script.Globals["Game_GetGlobalNum"] = (Func<string,int>)CE_GameLua.GetGlobalValue;

@@ -165,7 +165,7 @@ public class CE_WardrobeManager
 			catch (Exception ex2)
 			{
 				Debug.Log(ex2.Message);
-				CE_ModErrorUI.AddError(new CE_Error("Error while trying to load skin:" + ex2.Message, "This skin will not load.", ErrorTypes.Error));
+				CE_ModErrorUI.AddError(new CE_Error("Error while trying to load skin" + item2.Name + " :" + ex2.Message, "This skin will not load.", ErrorTypes.Error));
 			}
 		}
 		return DataList;
@@ -189,16 +189,17 @@ public class CE_WardrobeManager
 			string json = File.ReadAllText(files[i].FullName);
 			try
 			{
-				CE_FrameSet Result = (CE_FrameSet)new JsonSerializer().Deserialize(new JsonTextReader(new StringReader(json)), typeof(CE_FrameSet));
-				if (Result != null)
+				CE_FrameSet Resultt = (CE_FrameSet)new JsonSerializer().Deserialize(new JsonTextReader(new StringReader(json)), typeof(CE_FrameSet));
+				if (Resultt != null)
 				{
-					DefinitionsList.Add(Result);
+					Resultt.FilePath = files[i].FullName;
+					DefinitionsList.Add(Resultt);
 				}
 				else throw new Exception("\"" + files[i].FullName + "\"" + " is Not a Valid Hat");
 			}
 			catch (Exception ex)
 			{
-				Debug.Log(ex.Message);
+				Debug.LogError(ex.Message);
 				CE_ModErrorUI.AddError(new CE_Error("Invalid Hat:" + files[i].Name, "", ErrorTypes.Error));
 			}
 
@@ -323,8 +324,8 @@ public class CE_WardrobeManager
 			}
 			catch (Exception ex2)
 			{
-                Debug.Log(ex2.Message);
-				CE_ModErrorUI.AddError(new CE_Error("Error while trying to load hat:" + ex2.Message, "This hat will not load.", ErrorTypes.Error));
+                Debug.LogError(ex2.StackTrace + "\n" + ex2.Message);
+				CE_ModErrorUI.AddError(new CE_Error("Error while trying to load hat " + item2.FilePath + " :" + ex2.Message, "This hat will not load.", ErrorTypes.Error));
 			}
 		}
 		return BehaviorsList;
@@ -587,12 +588,15 @@ public class CE_WardrobeManager
 	}
 	public static Rect GetSpriteRect(Texture texture, float x, float y, float width, float height)
 	{
+		if (texture == null)
+        {
+			throw new Exception("Missing Texture!");
+        }
 		float real_y = texture.height - y;
 		float _finalX = x;
 		float _finalY = real_y - height;
 		float _finalWidth = width;
 		float _finalHeight = height;
-
 		return new Rect(_finalX, _finalY, _finalWidth, _finalHeight);
 	}
 

@@ -382,6 +382,18 @@ static class CE_GameLua
         return 0;
     }
 
+    public static uint GetSkinIDFromProductID(string id)
+    {
+        foreach (SkinData skin in HatManager.Instance.AllSkins)
+        {
+            if (skin.ProdId == id)
+            {
+                return (uint)HatManager.Instance.AllHats.FindIndex(a => a == skin);
+            }
+        }
+        return 0;
+    }
+
 
     public static List<CE_PlayerInfoLua> GetAllPlayersComplex(bool alive, bool canbeimp) //this has been broken for so fucking long
     {

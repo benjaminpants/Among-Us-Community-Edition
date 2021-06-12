@@ -1,7 +1,7 @@
 {
-  "ID": "Pocket_Ben",
-  "Name": "Ben",
-  "StoreName": "Ben",
+  "ID": "PORT_MiniCrewmate",
+  "Name": "Mini Crewmate",
+  "StoreName": "Mini Crewmate",
   "HatInFrontGlobally": false,
   "NoHatBobbingGlobally": true,
   "UsePointFilteringGlobally": false,
@@ -26,29 +26,9 @@
       "Name": "Normal",
       "SpritePath": "PocketBen.png",
       "Hat_NoBobbing": true,
-      "InFront": false,
-      "UsePointFiltering": false,
-      "UseColorFiltering": true
-    },
-    {
-      "Position": {
-        "x": 0.0,
-        "y": 0.0
-      },
-      "Size": {
-        "x": 200.0,
-        "y": 200.0
-      },
-      "Offset": {
-        "x": 0.46,
-        "y": 0.82575
-      },
-      "Name": "NormalExt",
-      "SpritePath": "PocketBenHat.png",
-      "Hat_NoBobbing": true,
       "InFront": true,
       "UsePointFiltering": false,
-      "UseColorFiltering": false
+      "UseColorFiltering": true
     },
     {
       "Position": {
