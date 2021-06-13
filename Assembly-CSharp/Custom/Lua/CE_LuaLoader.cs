@@ -115,7 +115,8 @@ public static class CE_LuaLoader
         script.Globals["Settings_GetNumber"] = (Func<byte, float>)CE_GameLua.GetNumber;
 		script.Globals["Game_GetPlayerFromID"] = (Func<byte, CE_PlayerInfoLua>)CE_GameLua.GetPlayerFromID;
         script.Globals["Game_GetRoleNameFromID"] = (Func<byte, string>)CE_GameLua.GetRoleNameFromId;
-		script.Globals["Game_GetColorFromName"] = (Func<string, uint>)CE_GameLua.GetColorFromName;
+        script.Globals["Game_GetColorFromName"] = (Func<string, uint>)CE_GameLua.GetColorFromName;
+		script.Globals["Misc_GetCurrentTime"] = (Func<long>)CE_GameLua.GetCurTimeInMS;
 		script.Globals["Settings_GetBool"] = (Func<byte, bool>)CE_GameLua.GetBool;
 	}
 

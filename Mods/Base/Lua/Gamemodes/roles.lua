@@ -492,6 +492,7 @@ function BeforeKill(killer,victim)
 end
 
 function DecideRolesFunction(playerinfos)
+	math.randomseed(Misc_GetCurrentTime())
 	local RolesToGive = {}
 	for i=1, Settings_GetNumber(0) do
 		table.insert(RolesToGive,"roles_Sheriff")
@@ -552,6 +553,7 @@ end
 
 
 function DecideImpostors(impostorcount,playerinfos)
+	math.randomseed(Misc_GetCurrentTime())
 	local selected = {}
 	for i=1, impostorcount do --repeat the below code for how many impostors there are in the settings
 		local impid = math.random(#playerinfos) --randomly set the impostor id

@@ -202,6 +202,7 @@ function OnGameEnd()
 end
 
 function DecideRoles(playerinfos)
+	math.randomseed(Misc_GetCurrentTime())
 	local redteamcount = math.ceil(#playerinfos / 2)
 	local blueteamcount = #playerinfos - redteamcount
 	local RolesToGive = {}

@@ -315,6 +315,11 @@ static class CE_GameLua
         return true;
     }
 
+
+    public static long GetCurTimeInMS()
+    {
+        return DateTime.Now.Ticks;
+    }
     public static int GetGlobalValue(string val)
     {
         if (val == "colors_max")

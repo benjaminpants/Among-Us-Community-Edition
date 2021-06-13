@@ -79,8 +79,9 @@ function GiveTasks(playerinfo) --Whether or not to assign tasks to a player, thi
 end
 
 function OnGameStart()
-
+	math.randomseed(Misc_GetCurrentTime())
 end
+
 
 
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
@@ -122,6 +123,7 @@ end
 
 
 function DecideImpostors(impostorcount,playerinfos)
+	math.randomseed(Misc_GetCurrentTime())
 	local selected = {}
 	for i=1, impostorcount do --repeat the below code for how many impostors there are in the settings
 		local impid = math.random(#playerinfos) --randomly set the impostor id
