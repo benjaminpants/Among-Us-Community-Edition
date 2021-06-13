@@ -39,7 +39,7 @@ public class KillButtonManager : MonoBehaviour
             {
                 PlayerControl.LocalPlayer.RpcMurderPlayer(CurrentTarget);
                 CE_Role role = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
-                if (role != CE_RoleManager.Roles[0] && PlayerControl.LocalPlayer.Data.role != 0)
+                if (PlayerControl.LocalPlayer.Data.role != 0)
                 {
 
                     StatsManager.Instance.AddKill(role.UUID);
@@ -52,7 +52,7 @@ public class KillButtonManager : MonoBehaviour
             else
             {
                 CE_Role role = CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role);
-                if (role != CE_RoleManager.Roles[0] && PlayerControl.LocalPlayer.Data.role != 0)
+                if (PlayerControl.LocalPlayer.Data.role != 0)
                 {
 
                     StatsManager.Instance.AddAbilityUse(role.UUID);

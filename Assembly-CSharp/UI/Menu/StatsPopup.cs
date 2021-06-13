@@ -33,7 +33,7 @@ public class StatsPopup : MonoBehaviour
         {
             if (kvp.Key == "Crewmate" || kvp.Key == "Impostor") //not proper UUIDs
             {
-                Strings.Add(kvp.Key + " W/L Ratio: \t[00FF00FF]" + kvp.Value + "[]/[FF0000FF]" + StatsManager.Instance.RoleLoses[kvp.Key] + "[]" + " [FFFF00FF](" + ((kvp.Value / (StatsManager.Instance.RoleLoses[kvp.Key] + kvp.Value)) * 100) + "%)[]");
+                Strings.Add(kvp.Key + " W/L Ratio: \t[00FF00FF]" + kvp.Value + "[]/[FF0000FF]" + StatsManager.Instance.RoleLoses[kvp.Key] + "[]" + " [FFFF00FF](" + (((float)kvp.Value / ((float)StatsManager.Instance.RoleLoses[kvp.Key] + (float)kvp.Value)) * 100f) + "%)[]");
                 continue;
             }
             CE_Role role = CE_RoleManager.GetActualRoleFromUUID(kvp.Key);
@@ -41,7 +41,7 @@ public class StatsPopup : MonoBehaviour
             {
                 continue;
             }
-            Strings.Add(role.RoleName + " W/L Ratio: \t[00FF00FF]" + kvp.Value + "[]/[FF0000FF]" + StatsManager.Instance.RoleLoses[kvp.Key] + "[]" + " [FFFF00FF](" + ((kvp.Value / (StatsManager.Instance.RoleLoses[kvp.Key] + kvp.Value)) * 100) + "%)[]");
+            Strings.Add(role.RoleName + " W/L Ratio: \t[00FF00FF]" + kvp.Value + "[]/[FF0000FF]" + StatsManager.Instance.RoleLoses[kvp.Key] + "[]" + " [FFFF00FF](" + (((float)kvp.Value / ((float)StatsManager.Instance.RoleLoses[kvp.Key] + (float)kvp.Value)) * 100f) + "%)[]");
         }
 
         foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.RoleEjects)
