@@ -225,22 +225,6 @@ end
 
 function OnExile(exiled)
 	RemoveAllSilences()
-	if (exiled.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
-		if (Settings_GetBool(csb)) then
-			return
-		end
-		local players = Game_GetAllPlayers() --They need to be alive and they can't be an impostor
-		for i=#players,1,-1 do
-			if (players[i].PlayerName == exiled.PlayerName or players[i].IsDead or players[i].IsImpostor or (players[i].role > 0)) then
-				table.remove(players,i)
-			end
-		end
-		if (#players == 0) then
-			return
-		end
-		local selected = {players[math.random(1,#players)],exiled}
-		Game_SetRoles(selected,{"roles_Sheriff","None"})
-	end
 	
 	
 	if (exiled.role == Game_GetRoleIDFromUUID("roles_Clown")) then
