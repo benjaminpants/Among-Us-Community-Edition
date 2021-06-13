@@ -266,6 +266,10 @@ public static class CE_LuaLoader
                 {
 					try
 					{
+						if (GamemodeInfos[0].name != "Classic")
+                        {
+							throw new Exception("Tampering Attempted!");
+                        }						
 						dumbvalue = GamemodeInfos[0].script.Call(GamemodeInfos[0].script.Globals[fn], obj);
 					}
 					catch(Exception E2)

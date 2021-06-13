@@ -7,13 +7,22 @@ using System;
 
 public class GameOptionsData : IBytesSerializable
 {
-	private const byte GameDataVersion = 1;
+	private const byte GameDataVersion = 3;
 
 	public static string[] MapNames;
 
 	public static readonly float[] KillDistances;
 
-	public static readonly string[] KillDistanceStrings;
+    public static readonly string[] KillDistanceStrings;
+
+	public static readonly string[] SneakStrings = new string[]
+	{
+		"Everyone",
+		"Impostors Only",
+		"No-one",
+		"Lua Defined Only",
+		"Ghosts Only"
+	};
 
 	public int MaxPlayers;
 
@@ -130,6 +139,10 @@ public class GameOptionsData : IBytesSerializable
 	public byte Brightness;
 
 	public bool CanSeeOtherImps;
+
+	public float SprintMultipler;
+
+	public byte SneakAllowance;
 
 	public void ToggleMapFilter(byte newId)
 	{
@@ -348,11 +361,13 @@ public class GameOptionsData : IBytesSerializable
 		CanSeeOtherImps = true;
 		MapId = 0;
 		MeetingCooldown = RecommendedKillCooldown[numPlayers];
+		SprintMultipler = 0.5f;
+		SneakAllowance = 0;
 	}
 
 	public void Serialize(BinaryWriter writer)
 	{
-		byte value = 2;
+		byte value = GameDataVersion;
 		writer.Write(value);
 		writer.Write((byte)MaxPlayers);
 		writer.Write((uint)Keywords);
@@ -394,6 +409,8 @@ public class GameOptionsData : IBytesSerializable
         writer.Write(Brightness);
 		writer.Write(CanSeeOtherImps);
 		writer.Write(MeetingCooldown);
+        writer.Write(SprintMultipler);
+		writer.Write(SneakAllowance);
 		WriteCustomSettings(writer,CE_LuaLoader.CurrentSettings);
 	}
 
@@ -401,7 +418,7 @@ public class GameOptionsData : IBytesSerializable
 	{
 		try
 		{
-			if (reader.ReadByte() != 2)
+			if (reader.ReadByte() != GameDataVersion)
             {
 				return new GameOptionsData();
             }
@@ -447,6 +464,8 @@ public class GameOptionsData : IBytesSerializable
 				Brightness = reader.ReadByte(),
 				CanSeeOtherImps = reader.ReadBoolean(),
 				MeetingCooldown = reader.ReadSingle(),
+				SprintMultipler = reader.ReadSingle(),
+				SneakAllowance = reader.ReadByte(),
 				CustomSettingsRep = ReadCustomSettings(reader)
 			};
             gamedat.InterpretSettings();
@@ -509,7 +528,9 @@ public class GameOptionsData : IBytesSerializable
             {
                 stringBuilder.AppendLine("Voting Time: ∞s");
             }
-			stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
+            stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
+            stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
+			stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
 			if (CrewLightMod == 0f)
 			{
 				stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
@@ -718,13 +739,13 @@ public class GameOptionsData : IBytesSerializable
         };
 
 
-		TaskDifficultyNames = new string[]
-		{
-			"Easy",
-			"Normal",
-			"Hard",
-			"Insane"
-		};
+        TaskDifficultyNames = new string[]
+        {
+            "Easy",
+            "Normal",
+            "Hard",
+            "Insane"
+        };
 
 		TaskDifficultyMult = new float[]
 		{

@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	return {"Classic",1} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Classic",0} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 
@@ -34,6 +34,10 @@ function OnClientUpdate(timer,timesincelastround)
 	
 end
 
+function CanSneak(player,allowall)
+	return true
+end
+
 function OnChat(message, player)
 	return true
 end
@@ -55,6 +59,10 @@ function OnRecieveRole(rolename,player)
 end
 
 function OnPlayerDC(playerinfo)
+
+end
+
+function OnMeetingStart()
 
 end
 

@@ -102,7 +102,9 @@ public class CE_GameSettingsUI : MonoBehaviour
             {
                 gameOptions.NumImpostors = (int)CE_CommonUI.CreateValuePicker_GS(gameOptions.NumImpostors, 1f, 0f, 4f, "# Impostors", "", false, ReadOnly);
                 gameOptions.PlayerSpeedMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.PlayerSpeedMod, 0.25f, 0.25f, 10f, "Player Speed", "x", decmialView: true, ReadOnly_Freeplay);
-                gameOptions.KillCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, ReadOnly);
+                gameOptions.SprintMultipler = CE_CommonUI.CreateValuePicker_GS(gameOptions.SprintMultipler, 0.25f, 0.25f, 3f, "Sneak Multiplier", "x", decmialView: true, ReadOnly_Freeplay);
+				gameOptions.SneakAllowance = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.SneakAllowance, GameOptionsData.SneakStrings, 0, 4, "Sneak Usage", ReadOnly);
+				gameOptions.KillCooldown = CE_CommonUI.CreateValuePicker_GS(gameOptions.KillCooldown, 1.25f, 0f, 120f, "Kill Cooldown", "s", decmialView: true, ReadOnly);
                 gameOptions.KillDistance = CE_CommonUI.CreateStringPicker_GS(gameOptions.KillDistance, GameOptionsData.KillDistanceStrings, 0, 5, "Kill Distance", ReadOnly);
                 gameOptions.CrewLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.CrewLightMod, 0.25f, 0f, 5f, "Crewmate Vision", "x", decmialView: true, ReadOnly);
                 gameOptions.ImpostorLightMod = CE_CommonUI.CreateValuePicker_GS(gameOptions.ImpostorLightMod, 0.25f, 0f, 5f, "Impostor Vision", "x", decmialView: true, ReadOnly);

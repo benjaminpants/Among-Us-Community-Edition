@@ -177,7 +177,7 @@ public class ExileController : MonoBehaviour
 			}
 			else
 			{
-				CE_LuaLoader.GetGamemodeResult("OnExileSkip", null);
+				CE_LuaLoader.GetGamemodeResult("OnExileSkip");
 			}
 		}
 		ShipStatus.Instance.TimeSinceLastRound = 0f;

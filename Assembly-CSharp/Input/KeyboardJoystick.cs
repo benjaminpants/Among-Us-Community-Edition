@@ -7,8 +7,11 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 
 	public Vector2 Delta => del;
 
+	public bool IsSprinting = false; //currently unusable, please fix
+
 	private void FixedUpdate()
 	{
+		IsSprinting = false;
 		if (CE_UIHelpers.IsActive() || !PlayerControl.LocalPlayer)
 		{
 			return;
@@ -55,7 +58,50 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 			CE_Input.EscapeFunctionality();
 		}
 		del.Normalize();
-		del *= (Input.GetKey(KeyCode.LeftShift) ? 0.5f : 1f);
+		if (PlayerControl.GameOptions != null) //NOTE: Optimzie this later please I beg of you
+		{
+			bool cansprint = false;
+			if (PlayerControl.LocalPlayer.Data != null)
+			{
+				cansprint = (PlayerControl.GameOptions.SneakAllowance == 0) || (PlayerControl.GameOptions.SneakAllowance == 1 && PlayerControl.LocalPlayer.Data.IsImpostor) || (PlayerControl.GameOptions.SneakAllowance == 4 && PlayerControl.LocalPlayer.Data.IsDead);
+				if (PlayerControl.GameOptions.SneakAllowance == 2)
+                {
+					return;
+                }
+			}
+			else
+            {
+				IsSprinting = Input.GetKey(KeyCode.LeftShift);
+				del *= (Input.GetKey(KeyCode.LeftShift) ? (PlayerControl.GameOptions == null ? 0.5f : PlayerControl.GameOptions.SprintMultipler) : 1f);
+				return;
+			}
+			if (PlayerControl.GameOptions.SneakAllowance == 3)
+            {
+				if (CE_LuaLoader.CurrentGMLua)
+				{
+					cansprint = CE_LuaLoader.GetGamemodeResult("CanSneak", (CE_PlayerInfoLua)PlayerControl.LocalPlayer.Data, PlayerControl.GameOptions.SneakAllowance == 0).Boolean;
+				}
+            }
+			else
+            {
+				if (CE_LuaLoader.CurrentGMLua)
+				{
+					cansprint = cansprint && CE_LuaLoader.GetGamemodeResult("CanSneak", (CE_PlayerInfoLua)PlayerControl.LocalPlayer.Data, PlayerControl.GameOptions.SneakAllowance == 0).Boolean;
+				}
+			}
+			if (cansprint)
+            {
+				IsSprinting = Input.GetKey(KeyCode.LeftShift);
+				del *= (Input.GetKey(KeyCode.LeftShift) ? (PlayerControl.GameOptions == null ? 0.5f : PlayerControl.GameOptions.SprintMultipler) : 1f);
+				return;
+			}
+		
+		}
+		else
+		{
+			del *= (Input.GetKey(KeyCode.LeftShift) ? (PlayerControl.GameOptions == null ? 0.5f : PlayerControl.GameOptions.SprintMultipler) : 1f);
+		}
+		IsSprinting = Input.GetKey(KeyCode.LeftShift);
 	}
 
 }

@@ -54,6 +54,8 @@ public class PlayerPhysics : InnerNetObject
 
 	public float TrueGhostSpeed => GhostSpeed * PlayerControl.GameOptions.PlayerSpeedMod;
 
+	public bool IsSprinting = false;
+
 	public void Awake()
 	{
 		body = GetComponent<Rigidbody2D>();
@@ -72,7 +74,9 @@ public class PlayerPhysics : InnerNetObject
             if (data != null)
             {
                 bool isDead = data.IsDead;
-                body.velocity = DestroyableSingleton<HudManager>.Instance.joystick.Delta * (isDead ? TrueGhostSpeed : TrueSpeed);
+				IsSprinting = DestroyableSingleton<HudManager>.Instance.joystick.Delta.magnitude > 1.0f;
+
+				body.velocity = (DestroyableSingleton<HudManager>.Instance.joystick.Delta.magnitude > Mathf.Clamp((PlayerControl.GameOptions == null ? 0.5f : PlayerControl.GameOptions.SprintMultipler), 1f,3f) ? DestroyableSingleton<HudManager>.Instance.joystick.Delta.normalized : DestroyableSingleton<HudManager>.Instance.joystick.Delta) * (isDead ? TrueGhostSpeed : TrueSpeed);
             }
 		}
 	}

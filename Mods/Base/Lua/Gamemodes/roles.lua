@@ -3,14 +3,15 @@
 local invent_timer = 15
 local timedif = 0
 
-local poslength = 12
-local sni = 13
-local dkp = 14
-local sii = 15
-local sic = 16
-local csb = 17
-local isj = 18
-local amc = 19
+local poslength = 13
+local sni = 14
+local dkp = 15
+local sii = 16
+local sic = 17
+local csb = 18
+local isj = 19
+local amc = 20
+local ssm = 21
 
 
 function InitializeGamemode()
@@ -22,6 +23,7 @@ function InitializeGamemode()
 	Game_CreateRole("Clown",{243, 222, 255},"If you get ejected, \n\ryou kill someone else randomly.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true)
 	Game_CreateRole("Doctor",{25, 255, 25},"Cure [8CFFFFFF]Crewmates[] poisoned by a [AA66ADFF]Witch[].",{0},1,3,false,true,1)
 	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[57552AFF]Frame someone for a kill.[]")
+	Game_CreateRole("Spy",{98, 91, 112},"Prevent people from speaking and voting.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[625B70FF]Silence possible threats.[]")
 	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of the crew.",{0},1,0,false,true)
 	Game_CreateRole("Yeller",{109, 107, 232},"Report the body of anyone nearby\nEven if they are alive.",{0},1,0,false,true)
 	Game_CreateRole("Twin",{118, 133, 163},"Stay alive with your twin.\n\rIf you die, your twin dies as well.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
@@ -29,6 +31,7 @@ function InitializeGamemode()
 	--Game_CreateRole("Snatcher",{255, 255, 255},"Steal someone's identity and survive for 4 meetings.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	--roles you aren't supposed to see
 	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
+	Game_CreateRole("Spy(Finished)",{98, 91, 112},"if you see this you are dumb",{2},0,1,true,false,255,true,"[625B70FF]Silence possible threats.[]")
 	--counts
 	Settings_CreateByte("Sheriff Count",0,2,0) -- 0
 	Settings_CreateByte("Joker Count",0,3,0) -- 1
@@ -42,14 +45,16 @@ function InitializeGamemode()
 	Settings_CreateByte("Yeller Count",0,4,0) -- 9
 	Settings_CreateBool("Enable Twins Role",false) -- 10
 	Settings_CreateByte("Assassin Count",0,3,0) -- 11
-	Settings_CreateByte("Poison Length",5,120,15,5) -- 12
-	Settings_CreateBool("Shields Kill Attackers",false) -- 13
-	Settings_CreateBool("Doctors Know Poisoned",false) -- 14
-	Settings_CreateBool("Seers can identify Impostors",false) -- 15
-	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 16
-	Settings_CreateBool("Classic Sheriff Behavior",false) -- 17
-	Settings_CreateBool("Impostors See Jokers",true) -- 18
-	Settings_CreateByte("Assassin Kill Count",1,4,1) -- 19
+	Settings_CreateByte("Spy Count",0,3,0) -- 12
+	Settings_CreateByte("Poison Length",5,120,15,5) -- 13
+	Settings_CreateBool("Shields Kill Attackers",false) -- 14
+	Settings_CreateBool("Doctors Know Poisoned",false) -- 15
+	Settings_CreateBool("Seers can identify Impostors",false) -- 16
+	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 17
+	Settings_CreateBool("Classic Sheriff Behavior",false) -- 18
+	Settings_CreateBool("Impostors See Jokers",true) -- 19
+	Settings_CreateByte("Assassin Kill Count",1,4,1) -- 20
+	Settings_CreateByte("Spy Silence Count",1,4,1) -- 21
 	
 	return {"Roles",2}
 end
@@ -63,6 +68,15 @@ function OnRecieveRole(rolename,player)
 		player.luavalue2 = Settings_GetNumber(amc)
 		Game_UpdatePlayerInfo(player)
 	end
+	if (rolename == "Spy") then
+		player.luavalue2 = Settings_GetNumber(ssm)
+		Game_UpdatePlayerInfo(player)
+	end
+end
+
+
+function OnChat(message, player)
+	return player.luavalue3 ~= 1
 end
 
 
@@ -75,6 +89,21 @@ local function GetRoleAmount(id)
 		end
 	end
 	return idamount
+end
+
+
+local function GetRoleAmountOfType(typee)
+	if (typee == "noncrew") then
+		return (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Griefer")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Joker")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Witch")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Spy")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Spy(Finished)")))
+	end
+	if (typee == "noncrew twinless") then
+		return (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Griefer")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Joker")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Witch")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Spy")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Spy(Finished)")))
+	end
+	if (typee == "imp") then
+		return (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Griefer")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Spy")) + GetRoleAmount(Game_GetRoleIDFromUUID("roles_Spy(Finished)")))
+	end
+	Debug_Log("invalid thingy, returing 0(GetRoleAmountOfType)")
+	return 0
 end
 
 local function GetPlayersWithRole(id)
@@ -118,6 +147,7 @@ function OnGameStart()
 	invent_timer = Settings_GetNumber(poslength)
 	timedif = 0
 end
+
 
 
 
@@ -177,8 +207,24 @@ local function GetAlivePlayers(nametoavoid)
 	return players
 end
 
+local function RemoveAllSilences()
+	local players = GetAlivePlayers("MYNAMEISJEFFHAHAHAA")
+	for i=1, #players do
+		if (players[i].luavalue3 == 1 and Net_AmHost()) then
+			players[i].luavalue3 = 0
+			Game_UpdatePlayerInfo(players[i])
+		end
+	end
+
+end
+
+function OnExileSkip()
+	RemoveAllSilences()
+
+end
 
 function OnExile(exiled)
+	RemoveAllSilences()
 	if (exiled.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
 		if (Settings_GetBool(csb)) then
 			return
@@ -213,12 +259,22 @@ function OnExile(exiled)
 end
 
 
+function OnMeetingStart() --this is called on every client
+	local players = GetAlivePlayers("MYNAMEISJEFFHAHAHAA")
+	for i=1, #players do
+		if (players[i].luavalue3 == 1) then
+			Client_ShowMessage(players[i].PlayerName .. " has been silenced!")
+		end
+	end
+end
+
+
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (#crewmates == 0 and #impostors == 0) then
 		return "stalemate" --just incase
 	end
 	if (Settings_GetBool(10)) then
-		if (#crewmates - GetRoleAmount(Game_GetRoleIDFromUUID("roles_Joker")) == GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin"))) then
+		if (#crewmates - GetRoleAmountOfType("noncrew twinless") == GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin"))) then
 			if (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin")) == 2) then
 				return {GetPlayersWithRole(Game_GetRoleIDFromUUID("roles_Twin")),"twin_win"}
 			end
@@ -226,7 +282,7 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	end
 	if (not sab) then --If the check isn't due to a sabotage
 		if (GetRoleAmount(Game_GetRoleIDFromUUID("roles_Witch")) == 0) then
-			if (#impostors >= #crewmates) then --crewmates can't win
+			if ((#impostors + GetRoleAmountOfType("imp")) >= #crewmates) then --crewmates can't win
 				return "impostors"
 			end
 			if (#impostors <= 0) then --no more impostors, crewmates win
@@ -250,9 +306,20 @@ function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	end
 end
 
+function CanSneak(player,allowall)
+	if (allowall) then
+		return true
+	end
+	return (player.IsImpostor or player.role == Game_GetRoleIDFromUUID("roles_Witch") or player.role == Game_GetRoleIDFromUUID("roles_Twin"))
+end
+
 
 function CanKill(userinfo,targetinfo)
 	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Seer") or userinfo.role == Game_GetRoleIDFromUUID("roles_Yeller")) then
+		return true
+	end
+	
+	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Spy") and not targetinfo.IsImpostor) then
 		return true
 	end
 	
@@ -268,7 +335,7 @@ function CanKill(userinfo,targetinfo)
 		if (targetinfo.IsImpostor) then
 			return false
 		else
-			return not ((targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") and Settings_GetBool(isj)) or targetinfo.luavalue1 == 255)
+			return not ((targetinfo.role == Game_GetRoleIDFromUUID("roles_Joker") and Settings_GetBool(isj)) or targetinfo.luavalue1 == 255 or (targetinfo.role == Game_GetRoleIDFromUUID("roles_Spy") or targetinfo.role == Game_GetRoleIDFromUUID("roles_Spy(Finished)")))
 		end
 	end
 	
@@ -314,10 +381,15 @@ function OnVote(voter,voteid,isskip)
 		Game_KillPlayer(Game_GetPlayerFromID(voteid),false)
 		return -1
 	end
+	if (voter.luavalue3 == 1) then
+		return -1
+	end
 	return voteid
 end
 
 function OnDeath(victim,reason)
+	victim.luavalue3 = 0
+	Game_UpdatePlayerInfo(victim)
 	if (victim.role == Game_GetRoleIDFromUUID("roles_Sheriff") and Net_AmHost()) then
 		if (Settings_GetBool(csb)) then
 			return
@@ -345,6 +417,16 @@ end
 
 
 function BeforeKill(killer,victim)
+	if (killer.role == Game_GetRoleIDFromUUID("roles_Spy")) then
+		killer.luavalue2 = killer.luavalue2 - 1
+		Game_UpdatePlayerInfo(killer)
+		if (killer.luavalue2 == 0) then
+			Game_SetRoles({killer},{"roles_Spy(Finished)"})
+		end
+		victim.luavalue3 = 1
+		Game_UpdatePlayerInfo(victim)
+		return false
+	end
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Seer")) then
 		killer.luavalue2 = killer.luavalue2 - 1
 		Game_UpdatePlayerInfo(killer)
@@ -464,6 +546,9 @@ function DecideRolesFunction(playerinfos)
 	end
 	for i=1, Settings_GetNumber(11) do
 		table.insert(RolesToGive,"roles_Assassin")
+	end
+	for i=1, Settings_GetNumber(12) do
+		table.insert(RolesToGive,"roles_Spy")
 	end
 	local Selected = {}
 	local SelectedRoles = {}

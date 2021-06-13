@@ -116,6 +116,10 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 			SetForegroundForDead();
 		}
 		AmongUsClient.Instance.DisconnectHandlers.AddUnique(this);
+		if (CE_LuaLoader.CurrentGMLua)
+		{
+			CE_LuaLoader.GetGamemodeResult("OnMeetingStart");
+		}
 	}
 
 	private void SetForegroundForDead()

@@ -44,8 +44,8 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 		ServerInfo eurofo = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](France)[]",
-			Ip = "208.78.42.215",
-			Port = 22023,
+			Ip = "162.216.47.170",
+			Port = 24434,
 			Default = true,
 			Icon = "globe.png"
 		};
