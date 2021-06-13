@@ -129,7 +129,7 @@ public class CustomNetworkTransform : InnerNetObject
 				vector.y *= num;
 				if ((bool)PlayerControl.LocalPlayer && PlayerControl.GameOptions != null)
 				{
-					vector = Vector2.ClampMagnitude(vector, (vector.magnitude > ((PlayerControl.LocalPlayer.MyPhysics.TrueSpeed * PlayerControl.GameOptions.PlayerSpeedMod) * Mathf.Clamp(PlayerControl.GameOptions.SprintMultipler,1f,3f)) ? PlayerControl.LocalPlayer.MyPhysics.TrueSpeed * PlayerControl.GameOptions.SprintMultipler : PlayerControl.LocalPlayer.MyPhysics.TrueSpeed));
+					vector = Vector2.ClampMagnitude(vector, (vector.magnitude > (PlayerControl.LocalPlayer.MyPhysics.TrueSpeed * PlayerControl.GameOptions.PlayerSpeedMod) ? (PlayerControl.LocalPlayer.MyPhysics.TrueSpeed * Mathf.Clamp(PlayerControl.GameOptions.SprintMultipler,1f,3f)) : PlayerControl.LocalPlayer.MyPhysics.TrueSpeed));
 				}
 				body.velocity = vector;
 			}
