@@ -44,7 +44,7 @@ public class MedScanMinigame : Minigame
 		base.transform.position = new Vector3(100f, 0f, 0f);
 		GameData.PlayerInfo data = PlayerControl.LocalPlayer.Data;
 		int playerId = data.PlayerId;
-		uint colorId = data.ColorId;
+		int colorId = data.ColorId;
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.Append("ID: ");
 		stringBuilder.Append(Palette.PLColors[(int)colorId].Name.Substring(0, 3).ToUpperInvariant());

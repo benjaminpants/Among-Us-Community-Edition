@@ -109,7 +109,7 @@ public class PlayerTab : MonoBehaviour
 						colorChip.transform.localScale *= 0.75f;
 						colorChip.Button.OnClick.AddListener(delegate
 						{
-							SelectColor((uint)i);
+							SelectColor(i);
 						});
 						colorChip.Inner.color = Palette.PLColors[i].Base;
 						if (Palette.PLColors[i].IsSpecial)
@@ -149,7 +149,7 @@ public class PlayerTab : MonoBehaviour
 		UpdateExtHats();
 	}
 
-	private void Freeplay_SwapColor(uint colorId, uint lastColorId)
+	private void Freeplay_SwapColor(int colorId, int lastColorId)
     {
 		if ((bool)GameData.Instance)
 		{
@@ -168,7 +168,7 @@ public class PlayerTab : MonoBehaviour
 		}
 	}
 
-	private void SelectColor(uint colorId)
+	private void SelectColor(int colorId)
 	{
 		UpdateAvailableColors();
 		if (AmongUsClient.Instance.GameMode == GameModes.FreePlay)

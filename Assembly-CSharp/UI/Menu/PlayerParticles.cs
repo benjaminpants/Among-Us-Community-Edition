@@ -33,11 +33,11 @@ public class PlayerParticles : MonoBehaviour
 		}
 	}
 
-	private uint GetPlayerColor()
+	private int GetPlayerColor()
     {
 		CurrentColor++;
 		if (CurrentColor >= MaxColors) CurrentColor = 0;
-		return (uint)CurrentColor;
+		return CurrentColor;
 	}
 
 	public void Update()

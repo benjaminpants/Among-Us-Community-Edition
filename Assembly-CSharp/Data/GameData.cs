@@ -47,7 +47,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 
 		public string PlayerName = string.Empty;
 
-		public uint ColorId;
+		public int ColorId;
 
 		public uint HatId;
 
@@ -136,7 +136,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		public void Deserialize(MessageReader reader)
 		{
 			PlayerName = reader.ReadString();
-			ColorId = reader.ReadPackedUInt32();
+			ColorId = reader.ReadPackedInt32();
 			HatId = reader.ReadPackedUInt32();
 			SkinId = reader.ReadPackedUInt32();
 			role = reader.ReadByte();
@@ -252,7 +252,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		}
 	}
 
-	public void UpdateColor(byte playerId, uint color)
+	public void UpdateColor(byte playerId, int color)
 	{
 		PlayerInfo playerById = GetPlayerById(playerId);
         if (playerById != null)

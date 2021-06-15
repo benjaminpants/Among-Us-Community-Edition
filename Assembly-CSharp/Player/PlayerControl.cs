@@ -901,7 +901,7 @@ public class PlayerControl : InnerNetObject
 		nameText.Text = name;
 	}
 
-	public void CheckColor(uint bodyColor)
+	public void CheckColor(int bodyColor)
 	{
 		List<GameData.PlayerInfo> allPlayers = GameData.Instance.AllPlayers;
 		int num = 0;
@@ -928,7 +928,7 @@ public class PlayerControl : InnerNetObject
 		CE_WardrobeManager.CE_SetHatAlpha(ref HatRendererExt4, a);
 	}
 
-	public void SetColor(uint bodyColor)
+	public void SetColor(int bodyColor)
 	{
 		if ((bool)GameData.Instance)
 		{
@@ -1140,7 +1140,7 @@ public class PlayerControl : InnerNetObject
 		SetPlayerMaterialColors(GameData.Instance.GetPlayerById(PlayerId)?.ColorId ?? 0, rend);
 	}
 
-	public static void SetPlayerMaterialColors(uint colorId, Renderer rend)
+	public static void SetPlayerMaterialColors(int colorId, Renderer rend)
 	{
 		try
 		{
@@ -1321,7 +1321,7 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void CmdCheckColor(uint bodyColor)
+	public void CmdCheckColor(int bodyColor)
 	{
 		if (AmongUsClient.Instance.AmHost)
 		{
@@ -1333,7 +1333,7 @@ public class PlayerControl : InnerNetObject
 		AmongUsClient.Instance.FinishRpcImmediately(messageWriter);
 	}
 
-	public void RpcSetColor(uint bodyColor)
+	public void RpcSetColor(int bodyColor)
 	{
 		if (AmongUsClient.Instance.AmClient)
 		{
@@ -1454,10 +1454,10 @@ public class PlayerControl : InnerNetObject
 			SetName(reader.ReadString());
 			break;
 		case 7:
-			CheckColor(reader.ReadPackedUInt32());
+			CheckColor(reader.ReadPackedInt32());
 			break;
 		case 8:
-			SetColor(reader.ReadPackedUInt32());
+			SetColor(reader.ReadPackedInt32());
                 break;
 		case 253:
 			SetLuaValue(reader.ReadByte(), reader.ReadByte());

@@ -235,7 +235,7 @@ function DecideRolesFunction(playerinfos)
 	local Selected = {}
 	local SelectedRoles = {}
 	for i=1, #RolesToGive do
-		local impid = math.random(#playerinfos) --randomly set the impostor id
+		local impid = math.random(1,#playerinfos) --randomly set the impostor id
 		table.insert(Selected,playerinfos[impid]) --add it to the selected list
 		table.insert(SelectedRoles,RolesToGive[i])
 		table.remove(playerinfos,impid) --remove the chosen item from the playerinfo list

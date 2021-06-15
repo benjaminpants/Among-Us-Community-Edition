@@ -565,7 +565,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 					SpriteRenderer spriteRenderer = Object.Instantiate(PlayerVotePrefab);
 					if (PlayerControl.GameOptions.AnonVotes)
 					{
-						PlayerControl.SetPlayerMaterialColors((uint)Palette.PLColors.FindIndex(c => c.Name == "Black"), spriteRenderer);
+						PlayerControl.SetPlayerMaterialColors(Palette.PLColors.FindIndex(c => c.Name == "Black"), spriteRenderer);
 					}
 					else
 					{
@@ -582,7 +582,7 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 					SpriteRenderer spriteRenderer2 = Object.Instantiate(PlayerVotePrefab);
 					if (PlayerControl.GameOptions.AnonVotes)
 					{
-						PlayerControl.SetPlayerMaterialColors((uint)Palette.PLColors.FindIndex(c => c.Name == "Black"), spriteRenderer2);
+						PlayerControl.SetPlayerMaterialColors(Palette.PLColors.FindIndex(c => c.Name == "Black"), spriteRenderer2);
 					}
 					else
 					{

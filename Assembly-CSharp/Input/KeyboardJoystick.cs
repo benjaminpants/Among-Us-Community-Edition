@@ -58,6 +58,7 @@ public class KeyboardJoystick : MonoBehaviour, IVirtualJoystick
 			CE_Input.EscapeFunctionality();
 		}
 		del.Normalize();
+		return; //temp disabled
 		if (PlayerControl.GameOptions != null) //NOTE: Optimzie this later please I beg of you
 		{
 			bool cansprint = false;

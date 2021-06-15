@@ -131,7 +131,7 @@ public static class SaveManager
 
 	private static float joyStickSize;
 
-	private static uint colorConfig;
+	private static int colorConfig;
 
 	private static uint lastHat;
 
@@ -423,16 +423,16 @@ public static class SaveManager
 		}
 	}
 
-	public static uint BodyColor
+	public static int BodyColor
 	{
 		get
 		{
 			LoadPlayerPrefs();
-			return (uint)(colorConfig & 0xFFu);
+			return (int)(colorConfig & 0xFFu);
 		}
 		set
 		{
-			colorConfig = (colorConfig & 0xFFFF00u) | (value & 0xFFu);
+			colorConfig = (int)((int)(colorConfig & 0xFFFF00u) | (value & 0xFFu));
 			SavePlayerPrefs();
 		}
 	}
@@ -841,9 +841,9 @@ public static class SaveManager
 			{
 				int.TryParse(array[1], out touchConfig);
 			}
-			if (array.Length <= 2 || !uint.TryParse(array[2], out colorConfig))
+			if (array.Length <= 2 || !int.TryParse(array[2], out colorConfig))
 			{
-				colorConfig = (uint)((byte)(Palette.PLColors.RandomIdx() << 16) | (byte)(Palette.PLColors.RandomIdx() << 8) | (byte)Palette.PLColors.RandomIdx());
+				colorConfig = (int)((byte)(Palette.PLColors.RandomIdx() << 16) | (byte)(Palette.PLColors.RandomIdx() << 8) | (byte)Palette.PLColors.RandomIdx());
 			}
 			TryGetBool(array, 4, out sendName);
 			TryGetBool(array, 5, out sendTelemetry);

@@ -28,7 +28,7 @@ public class CE_PlayerInfoLua
 	} = string.Empty;
 
 
-	public uint ColorId
+	public int ColorId
 	{
 		get;
 		set;
