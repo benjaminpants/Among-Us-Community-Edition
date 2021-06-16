@@ -32,7 +32,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		int valid = 0;
 		foreach (GameData.PlayerInfo plrfo in AllPlayers)
 		{
-			if (CE_RoleManager.GetRoleFromID(plrfo.role).HasTasks && !plrfo.Disconnected && !plrfo.IsImpostor)
+			if ((CE_RoleManager.GetRoleFromID(plrfo.role).HasTasks && !plrfo.Disconnected && !plrfo.IsImpostor) || plrfo.Tasks.Count != 0)
 			{
 				valid++;
 			}
@@ -450,7 +450,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			switch (reason)
 			{
 			default:
-				DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(playerName + " left the game");
+				DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(playerName + " left the game" + (reason != DisconnectReasons.IntentionalLeaving ? ("(" + reason.ToString() + ")") : ""));
 				break;
 			case DisconnectReasons.Banned:
 			{
