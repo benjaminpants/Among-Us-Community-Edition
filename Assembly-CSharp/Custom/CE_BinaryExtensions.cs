@@ -5,10 +5,94 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using MoonSharp.Interpreter;
+using Hazel;
 
 
 public static class CE_BinaryExtensions
 {
+
+    public static void WriteLuaTableNet(MessageWriter writer, Table table)
+    {
+        writer.WritePacked(table.Length);
+        foreach (DynValue val in table.Values)
+        {
+            switch (val.Type)
+            {
+                default:
+                    writer.Write((byte)0);
+                    break;
+                case DataType.Number:
+                    if ((Math.Floor(val.Number) == Math.Ceiling(val.Number)))
+                    {
+                        writer.Write((byte)1);
+                        writer.WritePacked((int)val.Number);
+                    }
+                    else
+                    {
+                        writer.Write((byte)2);
+                        writer.Write((float)val.Number);
+                    }
+                    break;
+                case DataType.String:
+                    writer.Write((byte)3);
+                    writer.Write(val.String);
+                    break;
+                case DataType.Boolean:
+                    writer.Write((byte)4);
+                    writer.Write(val.Boolean);
+                    break;
+            }
+        }
+    }
+
+    public static Table ReadLuaTableNet(MessageReader reader)
+    {
+        int length = 0;
+        try
+        {
+            length = reader.ReadPackedInt32();
+        }
+        catch
+        {
+            return new Table(CE_LuaLoader.CurrentGM.script, new DynValue[0]);
+        }
+        Table tab = new Table(CE_LuaLoader.CurrentGM.script, new DynValue[length]);
+        for (int i = 0; i < length; i++)
+        {
+            try
+            {
+                switch (reader.ReadByte())
+                {
+                    default:
+                        tab.Append(DynValue.NewNil());
+                        break;
+                    case 1:
+                        tab.Append(DynValue.NewNumber(reader.ReadPackedInt32()));
+                        break;
+                    case 2:
+                        tab.Append(DynValue.NewNumber(reader.ReadSingle()));
+                        break;
+                    case 3:
+                        tab.Append(DynValue.NewString(reader.ReadString()));
+                        break;
+                    case 4:
+                        tab.Append(DynValue.NewBoolean(reader.ReadBoolean()));
+                        break;
+                }
+            }
+            catch(Exception E)
+            {
+                UnityEngine.Debug.LogError("Error handling reader:" + E.Message + "\n" + E.StackTrace);
+                tab.Append(DynValue.NewNil());
+            }
+        }
+        return tab;
+    }
+
+
+
+
     public static void WriteStringUIntDictionary(BinaryWriter writer, Dictionary<string, uint> dict)
     {
         writer.Write(dict.Count);

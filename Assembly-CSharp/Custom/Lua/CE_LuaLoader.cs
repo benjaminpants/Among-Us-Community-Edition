@@ -91,7 +91,8 @@ public static class CE_LuaLoader
 		script.Globals["Player_SnapPosTo"] = (Func<float, float, CE_PlayerInfoLua, bool>)CE_GameLua.SnapPlayerToPos;
         script.Globals["Net_InGame"] = (Func<bool>)CE_GameLua.GameStarted;
 		script.Globals["Net_GetHost"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetHost;
-		script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
+        script.Globals["Net_SendMessageToHostSimple"] = (Func<byte, bool>)CE_GameLua.SendToHostSimple;
+		script.Globals["Net_SendMessageToHost"] = (Func<byte,Table, bool>)CE_GameLua.SendToHostComplex;
 		script.Globals["Net_AmHost"] = (Func<bool>)CE_GameLua.AmHost;
 		script.Globals["Debug_Log"] = (Func<string, bool>)CE_GameLua.DebugLogLua;
         script.Globals["Debug_Error"] = (Func<string, bool>)CE_GameLua.DebugErrorLua;

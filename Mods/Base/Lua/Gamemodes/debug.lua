@@ -46,6 +46,13 @@ function OnGameEnd()
 	
 end
 
+function OnHostRecieve(id,data)
+	if (id == 0) then
+		Client_ShowMessage(data[1])
+	end
+end
+
+
 function OnChat(message, player, imponly)
 	local cmd = {}
 	for i in string.gmatch(message, "%S+") do
@@ -63,6 +70,14 @@ function OnChat(message, player, imponly)
 	if (cmd[1] == "broadcast") then
 		Client_ShowMessage(cmd[2])
 	end
+	if (cmd[1] == "broadcastrandom") then
+		Client_ShowMessage(math.random(1,20))
+	end
+	
+	if (cmd[1] == "broadcasttohost") then
+		Net_SendMessageToHost(0,{cmd[2]})
+	end
+	
 	if (cmd[1] == "killme" and Net_AmHost() and Settings_GetBool(0)) then
 		Game_KillPlayer(player,false)
 	end

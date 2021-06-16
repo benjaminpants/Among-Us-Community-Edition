@@ -673,11 +673,12 @@ public class MeetingHud : InnerNetObject, IDisconnectHandler
 		playerVoteArea.NameText.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
 		bool flag = (((PlayerControl.LocalPlayer.Data.IsImpostor || CE_RoleManager.GetRoleFromID(PlayerControl.LocalPlayer.Data.role).CanSeeImps) && playerInfo.IsImpostor) || (PlayerControl.LocalPlayer.Data.IsDead && playerInfo.IsImpostor) && PlayerControl.GameOptions.GhostsSeeRoles);
 		CE_Role playerrole = CE_RoleManager.GetRoleFromID(playerInfo.role);
-		playerVoteArea.NameText.Color = ((flag && (PlayerControl.GameOptions.CanSeeOtherImps || playerInfo == PlayerControl.LocalPlayer.Data)) ? Palette.ImpostorRed : Color.white);
-		if ((playerrole.CanSee(PlayerControl.LocalPlayer.Data) || playerInfo == PlayerControl.LocalPlayer.Data) && playerInfo.role != 0 && !flag)
+        Color colortoproject = Color.white;
+		if ((playerrole.CanSee(PlayerControl.LocalPlayer.Data) || playerInfo == PlayerControl.LocalPlayer.Data) && playerInfo.role != 0)
 		{
-			playerVoteArea.NameText.Color = playerrole.RoleColor;
+			colortoproject = playerrole.RoleColor;
 		}
+		playerVoteArea.NameText.Color = ((flag && (PlayerControl.GameOptions.CanSeeOtherImps || playerInfo == PlayerControl.LocalPlayer.Data)) ? Palette.ImpostorRed : colortoproject);
 		//prioritize showing the impostor over their role
 		playerVoteArea.transform.localScale = new Vector3(1f, 0.5f, 1f);
 		return playerVoteArea;

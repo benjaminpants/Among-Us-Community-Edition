@@ -3,18 +3,27 @@
 local invent_timer = 15
 local timedif = 0
 
-local poslength = 13
-local sni = 14
-local dkp = 15
-local sii = 16
-local sic = 17
-local csb = 18
-local isj = 19
-local amc = 20
-local ssm = 21
+local poslength = 14
+local sni = 15
+local dkp = 16
+local sii = 17
+local sic = 18
+local csb = 19
+local isj = 20
+local amc = 21
+local ssm = 22
+local ssa = 23
+local sem = 24
+
+
+--Luavalue usage docs:
+--Luavalue1 is currently only used for the witches poison(value 255) however more "potion" effects are planned to be stored here.
+--Luavalue2 is used to keep track of ability uses, stuff like how many inspects the seer has left.
+--Luavalue3 is used as a secondary effect, currently only used by the Spy's Silence effect and the slime's slime.
 
 
 function InitializeGamemode()
+	math.randomseed(Misc_GetCurrentTime())
 	Game_CreateRole("Sheriff",{255,216,0},"Find and Kill the [FF1919FF]Impostor[].",{0},1,0,false,true,255)
 	Game_CreateRole("Joker",{129,41,139},"Trick the crewmates into thinking \n\r you are the [FF1919FF]Impostor[].",{},2,4,false,false,255,false,"[81298BFF]Get Ejected.[]")
 	Game_CreateRole("Hawk-Eyed",{120, 86, 60},"Use your increased sight\n\r to find the [FF1919FF]Impostor[].",{},1,0,true,true)
@@ -23,15 +32,17 @@ function InitializeGamemode()
 	Game_CreateRole("Clown",{243, 222, 255},"If you get ejected, \n\ryou kill someone else randomly.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true)
 	Game_CreateRole("Doctor",{25, 255, 25},"Cure [8CFFFFFF]Crewmates[] poisoned by a [AA66ADFF]Witch[].",{0},1,3,false,true,1)
 	Game_CreateRole("Griefer",{87, 85, 42},"Make it look like someone killed you.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[57552AFF]Frame someone for a kill.[]")
-	Game_CreateRole("Spy",{98, 91, 112},"Prevent people from speaking and voting.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[625B70FF]Silence possible threats.[]")
 	Game_CreateRole("Seer",{73, 235, 232},"Discover the identity of the crew.",{0},1,0,false,true)
 	Game_CreateRole("Yeller",{109, 107, 232},"Report the body of anyone nearby\nEven if they are alive.",{0},1,0,false,true)
 	Game_CreateRole("Twin",{118, 133, 163},"Stay alive with your twin.\n\rIf you die, your twin dies as well.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	Game_CreateRole("Assassin",{110,22,22},"Whoever you vote for dies. Limited uses.\n\rYou win with the [8CFFFFFF]Crewmates[].",{},1,0,false,true,255)
+	Game_CreateRole("Spy",{98, 91, 112},"Prevent people from speaking and voting.\nYou win with the [FF1919FF]Impostors[].",{0,2},0,1,true,false,255,true,"[625B70FF]Silence possible threats.[]")
+	Game_CreateRole("Slime",{217,250,2},"Assist the crew by preventing\nsuspicous players from\nusing their abilities.",{0,2},1,0,false,true,255)
 	--Game_CreateRole("Snatcher",{255, 255, 255},"Steal someone's identity and survive for 4 meetings.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	--roles you aren't supposed to see
 	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
 	Game_CreateRole("Spy(Finished)",{98, 91, 112},"if you see this you are dumb",{2},0,1,true,false,255,true,"[625B70FF]Silence possible threats.[]")
+	Game_CreateRole("Slime(Slimed Out)",{217,250,2},"if you see this ur mom is spaghetti",{2},1,0,false,true,255)
 	--counts
 	Settings_CreateByte("Sheriff Count",0,2,0) -- 0
 	Settings_CreateByte("Joker Count",0,3,0) -- 1
@@ -46,15 +57,18 @@ function InitializeGamemode()
 	Settings_CreateBool("Enable Twins Role",false) -- 10
 	Settings_CreateByte("Assassin Count",0,3,0) -- 11
 	Settings_CreateByte("Spy Count",0,3,0) -- 12
-	Settings_CreateByte("Poison Length",5,120,15,5) -- 13
-	Settings_CreateBool("Shields Kill Attackers",false) -- 14
-	Settings_CreateBool("Doctors Know Poisoned",false) -- 15
-	Settings_CreateBool("Seers can identify Impostors",false) -- 16
-	Settings_CreateByte("Seer Inspect Count",1,4,1) -- 17
-	Settings_CreateBool("Classic Sheriff Behavior",false) -- 18
-	Settings_CreateBool("Impostors See Jokers",true) -- 19
-	Settings_CreateByte("Assassin Kill Count",1,4,1) -- 20
-	Settings_CreateByte("Spy Silence Count",1,4,1) -- 21
+	Settings_CreateByte("Slime Count",0,4,0) -- 13
+	Settings_CreateByte("Poison Length",5,120,15,5) -- 14
+	Settings_CreateBool("Shields Kill Attackers",false) -- 15
+	Settings_CreateBool("Doctors Know Poisoned",false) -- 16
+	Settings_CreateBool("Seers can identify Impostors",false) -- 17
+	Settings_CreateByte("Seer Inspect Count",1,10,1) -- 18
+	Settings_CreateBool("Classic Sheriff Behavior",false) -- 19
+	Settings_CreateBool("Impostors See Jokers",true) -- 20
+	Settings_CreateByte("Assassin Kill Count",1,4,1) -- 21
+	Settings_CreateByte("Spy Silence Count",1,4,1) -- 22
+	Settings_CreateByte("Slime Slime Count",1,6,2) -- 23
+	Settings_CreateBool("Slime Expire On Meetings Only",true) -- 24
 	
 	return {"Roles",2}
 end
@@ -70,6 +84,10 @@ function OnRecieveRole(rolename,player)
 	end
 	if (rolename == "Spy") then
 		player.luavalue2 = Settings_GetNumber(ssm)
+		Game_UpdatePlayerInfo(player)
+	end
+	if (rolename == "Slime") then
+		player.luavalue2 = Settings_GetNumber(ssa)
 		Game_UpdatePlayerInfo(player)
 	end
 end
@@ -214,6 +232,10 @@ local function RemoveAllSilences()
 			players[i].luavalue3 = 0
 			Game_UpdatePlayerInfo(players[i])
 		end
+		if (players[i].luavalue3 == 2 and Net_AmHost() and Settings_GetBool(sem)) then
+			players[i].luavalue3 = 0
+			Game_UpdatePlayerInfo(players[i])
+		end
 	end
 
 end
@@ -303,7 +325,7 @@ function CanKill(userinfo,targetinfo)
 		return true
 	end
 	
-	if (userinfo.role == Game_GetRoleIDFromUUID("roles_Spy") and not targetinfo.IsImpostor) then
+	if (((userinfo.role == Game_GetRoleIDFromUUID("roles_Spy") and not targetinfo.IsImpostor) or userinfo.role == Game_GetRoleIDFromUUID("roles_Slime")) and targetinfo.luavalue3 == 0) then
 		return true
 	end
 	
@@ -401,16 +423,48 @@ end
 
 
 function BeforeKill(killer,victim)
-	if (killer.role == Game_GetRoleIDFromUUID("roles_Spy")) then
+	if (killer.luavalue3 == 2) then
+	
+		local object = "knife"
+		if (killer.role == Game_GetRoleIDFromUUID("roles_Sheriff")) then
+			object = "gun"
+		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Spy")) then
+			object = "dart gun"
+		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Seer")) then
+			object = "magnifying glass"
+		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Yeller")) then
+			object = "megaphone"
+		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Doctor")) then
+			object = "syringe"
+		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Griefer")) then
+			object = "switcharoo"
+		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Witch")) then
+			object = "potion"
+		end
+		if (killer.role == Game_GetRoleIDFromUUID("roles_Slime")) then
+			Client_ShowMessage("Your hands have been slimed by another slime!")
+		else
+			Client_ShowMessage("Your " .. object .. " is covered in slime.")
+		end
+		if (not Settings_GetBool(sem)) then
+			killer.luavalue3 = 0
+			Game_UpdatePlayerInfo(killer)
+		end
+		return false
+	end
+	
+	if (killer.role == Game_GetRoleIDFromUUID("roles_Slime")) then
 		killer.luavalue2 = killer.luavalue2 - 1
 		Game_UpdatePlayerInfo(killer)
 		if (killer.luavalue2 == 0) then
-			Game_SetRoles({killer},{"roles_Spy(Finished)"})
+			Game_SetRoles({killer},{"roles_Slime(Slimed Out)"})
 		end
-		victim.luavalue3 = 1
+		victim.luavalue3 = 2
 		Game_UpdatePlayerInfo(victim)
 		return false
 	end
+
+
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Seer")) then
 		killer.luavalue2 = killer.luavalue2 - 1
 		Game_UpdatePlayerInfo(killer)
@@ -431,7 +485,7 @@ function BeforeKill(killer,victim)
 		else
 			local conjoin = " the "
 			if (not GetRoleAmount(victim.role) == 1) then
-				cjoin = " a "
+				conjoin = " a "
 			end
 			Client_ShowMessage(victim.PlayerName .. " is" .. conjoin .. RoleName .. ".")
 		end
@@ -457,6 +511,18 @@ function BeforeKill(killer,victim)
 		Game_SetRoles({victim},{"roles_Shielded(Broken)"})
 		return false
 	end
+	
+	if (killer.role == Game_GetRoleIDFromUUID("roles_Spy")) then
+		killer.luavalue2 = killer.luavalue2 - 1
+		Game_UpdatePlayerInfo(killer)
+		if (killer.luavalue2 == 0) then
+			Game_SetRoles({killer},{"roles_Spy(Finished)"})
+		end
+		victim.luavalue3 = 1
+		Game_UpdatePlayerInfo(victim)
+		return false
+	end
+	
 	if (killer.role == Game_GetRoleIDFromUUID("roles_Griefer")) then
 		Player_SnapPosTo(killer.PosX,killer.PosY,victim)
 		Game_KillPlayer(killer,false)
@@ -492,7 +558,6 @@ function BeforeKill(killer,victim)
 end
 
 function DecideRolesFunction(playerinfos)
-	math.randomseed(Misc_GetCurrentTime())
 	local RolesToGive = {}
 	for i=1, Settings_GetNumber(0) do
 		table.insert(RolesToGive,"roles_Sheriff")
@@ -534,6 +599,9 @@ function DecideRolesFunction(playerinfos)
 	end
 	for i=1, Settings_GetNumber(12) do
 		table.insert(RolesToGive,"roles_Spy")
+	end
+	for i=1, Settings_GetNumber(13) do
+		table.insert(RolesToGive,"roles_Slime")
 	end
 	local Selected = {}
 	local SelectedRoles = {}

@@ -1217,15 +1217,27 @@ public class PlayerControl : InnerNetObject
 		messageWriter.EndMessage();
 	}
 
-	public void RpcSendUpdate(byte id)
+	public void RpcSendUpdate(byte id, bool issimple, MoonSharp.Interpreter.Table tab)
     {
 		if (AmongUsClient.Instance.AmClient && AmongUsClient.Instance.AmHost)
         {
-			CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
+			if (issimple)
+			{
+				CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
+			}
+			else
+            {
+				CE_LuaLoader.GetGamemodeResult("OnHostRecieve", id, tab);
+			}
 		}
 		MessageWriter messageWriter = AmongUsClient.Instance.StartRpc(NetId, 254);
 		messageWriter.Write(AmongUsClient.Instance.GameId);
+		messageWriter.Write(issimple);
 		messageWriter.Write(id);
+		if (tab != null)
+        {
+			CE_BinaryExtensions.WriteLuaTableNet(messageWriter,tab);
+        }
 		messageWriter.EndMessage();
 	}
 
@@ -1429,8 +1441,17 @@ public class PlayerControl : InnerNetObject
 				{
 					break;
 				}
+				bool issimple = reader.ReadBoolean();
 				byte id = reader.ReadByte();
-				CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
+				if (issimple)
+				{
+					CE_LuaLoader.GetGamemodeResult("OnHostRecieveSimple", id); //no need to check if the gamemode we are in is lua, this packet can't be sent if it isn't
+					break;
+				}
+				else
+                {
+					CE_LuaLoader.GetGamemodeResult("OnHostRecieve", id, CE_BinaryExtensions.ReadLuaTableNet(reader));
+				}
 				break;
 			case 2:
                 GameOptions = GameOptionsData.FromBytes(reader.ReadBytesAndSize());

@@ -161,7 +161,13 @@ static class CE_GameLua
 
     public static bool SendToHostSimple(byte id)
     {
-        PlayerControl.LocalPlayer.RpcSendUpdate(id);
+        PlayerControl.LocalPlayer.RpcSendUpdate(id, true, null);
+        return true;
+    }
+
+    public static bool SendToHostComplex(byte id,Table tab)
+    {
+        PlayerControl.LocalPlayer.RpcSendUpdate(id, false, tab);
         return true;
     }
 

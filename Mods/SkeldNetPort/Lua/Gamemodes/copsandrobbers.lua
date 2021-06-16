@@ -1,5 +1,6 @@
 
 function InitializeGamemode()
+	math.randomseed(Misc_GetCurrentTime())
 	Game_CreateRole("Cop",{15,15,255},"Capture all [FC8803FF]Robbers[].",{0},2,5,true,false,1)
 	Game_CreateRole("Cop Leader",{15,15,255},"Capture all [FC8803FF]Robbers[].\nYou can sabotage.",{0,1},2,5,true,false,1)
 	Game_CreateRole("Robber",{252, 136, 3},"Complete all tasks.\nFree any captured Robbers.",{0},2,5,false,true,2)
@@ -202,7 +203,6 @@ function OnGameEnd()
 end
 
 function DecideRoles(playerinfos)
-	math.randomseed(Misc_GetCurrentTime())
 	local redteamcount = math.ceil(#playerinfos / 2)
 	local blueteamcount = #playerinfos - redteamcount
 	local RolesToGive = {}

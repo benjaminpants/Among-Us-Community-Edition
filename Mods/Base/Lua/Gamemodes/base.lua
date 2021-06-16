@@ -26,6 +26,15 @@ function OnVote(voter,voteid,isskip)
 	return voteid
 end
 
+
+function OnHostRecieveSimple(id)
+
+end
+
+function OnHostRecieve(id,data)
+
+end
+
 function OnHostUpdate(timer,timesincelastround)
 
 end

@@ -151,7 +151,7 @@ public class CE_Role
             case CE_RoleVisibility.Impostors:
                 return plf.IsImpostor;
             case CE_RoleVisibility.RolesOfSameType:
-                return plf.role == CE_RoleManager.GetRoleFromName(RoleName);
+                return plf.role == CE_RoleManager.GetRoleFromUUID(UUID);
             case CE_RoleVisibility.Lua:
                 return CE_LuaLoader.GetGamemodeResult("ShouldSeeRole", RoleName, new CE_PlayerInfoLua(plf)).Boolean;
         }

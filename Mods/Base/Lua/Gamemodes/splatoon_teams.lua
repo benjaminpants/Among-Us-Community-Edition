@@ -2,6 +2,7 @@
 
 
 function InitializeGamemode()
+	math.randomseed(Misc_GetCurrentTime())
 	Game_CreateRole("Red Team",{255,15,15},"Convert the entire [0F0FFFFF]Blue Team[].",{0},0,0,false,false,1)
 	Game_CreateRole("Blue Team",{15,15,255},"Convert the entire [FF0F0FFF]Red Team[].",{0},0,0,false,false,2)
 	return {"Splatoon Teams",8} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
@@ -96,7 +97,6 @@ function OnGameEnd()
 end
 
 function DecideRoles(playerinfos)
-	math.randomseed(Misc_GetCurrentTime())
 	local redteamcount = math.ceil(#playerinfos / 2)
 	local blueteamcount = #playerinfos - redteamcount
 	local RolesToGive = {}
