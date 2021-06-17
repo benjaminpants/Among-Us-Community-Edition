@@ -81,10 +81,54 @@ public static class CE_BinaryExtensions
                         break;
                 }
             }
-            catch(Exception E)
+            catch (Exception E)
             {
                 UnityEngine.Debug.LogError("Error handling reader:" + E.Message + "\n" + E.StackTrace);
                 tab.Append(DynValue.NewNil());
+            }
+        }
+        return tab;
+    }
+
+    public static List<DynValue> ReadLuaTableNetToList(MessageReader reader)
+    {
+        int length = 0;
+        List<DynValue> tab = new List<DynValue>();
+        try
+        {
+            length = reader.ReadPackedInt32();
+        }
+        catch
+        {
+            return tab;
+        }
+        for (int i = 0; i < length; i++)
+        {
+            try
+            {
+                switch (reader.ReadByte())
+                {
+                    default:
+                        tab.Add(DynValue.NewNil());
+                        break;
+                    case 1:
+                        tab.Add(DynValue.NewNumber(reader.ReadPackedInt32()));
+                        break;
+                    case 2:
+                        tab.Add(DynValue.NewNumber(reader.ReadSingle()));
+                        break;
+                    case 3:
+                        tab.Add(DynValue.NewString(reader.ReadString()));
+                        break;
+                    case 4:
+                        tab.Add(DynValue.NewBoolean(reader.ReadBoolean()));
+                        break;
+                }
+            }
+            catch (Exception E)
+            {
+                UnityEngine.Debug.LogError("Error handling reader:" + E.Message + "\n" + E.StackTrace);
+                tab.Add(DynValue.NewNil());
             }
         }
         return tab;

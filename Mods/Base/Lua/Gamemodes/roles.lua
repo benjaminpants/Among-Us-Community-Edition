@@ -225,6 +225,11 @@ local function GetAlivePlayers(nametoavoid)
 	return players
 end
 
+local function CheckIfRoleCanActionNoAssassin(roleid)
+	return (roleid == Game_GetRoleIDFromUUID("roles_Hawk-Eyed") or roleid == 0 or roleid == Game_GetRoleIDFromUUID("roles_Clown") or roleid == Game_GetRoleIDFromUUID("roles_Joker") or roleid == Game_GetRoleIDFromUUID("roles_Twin") or roleid == Game_GetRoleIDFromUUID("roles_Shielded") or roleid == Game_GetRoleIDFromUUID("roles_Shielded(Broken)") or roleid == Game_GetRoleIDFromUUID("roles_Spy(Finished)") or roleid == Game_GetRoleIDFromUUID("roles_Slime(Slimed Out)"))
+end
+
+
 local function RemoveAllSilences()
 	local players = GetAlivePlayers("MYNAMEISJEFFHAHAHAA")
 	for i=1, #players do
@@ -232,7 +237,7 @@ local function RemoveAllSilences()
 			players[i].luavalue3 = 0
 			Game_UpdatePlayerInfo(players[i])
 		end
-		if (players[i].luavalue3 == 2 and Net_AmHost() and Settings_GetBool(sem)) then
+		if (players[i].luavalue3 == 2 and Net_AmHost() and (Settings_GetBool(sem) or (CheckIfRoleCanActionNoAssassin(players[i].role) and not players[i].IsImpostor))) then
 			players[i].luavalue3 = 0
 			Game_UpdatePlayerInfo(players[i])
 		end
@@ -271,6 +276,9 @@ function OnMeetingStart() --this is called on every client
 		if (players[i].luavalue3 == 1) then
 			Client_ShowMessage(players[i].PlayerName .. " has been silenced!")
 		end
+		if (players[i].luavalue3 == 2 and players[i].IsLocal and players[i].role == Game_GetRoleIDFromUUID("roles_Assassin")) then
+			Client_ShowMessage("You've been slimed!\nYou won't be able to assassinate\nsomeone this round!")
+		end
 	end
 end
 
@@ -278,6 +286,9 @@ end
 function CheckWinCondition(impostors,crewmates,sab,taskscomplete) --required
 	if (#crewmates == 0 and #impostors == 0) then
 		return "stalemate" --just incase
+	end
+	if (#crewmates == GetRoleAmount(Game_GetRoleIDFromUUID("roles_Joker")) and #impostors >= 1 and Settings_GetBool(isj)) then
+		return "stalemate"
 	end
 	if (Settings_GetBool(10)) then
 		if (#crewmates - GetRoleAmountOfType("noncrew twinless") == GetRoleAmount(Game_GetRoleIDFromUUID("roles_Twin"))) then
@@ -378,6 +389,16 @@ function OnVote(voter,voteid,isskip)
 		return -1 --skipping should skip
 	end
 	if (voter.role == Game_GetRoleIDFromUUID("roles_Assassin")) then
+		if (voter.luavalue3 == 2) then
+			if (not Settings_GetBool(sem)) then
+				voter.luavalue3 = 0
+				Game_UpdatePlayerInfo(voter)
+			end
+			if (isskip) then
+				return -1 --skipping should skip
+			end
+			return voteid
+		end
 		voter.luavalue2 = voter.luavalue2 - 1
 		Game_UpdatePlayerInfo(voter)
 		if (voter.luavalue2 == 0) then
@@ -447,6 +468,7 @@ function BeforeKill(killer,victim)
 			Client_ShowMessage("Your " .. object .. " is covered in slime.")
 		end
 		if (not Settings_GetBool(sem)) then
+			Client_ShowMessage("However, you managed to clean it off.")
 			killer.luavalue3 = 0
 			Game_UpdatePlayerInfo(killer)
 		end

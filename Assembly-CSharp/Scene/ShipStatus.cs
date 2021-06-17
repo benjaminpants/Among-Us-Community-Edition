@@ -327,6 +327,7 @@ public class ShipStatus : InnerNetObject
 											  where !pc.IsDead
 											  select pc).ToList();
 			List<CE_PlayerInfoLua> list2role = new List<CE_PlayerInfoLua>();
+			listrole.Shuffle();
 			foreach (GameData.PlayerInfo item in listrole)
 			{
 				list2role.Add(new CE_PlayerInfoLua(item));

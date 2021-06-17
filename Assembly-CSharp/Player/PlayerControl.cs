@@ -1234,7 +1234,7 @@ public class PlayerControl : InnerNetObject
 		messageWriter.Write(AmongUsClient.Instance.GameId);
 		messageWriter.Write(issimple);
 		messageWriter.Write(id);
-		if (tab != null)
+		if (tab != null && !issimple)
         {
 			CE_BinaryExtensions.WriteLuaTableNet(messageWriter,tab);
         }
@@ -1450,7 +1450,7 @@ public class PlayerControl : InnerNetObject
 				}
 				else
                 {
-					CE_LuaLoader.GetGamemodeResult("OnHostRecieve", id, CE_BinaryExtensions.ReadLuaTableNet(reader));
+					CE_LuaLoader.GetGamemodeResult("OnHostRecieve", id, CE_BinaryExtensions.ReadLuaTableNetToList(reader));
 				}
 				break;
 			case 2:
@@ -1612,7 +1612,6 @@ public class PlayerControl : InnerNetObject
 
 	public void RpcSetRole(GameData.PlayerInfo[] persons, byte[] roles)
 	{
-		Debug.Log("Setting roles(IF THE IMPOSTOR SOMEHOW TRIGGERS THIS I WILL DIE)");
 		if (AmongUsClient.Instance.AmClient)
 		{
 			SetRoles(persons, roles);

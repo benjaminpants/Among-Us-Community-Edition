@@ -1,0 +1,74 @@
+{
+  "ID": "1776c315-4a5a-4f65-8757-12aa2f298849",
+  "Name": "Sykkuno",
+  "StoreName": "Sykkuno Scarf",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 55.0,
+        "y": 41.0
+      },
+      "Offset": {
+        "x": 0.460000038,
+        "y": 0.6
+      },
+      "Name": "NormalExt",
+      "SpritePath": "Leaf.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 63.0,
+        "y": 51.0
+      },
+      "Offset": {
+        "x": 0.36,
+        "y": 2.1
+      },
+      "Name": "Normal",
+      "SpritePath": "SykkunoScarf.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 63.0,
+        "y": 51.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "SykkunoScarf.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

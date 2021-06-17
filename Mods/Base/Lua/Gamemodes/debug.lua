@@ -50,6 +50,15 @@ function OnHostRecieve(id,data)
 	if (id == 0) then
 		Client_ShowMessage(data[1])
 	end
+	if (id == 1) then
+		if (not (data[2] >= 101)) then
+			for i=1, data[2] do
+			Client_ShowMessage(data[1])
+			end
+		else
+			Client_ShowMessage("some dumby tried crashing your client \nbe thankful I thought of this")
+		end
+	end
 end
 
 
@@ -74,8 +83,11 @@ function OnChat(message, player, imponly)
 		Client_ShowMessage(math.random(1,20))
 	end
 	
-	if (cmd[1] == "broadcasttohost") then
+	if (cmd[1] == "broadcasttohost" and player.PlayerId == Client_GetLocalPlayer().PlayerId) then
 		Net_SendMessageToHost(0,{cmd[2]})
+	end
+	if (cmd[1] == "broadcasttohostdual" and player.PlayerId == Client_GetLocalPlayer().PlayerId) then
+		Net_SendMessageToHost(1,{cmd[2], tonumber(cmd[3])})
 	end
 	
 	if (cmd[1] == "killme" and Net_AmHost() and Settings_GetBool(0)) then

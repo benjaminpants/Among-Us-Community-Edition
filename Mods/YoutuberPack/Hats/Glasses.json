@@ -1,0 +1,54 @@
+{
+  "ID": "a26204c6-9163-47d4-8a33-5bc2c088933a",
+  "Name": "Glasses",
+  "StoreName": "Glasses",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 59.0,
+        "y": 25.0
+      },
+      "Offset": {
+        "x": 0.279999971,
+        "y": 2.24999976
+      },
+      "Name": "Normal",
+      "SpritePath": "Glasses.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 59.0,
+        "y": 25.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.9000001
+      },
+      "Name": "Floor",
+      "SpritePath": "Glasses.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

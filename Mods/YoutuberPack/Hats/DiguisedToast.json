@@ -1,0 +1,74 @@
+{
+  "ID": "56428d88-6999-4fad-97ff-822e8e9810f2",
+  "Name": "Toast",
+  "StoreName": "Disguised Toast Hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 31.0,
+        "y": 28.0
+      },
+      "Offset": {
+        "x": 0.75,
+        "y": 1.24999976
+      },
+      "Name": "NormalExt",
+      "SpritePath": "dhat.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 67.0,
+        "y": 27.0
+      },
+      "Offset": {
+        "x": 0.16,
+        "y": 2.55
+      },
+      "Name": "Normal",
+      "SpritePath": "dmustache.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 31.0,
+        "y": 28.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "dhat.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

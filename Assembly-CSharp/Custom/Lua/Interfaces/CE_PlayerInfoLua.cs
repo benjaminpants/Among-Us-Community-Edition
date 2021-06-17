@@ -82,6 +82,12 @@ public class CE_PlayerInfoLua
 
 	public byte luavalue3;
 
+	public bool IsLocal
+	{
+		get;
+		private set;
+	}
+
 	public float PosX
 	{
 		get;
@@ -114,6 +120,7 @@ public class CE_PlayerInfoLua
 			PosY = 0f;
 			refplayer = ShitHolder;
 			Debug.LogWarning("PL is null! Using Placeholder refplayer... hope shitholder doesn't actually get edited...");
+			IsLocal = false;
 			return;
         }
 		PlayerId = plf.PlayerId;
@@ -131,6 +138,7 @@ public class CE_PlayerInfoLua
 		luavalue3 = plf.luavalue3;
         PosX = plf.Object.transform.position.x;
 		PosY = plf.Object.transform.position.y;
+		IsLocal = plf.PlayerId == PlayerControl.LocalPlayer.PlayerId;
 		refplayer = plf;
 	}
 }

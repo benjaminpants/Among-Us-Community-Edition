@@ -169,15 +169,9 @@ public class EndGameManager : DestroyableSingleton<EndGameManager>
 			Vector3 vector = new Vector3(num3, num3, num3) * d;
 			spriteRenderer.transform.localScale = vector;
 			TextRenderer componentInChildren = spriteRenderer.GetComponentInChildren<TextRenderer>();
-			if (TempData.DidHumansWin(TempData.EndReason))
-			{
-				componentInChildren.gameObject.SetActive(value: false);
-			}
-			else
-			{
-				componentInChildren.Text = winningPlayerData2.Name;
-				componentInChildren.transform.localScale = vector.Inv();
-			}
+			componentInChildren.Text = winningPlayerData2.Name;
+			componentInChildren.Color = (winningPlayerData2.RoleID != 0 ? CE_RoleManager.GetRoleFromID(winningPlayerData2.RoleID).RoleColor : (winningPlayerData2.IsImp ? Palette.ImpostorRed : Color.white));
+			componentInChildren.transform.localScale = vector.Inv();
 			if (!winningPlayerData2.IsDead)
 			{
 				SpriteRenderer component = spriteRenderer.transform.Find("SkinLayer").GetComponent<SpriteRenderer>();
