@@ -1,2 +1,2 @@
-# Among Us (Community Edition) 
-dear god here it is, the ce source code, its a mess, and i have no idea what you need to compile it, have fun
+# among us ce classic but i somehow attempt to add everything ben wanted to
+bruh why cant you make forks private
