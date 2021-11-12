@@ -43,7 +43,7 @@ public class CE_CommonUI
 
 	public static Texture2D ModsButton;
 
-	public static Texture2D STUPIDASSWATERMARK; //fuck
+	public static Texture2D Watermark;
 
 	private static void LoadAssets()
     {
@@ -115,9 +115,9 @@ public class CE_CommonUI
         {
             ModsButton = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "mods_texture.png"));
         }
-		if (!STUPIDASSWATERMARK)
+		if (!Watermark)
 		{
-			STUPIDASSWATERMARK = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "THISWATERMARKISFUCKINGSTUPIDANDISADISGRACEIFUCKINGHATETHISSTUPIDWATERMARKITSSOFUCKINGINTRUSIVEUGHHHH.png"));
+			Watermark = CE_TextureNSpriteExtensions.LoadPNG(System.IO.Path.Combine(Application.dataPath, "CE_Assets", "Textures", "watermark.png"));
 		}
 	}
 
