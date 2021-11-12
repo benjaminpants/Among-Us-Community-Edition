@@ -89,7 +89,7 @@ public class MainMenuManager : MonoBehaviour
 		if (!CustomLogo)
         {
 			Texture2D texture = CE_TextureNSpriteExtensions.LoadPNG(Path.Combine(Application.dataPath, "CE_Assets", "Textures", "logo.png"));
-			CustomLogo = CE_TextureNSpriteExtensions.ConvertToSprite(texture, new Vector2(0.5f, 0.65f));
+			CustomLogo = CE_TextureNSpriteExtensions.ConvertToSprite(texture, new Vector2(0.5f, 0.75f));
 		}
 
 		if (!FoundersIcon)
