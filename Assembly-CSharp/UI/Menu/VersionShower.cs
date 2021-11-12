@@ -156,7 +156,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.5.14 - [r0]Thanks for the memories, I love you all.[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		text.Text = "v0.5.15 - [r0]changed title and added swapped gamemode[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
