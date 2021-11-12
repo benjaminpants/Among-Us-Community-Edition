@@ -27,7 +27,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 			handlers.disconnectedCallback = (DiscordRpc.DisconnectedCallback)Delegate.Combine(handlers.disconnectedCallback, new DiscordRpc.DisconnectedCallback(HandleError));
 			handlers.joinCallback = (DiscordRpc.JoinCallback)Delegate.Combine(handlers.joinCallback, new DiscordRpc.JoinCallback(HandleJoinRequest));
 			handlers.requestCallback = (DiscordRpc.RequestCallback)Delegate.Combine(handlers.requestCallback, new DiscordRpc.RequestCallback(HandleAutoJoin));
-			DiscordRpc.Initialize("780630509704708096", ref handlers, autoRegister: true, null);
+			DiscordRpc.Initialize("908701325599060028", ref handlers, autoRegister: true, null);
 			SetInMenus();
 			SceneManager.sceneLoaded += delegate(Scene scene, LoadSceneMode mode)
 			{
@@ -63,7 +63,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		ClearPresence();
 		StartTime = null;
 		presence.state = "In Menus";
-		presence.largeImageKey = "icon_menu";
+		presence.largeImageKey = "icon";
 		DiscordRpc.UpdatePresence(presence);
 	}
 
@@ -93,7 +93,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 		{
 			ClearPresence();
 			presence.state = "In Freeplay";
-			presence.largeImageKey = "icon_freeplay";
+			presence.largeImageKey = "icon";
 			DiscordRpc.UpdatePresence(presence);
 		}
 		catch (Exception E)
@@ -112,7 +112,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 			}
 			ClearPresence();
 			presence.state = "In Lobby";
-			presence.largeImageKey = "icon_lobby";
+			presence.largeImageKey = "icon";
 			presence.startTimestamp = ToUnixTime(StartTime.Value);
 			DiscordRpc.UpdatePresence(presence);
 		}
@@ -152,7 +152,7 @@ public class DiscordManager : DestroyableSingleton<DiscordManager>
 			string text = InnerNetClient.IntToGameName(gameId);
 			presence.state = "In Lobby";
 			presence.details = "Hosting a game";
-			presence.smallImageKey = "icon_lobby";
+			presence.smallImageKey = "icon";
 			DiscordRpc.UpdatePresence(presence);
 		}
 		catch (Exception E)
