@@ -20,13 +20,14 @@ public static class BlockedWords
 
 	static BlockedWords()
 	{
-		AllWords = new string[1614]
+		AllWords = new string[1615]
 		{
 			"furfag",
 			"furryfag",
 			"buttpirate",
 			"dicksneeze",
 			"drilldo",
+			"date",
 			"cumjockey",
 			"fukk",
 			"2g1c",
