@@ -182,7 +182,7 @@ public class AnnouncementPopUp : MonoBehaviour
 		Announcement announcement = default(Announcement);
 		int DateFetched = DateTime.UtcNow.DayOfYear;
 		uint Id = 1;
-		string AnnounceText = "Coming Soon!";
+		string AnnounceText = "11/20/2021 Fixed bugs new hats and skins a brand new gamemode removed debug.lua and more!";
 		Announcment_SetData(announcement, DateFetched, Id, AnnounceText);
 		AskedForUpdate = AnnounceState.Success;
 		yield return null;
