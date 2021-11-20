@@ -36,6 +36,11 @@ public class CreateOptionsPicker : MonoBehaviour
 			gameSearchOptions.ToggleMapFilter(0);
 			SaveManager.GameSearchOptions = gameSearchOptions;
 		}
+		if (gameSearchOptions.MapId == 1)
+		{
+			gameSearchOptions.ToggleMapFilter(1);
+			SaveManager.GameSearchOptions = gameSearchOptions;
+		}
 		return gameSearchOptions;
 	}
 
