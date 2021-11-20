@@ -84,6 +84,7 @@ public static class CE_LuaLoader
         script.Globals["Game_GetHatIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetHatIDFromProductID;
 		script.Globals["Game_GetSkinIDFromProductID"] = (Func<string, uint>)CE_GameLua.GetSkinIDFromProductID;
 		script.Globals["Client_ShowMessage"] = (Func<string, bool>)CE_GameLua.ShowCLMessage;
+		script.Globals["Vector3_Lerp"] = (Func<Vector3,Vector3,float>) Vector3.Lerp;
         script.Globals["Client_ClearMessages"] = (Func<bool>)CE_GameLua.ClearCLMessage;
         script.Globals["Game_CallMeeting"] = (Func<CE_PlayerInfoLua, CE_PlayerInfoLua, bool>)CE_GameLua.CallMeeting;
 		script.Globals["Game_GetGlobalNum"] = (Func<string,int>)CE_GameLua.GetGlobalValue;
