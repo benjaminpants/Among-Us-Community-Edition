@@ -16,6 +16,8 @@ class CE_LuaDeadBody : CE_LuaSpawnableObject
         ID = 0;
         Anon = false;
         OwnerID = 0;
+        XPosition = 0;
+        YPosition = 0;
     }
 
 }
