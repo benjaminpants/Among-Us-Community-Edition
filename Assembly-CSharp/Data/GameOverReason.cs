@@ -10,4 +10,5 @@ public enum GameOverReason
 	JokerEjected,
 	Custom,
 	Stalemate
+//	AmogUs
 }
