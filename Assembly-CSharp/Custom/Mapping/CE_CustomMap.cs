@@ -35,12 +35,12 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        MapInfos.Add(new CE_MapInfo("Clue")); //adds a dummy map named skeld.
+        /*MapInfos.Add(new CE_MapInfo("Clue")); //adds a dummy map named skeld.
         if (!Directory.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")))
         {
             //Debug.Log("Release build, disabling CM logic!");
             return;
-        }
+        }*/
         FileInfo[] files = new DirectoryInfo(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")).GetFiles("*.json");
         foreach (FileInfo fo in files)
         {
