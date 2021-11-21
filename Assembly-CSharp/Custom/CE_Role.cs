@@ -9,7 +9,8 @@ public enum CE_Specials
 {
 	Kill,
 	Sabotage,
-	Vent
+	Vent,
+	Admin
 }
 
 public enum CE_RoleVisibility
