@@ -35,7 +35,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        MapInfos.Add(new CE_MapInfo("Skeld")); //adds a dummy map named skeld.
+        MapInfos.Add(new CE_MapInfo("Clue")); //adds a dummy map named skeld.
         if (!Directory.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")))
         {
             //Debug.Log("Release build, disabling CM logic!");
@@ -85,7 +85,7 @@ public static class CE_CustomMapManager
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = false;
+    public static bool MapTestingActive = true;
 
     public static Vent ReferenceVent;
 
