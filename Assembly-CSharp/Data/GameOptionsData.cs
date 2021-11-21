@@ -359,10 +359,10 @@ public class GameOptionsData : IBytesSerializable
 		Plugins = new List<byte>();
 		Brightness = 70;
 		CanSeeOtherImps = true;
-		MapId = 1;
+		MapId = 2;
 		MeetingCooldown = RecommendedKillCooldown[numPlayers];
 		SprintMultipler = 0.5f;
-		SneakAllowance = 0;
+		SneakAllowance = 1;
 	}
 
 	public void Serialize(BinaryWriter writer)
