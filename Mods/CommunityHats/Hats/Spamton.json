@@ -1,0 +1,74 @@
+{
+  "ID": "Spamton",
+  "Name": "BIG SHOT",
+  "StoreName": "BIG SHOT",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 44.0,
+        "y": 36.0
+      },
+      "Offset": {
+        "x": -7.0,
+        "y": 85.0
+      },
+      "Name": "Normal",
+      "SpritePath": "Spamton_Face.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 47.0,
+        "y": 21.0
+      },
+      "Offset": {
+        "x": 7.0,
+        "y": 55.0
+      },
+      "Name": "NormalExt",
+      "SpritePath": "Spamton_Glasses.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 48.0,
+        "y": 7.0
+      },
+      "Offset": {
+        "x": 0.0,
+        "y": -15.0
+      },
+      "Name": "Floor",
+      "SpritePath": "Spamton_Floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}
