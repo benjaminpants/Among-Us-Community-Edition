@@ -166,7 +166,7 @@ namespace AmongUsCE_AnimationEditor.ViewModels
             {
                 if (isValidSelection)
                 {
-                    bool Allowed = true;
+                 //   bool Allowed = true;
                     if (ShowRemoveWarning)
                     {
                         CurrentAnimation.FrameList.RemoveAt(index);
