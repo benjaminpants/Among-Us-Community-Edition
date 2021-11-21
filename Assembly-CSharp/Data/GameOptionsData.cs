@@ -405,7 +405,10 @@ public class GameOptionsData : IBytesSerializable
 		MapNames = new string[2]
 		{
 			"The Skeld",
-			"Mira HQ(Alpha)"
+			"Mira HQ(Alpha)",
+			"Polus(Not made yet)",
+			"Airship(Not made yet"
+		//      "Submerged"
 		};
 		KillDistances = new float[6]
 		{
