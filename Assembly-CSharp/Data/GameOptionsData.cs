@@ -467,8 +467,11 @@ public class GameOptionsData : IBytesSerializable
 
 		Gamemodes = new string[25]
 		{
-			"[FF0000FF]Invalid[]",
+			"Vigelente",
 			"Zombies",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
@@ -493,7 +496,7 @@ public class GameOptionsData : IBytesSerializable
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]"
 		};
-		GamemodesAreLua = new bool[25];
+		GamemodesAreLua = new bool[28];
 		VentModeStrings = new string[4]
 		{
 			"Impostors Only",
