@@ -25,7 +25,6 @@ public class StatsPopup : MonoBehaviour
         Strings.Add($"Games Finished:\t{StatsManager.Instance.GamesFinished}");
         Strings.Add($"Stalemates: \t\t{StatsManager.Instance.Stalemates}");
         Strings.Add($"Deaths: \t\t{StatsManager.Instance.TimesMurdered}");
-	Strings.Add($"Game Mode Starts: \t\t{StatsManager.Instance.gamemodestarts}");
         foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.GameStarts)
         {
             Strings.Add(kvp.Key + " Games: \t\t" + kvp.Value);
