@@ -1,7 +1,7 @@
 public enum GameOverReason
 {
 	HumansByVote,
-//	HumansByKill,
+	HumansByKill,
 	HumansByTask,
 	ImpostorByVote,
 	ImpostorByKill,
@@ -11,5 +11,4 @@ public enum GameOverReason
 	JokerEjected,
 	Custom,
 	Stalemate
-//	AmogUs
 }
