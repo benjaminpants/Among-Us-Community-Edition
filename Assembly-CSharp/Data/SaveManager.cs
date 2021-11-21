@@ -164,6 +164,8 @@ public static class SaveManager
 	private static bool enableVSync = false;
 
 	private static bool useLegacyVoteIcons = false;
+	
+	private static bool CustomMap = false;
 
 	public static bool AmBanned => (DateTime.UtcNow - LastGameStart).TotalMinutes < 5.0;
 
