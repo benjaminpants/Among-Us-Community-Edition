@@ -120,12 +120,12 @@ public class MainMenuManager : MonoBehaviour
 			{
 				component.sprite = PlayerIcon;
 			}
-			/*
+			
 			if ((bool)component && component.name == "CreditsButton")
 			{
 				component.sprite = FoundersIcon;
 			}
-			*/
+			
 		}
 	}
 
