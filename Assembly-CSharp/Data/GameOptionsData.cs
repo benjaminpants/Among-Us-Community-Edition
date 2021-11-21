@@ -467,12 +467,12 @@ public class GameOptionsData : IBytesSerializable
 
 		Gamemodes = new string[25]
 		{
-			"Vigelente",
+			"Normal",
 			"Zombies",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
-			"[FF0000FF]Invalid[]",
+			"Joker",
+			"Splatoon",
+			"Task War",
+			"Engineer",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
