@@ -359,7 +359,7 @@ public class GameOptionsData : IBytesSerializable
 		Plugins = new List<byte>();
 		Brightness = 70;
 		CanSeeOtherImps = true;
-		MapId = 0;
+		MapId = 1;
 		MeetingCooldown = RecommendedKillCooldown[numPlayers];
 		SprintMultipler = 0.5f;
 		SneakAllowance = 0;
