@@ -465,7 +465,7 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-		Gamemodes = new string[25]
+		Gamemodes = new string[28]
 		{
 			"Normal",
 			"Zombies",
