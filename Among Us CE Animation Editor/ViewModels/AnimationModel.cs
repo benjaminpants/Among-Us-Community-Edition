@@ -169,10 +169,6 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                     bool Allowed = true;
                     if (ShowRemoveWarning)
                     {
-                        Allowed = MessageBox.Show($"Are you sure you want to remove \"{CurrentAnimation.FrameList[index].Name}\"?", "Remove Frame", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
-                    }
-                    if (Allowed)
-                    {
                         CurrentAnimation.FrameList.RemoveAt(index);
                         MainWindow.Instance.UpdateUI();
                     }
