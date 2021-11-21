@@ -43,6 +43,10 @@ internal class ChatBubble : PoolableBehavior
 		{
 			NameText.Color = (isImpostor ? Palette.InfectedGreen : Color.white);
 		}
+		else if (PlayerControl.GameOptions.Gamemode == 0)
+		{
+			NameText.Color = (isImpostor ? Palette.InfectedGreen : Color.red);
+		}
 		else
 		{
 			NameText.Color = (isImpostor ? Palette.ImpostorRed : Color.white);
