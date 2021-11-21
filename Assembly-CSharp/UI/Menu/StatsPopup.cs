@@ -9,7 +9,7 @@ public class StatsPopup : MonoBehaviour
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.AppendLine($"Bodies Reported:\t{StatsManager.Instance.BodiesReported}");
-		stringBuilder.AppendLine($"Emergencies Called:\t{StatsManager.Instance.EmergenciesCalled}");
+		//stringBuilder.AppendLine($"Emergencies Called:\t{StatsManager.Instance.EmergenciesCalled}");
 		stringBuilder.AppendLine($"Tasks Completed:\t{StatsManager.Instance.TasksCompleted}");
 		stringBuilder.AppendLine($"All Tasks Completed:\t{StatsManager.Instance.CompletedAllTasks}");
 		stringBuilder.AppendLine($"Sabotages Fixed:\t{StatsManager.Instance.SabsFixed}");
