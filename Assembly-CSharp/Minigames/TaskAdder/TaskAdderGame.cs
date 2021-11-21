@@ -153,9 +153,16 @@ public class TaskAdderGame : Minigame
 			AddFileAsChild(taskAddButton2, ref xCursor, ref yCursor, true);
 			
 			TaskAddButton taskAddButton4 = Object.Instantiate(InfectedButton);
-			taskAddButton4.Text.Text = "CrewmateAlpha.exe";
+			taskAddButton4.Text.Text = "Crewmate.exe";
+			taskAddButton4.ImpostorTask = false;
 			AddFileAsChild(taskAddButton4, ref xCursor, ref yCursor, true);
 			taskAddButton4.SetOptionsTaskColor(Color.cyan);
+			
+			TaskAddButton taskAddButton5 = Object.Instantiate(InfectedButton);
+			taskAddButton5.Text.Text = "EngineerAlpha.exe";
+			taskAddButton5.ImpostorTask = false;
+			AddFileAsChild(taskAddButton5, ref xCursor, ref yCursor, true);
+			taskAddButton5.SetOptionsTaskColor(Color.orange);
 		}
 	}
 
