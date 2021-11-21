@@ -52,7 +52,7 @@ public static class CE_CustomMapManager
         }
         
 
-        TypeToTaskName.Add(TaskTypes.UploadData, new CEM_TaskData(typeof(UploadDataGame), typeof(UploadDataTask), "UploadMinigame"));
+/*        TypeToTaskName.Add(TaskTypes.UploadData, new CEM_TaskData(typeof(UploadDataGame), typeof(UploadDataTask), "UploadMinigame"));
         TypeToTaskName.Add(TaskTypes.ClearAsteroids, new CEM_TaskData(typeof(WeaponsMinigame), "WeaponsMinigame"));
         TypeToTaskName.Add(TaskTypes.AlignEngineOutput, new CEM_TaskData(typeof(AlignGame), "AlignMinigame"));
         TypeToTaskName.Add(TaskTypes.CalibrateDistributor, new CEM_TaskData(typeof(SweepMinigame), "SweepMinigame"));
@@ -70,6 +70,7 @@ public static class CE_CustomMapManager
         TypeToTaskName.Add(TaskTypes.EmptyChute, new CEM_TaskData(typeof(EmptyGarbageMinigame), "EmptyGarbageMinigame"));
         TypeToTaskName.Add(TaskTypes.FixWiring, new CEM_TaskData(typeof(WireMinigame), "WireMingame"));
     }
+    */
 
 
     public static CE_MapInfo GetCurrentMap()
@@ -322,10 +323,11 @@ public class CE_CustomMap
         ReferenceVent.transform.parent = null;
         ReferenceVent.Left = null;
         ReferenceVent.Right = null;
-        ReferenceVent.gameObject.SetActive(false);
+        ReferenceVent.gameObject.SetActive(true);
 
-        /*Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
-        v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);*/
+        Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
+        v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);
+        Debug.Log("Test Vents Active");
 
 
 
@@ -334,17 +336,17 @@ public class CE_CustomMap
    
 
         Debug.Log("Task clearing complete! Adding tasks and their associated consoles...");
-        /*NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Custom1,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
-        //CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Custom1);
+        NormalPlayerTask uptask = CreateTask(typeof(NormalPlayerTask),SystemTypes.Custom1,5,TaskTypes.ClearAsteroids, typeof(WeaponsMinigame),"WeaponsMinigame");
+        CreateTaskConsole(new Vector3(3f, 3f, (3f / 1000f) + 0.5f), sprite, uptask, new IntRange(0, 5),SystemTypes.Custom1);
         NormalPlayerTask npt = CreateTask(typeof(UploadDataTask), SystemTypes.Custom2, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        //CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Custom2);
+        CreateTaskConsole(new Vector3(3f, 6f, (3f / 1000f) + 0.5f), sprite, npt, new IntRange(0, 2), SystemTypes.Custom2);
         NormalPlayerTask npt2 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom3, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        //CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Custom3);
+        CreateTaskConsole(new Vector3(6f, 3f, (3f / 1000f) + 0.5f), sprite, npt2, new IntRange(0, 2), SystemTypes.Custom3);
         NormalPlayerTask npt3 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom4, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
-        //CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Custom4);
-        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom5, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");*/
-        //CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Custom5);
-        /*map.CommonTasks[0] = uptask;
+        CreateTaskConsole(new Vector3(6f, 6f, (3f / 1000f) + 0.5f), sprite, npt3, new IntRange(0, 2), SystemTypes.Custom4);
+        NormalPlayerTask npt4 = CreateTask(typeof(UploadDataTask), SystemTypes.Custom5, 2, TaskTypes.UploadData, typeof(UploadDataGame), "UploadMinigame");
+        CreateTaskConsole(new Vector3(3f, 4f, (3f / 1000f) + 0.5f), sprite, npt4, new IntRange(0, 2), SystemTypes.Custom5);
+        map.CommonTasks[0] = uptask;
         map.LongTasks[0] = npt;
         map.NormalTasks[0] = npt2;
         map.NormalTasks[1] = npt3;
@@ -358,7 +360,7 @@ public class CE_CustomMap
             CE_WavUtility.ToAudioClip(Path.Combine(Application.dataPath, "CE_Assets", "Audio", "Ambience", "blip.wav"))
         };*/
 
-        //CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
+        CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
         Debug.Log("Clearing collision...");
         ClearMapCollision(map);
         Debug.Log("Spawning Map...");
