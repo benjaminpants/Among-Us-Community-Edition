@@ -1,17 +1,4 @@
-- Skin Implementations:
-    - Multi-Layer
-    - Color Filtering
-    - Support for Skins to Go Behind the Player
-    - Full Body Skin Disable / Actual Player Skining
-- QOL Changes:
-    - Wire Minigame Colorblind Icons
-    - Disable Lobby Shake set to Disabled (By Default) 
-    - Optimize the Intro
-- Custom Maps
-- Fix the Invalid Text in Some Cases with the Game Settings Menu
-- Controller Support
-- Arrow Key Support For Venting
-- Proper Linked Vents
-- Hats for Chat
-- Spawn In for Hats Not Rendered Acurately (needs testing)
-- Fix map being openable on the lobby after a game
+-Dumb
+-Dog
+-April
+-Fools
