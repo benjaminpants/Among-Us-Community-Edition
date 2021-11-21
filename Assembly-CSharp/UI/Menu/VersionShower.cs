@@ -6,7 +6,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Start()
 	{
-		text.Text = "v0.1.0 - Public release";
+		text.Text = "AUME v0.1.0 - Public release";
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}
