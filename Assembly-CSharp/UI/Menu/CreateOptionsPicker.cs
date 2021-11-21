@@ -71,7 +71,7 @@ public class CreateOptionsPicker : MonoBehaviour
 		default:
 			return;
 		}
-		if (maxPlayers >= targetOptions.NumImpostors && (!flag || targetOptions.MaxPlayers + 1 <= 19) && (flag || targetOptions.MaxPlayers - 1 >= 4))
+		if (maxPlayers >= targetOptions.NumImpostors && (!flag || targetOptions.MaxPlayers + 1 <= 21) && (flag || targetOptions.MaxPlayers - 1 >= 4))
 		{
 			targetOptions.MaxPlayers = (flag ? (targetOptions.MaxPlayers + 1) : (targetOptions.MaxPlayers - 1));
 			SetTargetOptions(targetOptions);
