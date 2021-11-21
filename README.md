@@ -12,8 +12,8 @@ if u want change log here it is AT 15 STEPS
 
 
 
-#0.5.19.2
-new hat
-infected gamemode added
+#0.5.20.2,
+infected gamemode added,
+vigelente gamemode added,
 mira??? (testing phase)
 
