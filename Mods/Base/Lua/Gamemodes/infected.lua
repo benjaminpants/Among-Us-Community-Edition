@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	Game_CreateRole("Infected",{98, 167, 74},"Infect all crewmates.",{0,1,2},0,3,true,false,1)
+	Game_CreateRole("Infected",{98, 167, 74},"Infect all the crewmates.",{0,1,2},0,3,true,false,1)
 	return {"Infected",3} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
