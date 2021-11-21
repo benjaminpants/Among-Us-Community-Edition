@@ -1,7 +1,7 @@
 {
-  "ID": "Sniper_hat",
-  "Name": "Sniper_hat",
-  "StoreName": "Sniper_hat",
+  "ID": "pyrohat",
+  "Name": "pyrohat",
+  "StoreName": "pyrohat",
   "HatInFrontGlobally": false,
   "NoHatBobbingGlobally": false,
   "UsePointFilteringGlobally": false,
@@ -16,15 +16,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 89.0,
-        "y": 55.0
+        "x": 58.0,
+        "y": 68.0
       },
       "Offset": {
-        "x": 0.420000017,
-        "y": 0.95
+        "x": 0.28,
+        "y": 1.24999988
       },
       "Name": "Normal",
-      "SpritePath": "sniper.png",
+      "SpritePath": "pyromask.png",
       "Hat_NoBobbing": false,
       "InFront": true,
       "UsePointFiltering": false,
@@ -36,15 +36,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 89.0,
-        "y": 55.0
+        "x": 58.0,
+        "y": 68.0
       },
       "Offset": {
-        "x": 0.33,
-        "y": 0.85
+        "x": 0.35,
+        "y": 1.1
       },
       "Name": "Floor",
-      "SpritePath": "sniper_floor.png",
+      "SpritePath": "pyromask_floor.png",
       "Hat_NoBobbing": false,
       "InFront": false,
       "UsePointFiltering": false,

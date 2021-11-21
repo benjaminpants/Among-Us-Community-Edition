@@ -1,8 +1,8 @@
 {
-  "ID": "BaldiRuler",
-  "Name": "BaldiRuler",
-  "StoreName": "BaldiRuler",
-  "HatInFrontGlobally": false,
+  "ID": "Soldier",
+  "Name": "Soldier",
+  "StoreName": "Soldier",
+  "HatInFrontGlobally": true,
   "NoHatBobbingGlobally": false,
   "UsePointFilteringGlobally": false,
   "UseColorFilteringGlobally": false,
@@ -16,15 +16,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 73.0,
-        "y": 116.0
+        "x": 74.0,
+        "y": 45.0
       },
       "Offset": {
-        "x": 0.400000036,
-        "y": 0.88
+        "x": 0.299999982,
+        "y": 1.15
       },
-      "Name": "NormalExt2",
-      "SpritePath": "engi.png",
+      "Name": "NormalExt",
+      "SpritePath": "Soldier.png",
       "Hat_NoBobbing": false,
       "InFront": true,
       "UsePointFiltering": false,
@@ -36,15 +36,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 120.0,
-        "y": 144.0
+        "x": 136.0,
+        "y": 70.0
       },
       "Offset": {
-        "x": 0.36,
-        "y": 0.7800001
+        "x": 0.299999982,
+        "y": 1.29999983
       },
-      "Name": "NormalExt",
-      "SpritePath": "Engihands.png",
+      "Name": "Normal",
+      "SpritePath": "SoldierRockethands.png",
       "Hat_NoBobbing": false,
       "InFront": true,
       "UsePointFiltering": false,
@@ -56,38 +56,18 @@
         "y": 0.0
       },
       "Size": {
-        "x": 120.0,
-        "y": 144.0
-      },
-      "Offset": {
-        "x": 0.36,
-        "y": 0.7800001
-      },
-      "Name": "Normal",
-      "SpritePath": "EngiWrench.png",
-      "Hat_NoBobbing": false,
-      "InFront": true,
-      "UsePointFiltering": false,
-      "UseColorFiltering": false
-    },
-    {
-      "Position": {
-        "x": 0.0,
-        "y": 0.0
-      },
-      "Size": {
-        "x": 152.0,
-        "y": 35.0
+        "x": 95.0,
+        "y": 62.0
       },
       "Offset": {
         "x": 0.5,
         "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "EngiWrench_fall.png",
+      "SpritePath": "Soldier_crumple.png",
       "Hat_NoBobbing": false,
       "InFront": false,
-      "UsePointFiltering": false,
+      "UsePointFiltering": true,
       "UseColorFiltering": false
     }
   ]
