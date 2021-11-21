@@ -59,7 +59,8 @@ public class VersionShower : MonoBehaviour
 			"9",
 			"0",
 			"!",
-			"."
+			".",
+			"?"
 
 		};
     public TextRenderer text;
@@ -158,7 +159,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.5.20.2 - [r0]Bigger update maybe[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		text.Text = "v0.5.20.4 - [r0]CUSTOM MAPS ONLY[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
