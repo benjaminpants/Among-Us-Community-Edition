@@ -333,7 +333,7 @@ public class GameOptionsData : IBytesSerializable
             stringBuilder.AppendLine("Body Decay Time: " + BodyDecayTimes[BodyDecayTime]);
         }
         stringBuilder.AppendLine("Allow Impostor Only Chat: " + ImpOnlyChat);
-		stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
+	stringBuilder.AppendLine("Show All Vision: " + ShowOtherVision);
 		return stringBuilder.ToString();
 	}
 
@@ -402,13 +402,13 @@ public class GameOptionsData : IBytesSerializable
 
 	static GameOptionsData()
 	{
-		MapNames = new string[4]
+		MapNames = new string[5]
 		{
 			"The Skeld",
 			"Mira HQ(Alpha)",
 			"Polus(Not made yet)",
-			"Airship(Not made yet"
-		//      "Submerged"
+			"Airship(Not made yet",
+		        "Submerged(PORT)"
 		};
 		KillDistances = new float[6]
 		{
@@ -469,10 +469,10 @@ public class GameOptionsData : IBytesSerializable
 		{
 			"Normal",
 			"Zombies",
-			"Joker",
-			"Splatoon",
-			"Task War",
-			"Engineer",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
