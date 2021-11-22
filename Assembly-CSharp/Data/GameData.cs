@@ -45,6 +45,8 @@ public class GameData : InnerNetObject, IDisconnectHandler
 		public uint HatId;
 
 		public uint SkinId;
+		
+	        public uint PetId;
 
 		public bool Disconnected;
 
@@ -87,6 +89,7 @@ public class GameData : InnerNetObject, IDisconnectHandler
 			writer.Write(ColorId);
 			writer.WritePacked(HatId);
 			writer.WritePacked(SkinId);
+			writer.WritePacked(PetId);
 			writer.Write((byte)role);
 			byte b = 0;
 			if (Disconnected)
