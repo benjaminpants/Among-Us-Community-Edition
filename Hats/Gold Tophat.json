@@ -1,0 +1,54 @@
+{
+  "ID": "Gold",
+  "Name": "Gold",
+  "StoreName": "Gold",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.47,
+        "y": 0.86575
+      },
+      "Name": "Normal",
+      "SpritePath": "Gold Tophat.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "Gold Tophat_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

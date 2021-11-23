@@ -1,0 +1,54 @@
+{
+  "ID": "defcube",
+  "Name": "defcube",
+  "StoreName": "defcube",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 64.0
+      },
+      "Offset": {
+        "x": 0.650000036,
+        "y": 0.700000048
+      },
+      "Name": "Normal",
+      "SpritePath": "cube_normal.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 64.0
+      },
+      "Offset": {
+        "x": 0.650000036,
+        "y": 0.700000048
+      },
+      "Name": "Floor",
+      "SpritePath": "cube_normal.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}
