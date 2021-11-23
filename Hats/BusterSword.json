@@ -1,10 +1,10 @@
 {
-  "ID": "helmethat",
-  "Name": "helmethat",
-  "StoreName": "helmethat",
-  "HatInFront": true,
+  "ID": "Buster Sword",
+  "Name": "Buster Sword",
+  "StoreName": "Buster Sword",
+  "HatInFront": false,
   "NoHatBobbing": false,
-  "UsePointFilteringGlobally": true,
+  "UsePointFilteringGlobally": false,
   "RelatedSkin": null,
   "RelatedHat": null,
   "UsePercentageBasedPivot": true,
@@ -15,15 +15,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 56.0,
-        "y": 45.0
+        "x": 114.0,
+        "y": 127.0
       },
       "Offset": {
-        "x": 0.33,
-        "y": 1.15
+        "x": 0.56,
+        "y": 0.85
       },
       "Name": "Normal",
-      "SpritePath": "diamondhelmet.png",
+      "SpritePath": "BusterSword.png",
       "UsePointFiltering": false
     },
     {
@@ -32,15 +32,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 56.0,
-        "y": 45.0
+        "x": 64.0,
+        "y": 112.0
       },
       "Offset": {
-        "x": 0.33,
-        "y": 1.15
+        "x": 0.5,
+        "y": 0.5
       },
       "Name": "Floor",
-      "SpritePath": "diamondhelmet_floor.png",
+      "SpritePath": "BusterSwordPlant.png",
       "UsePointFiltering": false
     }
   ]

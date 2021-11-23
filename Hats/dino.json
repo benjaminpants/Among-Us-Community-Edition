@@ -1,0 +1,54 @@
+{
+  "ID": "Dino",
+  "Name": "Dino",
+  "StoreName": "Dino",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": true,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 7.0,
+        "y": 10.0
+      },
+      "Size": {
+        "x": 87.0,
+        "y": 88.0
+      },
+      "Offset": {
+        "x": 0.43,
+        "y": 0.9000001
+      },
+      "Name": "Normal",
+      "SpritePath": "dino.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 96.0,
+        "y": 90.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "dino_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

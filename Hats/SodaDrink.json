@@ -1,0 +1,54 @@
+{
+  "ID": "69170bf5-5027-44ad-82e7-ce12eb6f3bd3",
+  "Name": "Soda Drink Hat",
+  "StoreName": "Soda Drink Hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 87.0,
+        "y": 57.0
+      },
+      "Offset": {
+        "x": 0.299999982,
+        "y": 0.950000048
+      },
+      "Name": "Normal",
+      "SpritePath": "SodaDrink.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 87.0,
+        "y": 39.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "SodaDrink_Fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

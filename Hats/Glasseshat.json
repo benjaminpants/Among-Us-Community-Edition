@@ -1,0 +1,54 @@
+{
+  "ID": "Glasseshat",
+  "Name": "Glasseshat",
+  "StoreName": "Glasseshat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": true,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 10.0
+      },
+      "Offset": {
+        "x": 0.249999985,
+        "y": 5.0
+      },
+      "Name": "Normal",
+      "SpritePath": "glasseshat.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 10.0
+      },
+      "Offset": {
+        "x": 0.249999955,
+        "y": 5.0
+      },
+      "Name": "Floor",
+      "SpritePath": "glasseshat.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

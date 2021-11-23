@@ -1,0 +1,54 @@
+{
+  "ID": "802bfdb2-dc19-4c7a-8d38-2c2bd4202a3f",
+  "Name": "Lightbulb Hat",
+  "StoreName": "Lightbulb Hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 64.0
+      },
+      "Offset": {
+        "x": 0.399999976,
+        "y": 0.3499998
+      },
+      "Name": "Normal",
+      "SpritePath": "Lightbulb.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 64.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "Lightbulb_Fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}
