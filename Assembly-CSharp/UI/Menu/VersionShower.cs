@@ -6,7 +6,7 @@ public class VersionShower : MonoBehaviour
 
 	public void Start()
 	{
-		text.Text = "AUME v0.1.1 - Massive Update";
+		text.Text = "AUME v0.2.0 - Massive Update";
 		Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
 	}
