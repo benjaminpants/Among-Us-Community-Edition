@@ -1,0 +1,55 @@
+{
+  "ID": "swat_helmet",
+  "Name": "swat_helmet",
+  "StoreName": "swat_helmet",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "Normal",
+      "SpritePath": "swat_helmet.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "swat_helmet_ded.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

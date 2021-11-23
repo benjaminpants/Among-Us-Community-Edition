@@ -1,0 +1,55 @@
+{
+  "ID": "spinyshellmet",
+  "Name": "spinyshellmet",
+  "StoreName": "spinyshellmet",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": true,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 70.0,
+        "y": 64.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.95
+      },
+      "Name": "Normal",
+      "SpritePath": "spinyshellmet.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 70.0,
+        "y": 55.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "spinyshellmet_fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

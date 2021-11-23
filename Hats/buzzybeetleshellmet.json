@@ -1,0 +1,55 @@
+{
+  "ID": "buzzybeetleshellmet",
+  "Name": "buzzybeetleshellmet",
+  "StoreName": "buzzybeetleshellmet",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 59.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.95
+      },
+      "Name": "Normal",
+      "SpritePath": "buzzybeetleshellmet.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 88.0,
+        "y": 59.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "buzzybeetleshellmet_fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

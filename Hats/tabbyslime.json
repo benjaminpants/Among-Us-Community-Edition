@@ -1,0 +1,55 @@
+{
+  "ID": "tabbyslime",
+  "Name": "tabbyslime",
+  "StoreName": "tabbyslime",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 58.0,
+        "y": 45.0
+      },
+      "Offset": {
+        "x": 0.365,
+        "y": 0.8
+      },
+      "Name": "Normal",
+      "SpritePath": "tabbyslime.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 58.0,
+        "y": 45.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "tabbyslimescared.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}
