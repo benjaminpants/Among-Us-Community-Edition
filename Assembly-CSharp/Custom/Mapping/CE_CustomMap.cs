@@ -141,6 +141,7 @@ public class CE_CustomMap
 
     public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
+        var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
