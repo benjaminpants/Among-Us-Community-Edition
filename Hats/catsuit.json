@@ -1,0 +1,50 @@
+{
+  "ID": "catsuit",
+  "Name": "catsuit",
+  "StoreName": "catsuit",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": true,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 0
+      },
+      "Size": {
+        "x": 101,
+        "y": 79
+      },
+      "Offset": {
+        "x": 0.56,
+        "y": 1.1
+      },
+      "Name": "Normal",
+      "SpritePath": "catsuit.png",
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0,
+        "y": 0
+      },
+      "Size": {
+        "x": 96,
+        "y": 50
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "catsuit_floor.png",
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "ID": "CarJem the Hedgefox",
-  "Name": "CarJem the Hedgefox",
-  "StoreName": "CarJem the Hedgefox",
+  "ID": "Bens_Cake",
+  "Name": "Bens_Cake",
+  "StoreName": "Bens_Cake",
   "HatInFront": true,
   "NoHatBobbing": false,
   "UsePointFilteringGlobally": false,
@@ -15,15 +15,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 84.0,
-        "y": 86.0
+        "x": 53.0,
+        "y": 47.0
       },
       "Offset": {
-        "x": 0.43,
-        "y": 0.85
+        "x": 0.35,
+        "y": 0.6
       },
       "Name": "Normal",
-      "SpritePath": "CatteHatNormal.png",
+      "SpritePath": "CakeBen.png",
       "UsePointFiltering": false
     },
     {
@@ -32,15 +32,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 84.0,
-        "y": 86.0
+        "x": 59.0,
+        "y": 50.0
       },
       "Offset": {
-        "x": 0.5,
-        "y": 0.5
+        "x": 0.35,
+        "y": 0.6
       },
       "Name": "Floor",
-      "SpritePath": "CatteHatCrunk.png",
+      "SpritePath": "CakeBen_spilled.png",
       "UsePointFiltering": false
     }
   ]
