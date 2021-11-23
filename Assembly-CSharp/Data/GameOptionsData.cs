@@ -529,9 +529,9 @@ public class GameOptionsData : IBytesSerializable
                 stringBuilder.AppendLine("Voting Time: ∞s");
             }
             stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
-			//stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
-			//stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
-			stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update.[]");
+			stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
+			stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
+			//stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update.[]");
 			if (CrewLightMod == 0f)
 			{
 				stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
