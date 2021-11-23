@@ -1,0 +1,74 @@
+{
+  "ID": "UNDYEOUTFIT",
+  "Name": "UNDYEOUTFIT",
+  "StoreName": "UNDYEOUTFIT",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 60.0,
+        "y": 68.0
+      },
+      "Offset": {
+        "x": 0.31,
+        "y": 0.9100001
+      },
+      "Name": "NormalExt",
+      "SpritePath": "UNDYNEDEATHHAT.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 120.0,
+        "y": 144.0
+      },
+      "Offset": {
+        "x": 0.31,
+        "y": 0.9600001
+      },
+      "Name": "Normal",
+      "SpritePath": "UNDYNEDEATHHOLD.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 60.0,
+        "y": 68.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "UNDYNEDEATHHAT.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}
