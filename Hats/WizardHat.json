@@ -1,8 +1,8 @@
 {
-  "ID": "Troll",
-  "Name": "Troll",
-  "StoreName": "Troll",
-  "HatInFront": true,
+  "ID": "WizardHat",
+  "Name": "WizardHat",
+  "StoreName": "WizardHat",
+  "HatInFront": false,
   "NoHatBobbing": false,
   "UsePointFilteringGlobally": false,
   "RelatedSkin": null,
@@ -15,15 +15,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 70.0,
-        "y": 71.0
+        "x": 81.0,
+        "y": 73.0
       },
       "Offset": {
-        "x": 0.38,
-        "y": 1.1
+        "x": 0.47,
+        "y": 0.65
       },
       "Name": "Normal",
-      "SpritePath": "Trollface.png",
+      "SpritePath": "WizardHat.png",
       "UsePointFiltering": false
     },
     {
@@ -32,15 +32,15 @@
         "y": 0.0
       },
       "Size": {
-        "x": 71.0,
-        "y": 36.0
+        "x": 96.0,
+        "y": 58.0
       },
       "Offset": {
-        "x": 0.5,
-        "y": 0.5
+        "x": 0.33,
+        "y": 0.85
       },
       "Name": "Floor",
-      "SpritePath": "Trollface.png",
+      "SpritePath": "WizardHat_crumple.png",
       "UsePointFiltering": false
     }
   ]

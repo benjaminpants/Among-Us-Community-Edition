@@ -1,0 +1,50 @@
+{
+  "ID": "AUPORT_crown_anycolor",
+  "Name": "AUPORT_crown_anycolor",
+  "StoreName": "AUPORT_crown_anycolor",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 46.0,
+        "y": 44.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Normal",
+      "SpritePath": "crown_anycolor.png",
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 46.0,
+        "y": 44.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "crown_anycolor.png",
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}
