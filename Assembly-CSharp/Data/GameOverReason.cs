@@ -9,6 +9,7 @@ public enum GameOverReason
 	ImpostorDisconnect,
 	HumansDisconnect,
 	JokerEjected,
+	SabatourEjected,
 	Custom,
 	Stalemate
 }
