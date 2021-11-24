@@ -159,7 +159,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.5.20.4 - [r0]CUSTOM MAPS ONLY[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		text.Text = "v1.0.0 - [r0]BIGOL MASSIVE UPDATE[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
