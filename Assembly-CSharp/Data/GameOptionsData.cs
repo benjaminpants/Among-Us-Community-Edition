@@ -143,6 +143,8 @@ public class GameOptionsData : IBytesSerializable
 	public float SprintMultipler;
 
 	public byte SneakAllowance;
+	
+	public byte SprintAllowance;
 
 	public void ToggleMapFilter(byte newId)
 	{
@@ -155,7 +157,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public bool FilterContainsMap(byte newId)
 	{
-		int num = 1 << (int)newId;
+		int num = 99 << (int)newId;
 		return (MapId & num) == num;
 	}
 
@@ -363,6 +365,7 @@ public class GameOptionsData : IBytesSerializable
 		MeetingCooldown = RecommendedKillCooldown[numPlayers];
 		SprintMultipler = 0.5f;
 		SneakAllowance = 1;
+	        // SprintAllowance = 1;
 	}
 
 	public void Serialize(BinaryWriter writer)
