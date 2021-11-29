@@ -1,0 +1,55 @@
+{
+  "ID": "weedandcig",
+  "Name": "weedandcig",
+  "StoreName": "weedandcig",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 111.0
+      },
+      "Offset": {
+        "x": 0.265,
+        "y": 0.745
+      },
+      "Name": "Normal",
+      "SpritePath": "weedandcig.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 51.0,
+        "y": 73.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "weedandcig_fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

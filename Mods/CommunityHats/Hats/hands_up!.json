@@ -1,0 +1,55 @@
+{
+  "ID": "hands_up!",
+  "Name": "hands_up!",
+  "StoreName": "hands_up!",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "Normal",
+      "SpritePath": "hands_up!.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "im_dead.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}
