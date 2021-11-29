@@ -136,6 +136,7 @@ public class VersionShower : MonoBehaviour
 		pasbut.OnClick.RemoveAllListeners();
 		pasbut.OnClick.AddListener(OpenModsMenu); //learned how to properly relink passive buttons??? maybe we could stop using unity ui??? pog???
 		ModsButton = newbutton;
+	        // MapMakerButton = mapsbutton;
     }
 
 	public void OpenModsMenu()
@@ -159,7 +160,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.16.1 - [r0]BIGOL MASSIVE UPDATE[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		text.Text = "v0.16.3 - [r0]Hat Update! and other stuff[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
