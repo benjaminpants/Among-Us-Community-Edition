@@ -1,0 +1,94 @@
+{
+  "ID": "6f2bc01b-0114-4a8a-8b7f-9ccf45b349ae",
+  "Name": "Benjamin",
+  "StoreName": "DJ Benjamin",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 114.0,
+        "y": 118.0
+      },
+      "Offset": {
+        "x": 0.399999976,
+        "y": 1.0
+      },
+      "Name": "Normal",
+      "SpritePath": "jamhead.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 114.0,
+        "y": 118.0
+      },
+      "Offset": {
+        "x": 1.04000008,
+        "y": 1.0
+      },
+      "Name": "NormalHands",
+      "SpritePath": "jamhands.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 114.0,
+        "y": 118.0
+      },
+      "Offset": {
+        "x": 0.44,
+        "y": 1.03
+      },
+      "Name": "NormalExt",
+      "SpritePath": "jambody.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 114.0,
+        "y": 118.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "jamhead.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "ID": "link",
+  "Name": "link",
+  "StoreName": "link",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "NormalExt",
+      "SpritePath": "link_hands.png",
+      "UsePointFiltering": false,
+	  "UseColorFiltering": true
+    },
+	{
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "Normal",
+      "SpritePath": "link_wapons.png",
+      "UsePointFiltering": false,
+	  "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": -5.0
+      },
+      "Name": "Floor",
+      "SpritePath": "link_be_ded.png",
+      "UsePointFiltering": false
+    }
+  ]
+}
