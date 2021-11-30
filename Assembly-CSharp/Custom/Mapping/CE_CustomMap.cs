@@ -240,7 +240,7 @@ public class CE_CustomMap
         }
 
 
-        var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
+   /*     var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         GameObject go = new GameObject("Test");
         go.layer = 9;
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
@@ -265,7 +265,7 @@ public class CE_CustomMap
         }
         return go;
     }
-
+*/
     public static void LoadDefaultSounds()
     {
         ShipRoom[] TempRoom = GameObject.FindObjectsOfType<ShipRoom>();
