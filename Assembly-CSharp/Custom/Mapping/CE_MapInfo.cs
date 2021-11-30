@@ -18,6 +18,7 @@ public class CE_MapInfo
     {
         MapName = "Null Zone";
         IsCustom = false;
+        CustomLocationNames = false;
     }
 
     public CE_MapInfo(string mapname)
