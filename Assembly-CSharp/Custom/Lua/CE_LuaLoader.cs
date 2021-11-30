@@ -106,7 +106,7 @@ public static class CE_LuaLoader
         script.Globals["Client_GetLocalPlayer"] = (Func<CE_PlayerInfoLua>)CE_GameLua.GetLocal;
         script.Globals["Game_KillPlayer"] = (Func<CE_PlayerInfoLua, bool, bool>)CE_GameLua.KillPlayer;
 		script.Globals["Game_SabDoors"] = (Func<byte, bool>)CE_GameLua.SabDoor;
-		//script.Globals["Game_RevivePlayer"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.Revive;
+		script.Globals["Game_RevivePlayer"] = (Func<CE_PlayerInfoLua, bool>)CE_GameLua.Revive;
 		if (isgm)
 		{
 			script.Globals["Settings_CreateByte"] = (Func<string, byte, byte, byte, byte, bool>)TempAddCustomByteSetting;
