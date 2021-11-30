@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MoonSharp.Interpreter;
+[MoonSharpUserData]
 public class CE_FakePlayer : CE_LuaSpawnableObject
 {
     public byte ColorId = 0;
