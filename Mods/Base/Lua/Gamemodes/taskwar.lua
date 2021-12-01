@@ -4,7 +4,7 @@
 function InitializeGamemode()
 	Game_CreateRole("Red Team",{255,25,25},"Complete tasks within the time limit!",{},1,5,false,true,2)
 	Game_CreateRole("Blue Team",{25,25,255},"Complete tasks within the time limit!",{},1,5,false,true,1)
-	return {"Task Rush(Broken)",6} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Task Rush",6} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
