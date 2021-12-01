@@ -43,6 +43,28 @@
     },
     "IsSpecial": true,
     "Name": "Mint"
+  },
+  {
+    "Base": {
+      "r": 12,
+      "g": 2,
+      "b": 35,
+      "a": 0
+    },
+    "Shadow": {
+      "r": 142,
+      "g": 148,
+      "b": 111,
+      "a": 0
+    },
+    "Visor": {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "IsSpecial": true,
+    "Name": "Ako"
   }
   
   
