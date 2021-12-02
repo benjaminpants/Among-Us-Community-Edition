@@ -92,6 +92,14 @@ public class CE_CustomMap
 
     public DivertPowerMetagame DivertMeta;
 
+    public float usableDistance = 1f;
+
+//	public SpriteRenderer Image;
+
+	public float UsableDistance => usableDistance;
+
+	public float PercentCool => 0f;
+
     public static ShipStatus stat;
 
     public static SoundGroup[] SoundGroups;
@@ -138,6 +146,34 @@ public class CE_CustomMap
         }
         return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
     }
+    
+    public float CanUse(GameData.PlayerInfo pc, out bool canUse, out bool couldUse)
+	{
+		float num = float.MaxValue;
+		PlayerControl @object = pc.Object;
+		couldUse = pc.Object.CanMove;
+		canUse = couldUse;
+		if (canUse)
+		{
+			num = Vector2.Distance(@object.GetTruePosition(), base.transform.position);
+			canUse &= num <= UsableDistance;
+		}
+		return num;
+	}
+
+	public void Use()
+	{
+		CanUse(PlayerControl.LocalPlayer.Data, out var canUse, out var _);
+		if (canUse)
+		{
+			PlayerControl.LocalPlayer.NetTransform.Halt();
+			DestroyableSingleton<HudManager>.Instance.ShowMap(delegate(MapBehaviour m)
+			{
+				m.ShowCountOverlay();
+			});
+		}
+	}
+}
 
     public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
