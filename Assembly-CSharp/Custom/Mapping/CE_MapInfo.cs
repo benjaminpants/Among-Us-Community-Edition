@@ -25,17 +25,20 @@ public class CE_MapInfo
     {
         MapName = mapname;
         IsCustom = false;
+        CustomLocationNames = false;
     }
-    public CE_MapInfo(string mapname, bool iscustom)
+    public CE_MapInfo(string mapname, bool iscustom, bool customlocationnames)
     {
         MapName = mapname;
         IsCustom = iscustom;
+        CustomLocationNames = customlocationnames;
     }
 
     public CE_MapInfo(string mapname, CEM_Map map, string content_folder)
     {
         MapName = mapname;
         IsCustom = true;
+        CustomLocationNames = true;
         Map = map;
         ContentFolder = content_folder;
     }
