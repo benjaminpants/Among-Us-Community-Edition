@@ -27,18 +27,18 @@ public class CE_MapInfo
         IsCustom = false;
         CustomLocationNames = false;
     }
-    public CE_MapInfo(string mapname, bool iscustom, bool customlocationnames)
+    public CE_MapInfo(string mapname, bool iscustom)
     {
         MapName = mapname;
         IsCustom = iscustom;
-        CustomLocationNames = customlocationnames;
+    //    CustomLocationNames = customlocationnames;
     }
 
     public CE_MapInfo(string mapname, CEM_Map map, string content_folder)
     {
         MapName = mapname;
         IsCustom = true;
-        CustomLocationNames = true;
+      //  CustomLocationNames = true;
         Map = map;
         ContentFolder = content_folder;
     }
