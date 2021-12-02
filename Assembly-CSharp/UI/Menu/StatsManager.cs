@@ -305,6 +305,20 @@ public class StatsManager
 		}
 	}
 
+		public uint RevivedPlayers
+	{
+		get
+		{
+			LoadStats();
+			return revivedplayers;
+		}
+		set
+		{
+			LoadStats();
+			revivedplayers = value;
+			SaveStats();
+		}
+	}
 
 	protected virtual void LoadStats()
 	{
@@ -338,6 +352,7 @@ public class StatsManager
 			roleejects = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 			rolekills = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 			roleabilities = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
+			revivedplayers = binaryReader.ReadUInt32();
 		}
 		catch
 		{
@@ -372,6 +387,7 @@ public class StatsManager
             CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleejects);
             CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, rolekills);
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleabilities);
+			binaryWriter.Write(revivedplayers);
 		}
 		catch
 		{
