@@ -54,7 +54,7 @@ public class CEM_Sprite
 public class CEM_Console
 {
     public CEM_Point Position;
-    public string ImageLocal = "???";
+  //  public string ImageLocal = "???";
     public int TaskType;
     public int Room;
     public int MinStep;
@@ -70,7 +70,7 @@ public class CEM_Console
     public CEM_Console(Vector3 position, string ImageLocation, int tt, int r, int mis, int mas, int ci)
     {
         Position = new CEM_Point(position);
-        ImageLocal = ImageLocation;
+      //  ImageLocal = ImageLocation;
         TaskType = tt;
         Room = r;
         MaxStep = mis;
