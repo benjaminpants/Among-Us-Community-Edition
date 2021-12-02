@@ -8,7 +8,7 @@ public class StatsPopup : MonoBehaviour
 
     public int Page;
 
-    private const int LinesPerPage = 18;
+    private const int LinesPerPage = 19;
 
     private void OnEnable()
     {
@@ -25,6 +25,7 @@ public class StatsPopup : MonoBehaviour
         Strings.Add($"Games Finished:\t{StatsManager.Instance.GamesFinished}");
         Strings.Add($"Stalemates: \t\t{StatsManager.Instance.Stalemates}");
         Strings.Add($"Deaths: \t\t{StatsManager.Instance.TimesMurdered}");
+	Strings.Add($"People revived: \t\t{StatsManager.Instance.RevivedPlayers}");
         foreach (KeyValuePair<string, uint> kvp in StatsManager.Instance.GameStarts)
         {
             Strings.Add(kvp.Key + " Games: \t\t" + kvp.Value);
