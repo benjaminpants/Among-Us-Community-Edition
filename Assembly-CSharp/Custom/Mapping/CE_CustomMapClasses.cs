@@ -79,6 +79,30 @@ public class CEM_Console
     }
 }
 
+/*public class CEM_PC
+{
+    public CEM_Point Position;
+  //  public string ImageLocal = "???";
+ //   public int Usable;
+
+    public CEM_PC()
+    {
+
+    }
+*/
+
+    public CEM_Console(Vector3 position, string ImageLocation, int tt, int r, int mis, int mas, int ci)
+    {
+        Position = new CEM_Point(position);
+      //  ImageLocal = ImageLocation;
+        TaskType = tt;
+        Room = r;
+        MaxStep = mis;
+        MaxStep = mas;
+        ConsoleID = ci;
+    }
+}
+
 public class CEM_Task
 {
     public int Room;
