@@ -20,7 +20,9 @@ public class StatsManager
 
 	private uint gamesFinished;
 
-	private uint stalemates;
+	private uint stalemates; //revivedplayers
+	
+	private uint revivedplayers;
 
     private Dictionary<string, uint> rolewins = new Dictionary<string, uint>();
 
@@ -344,7 +346,7 @@ public class StatsManager
 			completedAllTasks = binaryReader.ReadUInt32();
 			sabsFixed = binaryReader.ReadUInt32();
 			timesMurdered = binaryReader.ReadUInt32();
-            gamesFinished = binaryReader.ReadUInt32();
+                        gamesFinished = binaryReader.ReadUInt32();
 			stalemates = binaryReader.ReadUInt32();
 			rolewins = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
 			roleloses = CE_BinaryExtensions.ReadStringUIntDictionary(binaryReader);
@@ -384,10 +386,11 @@ public class StatsManager
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,rolewins);
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,roleloses);
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter,gamemodestarts);
-            CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleejects);
-            CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, rolekills);
+                        CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleejects);
+                        CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, rolekills);
 			CE_BinaryExtensions.WriteStringUIntDictionary(binaryWriter, roleabilities);
 			binaryWriter.Write(revivedplayers);
+			// Debug.Log("Stuff");
 		}
 		catch
 		{
