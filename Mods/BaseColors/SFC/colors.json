@@ -178,8 +178,8 @@
       "b": 0,
       "a": 255
     },
-    "IsSpecial": false,
-    "Name": "Light Purple"
+    "IsSpecial": true,
+    "Name": "Lighter Purple"
   },
   
   {
@@ -201,7 +201,7 @@
       "b": 0,
       "a": 255
     },
-    "IsSpecial": false,
+    "IsSpecial": true,
     "Name": "Bronze"
   },
   
