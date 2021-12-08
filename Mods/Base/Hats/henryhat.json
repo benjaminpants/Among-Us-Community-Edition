@@ -2,7 +2,7 @@
   "ID": "Invoertoiiii",
   "Name": "Moti",
   "StoreName": "Motik",
-  "HatInFront": true,
+  "HatInFront": false,
   "NoHatBobbing": false,
   "UsePointFilteringGlobally": false,
   "RelatedSkin": null,
