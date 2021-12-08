@@ -1,0 +1,19 @@
+{
+	"ID": "wetfloorsign",
+	"NormalImg": "WetFloorSign.png",
+	"FloorImg": "WetFloorSign_Closed.png",
+	"NormalPosX": 0,
+	"NormalPosY": 0,
+	"NormalWidth": 56,
+	"NormalHeight": 59,
+	"NormalPivotX": 0.3,
+	"NormalPivotY": 0.8,
+	"FloorPosX": 0,
+	"FloorPosY": 0,
+	"FloorWidth": 66,
+	"FloorHeight": 40,
+	"FloorPivotX": 0.4,
+	"FloorPivotY": 0.5,
+	"inFront": "true",
+	"UsePointFiltering": false
+}
