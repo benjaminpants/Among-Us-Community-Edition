@@ -1,0 +1,47 @@
+{
+  "ID": "sapling",
+  "Name": "sapling",
+  "StoreName": "sapling",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 56.0,
+        "y": 44.0
+      },
+      "Offset": {
+        "x": 0.45,
+        "y": 0.6
+      },
+      "Name": "Normal",
+      "SpritePath": "sapling.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 56.0,
+        "y": 44.0
+      },
+      "Offset": {
+        "x": 0.45,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "sapling.png",
+      "UsePointFiltering": false
+    }
+  ]
+}
