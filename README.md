@@ -2,18 +2,4 @@
 time to learn unity coding and possibly break ce beyond repair,
 also why cant you make forks private
 
-
-
-
-
-
-if u want change log here it is AT 15 STEPS
-
-
-
-
-#0.5.20.2,
-infected gamemode added,
-vigelente gamemode added,
-mira??? (testing phase)
-
+https://discord.gg/2FUKusAh3N
