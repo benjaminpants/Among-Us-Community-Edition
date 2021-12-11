@@ -1,0 +1,54 @@
+{
+  "ID": "ada373a5-549b-4e6f-8869-7843bfc50a93",
+  "Name": "Mini Crewmate Gun",
+  "StoreName": "Mini Crewmate Gun",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 55.0
+      },
+      "Offset": {
+        "x": 0.57,
+        "y": 0.469999969
+      },
+      "Name": "Normal",
+      "SpritePath": "Gun.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 71.0,
+        "y": 55.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "Gun_Fall.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}
