@@ -134,6 +134,13 @@ public class VersionShower : MonoBehaviour
 		Destroy(newbutton.GetComponent<HostGameButton>());
 		newbutton.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_CommonUI.ModsButton,new Vector2(0.5f,0.5f));
 		pasbut.OnClick.RemoveAllListeners();
+		/*GameObject mapsbutton = GameObject.Instantiate(FreeplayButton);
+		mapsbutton.transform.localPosition = new Vector3(0f,-0.25f,0f);
+		mapsbutton.transform.name = "MapMaking";
+		PassiveButton pasbut = mapsbutton.GetComponent<PassiveButton>();
+		Destroy(mapsbutton.GetComponent<HostGameButton>());*/
+		newbutton.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_CommonUI.ModsButton,new Vector2(0.5f,0.5f));
+		pasbut.OnClick.RemoveAllListeners();
 		pasbut.OnClick.AddListener(OpenModsMenu); //learned how to properly relink passive buttons??? maybe we could stop using unity ui??? pog???
 		ModsButton = newbutton;
 	        // MapMakerButton = mapsbutton;
@@ -143,7 +150,12 @@ public class VersionShower : MonoBehaviour
     {
 		CE_ModUI.IsShown = true;
     }
-
+    
+/*    	public void OpenMapMakingMenu()
+    {
+		CE_MapUI.IsShown = true;
+    }
+*/
 
 
 	public static string CreateIDFromInt(int ID,byte length)
