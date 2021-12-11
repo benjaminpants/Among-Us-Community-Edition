@@ -32,12 +32,12 @@ public class PingTracker : MonoBehaviour
 		{
 			if (AmongUsClient.Instance.GameMode == GameModes.FreePlay)
 			{
-				text.Text = "> Among Us: CEC REVIVED <\n> " + VersionShower.BuildID + " <\n[FF009F]> Alpha Build <[]";
+				text.Text = "> Among Us: CE CLASSIC REVIVED <\n> " + VersionShower.BuildID + " <\n[FF009F]> Unkown Build <[]";
 				//text.Text = ((int)(1.0f / Time.smoothDeltaTime)).ToString();
 			}
 			else
 			{
-				text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> " + VersionShower.BuildID + " <\n[FF009F]> Alpha Build <[]";
+				text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> " + VersionShower.BuildID + " <\n[FF009F]> Unkown Build <[]";
 			}
 		}
 	}
