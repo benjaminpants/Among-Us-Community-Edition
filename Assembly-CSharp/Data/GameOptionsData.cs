@@ -321,7 +321,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public void SetRecommendations(int numPlayers, GameModes modes)
 	{
-		numPlayers = Mathf.Clamp(numPlayers, 4, 20);
+		numPlayers = Mathf.Clamp(numPlayers, 4, 21);
 		PlayerSpeedMod = 1f;
 		CrewLightMod = 1f;
 		ImpostorLightMod = 1.5f;
@@ -535,6 +535,7 @@ public class GameOptionsData : IBytesSerializable
 			stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
 			stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
 			//stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update.[]");
+			stringBuilder.AppendLine("[FF0000FF]Sprinting is disabled in this update.[]");
 			if (CrewLightMod == 0f)
 			{
 				stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
