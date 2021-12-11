@@ -155,8 +155,8 @@ public class AnnouncementPopUp : MonoBehaviour
 	public void Original_SetAnnouncmentTextFail()
     {
 		Announcement lastAnnouncement = SaveManager.LastAnnouncement;
-		if (lastAnnouncement.Id == 0) AnnounceText.Text = "Couldn't get announcement.";
-		else AnnounceText.Text = "Couldn't get announcement. Last Known:\r\n" + lastAnnouncement.AnnounceText;
+		if (lastAnnouncement.Id == 0) AnnounceText.Text = "12/10/2021 Fixed bugs new hats and skin and more!";
+		else AnnounceText.Text = "12/10/2021 Fixed bugs new hats and skin and more!";
 	}
 	public void Original_UpdateLastAnnouncementID()
 	{
@@ -182,7 +182,7 @@ public class AnnouncementPopUp : MonoBehaviour
 		Announcement announcement = default(Announcement);
 		int DateFetched = DateTime.UtcNow.DayOfYear;
 		uint Id = 1;
-		string AnnounceText = "11/20/2021 Fixed bugs new hats and skins a brand new gamemode removed debug.lua and more!";
+		string AnnounceText = "12/10/2021 Fixed bugs new hats and skin and more!";
 		Announcment_SetData(announcement, DateFetched, Id, AnnounceText);
 		AskedForUpdate = AnnounceState.Success;
 		yield return null;
