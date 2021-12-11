@@ -8,7 +8,7 @@ public class StatsPopup : MonoBehaviour
 
     public int Page;
 
-    private const int LinesPerPage = 19;
+    private const int LinesPerPage = 18;
 
     private void OnEnable()
     {
@@ -94,7 +94,7 @@ public class StatsPopup : MonoBehaviour
 
 
         //actually create the string builder
-        stringBuilder.AppendLine("[0000FFFF]Use the arrow keys to scroll.[] (" + (Page + 1) + "/" + (Mathf.CeilToInt(Strings.Count / LinesPerPage) + 1) + ")");
+	stringBuilder.AppendLine("[0000FFFF]Use the arrow keys to scroll![] (" + (Page + 1) + "/" + (Mathf.CeilToInt(Strings.Count / LinesPerPage) + 1) + ")");
         for (int i=(Page * LinesPerPage); (i - (Page * LinesPerPage)) < Mathf.Clamp(Strings.Count,0, LinesPerPage); i++)
         {
             if (!(i > (Strings.Count - 1)))
