@@ -35,7 +35,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        /*MapInfos.Add(new CE_MapInfo("Clue")); //adds a dummy map named skeld.
+        /*MapInfos.Add(new CE_MapInfo("Clue")); //adds a dummy map named clue replacing skeld.
         if (!Directory.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")))
         {
             //Debug.Log("Release build, disabling CM logic!");
@@ -78,7 +78,7 @@ public static class CE_CustomMapManager
         Debug.Log(PlayerControl.GameOptions.MapId);
         if (DestroyableSingleton<TutorialManager>.InstanceExists)
         {
-            return MapInfos[1];
+            return MapInfos[0];
         }
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
@@ -86,9 +86,11 @@ public static class CE_CustomMapManager
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = true;
+    public static bool MapTestingActive = false;
 
     public static Vent ReferenceVent;
+	
+	public static Vent ReferenceVent2;
 
     public DivertPowerMetagame DivertMeta;
 
@@ -358,9 +360,15 @@ public class CE_CustomMap
 
         ReferenceVent = map.GetComponentInChildren<Vent>();
         ReferenceVent.transform.parent = null;
-        ReferenceVent.Left = null;
+        ReferenceVent.Left = RefrenceVent2;
         ReferenceVent.Right = null;
         ReferenceVent.gameObject.SetActive(true);
+	    
+	ReferenceVent2 = map.GetComponentInChildren<Vent>();
+        ReferenceVent2.transform.parent = null;
+        ReferenceVent2.Left = RefrenceVent;
+        ReferenceVent2.Right = null;
+        ReferenceVent2.gameObject.SetActive(true);
 
        // Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
        // v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);
@@ -497,6 +505,7 @@ public class CE_CustomMap
         }
         GameObject.Destroy(ReferenceVent);
         ReferenceVent = null;
+	ReferenceVent2 = null;
         foreach (Vent V in GameObject.FindObjectsOfType<Vent>())
         {
             if (V.name.StartsWith("(Custom)"))
