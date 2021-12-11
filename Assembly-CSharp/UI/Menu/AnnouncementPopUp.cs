@@ -72,7 +72,7 @@ public class AnnouncementPopUp : MonoBehaviour
 		MessageReader message = e.Message;
 		try
 		{
-			if (message.Length > 4)
+			if (message.Length > 100)
 			{
 				Announcment_SetData(message);
 				AskedForUpdate = AnnounceState.Success;
