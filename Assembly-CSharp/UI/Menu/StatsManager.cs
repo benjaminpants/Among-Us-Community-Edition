@@ -22,7 +22,7 @@ public class StatsManager
 
 	private uint stalemates; //revivedplayers
 	
-	private uint revivedplayers;
+	private uint revivedplayers; // POKE!!!
 
     private Dictionary<string, uint> rolewins = new Dictionary<string, uint>();
 
