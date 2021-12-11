@@ -78,7 +78,7 @@ public static class CE_CustomMapManager
         Debug.Log(PlayerControl.GameOptions.MapId);
         if (DestroyableSingleton<TutorialManager>.InstanceExists)
         {
-            return MapInfos[0];
+            return MapInfos[1];
         }
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
@@ -86,7 +86,7 @@ public static class CE_CustomMapManager
 
 public class CE_CustomMap
 {
-    public static bool MapTestingActive = false;
+    public static bool MapTestingActive = true;
 
     public static Vent ReferenceVent;
 
@@ -94,7 +94,7 @@ public class CE_CustomMap
 
     public float usableDistance = 1f;
 
-//	public SpriteRenderer Image;
+	public SpriteRenderer Image;
 
 	public float UsableDistance => usableDistance;
 
@@ -362,8 +362,8 @@ public class CE_CustomMap
         ReferenceVent.Right = null;
         ReferenceVent.gameObject.SetActive(true);
 
-        Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
-        v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);
+       // Vent v1 = CreateVent("TestVent1", new Vector2(0f,5f));
+       // v1.Left =  CreateVent("TestVent2", new Vector2(5f,5f),v1);
         Debug.Log("Test Vents Active");
 
 
