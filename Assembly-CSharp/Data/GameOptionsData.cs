@@ -7,7 +7,7 @@ using System;
 
 public class GameOptionsData : IBytesSerializable
 {
-	private const byte GameDataVersion = 3;
+	private const byte GameDataVersion = 3; // make it go up.
 
 	public static string[] MapNames;
 
@@ -157,7 +157,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public bool FilterContainsMap(byte newId)
 	{
-		int num = 99 << (int)newId;
+		int num = 100 << (int)newId;
 		return (MapId & num) == num;
 	}
 
