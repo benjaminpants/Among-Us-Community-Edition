@@ -55,7 +55,14 @@ public class SystemConsole : MonoBehaviour, IUsable
 			Minigame minigame = Object.Instantiate(MinigamePrefab);
 			minigame.transform.SetParent(Camera.main.transform, worldPositionStays: false);
 			minigame.transform.localPosition = new Vector3(0f, 0f, -50f);
-			minigame.Begin(null);
+			if (!IsCustom)
+			{
+				minigame.Begin(null);
+			}
+			else
+            {
+				minigame.Begin(TaskOverride);
+            }
 		}
 	}
 }
