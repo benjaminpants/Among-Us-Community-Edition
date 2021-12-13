@@ -38,7 +38,7 @@ public class CE_CustomMap
         }
     }
     
-      public static Console CreateConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
+  /*    public static Console CreateConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
@@ -63,7 +63,9 @@ public class CE_CustomMap
         };
         console.ConsoleId = consoleid;
         return console;
-    }
+  */  }
+
+      CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
 
     public static void SpawnSprite(int x, int y, bool Solid)
     {
