@@ -8,7 +8,7 @@ using InnerNet;
 
 public class CE_CustomMap
 {
-    private static bool MapTestingActive = false;
+    private static bool MapTestingActive = true;
     private static void ClearMapCollision(ShipStatus map)
     {
         Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
@@ -59,7 +59,7 @@ public class CE_CustomMap
     {
         if (!MapTestingActive) return;
         ClearMapCollision(map);
-        // return mapInfos[2];
+        return MapId[2];
         for (int x = -25; x < 25; x++)
         {
             for (int y = -25; y < 25; y++)
