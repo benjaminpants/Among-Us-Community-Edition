@@ -2,7 +2,7 @@
 
 
 function InitializeGamemode()
-	return {"Task War",6} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Task War",3} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
