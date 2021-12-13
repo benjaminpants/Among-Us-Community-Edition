@@ -119,7 +119,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public bool FilterContainsMap(byte newId)
 	{
-		int num = 1 << (int)newId;
+		int num = 7 << (int)newId;
 		return (MapId & num) == num;
 	}
 
@@ -402,11 +402,13 @@ public class GameOptionsData : IBytesSerializable
 
 	static GameOptionsData()
 	{
-		MapNames = new string[3]
+		MapNames = new string[4]
 		{
 			"The Skeld",
 			"Mira HQ(Unfinished)",
-			"Custom map test"
+			"Custom map test",
+			"Martian wall"
+		     // "The Forest"
 		};
 		KillDistances = new float[6]
 		{
@@ -514,7 +516,7 @@ public class GameOptionsData : IBytesSerializable
 			"Normal",
 			"Systems Only",
 			"Doors Only",
-			"Random(Unimplemented)", //seriously we need to implement this
+			"Random(Unimplemented)", //seriously we need to implement this (HIGH PRIORITY LOL!!)
 			"None"
 		};
 		RecommendedKillCooldown = new int[22]
