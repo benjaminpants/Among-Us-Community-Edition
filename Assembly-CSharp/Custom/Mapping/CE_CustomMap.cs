@@ -5,6 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using InnerNet;
+using Newtonsoft.Json;
+
+public class CEM_TaskData
+{
+    public Type minigametype;
+    public Type tasktype = typeof(NormalPlayerTask);
+    public string MinigameName = "Invalid";
+
+    public CEM_TaskData(Type mgt, Type tt, string mn)
+    {
+        minigametype = mgt;
+        tasktype = tt;
+        MinigameName = mn;
+    }
+    public CEM_TaskData(Type mgt, string mn)
+    {
+        minigametype = mgt;
+        MinigameName = mn;
+    }
+}
 
 public class CE_CustomMap
 {
@@ -16,6 +36,33 @@ public class CE_CustomMap
         {
             UnityEngine.Object.Destroy(col.gameObject);
         }
+    }
+    
+      public static Console CreateConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
+    {
+        GameObject ins = new GameObject();
+        BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
+        col2d.size = Vector2.one / 2f;
+        col2d.isTrigger = true;
+        ins.transform.position = transf;
+        Console console = ins.AddComponent<Console>();
+        SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
+        img.sprite = sprite;
+        img.material.shader = Shader.Find("Sprites/Outline");
+        console.Image = img;
+        console.Room = room;
+        TaskSet ts = new TaskSet();
+        ts.taskStep = range;
+        ts.taskType = tt;
+        console.ValidTasks = new TaskSet[] {
+            ts
+        };
+        console.TaskTypes = new TaskTypes[]
+        {
+            tt
+        };
+        console.ConsoleId = consoleid;
+        return console;
     }
 
     public static void SpawnSprite(int x, int y, bool Solid)
@@ -60,6 +107,9 @@ public class CE_CustomMap
         if (!MapTestingActive) return;
         ClearMapCollision(map);
         return MapId[2];
+      //  GameObject newgam = new GameObject();
+       // newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
+        // map.SpawnCenter = newgam.transform;
         for (int x = -25; x < 25; x++)
         {
             for (int y = -25; y < 25; y++)
