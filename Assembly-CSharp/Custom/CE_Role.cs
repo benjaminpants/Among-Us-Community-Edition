@@ -9,7 +9,8 @@ public enum CE_Specials
 {
 	Kill,
 	Sabotage,
-	Vent
+	Vent,
+	Admin
 }
 
 public enum CE_RoleVisibility
@@ -99,17 +100,17 @@ public static class CE_RoleManager
 
 public class CE_Role
 {
-	public CE_Role() // Don't actually use this constructor for anything besides creating the "None" role please
+	public CE_Role() // Don't actually use this constructor for anything besides the test role! if you do ill find you and kill you!
     {
-		RoleName = "Undefined";
+		RoleName = "Aussi";
 		RoleColor = Palette.CrewmateBlue;
 		AvailableSpecials = new List<CE_Specials>();
-		RoleWinWith = CE_WinWith.All; //all does not mean all but more of "don't fuck with whether or not you win please"
+		RoleWinWith = CE_WinWith.All; //all does not mean all but more of "breh"
 		RoleVisibility = CE_RoleVisibility.None;
-        UseImpVision = false;
-        RoleText = "Undefined";
+        UseImpVision = true;
+        RoleText = "Your aussi!";
         HasTasks = true;
-        UUID = "undefined_undefined";
+        UUID = "base_aussilol";
     }
 
     public bool CanDo(CE_Specials special)
