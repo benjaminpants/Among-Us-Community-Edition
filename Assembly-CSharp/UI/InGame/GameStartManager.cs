@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameStartManager : DestroyableSingleton<GameStartManager>, IDisconnectHandler
 {
-	public int MinPlayers = 4; //yes
+	public int MinPlayers = 5; //yes
 
 	public TextRenderer PlayerCounter;
 
