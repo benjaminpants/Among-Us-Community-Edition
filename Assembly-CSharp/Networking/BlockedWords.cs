@@ -20,9 +20,11 @@ public static class BlockedWords
 
 	static BlockedWords()
 	{
-		AllWords = new string[1614]
+		AllWords = new string[1616]
 		{
 			"furfag",
+			"idiot",
+			"shut up",
 			"furryfag",
 			"buttpirate",
 			"dicksneeze",
@@ -374,7 +376,7 @@ public static class BlockedWords
 			"cockwaffle",
 			"coffin dodger",
 			"coital",
-			"cok",
+			"cocklollolol",
 			"cokmuncher",
 			"coksucka",
 			"commie",
