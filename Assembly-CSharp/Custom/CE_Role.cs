@@ -10,7 +10,8 @@ public enum CE_Specials
 	Kill,
 	Sabotage,
 	Vent,
-	Admin
+	Admin,
+	Use
 }
 
 public enum CE_RoleVisibility
@@ -102,15 +103,25 @@ public class CE_Role
 {
 	public CE_Role() // Don't actually use this constructor for anything besides the test role! if you do ill find you and kill you!
     {
-		RoleName = "Aussi";
-		RoleColor = Palette.CrewmateBlue;
-		AvailableSpecials = new List<CE_Specials>();
-		RoleWinWith = CE_WinWith.All; //all does not mean all but more of "breh"
-		RoleVisibility = CE_RoleVisibility.None;
+	RoleName = "Aussi";
+	RoleColor = Palette.CrewmateBlue;
+	AvailableSpecials = new List<CE_Specials>();
+	RoleWinWith = CE_WinWith.All; //all does not mean all but more of "breh"
+	RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = true;
         RoleText = "Your aussi!";
         HasTasks = true;
         UUID = "base_aussilol";
+		
+	RoleName = "Cat";
+	RoleColor = Palette.CrewmateBlue;
+	AvailableSpecials = new List<CE_Specials>();
+	RoleWinWith = CE_WinWith.All; //all does not mean all but more of "breh"
+	RoleVisibility = CE_RoleVisibility.None;
+        UseImpVision = false;
+        RoleText = "Your a bootiful cart now";
+        HasTasks = true;
+        UUID = "aussimayham_catlololololololololbreh";
     }
 
     public bool CanDo(CE_Specials special)
