@@ -27,6 +27,8 @@ public static class Palette
 	public static readonly Color Brown;
 
 	public static readonly Color CrewmateBlue;
+	
+//	public static readonly Color AussiPurple;
 
 	public static readonly Color ImpostorRed;
 
@@ -66,7 +68,7 @@ public static class Palette
 		SheriffYellow = new Color32(byte.MaxValue, 216, 0, byte.MaxValue);
 		InfectedGreen = new Color32(98, 167, 74, byte.MaxValue);
 		ImpostorOnlyRed = new Color32(206, 121, 139, byte.MaxValue);
-		PlayerColors = new Color32[28]
+		PlayerColors = new Color32[29]
 		{
 			new Color32(198, 17, 17, byte.MaxValue), //red
 			new Color32(19, 46, 210, byte.MaxValue), //blue
@@ -95,9 +97,10 @@ public static class Palette
 			new Color32(145,136,119, byte.MaxValue),
 			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
 			new Color32(7, 7, 122, byte.MaxValue), //carjem but blue
-			new Color32(7, 122, 7, byte.MaxValue)
+			new Color32(7, 122, 7, byte.MaxValue),
+			new Color32(255, 214, 236, byte.MaxValue) // rose lol
 		};
-		ShadowColors = new Color32[28]
+		ShadowColors = new Color32[29]
 		{
 			new Color32(122, 8, 56, byte.MaxValue),
 			new Color32(9, 21, 142, byte.MaxValue),
@@ -126,7 +129,8 @@ public static class Palette
 			new Color32(81,65,62, byte.MaxValue),
 			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
 			new Color32(42, 0, byte.MaxValue, byte.MaxValue), //carjem but blue
-			new Color32(0, 255, 42, byte.MaxValue)
+			new Color32(0, 255, 42, byte.MaxValue),
+			new Color32(222, 146, 179, byte.MaxValue) // rose lol
 		};
         VisorColor = new Color32(149, 202, 220, byte.MaxValue);
 		VisorColorBlack = new Color32(15, 15, 15, byte.MaxValue);
