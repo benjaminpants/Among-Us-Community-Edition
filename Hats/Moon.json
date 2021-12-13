@@ -1,0 +1,54 @@
+{
+  "ID": "Lov",
+  "Name": "Lov",
+  "StoreName": "Lov",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 73.0,
+        "y": 69.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.49999994
+      },
+      "Name": "Normal",
+      "SpritePath": "Moon.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 73.0,
+        "y": 69.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "Moon_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}
