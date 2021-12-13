@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-public class CE_FakePlayer
+
+public class CE_FakePlayer : CE_LuaSpawnableObject
 {
     public byte ColorId = 3;
     public string Name = "Aussi";
-
+ }
+}
     CE_FakePlayer(byte color, string name)
     {
         ColorId = color;
