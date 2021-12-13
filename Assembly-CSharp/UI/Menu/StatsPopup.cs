@@ -26,6 +26,7 @@ public class StatsPopup : MonoBehaviour
 		stringBuilder.AppendLine($"Impostor Sabotage Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.ImpostorBySabotage)}");
 		stringBuilder.AppendLine($"Crewmate Vote Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.HumansByVote)}");
 		stringBuilder.AppendLine($"Crewmate Task Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.HumansByTask)}");
+		// stringBuilder.AppendLine($"Jester Wins:\t{StatsManager.Instance.GetWinReason(GameOverReason.Jester)}");
 		StatsText.Text = stringBuilder.ToString();
 	}
 }
