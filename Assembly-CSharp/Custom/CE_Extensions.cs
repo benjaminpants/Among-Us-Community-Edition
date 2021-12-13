@@ -35,7 +35,8 @@ public class CE_Extensions
 			var windowPtr = FindWindow(null, "Among Us");
 			if (windowPtr == GetActiveWindow() && isFocused)
 			{
-				SetWindowText(windowPtr, "Among Us: Community Edition");
+				// title changing script
+				SetWindowText(windowPtr, "Among Us: Town of modders");
 				TitleChanged = true;
 			}
 		}
