@@ -1,7 +1,7 @@
 --debug gamemode, the game is currently hardwired to allow this gamemode to have chat enabled midround
 
 function InitializeGamemode()
-	return {"Testgamemode",2} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Testgamemode",18} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
