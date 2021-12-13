@@ -148,7 +148,7 @@ public class TaskAdderGame : Minigame
 			AddFileAsChild(taskAddButton3, ref xCursor, ref yCursor, true);
 			taskAddButton3.SetOptionsTaskColor(Color.gray);
 
-			TaskAddButton taskAddButton4 = Object.Instantiate(InfectedButton);
+			/*TaskAddButton taskAddButton4 = Object.Instantiate(InfectedButton);
 			taskAddButton4.Text.Text = "TODO.txt";
 			taskAddButton4.OptionsTask = true;
 			taskAddButton4.ImpostorTask = false;
@@ -156,6 +156,7 @@ public class TaskAdderGame : Minigame
 			AddFileAsChild(taskAddButton4, ref xCursor, ref yCursor, true);
 			taskAddButton4.SetOptionsTaskColor(Color.white);
 
+			*/
 			TaskAddButton taskAddButton2 = Object.Instantiate(InfectedButton);
 			taskAddButton2.Text.Text = "Impostor.exe";
 			AddFileAsChild(taskAddButton2, ref xCursor, ref yCursor, true);
