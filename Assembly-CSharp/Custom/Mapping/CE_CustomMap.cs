@@ -59,6 +59,7 @@ public class CE_CustomMap
     {
         if (!MapTestingActive) return;
         ClearMapCollision(map);
+        // return mapInfos[2];
         for (int x = -25; x < 25; x++)
         {
             for (int y = -25; y < 25; y++)
