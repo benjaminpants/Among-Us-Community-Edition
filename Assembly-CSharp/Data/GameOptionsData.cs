@@ -358,7 +358,7 @@ public class GameOptionsData : IBytesSerializable
 	{
 		ConfirmEject = true;
 		Visuals = true;
-		MaxPlayers = 20;
+		MaxPlayers = 15;
 		Keywords = GameKeywords.English;
 		PlayerSpeedMod = 1f;
 		CrewLightMod = 1f;
@@ -402,10 +402,11 @@ public class GameOptionsData : IBytesSerializable
 
 	static GameOptionsData()
 	{
-		MapNames = new string[2]
+		MapNames = new string[3]
 		{
 			"The Skeld",
-			"Mira HQ(Alpha)"
+			"Mira HQ(Unfinished)",
+			"Custom map test"
 		};
 		KillDistances = new float[6]
 		{
@@ -462,7 +463,7 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-		Gamemodes = new string[25]
+		Gamemodes = new string[26]
 		{
 			"[FF0000FF]Invalid[]",
 			"Zombies",
@@ -488,9 +489,10 @@ public class GameOptionsData : IBytesSerializable
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]"
 		};
-		GamemodesAreLua = new bool[25];
+		GamemodesAreLua = new bool[26];
 		VentModeStrings = new string[4]
 		{
 			"Impostors Only",
