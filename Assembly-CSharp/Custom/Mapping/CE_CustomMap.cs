@@ -26,6 +26,36 @@ public class CEM_TaskData
     }
 }
 
+public static class CE_CustomMapManager
+{
+    public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
+
+    public static void Initialize()
+    {
+        MapInfos.Add(new CE_MapInfo("Dumb",new string[12]{
+            "Happy Place",
+            "Sad Place",
+            "Mad Place",
+            "Bad Place",
+            "Good Place",
+            "Evil Place",
+            "Holy Place",
+            "Happy Place",
+            "Happy Place",
+            "Happy Place",
+            "Happy Place",
+            "Happy Place"
+        }));
+    }
+
+    public static CE_MapInfo GetCurrentMap()
+    {
+        return MapInfos[PlayerControl.GameOptions.MapId];
+    }
+}
+
+ 
+
 public class CE_CustomMap
 {
     private static bool MapTestingActive = true;
