@@ -34,7 +34,7 @@ public static class CE_CustomMapManager
     public static void Initialize()
     {
         //  MapInfos.Add(new CE_MapInfo("Lion"); // adds a dummy map named Lion
-        MapInfos.Add(new CE_MapInfo("Lion",new string[18]{
+        MapInfos.Add(new CE_MapInfo("Lion",new string[19]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -52,13 +52,14 @@ public static class CE_CustomMapManager
             "Toon land",
             "Pizzaria",
             "Airship",
-            "Polus"
+            "Polus",
+            "Hopeful Place"
         }));
     }
 
     public static CE_MapInfo GetCurrentMap()
     {
-        return MapId[2];
+        return MapId[2]; // which equals custom map testing
      //   return MapInfos[2];
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
@@ -141,7 +142,15 @@ public class CE_CustomMap
         }
     }
 
-//    GameObject goalt = new GameObject("Venttestlololpol");
+        GameObject goalt = new GameObject("Venttest");
+        goalt.layer = LayerMask.NameToLayer("Ship");
+        SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
+        var position = renderer.transform.position;
+        position.x = 0.6f * x;
+        position.y = 0.6f * y;
+        position.z = (position.y / 1000f) + 0.6f;
+        renderer.transform.position = position;
+        renderer.sprite = sprite;
 
     public static void MapTest(ShipStatus map)
     {
