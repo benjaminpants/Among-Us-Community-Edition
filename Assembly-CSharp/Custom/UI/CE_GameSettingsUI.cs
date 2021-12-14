@@ -86,7 +86,7 @@ public class CE_GameSettingsUI : MonoBehaviour
 			gameOptions.SetRecommendations(GameData.Instance.PlayerCount, AmongUsClient.Instance.GameMode);
 		}
 		scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true, CE_CommonUI.GameScrollbarStyleH(), CE_CommonUI.GameScrollbarStyleV(), CE_CommonUI.GameScrollViewStyle(), new GUILayoutOption[0]);
-		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 1, "Map", ReadOnly);
+		gameOptions.MapId = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.MapId, GameOptionsData.MapNames, 0, 2, "Map", ReadOnly); // testing this thing
 		gameOptions.Gamemode = (byte)CE_CommonUI.CreateStringPicker_GS(gameOptions.Gamemode, GameOptionsData.Gamemodes, 0, 25, "Gamemode", ReadOnly);
 		CE_ListedItems();
 		GUILayout.EndScrollView();
