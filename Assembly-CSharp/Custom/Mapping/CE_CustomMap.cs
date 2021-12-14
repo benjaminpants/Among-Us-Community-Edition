@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 
 public class CEM_TaskData
 {
+    // minigame snizzle!
     public Type minigametype;
     public Type tasktype = typeof(NormalPlayerTask);
     public string MinigameName = "Invalid";
@@ -33,7 +34,7 @@ public static class CE_CustomMapManager
     public static void Initialize()
     {
         //  MapInfos.Add(new CE_MapInfo("Lion"); // adds a dummy map named Lion
-        MapInfos.Add(new CE_MapInfo("Lion",new string[17]{
+        MapInfos.Add(new CE_MapInfo("Lion",new string[18]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -50,7 +51,8 @@ public static class CE_CustomMapManager
             "ehT Dleks",
             "Toon land",
             "Pizzaria",
-            "Airship"
+            "Airship",
+            "Polus"
         }));
     }
 
@@ -67,53 +69,22 @@ public static class CE_CustomMapManager
 public class CE_CustomMap
 {
     private static bool MapTestingActive = true;
+    public bool CustomTasksEnabled = true;
+        public bool MiniMapEnabled = false;
+        public bool CustomVentsEnabled = true;
 //    public static bool MapTestingActiveMapId = false;
     private static void ClearMapCollision(ShipStatus map)
     {
- //       GetCurrentMap() // Gets what map your playing on. and then code below checks it.
-        // If CurrentMap() = MapId[2] then
-        // MapTestingActive = true
-        // If CurrentMap() = MapId[1] then
-        // MapTestingActive = false
-        // If CurrentMap() = MapId[0] then
-        // MapTestingActive = false
         Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
         foreach (Collider2D col in colids)
         {
             UnityEngine.Object.Destroy(col.gameObject);
         }
     }
-    
-    /*  public static Console CreateConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
-    {
-        GameObject ins = new GameObject();
-        BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
-        col2d.size = Vector2.one / 2f;
-        col2d.isTrigger = true;
-        ins.transform.position = transf;
-        Console console = ins.AddComponent<Console>();
-        SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
-        img.sprite = sprite;
-        img.material.shader = Shader.Find("Sprites/Outline");
-        console.Image = img;
-        console.Room = room;
-        TaskSet ts = new TaskSet();
-        ts.taskStep = range;
-        ts.taskType = tt;
-        console.ValidTasks = new TaskSet[] {
-            ts
-        };
-        console.TaskTypes = new TaskTypes[]
-        {
-            tt
-        };
-        console.ConsoleId = consoleid;
-        return console;
-  */  }
 
-        GetCurrentMap() // Gets what map your playing on. and then code below checks it.
-        If CurrentMap() = MapId[2] then
-         MapTestingActive = true
+         GetCurrentMap() // Gets what map your playing on. and then code below checks it.
+         If CurrentMap() = MapId[2] then // checks what map id it is
+         MapTestingActive = true //enables the bools
          If CurrentMap() = MapId[1] then
          MapTestingActive = false
          If CurrentMap() = MapId[0] then
@@ -140,7 +111,7 @@ public class CE_CustomMap
 
 
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
-        GameObject go = new GameObject("Test");
+        GameObject go = new GameObject("TestObject1");
         go.layer = LayerMask.NameToLayer("Ship");
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         var position = renderer.transform.position;
@@ -167,11 +138,11 @@ public class CE_CustomMap
       //  GameObject newgam = new GameObject();
        // newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
         // map.SpawnCenter = newgam.transform;
-        for (int x = -25; x < 25; x++)
+        for (int x = -24; x < 29; x++)
         {
-            for (int y = -25; y < 25; y++)
+            for (int y = -24; y < 29; y++)
             {
-                bool isSolid = (x == -25 || y == -26 || y == 24 || x == 24);
+                bool isSolid = (x == -24 || y == -24 || y == 24 || x == 24);
                 SpawnSprite(x, y, isSolid);
             }
         }
