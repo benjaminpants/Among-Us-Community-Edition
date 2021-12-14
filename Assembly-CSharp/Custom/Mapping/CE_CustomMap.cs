@@ -73,6 +73,18 @@ public class CE_CustomMap
         public bool MiniMapEnabled = false;
         public bool CustomVentsEnabled = true;
 //    public static bool MapTestingActiveMapId = false;
+    
+    
+
+    /*public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep)
+    {
+        GameObject task = UnityEngine.GameObject.Instantiate(new GameObject());
+        NormalPlayerTask datatask = task.AddComponent(tasktype) as NormalPlayerTask;
+        datatask.StartAt = systype;
+        datatask.MaxStep = maxstep;
+        return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
+    */}
+    
     private static void ClearMapCollision(ShipStatus map)
     {
         Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
@@ -90,7 +102,7 @@ public class CE_CustomMap
          If CurrentMap() = MapId[0] then
          MapTestingActive = false
 
-      CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
+    // CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
 
     public static void SpawnSprite(int x, int y, bool Solid)
     {
@@ -129,15 +141,12 @@ public class CE_CustomMap
         }
     }
 
+//    GameObject goalt = new GameObject("Venttestlololpol");
+
     public static void MapTest(ShipStatus map)
     {
         if (!MapTestingActive) return;
         ClearMapCollision(map);
-      //  return MapId[2];
-      //  return MapInfos[2];
-      //  GameObject newgam = new GameObject();
-       // newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
-        // map.SpawnCenter = newgam.transform;
         for (int x = -24; x < 29; x++)
         {
             for (int y = -24; y < 29; y++)
