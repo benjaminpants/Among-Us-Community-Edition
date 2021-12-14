@@ -142,15 +142,16 @@ public class CE_CustomMap
         }
     }
 
-        GameObject goalt = new GameObject("Venttest");
-        goalt.layer = LayerMask.NameToLayer("Ship");
-        SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
-        var position = renderer.transform.position;
+        var sprite2 = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.6f, 0.6f)); // the sprite of go alt
+        GameObject goalt = new GameObject("Venttest"); // name of the object
+        goalt.layer = LayerMask.NameToLayer("Ship"); // which layer it is on so default is "Ship"
+        SpriteRenderer renderer = goalt.AddComponent<SpriteRenderer>(); // sprtite rendition
+        var position = renderer.transform.position; // position
         position.x = 0.6f * x;
         position.y = 0.6f * y;
-        position.z = (position.y / 1000f) + 0.6f;
-        renderer.transform.position = position;
-        renderer.sprite = sprite;
+        position.z = (position.y / 1000f) + 0.6f; 
+        renderer.transform.position = position; // position again?
+        renderer.sprite = sprite2; // then the sprite varibile where it is called at.
 
     public static void MapTest(ShipStatus map)
     {
