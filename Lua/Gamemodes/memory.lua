@@ -73,11 +73,5 @@ end
 
 
 function DecideImpostors(impostorcount,playerinfos)
-	local selected = {"memory_Eraser"}
-	for i=1, impostorcount do --repeat the below code for how many impostors there are in the settings
-		local impid = math.random(#playerinfos) --randomly set the impostor id
-		table.insert(selected,playerinfos[impid]) --add it to the selected list
-		table.remove(playerinfos,impid) --remove the chosen item from the playerinfo list
-	end
-	return selected
+                    return {} --no imps
 end
