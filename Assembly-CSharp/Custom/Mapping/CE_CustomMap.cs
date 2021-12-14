@@ -40,11 +40,11 @@ public static class CE_CustomMapManager
             "Good Place",
             "Evil Place",
             "Holy Place",
-            "Happy Place",
-            "Happy Place",
-            "Happy Place",
-            "Happy Place",
-            "Happy Place"
+            "Test Place",
+            "Sus Place",
+            "The Forest",
+            "Breh",
+            "Memey Place"
         }));
     }
 
@@ -68,7 +68,7 @@ public class CE_CustomMap
         }
     }
     
-  /*    public static Console CreateConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
+    /*  public static Console CreateConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
@@ -139,6 +139,7 @@ public class CE_CustomMap
         if (!MapTestingActive) return;
         ClearMapCollision(map);
         return MapId[2];
+        return MapInfos[2];
       //  GameObject newgam = new GameObject();
        // newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
         // map.SpawnCenter = newgam.transform;
