@@ -3,8 +3,6 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-
-
 public enum CE_Specials
 {
 	Kill,
@@ -21,7 +19,8 @@ public enum CE_RoleVisibility
 	Crewmates, //why you would ever make a role crewmates only is beyond me
 	RolesOfSameType,
 	Lua,
-    All
+        All
+     // Sus
 }
 
 public enum CE_WinWith
@@ -101,12 +100,12 @@ public static class CE_RoleManager
 
 public class CE_Role
 {
-	public CE_Role() // Don't actually use this constructor for anything besides the test role! if you do ill find you and kill you!
+	public CE_Role() // Don't actually use this constructor for anything besides the aussi and cat roles! if you do ill find you and kill you!
     {
 	RoleName = "Aussi";
-	RoleColor = Palette.CrewmateBlue;
+	RoleColor = Palette.CrewmateBlue; // Palette.AussiPurple
 	AvailableSpecials = new List<CE_Specials>();
-	RoleWinWith = CE_WinWith.All; //all does not mean all but more of "breh"
+	RoleWinWith = CE_WinWith.Neither; //niether means a whole new team!
 	RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = true;
         RoleText = "Your aussi!";
@@ -114,14 +113,14 @@ public class CE_Role
         UUID = "base_aussilol";
 		
 	RoleName = "Cat";
-	RoleColor = Palette.CrewmateBlue;
+	RoleColor = Palette.CrewmateBlue; // Palette.CatOrange
 	AvailableSpecials = new List<CE_Specials>();
-	RoleWinWith = CE_WinWith.All; //all does not mean all but more of "breh"
+	RoleWinWith = CE_WinWith.Neither; // so ill use this alot now
 	RoleVisibility = CE_RoleVisibility.None;
         UseImpVision = false;
-        RoleText = "Your a bootiful cart now";
+        RoleText = "Your a bootiful cart now yez!!!";
         HasTasks = true;
-        UUID = "aussimayham_catlololololololololbreh";
+        UUID = "aussimayham_catlolol"; //this was too long caused some crashes lol
     }
 
     public bool CanDo(CE_Specials special)
@@ -218,4 +217,6 @@ public class CE_Role
     public string RoleText;
 
 	public bool UseImpVision;
+	
+	//	public bool UseSpecialVision;
 }
