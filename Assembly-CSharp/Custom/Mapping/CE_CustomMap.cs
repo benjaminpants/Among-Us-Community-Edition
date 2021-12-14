@@ -32,7 +32,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        MapInfos.Add(new CE_MapInfo("Dumb",new string[13]{
+        MapInfos.Add(new CE_MapInfo("Skeld2",new string[13]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -51,7 +51,9 @@ public static class CE_CustomMapManager
 
     public static CE_MapInfo GetCurrentMap()
     {
-        return MapInfos[PlayerControl.GameOptions.MapId];
+        return MapId[2];
+        return MapInfos[2];
+       // return MapInfos[PlayerControl.GameOptions.MapId];
     }
 }
 
@@ -140,8 +142,8 @@ public class CE_CustomMap
     {
         if (!MapTestingActive) return;
         ClearMapCollision(map);
-        return MapId[2];
-        return MapInfos[2];
+      //  return MapId[2];
+      //  return MapInfos[2];
       //  GameObject newgam = new GameObject();
        // newgam.transform.position = new Vector3(maptospawn.SpawnLocation.Values[0], maptospawn.SpawnLocation.Values[1], maptospawn.SpawnLocation.Values[2]);
         // map.SpawnCenter = newgam.transform;
