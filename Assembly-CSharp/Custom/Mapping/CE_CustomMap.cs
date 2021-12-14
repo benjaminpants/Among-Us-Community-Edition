@@ -32,7 +32,8 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        MapInfos.Add(new CE_MapInfo("Skeld2",new string[13]{
+        //  MapInfos.Add(new CE_MapInfo("Lion"); // adds a dummy map named Lion
+        MapInfos.Add(new CE_MapInfo("Lion",new string[14]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -40,20 +41,21 @@ public static class CE_CustomMapManager
             "Good Place",
             "Evil Place",
             "Holy Place",
-            "Test Place",
-            "Sus Place",
+            "Sans Undertale",
+            "Lovely Day Outside",
             "The Forest",
-            "Breh",
+            "Dumb Place",
             "Memey Place",
-            "Altenerate Skeld"
+            "Inverted Skeld",
+            "ehT Dleks"
         }));
     }
 
     public static CE_MapInfo GetCurrentMap()
     {
         return MapId[2];
-        return MapInfos[2];
-       // return MapInfos[PlayerControl.GameOptions.MapId];
+     //   return MapInfos[2];
+        return MapInfos[PlayerControl.GameOptions.MapId];
     }
 }
 
@@ -65,6 +67,13 @@ public class CE_CustomMap
 //    public static bool MapTestingActiveMapId = false;
     private static void ClearMapCollision(ShipStatus map)
     {
+ //       GetCurrentMap() // Gets what map your playing on. and then code below checks it.
+        // If CurrentMap() = MapId[2] then
+        // MapTestingActive = true
+        // If CurrentMap() = MapId[1] then
+        // MapTestingActive = false
+        // If CurrentMap() = MapId[0] then
+        // MapTestingActive = false
         Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
         foreach (Collider2D col in colids)
         {
@@ -98,6 +107,14 @@ public class CE_CustomMap
         console.ConsoleId = consoleid;
         return console;
   */  }
+
+        GetCurrentMap() // Gets what map your playing on. and then code below checks it.
+        If CurrentMap() = MapId[2] then
+         MapTestingActive = true
+         If CurrentMap() = MapId[1] then
+         MapTestingActive = false
+         If CurrentMap() = MapId[0] then
+         MapTestingActive = false
 
       CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
 
