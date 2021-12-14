@@ -33,7 +33,7 @@ public static class CE_CustomMapManager
     public static void Initialize()
     {
         //  MapInfos.Add(new CE_MapInfo("Lion"); // adds a dummy map named Lion
-        MapInfos.Add(new CE_MapInfo("Lion",new string[15]{
+        MapInfos.Add(new CE_MapInfo("Lion",new string[17]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -48,7 +48,9 @@ public static class CE_CustomMapManager
             "Memey Place",
             "Inverted Skeld",
             "ehT Dleks",
-            "Toon land"
+            "Toon land",
+            "Pizzaria",
+            "Airship"
         }));
     }
 
