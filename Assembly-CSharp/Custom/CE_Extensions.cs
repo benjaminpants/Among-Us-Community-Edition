@@ -2,10 +2,13 @@
 using System.Runtime.InteropServices;
 public class CE_Extensions
 {
+	// handles if it has played or not.
 	private static bool hasPlayed;
 
+	// the intro.
 	private static CE_Intro Intro;
 
+	// handles if the title was changed at all
 	private static bool TitleChanged = false;
 
 	//Import the following.
@@ -16,6 +19,7 @@ public class CE_Extensions
 	[DllImport("user32.dll")]
 	private static extern System.IntPtr GetActiveWindow();
 
+	// this grabs the game directory
 	public static string GetGameDirectory()
     {
 		return System.IO.Directory.GetParent(Application.dataPath).FullName;
@@ -31,12 +35,13 @@ public class CE_Extensions
     {
 		if (!TitleChanged)
         {
+			// getting to the title changing script
 			bool isFocused = Application.isFocused;
 			var windowPtr = FindWindow(null, "Among Us");
 			if (windowPtr == GetActiveWindow() && isFocused)
 			{
 				// title changing script
-				SetWindowText(windowPtr, "Among Us: Town of modders");
+				SetWindowText(windowPtr, "Among Us: Town of modders v 1.0 DONT LEAK");
 				TitleChanged = true;
 			}
 		}
