@@ -19,11 +19,12 @@ public class CE_FrameSet
 	public bool HatInFront { get; set; }
 	public bool NoHatBobbing { get; set; }
 	public bool UsePointFilteringGlobally { get; set; }
-	public bool UseColorFilteringGlobally { get; set; }
-	public string RelatedSkin { get; set; }
-	public string RelatedHat { get; set; }
-	public bool UsePercentageBasedPivot { get; set; }
+   public bool UseColorFilteringGlobally { get; set; }
+	 public string RelatedSkin { get; set; }
+	 public string RelatedHat { get; set; }
+	// public bool UsePercentageBasedPivot { get; set; }
 	public bool IsHidden { get; set; }
+		public bool PlayerOveride { get; set; }
 	public List<CE_SpriteFrame> FrameList
 	{
 		get;
