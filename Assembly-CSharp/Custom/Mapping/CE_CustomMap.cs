@@ -32,7 +32,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        MapInfos.Add(new CE_MapInfo("Dumb",new string[12]{
+        MapInfos.Add(new CE_MapInfo("Dumb",new string[13]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
@@ -44,7 +44,8 @@ public static class CE_CustomMapManager
             "Sus Place",
             "The Forest",
             "Breh",
-            "Memey Place"
+            "Memey Place",
+            "Altenerate Skeld"
         }));
     }
 
@@ -59,6 +60,7 @@ public static class CE_CustomMapManager
 public class CE_CustomMap
 {
     private static bool MapTestingActive = true;
+//    public static bool MapTestingActiveMapId = false;
     private static void ClearMapCollision(ShipStatus map)
     {
         Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
@@ -147,7 +149,7 @@ public class CE_CustomMap
         {
             for (int y = -25; y < 25; y++)
             {
-                bool isSolid = (x == -25 || y == -25 || y == 24 || x == 24);
+                bool isSolid = (x == -25 || y == -26 || y == 24 || x == 24);
                 SpawnSprite(x, y, isSolid);
             }
         }
