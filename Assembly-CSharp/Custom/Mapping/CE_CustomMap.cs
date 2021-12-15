@@ -33,7 +33,16 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        //  MapInfos.Add(new CE_MapInfo("Skeld")); // adds a dummy map named Skeld
+      /*  FileInfo[] files = new DirectoryInfo(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")).GetFiles("*.json");
+        foreach (FileInfo fo in files)
+        {
+            using StreamReader streamReader = File.OpenText(fo.FullName);
+            string json = streamReader.ReadToEnd();
+            CEM_Map maptoload = JsonConvert.DeserializeObject<CEM_Map>(json);
+            MapInfos.Add(new CE_MapInfo(maptoload.Name,maptoload, Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5))));
+            Debug.Log(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5)));
+        */}
+        //  MapInfos.Add(new CE_MapInfo("Clue")); // adds a dummy map named Skeld
         MapInfos.Add(new CE_MapInfo("Testing lol",new string[21]{
             "Happy Place",
             "Sad Place",
@@ -44,7 +53,7 @@ public static class CE_CustomMapManager
             "Holy Place",
             "Sans Undertale", // undertale map?!?!?!
             "Lovely Day Outside",
-            "The Forest",
+            "Stupid Place", // had to rename this. heck you know what i may as well finish something called MAP JSONS CUZ YES
             "Dumb Place",
             "Memey Place",
             "suloP", // inverted polus
@@ -54,7 +63,7 @@ public static class CE_CustomMapManager
             "Airship",
             "Polus",
             "Hopeful Place",
-            "Colorful Place",
+            "Colorful Place", // makes a color land
             "Playground" // birds are chirping on days like this kids like you GO TO DOG WATER LAND!
         }));
     }
@@ -161,6 +170,8 @@ public class CE_CustomMap
     {
         if (!MapTestingActive) return;
         ClearMapCollision(map);
+        // CEM_Map maptospawn = CE_CustomMapManager.GetCurrentMap().Map;
+        // string contentlocal = CE_CustomMapManager.GetCurrentMap().ContentFolder;
         for (int x = -24; x < 29; x++)
         {
             for (int y = -24; y < 29; y++)
