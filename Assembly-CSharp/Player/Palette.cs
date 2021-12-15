@@ -38,7 +38,8 @@ public static class Palette
 
 	public static readonly Color32 VisorColor;
 
-    public static readonly Color32 VisorColorRed;
+        public static readonly Color32 VisorColorRed;
+	
 	public static readonly Color32 VisorColorBlack;
 
 	public static readonly Color32 VisorColorGreen;
@@ -46,7 +47,9 @@ public static class Palette
 	public static readonly Color InfectedGreen;
 
 	public static readonly Color SheriffYellow;
+	
 	public static readonly Color32 ImpostorOnlyRed;
+	
 	public static readonly Color32 VisorColorCarJemGenerations;
 
 	static Palette()
@@ -78,10 +81,10 @@ public static class Palette
 			new Color32(246, 246, 87, byte.MaxValue), //yellow
 			new Color32(63, 71, 78, byte.MaxValue), //black
 			new Color32(215, 225, 241, byte.MaxValue), //white
-			new Color32(107, 47, 188, byte.MaxValue), //purple
-			new Color32(113, 73, 30, byte.MaxValue), //brown
-			new Color32(56, byte.MaxValue, 221, byte.MaxValue), //cyan
-			new Color32(80, 240, 57, byte.MaxValue), //lime
+			new Color32(107, 47, 188, byte.MaxValue), // purple
+			new Color32(113, 73, 30, byte.MaxValue), // brown
+			new Color32(56, byte.MaxValue, 221, byte.MaxValue), // cyan
+			new Color32(80, 240, 57, byte.MaxValue), // lime
 			new Color32(byte.MaxValue, 187, 142, byte.MaxValue), //flesh?
 			new Color32(byte.MaxValue, 127, 127, byte.MaxValue), //pink
 			new Color32(114, 137, 218, byte.MaxValue),
@@ -95,8 +98,8 @@ public static class Palette
 			new Color32(byte.MaxValue, 0, 0, byte.MaxValue),
 			new Color32(122, 7, 7, byte.MaxValue),
 			new Color32(145,136,119, byte.MaxValue),
-			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
-			new Color32(7, 7, 122, byte.MaxValue), //carjem but blue
+			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), // pencil special
+			new Color32(7, 7, 122, byte.MaxValue), // carjem but blue
 			new Color32(7, 122, 7, byte.MaxValue),
 			new Color32(255, 214, 236, byte.MaxValue) // rose lol
 		};
@@ -127,8 +130,8 @@ public static class Palette
 			new Color32(0, 0, byte.MaxValue, byte.MaxValue),
 			new Color32(byte.MaxValue, 0, 42, byte.MaxValue),
 			new Color32(81,65,62, byte.MaxValue),
-			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), //pencil special
-			new Color32(42, 0, byte.MaxValue, byte.MaxValue), //carjem but blue
+			new Color32(byte.MaxValue,byte.MaxValue,byte.MaxValue, byte.MaxValue), // pencil special
+			new Color32(42, 0, byte.MaxValue, byte.MaxValue), // carjem but blue
 			new Color32(0, 255, 42, byte.MaxValue),
 			new Color32(222, 146, 179, byte.MaxValue) // rose lol
 		};
