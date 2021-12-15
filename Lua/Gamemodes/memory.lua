@@ -1,4 +1,4 @@
---This is a recreation of the Among Us Classic Gamemode.
+--This is a custom made gamemode created by FurryColtin by hand. his hands must hurt the person who is writing this is FurryJake lol.
 
 
 function InitializeGamemode()
