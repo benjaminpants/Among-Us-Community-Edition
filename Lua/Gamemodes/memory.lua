@@ -3,7 +3,9 @@
 
 function InitializeGamemode()
 	Game_CreateRole("Eraser",{129,41,139},"Make crewmates into brainless zombies[].",{},2,0,false,false)
-  Game_CreateRole("Zombie",{1,255,2},"Your a zombie lol[].",{},2,0,false,false)
+        Game_CreateRole("Zombie",{1,255,2},"Shut up ron[].",{},2,0,false,false)
+	Game_CreateRole("Reverser",{3,112,98},"Turn zombies back into crewmates[].",{},2,0,false,false)
+        Game_CreateRole("Guy",{76,100,92},"Your imortal[].",{},2,0,false,false)
 	return {"Memory Eraser",5} 
 end
 
@@ -48,6 +50,9 @@ function CanKill(userinfo,targetinfo)
 	if (userinfo.IsImpostor and not targetinfo.IsImpostor) then --if the person doing the kill is an impostor and the victim
 		return true
 	end
+	if ((userinfo.IsImpostor and not targetinfo.IsImpostor) or userinfo.role == Game_GetRoleIDFromName("Guy")) then --if the person doing the kill is an impostor and the victim
+		return false
+	end
 	return false
 end
 
@@ -58,7 +63,7 @@ end
 
 
 function DecideRoles(playerinfos)
-	local RolesToGive = {"memory_Eraser"}
+	local RolesToGive = {"memory_Eraser", "memory_Guy"}
 	local Selected = {"memory_Eraser"}
 	local SelectedRoles = {}
 	for i=1, #RolesToGive do
