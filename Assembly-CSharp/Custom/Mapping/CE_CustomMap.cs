@@ -33,7 +33,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        //  MapInfos.Add(new CE_MapInfo("Lion"); // adds a dummy map named Lion
+        //  MapInfos.Add(new CE_MapInfo("Lion")); // adds a dummy map named Lion
         MapInfos.Add(new CE_MapInfo("Lion",new string[19]{
             "Happy Place",
             "Sad Place",
@@ -47,7 +47,7 @@ public static class CE_CustomMapManager
             "The Forest",
             "Dumb Place",
             "Memey Place",
-            "Inverted Skeld",
+            "suloP",
             "ehT Dleks",
             "Toon land",
             "Pizzaria",
@@ -59,7 +59,7 @@ public static class CE_CustomMapManager
 
     public static CE_MapInfo GetCurrentMap()
     {
-        return MapId[2]; // which equals custom map testing
+        return MapId[2]; // map id 2 equals custom map testing lol
      //   return MapInfos[2];
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
