@@ -12,7 +12,7 @@ public class CEM_TaskData
     // minigame snizzle!
     public Type minigametype;
     public Type tasktype = typeof(NormalPlayerTask);
-    public string MinigameName = "Invalid";
+    public string MinigameName = "Invalid"; // the name of the minigame in this case "LookForLoaf"
 
     public CEM_TaskData(Type mgt, Type tt, string mn)
     {
@@ -29,38 +29,40 @@ public class CEM_TaskData
 
 public static class CE_CustomMapManager
 {
-    public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
+    public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>(); // makes map infos i think? idk
 
     public static void Initialize()
     {
-        //  MapInfos.Add(new CE_MapInfo("Lion")); // adds a dummy map named Lion
-        MapInfos.Add(new CE_MapInfo("Lion",new string[19]{
+        //  MapInfos.Add(new CE_MapInfo("Skeld")); // adds a dummy map named Skeld
+        MapInfos.Add(new CE_MapInfo("Testing lol",new string[21]{
             "Happy Place",
             "Sad Place",
             "Mad Place",
             "Bad Place",
             "Good Place",
-            "Evil Place",
+            "Evil Place", // demons!
             "Holy Place",
-            "Sans Undertale",
+            "Sans Undertale", // undertale map?!?!?!
             "Lovely Day Outside",
             "The Forest",
             "Dumb Place",
             "Memey Place",
-            "suloP",
-            "ehT Dleks",
+            "suloP", // inverted polus
+            "ehT Dleks", // inverted skeld
             "Toon land",
             "Pizzaria",
             "Airship",
             "Polus",
-            "Hopeful Place"
+            "Hopeful Place",
+            "Colorful Place",
+            "Playground" // birds are chirping on days like this kids like you GO TO DOG WATER LAND!
         }));
     }
 
     public static CE_MapInfo GetCurrentMap()
     {
         return MapId[2]; // map id 2 equals custom map testing lol
-     //   return MapInfos[2];
+     //   return MapInfos[2]; // map infos test code
         return MapInfos[PlayerControl.GameOptions.MapId];
     }
 }
@@ -71,9 +73,8 @@ public class CE_CustomMap
 {
     private static bool MapTestingActive = true;
     public bool CustomTasksEnabled = true;
-        public bool MiniMapEnabled = false;
-        public bool CustomVentsEnabled = true;
-//    public static bool MapTestingActiveMapId = false;
+    public bool MiniMapEnabled = false;
+    public bool CustomVentsEnabled = true;
     
     
 
@@ -96,12 +97,15 @@ public class CE_CustomMap
     }
 
          GetCurrentMap() // Gets what map your playing on. and then code below checks it.
-         If CurrentMap() = MapId[2] then // checks what map id it is
+         If CurrentMap() = MapId[2] return; // checks what map id it is
          MapTestingActive = true //enables the bools
-         If CurrentMap() = MapId[1] then
-         MapTestingActive = false
-         If CurrentMap() = MapId[0] then
-         MapTestingActive = false
+         CustomTasksEnabled = true;
+         If CurrentMap() = MapId[1] return;
+         MapTestingActive = false;
+         CustomTasksEnabled = false;
+         If CurrentMap() = MapId[0] return;
+         MapTestingActive = false;
+         CustomTasksEnabled = false;
 
     // CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
 
@@ -144,7 +148,7 @@ public class CE_CustomMap
 
         var sprite2 = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.6f, 0.6f)); // the sprite of go alt
         GameObject goalt = new GameObject("Venttest"); // name of the object
-        goalt.layer = LayerMask.NameToLayer("Ship"); // which layer it is on so default is "Ship"
+        goalt.layer = LayerMask.NameToLayer("Player"); // which layer it is on so default is "Ship"
         SpriteRenderer renderer = goalt.AddComponent<SpriteRenderer>(); // sprtite rendition
         var position = renderer.transform.position; // position
         position.x = 0.6f * x;
@@ -162,7 +166,7 @@ public class CE_CustomMap
             for (int y = -24; y < 29; y++)
             {
                 bool isSolid = (x == -24 || y == -24 || y == 24 || x == 24);
-                SpawnSprite(x, y, isSolid);
+                SpawnSprite(x, y, isSolid); // spawns the sprite into the map.
             }
         }
     }
