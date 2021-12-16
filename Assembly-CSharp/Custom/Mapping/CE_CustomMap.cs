@@ -33,16 +33,7 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-      /*  FileInfo[] files = new DirectoryInfo(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")).GetFiles("*.json");
-        foreach (FileInfo fo in files)
-        {
-            using StreamReader streamReader = File.OpenText(fo.FullName);
-            string json = streamReader.ReadToEnd();
-            CEM_Map maptoload = JsonConvert.DeserializeObject<CEM_Map>(json);
-            MapInfos.Add(new CE_MapInfo(maptoload.Name,maptoload, Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5))));
-            Debug.Log(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5)));
-        */}
-        //  MapInfos.Add(new CE_MapInfo("Clue")); // adds a dummy map named Skeld
+        //  MapInfos.Add(new CE_MapInfo("Clue")); // adds a dummy map named clue
         MapInfos.Add(new CE_MapInfo("Testing lol",new string[21]{
             "Happy Place",
             "Sad Place",
@@ -64,7 +55,7 @@ public static class CE_CustomMapManager
             "Polus",
             "Hopeful Place",
             "Colorful Place", // makes a color land
-            "Playground" // birds are chirping on days like this kids like you GO TO DOG WATER LAND!
+            "Dream SMP" // hello its me drem today im playing friday night funkin bob and bosip ok lets go!
         }));
     }
 
@@ -106,7 +97,7 @@ public class CE_CustomMap
     }
 
          GetCurrentMap() // Gets what map your playing on. and then code below checks it.
-         If CurrentMap() = MapId[2] return; // checks what map id it is
+         If CurrentMap() = MapId[2] return; // checks what map id it is and returns it to enable the bools
          MapTestingActive = true //enables the bools
          CustomTasksEnabled = true;
          If CurrentMap() = MapId[1] return;
@@ -168,8 +159,8 @@ public class CE_CustomMap
 
     public static void MapTest(ShipStatus map)
     {
-        if (!MapTestingActive) return;
-        ClearMapCollision(map);
+        if (!MapTestingActive) return; // returns if map testing is avtive
+        ClearMapCollision(map); // calls for clear collision function
         // CEM_Map maptospawn = CE_CustomMapManager.GetCurrentMap().Map;
         // string contentlocal = CE_CustomMapManager.GetCurrentMap().ContentFolder;
         for (int x = -24; x < 29; x++)
