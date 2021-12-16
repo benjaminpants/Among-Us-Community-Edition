@@ -98,7 +98,7 @@ public class CE_CustomMap
 
          GetCurrentMap() // Gets what map your playing on. and then code below checks it.
          If CurrentMap() = MapId[2] return; // checks what map id it is and returns it to enable the bools
-         MapTestingActive = true //enables the bools
+         MapTestingActive = true; //enables the bools
          CustomTasksEnabled = true;
          If CurrentMap() = MapId[1] return;
          MapTestingActive = false;
@@ -151,9 +151,9 @@ public class CE_CustomMap
         goalt.layer = LayerMask.NameToLayer("Player"); // which layer it is on so default is "Ship"
         SpriteRenderer renderer = goalt.AddComponent<SpriteRenderer>(); // sprtite rendition
         var position = renderer.transform.position; // position
-        position.x = 0.6f * x;
-        position.y = 0.6f * y;
-        position.z = (position.y / 1000f) + 0.6f; 
+        position.x = 0.6f * x; // x
+        position.y = 0.6f * y; // y
+        position.z = (position.y / 1000f) + 0.6f; // z 
         renderer.transform.position = position; // position again?
         renderer.sprite = sprite2; // then the sprite varibile where it is called at.
 
