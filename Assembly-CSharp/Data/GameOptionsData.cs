@@ -783,9 +783,9 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-		Gamemodes = new string[255];
-		PluginNames = new string[255];
-		GamemodesAreLua = new bool[255];
+		Gamemodes = new string[256];
+		PluginNames = new string[256];
+		GamemodesAreLua = new bool[256];
 
 		VentModeStrings = new string[4]
 		{
