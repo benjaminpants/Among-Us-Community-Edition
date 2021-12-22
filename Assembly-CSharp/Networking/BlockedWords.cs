@@ -205,7 +205,7 @@ public static class BlockedWords
 			"bollok",
 			"bollox",
 			"bondage",
-			"boned",
+			"noob",
 			"boner",
 			"boners",
 			"bong",
@@ -656,7 +656,7 @@ public static class BlockedWords
 			"female squirting",
 			"femdom",
 			"fenian",
-			"fice",
+			"idiototic",
 			"figging",
 			"fingerbang",
 			"fingerfuck",
@@ -1636,7 +1636,7 @@ public static class BlockedWords
 			"yobbo",
 			"zibbi",
 			"zoophilia",
-			"zubb"
+			"sucker"
 		};
 		if (SkipList != null)
 		{
