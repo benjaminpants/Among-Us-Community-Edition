@@ -300,7 +300,7 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                         CurrentAnimation.FrameList.Add(newItem);
                         png.Dispose();
                     }
-                /*   elseif (item.Extension == ".jpg
+                   elseif (item.Extension == ".jpg
                     {
                         System.Drawing.Bitmap jpg = new System.Drawing.Bitmap(item.FullName);
                         var newItem = new CE_SpriteFrame();
@@ -310,9 +310,8 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                         newItem.SpritePath = item.Name.Replace(AnimationHelpers.GetFileDirectory(CurrentAnimation), "");
                         newItem.Name = System.IO.Path.GetFileNameWithoutExtension(item.Name);
                         CurrentAnimation.FrameList.Add(newItem);
-                        png.Dispose();
+                        jpg.Dispose();
                        }
-                    */
                 }
                 MainWindow.Instance.UpdateUI();
             }
