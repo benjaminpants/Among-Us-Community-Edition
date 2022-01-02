@@ -300,6 +300,19 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                         CurrentAnimation.FrameList.Add(newItem);
                         png.Dispose();
                     }
+                /*   elseif (item.Extension == ".jpg
+                    {
+                        System.Drawing.Bitmap jpg = new System.Drawing.Bitmap(item.FullName);
+                        var newItem = new CE_SpriteFrame();
+                        newItem.Offset = new CE_Point(0.5f, 0.5f);
+                        newItem.Position = new CE_Point(0.0f, 0.0f);
+                        newItem.Size = new CE_Point(jpg.Width, jpg.Height);
+                        newItem.SpritePath = item.Name.Replace(AnimationHelpers.GetFileDirectory(CurrentAnimation), "");
+                        newItem.Name = System.IO.Path.GetFileNameWithoutExtension(item.Name);
+                        CurrentAnimation.FrameList.Add(newItem);
+                        png.Dispose();
+                       }
+                    */
                 }
                 MainWindow.Instance.UpdateUI();
             }
