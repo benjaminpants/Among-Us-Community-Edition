@@ -3,13 +3,13 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-
-
 public enum CE_Specials
 {
 	Kill,
 	Sabotage,
-	Vent
+	Vent,
+	Admin,
+	Use
 }
 
 public enum CE_RoleVisibility
@@ -19,7 +19,8 @@ public enum CE_RoleVisibility
 	Crewmates, //why you would ever make a role crewmates only is beyond me
 	RolesOfSameType,
 	Lua,
-    All
+        All
+     // Sus
 }
 
 public enum CE_WinWith
@@ -99,17 +100,27 @@ public static class CE_RoleManager
 
 public class CE_Role
 {
-	public CE_Role() // Don't actually use this constructor for anything besides creating the "None" role please
+	public CE_Role() // Don't actually use this constructor for anything besides the aussi and cat roles! if you do ill find you and kill you!
     {
-		RoleName = "Undefined";
-		RoleColor = Palette.CrewmateBlue;
-		AvailableSpecials = new List<CE_Specials>();
-		RoleWinWith = CE_WinWith.All; //all does not mean all but more of "don't fuck with whether or not you win please"
-		RoleVisibility = CE_RoleVisibility.None;
-        UseImpVision = false;
-        RoleText = "Undefined";
+	RoleName = "Aussi";
+	RoleColor = Palette.CrewmateBlue; // Palette.AussiPurple
+	AvailableSpecials = new List<CE_Specials>();
+	RoleWinWith = CE_WinWith.Neither; //niether means a whole new team!
+	RoleVisibility = CE_RoleVisibility.None;
+        UseImpVision = true;
+        RoleText = "Your aussi!";
         HasTasks = true;
-        UUID = "undefined_undefined";
+        UUID = "base_aussilol";
+		
+	RoleName = "Cat";
+	RoleColor = Palette.CrewmateBlue; // Palette.CatOrange
+	AvailableSpecials = new List<CE_Specials>();
+	RoleWinWith = CE_WinWith.Neither; // so ill use this alot now
+	RoleVisibility = CE_RoleVisibility.None;
+        UseImpVision = false;
+        RoleText = "Your a bootiful cart now yez!!!";
+        HasTasks = true;
+        UUID = "aussimayham_catlolol"; //this was too long caused some crashes lol
     }
 
     public bool CanDo(CE_Specials special)
@@ -206,4 +217,6 @@ public class CE_Role
     public string RoleText;
 
 	public bool UseImpVision;
+	
+	//	public bool UseSpecialVision;
 }

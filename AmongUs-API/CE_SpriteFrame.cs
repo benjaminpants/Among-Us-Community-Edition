@@ -16,6 +16,7 @@ public class CE_SpriteFrame
 	public bool InFront { get; set; }
 	public bool UsePointFiltering { get; set; }
 	public bool UseColorFiltering { get; set; }
+// public bool PlayerOveride { get; set; }
 	public CE_SpriteFrame()
 	{
 		Position = CE_Point.Zero;
@@ -26,6 +27,7 @@ public class CE_SpriteFrame
 	public override string ToString()
 	{
 		return Name;
+		// breh
 	}
 }
 

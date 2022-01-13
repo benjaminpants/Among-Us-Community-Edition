@@ -119,13 +119,13 @@ public class GameOptionsData : IBytesSerializable
 
 	public bool FilterContainsMap(byte newId)
 	{
-		int num = 1 << (int)newId;
+		int num = 7 << (int)newId;
 		return (MapId & num) == num;
 	}
 
 	public void SetRecommendations(int numPlayers, GameModes modes)
 	{
-		numPlayers = Mathf.Clamp(numPlayers, 4, 20);
+		numPlayers = Mathf.Clamp(numPlayers, 5, 15);
 		PlayerSpeedMod = 1f;
 		CrewLightMod = 1f;
 		ImpostorLightMod = 1.5f;
@@ -358,7 +358,7 @@ public class GameOptionsData : IBytesSerializable
 	{
 		ConfirmEject = true;
 		Visuals = true;
-		MaxPlayers = 20;
+		MaxPlayers = 15;
 		Keywords = GameKeywords.English;
 		PlayerSpeedMod = 1f;
 		CrewLightMod = 1f;
@@ -402,38 +402,48 @@ public class GameOptionsData : IBytesSerializable
 
 	static GameOptionsData()
 	{
-		MapNames = new string[2]
+		MapNames = new string[5]
 		{
 			"The Skeld",
-			"Mira HQ(Alpha)"
+			"Mira HQ(Unfinished)",
+			"Custom map test",
+			"Martian wall",
+		        "The Forest"
 		};
-		KillDistances = new float[6]
+		KillDistances = new float[10]
 		{
 			0.5f,
 			1f,
 			1.8f,
 			2.5f,
 			4f,
-			200f
+			5f,
+			6f,
+			100f,
+			200f,
+			300f
 		};
-		KillDistanceStrings = new string[6]
+		KillDistanceStrings = new string[10]
 		{
 			"Tiny",
 			"Short",
 			"Normal",
 			"Long",
 			"XL",
-			"∞"
+			"XXL",
+			"∞",
+			"XXXXL",
+			"XXXXXXL"
 		};
 
-        BodySett = new string[]
+        BodySett = new string[3]
         {
             "Vanilla",
             "Decay",
             "Anon"
         };
 
-        BodyDecayTimes = new string[]
+        BodyDecayTimes = new string[3]
         {
             "Short",
             "Medium",
@@ -462,7 +472,7 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-		Gamemodes = new string[25]
+		Gamemodes = new string[27]
 		{
 			"[FF0000FF]Invalid[]",
 			"Zombies",
@@ -488,9 +498,11 @@ public class GameOptionsData : IBytesSerializable
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
+			"[FF0000FF]Invalid[]",
 			"[FF0000FF]Invalid[]"
 		};
-		GamemodesAreLua = new bool[25];
+		GamemodesAreLua = new bool[27];
 		VentModeStrings = new string[4]
 		{
 			"Impostors Only",
@@ -507,13 +519,13 @@ public class GameOptionsData : IBytesSerializable
 			"Randomized(Client)",
 			"Randomized(One-Way Client)"
 		};
-		SabControlStrings = new string[5]
+		SabControlStrings = new string[4]
 		{
 			"Normal",
 			"Systems Only",
 			"Doors Only",
-			"Random(Unimplemented)", //seriously we need to implement this
 			"None"
+			// "Random(Unimplemented)", //seriously we need to implement this (HIGH PRIORITY LOL!!)
 		};
 		RecommendedKillCooldown = new int[22]
 		{

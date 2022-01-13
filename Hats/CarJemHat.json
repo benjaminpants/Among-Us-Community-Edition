@@ -7,7 +7,7 @@
   "UsePointFilteringGlobally": false,
   "RelatedSkin": null,
   "RelatedHat": null,
-  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
   "FrameList": [
     {
       "Position": {

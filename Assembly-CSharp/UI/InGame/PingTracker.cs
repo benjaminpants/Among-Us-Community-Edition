@@ -3,6 +3,7 @@ using UnityEngine;
 public class PingTracker : MonoBehaviour
 {
 	public TextRenderer text;
+//	public TextRenderer2 text2;
 
 	private void Update()
 	{
@@ -12,7 +13,8 @@ public class PingTracker : MonoBehaviour
 			{
 				base.gameObject.SetActive(value: false);
 			}
-			text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms";
+	//		text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms";
+			text.Text = $"AUTOM ver 1.0";
 		}
 	}
 }

@@ -70,7 +70,7 @@ public class AnnouncementPopUp : MonoBehaviour
 		MessageReader message = e.Message;
 		try
 		{
-			if (message.Length > 4)
+			if (message.Length > 98)
 			{
 				announcementUpdate = default(Announcement);
 				announcementUpdate.DateFetched = DateTime.UtcNow.DayOfYear;
@@ -110,11 +110,11 @@ public class AnnouncementPopUp : MonoBehaviour
 			Announcement lastAnnouncement = SaveManager.LastAnnouncement;
 			if (lastAnnouncement.Id == 0)
 			{
-				AnnounceText.Text = "Couldn't get announcement.";
+				AnnounceText.Text = "Coming soon!";
 			}
 			else
 			{
-				AnnounceText.Text = "Couldn't get announcement. Last Known:\r\n" + lastAnnouncement.AnnounceText;
+				AnnounceText.Text = "Coming soon!";
 			}
 		}
 		else if (announcementUpdate.Id != SaveManager.LastAnnouncement.Id)

@@ -5,10 +5,88 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using InnerNet;
+using Newtonsoft.Json;
+
+public class CEM_TaskData
+{
+    // minigame snizzle!
+    public Type minigametype;
+    public Type tasktype = typeof(NormalPlayerTask);
+    public string MinigameName = "Invalid"; // the name of the minigame in this case "LookForLoaf"
+
+    public CEM_TaskData(Type mgt, Type tt, string mn)
+    {
+        minigametype = mgt;
+        tasktype = tt;
+        MinigameName = mn;
+    }
+    public CEM_TaskData(Type mgt, string mn)
+    {
+        minigametype = mgt;
+        MinigameName = mn;
+    }
+}
+
+public static class CE_CustomMapManager
+{
+    public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>(); // makes map infos i think? idk
+
+    public static void Initialize()
+    {
+        //  MapInfos.Add(new CE_MapInfo("Clue")); // adds a dummy map named clue
+        MapInfos.Add(new CE_MapInfo("Testing lol",new string[21]{
+            "Happy Place",
+            "Sad Place",
+            "Mad Place",
+            "Bad Place",
+            "Good Place",
+            "Evil Place", // demons!
+            "Holy Place",
+            "Sans Undertale", // undertale map?!?!?!
+            "Lovely Day Outside",
+            "Stupid Place", // had to rename this. heck you know what i may as well finish something called MAP JSONS CUZ YES
+            "Dumb Place",
+            "Memey Place",
+            "suloP", // inverted polus
+            "ehT Dleks", // inverted skeld
+            "Toon land",
+            "Pizzaria",
+            "Airship",
+            "Polus",
+            "Hopeful Place",
+            "Colorful Place", // makes a color land
+            "Dream SMP" // hello its me drem today im playing friday night funkin bob and bosip ok lets go!
+        }));
+    }
+
+    public static CE_MapInfo GetCurrentMap()
+    {
+        return MapId[2]; // map id 2 equals custom map testing lol
+     //   return MapInfos[2]; // map infos test code
+        return MapInfos[PlayerControl.GameOptions.MapId];
+    }
+}
+
+ 
 
 public class CE_CustomMap
 {
-    private static bool MapTestingActive = false;
+    private static bool MapTestingActive = true;
+    public bool CustomTasksEnabled = true;
+    public bool MiniMapEnabled = false;
+    public bool CustomVentsEnabled = true;
+    
+    
+
+    /*public static NormalPlayerTask CreateTask(Type tasktype, SystemTypes systype, int maxstep)
+    {
+        GameObject task = UnityEngine.GameObject.Instantiate(new GameObject());
+        NormalPlayerTask datatask = task.AddComponent(tasktype) as NormalPlayerTask;
+        datatask.StartAt = systype;
+        datatask.MaxStep = maxstep;
+        return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
+    */}
+    
     private static void ClearMapCollision(ShipStatus map)
     {
         Collider2D[] colids = map.GetComponentsInChildren<Collider2D>();
@@ -17,6 +95,19 @@ public class CE_CustomMap
             UnityEngine.Object.Destroy(col.gameObject);
         }
     }
+
+         GetCurrentMap() // Gets what map your playing on. and then code below checks it.
+         If CurrentMap() = MapId[2] return; // checks what map id it is and returns it to enable the bools
+         MapTestingActive = true; //enables the bools
+         CustomTasksEnabled = true;
+         If CurrentMap() = MapId[1] return;
+         MapTestingActive = false;
+         CustomTasksEnabled = false;
+         If CurrentMap() = MapId[0] return;
+         MapTestingActive = false;
+         CustomTasksEnabled = false;
+
+    // CreateSystemConsole(typeof(TaskAdderGame), new Vector3(5f, 5f, 0.5f), "TaskAddMinigame", sprite);
 
     public static void SpawnSprite(int x, int y, bool Solid)
     {
@@ -37,7 +128,7 @@ public class CE_CustomMap
 
 
         var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
-        GameObject go = new GameObject("Test");
+        GameObject go = new GameObject("TestObject1");
         go.layer = LayerMask.NameToLayer("Ship");
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         var position = renderer.transform.position;
@@ -55,16 +146,29 @@ public class CE_CustomMap
         }
     }
 
+        var sprite2 = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.6f, 0.6f)); // the sprite of go alt
+        GameObject goalt = new GameObject("Venttest"); // name of the object
+        goalt.layer = LayerMask.NameToLayer("Player"); // which layer it is on so default is "Ship"
+        SpriteRenderer renderer = goalt.AddComponent<SpriteRenderer>(); // sprtite rendition
+        var position = renderer.transform.position; // position
+        position.x = 0.6f * x; // x
+        position.y = 0.6f * y; // y
+        position.z = (position.y / 1000f) + 0.6f; // z 
+        renderer.transform.position = position; // position again?
+        renderer.sprite = sprite2; // then the sprite varibile where it is called at.
+
     public static void MapTest(ShipStatus map)
     {
-        if (!MapTestingActive) return;
-        ClearMapCollision(map);
-        for (int x = -25; x < 25; x++)
+        if (!MapTestingActive) return; // returns if map testing is avtive
+        ClearMapCollision(map); // calls for clear collision function
+        // CEM_Map maptospawn = CE_CustomMapManager.GetCurrentMap().Map;
+        // string contentlocal = CE_CustomMapManager.GetCurrentMap().ContentFolder;
+        for (int x = -24; x < 29; x++)
         {
-            for (int y = -25; y < 25; y++)
+            for (int y = -24; y < 29; y++)
             {
-                bool isSolid = (x == -25 || y == -25 || y == 24 || x == 24);
-                SpawnSprite(x, y, isSolid);
+                bool isSolid = (x == -24 || y == -24 || y == 24 || x == 24);
+                SpawnSprite(x, y, isSolid); // spawns the sprite into the map.
             }
         }
     }

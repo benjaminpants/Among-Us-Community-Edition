@@ -1,7 +1,7 @@
 --debug gamemode, the game is currently hardwired to allow this gamemode to have chat enabled midround
 
 function InitializeGamemode()
-	return {"Debug",9} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
+	return {"Testgamemode",18} --Initialize a Gamemode with the name "Lua Test" and the ID of 6. In the future, the ID will be determined by the server/loader.
 end
 
 function OnTaskCompletionClient(totaltasks,completedtasks,player)
@@ -51,6 +51,10 @@ function OnChat(message, player)
 	end
 	if (cmd[1] == "broadcast") then
 		Client_ShowMessage(cmd[2])
+	end
+	if (cmd[1] == "fakeplayertest") then
+		local fakey = Game_StartObjectInit("DeadBody")
+		Game_SendObjectToServer(fakey)
 	end
 end
 

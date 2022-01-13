@@ -24,5 +24,12 @@ public enum SystemTypes : byte
 	Laboratory,
 	Balcony,
 	Office,
-	Greenhouse
+	Greenhouse,
+	Library,
+	Vault,
+	CockPit,
+	Showers,
+	EngineRoom,
+	Kitchen,
+	ViewingDeck
 }
