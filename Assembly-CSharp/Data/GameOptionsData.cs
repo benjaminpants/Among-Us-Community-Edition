@@ -717,7 +717,8 @@ public class GameOptionsData : IBytesSerializable
 			1.8f,
 			2.5f,
 			4f,
-			200f
+			300f
+
 		};
 		KillDistanceStrings = new string[6]
 		{
