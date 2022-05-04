@@ -11,11 +11,14 @@ public class VersionShower : MonoBehaviour
 
 	private int lastlua;
 	private int lasthat;
+//	private int lastskin; // skin build thing
 	private string LuaID;
 	private string HatID;
+//	private string SkinID; // skin build thing
 	public static int buildhash;
 	public static string BuildID;
 	public static string ColorID;
+//	public static string SkinerrrID;
 
 	private GameObject FreeplayButton;
 
@@ -65,7 +68,7 @@ public class VersionShower : MonoBehaviour
 		};
     public TextRenderer text;
 
-    public static int GetDeterministicHashCode(string str)
+	public static int GetDeterministicHashCode(string str)
     {
         unchecked
         {
@@ -110,7 +113,8 @@ public class VersionShower : MonoBehaviour
         byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
         buildhash = GetDeterministicHashCodeBytes(Bytes);
         BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
-        text.Text = "when imp sus";
+//		SkinerrrID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
+		text.Text = "when imp is sus";
         Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
         if (GameObject.Find("FreePlayButton") != null)
@@ -143,7 +147,7 @@ public class VersionShower : MonoBehaviour
 		pasbut.OnClick.RemoveAllListeners();
 		pasbut.OnClick.AddListener(OpenModsMenu); //learned how to properly relink passive buttons??? maybe we could stop using unity ui??? pog???
 		ModsButton = newbutton;
-	        // MapMakerButton = mapsbutton;
+	 // MapMakerButton = mapsbutton;
     }
 
 	public void OpenModsMenu()
@@ -171,8 +175,8 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.16.3 - [r0]Hat Update! and other stuff[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		Debug.Log("Text is showing!");
+		text.Text = "v0.17.2 - [r0]Bug Fixes[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]";
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
