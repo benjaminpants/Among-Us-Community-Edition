@@ -5,7 +5,7 @@ function InitializeGamemode()
 	Game_CreateRole("KillyWilly",{0,0,1},"Find huggy wuggy and kill him.[].",{0,2},0,4,true,false,1)
 	Game_CreateRole("HuggyWuggy",{4,14,255},"Find killy willy[]",{},0,4,false,false,1)
 	UI_AddLangEntry("Game_WasNotImp","{0} was not a special role")
-	return {"Huggy wuggy vs killy willy",19} --Stoopid
+	return {"Huggy wuggy vs killy willy",19} --Stoopid Unfinished Thing
 end
 
 

@@ -96,8 +96,8 @@ function OnChat(message, player, imponly)
 	end
 
 	if (cmd[1] == "revive" and Net_AmHost() and Settings_GetBool(0)) then
-		Game_RevivePlayer(player,false)
-                Client_ShowMessage("Wow your now alive /ngood thing i added this in /nor else.")
+		Game_RevivePlayer(player,true)
+                Client_ShowMessage("You gat revoived by a temmie")
 	end
 	return true
 end
