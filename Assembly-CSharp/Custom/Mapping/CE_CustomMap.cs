@@ -35,20 +35,19 @@ public static class CE_CustomMapManager
 
     public static void Initialize()
     {
-        /*MapInfos.Add(new CE_MapInfo("Clue")); //adds a dummy map named clue replacing skeld.
+        MapInfos.Add(new CE_MapInfo("Clue"));
         if (!Directory.Exists(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")))
         {
-            //Debug.Log("Release build, disabling CM logic!");
             return;
-        }*/
+        }
         FileInfo[] files = new DirectoryInfo(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")).GetFiles("*.json");
         foreach (FileInfo fo in files)
         {
             using StreamReader streamReader = File.OpenText(fo.FullName);
             string json = streamReader.ReadToEnd();
             CEM_Map maptoload = JsonConvert.DeserializeObject<CEM_Map>(json);
-            MapInfos.Add(new CE_MapInfo(maptoload.Name,maptoload, Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5))));
-            Debug.Log(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps", fo.Name.Remove(fo.Name.Length - 5)));
+            MapInfos.Add(new CE_MapInfo(maptoload.Name,maptoload, Path.Combine(CE_Extensions.GetGameDirectory(), "Maps")));
+            Debug.Log(Path.Combine(CE_Extensions.GetGameDirectory(), "Maps"));
         }
         
 
@@ -278,7 +277,7 @@ public class CE_CustomMap
         }
 
 
-   /*     var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
+   /*   var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         GameObject go = new GameObject("Test");
         go.layer = 9;
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
@@ -355,8 +354,6 @@ public class CE_CustomMap
     {
         if (!CE_CustomMapManager.GetCurrentMap().IsCustom) return;
         stat = map;
-
-
 
         ReferenceVent = map.GetComponentInChildren<Vent>();
         ReferenceVent.transform.parent = null;
