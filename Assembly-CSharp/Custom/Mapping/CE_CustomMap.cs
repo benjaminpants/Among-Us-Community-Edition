@@ -27,7 +27,6 @@ public class CEM_TaskData
     }
 }
 
-
 public static class CE_CustomMapManager
 {
     public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
