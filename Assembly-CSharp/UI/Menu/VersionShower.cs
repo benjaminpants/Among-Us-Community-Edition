@@ -18,7 +18,7 @@ public class VersionShower : MonoBehaviour
 	public static int buildhash;
 	public static string BuildID;
 	public static string ColorID;
-//	public static string SkinerrrID;
+//	public static string SkinerrrID; // skin build thing
 
 	private GameObject FreeplayButton;
 
@@ -113,8 +113,8 @@ public class VersionShower : MonoBehaviour
         byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
         buildhash = GetDeterministicHashCodeBytes(Bytes);
         BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
-//		SkinerrrID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
-		text.Text = "when imp is sus";
+//	SkinerrrID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
+	text.Text = "when imp is sus"; // placeholder text or something
         Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
         if (GameObject.Find("FreePlayButton") != null)
@@ -176,7 +176,7 @@ public class VersionShower : MonoBehaviour
 	public void Update()
     {
 		Debug.Log("Text is showing!");
-		text.Text = "v0.17.2 - [r0]Bug Fixes[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]";
+		text.Text = "v0.17.2 - [r0]Bug Fixes[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
