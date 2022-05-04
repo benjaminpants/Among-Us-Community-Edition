@@ -27,11 +27,12 @@ public class CEM_TaskData
     }
 }
 
-public static class CE_CustomMapManager : CE_CustomMapManagerBase
+public static class CE_CustomMapManager
 {
     public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
     public static Dictionary<TaskTypes, CEM_TaskData> TypeToTaskName = new Dictionary<TaskTypes, CEM_TaskData>();
     private static ShipStatus stat;
+    private static Texture2D texture;
 
     public static void Initialize()
     {
@@ -148,33 +149,6 @@ public static class CE_CustomMapManager : CE_CustomMapManagerBase
             return GameObject.Instantiate(task).GetComponent(tasktype) as NormalPlayerTask;
         }
 
-        public float CanUse(GameData.PlayerInfo pc, out bool canUse, out bool couldUse)
-        {
-            float num = float.MaxValue;
-            PlayerControl @object = pc.Object;
-            couldUse = pc.Object.CanMove;
-            canUse = couldUse;
-            if (canUse)
-            {
-                num = Vector2.Distance(@object.GetTruePosition());
-                canUse &= num <= UsableDistance;
-            }
-            return num;
-        }
-
-        public void Use()
-        {
-            CanUse(PlayerControl.LocalPlayer.Data, out var canUse, out var _);
-            if (canUse)
-            {
-                PlayerControl.LocalPlayer.NetTransform.Halt();
-                DestroyableSingleton<HudManager>.Instance.ShowMap(delegate (MapBehaviour m)
-                {
-                    m.ShowCountOverlay();
-                });
-            }
-        }
-
         internal static NormalPlayerTask ProcessCEMTask(CEM_Task cEM_Task)
         {
             throw new NotImplementedException();
@@ -183,7 +157,7 @@ public static class CE_CustomMapManager : CE_CustomMapManagerBase
 
     public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
-        var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
+        Sprite sprite1 = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
@@ -191,7 +165,7 @@ public static class CE_CustomMapManager : CE_CustomMapManagerBase
         ins.transform.position = transf;
         Console console = ins.AddComponent<Console>();
         SpriteRenderer img = ins.AddComponent<SpriteRenderer>();
-        img.sprite = sprite;
+        img.sprite = sprite1;
         img.material.shader = Shader.Find("Sprites/Outline");
         console.Image = img;
         console.Room = room;
