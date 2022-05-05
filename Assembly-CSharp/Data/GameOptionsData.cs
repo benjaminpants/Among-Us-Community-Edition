@@ -8,13 +8,14 @@ using System;
 public class GameOptionsData : IBytesSerializable
 {
 	private const byte GameDataVersion = 3; // make it go up.
-
-	public static readonly string[] MapNames = new string[]
+    private const bool V = true;
+    public static readonly string[] MapNames = new string[]
 	{
 		"The Skeld",
 		"Mira HQ",
 		"Polus",
-		"Airship"
+		"Airship",
+		"CARLLLL THERES A DEAD PERSON IN OUR HOUSE"
 	};
 
 	public static readonly float[] KillDistances;
@@ -153,11 +154,13 @@ public class GameOptionsData : IBytesSerializable
 	public byte SprintAllowance;
 
 	public void ToggleMapFilter(byte newId)
-	{
-			MapId = newId; // map id thing aka mira support
-	}
+    {
+	    MapId = 2; // map id normally equals newID but mainly for testing i made it 2
+		Debug.Log("Mira Thing");
+		Debug.Log("sussy baka");
+    }
 
-	public bool FilterContainsMap(byte newId)
+    public bool FilterContainsMap(byte newId)
 	{
 		int num = 100 << (int)newId;
 		return (MapId & num) == num;
