@@ -9,7 +9,13 @@ public class GameOptionsData : IBytesSerializable
 {
 	private const byte GameDataVersion = 3; // make it go up.
 
-	public static string[] MapNames;
+	public static readonly string[] MapNames = new string[]
+	{
+		"The Skeld",
+		"Mira HQ",
+		"Polus",
+		"Airship"
+	};
 
 	public static readonly float[] KillDistances;
 
@@ -28,7 +34,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public GameKeywords Keywords;
 
-	public byte MapId;
+	public int MapId; // map id now can be more haha
 
 	public float PlayerSpeedMod;
 
@@ -148,11 +154,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public void ToggleMapFilter(byte newId)
 	{
-		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
-		if (b != 0)
-		{
-			MapId = b;
-		}
+			MapId = newId; // map id thing aka mira support
 	}
 
 	public bool FilterContainsMap(byte newId)
@@ -365,7 +367,7 @@ public class GameOptionsData : IBytesSerializable
 		MeetingCooldown = RecommendedKillCooldown[numPlayers];
 		SprintMultipler = 0.5f;
 		SneakAllowance = 1;
-	        // SprintAllowance = 1;
+	 // SprintAllowance = 1;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -534,8 +536,8 @@ public class GameOptionsData : IBytesSerializable
             stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
 			stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
 			stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
-			//stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update.[]");
-			stringBuilder.AppendLine("[FF0000FF]Sprinting is disabled in this update.[]");
+			//stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update![]");
+			stringBuilder.AppendLine("[FF0000FF]Sprinting is disabled in this update![]");
 			if (CrewLightMod == 0f)
 			{
 				stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
@@ -703,7 +705,7 @@ public class GameOptionsData : IBytesSerializable
 		{
 			names.Add(CE_CustomMapManager.MapInfos[i].MapName);
 		}
-		MapNames = names.ToArray();
+//		MapNames = names.ToArray();
 		CanSeeOtherImps = true;
 		MeetingCooldown = 15f;
 	}
