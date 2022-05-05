@@ -731,14 +731,14 @@ public class GameOptionsData : IBytesSerializable
 			"∞"
 		};
 
-        BodySett = new string[]
+        BodySett = new string[3]
         {
             "Vanilla",
             "Decay",
             "Anon"
         };
 
-        BodyDecayTimes = new string[]
+        BodyDecayTimes = new string[3]
         {
             "Short",
             "Medium",
@@ -746,7 +746,7 @@ public class GameOptionsData : IBytesSerializable
         };
 
 
-        TaskDifficultyNames = new string[]
+        TaskDifficultyNames = new string[4]
         {
             "Easy",
             "Normal",
@@ -754,7 +754,7 @@ public class GameOptionsData : IBytesSerializable
             "Insane"
         };
 
-		TaskDifficultyMult = new float[]
+		TaskDifficultyMult = new float[4]
 		{
 			0.5f,
 			1f,
@@ -763,21 +763,21 @@ public class GameOptionsData : IBytesSerializable
 		};
 
 
-		BodyDecayMul = new float[]
+		BodyDecayMul = new float[3]
 		{
 			0.5f,
 			1f,
 			1.5f
 		};
 
-		TaskBarUpStrings = new string[]
+		TaskBarUpStrings = new string[3]
 		{
 			"Always",
 			"Meetings",
 			"Never"
 		};
 
-		CanSeeGhostsStrings = new string[]
+		CanSeeGhostsStrings = new string[4]
 		{
 			"Dead Only",
 			"Impostors Only",
