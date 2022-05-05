@@ -710,22 +710,24 @@ public class GameOptionsData : IBytesSerializable
 
 	static GameOptionsData()
 	{
-		KillDistances = new float[6]
+		KillDistances = new float[7]
 		{
 			0.5f,
 			1f,
 			1.8f,
 			2.5f,
 			4f,
+			4.8f,
 			300f
 		};
-		KillDistanceStrings = new string[6]
+		KillDistanceStrings = new string[7]
 		{
 			"Tiny",
 			"Short",
 			"Normal",
 			"Long",
 			"XL",
+			"Extreme",
 			"∞"
 		};
 
