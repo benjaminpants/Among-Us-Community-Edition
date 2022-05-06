@@ -75,6 +75,6 @@ public static class Palette
 		CrewmateBlue = new Color32(140, byte.MaxValue, byte.MaxValue, byte.MaxValue);
 		ImpostorRed = new Color32(byte.MaxValue, 25, 25, byte.MaxValue);
 		ImpostorOnlyRed = new Color32(206, 121, 139, byte.MaxValue);
-        VisorColor = new Color32(149, 202, 220, byte.MaxValue);
+                VisorColor = new Color32(149, 202, 220, byte.MaxValue);
 	}
 }
