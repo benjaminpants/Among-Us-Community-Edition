@@ -47,14 +47,5 @@ public class CE_PlayerColor
         IsSpecial = false;
         Name = CName;
     }
-    
-    public CE_PlayerColor(Color BaseColor, Color ShadowColor, Color VisorColor, string CName)
-    {
-        Base = BaseColor;
-        Shadow = ShadowColor;
-        Visor = VisorColor;
-        IsSpecial = false;
-        Name = CName;
-    }
 
 }
