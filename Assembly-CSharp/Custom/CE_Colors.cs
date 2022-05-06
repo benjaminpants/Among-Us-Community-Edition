@@ -25,6 +25,7 @@ public class CE_PlayerColor
     {
         Base = Colorr;
         Shadow = Colorr * Color.gray;
+        Visor = Colorr * Color.blue;
         Name = CName;
         IsFunnyRainbowColor = israinbow;
         IsSpecial = israinbow;
@@ -38,10 +39,11 @@ public class CE_PlayerColor
         Name = CName;
         IsSpecial = IsSColor;
     }
-    public CE_PlayerColor(Color BaseColor, Color ShadowColor, string CName)
+    public CE_PlayerColor(Color BaseColor, Color ShadowColor, Color VisorColor, string CName)
     {
         Base = BaseColor;
         Shadow = ShadowColor;
+        Visor = VisorColor;
         IsSpecial = false;
         Name = CName;
     }
