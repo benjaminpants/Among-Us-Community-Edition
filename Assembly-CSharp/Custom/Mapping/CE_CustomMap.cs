@@ -32,7 +32,11 @@ public static class CE_CustomMapManager
     public static List<CE_MapInfo> MapInfos = new List<CE_MapInfo>();
     public static Dictionary<TaskTypes, CEM_TaskData> TypeToTaskName = new Dictionary<TaskTypes, CEM_TaskData>();
     private static ShipStatus stat;
-    private static Texture2D texture;
+    private static object texture;
+
+    //   private static readonly Texture2D texture;
+
+    // private static readonly Texture2D texture;
 
     public static void Initialize()
     {
@@ -84,6 +88,11 @@ public static class CE_CustomMapManager
         }
     }
 
+    internal static object GetCurrentMap()
+    {
+        throw new NotImplementedException();
+    }
+
     public class CE_CustomMap
     {
         public static bool MapTestingActive = false;
@@ -97,15 +106,12 @@ public static class CE_CustomMapManager
         public float usableDistance = 1f;
 
         public SpriteRenderer Image;
-
         public float UsableDistance => usableDistance;
-
         public float PercentCool => 0f;
 
         public static ShipStatus stat;
 
         public static SoundGroup[] SoundGroups;
-
         public static AudioClip[] AmbienceSounds;
 
         public enum FootstepSounds
@@ -157,7 +163,7 @@ public static class CE_CustomMapManager
 
     public static Console CreateTaskConsole(Vector3 transf, Sprite sprite, TaskTypes tt, IntRange range, SystemTypes room, int consoleid)
     {
-        Sprite sprite1 = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.65f));
+        Sprite sprite1 = Sprite(texture);
         GameObject ins = new GameObject();
         BoxCollider2D col2d = ins.AddComponent<BoxCollider2D>();
         col2d.size = Vector2.one / 2f;
@@ -181,6 +187,11 @@ public static class CE_CustomMapManager
         };
         console.ConsoleId = consoleid;
         return console;
+    }
+
+    private static Sprite Sprite(object texture)
+    {
+        throw new NotImplementedException();
     }
 
     public static ShipRoom CreateShipRoom(SystemTypes room, AudioClip ambience, SoundGroup footsteps, Vector2 position, Vector2 scale)
@@ -509,7 +520,7 @@ SpawnSprite(x, y, BoolRange.Next(0.1f));
 }*/
 }
 
-    private static void LoadDefaultSounds()
+        private static void LoadDefaultSounds()
         {
             throw new NotImplementedException();
         }
