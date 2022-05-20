@@ -1,0 +1,94 @@
+{
+  "ID": "scouthats",
+  "Name": "scouthats",
+  "StoreName": "scouthats",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 67.0,
+        "y": 67.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 1.2
+      },
+      "Name": "NormalExt",
+      "SpritePath": "scoutheadphones.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 39.0,
+        "y": 68.0
+      },
+      "Offset": {
+        "x": 1.31,
+        "y": 1.40999985
+      },
+      "Name": "NormalExt2",
+      "SpritePath": "ScoutHand.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 31.0,
+        "y": 160.0
+      },
+      "Offset": {
+        "x": 1.7,
+        "y": 0.55
+      },
+      "Name": "Normal",
+      "SpritePath": "Sandman.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 67.0,
+        "y": 69.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 1.1
+      },
+      "Name": "Floor",
+      "SpritePath": "scoutheadphones.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

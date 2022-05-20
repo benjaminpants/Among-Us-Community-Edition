@@ -1,0 +1,54 @@
+{
+  "ID": "arrowinyourhed",
+  "Name": "arrowinyourhed",
+  "StoreName": "arrowinyourhed",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 137.0,
+        "y": 265.0
+      },
+      "Offset": {
+        "x": 0.29,
+        "y": 0.41
+      },
+      "Name": "Normal",
+      "SpritePath": "San Valentine Arrow.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 137.0,
+        "y": 265.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 1.15
+      },
+      "Name": "Floor",
+      "SpritePath": "San Valentine Arrow_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

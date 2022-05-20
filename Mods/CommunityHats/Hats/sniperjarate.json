@@ -1,0 +1,94 @@
+{
+  "ID": "Sniper_hat",
+  "Name": "Sniper_hat",
+  "StoreName": "Sniper_hat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 75.0
+      },
+      "Offset": {
+        "x": -0.430000037,
+        "y": 1.24999976
+      },
+      "Name": "NormalExt",
+      "SpritePath": "jarate!.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 75.0
+      },
+      "Offset": {
+        "x": -0.430000037,
+        "y": 1.24999976
+      },
+      "Name": "NormalExt2",
+      "SpritePath": "jarate2.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 89.0,
+        "y": 55.0
+      },
+      "Offset": {
+        "x": 0.420000017,
+        "y": 0.95
+      },
+      "Name": "Normal",
+      "SpritePath": "sniper.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 89.0,
+        "y": 55.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "sniper_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

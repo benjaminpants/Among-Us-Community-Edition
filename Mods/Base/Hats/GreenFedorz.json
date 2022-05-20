@@ -1,0 +1,47 @@
+{
+  "ID": "Fedoragreenport",
+  "Name": "Fedoragreenport",
+  "StoreName": "Green Fedora",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 85.0,
+        "y": 42.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.95
+      },
+      "Name": "Normal",
+      "SpritePath": "greenFr.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 85.0,
+        "y": 40.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.95
+      },
+      "Name": "Floor",
+      "SpritePath": "Fedoragreen.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

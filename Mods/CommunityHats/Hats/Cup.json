@@ -1,0 +1,54 @@
+{
+  "ID": "ebdfa5ab-2eaf-4ffe-8eef-49a9a4195011",
+  "Name": "Cup",
+  "StoreName": "Become a cup",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 176.0
+      },
+      "Offset": {
+        "x": 0.44,
+        "y": 0.75
+      },
+      "Name": "Normal",
+      "SpritePath": "cup.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 150.0,
+        "y": 176.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "cup.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

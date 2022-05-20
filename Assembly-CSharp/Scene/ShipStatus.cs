@@ -159,9 +159,9 @@ public class ShipStatus : InnerNetObject
 	{
         if (this != null)
         {
-            CE_CustomMap.MapTest(this);
+			Debug.Log("this wont work sorri buddy! most things are broken in here... wait no hold on im confused");
         }
-		if (CE_CustomMapManager.GetCurrentMap().IsCustom)
+		if (GetCurrentMap())
 		{
 			ShipRoom[] TempRoom = GameObject.FindObjectsOfType<ShipRoom>();
 			List<ShipRoom> Rooms = new List<ShipRoom>();
@@ -185,7 +185,7 @@ public class ShipStatus : InnerNetObject
 			AllRooms = GetComponentsInChildren<ShipRoom>();
 		}
 		AllConsoles = GetComponentsInChildren<Console>();
-		if (CE_CustomMapManager.GetCurrentMap().IsCustom)
+		if (GetCurrentMap())
 		{
             Vent[] TempVent = GameObject.FindObjectsOfType<Vent>();
 			List<Vent> Vents = new List<Vent>();
@@ -213,7 +213,12 @@ public class ShipStatus : InnerNetObject
 		TimeUntilRandomSab2 = UnityEngine.Random.Range(60f, 120f);
 	}
 
-	public void Start()
+    private bool GetCurrentMap()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Start()
 	{
 		Camera.main.backgroundColor = CameraColor;
 		if (DestroyableSingleton<HudManager>.InstanceExists)

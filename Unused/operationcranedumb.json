@@ -1,0 +1,47 @@
+{
+  "ID": "OperationCranehaha",
+  "Name": "Crane operator",
+  "StoreName": "Crane operator",
+  "HatInFront": false,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 81.0,
+        "y": 73.0
+      },
+      "Offset": {
+        "x": 0.47,
+        "y": 0.65
+      },
+      "Name": "Normal",
+      "SpritePath": "opera.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 96.0,
+        "y": 58.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "oper.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

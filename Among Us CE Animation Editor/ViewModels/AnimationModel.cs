@@ -166,12 +166,8 @@ namespace AmongUsCE_AnimationEditor.ViewModels
             {
                 if (isValidSelection)
                 {
-                    bool Allowed = true;
+                 //   bool Allowed = true;
                     if (ShowRemoveWarning)
-                    {
-                        Allowed = MessageBox.Show($"Are you sure you want to remove \"{CurrentAnimation.FrameList[index].Name}\"?", "Remove Frame", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
-                    }
-                    if (Allowed)
                     {
                         CurrentAnimation.FrameList.RemoveAt(index);
                         MainWindow.Instance.UpdateUI();
@@ -304,6 +300,18 @@ namespace AmongUsCE_AnimationEditor.ViewModels
                         CurrentAnimation.FrameList.Add(newItem);
                         png.Dispose();
                     }
+                   elseif (item.Extension == ".jpg
+                    {
+                        System.Drawing.Bitmap jpg = new System.Drawing.Bitmap(item.FullName);
+                        var newItem = new CE_SpriteFrame();
+                        newItem.Offset = new CE_Point(0.5f, 0.5f);
+                        newItem.Position = new CE_Point(0.0f, 0.0f);
+                        newItem.Size = new CE_Point(jpg.Width, jpg.Height);
+                        newItem.SpritePath = item.Name.Replace(AnimationHelpers.GetFileDirectory(CurrentAnimation), "");
+                        newItem.Name = System.IO.Path.GetFileNameWithoutExtension(item.Name);
+                        CurrentAnimation.FrameList.Add(newItem);
+                        jpg.Dispose();
+                       }
                 }
                 MainWindow.Instance.UpdateUI();
             }

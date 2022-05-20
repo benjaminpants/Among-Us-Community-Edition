@@ -1,0 +1,95 @@
+[
+
+  {
+    "Base": {
+      "r": 248,
+      "g": 104,
+      "b": 44,
+      "a": 255
+    },
+    "Shadow": {
+      "r": 224,
+      "g": 52,
+      "b": 22,
+      "a": 255
+    },
+    "Visor": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "IsSpecial": false,
+    "Name": "Windows Red"
+  },
+  
+  {
+    "Base": {
+      "r": 145,
+      "g": 195,
+      "b": 0,
+      "a": 255
+    },
+    "Shadow": {
+      "r": 73,
+      "g": 93,
+      "b": 0,
+      "a": 255
+    },
+    "Visor": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "IsSpecial": false,
+    "Name": "Windows Green"
+  },
+  
+  {
+    "Base": {
+      "r": 0,
+      "g": 180,
+      "b": 241,
+      "a": 255
+    },
+    "Shadow": {
+      "r": 0,
+      "g": 90,
+      "b": 121,
+      "a": 255
+    },
+    "Visor": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "IsSpecial": false,
+    "Name": "Windows Blue"
+  },
+  
+  {
+    "Base": {
+      "r": 255,
+      "g": 195,
+      "b": 1,
+      "a": 255
+    },
+    "Shadow": {
+      "r": 128,
+      "g": 98,
+      "b": 1,
+      "a": 255
+    },
+    "Visor": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "IsSpecial": false,
+    "Name": "Windows Yellow"
+  }
+  
+]

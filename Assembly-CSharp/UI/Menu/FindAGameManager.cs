@@ -67,8 +67,8 @@ public class FindAGameManager : DestroyableSingleton<FindAGameManager>, IGameLis
 			{
 				GameId = i,
 				HostName = fo.Name + "\n" + fo.Ip + ":" + fo.Port,
-				ImpostorCount = 0,
-				MaxPlayers = 0,
+				ImpostorCount = 1,
+				MaxPlayers = 21,
 				PlayerCount = 0,
 				Age = i,
 				ListingID = i,

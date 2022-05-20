@@ -469,6 +469,11 @@ public class GameData : InnerNetObject, IDisconnectHandler
 				DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(playerName + " left due to an error.");
 				break;
             }
+			case DisconnectReasons.NewConnection:
+			{
+				DestroyableSingleton<HudManager>.Instance.Notifier.AddItem(playerName + " got a new connection");
+				break;
+			}
 			}
 		}
 	}

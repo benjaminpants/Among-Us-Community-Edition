@@ -12,14 +12,20 @@ public static class SystemTypeHelpers
 
 	public static string GetName(SystemTypes syst)
     {
-		CE_MapInfo mfo = CE_CustomMapManager.GetCurrentMap();
+		CE_MapInfo mfo = GetCurrentMap();
 		if ((int)syst > 24)
         {
 			return mfo.CustomLocationNames[(int)syst - 25];
         }
 		return StringNames[(int)syst];
     }
-	static SystemTypeHelpers()
+
+    private static CE_MapInfo GetCurrentMap()
+    {
+        throw new NotImplementedException();
+    }
+
+    static SystemTypeHelpers()
 	{
 		AllTypes = Enum.GetValues(typeof(SystemTypes)).Cast<SystemTypes>().ToArray();
 		StringNames = new string[AllTypes.Length];

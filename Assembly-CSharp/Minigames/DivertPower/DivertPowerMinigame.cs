@@ -12,6 +12,7 @@ public class DivertPowerMinigame : Minigame
 		SystemTypes.Comms,
 		SystemTypes.LifeSupp,
 		SystemTypes.Security
+		// SystemTypes.Libary
 	};
 
 	public Collider2D[] Sliders;

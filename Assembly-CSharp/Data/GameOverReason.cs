@@ -1,6 +1,7 @@
 public enum GameOverReason
 {
 	HumansByVote,
+	HumansByKill,
 	HumansByTask,
 	ImpostorByVote,
 	ImpostorByKill,
@@ -8,6 +9,7 @@ public enum GameOverReason
 	ImpostorDisconnect,
 	HumansDisconnect,
 	JokerEjected,
+	SabatourEjected,
 	Custom,
 	Stalemate
 }

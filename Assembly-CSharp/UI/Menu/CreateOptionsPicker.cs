@@ -36,6 +36,16 @@ public class CreateOptionsPicker : MonoBehaviour
 			gameSearchOptions.ToggleMapFilter(0);
 			SaveManager.GameSearchOptions = gameSearchOptions;
 		}
+		if (gameSearchOptions.MapId == 1)
+		{
+			gameSearchOptions.ToggleMapFilter(1);
+			SaveManager.GameSearchOptions = gameSearchOptions;
+		}
+		if (gameSearchOptions.MapId == 2)
+		{
+			gameSearchOptions.ToggleMapFilter(2);
+			SaveManager.GameSearchOptions = gameSearchOptions;
+		}
 		return gameSearchOptions;
 	}
 
@@ -66,7 +76,7 @@ public class CreateOptionsPicker : MonoBehaviour
 		default:
 			return;
 		}
-		if (maxPlayers >= targetOptions.NumImpostors && (!flag || targetOptions.MaxPlayers + 1 <= 20) && (flag || targetOptions.MaxPlayers - 1 >= 4))
+		if (maxPlayers >= targetOptions.NumImpostors && (!flag || targetOptions.MaxPlayers + 1 <= 22) && (flag || targetOptions.MaxPlayers - 1 >= 4))
 		{
 			targetOptions.MaxPlayers = (flag ? (targetOptions.MaxPlayers + 1) : (targetOptions.MaxPlayers - 1));
 			SetTargetOptions(targetOptions);
@@ -166,6 +176,7 @@ public class CreateOptionsPicker : MonoBehaviour
 	{
 		if ((bool)CrewArea)
 		{
+		//      Creates the crewsize and number of impostors
 			CrewArea.SetCrewSize(opts.MaxPlayers, opts.NumImpostors);
 		}
 		for (int i = 0; i < MaxPlayerButtons.Length; i++)
@@ -173,6 +184,7 @@ public class CreateOptionsPicker : MonoBehaviour
 			SpriteRenderer spriteRenderer = MaxPlayerButtons[i];
 			if (spriteRenderer.name == "5")
 			{
+			//      creates the plus to add players
 				spriteRenderer.GetComponentInChildren<TextRenderer>().Text = "+";
 				continue;
 			}

@@ -1,0 +1,47 @@
+{
+  "ID": "Roblos",
+  "Name": "Moti2",
+  "StoreName": "Motik2",
+  "HatInFront": false,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 65.0
+      },
+      "Offset": {
+        "x": 0.58,
+        "y": 0.65
+      },
+      "Name": "Normal",
+      "SpritePath": "inver.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 71.0,
+        "y": 60.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.6
+      },
+      "Name": "Floor",
+      "SpritePath": "inverh.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

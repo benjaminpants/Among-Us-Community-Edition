@@ -40,7 +40,7 @@ function InitializeGamemode()
 	Game_CreateRole("Slime",{217,250,2},"Assist the crew by preventing\nsuspicous players from\nusing their abilities.",{0,2},1,0,false,true,255)
 	--Game_CreateRole("Snatcher",{255, 255, 255},"Steal someone's identity and survive for 4 meetings.",{},2,3,false,false,69,false,"[7685A3FF]Stay alive and win with your twin.[]")
 	--roles you aren't supposed to see
-	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"you shouldn't see this lol",{},1,1,false,true) --impostors can see people with broken shields
+	Game_CreateRole("Shielded(Broken)",{107, 107, 107},"if you see this then your a sus",{},1,1,false,true) --impostors can see people with broken shields
 	Game_CreateRole("Spy(Finished)",{98, 91, 112},"if you see this you are dumb",{2},0,1,true,false,255,true,"[625B70FF]Silence possible threats.[]")
 	Game_CreateRole("Slime(Slimed Out)",{217,250,2},"if you see this ur mom is spaghetti",{2},1,0,false,true,255)
 	--counts
@@ -181,7 +181,7 @@ function OnClientUpdate(timer,timesincelastround)
 	if (Client_GetLocalPlayer().luavalue1 == 255) then
 		invent_timer = invent_timer - (timer - timedif)
 		if (not (math.ceil(timer) == math.ceil(timedif)) and math.ceil(invent_timer) == 5) then
-			Client_ShowMessage("You don't feel so well...")
+			Client_ShowMessage("You don't feel so well.....")
 		end
 		if (invent_timer < 0) then
 			Game_KillPlayer(Client_GetLocalPlayer(),false)
@@ -461,6 +461,8 @@ function BeforeKill(killer,victim)
 			object = "switcharoo"
 		elseif (killer.role == Game_GetRoleIDFromUUID("roles_Witch")) then
 			object = "potion"
+		--elseif (killer.role == Game_GetRoleIDFromUUID("roles_Spy")) then
+			--object = "bonoculars"
 		end
 		if (killer.role == Game_GetRoleIDFromUUID("roles_Slime")) then
 			Client_ShowMessage("Your hands have been slimed by another slime!")
@@ -538,6 +540,7 @@ function BeforeKill(killer,victim)
 		killer.luavalue2 = killer.luavalue2 - 1
 		Game_UpdatePlayerInfo(killer)
 		if (killer.luavalue2 == 0) then
+			Client_ShowMessage("You found it out or something GG")
 			Game_SetRoles({killer},{"roles_Spy(Finished)"})
 		end
 		victim.luavalue3 = 1

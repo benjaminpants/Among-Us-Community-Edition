@@ -54,12 +54,13 @@ public class CEM_Sprite
 public class CEM_Console
 {
     public CEM_Point Position;
-    public string ImageLocal = "???";
+ //   public string ImageLocal = "???"; // this causes some errors so maybe next update this may be removed??
     public int TaskType;
     public int Room;
     public int MinStep;
     public int MaxStep;
     public int ConsoleID;
+    internal string ImageLocal;
 
     public CEM_Console()
     {
@@ -78,6 +79,30 @@ public class CEM_Console
         ConsoleID = ci;
     }
 }
+
+/*public class CEM_PC
+{
+    public CEM_Point Position;
+    public string ImageLocal = "???";
+ //   public int Usable;
+
+    public CEM_PC()
+    {
+
+    }
+*/
+
+ /*   public CEM_Console(Vector3 position, string ImageLocation, int tt, int r, int mis, int mas, int ci)
+    {
+        Position = new CEM_Point(position);
+        ImageLocal = ImageLocation;
+        TaskType = tt;
+        Room = r;
+        MaxStep = mis;
+        MaxStep = mas;
+        ConsoleID = ci;
+    }
+}*/
 
 public class CEM_Task
 {

@@ -1,0 +1,47 @@
+{
+  "ID": "ring",
+  "Name": "ring",
+  "StoreName": "ring",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 50.0,
+        "y": 28.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.5
+      },
+      "Name": "Normal",
+      "SpritePath": "ring.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 50.0,
+        "y": 28.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "ring.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

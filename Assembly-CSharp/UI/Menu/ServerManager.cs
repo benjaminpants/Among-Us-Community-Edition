@@ -39,12 +39,12 @@ public class ServerManager : DestroyableSingleton<ServerManager>
             Ip = "127.0.0.1",
             Port = 25565,
             Default = false,
-            Icon = "single_crewmate.png"
+            Icon = "vent.png"
         };
 		ServerInfo eurofo = new ServerInfo
 		{
 			Name = "Primary [FFFF00FF](France)[]",
-			Ip = "fuck",
+			Ip = "amogus",
 			Port = 696969,
 			Default = true,
 			Icon = "globe.png"
@@ -124,7 +124,7 @@ public class ServerManager : DestroyableSingleton<ServerManager>
 			Ip = "162.216.47.184",
 			Port = 38837,
 			Default = true,
-			Icon = "globe.png"
+			Icon = "vent.png"
 		};
 	}
 }

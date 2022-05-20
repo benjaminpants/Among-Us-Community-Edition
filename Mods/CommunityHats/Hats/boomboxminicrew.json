@@ -1,0 +1,115 @@
+{
+  "ID": "boomboxminicrew",
+  "Name": "boomboxminicrew",
+  "StoreName": "boomboxminicrew",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "IsHidden": false,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "NormalExt2",
+      "SpritePath": "boomboxminihats2.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "NormalExt",
+      "SpritePath": "boomboxminihats1.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "Offset": {
+        "x": 0.460,
+        "y": 0.82575
+      },
+      "Name": "Normal",
+      "SpritePath": "boomboxminicrew.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 246.0,
+        "y": 78.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "FloorExt",
+      "SpritePath": "boomboxminicrewhats.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 246.0,
+        "y": 78.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "boomboxminicrewfloor.png",
+      "Hat_NoBobbing": true,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

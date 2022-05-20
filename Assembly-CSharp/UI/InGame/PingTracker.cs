@@ -4,40 +4,40 @@ public class PingTracker : MonoBehaviour
 {
 	public TextRenderer text;
 
-	public GameObject ugh;
+	public GameObject watermark;
 
-	private static Sprite assmark;
+	private static Sprite watermark2;
 
 	private void Update()
 	{
-		if (ugh == null)
+		if (watermark == null)
         {
-			ugh = GameObject.Instantiate<GameObject>(GameObject.Find("MenuButton"));
-			ugh.name = "WatermarkOfPain";
-            ugh.transform.parent = GameObject.Find("Hud").transform;
-			AspectPosition pos = ugh.GetComponent<AspectPosition>();
+			watermark = GameObject.Instantiate<GameObject>(GameObject.Find("MenuButton"));
+			watermark.name = "Watermark";
+            watermark.transform.parent = GameObject.Find("Hud").transform;
+			AspectPosition pos = watermark.GetComponent<AspectPosition>();
 			pos.DistanceFromEdge = new Vector3(pos.DistanceFromEdge.x,pos.DistanceFromEdge.y * 5f, pos.DistanceFromEdge.z);
-            Destroy(ugh.GetComponent<ButtonBehavior>());
-			Destroy(ugh.GetComponent<Collider>());
-			if (!assmark)
+            Destroy(watermark.GetComponent<ButtonBehavior>());
+			Destroy(watermark.GetComponent<Collider>());
+			if (!watermark2)
             {
-				assmark = CE_TextureNSpriteExtensions.ConvertToSpriteAutoPivot(CE_CommonUI.STUPIDASSWATERMARK);
+				watermark2 = CE_TextureNSpriteExtensions.ConvertToSpriteAutoPivot(CE_CommonUI.Watermark);
 			}
-			ugh.GetComponent<SpriteRenderer>().sprite = assmark;
-            ugh.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 50);
-			ugh.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+			watermark.GetComponent<SpriteRenderer>().sprite = watermark2;
+            watermark.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 50);
+			watermark.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 			pos.AdjustPosition();
         }
 		if ((bool)AmongUsClient.Instance)
 		{
 			if (AmongUsClient.Instance.GameMode == GameModes.FreePlay)
 			{
-				text.Text = "> Among Us: CE <\n> " + VersionShower.BuildID + " <\n[FFFF00FF]> Alpha Build <[]";
+				text.Text = "> Among Us: CE CLASSIC REVIVED <\n> " + VersionShower.BuildID + " <\n[FF009F]> Unkown Build <[]";
 				//text.Text = ((int)(1.0f / Time.smoothDeltaTime)).ToString();
 			}
 			else
 			{
-				text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> " + VersionShower.BuildID + " <\n[FFFF00FF]> Alpha Build <[]";
+				text.Text = $"Ping: {AmongUsClient.Instance.Ping} ms\n> " + VersionShower.BuildID + " <\n[FF009F]> Unkown Build <[]";
 			}
 		}
 	}

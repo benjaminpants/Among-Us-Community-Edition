@@ -1,0 +1,47 @@
+{
+  "ID": "InvertedEggLol",
+  "Name": "Eggscelent of inverted style",
+  "StoreName": "Eggscelent of inverted style",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 50.0,
+        "y": 39.0
+      },
+      "Offset": {
+        "x": 0.39,
+        "y": 1.0
+      },
+      "Name": "Normal",
+      "SpritePath": "inv.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 80.0,
+        "y": 27.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "inv_fall.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

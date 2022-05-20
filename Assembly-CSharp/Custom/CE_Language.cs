@@ -35,8 +35,8 @@ public class CE_Language
         {
             AddEntry("Game_ImpsRemain", "{0} impostor{1} remains.");
             AddEntry("Game_WasNotImp", "{0} was not {1} Impostor.");
-            AddEntry("Meeting_WhoIsImpostor", "Who Is The Impostor?");
-            AddEntry("UI_CantCallMeeting", "EMERGENCY MEETINGS CANNOT\n\rBE CALLED RIGHT NOW");
+            AddEntry("Meeting_WhoIsImpostor", "Guess the impostor.");
+            AddEntry("UI_CantCallMeeting", "EMERGENCY MEETINGS CANNOT\n\rBE CALLED DUE TO AN EMERGENCY");
         }
     }
     public string GetFormatted(string key, params object[] arg)
@@ -87,7 +87,7 @@ public class CE_LanguageEntry
     public CE_LanguageEntry()
     {
         IsLua = false;
-        Text = "Bob";
+        Text = "Bob is sussy";
     }
     public CE_LanguageEntry(bool lua)
     {
@@ -105,7 +105,7 @@ public class CE_LanguageEntry
 
     public string GetText()
     {
-        return Text; //placeholder
+        return Text; //placeholder sut
     }
 }
 

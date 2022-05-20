@@ -1,0 +1,54 @@
+{
+  "ID": "pyrohat",
+  "Name": "pyrohat",
+  "StoreName": "pyrohat",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 58.0,
+        "y": 68.0
+      },
+      "Offset": {
+        "x": 0.28,
+        "y": 1.24999988
+      },
+      "Name": "Normal",
+      "SpritePath": "pyromask.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 58.0,
+        "y": 68.0
+      },
+      "Offset": {
+        "x": 0.35,
+        "y": 1.1
+      },
+      "Name": "Floor",
+      "SpritePath": "pyromask_floor.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

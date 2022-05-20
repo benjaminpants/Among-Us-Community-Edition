@@ -1,0 +1,54 @@
+{
+  "ID": "hat_InvertedDoughnout",
+  "Name": "Doughnut",
+  "StoreName": "Doughnut",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 33.0
+      },
+      "Offset": {
+        "x": 0.2,
+        "y": 1.1
+      },
+      "Name": "Normal",
+      "SpritePath": "doughtnutalt.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 64.0,
+        "y": 33.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "doughtnutalt.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    }
+  ]
+}

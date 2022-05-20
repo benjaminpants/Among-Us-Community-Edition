@@ -1,0 +1,54 @@
+{
+  "ID": "MiniCeption",
+  "Name": "MiniCeption",
+  "StoreName": "So Many Mini Crewmates",
+  "HatInFrontGlobally": false,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 153.0
+      },
+      "Offset": {
+        "x": 0.349999964,
+        "y": 0.250000119
+      },
+      "Name": "Normal",
+      "SpritePath": "MiniCrewMateCeption.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 65.0,
+        "y": 153.0
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.15
+      },
+      "Name": "Floor",
+      "SpritePath": "MiniCrewMateCeption.png",
+      "Hat_NoBobbing": true,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

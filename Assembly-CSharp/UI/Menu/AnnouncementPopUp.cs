@@ -72,7 +72,7 @@ public class AnnouncementPopUp : MonoBehaviour
 		MessageReader message = e.Message;
 		try
 		{
-			if (message.Length > 4)
+			if (message.Length > 100)
 			{
 				Announcment_SetData(message);
 				AskedForUpdate = AnnounceState.Success;
@@ -155,8 +155,8 @@ public class AnnouncementPopUp : MonoBehaviour
 	public void Original_SetAnnouncmentTextFail()
     {
 		Announcement lastAnnouncement = SaveManager.LastAnnouncement;
-		if (lastAnnouncement.Id == 0) AnnounceText.Text = "Couldn't get announcement.";
-		else AnnounceText.Text = "Couldn't get announcement. Last Known:\r\n" + lastAnnouncement.AnnounceText;
+		if (lastAnnouncement.Id == 0) AnnounceText.Text = "12/10/2021 Fixed bugs new hats and skin and more!";
+		else AnnounceText.Text = "12/10/2021 Fixed bugs new hats and skin and more!";
 	}
 	public void Original_UpdateLastAnnouncementID()
 	{
@@ -182,7 +182,7 @@ public class AnnouncementPopUp : MonoBehaviour
 		Announcement announcement = default(Announcement);
 		int DateFetched = DateTime.UtcNow.DayOfYear;
 		uint Id = 1;
-		string AnnounceText = "Coming Soon!";
+		string AnnounceText = "12/10/2021 Fixed bugs new hats and skin and more!";
 		Announcment_SetData(announcement, DateFetched, Id, AnnounceText);
 		AskedForUpdate = AnnounceState.Success;
 		yield return null;

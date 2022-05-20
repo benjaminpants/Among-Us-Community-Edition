@@ -1,5 +1,26 @@
 [
-
+ {
+    "Base": {
+      "r": 97,
+      "g": 114,
+      "b": 25,
+      "a": 255
+    },
+    "Shadow": {
+      "r": 66,
+      "g": 91,
+      "b": 15,
+      "a": 255
+    },
+    "Visor": {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "IsSpecial": false,
+    "Name": "Olive"
+  },
   {
     "Base": {
       "r": 255,
@@ -157,8 +178,8 @@
       "b": 0,
       "a": 255
     },
-    "IsSpecial": false,
-    "Name": "Light Purple"
+    "IsSpecial": true,
+    "Name": "Lighter Purple"
   },
   
   {
@@ -180,7 +201,7 @@
       "b": 0,
       "a": 255
     },
-    "IsSpecial": false,
+    "IsSpecial": true,
     "Name": "Bronze"
   },
   

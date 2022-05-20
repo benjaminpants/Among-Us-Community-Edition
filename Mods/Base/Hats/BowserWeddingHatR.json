@@ -1,0 +1,47 @@
+{
+  "ID": "RecreatedBowserWeddingHat",
+  "Name": "RecreatedBowserWeddingHat",
+  "StoreName": "RecreatedBowserWeddingHat",
+  "HatInFront": false,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 61.0,
+        "y": 63.0
+      },
+      "Offset": {
+        "x": 0.68,
+        "y": 0.62
+      },
+      "Name": "Normal",
+      "SpritePath": "BowserWeddingHatR.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 61.0,
+        "y": 54.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "BowserWeddingHatR_crumpled.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

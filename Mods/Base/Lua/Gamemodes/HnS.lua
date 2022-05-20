@@ -5,7 +5,7 @@ function InitializeGamemode()
 	Game_CreateRole("Seeker",{255,25,25},"Kill all the remaining [1919FFFF]Hiders[].",{0},0,5,true,false,1)
 	Game_CreateRole("Hider",{25,25,255},"Complete all tasks and \n\rescape the [FF1919FF]Seekers[].",{},1,5,false,true,2)
 	UI_AddLangEntry("UI_CantCallMeeting","Ejecting it won't work.")
-	UI_AddLangEntry("Meeting_WhoIsImpostor","[FF0000FF]YOU DIRTY HACKER.[]")
+	UI_AddLangEntry("Meeting_WhoIsImpostor","[FF0000FF]YOU DIRTY HAXER![]")
 	UI_AddLangEntry("Game_ImpsRemain","[FF0000FF]DIE.[]")
 	--hey
 	Settings_CreateByte("Seeker Count",1,5,1) -- 0

@@ -1,0 +1,47 @@
+{
+  "ID": "Invoertoi",
+  "Name": "Mortiki Hair",
+  "StoreName": "Mortiki Hair",
+  "HatInFront": true,
+  "NoHatBobbing": false,
+  "UsePointFilteringGlobally": false,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 73.0,
+        "y": 69.0
+      },
+      "Offset": {
+        "x": 0.37,
+        "y": 0.75
+      },
+      "Name": "Normal",
+      "SpritePath": "svenhat2.png",
+      "UsePointFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 75.0,
+        "y": 61.0
+      },
+      "Offset": {
+        "x": 0.33,
+        "y": 0.85
+      },
+      "Name": "Floor",
+      "SpritePath": "svenhat2_crumple.png",
+      "UsePointFiltering": false
+    }
+  ]
+}

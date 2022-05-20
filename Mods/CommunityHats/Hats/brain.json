@@ -1,0 +1,50 @@
+{
+  "ID": "brain",
+  "Name": "brain",
+  "StoreName": "brain",
+  "HatInFront": true,
+  "NoHatBobbing": true,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": true,
+  "RelatedSkin": null,
+  "RelatedHat": null,
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0,
+        "y": 0
+      },
+      "Size": {
+        "x": 73,
+        "y": 51
+      },
+      "Offset": {
+        "x": 0.4,
+        "y": 0.8
+      },
+      "Name": "Normal",
+      "SpritePath": "brain.png",
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0,
+        "y": 0
+      },
+      "Size": {
+        "x": 73,
+        "y": 51
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "brain.png",
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    }
+  ]
+}

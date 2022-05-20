@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TwitterLink : MonoBehaviour
 {
-	public string LinkUrl = "https://twitter.com/OfficialMTM101";
+	public string LinkUrl = "https://github.com/";
 
 	public void Click()
 	{
-		Application.OpenURL("https://twitter.com/OfficialMTM101");
+		Application.OpenURL("https://github.com/");
 	}
 }

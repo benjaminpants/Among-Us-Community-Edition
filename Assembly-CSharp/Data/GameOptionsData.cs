@@ -7,9 +7,16 @@ using System;
 
 public class GameOptionsData : IBytesSerializable
 {
-	private const byte GameDataVersion = 3;
-
-	public static string[] MapNames;
+	private const byte GameDataVersion = 3; // make it go up.
+    private const bool V = true;
+    public static readonly string[] MapNames = new string[]
+	{
+		"The Skeld",
+		"Mira HQ",
+		"Polus",
+		"Airship",
+		"CARLLLL THERES A DEAD PERSON IN OUR HOUSE"
+	};
 
 	public static readonly float[] KillDistances;
 
@@ -28,7 +35,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public GameKeywords Keywords;
 
-	public byte MapId;
+	public int MapId; // map id now can be more haha
 
 	public float PlayerSpeedMod;
 
@@ -143,19 +150,19 @@ public class GameOptionsData : IBytesSerializable
 	public float SprintMultipler;
 
 	public byte SneakAllowance;
+	
+	public byte SprintAllowance;
 
 	public void ToggleMapFilter(byte newId)
-	{
-		byte b = (byte)((uint)(MapId ^ (1 << (int)newId)) & 3u);
-		if (b != 0)
-		{
-			MapId = b;
-		}
-	}
+    {
+	    MapId = 2; // map id normally equals newID but mainly for testing i made it 2
+		Debug.Log("Mira Thing");
+		Debug.Log("sussy baka");
+    }
 
-	public bool FilterContainsMap(byte newId)
+    public bool FilterContainsMap(byte newId)
 	{
-		int num = 1 << (int)newId;
+		int num = 100 << (int)newId;
 		return (MapId & num) == num;
 	}
 
@@ -319,7 +326,7 @@ public class GameOptionsData : IBytesSerializable
 
 	public void SetRecommendations(int numPlayers, GameModes modes)
 	{
-		numPlayers = Mathf.Clamp(numPlayers, 4, 20);
+		numPlayers = Mathf.Clamp(numPlayers, 4, 21);
 		PlayerSpeedMod = 1f;
 		CrewLightMod = 1f;
 		ImpostorLightMod = 1.5f;
@@ -359,10 +366,11 @@ public class GameOptionsData : IBytesSerializable
 		Plugins = new List<byte>();
 		Brightness = 70;
 		CanSeeOtherImps = true;
-		MapId = 0;
+		MapId = 2;
 		MeetingCooldown = RecommendedKillCooldown[numPlayers];
 		SprintMultipler = 0.5f;
-		SneakAllowance = 0;
+		SneakAllowance = 1;
+	 // SprintAllowance = 1;
 	}
 
 	public void Serialize(BinaryWriter writer)
@@ -529,9 +537,10 @@ public class GameOptionsData : IBytesSerializable
                 stringBuilder.AppendLine("Voting Time: ∞s");
             }
             stringBuilder.AppendLine($"Player Speed: {PlayerSpeedMod}x");
-			//stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
-			//stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
-			stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update.[]");
+			stringBuilder.AppendLine($"Sneak Multiplier: {SprintMultipler}x");
+			stringBuilder.AppendLine($"Sneak Usage: " + SneakStrings[SneakAllowance]);
+			//stringBuilder.AppendLine("[FF0000FF]Sneaking is disabled this update![]");
+			stringBuilder.AppendLine("[FF0000FF]Sprinting is disabled in this update![]");
 			if (CrewLightMod == 0f)
 			{
 				stringBuilder.AppendLine($"Crewmate Vision: {Constants.InfinitySymbol}x");
@@ -699,40 +708,42 @@ public class GameOptionsData : IBytesSerializable
 		{
 			names.Add(CE_CustomMapManager.MapInfos[i].MapName);
 		}
-		MapNames = names.ToArray();
+//		MapNames = names.ToArray();
 		CanSeeOtherImps = true;
 		MeetingCooldown = 15f;
 	}
 
 	static GameOptionsData()
 	{
-		KillDistances = new float[6]
+		KillDistances = new float[7]
 		{
 			0.5f,
 			1f,
 			1.8f,
 			2.5f,
 			4f,
-			200f
+			4.8f,
+			300f
 		};
-		KillDistanceStrings = new string[6]
+		KillDistanceStrings = new string[7]
 		{
 			"Tiny",
 			"Short",
 			"Normal",
 			"Long",
 			"XL",
+			"Extreme",
 			"∞"
 		};
 
-        BodySett = new string[]
+        BodySett = new string[3]
         {
             "Vanilla",
             "Decay",
             "Anon"
         };
 
-        BodyDecayTimes = new string[]
+        BodyDecayTimes = new string[3]
         {
             "Short",
             "Medium",
@@ -740,7 +751,7 @@ public class GameOptionsData : IBytesSerializable
         };
 
 
-        TaskDifficultyNames = new string[]
+        TaskDifficultyNames = new string[4]
         {
             "Easy",
             "Normal",
@@ -748,7 +759,7 @@ public class GameOptionsData : IBytesSerializable
             "Insane"
         };
 
-		TaskDifficultyMult = new float[]
+		TaskDifficultyMult = new float[4]
 		{
 			0.5f,
 			1f,
@@ -757,21 +768,21 @@ public class GameOptionsData : IBytesSerializable
 		};
 
 
-		BodyDecayMul = new float[]
+		BodyDecayMul = new float[3]
 		{
 			0.5f,
 			1f,
 			1.5f
 		};
 
-		TaskBarUpStrings = new string[]
+		TaskBarUpStrings = new string[3]
 		{
 			"Always",
 			"Meetings",
 			"Never"
 		};
 
-		CanSeeGhostsStrings = new string[]
+		CanSeeGhostsStrings = new string[4]
 		{
 			"Dead Only",
 			"Impostors Only",
@@ -779,9 +790,9 @@ public class GameOptionsData : IBytesSerializable
 			"Nobody"
 		};
 
-		Gamemodes = new string[255];
-		PluginNames = new string[255];
-		GamemodesAreLua = new bool[255];
+		Gamemodes = new string[256];
+		PluginNames = new string[256];
+		GamemodesAreLua = new bool[256];
 
 		VentModeStrings = new string[4]
 		{

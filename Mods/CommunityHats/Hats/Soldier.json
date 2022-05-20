@@ -1,0 +1,94 @@
+{
+  "ID": "Soldier",
+  "Name": "Soldier",
+  "StoreName": "Soldier",
+  "HatInFrontGlobally": true,
+  "NoHatBobbingGlobally": false,
+  "UsePointFilteringGlobally": false,
+  "UseColorFilteringGlobally": false,
+  "RelatedSkin": "",
+  "RelatedHat": "",
+  "UsePercentageBasedPivot": true,
+  "FrameList": [
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 74.0,
+        "y": 45.0
+      },
+      "Offset": {
+        "x": 0.299999982,
+        "y": 1.15
+      },
+      "Name": "NormalExt",
+      "SpritePath": "Soldier.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 120.0,
+        "y": 144.0
+      },
+      "Offset": {
+        "x": 0.36,
+        "y": 0.710000038
+      },
+      "Name": "NormalExt2",
+      "SpritePath": "Markethands.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": true
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 120.0,
+        "y": 144.0
+      },
+      "Offset": {
+        "x": 0.36,
+        "y": 0.710000038
+      },
+      "Name": "Normal",
+      "SpritePath": "Market_Gardener.png",
+      "Hat_NoBobbing": false,
+      "InFront": true,
+      "UsePointFiltering": false,
+      "UseColorFiltering": false
+    },
+    {
+      "Position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "Size": {
+        "x": 95.0,
+        "y": 62.0
+      },
+      "Offset": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "Name": "Floor",
+      "SpritePath": "Soldier_crumple.png",
+      "Hat_NoBobbing": false,
+      "InFront": false,
+      "UsePointFiltering": true,
+      "UseColorFiltering": false
+    }
+  ]
+}

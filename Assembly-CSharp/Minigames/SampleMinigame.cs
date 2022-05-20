@@ -12,17 +12,18 @@ public class SampleMinigame : Minigame
 		Processing = 0x80
 	}
 
-	private static string[] ProcessingStrings = new string[9]
+	private static string[] ProcessingStrings = new string[10]
 	{
 		"Take a break",
 		"Go grab a coffee",
 		"You dont need to wait",
 		"Go do something else",
-		"MTM101 was here",
-		"Carjem was here",
+		"Impostor was here",
+		"Stoopidman was here",
 		"Walk away please",
 		"Go and play Pokemon Go",
-		"Vibe somewhere else"
+		"Vibe somewhere else",
+		"Losing format"
 	};
 
 	private const float PanelMoveDuration = 0.75f;

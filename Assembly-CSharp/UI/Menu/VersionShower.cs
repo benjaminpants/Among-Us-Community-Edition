@@ -11,11 +11,14 @@ public class VersionShower : MonoBehaviour
 
 	private int lastlua;
 	private int lasthat;
+//	private int lastskin; // skin build thing
 	private string LuaID;
 	private string HatID;
+//	private string SkinID; // skin build thing
 	public static int buildhash;
 	public static string BuildID;
 	public static string ColorID;
+//	public static string SkinerrrID; // skin build thing
 
 	private GameObject FreeplayButton;
 
@@ -57,12 +60,15 @@ public class VersionShower : MonoBehaviour
 			"7",
 			"8",
 			"9",
-			"0"
+			"0",
+			"!",
+			".",
+			"?"
 
 		};
     public TextRenderer text;
 
-    public static int GetDeterministicHashCode(string str)
+	public static int GetDeterministicHashCode(string str)
     {
         unchecked
         {
@@ -107,7 +113,8 @@ public class VersionShower : MonoBehaviour
         byte[] Bytes = File.ReadAllBytes(Assembly.GetExecutingAssembly().Location);
         buildhash = GetDeterministicHashCodeBytes(Bytes);
         BuildID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
-        text.Text = "when imp sus";
+//	SkinerrrID = CreateIDFromInt(GetDeterministicHashCodeBytes(Bytes), 7);
+	text.Text = "when imp is sus"; // placeholder text or something
         Screen.sleepTimeout = -1;
         CE_Extensions.OnStartup();
         if (GameObject.Find("FreePlayButton") != null)
@@ -131,15 +138,28 @@ public class VersionShower : MonoBehaviour
 		Destroy(newbutton.GetComponent<HostGameButton>());
 		newbutton.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_CommonUI.ModsButton,new Vector2(0.5f,0.5f));
 		pasbut.OnClick.RemoveAllListeners();
+		/*GameObject mapsbutton = GameObject.Instantiate(FreeplayButton);
+		mapsbutton.transform.localPosition = new Vector3(0f,-0.25f,0f);
+		mapsbutton.transform.name = "MapMaking";
+		PassiveButton pasbut = mapsbutton.GetComponent<PassiveButton>();
+		Destroy(mapsbutton.GetComponent<HostGameButton>());*/
+		newbutton.GetComponent<SpriteRenderer>().sprite = CE_TextureNSpriteExtensions.ConvertToSprite(CE_CommonUI.ModsButton,new Vector2(0.5f,0.5f));
+		pasbut.OnClick.RemoveAllListeners();
 		pasbut.OnClick.AddListener(OpenModsMenu); //learned how to properly relink passive buttons??? maybe we could stop using unity ui??? pog???
 		ModsButton = newbutton;
+	 // MapMakerButton = mapsbutton;
     }
 
 	public void OpenModsMenu()
     {
 		CE_ModUI.IsShown = true;
     }
-
+    
+/*    	public void OpenMapMakingMenu()
+    {
+		CE_MapUI.IsShown = true;
+    }
+*/
 
 
 	public static string CreateIDFromInt(int ID,byte length)
@@ -155,8 +175,8 @@ public class VersionShower : MonoBehaviour
 
 	public void Update()
     {
-		//Debug.Log(ServerManager.Instance.availableServers.Length);
-		text.Text = "v0.5.14 - [r0]Thanks for the memories, I love you all.[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID + "[]\nColors ID:[r1]" + ColorID;
+		Debug.Log("Text is showing!");
+		text.Text = "v0.17.2 - [r0]Bug Fixes[]" + "\nBuild ID:[r1]" + BuildID + "[]\nLua ID:[r1]" + LuaID + "[]\nHats ID:[r1]" + HatID;
 		if (CE_LuaLoader.TheOmegaHash != lastlua)
         {
 			lastlua = CE_LuaLoader.TheOmegaHash;
